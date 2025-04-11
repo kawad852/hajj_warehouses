@@ -28,6 +28,7 @@ export 'src/l10n/app_localizations.dart';
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
 export 'src/models/country_code_model.dart';
+export 'src/models/object_box/object_box_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';

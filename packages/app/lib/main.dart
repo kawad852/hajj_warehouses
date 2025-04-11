@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             // home: _toggleScreen(context),
-            home: SizedBox(),
+            home: Placeholder(color: Colors.red),
           ),
         );
       },
