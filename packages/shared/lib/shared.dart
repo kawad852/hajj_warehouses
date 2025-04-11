@@ -1,3 +1,10 @@
+//packages
+export 'package:firebase_core/firebase_core.dart';
+export 'package:flutter_easyloading/flutter_easyloading.dart';
+export 'package:fluttertoast/fluttertoast.dart';
+export 'package:provider/provider.dart';
+export 'package:shared_preferences/shared_preferences.dart';
+
 //controllers
 export 'src/controllers/map_controller.dart';
 export 'src/controllers/phone_controller.dart';
