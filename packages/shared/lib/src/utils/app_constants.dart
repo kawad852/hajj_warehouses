@@ -1,0 +1,10 @@
+const kFallBackCountryCode = 'JO';
+const kLoginRouteName = 'login';
+const kOfferPrice = 999999999.99999;
+const kMapZoom = 14.0;
+const kGoogleMapKey = 'AIzaSyCwMia2EWKj_K77CLN1Ye5Zf0LW9K9Y5pU';
+const String kOrderIdDocument = 'bpDRfCR3EP8ZjFWnToZX';
+const kOrder = 99999;
+const kAlgoliaApplicationId = "71G4O6FNG3";
+const kAlgoliaApiKey = "ae2bff120346dbd5cb333b135263e1c1";
+const kFoodCategoryId = "food";

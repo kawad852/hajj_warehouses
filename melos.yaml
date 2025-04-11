@@ -1,0 +1,94 @@
+name: hajj_warehouses
+
+packages:
+  - packages/**
+
+scripts:
+  get:
+    run: melos exec -- "flutter pub get"
+    description: Run `flutter pub get` in all packages.
+
+  build_runner:
+    run: flutter pub run build_runner build
+
+  bootstrap:
+    run: melos bootstrap
+    description: Initialize and link all packages.
+
+  analyze:
+    run: melos run analyze:shared && melos run analyze:app && melos run analyze:web && melos run analyze:core
+    description: Run dart analyze on all packages.
+
+  analyze:shared:
+    run: dart analyze
+    packageFilters:
+      dirExists: packages/shared
+    description: Analyze shared package.
+
+  analyze:app:
+    run: dart analyze
+    packageFilters:
+      dirExists: packages/app
+    description: Analyze app package.
+
+  analyze:web:
+    run: dart analyze
+    packageFilters:
+      dirExists: packages/web
+    description: Analyze web package.
+
+  analyze:core:
+    run: dart analyze
+    packageFilters:
+      dirExists: packages/core
+    description: Analyze core package.
+
+  test:
+    run: melos run test:shared && melos run test:app && melos run test:web && melos run test:core
+    description: Run tests for all packages.
+
+  test:shared:
+    run: flutter test
+    packageFilters:
+      dirExists: packages/shared
+    description: Run tests for shared package.
+
+  test:app:
+    run: flutter test
+    packageFilters:
+      dirExists: packages/app
+    description: Run tests for app package.
+
+  test:web:
+    run: flutter test
+    packageFilters:
+      dirExists: packages/web
+    description: Run tests for web package.
+
+  test:core:
+    run: flutter test
+    packageFilters:
+      dirExists: packages/core
+    description: Run tests for core package.
+
+  build:app:
+    run: flutter build apk --release
+    packageFilters:
+      dirExists: packages/app
+    description: Build app APK.
+
+  build:web:
+    run: flutter build web --release
+    packageFilters:
+      dirExists: packages/web
+    description: Build web portal.
+
+  clean:
+    run: melos clean
+    description: Clean all packages.
+
+  generate:l10n:
+    run: flutter gen-l10n
+    packageFilters:
+      dirExists: packages/app
+    description: Generate l10n files for the app.
