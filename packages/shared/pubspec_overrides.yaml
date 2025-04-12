@@ -1,6 +1,6 @@
-# melos_managed_dependency_overrides: font_awesome_flutter,app
+# melos_managed_dependency_overrides: app,font_awesome_flutter
 dependency_overrides:
-  font_awesome_flutter:
-    git: https://github.com/kawad852/font_awesome_flutter.git
   app:
     path: ../app
+  font_awesome_flutter:
+    git: https://github.com/kawad852/font_awesome_flutter.git
