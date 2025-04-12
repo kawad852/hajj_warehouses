@@ -23,9 +23,11 @@ class UiHelper {
     final type = BuildingType.values.firstWhere((e) => e.value == value);
     switch (type) {
       case BuildingType.apartment:
-        return FontAwesomeIcons.apartment;
+        // return FontAwesomeIcons.apartment;
+        return Icons.add;
       case BuildingType.office:
-        return FontAwesomeIcons.chairOffice;
+        return Icons.add;
+      // return FontAwesomeIcons.chairOffice;
       default:
         return FontAwesomeIcons.house;
     }
