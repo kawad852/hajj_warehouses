@@ -5,7 +5,8 @@ import 'firebase_options.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main Navigator");
 
-// dart run build_runner build
+// dart pub global activate melos
+// melos bootstrap
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,8 +47,8 @@ class _MyAppState extends State<MyApp> {
     return Consumer2<AppProvider, UserProvider>(
       builder: (BuildContext context, appProvider, userProvider, Widget? child) {
         final colorScheme = ColorScheme.fromSeed(
-          // seedColor: Color(0xFF3795BA),
-          seedColor: Color(0xFF1D2D3A),
+          seedColor: Color(0xFF708D81),
+          surface: Colors.white,
           brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
         return MultiProvider(
