@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../enums/base_enums.dart';
-import '../enums/stores_enums.dart';
+import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 class UiHelper {
   static String translate({

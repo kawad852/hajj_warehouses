@@ -1,6 +1,4 @@
-# melos_managed_dependency_overrides: shared,font_awesome_flutter
+# melos_managed_dependency_overrides: shared
 dependency_overrides:
   shared:
     path: ../shared
-  font_awesome_flutter:
-    git: https://github.com/kawad852/font_awesome_flutter.git
