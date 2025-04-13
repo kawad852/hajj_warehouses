@@ -24,7 +24,7 @@ class CustomFirestoreQueryBuilder<T> extends StatelessWidget {
     return FirestoreQueryBuilder<T>(
       query: query,
       pageSize: 10,
-      secondaryQueryBuilder: secondaryQueryBuilder,
+      // secondaryQueryBuilder: secondaryQueryBuilder,
       builder: (context, snapshot, _) {
         if (snapshot.hasData) {
           return onComplete(context, snapshot);
