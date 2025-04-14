@@ -1,3 +1,4 @@
+import 'package:app/src/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
     return Consumer2<AppProvider, UserProvider>(
       builder: (BuildContext context, appProvider, userProvider, Widget? child) {
         final colorScheme = ColorScheme.fromSeed(
-          seedColor: Color(0xFF708D81),
+          seedColor: const Color(0xFF708D81),
           surface: Colors.white,
           brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
@@ -96,14 +97,15 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               colorScheme: colorScheme,
               useMaterial3: true,
-              inputDecorationTheme: InputDecorationTheme(filled: true),
+              fontFamily: GoogleFonts.cairo().fontFamily!,
+              inputDecorationTheme: const InputDecorationTheme(filled: true, fillColor: Color(0xFFF2F2F2)),
               cardTheme: CardThemeData(
                 color: colorScheme.onInverseSurface,
                 margin: EdgeInsets.zero,
               ),
             ),
             // home: _toggleScreen(context),
-            home: Placeholder(color: Colors.red),
+            home: const LoginScreen(),
           ),
         );
       },

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shared/shared.dart';
 
 class ValidationHelper {
   static final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -39,12 +40,12 @@ class ValidationHelper {
   //   return null;
   // }
 
-  // static String? password(BuildContext context, String? value) {
-  //   if (value!.isEmpty) {
-  //     return context.appLocalization.requiredField;
-  //   } else if (value.length < 6) {
-  //     return context.appLocalization.passwordTooShort;
-  //   }
-  //   return null;
-  // }
+  static String? password(BuildContext context, String? value) {
+    if (value!.isEmpty) {
+      return context.appLocalization.requiredField;
+    } else if (value.length < 6) {
+      return "كلمة المرور قصيرة جدا";
+    }//context.appLocalization.passwordTooShort
+    return null;
+  }
 }

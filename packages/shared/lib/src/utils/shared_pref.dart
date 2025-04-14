@@ -57,7 +57,7 @@ class MySharedPreferences {
   static bool get passedIntro => _sharedPreferences.getBool('passedIntro') ?? false;
   static set passedIntro(bool value) => _sharedPreferences.setBool('passedIntro', value);
 
-  static String get language => _sharedPreferences.getString('language') ?? LanguageEnum.english;
+  static String get language => _sharedPreferences.getString('language') ?? LanguageEnum.arabic;
   static set language(String value) => _sharedPreferences.setString('language', value);
 
   static String get theme => _sharedPreferences.getString('theme') ?? ThemeEnum.light;

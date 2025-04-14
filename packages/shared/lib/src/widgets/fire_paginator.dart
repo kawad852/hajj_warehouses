@@ -84,7 +84,7 @@ class _FirePaginatorState<T> extends State<FirePaginator<T>> {
 
   Widget? _buildLoadMoreIndicator() {
     if (_firePaginator.isFetchingMore && _firePaginator.docs.length > _pageSize) {
-      return Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: BaseLoader());
+      return const Padding(padding: EdgeInsets.symmetric(vertical: 20), child: BaseLoader());
     }
     return null;
   }

@@ -7,6 +7,6 @@ class FPLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: BaseLoader());
+    return const Padding(padding: EdgeInsets.symmetric(vertical: 20), child: BaseLoader());
   }
 }

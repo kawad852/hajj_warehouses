@@ -52,7 +52,7 @@ class _BigFutureBuilderState<T> extends State<BigFutureBuilder<T>> {
             case ConnectionState.waiting:
               return Scaffold(
                 appBar: AppBar(),
-                body: widget.onLoading == null ? BaseLoader() : widget.onLoading!(),
+                body: widget.onLoading == null ? const BaseLoader() : widget.onLoading!(),
               );
             case ConnectionState.done:
             default:

@@ -8,7 +8,7 @@ class ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {},
-      icon: Icon(FontAwesomeIcons.lightShare),
+      icon: const Icon(FontAwesomeIcons.lightShare),
     );
   }
 }

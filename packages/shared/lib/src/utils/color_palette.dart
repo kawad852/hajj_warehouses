@@ -9,5 +9,15 @@ class ColorPalette {
 
   bool get _isLightTheme => true;
 
-  Color get grey7ED => _isLightTheme ? const Color(0xFFE4E7ED) : const Color(0xFFE4E7ED);
+  ///common
+  Color get white => Colors.white;
+  Color get black => Colors.black;
+
+  //black
+  Color get black001 =>  const Color(0xFF001427);
+  
+
+  //grey
+  Color get grey708 =>  const Color(0xFF708D81);
+  Color get greyBDB =>  const Color(0xFFBDBDBD);
 }

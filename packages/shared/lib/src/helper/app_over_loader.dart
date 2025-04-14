@@ -15,7 +15,7 @@ class AppOverlayLoader {
       ..boxShadow = [];
     EasyLoading.show(
       indicator: indicator ??
-          Center(
+          const Center(
             child: CircularProgressIndicator(),
           ),
     );

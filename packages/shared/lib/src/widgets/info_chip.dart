@@ -10,7 +10,7 @@ class InfoChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: context.colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(kRadiusPrimary),
@@ -18,7 +18,7 @@ class InfoChip extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, size: 14),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Text(labelText, style: context.textTheme.labelSmall),
         ],
       ),

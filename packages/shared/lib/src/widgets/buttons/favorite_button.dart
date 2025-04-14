@@ -8,7 +8,7 @@ class FavoriteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {},
-      icon: Icon(FontAwesomeIcons.lightHeart),
+      icon: const Icon(FontAwesomeIcons.lightHeart),
     );
   }
 }

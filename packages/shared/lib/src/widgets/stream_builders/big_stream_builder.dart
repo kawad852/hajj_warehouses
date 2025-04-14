@@ -30,7 +30,7 @@ class BigStreamBuilder<T> extends StatelessWidget {
             case ConnectionState.waiting:
               return Scaffold(
                 appBar: AppBar(),
-                body: onLoading == null ? BaseLoader() : onLoading!(),
+                body: onLoading == null ? const BaseLoader() : onLoading!(),
               );
             case ConnectionState.done:
             default:

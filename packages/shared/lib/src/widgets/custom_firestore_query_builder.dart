@@ -29,7 +29,7 @@ class CustomFirestoreQueryBuilder<T> extends StatelessWidget {
         if (snapshot.hasData) {
           return onComplete(context, snapshot);
         } else if (snapshot.isFetching) {
-          return onLoading == null ? BaseLoader() : onLoading!();
+          return onLoading == null ? const BaseLoader() : onLoading!();
         } else {
           debugPrint("snapshotError::: ${snapshot.error}");
           return const ServerErrorWidget();
