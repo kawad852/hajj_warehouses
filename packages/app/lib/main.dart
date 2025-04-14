@@ -1,4 +1,4 @@
-import 'package:app/src/screens/login/login_screen.dart';
+import 'package:app/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             // home: _toggleScreen(context),
-            home: const LoginScreen(),
+            home: const AppNavBar(),
           ),
         );
       },

@@ -5,7 +5,7 @@ const kProviderLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05
 
 const kRadiusPrimary = 5.0;
 const kRadiusSecondary = 10.0;
-const kRadiusTertiary = 16.0;
+const kRadiusTertiary = 15.0;
 
 const kMaxWidth = 600.0;
 

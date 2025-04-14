@@ -13,4 +13,12 @@ class MyIcons {
   static const String profile = '${_path}profile.svg';
   static const String warehouseSelected = '${_path}warehouse_selected.svg';
   static const String warehouse = '${_path}warehouse.svg';
+  static const String notification = '${_path}notification.svg';
+  static const String helper = '${_path}helper.svg';
+  static const String information = '${_path}information.svg';
+  static const String language = '${_path}language.svg';
+  static const String logout = '${_path}logout.svg';
+  static const String policy = '${_path}policy.svg';
+  static const String setting = '${_path}setting.svg';
+  static const String terms = '${_path}terms.svg';
 }
