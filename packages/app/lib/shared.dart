@@ -3,6 +3,8 @@ export 'package:app/objectbox.g.dart';
 
 export 'main.dart';
 export 'src/screens/home/home_screen.dart';
+export 'src/screens/home/widgets/task_card.dart';
+export 'src/screens/home/widgets/my_task.dart';
 export 'src/screens/profile/profile_screen.dart';
 export 'src/screens/profile/widgets/profile_card.dart';
 export 'src/screens/warehouse/warehouse_screen.dart';

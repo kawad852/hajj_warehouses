@@ -21,4 +21,13 @@ class MyIcons {
   static const String policy = '${_path}policy.svg';
   static const String setting = '${_path}setting.svg';
   static const String terms = '${_path}terms.svg';
+  static const String box = '${_path}box.svg';
+  static const String clock = '${_path}clock.svg';
+  static const String people = '${_path}people.svg';
+  static const String reports = '${_path}reports.svg';
+  static const String timer = '${_path}timer.svg';
+  static const String wallet = '${_path}wallet.svg';
+  static const String calenderOutlined = '${_path}calender_outlined.svg';
+  static const String checkOutlined = '${_path}check_outlined.svg';
+  static const String clockOutlined = '${_path}clock_outlined.svg';
 }
