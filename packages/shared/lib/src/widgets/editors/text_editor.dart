@@ -16,6 +16,8 @@ class TextEditor extends StatelessWidget {
   final int? maxLines;
   final InputBorder? enabledBorder;
   final TextAlign? textAlign;
+  final String? hintText;
+  final TextStyle? hintStyle;
 
   const TextEditor({
     super.key,
@@ -30,12 +32,16 @@ class TextEditor extends StatelessWidget {
     this.enabledBorder,
     this.textAlign,
     this.minLines,
+    this.hintText,
+    this.hintStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     return BaseEditor(
       initialValue: initialValue,
+      hintText: hintText,
+      hintStyle: hintStyle,
       required: required,
       textAlign: textAlign,
       enabledBorder: enabledBorder ?? const OutlineInputBorder(

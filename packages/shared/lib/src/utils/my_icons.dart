@@ -30,4 +30,12 @@ class MyIcons {
   static const String calenderOutlined = '${_path}calender_outlined.svg';
   static const String checkOutlined = '${_path}check_outlined.svg';
   static const String clockOutlined = '${_path}clock_outlined.svg';
+  static const String book = '${_path}book.svg';
+  static const String boxAdd = '${_path}box_add.svg';
+  static const String boxTime = '${_path}box_time.svg';
+  static const String department = '${_path}department.svg';
+  static const String search = '${_path}search.svg';
+  static const String trash = '${_path}trash.svg';
+  static const String truckTime = '${_path}truck_time.svg';
+  static const String truck = '${_path}truck.svg';
 }

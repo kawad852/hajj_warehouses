@@ -70,4 +70,7 @@ export 'src/widgets/editors/numbers_editor.dart';
 export 'src/widgets/editors/phone_editor.dart';
 export 'src/widgets/editors/text_editor.dart';
 export 'src/widgets/editors/password_editor.dart';
+export 'src/widgets/materials_table/materials_table.dart';
+export 'src/widgets/materials_table/table_text.dart';
+export 'src/widgets/materials_table/custom_line.dart';
 
