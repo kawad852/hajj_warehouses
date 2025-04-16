@@ -36,7 +36,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
           child: Row(
             children: [
               WarehouseButton(
-                onTap: () {},
+                onTap: () {
+                  context.push((context) => const DepartmentItemManagementScreen());
+                },
                 title: "ادارة الأقسام والأصناف",
                 icon: MyIcons.department,
               ),
@@ -79,8 +81,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: BaseEditor(
+          child: TextEditor(
             onChanged: (value) {},
+            required: false,
             hintText: "ابحث عن صنف",
             hintStyle: TextStyle(
               color: context.colorPalette.grey666,

@@ -18,3 +18,6 @@ export 'src/screens/base/widgets/task_dialog.dart';
 export 'src/screens/base/widgets/task_bubble.dart';
 export 'src/screens/base/widgets/user_info.dart';
 export 'src/screens/orders_management/orders_management_screen.dart';
+export 'src/screens/department_item_management/department_item_management_screen.dart';
+export 'src/screens/department/department_screen.dart';
+export 'src/screens/add_new_item/add_new_item_screen.dart';

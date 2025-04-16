@@ -62,6 +62,8 @@ export 'src/utils/shared_pref.dart';
 export 'src/utils/color_palette.dart';
 //widgets
 export 'src/widgets/custom_svg.dart';
+export 'src/widgets/custom_back.dart';
+export 'src/widgets/app_bar_text.dart';
 export 'src/widgets/titled_textfield.dart';
 export 'src/widgets/stretch_button.dart';
 export 'src/widgets/editors/base_editor.dart';

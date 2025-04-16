@@ -105,11 +105,13 @@ class _MyAppState extends State<MyApp> {
               colorScheme: colorScheme,
               useMaterial3: true,
               fontFamily: GoogleFonts.cairo().fontFamily!,
-              inputDecorationTheme: const InputDecorationTheme(
+              inputDecorationTheme: InputDecorationTheme(
                 filled: true,
-                fillColor: Color(0xFFF2F2F2),
+                fillColor: const Color(0xFFF2F2F2),
+                contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent)
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary)
                 ),
               ),
               cardTheme: CardThemeData(

@@ -15,6 +15,7 @@ class NumbersEditor extends StatelessWidget {
   final int? maxLines;
   final InputBorder? enabledBorder;
   final TextAlign? textAlign;
+  final String? hintText;
 
   const NumbersEditor({
     super.key,
@@ -29,12 +30,14 @@ class NumbersEditor extends StatelessWidget {
     this.enabledBorder,
     this.textAlign,
     this.minLines,
+    this.hintText,
   });
 
   @override
   Widget build(BuildContext context) {
     return BaseEditor(
       labelText: labelText,
+      hintText: hintText,
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {

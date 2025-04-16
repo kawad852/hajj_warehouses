@@ -28,20 +28,8 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        title: Text(
-          "ادارة الطلبيات",
-          style: TextStyle(
-            color: context.colorPalette.black001,
-            fontSize: 16,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
+        leading: const CustomBack(),
+        title: const AppBarText("ادارة الطلبيات"),
       ),
       body: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(height: 10),
