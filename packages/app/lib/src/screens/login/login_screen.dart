@@ -81,14 +81,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   TitledTextField(
                     title: "اسم المستخدم",
                     child: TextEditor(
-                      onChanged: (value) {},
+                      onChanged: (value) => _email = value,
                       prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.user)),
                     ),
                   ),
                   const SizedBox(height: 10),
                   TitledTextField(
                     title: "كلمة المرور",
-                    child: PasswordEditor(onChanged: (value) {}, initialValue: null),
+                    child: PasswordEditor(
+                      onChanged: (value) => _password = value,
+                      initialValue: null,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

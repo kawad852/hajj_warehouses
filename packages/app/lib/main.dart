@@ -14,6 +14,8 @@ void main() async {
   await MySharedPreferences.init();
   MyObjectBoxes.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await FirebaseAuth.instance.signOut();
+
   runApp(
     MultiProvider(
       providers: [
