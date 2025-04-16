@@ -40,7 +40,7 @@ class ApiService {
     try {
       if (throwErrorForTesting) {
         // throw FirebaseException(plugin: '');
-        throw SocketException('');
+        throw const SocketException('');
         // throw TimeoutException('');
         // throw Exception();
       }

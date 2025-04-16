@@ -31,4 +31,6 @@ extension NavigationExtension on BuildContext {
       (route) => false,
     );
   }
+  
+  void pop([value]) => Navigator.pop(this, value);
 }

@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 class StretchedButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry? margin;
+  final Color? backgroundColor;
 
   const StretchedButton({
     super.key,
     required this.child,
     required this.onPressed,
     this.margin,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final height = Theme.of(context).buttonTheme.height + 4;
     return Padding(
       padding: margin ?? EdgeInsets.zero,
-      child: Center(
-        child: FilledButton(
-          onPressed: onPressed,
-          style: FilledButton.styleFrom(
-            minimumSize: Size(300, height),
-            maximumSize: Size(600, height),
+      child: FilledButton(
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(600, 48),
+          backgroundColor: backgroundColor ?? context.colorPalette.grey708,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kRadiusSecondary),
           ),
-          child: child,
         ),
+        child: child,
       ),
     );
   }

@@ -27,7 +27,7 @@ class ImpededFutureBuilder<T> extends StatelessWidget {
       builder: (context, AsyncSnapshot<T?> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return onLoading == null ? BaseLoader() : onLoading!();
+            return onLoading == null ? const BaseLoader() : onLoading!();
           case ConnectionState.done:
           default:
             if (snapshot.hasData) {

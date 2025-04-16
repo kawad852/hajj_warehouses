@@ -30,7 +30,7 @@ class ImpededStreamBuilder<T> extends StatelessWidget {
             if (initialData != null) {
               return onComplete(context, snapshot);
             }
-            return onLoading == null ? BaseLoader() : onLoading!();
+            return onLoading == null ? const BaseLoader() : onLoading!();
           case ConnectionState.done:
           default:
             if (snapshot.hasData) {

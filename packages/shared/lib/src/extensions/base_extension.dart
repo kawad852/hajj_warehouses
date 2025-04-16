@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shared/src/helper/translation_extension.dart';
+import 'package:shared/shared.dart';
 
-import '../providers/app_provider.dart';
 
 extension BaseExtensions on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
+  ColorPalette get colorPalette => ColorPalette.of(this);
+  Size get mediaQuery => MediaQuery.sizeOf(this);
 
   void unFocusKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
   String get currency => isRTL ? 'د.أ' : 'JD';

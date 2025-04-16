@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 import '../../helper/validation_helper.dart';
 import 'base_editor.dart';
@@ -15,6 +16,8 @@ class TextEditor extends StatelessWidget {
   final int? maxLines;
   final InputBorder? enabledBorder;
   final TextAlign? textAlign;
+  final String? hintText;
+  final TextStyle? hintStyle;
 
   const TextEditor({
     super.key,
@@ -29,21 +32,28 @@ class TextEditor extends StatelessWidget {
     this.enabledBorder,
     this.textAlign,
     this.minLines,
+    this.hintText,
+    this.hintStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     return BaseEditor(
       initialValue: initialValue,
+      hintText: hintText,
+      hintStyle: hintStyle,
       required: required,
       textAlign: textAlign,
-      enabledBorder: enabledBorder,
+      enabledBorder: enabledBorder ?? const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent)
+      ),
       suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       keyboardType: keyboardType,
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
+      style: TextStyle(color: context.colorPalette.greyBDB,fontWeight: FontWeight.bold),
       onChanged: (value) {
         if (value.isEmpty) {
           onChanged(null);
