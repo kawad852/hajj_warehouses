@@ -6,28 +6,31 @@ part of 'company_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CompanyModelImpl _$$CompanyModelImplFromJson(Map<String, dynamic> json) =>
-    _$CompanyModelImpl(
-      createdAt: const TimestampSerializer().fromJson(json['createdAt']),
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      subscription: json['subscription'] == null
+_$CompanyModelImpl _$$CompanyModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$CompanyModelImpl(
+  createdAt: const TimestampSerializer().fromJson(json['createdAt']),
+  id: json['id'] as String?,
+  name: json['name'] as String?,
+  subscription:
+      json['subscription'] == null
           ? null
           : Subscription.fromJson(json['subscription'] as Map<String, dynamic>),
-      intermediaryId: json['intermediaryId'] as String?,
-      serviceData: json['serviceData'] == null
+  intermediaryId: json['intermediaryId'] as String?,
+  serviceData:
+      json['serviceData'] == null
           ? null
           : ServiceData.fromJson(json['serviceData'] as Map<String, dynamic>),
-    );
+);
 
 Map<String, dynamic> _$$CompanyModelImplToJson(_$CompanyModelImpl instance) =>
     <String, dynamic>{
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
       'name': instance.name,
-      'subscription': instance.subscription?.toJson(),
+      'subscription': instance.subscription,
       'intermediaryId': instance.intermediaryId,
-      'serviceData': instance.serviceData?.toJson(),
+      'serviceData': instance.serviceData,
     };
 
 _$SubscriptionImpl _$$SubscriptionImplFromJson(Map<String, dynamic> json) =>

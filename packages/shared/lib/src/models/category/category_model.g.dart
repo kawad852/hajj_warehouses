@@ -13,7 +13,8 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       nameEn: json['nameEn'] as String? ?? '',
       nameAr: json['nameAr'] as String? ?? '',
       thumbnail: json['thumbnail'] as String? ?? '',
-      parentCategoryIds: (json['parentCategoryIds'] as List<dynamic>?)
+      parentCategoryIds:
+          (json['parentCategoryIds'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],

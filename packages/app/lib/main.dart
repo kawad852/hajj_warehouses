@@ -46,18 +46,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<AppProvider, UserProvider>(
-      builder: (
-        BuildContext context,
-        appProvider,
-        userProvider,
-        Widget? child,
-      ) {
+      builder: (BuildContext context, appProvider, userProvider, Widget? child) {
         final colorScheme = ColorScheme.fromSeed(
           seedColor: const Color(0xFF708D81),
           surface: Colors.white,
-          brightness: appProvider.appTheme == ThemeEnum.light
-                  ? Brightness.light
-                  : Brightness.dark,
+          brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
         return MultiProvider(
           providers: [
@@ -109,7 +102,7 @@ class _MyAppState extends State<MyApp> {
                 filled: true,
                 fillColor: Color(0xFFF2F2F2),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent)
+                  borderSide: BorderSide(color: Colors.transparent),
                 ),
               ),
               cardTheme: CardThemeData(
@@ -118,7 +111,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             // home: _toggleScreen(context),
-            home: const AppNavBar(),
+            home: const LoginScreen(),
           ),
         );
       },

@@ -12,7 +12,8 @@ part of 'basket_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 BasketModel _$BasketModelFromJson(Map<String, dynamic> json) {
   return _BasketModel.fromJson(json);
@@ -44,14 +45,16 @@ mixin _$BasketModel {
 /// @nodoc
 abstract class $BasketModelCopyWith<$Res> {
   factory $BasketModelCopyWith(
-          BasketModel value, $Res Function(BasketModel) then) =
-      _$BasketModelCopyWithImpl<$Res, BasketModel>;
+    BasketModel value,
+    $Res Function(BasketModel) then,
+  ) = _$BasketModelCopyWithImpl<$Res, BasketModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String storeId,
-      ProductModel? product});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String storeId,
+    ProductModel? product,
+  });
 
   $ProductModelCopyWith<$Res>? get product;
 }
@@ -76,24 +79,31 @@ class _$BasketModelCopyWithImpl<$Res, $Val extends BasketModel>
     Object? storeId = null,
     Object? product = freezed,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      storeId: null == storeId
-          ? _value.storeId
-          : storeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            storeId:
+                null == storeId
+                    ? _value.storeId
+                    : storeId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            product:
+                freezed == product
+                    ? _value.product
+                    : product // ignore: cast_nullable_to_non_nullable
+                        as ProductModel?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of BasketModel
@@ -115,15 +125,17 @@ class _$BasketModelCopyWithImpl<$Res, $Val extends BasketModel>
 abstract class _$$BasketModelImplCopyWith<$Res>
     implements $BasketModelCopyWith<$Res> {
   factory _$$BasketModelImplCopyWith(
-          _$BasketModelImpl value, $Res Function(_$BasketModelImpl) then) =
-      __$$BasketModelImplCopyWithImpl<$Res>;
+    _$BasketModelImpl value,
+    $Res Function(_$BasketModelImpl) then,
+  ) = __$$BasketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String storeId,
-      ProductModel? product});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String storeId,
+    ProductModel? product,
+  });
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -134,8 +146,9 @@ class __$$BasketModelImplCopyWithImpl<$Res>
     extends _$BasketModelCopyWithImpl<$Res, _$BasketModelImpl>
     implements _$$BasketModelImplCopyWith<$Res> {
   __$$BasketModelImplCopyWithImpl(
-      _$BasketModelImpl _value, $Res Function(_$BasketModelImpl) _then)
-      : super(_value, _then);
+    _$BasketModelImpl _value,
+    $Res Function(_$BasketModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BasketModel
   /// with the given fields replaced by the non-null parameter values.
@@ -147,35 +160,42 @@ class __$$BasketModelImplCopyWithImpl<$Res>
     Object? storeId = null,
     Object? product = freezed,
   }) {
-    return _then(_$BasketModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      storeId: null == storeId
-          ? _value.storeId
-          : storeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
-    ));
+    return _then(
+      _$BasketModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        storeId:
+            null == storeId
+                ? _value.storeId
+                : storeId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        product:
+            freezed == product
+                ? _value.product
+                : product // ignore: cast_nullable_to_non_nullable
+                    as ProductModel?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$BasketModelImpl implements _BasketModel {
-  _$BasketModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id = '',
-      this.storeId = '',
-      this.product});
+  _$BasketModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id = '',
+    this.storeId = '',
+    this.product,
+  });
 
   factory _$BasketModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BasketModelImplFromJson(json);
@@ -207,18 +227,17 @@ class _$BasketModelImpl implements _BasketModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BasketModelImplToJson(
-      this,
-    );
+    return _$$BasketModelImplToJson(this);
   }
 }
 
 abstract class _BasketModel implements BasketModel {
-  factory _BasketModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String storeId,
-      ProductModel? product}) = _$BasketModelImpl;
+  factory _BasketModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String storeId,
+    ProductModel? product,
+  }) = _$BasketModelImpl;
 
   factory _BasketModel.fromJson(Map<String, dynamic> json) =
       _$BasketModelImpl.fromJson;

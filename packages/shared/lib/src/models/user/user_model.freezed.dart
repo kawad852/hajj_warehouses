@@ -12,7 +12,8 @@ part of 'user_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _UserModel.fromJson(json);
@@ -32,6 +33,8 @@ mixin _$UserModel {
   set email(String? value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  set role(String? value) => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   set username(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
@@ -63,19 +66,21 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? displayName,
-      String? email,
-      String? deviceToken,
-      String? username,
-      String? languageCode,
-      bool blocked,
-      AddressModel? deliveryAddress,
-      PickUpInfoModel? pickupInfo,
-      String? phoneCountryCode,
-      String? phoneNum});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? displayName,
+    String? email,
+    String? deviceToken,
+    String? role,
+    String? username,
+    String? languageCode,
+    bool blocked,
+    AddressModel? deliveryAddress,
+    PickUpInfoModel? pickupInfo,
+    String? phoneCountryCode,
+    String? phoneNum,
+  });
 
   $AddressModelCopyWith<$Res>? get deliveryAddress;
   $PickUpInfoModelCopyWith<$Res>? get pickupInfo;
@@ -101,6 +106,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
+    Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
     Object? blocked = null,
@@ -109,56 +115,76 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceToken: freezed == deviceToken
-          ? _value.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      languageCode: freezed == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      blocked: null == blocked
-          ? _value.blocked
-          : blocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deliveryAddress: freezed == deliveryAddress
-          ? _value.deliveryAddress
-          : deliveryAddress // ignore: cast_nullable_to_non_nullable
-              as AddressModel?,
-      pickupInfo: freezed == pickupInfo
-          ? _value.pickupInfo
-          : pickupInfo // ignore: cast_nullable_to_non_nullable
-              as PickUpInfoModel?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            displayName:
+                freezed == displayName
+                    ? _value.displayName
+                    : displayName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            deviceToken:
+                freezed == deviceToken
+                    ? _value.deviceToken
+                    : deviceToken // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            role:
+                freezed == role
+                    ? _value.role
+                    : role // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            username:
+                freezed == username
+                    ? _value.username
+                    : username // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            languageCode:
+                freezed == languageCode
+                    ? _value.languageCode
+                    : languageCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            blocked:
+                null == blocked
+                    ? _value.blocked
+                    : blocked // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            deliveryAddress:
+                freezed == deliveryAddress
+                    ? _value.deliveryAddress
+                    : deliveryAddress // ignore: cast_nullable_to_non_nullable
+                        as AddressModel?,
+            pickupInfo:
+                freezed == pickupInfo
+                    ? _value.pickupInfo
+                    : pickupInfo // ignore: cast_nullable_to_non_nullable
+                        as PickUpInfoModel?,
+            phoneCountryCode:
+                freezed == phoneCountryCode
+                    ? _value.phoneCountryCode
+                    : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneNum:
+                freezed == phoneNum
+                    ? _value.phoneNum
+                    : phoneNum // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of UserModel
@@ -194,23 +220,26 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
 abstract class _$$UserModelImplCopyWith<$Res>
     implements $UserModelCopyWith<$Res> {
   factory _$$UserModelImplCopyWith(
-          _$UserModelImpl value, $Res Function(_$UserModelImpl) then) =
-      __$$UserModelImplCopyWithImpl<$Res>;
+    _$UserModelImpl value,
+    $Res Function(_$UserModelImpl) then,
+  ) = __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? displayName,
-      String? email,
-      String? deviceToken,
-      String? username,
-      String? languageCode,
-      bool blocked,
-      AddressModel? deliveryAddress,
-      PickUpInfoModel? pickupInfo,
-      String? phoneCountryCode,
-      String? phoneNum});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? displayName,
+    String? email,
+    String? deviceToken,
+    String? role,
+    String? username,
+    String? languageCode,
+    bool blocked,
+    AddressModel? deliveryAddress,
+    PickUpInfoModel? pickupInfo,
+    String? phoneCountryCode,
+    String? phoneNum,
+  });
 
   @override
   $AddressModelCopyWith<$Res>? get deliveryAddress;
@@ -223,8 +252,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
     extends _$UserModelCopyWithImpl<$Res, _$UserModelImpl>
     implements _$$UserModelImplCopyWith<$Res> {
   __$$UserModelImplCopyWithImpl(
-      _$UserModelImpl _value, $Res Function(_$UserModelImpl) _then)
-      : super(_value, _then);
+    _$UserModelImpl _value,
+    $Res Function(_$UserModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -236,6 +266,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
+    Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
     Object? blocked = null,
@@ -244,75 +275,96 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
   }) {
-    return _then(_$UserModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceToken: freezed == deviceToken
-          ? _value.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      languageCode: freezed == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      blocked: null == blocked
-          ? _value.blocked
-          : blocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deliveryAddress: freezed == deliveryAddress
-          ? _value.deliveryAddress
-          : deliveryAddress // ignore: cast_nullable_to_non_nullable
-              as AddressModel?,
-      pickupInfo: freezed == pickupInfo
-          ? _value.pickupInfo
-          : pickupInfo // ignore: cast_nullable_to_non_nullable
-              as PickUpInfoModel?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$UserModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        displayName:
+            freezed == displayName
+                ? _value.displayName
+                : displayName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        deviceToken:
+            freezed == deviceToken
+                ? _value.deviceToken
+                : deviceToken // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        role:
+            freezed == role
+                ? _value.role
+                : role // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        username:
+            freezed == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        languageCode:
+            freezed == languageCode
+                ? _value.languageCode
+                : languageCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        blocked:
+            null == blocked
+                ? _value.blocked
+                : blocked // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        deliveryAddress:
+            freezed == deliveryAddress
+                ? _value.deliveryAddress
+                : deliveryAddress // ignore: cast_nullable_to_non_nullable
+                    as AddressModel?,
+        pickupInfo:
+            freezed == pickupInfo
+                ? _value.pickupInfo
+                : pickupInfo // ignore: cast_nullable_to_non_nullable
+                    as PickUpInfoModel?,
+        phoneCountryCode:
+            freezed == phoneCountryCode
+                ? _value.phoneCountryCode
+                : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneNum:
+            freezed == phoneNum
+                ? _value.phoneNum
+                : phoneNum // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
-  _$UserModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.displayName,
-      this.email,
-      this.deviceToken,
-      this.username,
-      this.languageCode,
-      this.blocked = false,
-      this.deliveryAddress,
-      this.pickupInfo,
-      this.phoneCountryCode,
-      this.phoneNum});
+  _$UserModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.displayName,
+    this.email,
+    this.deviceToken,
+    this.role,
+    this.username,
+    this.languageCode,
+    this.blocked = false,
+    this.deliveryAddress,
+    this.pickupInfo,
+    this.phoneCountryCode,
+    this.phoneNum,
+  });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -328,6 +380,8 @@ class _$UserModelImpl implements _UserModel {
   String? email;
   @override
   String? deviceToken;
+  @override
+  String? role;
   @override
   String? username;
   @override
@@ -346,7 +400,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
   }
 
   /// Create a copy of UserModel
@@ -359,26 +413,26 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserModelImplToJson(
-      this,
-    );
+    return _$$UserModelImplToJson(this);
   }
 }
 
 abstract class _UserModel implements UserModel {
-  factory _UserModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? displayName,
-      String? email,
-      String? deviceToken,
-      String? username,
-      String? languageCode,
-      bool blocked,
-      AddressModel? deliveryAddress,
-      PickUpInfoModel? pickupInfo,
-      String? phoneCountryCode,
-      String? phoneNum}) = _$UserModelImpl;
+  factory _UserModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? displayName,
+    String? email,
+    String? deviceToken,
+    String? role,
+    String? username,
+    String? languageCode,
+    bool blocked,
+    AddressModel? deliveryAddress,
+    PickUpInfoModel? pickupInfo,
+    String? phoneCountryCode,
+    String? phoneNum,
+  }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -400,6 +454,9 @@ abstract class _UserModel implements UserModel {
   @override
   String? get deviceToken;
   set deviceToken(String? value);
+  @override
+  String? get role;
+  set role(String? value);
   @override
   String? get username;
   set username(String? value);

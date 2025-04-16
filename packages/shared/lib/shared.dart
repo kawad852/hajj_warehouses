@@ -1,11 +1,12 @@
 //packages
+export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:google_fonts/google_fonts.dart';
 export 'package:provider/provider.dart';
 export 'package:shared_preferences/shared_preferences.dart';
-export 'package:google_fonts/google_fonts.dart';
 
 //controllers
 export 'src/controllers/map_controller.dart';
@@ -50,27 +51,27 @@ export 'src/providers/app_provider.dart';
 export 'src/providers/location_provider.dart';
 export 'src/providers/user_provider.dart';
 export 'src/utils/app_constants.dart';
+export 'src/utils/color_palette.dart';
 export 'src/utils/countries.dart';
 export 'src/utils/main_categories.dart';
-export 'src/utils/my_images.dart';
 export 'src/utils/my_icons.dart';
+export 'src/utils/my_images.dart';
 export 'src/utils/my_object_boxes.dart';
 export 'src/utils/my_theme.dart';
 export 'src/utils/providers_extension.dart';
 //utils
 export 'src/utils/shared_pref.dart';
-export 'src/utils/color_palette.dart';
 //widgets
 export 'src/widgets/custom_svg.dart';
-export 'src/widgets/titled_textfield.dart';
-export 'src/widgets/stretch_button.dart';
 export 'src/widgets/editors/base_editor.dart';
 export 'src/widgets/editors/drop_down_editor.dart';
 export 'src/widgets/editors/numbers_editor.dart';
+export 'src/widgets/editors/password_editor.dart';
 export 'src/widgets/editors/phone_editor.dart';
 export 'src/widgets/editors/text_editor.dart';
-export 'src/widgets/editors/password_editor.dart';
+export 'src/widgets/extensions/snackbar_extension.dart';
+export 'src/widgets/materials_table/custom_line.dart';
 export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_text.dart';
-export 'src/widgets/materials_table/custom_line.dart';
-
+export 'src/widgets/stretch_button.dart';
+export 'src/widgets/titled_textfield.dart';

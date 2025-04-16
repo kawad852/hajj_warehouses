@@ -12,7 +12,8 @@ part of 'post_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 PostModel _$PostModelFromJson(Map<String, dynamic> json) {
   return _PostModel.fromJson(json);
@@ -57,16 +58,17 @@ abstract class $PostModelCopyWith<$Res> {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) then) =
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String type,
-      PostData item,
-      List<PostData> items,
-      int order,
-      bool published});
+  $Res call({
+    @TimestampSerializer() DateTime createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String type,
+    PostData item,
+    List<PostData> items,
+    int order,
+    bool published,
+  });
 
   $PostDataCopyWith<$Res> get item;
 }
@@ -96,44 +98,56 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? order = null,
     Object? published = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      item: null == item
-          ? _value.item
-          : item // ignore: cast_nullable_to_non_nullable
-              as PostData,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<PostData>,
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                null == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameEn:
+                null == nameEn
+                    ? _value.nameEn
+                    : nameEn // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameAr:
+                null == nameAr
+                    ? _value.nameAr
+                    : nameAr // ignore: cast_nullable_to_non_nullable
+                        as String,
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String,
+            item:
+                null == item
+                    ? _value.item
+                    : item // ignore: cast_nullable_to_non_nullable
+                        as PostData,
+            items:
+                null == items
+                    ? _value.items
+                    : items // ignore: cast_nullable_to_non_nullable
+                        as List<PostData>,
+            order:
+                null == order
+                    ? _value.order
+                    : order // ignore: cast_nullable_to_non_nullable
+                        as int,
+            published:
+                null == published
+                    ? _value.published
+                    : published // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of PostModel
@@ -151,20 +165,22 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
 abstract class _$$PostModelImplCopyWith<$Res>
     implements $PostModelCopyWith<$Res> {
   factory _$$PostModelImplCopyWith(
-          _$PostModelImpl value, $Res Function(_$PostModelImpl) then) =
-      __$$PostModelImplCopyWithImpl<$Res>;
+    _$PostModelImpl value,
+    $Res Function(_$PostModelImpl) then,
+  ) = __$$PostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String type,
-      PostData item,
-      List<PostData> items,
-      int order,
-      bool published});
+  $Res call({
+    @TimestampSerializer() DateTime createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String type,
+    PostData item,
+    List<PostData> items,
+    int order,
+    bool published,
+  });
 
   @override
   $PostDataCopyWith<$Res> get item;
@@ -175,8 +191,9 @@ class __$$PostModelImplCopyWithImpl<$Res>
     extends _$PostModelCopyWithImpl<$Res, _$PostModelImpl>
     implements _$$PostModelImplCopyWith<$Res> {
   __$$PostModelImplCopyWithImpl(
-      _$PostModelImpl _value, $Res Function(_$PostModelImpl) _then)
-      : super(_value, _then);
+    _$PostModelImpl _value,
+    $Res Function(_$PostModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.
@@ -193,60 +210,72 @@ class __$$PostModelImplCopyWithImpl<$Res>
     Object? order = null,
     Object? published = null,
   }) {
-    return _then(_$PostModelImpl(
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      item: null == item
-          ? _value.item
-          : item // ignore: cast_nullable_to_non_nullable
-              as PostData,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<PostData>,
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$PostModelImpl(
+        createdAt:
+            null == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameEn:
+            null == nameEn
+                ? _value.nameEn
+                : nameEn // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameAr:
+            null == nameAr
+                ? _value.nameAr
+                : nameAr // ignore: cast_nullable_to_non_nullable
+                    as String,
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String,
+        item:
+            null == item
+                ? _value.item
+                : item // ignore: cast_nullable_to_non_nullable
+                    as PostData,
+        items:
+            null == items
+                ? _value.items
+                : items // ignore: cast_nullable_to_non_nullable
+                    as List<PostData>,
+        order:
+            null == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                    as int,
+        published:
+            null == published
+                ? _value.published
+                : published // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PostModelImpl implements _PostModel {
-  _$PostModelImpl(
-      {@TimestampSerializer() required this.createdAt,
-      this.id = '',
-      this.nameEn = '',
-      this.nameAr = '',
-      this.type = '',
-      this.item = const PostData(),
-      this.items = const [],
-      this.order = 0,
-      this.published = true});
+  _$PostModelImpl({
+    @TimestampSerializer() required this.createdAt,
+    this.id = '',
+    this.nameEn = '',
+    this.nameAr = '',
+    this.type = '',
+    this.item = const PostData(),
+    this.items = const [],
+    this.order = 0,
+    this.published = true,
+  });
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
@@ -272,7 +301,7 @@ class _$PostModelImpl implements _PostModel {
   @override
   @JsonKey()
   List<PostData> items;
-//carousel
+  //carousel
   @override
   @JsonKey()
   int order;
@@ -295,23 +324,22 @@ class _$PostModelImpl implements _PostModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PostModelImplToJson(
-      this,
-    );
+    return _$$PostModelImplToJson(this);
   }
 }
 
 abstract class _PostModel implements PostModel {
-  factory _PostModel(
-      {@TimestampSerializer() required DateTime createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String type,
-      PostData item,
-      List<PostData> items,
-      int order,
-      bool published}) = _$PostModelImpl;
+  factory _PostModel({
+    @TimestampSerializer() required DateTime createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String type,
+    PostData item,
+    List<PostData> items,
+    int order,
+    bool published,
+  }) = _$PostModelImpl;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
@@ -397,20 +425,22 @@ class _$PostDataCopyWithImpl<$Res, $Val extends PostData>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? thumbnail = null,
-    Object? categoryIds = null,
-  }) {
-    return _then(_value.copyWith(
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      categoryIds: null == categoryIds
-          ? _value.categoryIds
-          : categoryIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+  $Res call({Object? thumbnail = null, Object? categoryIds = null}) {
+    return _then(
+      _value.copyWith(
+            thumbnail:
+                null == thumbnail
+                    ? _value.thumbnail
+                    : thumbnail // ignore: cast_nullable_to_non_nullable
+                        as String,
+            categoryIds:
+                null == categoryIds
+                    ? _value.categoryIds
+                    : categoryIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -418,8 +448,9 @@ class _$PostDataCopyWithImpl<$Res, $Val extends PostData>
 abstract class _$$PostDataImplCopyWith<$Res>
     implements $PostDataCopyWith<$Res> {
   factory _$$PostDataImplCopyWith(
-          _$PostDataImpl value, $Res Function(_$PostDataImpl) then) =
-      __$$PostDataImplCopyWithImpl<$Res>;
+    _$PostDataImpl value,
+    $Res Function(_$PostDataImpl) then,
+  ) = __$$PostDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String thumbnail, List<String> categoryIds});
@@ -430,27 +461,29 @@ class __$$PostDataImplCopyWithImpl<$Res>
     extends _$PostDataCopyWithImpl<$Res, _$PostDataImpl>
     implements _$$PostDataImplCopyWith<$Res> {
   __$$PostDataImplCopyWithImpl(
-      _$PostDataImpl _value, $Res Function(_$PostDataImpl) _then)
-      : super(_value, _then);
+    _$PostDataImpl _value,
+    $Res Function(_$PostDataImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PostData
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? thumbnail = null,
-    Object? categoryIds = null,
-  }) {
-    return _then(_$PostDataImpl(
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      categoryIds: null == categoryIds
-          ? _value.categoryIds
-          : categoryIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+  $Res call({Object? thumbnail = null, Object? categoryIds = null}) {
+    return _then(
+      _$PostDataImpl(
+        thumbnail:
+            null == thumbnail
+                ? _value.thumbnail
+                : thumbnail // ignore: cast_nullable_to_non_nullable
+                    as String,
+        categoryIds:
+            null == categoryIds
+                ? _value.categoryIds
+                : categoryIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+      ),
+    );
   }
 }
 
@@ -484,9 +517,7 @@ class _$PostDataImpl implements _PostData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PostDataImplToJson(
-      this,
-    );
+    return _$$PostDataImplToJson(this);
   }
 }
 

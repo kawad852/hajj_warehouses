@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:app/shared.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-import 'package:shared/src/widgets/extensions/snackbar_extension.dart';
 
 class UserProvider extends ChangeNotifier {
   Function()? onGuestRegistration;
@@ -51,22 +50,11 @@ class UserProvider extends ChangeNotifier {
     onGuestRegistration = callBack;
   }
 
-  Future<void> register(
-    BuildContext context,
-    UserCredential auth, {
-    required String? guestRoute,
-    required String? provider,
-    String? displayName,
-  }) async {
+  Future<void> login(BuildContext context, UserCredential auth) async {
     await ApiService.fetch(
       context,
       callBack: () async {
         final user = UserModel();
-        user.id = auth.user?.uid;
-        user.email = auth.user?.email;
-        user.displayName = displayName ?? auth.user?.displayName;
-        user.deviceToken = await _getDeviceToken();
-        user.languageCode = MySharedPreferences.language;
 
         final userDocument = await _firebaseFirestore.users.doc(user.id).get();
 
@@ -77,21 +65,19 @@ class UserProvider extends ChangeNotifier {
           }
           MySharedPreferences.user = userDocument.data()!;
         } else {
-          MySharedPreferences.user = user;
-          final json = {...user.toJson(), MyFields.createdAt: FieldValue.serverTimestamp()};
-          await FirebaseFirestore.instance.collection(MyCollections.users).doc(user.id).set(json);
+          if (context.mounted) {
+            context.showSnackBar(context.appLocalization.authFailed);
+          }
         }
 
         notifyListeners();
 
         if (context.mounted) {
-          if (guestRoute == null) {
-            context.goToNavBar();
+          if (user.role == RoleEnum.admin.value) {
+            context.pushAndRemoveUntil((context) => const ChooseBranchScreen());
           } else {
-            Navigator.popUntil(context, (route) => route.settings.name == kLoginRouteName);
-            Navigator.pop(context);
+            context.goToNavBar();
           }
-          // handleUserNavigation(context);
         }
       },
     );

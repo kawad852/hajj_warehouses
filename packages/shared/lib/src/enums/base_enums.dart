@@ -16,3 +16,12 @@ class AuthProviders {
 }
 
 enum ActionType { add, edit, delete }
+
+enum RoleEnum {
+  admin('ADMIN'),
+  manager('MANAGER');
+
+  final String value;
+
+  const RoleEnum(this.value);
+}

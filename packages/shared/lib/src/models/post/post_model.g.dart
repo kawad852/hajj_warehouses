@@ -13,10 +13,12 @@ _$PostModelImpl _$$PostModelImplFromJson(Map<String, dynamic> json) =>
       nameEn: json['nameEn'] as String? ?? '',
       nameAr: json['nameAr'] as String? ?? '',
       type: json['type'] as String? ?? '',
-      item: json['item'] == null
-          ? const PostData()
-          : PostData.fromJson(json['item'] as Map<String, dynamic>),
-      items: (json['items'] as List<dynamic>?)
+      item:
+          json['item'] == null
+              ? const PostData()
+              : PostData.fromJson(json['item'] as Map<String, dynamic>),
+      items:
+          (json['items'] as List<dynamic>?)
               ?.map((e) => PostData.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -31,8 +33,8 @@ Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
       'nameEn': instance.nameEn,
       'nameAr': instance.nameAr,
       'type': instance.type,
-      'item': instance.item.toJson(),
-      'items': instance.items.map((e) => e.toJson()).toList(),
+      'item': instance.item,
+      'items': instance.items,
       'order': instance.order,
       'published': instance.published,
     };
@@ -40,7 +42,8 @@ Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
 _$PostDataImpl _$$PostDataImplFromJson(Map<String, dynamic> json) =>
     _$PostDataImpl(
       thumbnail: json['thumbnail'] as String? ?? '',
-      categoryIds: (json['categoryIds'] as List<dynamic>?)
+      categoryIds:
+          (json['categoryIds'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],

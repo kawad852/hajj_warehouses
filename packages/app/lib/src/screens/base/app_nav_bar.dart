@@ -73,7 +73,7 @@ class _AppNavBarState extends State<AppNavBar> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         toolbarHeight: 80,
-        title: const UserInfo(),
+        title: const UserInfoWidget(),
         actions: [
           GestureDetector(
             onTap: () {},
@@ -114,10 +114,7 @@ class _AppNavBarState extends State<AppNavBar> {
                     _onSelect(index);
                   },
                   isSelected: _currentIndex == index,
-                  icon:
-                      _currentIndex == index
-                          ? itemsSelected[index]
-                          : items[index],
+                  icon: _currentIndex == index ? itemsSelected[index] : items[index],
                 );
               }).toList(),
         ),

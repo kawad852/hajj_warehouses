@@ -12,7 +12,8 @@ part of 'review_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) {
   return _ReviewModel.fromJson(json);
@@ -52,18 +53,20 @@ mixin _$ReviewModel {
 /// @nodoc
 abstract class $ReviewModelCopyWith<$Res> {
   factory $ReviewModelCopyWith(
-          ReviewModel value, $Res Function(ReviewModel) then) =
-      _$ReviewModelCopyWithImpl<$Res, ReviewModel>;
+    ReviewModel value,
+    $Res Function(ReviewModel) then,
+  ) = _$ReviewModelCopyWithImpl<$Res, ReviewModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? comment,
-      double rating,
-      String? userId,
-      String? displayName,
-      String? photoURL,
-      bool published});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? comment,
+    double rating,
+    String? userId,
+    String? displayName,
+    String? photoURL,
+    bool published,
+  });
 }
 
 /// @nodoc
@@ -90,40 +93,51 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
     Object? photoURL = freezed,
     Object? published = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comment: freezed == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoURL: freezed == photoURL
-          ? _value.photoURL
-          : photoURL // ignore: cast_nullable_to_non_nullable
-              as String?,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            comment:
+                freezed == comment
+                    ? _value.comment
+                    : comment // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            rating:
+                null == rating
+                    ? _value.rating
+                    : rating // ignore: cast_nullable_to_non_nullable
+                        as double,
+            userId:
+                freezed == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            displayName:
+                freezed == displayName
+                    ? _value.displayName
+                    : displayName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            photoURL:
+                freezed == photoURL
+                    ? _value.photoURL
+                    : photoURL // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            published:
+                null == published
+                    ? _value.published
+                    : published // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -131,19 +145,21 @@ class _$ReviewModelCopyWithImpl<$Res, $Val extends ReviewModel>
 abstract class _$$ReviewModelImplCopyWith<$Res>
     implements $ReviewModelCopyWith<$Res> {
   factory _$$ReviewModelImplCopyWith(
-          _$ReviewModelImpl value, $Res Function(_$ReviewModelImpl) then) =
-      __$$ReviewModelImplCopyWithImpl<$Res>;
+    _$ReviewModelImpl value,
+    $Res Function(_$ReviewModelImpl) then,
+  ) = __$$ReviewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? comment,
-      double rating,
-      String? userId,
-      String? displayName,
-      String? photoURL,
-      bool published});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? comment,
+    double rating,
+    String? userId,
+    String? displayName,
+    String? photoURL,
+    bool published,
+  });
 }
 
 /// @nodoc
@@ -151,8 +167,9 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
     extends _$ReviewModelCopyWithImpl<$Res, _$ReviewModelImpl>
     implements _$$ReviewModelImplCopyWith<$Res> {
   __$$ReviewModelImplCopyWithImpl(
-      _$ReviewModelImpl _value, $Res Function(_$ReviewModelImpl) _then)
-      : super(_value, _then);
+    _$ReviewModelImpl _value,
+    $Res Function(_$ReviewModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ReviewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -168,55 +185,66 @@ class __$$ReviewModelImplCopyWithImpl<$Res>
     Object? photoURL = freezed,
     Object? published = null,
   }) {
-    return _then(_$ReviewModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comment: freezed == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoURL: freezed == photoURL
-          ? _value.photoURL
-          : photoURL // ignore: cast_nullable_to_non_nullable
-              as String?,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$ReviewModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        comment:
+            freezed == comment
+                ? _value.comment
+                : comment // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        rating:
+            null == rating
+                ? _value.rating
+                : rating // ignore: cast_nullable_to_non_nullable
+                    as double,
+        userId:
+            freezed == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        displayName:
+            freezed == displayName
+                ? _value.displayName
+                : displayName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        photoURL:
+            freezed == photoURL
+                ? _value.photoURL
+                : photoURL // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        published:
+            null == published
+                ? _value.published
+                : published // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ReviewModelImpl implements _ReviewModel {
-  _$ReviewModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.comment,
-      this.rating = 5,
-      this.userId,
-      this.displayName,
-      this.photoURL,
-      this.published = false});
+  _$ReviewModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.comment,
+    this.rating = 5,
+    this.userId,
+    this.displayName,
+    this.photoURL,
+    this.published = false,
+  });
 
   factory _$ReviewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewModelImplFromJson(json);
@@ -256,22 +284,21 @@ class _$ReviewModelImpl implements _ReviewModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReviewModelImplToJson(
-      this,
-    );
+    return _$$ReviewModelImplToJson(this);
   }
 }
 
 abstract class _ReviewModel implements ReviewModel {
-  factory _ReviewModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? comment,
-      double rating,
-      String? userId,
-      String? displayName,
-      String? photoURL,
-      bool published}) = _$ReviewModelImpl;
+  factory _ReviewModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? comment,
+    double rating,
+    String? userId,
+    String? displayName,
+    String? photoURL,
+    bool published,
+  }) = _$ReviewModelImpl;
 
   factory _ReviewModel.fromJson(Map<String, dynamic> json) =
       _$ReviewModelImpl.fromJson;

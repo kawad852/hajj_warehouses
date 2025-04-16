@@ -18,13 +18,13 @@ _$PromoCodeModelImpl _$$PromoCodeModelImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$PromoCodeModelImplToJson(
-        _$PromoCodeModelImpl instance) =>
-    <String, dynamic>{
-      'createdAt': const TimestampSerializer().toJson(instance.createdAt),
-      'expiryDate': const TimestampSerializer().toJson(instance.expiryDate),
-      'id': instance.id,
-      'code': instance.code,
-      'percent': instance.percent,
-      'amount': instance.amount,
-      'active': instance.active,
-    };
+  _$PromoCodeModelImpl instance,
+) => <String, dynamic>{
+  'createdAt': const TimestampSerializer().toJson(instance.createdAt),
+  'expiryDate': const TimestampSerializer().toJson(instance.expiryDate),
+  'id': instance.id,
+  'code': instance.code,
+  'percent': instance.percent,
+  'amount': instance.amount,
+  'active': instance.active,
+};

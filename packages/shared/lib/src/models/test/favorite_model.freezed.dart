@@ -12,7 +12,8 @@ part of 'favorite_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 FavoriteModel _$FavoriteModelFromJson(Map<String, dynamic> json) {
   return _FavoriteModel.fromJson(json);
@@ -44,14 +45,16 @@ mixin _$FavoriteModel {
 /// @nodoc
 abstract class $FavoriteModelCopyWith<$Res> {
   factory $FavoriteModelCopyWith(
-          FavoriteModel value, $Res Function(FavoriteModel) then) =
-      _$FavoriteModelCopyWithImpl<$Res, FavoriteModel>;
+    FavoriteModel value,
+    $Res Function(FavoriteModel) then,
+  ) = _$FavoriteModelCopyWithImpl<$Res, FavoriteModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      CountryModel? country,
-      bool active});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    CountryModel? country,
+    bool active,
+  });
 
   $CountryModelCopyWith<$Res>? get country;
 }
@@ -76,24 +79,31 @@ class _$FavoriteModelCopyWithImpl<$Res, $Val extends FavoriteModel>
     Object? country = freezed,
     Object? active = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      country: freezed == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as CountryModel?,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            country:
+                freezed == country
+                    ? _value.country
+                    : country // ignore: cast_nullable_to_non_nullable
+                        as CountryModel?,
+            active:
+                null == active
+                    ? _value.active
+                    : active // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of FavoriteModel
@@ -115,15 +125,17 @@ class _$FavoriteModelCopyWithImpl<$Res, $Val extends FavoriteModel>
 abstract class _$$FavoriteModelImplCopyWith<$Res>
     implements $FavoriteModelCopyWith<$Res> {
   factory _$$FavoriteModelImplCopyWith(
-          _$FavoriteModelImpl value, $Res Function(_$FavoriteModelImpl) then) =
-      __$$FavoriteModelImplCopyWithImpl<$Res>;
+    _$FavoriteModelImpl value,
+    $Res Function(_$FavoriteModelImpl) then,
+  ) = __$$FavoriteModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      CountryModel? country,
-      bool active});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    CountryModel? country,
+    bool active,
+  });
 
   @override
   $CountryModelCopyWith<$Res>? get country;
@@ -134,8 +146,9 @@ class __$$FavoriteModelImplCopyWithImpl<$Res>
     extends _$FavoriteModelCopyWithImpl<$Res, _$FavoriteModelImpl>
     implements _$$FavoriteModelImplCopyWith<$Res> {
   __$$FavoriteModelImplCopyWithImpl(
-      _$FavoriteModelImpl _value, $Res Function(_$FavoriteModelImpl) _then)
-      : super(_value, _then);
+    _$FavoriteModelImpl _value,
+    $Res Function(_$FavoriteModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of FavoriteModel
   /// with the given fields replaced by the non-null parameter values.
@@ -147,35 +160,42 @@ class __$$FavoriteModelImplCopyWithImpl<$Res>
     Object? country = freezed,
     Object? active = null,
   }) {
-    return _then(_$FavoriteModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      country: freezed == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as CountryModel?,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$FavoriteModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        country:
+            freezed == country
+                ? _value.country
+                : country // ignore: cast_nullable_to_non_nullable
+                    as CountryModel?,
+        active:
+            null == active
+                ? _value.active
+                : active // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$FavoriteModelImpl implements _FavoriteModel {
-  _$FavoriteModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.country,
-      this.active = false});
+  _$FavoriteModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.country,
+    this.active = false,
+  });
 
   factory _$FavoriteModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FavoriteModelImplFromJson(json);
@@ -206,18 +226,17 @@ class _$FavoriteModelImpl implements _FavoriteModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FavoriteModelImplToJson(
-      this,
-    );
+    return _$$FavoriteModelImplToJson(this);
   }
 }
 
 abstract class _FavoriteModel implements FavoriteModel {
-  factory _FavoriteModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      CountryModel? country,
-      bool active}) = _$FavoriteModelImpl;
+  factory _FavoriteModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    CountryModel? country,
+    bool active,
+  }) = _$FavoriteModelImpl;
 
   factory _FavoriteModel.fromJson(Map<String, dynamic> json) =
       _$FavoriteModelImpl.fromJson;

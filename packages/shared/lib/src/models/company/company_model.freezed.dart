@@ -12,7 +12,8 @@ part of 'company_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CompanyModel _$CompanyModelFromJson(Map<String, dynamic> json) {
   return _CompanyModel.fromJson(json);
@@ -48,16 +49,18 @@ mixin _$CompanyModel {
 /// @nodoc
 abstract class $CompanyModelCopyWith<$Res> {
   factory $CompanyModelCopyWith(
-          CompanyModel value, $Res Function(CompanyModel) then) =
-      _$CompanyModelCopyWithImpl<$Res, CompanyModel>;
+    CompanyModel value,
+    $Res Function(CompanyModel) then,
+  ) = _$CompanyModelCopyWithImpl<$Res, CompanyModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? name,
-      Subscription? subscription,
-      String? intermediaryId,
-      ServiceData? serviceData});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? name,
+    Subscription? subscription,
+    String? intermediaryId,
+    ServiceData? serviceData,
+  });
 
   $SubscriptionCopyWith<$Res>? get subscription;
   $ServiceDataCopyWith<$Res>? get serviceData;
@@ -85,32 +88,41 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
     Object? intermediaryId = freezed,
     Object? serviceData = freezed,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subscription: freezed == subscription
-          ? _value.subscription
-          : subscription // ignore: cast_nullable_to_non_nullable
-              as Subscription?,
-      intermediaryId: freezed == intermediaryId
-          ? _value.intermediaryId
-          : intermediaryId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceData: freezed == serviceData
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as ServiceData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            subscription:
+                freezed == subscription
+                    ? _value.subscription
+                    : subscription // ignore: cast_nullable_to_non_nullable
+                        as Subscription?,
+            intermediaryId:
+                freezed == intermediaryId
+                    ? _value.intermediaryId
+                    : intermediaryId // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            serviceData:
+                freezed == serviceData
+                    ? _value.serviceData
+                    : serviceData // ignore: cast_nullable_to_non_nullable
+                        as ServiceData?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of CompanyModel
@@ -146,17 +158,19 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
 abstract class _$$CompanyModelImplCopyWith<$Res>
     implements $CompanyModelCopyWith<$Res> {
   factory _$$CompanyModelImplCopyWith(
-          _$CompanyModelImpl value, $Res Function(_$CompanyModelImpl) then) =
-      __$$CompanyModelImplCopyWithImpl<$Res>;
+    _$CompanyModelImpl value,
+    $Res Function(_$CompanyModelImpl) then,
+  ) = __$$CompanyModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? name,
-      Subscription? subscription,
-      String? intermediaryId,
-      ServiceData? serviceData});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? name,
+    Subscription? subscription,
+    String? intermediaryId,
+    ServiceData? serviceData,
+  });
 
   @override
   $SubscriptionCopyWith<$Res>? get subscription;
@@ -169,8 +183,9 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
     extends _$CompanyModelCopyWithImpl<$Res, _$CompanyModelImpl>
     implements _$$CompanyModelImplCopyWith<$Res> {
   __$$CompanyModelImplCopyWithImpl(
-      _$CompanyModelImpl _value, $Res Function(_$CompanyModelImpl) _then)
-      : super(_value, _then);
+    _$CompanyModelImpl _value,
+    $Res Function(_$CompanyModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CompanyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -184,45 +199,54 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
     Object? intermediaryId = freezed,
     Object? serviceData = freezed,
   }) {
-    return _then(_$CompanyModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subscription: freezed == subscription
-          ? _value.subscription
-          : subscription // ignore: cast_nullable_to_non_nullable
-              as Subscription?,
-      intermediaryId: freezed == intermediaryId
-          ? _value.intermediaryId
-          : intermediaryId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceData: freezed == serviceData
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as ServiceData?,
-    ));
+    return _then(
+      _$CompanyModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        subscription:
+            freezed == subscription
+                ? _value.subscription
+                : subscription // ignore: cast_nullable_to_non_nullable
+                    as Subscription?,
+        intermediaryId:
+            freezed == intermediaryId
+                ? _value.intermediaryId
+                : intermediaryId // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        serviceData:
+            freezed == serviceData
+                ? _value.serviceData
+                : serviceData // ignore: cast_nullable_to_non_nullable
+                    as ServiceData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CompanyModelImpl implements _CompanyModel {
-  _$CompanyModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.name,
-      this.subscription,
-      this.intermediaryId,
-      this.serviceData});
+  _$CompanyModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.name,
+    this.subscription,
+    this.intermediaryId,
+    this.serviceData,
+  });
 
   factory _$CompanyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CompanyModelImplFromJson(json);
@@ -256,20 +280,19 @@ class _$CompanyModelImpl implements _CompanyModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CompanyModelImplToJson(
-      this,
-    );
+    return _$$CompanyModelImplToJson(this);
   }
 }
 
 abstract class _CompanyModel implements CompanyModel {
-  factory _CompanyModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? name,
-      Subscription? subscription,
-      String? intermediaryId,
-      ServiceData? serviceData}) = _$CompanyModelImpl;
+  factory _CompanyModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? name,
+    Subscription? subscription,
+    String? intermediaryId,
+    ServiceData? serviceData,
+  }) = _$CompanyModelImpl;
 
   factory _CompanyModel.fromJson(Map<String, dynamic> json) =
       _$CompanyModelImpl.fromJson;
@@ -326,8 +349,9 @@ mixin _$Subscription {
 /// @nodoc
 abstract class $SubscriptionCopyWith<$Res> {
   factory $SubscriptionCopyWith(
-          Subscription value, $Res Function(Subscription) then) =
-      _$SubscriptionCopyWithImpl<$Res, Subscription>;
+    Subscription value,
+    $Res Function(Subscription) then,
+  ) = _$SubscriptionCopyWithImpl<$Res, Subscription>;
   @useResult
   $Res call({String? id, @TimestampSerializer() DateTime? createdAt});
 }
@@ -346,20 +370,22 @@ class _$SubscriptionCopyWithImpl<$Res, $Val extends Subscription>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
+  $Res call({Object? id = freezed, Object? createdAt = freezed}) {
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -367,8 +393,9 @@ class _$SubscriptionCopyWithImpl<$Res, $Val extends Subscription>
 abstract class _$$SubscriptionImplCopyWith<$Res>
     implements $SubscriptionCopyWith<$Res> {
   factory _$$SubscriptionImplCopyWith(
-          _$SubscriptionImpl value, $Res Function(_$SubscriptionImpl) then) =
-      __$$SubscriptionImplCopyWithImpl<$Res>;
+    _$SubscriptionImpl value,
+    $Res Function(_$SubscriptionImpl) then,
+  ) = __$$SubscriptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, @TimestampSerializer() DateTime? createdAt});
@@ -379,27 +406,29 @@ class __$$SubscriptionImplCopyWithImpl<$Res>
     extends _$SubscriptionCopyWithImpl<$Res, _$SubscriptionImpl>
     implements _$$SubscriptionImplCopyWith<$Res> {
   __$$SubscriptionImplCopyWithImpl(
-      _$SubscriptionImpl _value, $Res Function(_$SubscriptionImpl) _then)
-      : super(_value, _then);
+    _$SubscriptionImpl _value,
+    $Res Function(_$SubscriptionImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Subscription
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_$SubscriptionImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
+  $Res call({Object? id = freezed, Object? createdAt = freezed}) {
+    return _then(
+      _$SubscriptionImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+      ),
+    );
   }
 }
 
@@ -446,16 +475,15 @@ class _$SubscriptionImpl implements _Subscription {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SubscriptionImplToJson(
-      this,
-    );
+    return _$$SubscriptionImplToJson(this);
   }
 }
 
 abstract class _Subscription implements Subscription {
-  factory _Subscription(
-      {final String? id,
-      @TimestampSerializer() final DateTime? createdAt}) = _$SubscriptionImpl;
+  factory _Subscription({
+    final String? id,
+    @TimestampSerializer() final DateTime? createdAt,
+  }) = _$SubscriptionImpl;
 
   factory _Subscription.fromJson(Map<String, dynamic> json) =
       _$SubscriptionImpl.fromJson;
@@ -498,8 +526,9 @@ mixin _$ServiceData {
 /// @nodoc
 abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
-          ServiceData value, $Res Function(ServiceData) then) =
-      _$ServiceDataCopyWithImpl<$Res, ServiceData>;
+    ServiceData value,
+    $Res Function(ServiceData) then,
+  ) = _$ServiceDataCopyWithImpl<$Res, ServiceData>;
   @useResult
   $Res call({String? id, String? db, String? login, String? password});
 }
@@ -524,24 +553,31 @@ class _$ServiceDataCopyWithImpl<$Res, $Val extends ServiceData>
     Object? login = freezed,
     Object? password = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      db: freezed == db
-          ? _value.db
-          : db // ignore: cast_nullable_to_non_nullable
-              as String?,
-      login: freezed == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            db:
+                freezed == db
+                    ? _value.db
+                    : db // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            login:
+                freezed == login
+                    ? _value.login
+                    : login // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            password:
+                freezed == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -549,8 +585,9 @@ class _$ServiceDataCopyWithImpl<$Res, $Val extends ServiceData>
 abstract class _$$ServiceDataImplCopyWith<$Res>
     implements $ServiceDataCopyWith<$Res> {
   factory _$$ServiceDataImplCopyWith(
-          _$ServiceDataImpl value, $Res Function(_$ServiceDataImpl) then) =
-      __$$ServiceDataImplCopyWithImpl<$Res>;
+    _$ServiceDataImpl value,
+    $Res Function(_$ServiceDataImpl) then,
+  ) = __$$ServiceDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? db, String? login, String? password});
@@ -561,8 +598,9 @@ class __$$ServiceDataImplCopyWithImpl<$Res>
     extends _$ServiceDataCopyWithImpl<$Res, _$ServiceDataImpl>
     implements _$$ServiceDataImplCopyWith<$Res> {
   __$$ServiceDataImplCopyWithImpl(
-      _$ServiceDataImpl _value, $Res Function(_$ServiceDataImpl) _then)
-      : super(_value, _then);
+    _$ServiceDataImpl _value,
+    $Res Function(_$ServiceDataImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ServiceData
   /// with the given fields replaced by the non-null parameter values.
@@ -574,24 +612,30 @@ class __$$ServiceDataImplCopyWithImpl<$Res>
     Object? login = freezed,
     Object? password = freezed,
   }) {
-    return _then(_$ServiceDataImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      db: freezed == db
-          ? _value.db
-          : db // ignore: cast_nullable_to_non_nullable
-              as String?,
-      login: freezed == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$ServiceDataImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        db:
+            freezed == db
+                ? _value.db
+                : db // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        login:
+            freezed == login
+                ? _value.login
+                : login // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        password:
+            freezed == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -643,18 +687,17 @@ class _$ServiceDataImpl implements _ServiceData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ServiceDataImplToJson(
-      this,
-    );
+    return _$$ServiceDataImplToJson(this);
   }
 }
 
 abstract class _ServiceData implements ServiceData {
-  factory _ServiceData(
-      {final String? id,
-      final String? db,
-      final String? login,
-      final String? password}) = _$ServiceDataImpl;
+  factory _ServiceData({
+    final String? id,
+    final String? db,
+    final String? login,
+    final String? password,
+  }) = _$ServiceDataImpl;
 
   factory _ServiceData.fromJson(Map<String, dynamic> json) =
       _$ServiceDataImpl.fromJson;

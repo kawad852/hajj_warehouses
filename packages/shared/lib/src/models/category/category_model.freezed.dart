@@ -12,7 +12,8 @@ part of 'category_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
   return _CategoryModel.fromJson(json);
@@ -55,19 +56,21 @@ mixin _$CategoryModel {
 /// @nodoc
 abstract class $CategoryModelCopyWith<$Res> {
   factory $CategoryModelCopyWith(
-          CategoryModel value, $Res Function(CategoryModel) then) =
-      _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
+    CategoryModel value,
+    $Res Function(CategoryModel) then,
+  ) = _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String thumbnail,
-      List<String> parentCategoryIds,
-      int order,
-      bool published,
-      bool showOnHome});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String thumbnail,
+    List<String> parentCategoryIds,
+    int order,
+    bool published,
+    bool showOnHome,
+  });
 }
 
 /// @nodoc
@@ -95,44 +98,56 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? published = null,
     Object? showOnHome = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentCategoryIds: null == parentCategoryIds
-          ? _value.parentCategoryIds
-          : parentCategoryIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showOnHome: null == showOnHome
-          ? _value.showOnHome
-          : showOnHome // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameEn:
+                null == nameEn
+                    ? _value.nameEn
+                    : nameEn // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameAr:
+                null == nameAr
+                    ? _value.nameAr
+                    : nameAr // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thumbnail:
+                null == thumbnail
+                    ? _value.thumbnail
+                    : thumbnail // ignore: cast_nullable_to_non_nullable
+                        as String,
+            parentCategoryIds:
+                null == parentCategoryIds
+                    ? _value.parentCategoryIds
+                    : parentCategoryIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            order:
+                null == order
+                    ? _value.order
+                    : order // ignore: cast_nullable_to_non_nullable
+                        as int,
+            published:
+                null == published
+                    ? _value.published
+                    : published // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            showOnHome:
+                null == showOnHome
+                    ? _value.showOnHome
+                    : showOnHome // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -140,20 +155,22 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
 abstract class _$$CategoryModelImplCopyWith<$Res>
     implements $CategoryModelCopyWith<$Res> {
   factory _$$CategoryModelImplCopyWith(
-          _$CategoryModelImpl value, $Res Function(_$CategoryModelImpl) then) =
-      __$$CategoryModelImplCopyWithImpl<$Res>;
+    _$CategoryModelImpl value,
+    $Res Function(_$CategoryModelImpl) then,
+  ) = __$$CategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String thumbnail,
-      List<String> parentCategoryIds,
-      int order,
-      bool published,
-      bool showOnHome});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String thumbnail,
+    List<String> parentCategoryIds,
+    int order,
+    bool published,
+    bool showOnHome,
+  });
 }
 
 /// @nodoc
@@ -161,8 +178,9 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     extends _$CategoryModelCopyWithImpl<$Res, _$CategoryModelImpl>
     implements _$$CategoryModelImplCopyWith<$Res> {
   __$$CategoryModelImplCopyWithImpl(
-      _$CategoryModelImpl _value, $Res Function(_$CategoryModelImpl) _then)
-      : super(_value, _then);
+    _$CategoryModelImpl _value,
+    $Res Function(_$CategoryModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -179,61 +197,72 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? published = null,
     Object? showOnHome = null,
   }) {
-    return _then(_$CategoryModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentCategoryIds: null == parentCategoryIds
-          ? _value.parentCategoryIds
-          : parentCategoryIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as int,
-      published: null == published
-          ? _value.published
-          : published // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showOnHome: null == showOnHome
-          ? _value.showOnHome
-          : showOnHome // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$CategoryModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameEn:
+            null == nameEn
+                ? _value.nameEn
+                : nameEn // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameAr:
+            null == nameAr
+                ? _value.nameAr
+                : nameAr // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thumbnail:
+            null == thumbnail
+                ? _value.thumbnail
+                : thumbnail // ignore: cast_nullable_to_non_nullable
+                    as String,
+        parentCategoryIds:
+            null == parentCategoryIds
+                ? _value.parentCategoryIds
+                : parentCategoryIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        order:
+            null == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                    as int,
+        published:
+            null == published
+                ? _value.published
+                : published // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        showOnHome:
+            null == showOnHome
+                ? _value.showOnHome
+                : showOnHome // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CategoryModelImpl extends _CategoryModel {
-  _$CategoryModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id = '',
-      this.nameEn = '',
-      this.nameAr = '',
-      this.thumbnail = '',
-      this.parentCategoryIds = const [],
-      this.order = kOrder,
-      this.published = true,
-      this.showOnHome = false})
-      : super._();
+  _$CategoryModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id = '',
+    this.nameEn = '',
+    this.nameAr = '',
+    this.thumbnail = '',
+    this.parentCategoryIds = const [],
+    this.order = kOrder,
+    this.published = true,
+    this.showOnHome = false,
+  }) : super._();
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -281,23 +310,22 @@ class _$CategoryModelImpl extends _CategoryModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CategoryModelImplToJson(
-      this,
-    );
+    return _$$CategoryModelImplToJson(this);
   }
 }
 
 abstract class _CategoryModel extends CategoryModel {
-  factory _CategoryModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String thumbnail,
-      List<String> parentCategoryIds,
-      int order,
-      bool published,
-      bool showOnHome}) = _$CategoryModelImpl;
+  factory _CategoryModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String thumbnail,
+    List<String> parentCategoryIds,
+    int order,
+    bool published,
+    bool showOnHome,
+  }) = _$CategoryModelImpl;
   _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =

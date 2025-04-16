@@ -12,7 +12,8 @@ part of 'provider_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ProviderModel _$ProviderModelFromJson(Map<String, dynamic> json) {
   return _ProviderModel.fromJson(json);
@@ -66,25 +67,27 @@ mixin _$ProviderModel {
 /// @nodoc
 abstract class $ProviderModelCopyWith<$Res> {
   factory $ProviderModelCopyWith(
-          ProviderModel value, $Res Function(ProviderModel) then) =
-      _$ProviderModelCopyWithImpl<$Res, ProviderModel>;
+    ProviderModel value,
+    $Res Function(ProviderModel) then,
+  ) = _$ProviderModelCopyWithImpl<$Res, ProviderModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String descriptionEn,
-      String descriptionAr,
-      String stateId,
-      String cityId,
-      String address,
-      String status,
-      String type,
-      String thumbnail,
-      List<String> images,
-      String? phoneNumber,
-      String phoneCountryCode});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String descriptionEn,
+    String descriptionAr,
+    String stateId,
+    String cityId,
+    String address,
+    String status,
+    String type,
+    String thumbnail,
+    List<String> images,
+    String? phoneNumber,
+    String phoneCountryCode,
+  });
 }
 
 /// @nodoc
@@ -118,68 +121,86 @@ class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
     Object? phoneNumber = freezed,
     Object? phoneCountryCode = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionEn: null == descriptionEn
-          ? _value.descriptionEn
-          : descriptionEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionAr: null == descriptionAr
-          ? _value.descriptionAr
-          : descriptionAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      stateId: null == stateId
-          ? _value.stateId
-          : stateId // ignore: cast_nullable_to_non_nullable
-              as String,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: null == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameEn:
+                null == nameEn
+                    ? _value.nameEn
+                    : nameEn // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nameAr:
+                null == nameAr
+                    ? _value.nameAr
+                    : nameAr // ignore: cast_nullable_to_non_nullable
+                        as String,
+            descriptionEn:
+                null == descriptionEn
+                    ? _value.descriptionEn
+                    : descriptionEn // ignore: cast_nullable_to_non_nullable
+                        as String,
+            descriptionAr:
+                null == descriptionAr
+                    ? _value.descriptionAr
+                    : descriptionAr // ignore: cast_nullable_to_non_nullable
+                        as String,
+            stateId:
+                null == stateId
+                    ? _value.stateId
+                    : stateId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            cityId:
+                null == cityId
+                    ? _value.cityId
+                    : cityId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            address:
+                null == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
+                        as String,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thumbnail:
+                null == thumbnail
+                    ? _value.thumbnail
+                    : thumbnail // ignore: cast_nullable_to_non_nullable
+                        as String,
+            images:
+                null == images
+                    ? _value.images
+                    : images // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            phoneNumber:
+                freezed == phoneNumber
+                    ? _value.phoneNumber
+                    : phoneNumber // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneCountryCode:
+                null == phoneCountryCode
+                    ? _value.phoneCountryCode
+                    : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -187,26 +208,28 @@ class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
 abstract class _$$ProviderModelImplCopyWith<$Res>
     implements $ProviderModelCopyWith<$Res> {
   factory _$$ProviderModelImplCopyWith(
-          _$ProviderModelImpl value, $Res Function(_$ProviderModelImpl) then) =
-      __$$ProviderModelImplCopyWithImpl<$Res>;
+    _$ProviderModelImpl value,
+    $Res Function(_$ProviderModelImpl) then,
+  ) = __$$ProviderModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String descriptionEn,
-      String descriptionAr,
-      String stateId,
-      String cityId,
-      String address,
-      String status,
-      String type,
-      String thumbnail,
-      List<String> images,
-      String? phoneNumber,
-      String phoneCountryCode});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String descriptionEn,
+    String descriptionAr,
+    String stateId,
+    String cityId,
+    String address,
+    String status,
+    String type,
+    String thumbnail,
+    List<String> images,
+    String? phoneNumber,
+    String phoneCountryCode,
+  });
 }
 
 /// @nodoc
@@ -214,8 +237,9 @@ class __$$ProviderModelImplCopyWithImpl<$Res>
     extends _$ProviderModelCopyWithImpl<$Res, _$ProviderModelImpl>
     implements _$$ProviderModelImplCopyWith<$Res> {
   __$$ProviderModelImplCopyWithImpl(
-      _$ProviderModelImpl _value, $Res Function(_$ProviderModelImpl) _then)
-      : super(_value, _then);
+    _$ProviderModelImpl _value,
+    $Res Function(_$ProviderModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -238,90 +262,108 @@ class __$$ProviderModelImplCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? phoneCountryCode = null,
   }) {
-    return _then(_$ProviderModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionEn: null == descriptionEn
-          ? _value.descriptionEn
-          : descriptionEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionAr: null == descriptionAr
-          ? _value.descriptionAr
-          : descriptionAr // ignore: cast_nullable_to_non_nullable
-              as String,
-      stateId: null == stateId
-          ? _value.stateId
-          : stateId // ignore: cast_nullable_to_non_nullable
-              as String,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: null == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$ProviderModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameEn:
+            null == nameEn
+                ? _value.nameEn
+                : nameEn // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nameAr:
+            null == nameAr
+                ? _value.nameAr
+                : nameAr // ignore: cast_nullable_to_non_nullable
+                    as String,
+        descriptionEn:
+            null == descriptionEn
+                ? _value.descriptionEn
+                : descriptionEn // ignore: cast_nullable_to_non_nullable
+                    as String,
+        descriptionAr:
+            null == descriptionAr
+                ? _value.descriptionAr
+                : descriptionAr // ignore: cast_nullable_to_non_nullable
+                    as String,
+        stateId:
+            null == stateId
+                ? _value.stateId
+                : stateId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        cityId:
+            null == cityId
+                ? _value.cityId
+                : cityId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        address:
+            null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                    as String,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thumbnail:
+            null == thumbnail
+                ? _value.thumbnail
+                : thumbnail // ignore: cast_nullable_to_non_nullable
+                    as String,
+        images:
+            null == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        phoneNumber:
+            freezed == phoneNumber
+                ? _value.phoneNumber
+                : phoneNumber // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneCountryCode:
+            null == phoneCountryCode
+                ? _value.phoneCountryCode
+                : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ProviderModelImpl implements _ProviderModel {
-  _$ProviderModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id = "",
-      this.nameEn = "",
-      this.nameAr = "",
-      this.descriptionEn = "",
-      this.descriptionAr = "",
-      this.stateId = "",
-      this.cityId = "",
-      this.address = "",
-      this.status = "PENDING",
-      this.type = "",
-      this.thumbnail = "",
-      this.images = const [],
-      this.phoneNumber,
-      this.phoneCountryCode = kFallBackCountryCode});
+  _$ProviderModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id = "",
+    this.nameEn = "",
+    this.nameAr = "",
+    this.descriptionEn = "",
+    this.descriptionAr = "",
+    this.stateId = "",
+    this.cityId = "",
+    this.address = "",
+    this.status = "PENDING",
+    this.type = "",
+    this.thumbnail = "",
+    this.images = const [],
+    this.phoneNumber,
+    this.phoneCountryCode = kFallBackCountryCode,
+  });
 
   factory _$ProviderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProviderModelImplFromJson(json);
@@ -386,29 +428,28 @@ class _$ProviderModelImpl implements _ProviderModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProviderModelImplToJson(
-      this,
-    );
+    return _$$ProviderModelImplToJson(this);
   }
 }
 
 abstract class _ProviderModel implements ProviderModel {
-  factory _ProviderModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String id,
-      String nameEn,
-      String nameAr,
-      String descriptionEn,
-      String descriptionAr,
-      String stateId,
-      String cityId,
-      String address,
-      String status,
-      String type,
-      String thumbnail,
-      List<String> images,
-      String? phoneNumber,
-      String phoneCountryCode}) = _$ProviderModelImpl;
+  factory _ProviderModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String id,
+    String nameEn,
+    String nameAr,
+    String descriptionEn,
+    String descriptionAr,
+    String stateId,
+    String cityId,
+    String address,
+    String status,
+    String type,
+    String thumbnail,
+    List<String> images,
+    String? phoneNumber,
+    String phoneCountryCode,
+  }) = _$ProviderModelImpl;
 
   factory _ProviderModel.fromJson(Map<String, dynamic> json) =
       _$ProviderModelImpl.fromJson;

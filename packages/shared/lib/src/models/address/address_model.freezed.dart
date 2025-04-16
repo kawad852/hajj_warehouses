@@ -12,7 +12,8 @@ part of 'address_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
   return _AddressModel.fromJson(json);
@@ -70,27 +71,29 @@ mixin _$AddressModel {
 /// @nodoc
 abstract class $AddressModelCopyWith<$Res> {
   factory $AddressModelCopyWith(
-          AddressModel value, $Res Function(AddressModel) then) =
-      _$AddressModelCopyWithImpl<$Res, AddressModel>;
+    AddressModel value,
+    $Res Function(AddressModel) then,
+  ) = _$AddressModelCopyWithImpl<$Res, AddressModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? firstName,
-      String? lastName,
-      String? email,
-      String? phoneCountryCode,
-      String? phoneNum,
-      String? area,
-      String? streetName,
-      int? buildingNum,
-      int? aptNum,
-      int? floorNum,
-      String? companyName,
-      double? latitude,
-      double? longitude,
-      String buildingType,
-      String? additionalDirections});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String? area,
+    String? streetName,
+    int? buildingNum,
+    int? aptNum,
+    int? floorNum,
+    String? companyName,
+    double? latitude,
+    double? longitude,
+    String buildingType,
+    String? additionalDirections,
+  });
 }
 
 /// @nodoc
@@ -126,76 +129,96 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
     Object? buildingType = null,
     Object? additionalDirections = freezed,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      area: freezed == area
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as String?,
-      streetName: freezed == streetName
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      buildingNum: freezed == buildingNum
-          ? _value.buildingNum
-          : buildingNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      aptNum: freezed == aptNum
-          ? _value.aptNum
-          : aptNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      floorNum: freezed == floorNum
-          ? _value.floorNum
-          : floorNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      companyName: freezed == companyName
-          ? _value.companyName
-          : companyName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      latitude: freezed == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longitude: freezed == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      buildingType: null == buildingType
-          ? _value.buildingType
-          : buildingType // ignore: cast_nullable_to_non_nullable
-              as String,
-      additionalDirections: freezed == additionalDirections
-          ? _value.additionalDirections
-          : additionalDirections // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            firstName:
+                freezed == firstName
+                    ? _value.firstName
+                    : firstName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            lastName:
+                freezed == lastName
+                    ? _value.lastName
+                    : lastName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            email:
+                freezed == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneCountryCode:
+                freezed == phoneCountryCode
+                    ? _value.phoneCountryCode
+                    : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneNum:
+                freezed == phoneNum
+                    ? _value.phoneNum
+                    : phoneNum // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            area:
+                freezed == area
+                    ? _value.area
+                    : area // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            streetName:
+                freezed == streetName
+                    ? _value.streetName
+                    : streetName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            buildingNum:
+                freezed == buildingNum
+                    ? _value.buildingNum
+                    : buildingNum // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            aptNum:
+                freezed == aptNum
+                    ? _value.aptNum
+                    : aptNum // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            floorNum:
+                freezed == floorNum
+                    ? _value.floorNum
+                    : floorNum // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            companyName:
+                freezed == companyName
+                    ? _value.companyName
+                    : companyName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            latitude:
+                freezed == latitude
+                    ? _value.latitude
+                    : latitude // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            longitude:
+                freezed == longitude
+                    ? _value.longitude
+                    : longitude // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            buildingType:
+                null == buildingType
+                    ? _value.buildingType
+                    : buildingType // ignore: cast_nullable_to_non_nullable
+                        as String,
+            additionalDirections:
+                freezed == additionalDirections
+                    ? _value.additionalDirections
+                    : additionalDirections // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -203,28 +226,30 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
 abstract class _$$AddressModelImplCopyWith<$Res>
     implements $AddressModelCopyWith<$Res> {
   factory _$$AddressModelImplCopyWith(
-          _$AddressModelImpl value, $Res Function(_$AddressModelImpl) then) =
-      __$$AddressModelImplCopyWithImpl<$Res>;
+    _$AddressModelImpl value,
+    $Res Function(_$AddressModelImpl) then,
+  ) = __$$AddressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? firstName,
-      String? lastName,
-      String? email,
-      String? phoneCountryCode,
-      String? phoneNum,
-      String? area,
-      String? streetName,
-      int? buildingNum,
-      int? aptNum,
-      int? floorNum,
-      String? companyName,
-      double? latitude,
-      double? longitude,
-      String buildingType,
-      String? additionalDirections});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String? area,
+    String? streetName,
+    int? buildingNum,
+    int? aptNum,
+    int? floorNum,
+    String? companyName,
+    double? latitude,
+    double? longitude,
+    String buildingType,
+    String? additionalDirections,
+  });
 }
 
 /// @nodoc
@@ -232,8 +257,9 @@ class __$$AddressModelImplCopyWithImpl<$Res>
     extends _$AddressModelCopyWithImpl<$Res, _$AddressModelImpl>
     implements _$$AddressModelImplCopyWith<$Res> {
   __$$AddressModelImplCopyWithImpl(
-      _$AddressModelImpl _value, $Res Function(_$AddressModelImpl) _then)
-      : super(_value, _then);
+    _$AddressModelImpl _value,
+    $Res Function(_$AddressModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AddressModel
   /// with the given fields replaced by the non-null parameter values.
@@ -258,100 +284,120 @@ class __$$AddressModelImplCopyWithImpl<$Res>
     Object? buildingType = null,
     Object? additionalDirections = freezed,
   }) {
-    return _then(_$AddressModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      area: freezed == area
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as String?,
-      streetName: freezed == streetName
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      buildingNum: freezed == buildingNum
-          ? _value.buildingNum
-          : buildingNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      aptNum: freezed == aptNum
-          ? _value.aptNum
-          : aptNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      floorNum: freezed == floorNum
-          ? _value.floorNum
-          : floorNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      companyName: freezed == companyName
-          ? _value.companyName
-          : companyName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      latitude: freezed == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longitude: freezed == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      buildingType: null == buildingType
-          ? _value.buildingType
-          : buildingType // ignore: cast_nullable_to_non_nullable
-              as String,
-      additionalDirections: freezed == additionalDirections
-          ? _value.additionalDirections
-          : additionalDirections // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$AddressModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        firstName:
+            freezed == firstName
+                ? _value.firstName
+                : firstName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        lastName:
+            freezed == lastName
+                ? _value.lastName
+                : lastName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        email:
+            freezed == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneCountryCode:
+            freezed == phoneCountryCode
+                ? _value.phoneCountryCode
+                : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneNum:
+            freezed == phoneNum
+                ? _value.phoneNum
+                : phoneNum // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        area:
+            freezed == area
+                ? _value.area
+                : area // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        streetName:
+            freezed == streetName
+                ? _value.streetName
+                : streetName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        buildingNum:
+            freezed == buildingNum
+                ? _value.buildingNum
+                : buildingNum // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        aptNum:
+            freezed == aptNum
+                ? _value.aptNum
+                : aptNum // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        floorNum:
+            freezed == floorNum
+                ? _value.floorNum
+                : floorNum // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        companyName:
+            freezed == companyName
+                ? _value.companyName
+                : companyName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        latitude:
+            freezed == latitude
+                ? _value.latitude
+                : latitude // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        longitude:
+            freezed == longitude
+                ? _value.longitude
+                : longitude // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        buildingType:
+            null == buildingType
+                ? _value.buildingType
+                : buildingType // ignore: cast_nullable_to_non_nullable
+                    as String,
+        additionalDirections:
+            freezed == additionalDirections
+                ? _value.additionalDirections
+                : additionalDirections // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$AddressModelImpl implements _AddressModel {
-  _$AddressModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.phoneCountryCode,
-      this.phoneNum,
-      this.area,
-      this.streetName,
-      this.buildingNum,
-      this.aptNum,
-      this.floorNum,
-      this.companyName,
-      this.latitude,
-      this.longitude,
-      this.buildingType = "HOUSE",
-      this.additionalDirections});
+  _$AddressModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phoneCountryCode,
+    this.phoneNum,
+    this.area,
+    this.streetName,
+    this.buildingNum,
+    this.aptNum,
+    this.floorNum,
+    this.companyName,
+    this.latitude,
+    this.longitude,
+    this.buildingType = "HOUSE",
+    this.additionalDirections,
+  });
 
   factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressModelImplFromJson(json);
@@ -408,31 +454,30 @@ class _$AddressModelImpl implements _AddressModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AddressModelImplToJson(
-      this,
-    );
+    return _$$AddressModelImplToJson(this);
   }
 }
 
 abstract class _AddressModel implements AddressModel {
-  factory _AddressModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? firstName,
-      String? lastName,
-      String? email,
-      String? phoneCountryCode,
-      String? phoneNum,
-      String? area,
-      String? streetName,
-      int? buildingNum,
-      int? aptNum,
-      int? floorNum,
-      String? companyName,
-      double? latitude,
-      double? longitude,
-      String buildingType,
-      String? additionalDirections}) = _$AddressModelImpl;
+  factory _AddressModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String? area,
+    String? streetName,
+    int? buildingNum,
+    int? aptNum,
+    int? floorNum,
+    String? companyName,
+    double? latitude,
+    double? longitude,
+    String buildingType,
+    String? additionalDirections,
+  }) = _$AddressModelImpl;
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
       _$AddressModelImpl.fromJson;

@@ -12,7 +12,8 @@ part of 'promo_code_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 PromoCodeModel _$PromoCodeModelFromJson(Map<String, dynamic> json) {
   return _PromoCodeModel.fromJson(json);
@@ -52,17 +53,19 @@ mixin _$PromoCodeModel {
 /// @nodoc
 abstract class $PromoCodeModelCopyWith<$Res> {
   factory $PromoCodeModelCopyWith(
-          PromoCodeModel value, $Res Function(PromoCodeModel) then) =
-      _$PromoCodeModelCopyWithImpl<$Res, PromoCodeModel>;
+    PromoCodeModel value,
+    $Res Function(PromoCodeModel) then,
+  ) = _$PromoCodeModelCopyWithImpl<$Res, PromoCodeModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      @TimestampSerializer() DateTime? expiryDate,
-      String? id,
-      String? code,
-      double? percent,
-      double? amount,
-      bool active});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? expiryDate,
+    String? id,
+    String? code,
+    double? percent,
+    double? amount,
+    bool active,
+  });
 }
 
 /// @nodoc
@@ -88,55 +91,67 @@ class _$PromoCodeModelCopyWithImpl<$Res, $Val extends PromoCodeModel>
     Object? amount = freezed,
     Object? active = null,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expiryDate: freezed == expiryDate
-          ? _value.expiryDate
-          : expiryDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      percent: freezed == percent
-          ? _value.percent
-          : percent // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amount: freezed == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            expiryDate:
+                freezed == expiryDate
+                    ? _value.expiryDate
+                    : expiryDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            code:
+                freezed == code
+                    ? _value.code
+                    : code // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            percent:
+                freezed == percent
+                    ? _value.percent
+                    : percent // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            amount:
+                freezed == amount
+                    ? _value.amount
+                    : amount // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            active:
+                null == active
+                    ? _value.active
+                    : active // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$PromoCodeModelImplCopyWith<$Res>
     implements $PromoCodeModelCopyWith<$Res> {
-  factory _$$PromoCodeModelImplCopyWith(_$PromoCodeModelImpl value,
-          $Res Function(_$PromoCodeModelImpl) then) =
-      __$$PromoCodeModelImplCopyWithImpl<$Res>;
+  factory _$$PromoCodeModelImplCopyWith(
+    _$PromoCodeModelImpl value,
+    $Res Function(_$PromoCodeModelImpl) then,
+  ) = __$$PromoCodeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      @TimestampSerializer() DateTime? expiryDate,
-      String? id,
-      String? code,
-      double? percent,
-      double? amount,
-      bool active});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? expiryDate,
+    String? id,
+    String? code,
+    double? percent,
+    double? amount,
+    bool active,
+  });
 }
 
 /// @nodoc
@@ -144,8 +159,9 @@ class __$$PromoCodeModelImplCopyWithImpl<$Res>
     extends _$PromoCodeModelCopyWithImpl<$Res, _$PromoCodeModelImpl>
     implements _$$PromoCodeModelImplCopyWith<$Res> {
   __$$PromoCodeModelImplCopyWithImpl(
-      _$PromoCodeModelImpl _value, $Res Function(_$PromoCodeModelImpl) _then)
-      : super(_value, _then);
+    _$PromoCodeModelImpl _value,
+    $Res Function(_$PromoCodeModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PromoCodeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -160,50 +176,60 @@ class __$$PromoCodeModelImplCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? active = null,
   }) {
-    return _then(_$PromoCodeModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expiryDate: freezed == expiryDate
-          ? _value.expiryDate
-          : expiryDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      percent: freezed == percent
-          ? _value.percent
-          : percent // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amount: freezed == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$PromoCodeModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        expiryDate:
+            freezed == expiryDate
+                ? _value.expiryDate
+                : expiryDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        code:
+            freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        percent:
+            freezed == percent
+                ? _value.percent
+                : percent // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        amount:
+            freezed == amount
+                ? _value.amount
+                : amount // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        active:
+            null == active
+                ? _value.active
+                : active // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PromoCodeModelImpl implements _PromoCodeModel {
-  _$PromoCodeModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      @TimestampSerializer() this.expiryDate,
-      this.id,
-      this.code,
-      this.percent,
-      this.amount,
-      this.active = true});
+  _$PromoCodeModelImpl({
+    @TimestampSerializer() this.createdAt,
+    @TimestampSerializer() this.expiryDate,
+    this.id,
+    this.code,
+    this.percent,
+    this.amount,
+    this.active = true,
+  });
 
   factory _$PromoCodeModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PromoCodeModelImplFromJson(json);
@@ -238,25 +264,26 @@ class _$PromoCodeModelImpl implements _PromoCodeModel {
   @pragma('vm:prefer-inline')
   _$$PromoCodeModelImplCopyWith<_$PromoCodeModelImpl> get copyWith =>
       __$$PromoCodeModelImplCopyWithImpl<_$PromoCodeModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PromoCodeModelImplToJson(
-      this,
-    );
+    return _$$PromoCodeModelImplToJson(this);
   }
 }
 
 abstract class _PromoCodeModel implements PromoCodeModel {
-  factory _PromoCodeModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      @TimestampSerializer() DateTime? expiryDate,
-      String? id,
-      String? code,
-      double? percent,
-      double? amount,
-      bool active}) = _$PromoCodeModelImpl;
+  factory _PromoCodeModel({
+    @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? expiryDate,
+    String? id,
+    String? code,
+    double? percent,
+    double? amount,
+    bool active,
+  }) = _$PromoCodeModelImpl;
 
   factory _PromoCodeModel.fromJson(Map<String, dynamic> json) =
       _$PromoCodeModelImpl.fromJson;

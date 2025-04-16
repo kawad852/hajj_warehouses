@@ -12,7 +12,8 @@ part of 'country_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CountryModel _$CountryModelFromJson(Map<String, dynamic> json) {
   return _CountryModel.fromJson(json);
@@ -48,16 +49,18 @@ mixin _$CountryModel {
 /// @nodoc
 abstract class $CountryModelCopyWith<$Res> {
   factory $CountryModelCopyWith(
-          CountryModel value, $Res Function(CountryModel) then) =
-      _$CountryModelCopyWithImpl<$Res, CountryModel>;
+    CountryModel value,
+    $Res Function(CountryModel) then,
+  ) = _$CountryModelCopyWithImpl<$Res, CountryModel>;
   @useResult
-  $Res call(
-      {String? id,
-      @TimestampSerializer() DateTime? createdAt,
-      String? code,
-      String? nameEn,
-      String? nameAr,
-      String? dialCode});
+  $Res call({
+    String? id,
+    @TimestampSerializer() DateTime? createdAt,
+    String? code,
+    String? nameEn,
+    String? nameAr,
+    String? dialCode,
+  });
 }
 
 /// @nodoc
@@ -82,32 +85,41 @@ class _$CountryModelCopyWithImpl<$Res, $Val extends CountryModel>
     Object? nameAr = freezed,
     Object? dialCode = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameEn: freezed == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameAr: freezed == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dialCode: freezed == dialCode
-          ? _value.dialCode
-          : dialCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            code:
+                freezed == code
+                    ? _value.code
+                    : code // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            nameEn:
+                freezed == nameEn
+                    ? _value.nameEn
+                    : nameEn // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            nameAr:
+                freezed == nameAr
+                    ? _value.nameAr
+                    : nameAr // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            dialCode:
+                freezed == dialCode
+                    ? _value.dialCode
+                    : dialCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -115,17 +127,19 @@ class _$CountryModelCopyWithImpl<$Res, $Val extends CountryModel>
 abstract class _$$CountryModelImplCopyWith<$Res>
     implements $CountryModelCopyWith<$Res> {
   factory _$$CountryModelImplCopyWith(
-          _$CountryModelImpl value, $Res Function(_$CountryModelImpl) then) =
-      __$$CountryModelImplCopyWithImpl<$Res>;
+    _$CountryModelImpl value,
+    $Res Function(_$CountryModelImpl) then,
+  ) = __$$CountryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      @TimestampSerializer() DateTime? createdAt,
-      String? code,
-      String? nameEn,
-      String? nameAr,
-      String? dialCode});
+  $Res call({
+    String? id,
+    @TimestampSerializer() DateTime? createdAt,
+    String? code,
+    String? nameEn,
+    String? nameAr,
+    String? dialCode,
+  });
 }
 
 /// @nodoc
@@ -133,8 +147,9 @@ class __$$CountryModelImplCopyWithImpl<$Res>
     extends _$CountryModelCopyWithImpl<$Res, _$CountryModelImpl>
     implements _$$CountryModelImplCopyWith<$Res> {
   __$$CountryModelImplCopyWithImpl(
-      _$CountryModelImpl _value, $Res Function(_$CountryModelImpl) _then)
-      : super(_value, _then);
+    _$CountryModelImpl _value,
+    $Res Function(_$CountryModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CountryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -148,45 +163,54 @@ class __$$CountryModelImplCopyWithImpl<$Res>
     Object? nameAr = freezed,
     Object? dialCode = freezed,
   }) {
-    return _then(_$CountryModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameEn: freezed == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameAr: freezed == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dialCode: freezed == dialCode
-          ? _value.dialCode
-          : dialCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$CountryModelImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        code:
+            freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        nameEn:
+            freezed == nameEn
+                ? _value.nameEn
+                : nameEn // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        nameAr:
+            freezed == nameAr
+                ? _value.nameAr
+                : nameAr // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        dialCode:
+            freezed == dialCode
+                ? _value.dialCode
+                : dialCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CountryModelImpl implements _CountryModel {
-  _$CountryModelImpl(
-      {this.id,
-      @TimestampSerializer() this.createdAt,
-      this.code,
-      this.nameEn,
-      this.nameAr,
-      this.dialCode});
+  _$CountryModelImpl({
+    this.id,
+    @TimestampSerializer() this.createdAt,
+    this.code,
+    this.nameEn,
+    this.nameAr,
+    this.dialCode,
+  });
 
   factory _$CountryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CountryModelImplFromJson(json);
@@ -220,20 +244,19 @@ class _$CountryModelImpl implements _CountryModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CountryModelImplToJson(
-      this,
-    );
+    return _$$CountryModelImplToJson(this);
   }
 }
 
 abstract class _CountryModel implements CountryModel {
-  factory _CountryModel(
-      {String? id,
-      @TimestampSerializer() DateTime? createdAt,
-      String? code,
-      String? nameEn,
-      String? nameAr,
-      String? dialCode}) = _$CountryModelImpl;
+  factory _CountryModel({
+    String? id,
+    @TimestampSerializer() DateTime? createdAt,
+    String? code,
+    String? nameEn,
+    String? nameAr,
+    String? dialCode,
+  }) = _$CountryModelImpl;
 
   factory _CountryModel.fromJson(Map<String, dynamic> json) =
       _$CountryModelImpl.fromJson;

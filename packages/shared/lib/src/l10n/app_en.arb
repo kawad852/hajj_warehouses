@@ -45,6 +45,8 @@
   "lastName": "Last Name",
   "email": "Email",
   "fullName": "Full name",
-  "managingHajjOperations":"Managing Hajj Warehouse Operations"
-
+  "managingHajjOperations":"Managing Hajj Warehouse Operations",
+  "emailAlreadyInUse": "This email is already registered.",
+  "emailNotFount": "No user found with this email.",
+  "wrongPassword": "Incorrect password for this email."
 }

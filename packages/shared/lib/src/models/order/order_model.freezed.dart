@@ -12,7 +12,8 @@ part of 'order_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
   return _OrderModel.fromJson(json);
@@ -62,23 +63,25 @@ mixin _$OrderModel {
 /// @nodoc
 abstract class $OrderModelCopyWith<$Res> {
   factory $OrderModelCopyWith(
-          OrderModel value, $Res Function(OrderModel) then) =
-      _$OrderModelCopyWithImpl<$Res, OrderModel>;
+    OrderModel value,
+    $Res Function(OrderModel) then,
+  ) = _$OrderModelCopyWithImpl<$Res, OrderModel>;
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? paymentMethod,
-      String type,
-      List<BasketModel>? basket,
-      PromoCodeModel? promoCode,
-      String status,
-      double? basketTotal,
-      double deliveryFee,
-      double? discount,
-      double? orderTotal,
-      bool reviewed,
-      UserModel? user});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? paymentMethod,
+    String type,
+    List<BasketModel>? basket,
+    PromoCodeModel? promoCode,
+    String status,
+    double? basketTotal,
+    double deliveryFee,
+    double? discount,
+    double? orderTotal,
+    bool reviewed,
+    UserModel? user,
+  });
 
   $PromoCodeModelCopyWith<$Res>? get promoCode;
   $UserModelCopyWith<$Res>? get user;
@@ -113,60 +116,76 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? reviewed = null,
     Object? user = freezed,
   }) {
-    return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paymentMethod: freezed == paymentMethod
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      basket: freezed == basket
-          ? _value.basket
-          : basket // ignore: cast_nullable_to_non_nullable
-              as List<BasketModel>?,
-      promoCode: freezed == promoCode
-          ? _value.promoCode
-          : promoCode // ignore: cast_nullable_to_non_nullable
-              as PromoCodeModel?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      basketTotal: freezed == basketTotal
-          ? _value.basketTotal
-          : basketTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      deliveryFee: null == deliveryFee
-          ? _value.deliveryFee
-          : deliveryFee // ignore: cast_nullable_to_non_nullable
-              as double,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      orderTotal: freezed == orderTotal
-          ? _value.orderTotal
-          : orderTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      reviewed: null == reviewed
-          ? _value.reviewed
-          : reviewed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            paymentMethod:
+                freezed == paymentMethod
+                    ? _value.paymentMethod
+                    : paymentMethod // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String,
+            basket:
+                freezed == basket
+                    ? _value.basket
+                    : basket // ignore: cast_nullable_to_non_nullable
+                        as List<BasketModel>?,
+            promoCode:
+                freezed == promoCode
+                    ? _value.promoCode
+                    : promoCode // ignore: cast_nullable_to_non_nullable
+                        as PromoCodeModel?,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
+            basketTotal:
+                freezed == basketTotal
+                    ? _value.basketTotal
+                    : basketTotal // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            deliveryFee:
+                null == deliveryFee
+                    ? _value.deliveryFee
+                    : deliveryFee // ignore: cast_nullable_to_non_nullable
+                        as double,
+            discount:
+                freezed == discount
+                    ? _value.discount
+                    : discount // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            orderTotal:
+                freezed == orderTotal
+                    ? _value.orderTotal
+                    : orderTotal // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            reviewed:
+                null == reviewed
+                    ? _value.reviewed
+                    : reviewed // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as UserModel?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of OrderModel
@@ -202,24 +221,26 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 abstract class _$$OrderModelImplCopyWith<$Res>
     implements $OrderModelCopyWith<$Res> {
   factory _$$OrderModelImplCopyWith(
-          _$OrderModelImpl value, $Res Function(_$OrderModelImpl) then) =
-      __$$OrderModelImplCopyWithImpl<$Res>;
+    _$OrderModelImpl value,
+    $Res Function(_$OrderModelImpl) then,
+  ) = __$$OrderModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? paymentMethod,
-      String type,
-      List<BasketModel>? basket,
-      PromoCodeModel? promoCode,
-      String status,
-      double? basketTotal,
-      double deliveryFee,
-      double? discount,
-      double? orderTotal,
-      bool reviewed,
-      UserModel? user});
+  $Res call({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? paymentMethod,
+    String type,
+    List<BasketModel>? basket,
+    PromoCodeModel? promoCode,
+    String status,
+    double? basketTotal,
+    double deliveryFee,
+    double? discount,
+    double? orderTotal,
+    bool reviewed,
+    UserModel? user,
+  });
 
   @override
   $PromoCodeModelCopyWith<$Res>? get promoCode;
@@ -232,8 +253,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     extends _$OrderModelCopyWithImpl<$Res, _$OrderModelImpl>
     implements _$$OrderModelImplCopyWith<$Res> {
   __$$OrderModelImplCopyWithImpl(
-      _$OrderModelImpl _value, $Res Function(_$OrderModelImpl) _then)
-      : super(_value, _then);
+    _$OrderModelImpl _value,
+    $Res Function(_$OrderModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -254,80 +276,96 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? reviewed = null,
     Object? user = freezed,
   }) {
-    return _then(_$OrderModelImpl(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paymentMethod: freezed == paymentMethod
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      basket: freezed == basket
-          ? _value.basket
-          : basket // ignore: cast_nullable_to_non_nullable
-              as List<BasketModel>?,
-      promoCode: freezed == promoCode
-          ? _value.promoCode
-          : promoCode // ignore: cast_nullable_to_non_nullable
-              as PromoCodeModel?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      basketTotal: freezed == basketTotal
-          ? _value.basketTotal
-          : basketTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      deliveryFee: null == deliveryFee
-          ? _value.deliveryFee
-          : deliveryFee // ignore: cast_nullable_to_non_nullable
-              as double,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      orderTotal: freezed == orderTotal
-          ? _value.orderTotal
-          : orderTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      reviewed: null == reviewed
-          ? _value.reviewed
-          : reviewed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-    ));
+    return _then(
+      _$OrderModelImpl(
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        paymentMethod:
+            freezed == paymentMethod
+                ? _value.paymentMethod
+                : paymentMethod // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String,
+        basket:
+            freezed == basket
+                ? _value.basket
+                : basket // ignore: cast_nullable_to_non_nullable
+                    as List<BasketModel>?,
+        promoCode:
+            freezed == promoCode
+                ? _value.promoCode
+                : promoCode // ignore: cast_nullable_to_non_nullable
+                    as PromoCodeModel?,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
+        basketTotal:
+            freezed == basketTotal
+                ? _value.basketTotal
+                : basketTotal // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        deliveryFee:
+            null == deliveryFee
+                ? _value.deliveryFee
+                : deliveryFee // ignore: cast_nullable_to_non_nullable
+                    as double,
+        discount:
+            freezed == discount
+                ? _value.discount
+                : discount // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        orderTotal:
+            freezed == orderTotal
+                ? _value.orderTotal
+                : orderTotal // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        reviewed:
+            null == reviewed
+                ? _value.reviewed
+                : reviewed // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserModel?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$OrderModelImpl implements _OrderModel {
-  _$OrderModelImpl(
-      {@TimestampSerializer() this.createdAt,
-      this.id,
-      this.paymentMethod,
-      this.type = "DELIVERY",
-      this.basket,
-      this.promoCode,
-      this.status = "PLACED",
-      this.basketTotal,
-      this.deliveryFee = 0.0,
-      this.discount,
-      this.orderTotal,
-      this.reviewed = false,
-      this.user});
+  _$OrderModelImpl({
+    @TimestampSerializer() this.createdAt,
+    this.id,
+    this.paymentMethod,
+    this.type = "DELIVERY",
+    this.basket,
+    this.promoCode,
+    this.status = "PLACED",
+    this.basketTotal,
+    this.deliveryFee = 0.0,
+    this.discount,
+    this.orderTotal,
+    this.reviewed = false,
+    this.user,
+  });
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderModelImplFromJson(json);
@@ -379,27 +417,26 @@ class _$OrderModelImpl implements _OrderModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrderModelImplToJson(
-      this,
-    );
+    return _$$OrderModelImplToJson(this);
   }
 }
 
 abstract class _OrderModel implements OrderModel {
-  factory _OrderModel(
-      {@TimestampSerializer() DateTime? createdAt,
-      String? id,
-      String? paymentMethod,
-      String type,
-      List<BasketModel>? basket,
-      PromoCodeModel? promoCode,
-      String status,
-      double? basketTotal,
-      double deliveryFee,
-      double? discount,
-      double? orderTotal,
-      bool reviewed,
-      UserModel? user}) = _$OrderModelImpl;
+  factory _OrderModel({
+    @TimestampSerializer() DateTime? createdAt,
+    String? id,
+    String? paymentMethod,
+    String type,
+    List<BasketModel>? basket,
+    PromoCodeModel? promoCode,
+    String status,
+    double? basketTotal,
+    double deliveryFee,
+    double? discount,
+    double? orderTotal,
+    bool reviewed,
+    UserModel? user,
+  }) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$OrderModelImpl.fromJson;

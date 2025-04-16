@@ -12,7 +12,8 @@ part of 'pickup_info_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 PickUpInfoModel _$PickUpInfoModelFromJson(Map<String, dynamic> json) {
   return _PickUpInfoModel.fromJson(json);
@@ -46,16 +47,18 @@ mixin _$PickUpInfoModel {
 /// @nodoc
 abstract class $PickUpInfoModelCopyWith<$Res> {
   factory $PickUpInfoModelCopyWith(
-          PickUpInfoModel value, $Res Function(PickUpInfoModel) then) =
-      _$PickUpInfoModelCopyWithImpl<$Res, PickUpInfoModel>;
+    PickUpInfoModel value,
+    $Res Function(PickUpInfoModel) then,
+  ) = _$PickUpInfoModelCopyWithImpl<$Res, PickUpInfoModel>;
   @useResult
-  $Res call(
-      {String? firstName,
-      String? lastName,
-      String? phoneCountryCode,
-      String? phoneNum,
-      double? lat,
-      double? lng});
+  $Res call({
+    String? firstName,
+    String? lastName,
+    String? phoneCountryCode,
+    String? phoneNum,
+    double? lat,
+    double? lng,
+  });
 }
 
 /// @nodoc
@@ -80,50 +83,61 @@ class _$PickUpInfoModelCopyWithImpl<$Res, $Val extends PickUpInfoModel>
     Object? lat = freezed,
     Object? lng = freezed,
   }) {
-    return _then(_value.copyWith(
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lat: freezed == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double?,
-      lng: freezed == lng
-          ? _value.lng
-          : lng // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            firstName:
+                freezed == firstName
+                    ? _value.firstName
+                    : firstName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            lastName:
+                freezed == lastName
+                    ? _value.lastName
+                    : lastName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneCountryCode:
+                freezed == phoneCountryCode
+                    ? _value.phoneCountryCode
+                    : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneNum:
+                freezed == phoneNum
+                    ? _value.phoneNum
+                    : phoneNum // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            lat:
+                freezed == lat
+                    ? _value.lat
+                    : lat // ignore: cast_nullable_to_non_nullable
+                        as double?,
+            lng:
+                freezed == lng
+                    ? _value.lng
+                    : lng // ignore: cast_nullable_to_non_nullable
+                        as double?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$PickUpInfoModelImplCopyWith<$Res>
     implements $PickUpInfoModelCopyWith<$Res> {
-  factory _$$PickUpInfoModelImplCopyWith(_$PickUpInfoModelImpl value,
-          $Res Function(_$PickUpInfoModelImpl) then) =
-      __$$PickUpInfoModelImplCopyWithImpl<$Res>;
+  factory _$$PickUpInfoModelImplCopyWith(
+    _$PickUpInfoModelImpl value,
+    $Res Function(_$PickUpInfoModelImpl) then,
+  ) = __$$PickUpInfoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? firstName,
-      String? lastName,
-      String? phoneCountryCode,
-      String? phoneNum,
-      double? lat,
-      double? lng});
+  $Res call({
+    String? firstName,
+    String? lastName,
+    String? phoneCountryCode,
+    String? phoneNum,
+    double? lat,
+    double? lng,
+  });
 }
 
 /// @nodoc
@@ -131,8 +145,9 @@ class __$$PickUpInfoModelImplCopyWithImpl<$Res>
     extends _$PickUpInfoModelCopyWithImpl<$Res, _$PickUpInfoModelImpl>
     implements _$$PickUpInfoModelImplCopyWith<$Res> {
   __$$PickUpInfoModelImplCopyWithImpl(
-      _$PickUpInfoModelImpl _value, $Res Function(_$PickUpInfoModelImpl) _then)
-      : super(_value, _then);
+    _$PickUpInfoModelImpl _value,
+    $Res Function(_$PickUpInfoModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PickUpInfoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -146,45 +161,54 @@ class __$$PickUpInfoModelImplCopyWithImpl<$Res>
     Object? lat = freezed,
     Object? lng = freezed,
   }) {
-    return _then(_$PickUpInfoModelImpl(
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneCountryCode: freezed == phoneCountryCode
-          ? _value.phoneCountryCode
-          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNum: freezed == phoneNum
-          ? _value.phoneNum
-          : phoneNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lat: freezed == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double?,
-      lng: freezed == lng
-          ? _value.lng
-          : lng // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
+    return _then(
+      _$PickUpInfoModelImpl(
+        firstName:
+            freezed == firstName
+                ? _value.firstName
+                : firstName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        lastName:
+            freezed == lastName
+                ? _value.lastName
+                : lastName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneCountryCode:
+            freezed == phoneCountryCode
+                ? _value.phoneCountryCode
+                : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneNum:
+            freezed == phoneNum
+                ? _value.phoneNum
+                : phoneNum // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        lat:
+            freezed == lat
+                ? _value.lat
+                : lat // ignore: cast_nullable_to_non_nullable
+                    as double?,
+        lng:
+            freezed == lng
+                ? _value.lng
+                : lng // ignore: cast_nullable_to_non_nullable
+                    as double?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PickUpInfoModelImpl implements _PickUpInfoModel {
-  _$PickUpInfoModelImpl(
-      {this.firstName,
-      this.lastName,
-      this.phoneCountryCode,
-      this.phoneNum,
-      this.lat,
-      this.lng});
+  _$PickUpInfoModelImpl({
+    this.firstName,
+    this.lastName,
+    this.phoneCountryCode,
+    this.phoneNum,
+    this.lat,
+    this.lng,
+  });
 
   factory _$PickUpInfoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PickUpInfoModelImplFromJson(json);
@@ -214,24 +238,25 @@ class _$PickUpInfoModelImpl implements _PickUpInfoModel {
   @pragma('vm:prefer-inline')
   _$$PickUpInfoModelImplCopyWith<_$PickUpInfoModelImpl> get copyWith =>
       __$$PickUpInfoModelImplCopyWithImpl<_$PickUpInfoModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PickUpInfoModelImplToJson(
-      this,
-    );
+    return _$$PickUpInfoModelImplToJson(this);
   }
 }
 
 abstract class _PickUpInfoModel implements PickUpInfoModel {
-  factory _PickUpInfoModel(
-      {String? firstName,
-      String? lastName,
-      String? phoneCountryCode,
-      String? phoneNum,
-      double? lat,
-      double? lng}) = _$PickUpInfoModelImpl;
+  factory _PickUpInfoModel({
+    String? firstName,
+    String? lastName,
+    String? phoneCountryCode,
+    String? phoneNum,
+    double? lat,
+    double? lng,
+  }) = _$PickUpInfoModelImpl;
 
   factory _PickUpInfoModel.fromJson(Map<String, dynamic> json) =
       _$PickUpInfoModelImpl.fromJson;

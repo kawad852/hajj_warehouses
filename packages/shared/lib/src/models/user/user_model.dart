@@ -15,6 +15,7 @@ class UserModel with _$UserModel {
     String? displayName,
     String? email,
     String? deviceToken,
+    String? role,
     String? username,
     String? languageCode,
     @Default(false) bool blocked,

@@ -11,9 +11,10 @@ _$BasketModelImpl _$$BasketModelImplFromJson(Map<String, dynamic> json) =>
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
       storeId: json['storeId'] as String? ?? '',
-      product: json['product'] == null
-          ? null
-          : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+      product:
+          json['product'] == null
+              ? null
+              : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BasketModelImplToJson(_$BasketModelImpl instance) =>
@@ -21,5 +22,5 @@ Map<String, dynamic> _$$BasketModelImplToJson(_$BasketModelImpl instance) =>
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
       'storeId': instance.storeId,
-      'product': instance.product?.toJson(),
+      'product': instance.product,
     };

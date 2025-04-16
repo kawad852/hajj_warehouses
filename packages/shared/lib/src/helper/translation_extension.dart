@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../enums/base_enums.dart';
-import '../l10n/app_localizations.dart';
+import '../../shared.dart';
+// import 'package:shared/src/l10n/app_localizations.dart';
 
 extension LanguageExtension on BuildContext {
   AppLocalizations get appLocalization => AppLocalizations.of(this)!;

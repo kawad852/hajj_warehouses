@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class UserInfo extends StatelessWidget {
-  const UserInfo({super.key});
+class UserInfoWidget extends StatelessWidget {
+  const UserInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +56,7 @@ class UserInfo extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {},
-              child: Icon(
-                Icons.arrow_drop_down,
-                color: context.colorPalette.grey708,
-              ),
+              child: Icon(Icons.arrow_drop_down, color: context.colorPalette.grey708),
             ),
           ],
         ),
