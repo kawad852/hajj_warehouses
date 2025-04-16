@@ -15,6 +15,7 @@ void main() async {
   await MySharedPreferences.init();
   MyObjectBoxes.init();
   // await FirebaseAuth.instance.signOut();
+  // MySharedPreferences.clearStorage();
 
   runApp(
     MultiProvider(
@@ -36,13 +37,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // Widget _toggleScreen(BuildContext context) {
-  //   if (MySharedPreferences.user?.id != null) {
-  //     return AppNavBar();
-  //   } else {
-  //     return RegistrationScreen();
-  //   }
-  // }
+  Widget _toggleScreen(BuildContext context) {
+    if (MySharedPreferences.user?.id != null) {
+      return const AppNavBar();
+    } else {
+      return const LoginScreen();
+    }
+  }
 
   // This widget is the root of your application.
   @override
@@ -112,8 +113,8 @@ class _MyAppState extends State<MyApp> {
                 margin: EdgeInsets.zero,
               ),
             ),
-            // home: _toggleScreen(context),
-            home: const LoginScreen(),
+            home: _toggleScreen(context),
+            // home: const LoginScreen(),
           ),
         );
       },

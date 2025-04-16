@@ -1,3 +1,4 @@
+import 'package:app/shared.dart';
 import 'package:flutter/material.dart';
 
 extension NavigationExtension on BuildContext {
@@ -25,12 +26,12 @@ extension NavigationExtension on BuildContext {
       this,
       MaterialPageRoute(
         builder: (context) {
-          return const SizedBox();
+          return const AppNavBar();
         },
       ),
       (route) => false,
     );
   }
-  
+
   void pop([value]) => Navigator.pop(this, value);
 }
