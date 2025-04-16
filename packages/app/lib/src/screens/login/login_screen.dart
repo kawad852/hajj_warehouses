@@ -111,8 +111,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 90),
                   StretchedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       _login(context);
+                      // try {
+                      //   final userDocument = await kFirebaseInstant.collection("branches").get();
+                      //   print("res::: ${userDocument.docs.map((e) => e.id).toList()}");
+                      // } catch (e) {
+                      //   print('e:: $e');
+                      // }
                     },
                     child: Text(
                       "تسجيل الدخول",

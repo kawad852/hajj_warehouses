@@ -11,9 +11,9 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main N
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await MySharedPreferences.init();
   MyObjectBoxes.init();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await FirebaseAuth.instance.signOut();
 
   runApp(

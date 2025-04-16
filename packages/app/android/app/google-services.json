@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "240438237901",
+    "project_id": "hajjwarehouses",
+    "storage_bucket": "hajjwarehouses.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240438237901:android:8cdeb3bdedd6ed60e8a784",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx9WusTB5MzyPqMfvO5yJQtBMI7Xc3w0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

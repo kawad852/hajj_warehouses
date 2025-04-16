@@ -41,30 +41,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBSUh9waZnuRDZ2-CP1FCv0C-mDXD6TXKU',
-    appId: '1:185797542866:web:36ba4c3ffb934cb6ce3e0b',
-    messagingSenderId: '185797542866',
-    projectId: 'project-zac',
-    authDomain: 'project-zac.firebaseapp.com',
-    storageBucket: 'project-zac.firebasestorage.app',
-    measurementId: 'G-6QJFPNJVNL',
+    apiKey: 'AIzaSyDlvqaAAPNfuTiLg5SKAh0zbk-fjsiea7Y',
+    appId: '1:240438237901:web:54c157857271d57be8a784',
+    messagingSenderId: '240438237901',
+    projectId: 'hajjwarehouses',
+    authDomain: 'hajjwarehouses.firebaseapp.com',
+    storageBucket: 'hajjwarehouses.firebasestorage.app',
+    measurementId: 'G-6ZTKXZFDR2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAC32lhG2JolqXbOmMfvHKYDiuyym4Srm0',
-    appId: '1:185797542866:android:54355dffd5db4ebece3e0b',
-    messagingSenderId: '185797542866',
-    projectId: 'project-zac',
-    storageBucket: 'project-zac.firebasestorage.app',
+    apiKey: 'AIzaSyDx9WusTB5MzyPqMfvO5yJQtBMI7Xc3w0M',
+    appId: '1:240438237901:android:8cdeb3bdedd6ed60e8a784',
+    messagingSenderId: '240438237901',
+    projectId: 'hajjwarehouses',
+    storageBucket: 'hajjwarehouses.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCk8hNNIE1bvwJVlSXH4qrvRKtC3lwzK3g',
-    appId: '1:185797542866:ios:0f7a07b8cf64a3ccce3e0b',
-    messagingSenderId: '185797542866',
-    projectId: 'project-zac',
-    storageBucket: 'project-zac.firebasestorage.app',
-    iosBundleId: 'com.example.projectZacApp',
+    apiKey: 'AIzaSyCR3tj_GUnCHbybRRInBBCDVtNsQQOe4fg',
+    appId: '1:240438237901:ios:949308c949775b0de8a784',
+    messagingSenderId: '240438237901',
+    projectId: 'hajjwarehouses',
+    storageBucket: 'hajjwarehouses.firebasestorage.app',
+    iosBundleId: 'com.example.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
