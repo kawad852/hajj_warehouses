@@ -6,6 +6,8 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:provider/provider.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:timelines_plus/timelines_plus.dart';
+export 'package:easy_radio/easy_radio.dart';
 
 //controllers
 export 'src/controllers/map_controller.dart';
@@ -75,4 +77,8 @@ export 'src/widgets/editors/password_editor.dart';
 export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_text.dart';
 export 'src/widgets/materials_table/custom_line.dart';
+export 'src/widgets/custom_radio.dart';
+export 'src/widgets/order_status.dart';
+export 'src/widgets/process_time_line.dart';
+export 'src/widgets/process_card.dart';
 

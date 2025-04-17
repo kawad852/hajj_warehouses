@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../helper/validation_helper.dart';
 import 'base_editor.dart';
 
 class NumbersEditor extends StatelessWidget {
   final int? initialValue;
+  final TextEditingController? controller;
   final Function(int?) onChanged;
   final bool required;
   final Widget? suffixIcon;
@@ -19,6 +21,7 @@ class NumbersEditor extends StatelessWidget {
 
   const NumbersEditor({
     super.key,
+    this.controller,
     this.initialValue,
     required this.onChanged,
     this.required = true,
@@ -37,7 +40,10 @@ class NumbersEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseEditor(
       labelText: labelText,
+      controller: controller,
       hintText: hintText,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {

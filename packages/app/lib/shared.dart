@@ -21,3 +21,8 @@ export 'src/screens/orders_management/orders_management_screen.dart';
 export 'src/screens/department_item_management/department_item_management_screen.dart';
 export 'src/screens/department/department_screen.dart';
 export 'src/screens/add_new_item/add_new_item_screen.dart';
+export 'src/screens/item_management/item_management_screen.dart';
+export 'src/screens/item_management/widgets/manage_button.dart';
+export 'src/screens/send_new_order/send_new_order_screen.dart';
+export 'src/screens/order/order_screen.dart';
+export 'src/screens/order/widgets/order_card.dart';

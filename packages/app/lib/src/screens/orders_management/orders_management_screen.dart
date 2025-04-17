@@ -1,3 +1,4 @@
+import 'package:app/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -15,7 +16,9 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child: StretchedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push((context) => const SendNewOrderScreen());
+          },
           child: Text(
             "اررسال طلب جديد",
             style: TextStyle(
@@ -37,45 +40,34 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         itemBuilder: (context, index) {
-          return Container(
-            width: double.infinity,
-            height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: context.colorPalette.greyF2F,
-              borderRadius: BorderRadius.circular(kRadiusSecondary),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    "طلب رقم 1731524#",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
+          return GestureDetector(
+            onTap: () {
+              context.push((context) => const OrderScreen());
+            },
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: context.colorPalette.greyF2F,
+                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      "طلب رقم 1731524#",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: context.colorPalette.black001,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  height: 25,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  decoration: BoxDecoration(
-                    color: context.colorPalette.yellowC39,
-                    borderRadius: BorderRadius.circular(kRadiusPrimary),
-                  ),
-                  child: Text(
-                    "بالإنتظار",
-                    style: TextStyle(
-                      color: context.colorPalette.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
+                  const OrderStatus(),
+                ],
+              ),
             ),
           );
         },

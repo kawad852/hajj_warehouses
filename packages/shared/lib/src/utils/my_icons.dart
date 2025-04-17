@@ -42,4 +42,6 @@ class MyIcons {
   static const String filter = '${_path}filter.svg';
   static const String plus = '${_path}plus.svg';
   static const String subtract = '${_path}subtract.svg';
+  static const String paperclip = '${_path}paperclip.svg';
+  static const String map = '${_path}map.svg';
 }

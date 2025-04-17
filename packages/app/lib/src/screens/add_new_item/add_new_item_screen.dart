@@ -9,7 +9,45 @@ class AddNewItemScreen extends StatefulWidget {
 }
 
 class _AddNewItemScreenState extends State<AddNewItemScreen> {
+  late final TextEditingController counterCtrl;
   int quntity = 1;
+  List<String> data = [
+    "تفاح",
+    "موز",
+    "عصير المراعي برتقال",
+    "لبن المراعي كامل الدسم",
+    "صلصلة طماطم",
+    "بهارات كبسة حارة",
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    counterCtrl = TextEditingController(text: "1");
+  }
+
+  @override
+  void dispose() {
+    counterCtrl.dispose();
+    super.dispose();
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      quntity++;
+      counterCtrl.text = quntity.toString();
+    });
+  }
+
+  void _decrementCounter() {
+    if (quntity > 1) {
+      setState(() {
+        quntity--;
+        counterCtrl.text = quntity.toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,22 +108,26 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
                   children: [
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _decrementCounter();
+                        },
                         icon: const CustomSvg(MyIcons.subtract),
                       ),
                     ),
                     Expanded(
                       child: NumbersEditor(
-                        onChanged: (quntity) {},
-                        initialValue: quntity,
+                        controller: counterCtrl,
+                        onChanged: (value) {
+                          setState(() {
+                            quntity = value!;
+                          });
+                        },
                       ),
                     ),
                     Expanded(
                       child: IconButton(
                         onPressed: () {
-                          setState(() {
-                            quntity++;
-                          });
+                          _incrementCounter();
                         },
                         icon: const CustomSvg(MyIcons.plus),
                       ),
@@ -94,6 +136,60 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 200),
+          Text(
+            "مقترحات",
+            style: TextStyle(
+              color: context.colorPalette.black001,
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          Wrap(
+            direction: Axis.horizontal,
+            children:
+                data.map((item) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 40,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 2,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: context.colorPalette.greyDAD,
+                          ),
+                          borderRadius: BorderRadius.circular(kRadiusSecondary),
+                        ),
+                        child: Row(
+                          children: [
+                            CustomSvg(
+                              MyIcons.addTask,
+                              color: context.colorPalette.grey708,
+                              width: 20,
+                            ),
+                            const SizedBox(width: 7),
+                            Text(
+                              item,
+                              style: TextStyle(
+                                color: context.colorPalette.black001,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
           ),
         ],
       ),
