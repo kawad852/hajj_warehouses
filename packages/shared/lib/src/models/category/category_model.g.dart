@@ -10,8 +10,7 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
     _$CategoryModelImpl(
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
-      nameEn: json['nameEn'] as String? ?? '',
-      nameAr: json['nameAr'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       thumbnail: json['thumbnail'] as String? ?? '',
       parentCategoryIds:
           (json['parentCategoryIds'] as List<dynamic>?)
@@ -27,8 +26,7 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
     <String, dynamic>{
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
-      'nameEn': instance.nameEn,
-      'nameAr': instance.nameAr,
+      'name': instance.name,
       'thumbnail': instance.thumbnail,
       'parentCategoryIds': instance.parentCategoryIds,
       'order': instance.order,

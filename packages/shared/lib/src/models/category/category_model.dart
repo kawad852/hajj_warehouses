@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../helper/time_stamp_serializer.dart';
-import '../../helper/ui_helper.dart';
 import '../../utils/app_constants.dart';
 
 part 'category_model.freezed.dart';
@@ -12,8 +11,7 @@ class CategoryModel with _$CategoryModel {
   factory CategoryModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    @Default('') String nameEn,
-    @Default('') String nameAr,
+    @Default('') String name,
     @Default('') String thumbnail,
     @Default([]) List<String> parentCategoryIds,
     @Default(kOrder) int order,
@@ -22,13 +20,4 @@ class CategoryModel with _$CategoryModel {
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
-
-  CategoryModel._();
-
-  String get name {
-    return UiHelper.translate(
-      textEN: nameEn,
-      textAR: nameAr,
-    );
-  }
 }

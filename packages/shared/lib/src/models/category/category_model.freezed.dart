@@ -27,10 +27,8 @@ mixin _$CategoryModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get nameEn => throw _privateConstructorUsedError;
-  set nameEn(String value) => throw _privateConstructorUsedError;
-  String get nameAr => throw _privateConstructorUsedError;
-  set nameAr(String value) => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get thumbnail => throw _privateConstructorUsedError;
   set thumbnail(String value) => throw _privateConstructorUsedError;
   List<String> get parentCategoryIds => throw _privateConstructorUsedError;
@@ -63,8 +61,7 @@ abstract class $CategoryModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String thumbnail,
     List<String> parentCategoryIds,
     int order,
@@ -90,8 +87,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? nameEn = null,
-    Object? nameAr = null,
+    Object? name = null,
     Object? thumbnail = null,
     Object? parentCategoryIds = null,
     Object? order = null,
@@ -110,15 +106,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            nameEn:
-                null == nameEn
-                    ? _value.nameEn
-                    : nameEn // ignore: cast_nullable_to_non_nullable
-                        as String,
-            nameAr:
-                null == nameAr
-                    ? _value.nameAr
-                    : nameAr // ignore: cast_nullable_to_non_nullable
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
                         as String,
             thumbnail:
                 null == thumbnail
@@ -163,8 +154,7 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String thumbnail,
     List<String> parentCategoryIds,
     int order,
@@ -189,8 +179,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? nameEn = null,
-    Object? nameAr = null,
+    Object? name = null,
     Object? thumbnail = null,
     Object? parentCategoryIds = null,
     Object? order = null,
@@ -209,15 +198,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        nameEn:
-            null == nameEn
-                ? _value.nameEn
-                : nameEn // ignore: cast_nullable_to_non_nullable
-                    as String,
-        nameAr:
-            null == nameAr
-                ? _value.nameAr
-                : nameAr // ignore: cast_nullable_to_non_nullable
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
                     as String,
         thumbnail:
             null == thumbnail
@@ -251,18 +235,17 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CategoryModelImpl extends _CategoryModel {
+class _$CategoryModelImpl implements _CategoryModel {
   _$CategoryModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.nameEn = '',
-    this.nameAr = '',
+    this.name = '',
     this.thumbnail = '',
     this.parentCategoryIds = const [],
     this.order = kOrder,
     this.published = true,
     this.showOnHome = false,
-  }) : super._();
+  });
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -275,10 +258,7 @@ class _$CategoryModelImpl extends _CategoryModel {
   String id;
   @override
   @JsonKey()
-  String nameEn;
-  @override
-  @JsonKey()
-  String nameAr;
+  String name;
   @override
   @JsonKey()
   String thumbnail;
@@ -297,7 +277,7 @@ class _$CategoryModelImpl extends _CategoryModel {
 
   @override
   String toString() {
-    return 'CategoryModel(createdAt: $createdAt, id: $id, nameEn: $nameEn, nameAr: $nameAr, thumbnail: $thumbnail, parentCategoryIds: $parentCategoryIds, order: $order, published: $published, showOnHome: $showOnHome)';
+    return 'CategoryModel(createdAt: $createdAt, id: $id, name: $name, thumbnail: $thumbnail, parentCategoryIds: $parentCategoryIds, order: $order, published: $published, showOnHome: $showOnHome)';
   }
 
   /// Create a copy of CategoryModel
@@ -314,19 +294,17 @@ class _$CategoryModelImpl extends _CategoryModel {
   }
 }
 
-abstract class _CategoryModel extends CategoryModel {
+abstract class _CategoryModel implements CategoryModel {
   factory _CategoryModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String thumbnail,
     List<String> parentCategoryIds,
     int order,
     bool published,
     bool showOnHome,
   }) = _$CategoryModelImpl;
-  _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -340,11 +318,8 @@ abstract class _CategoryModel extends CategoryModel {
   String get id;
   set id(String value);
   @override
-  String get nameEn;
-  set nameEn(String value);
-  @override
-  String get nameAr;
-  set nameAr(String value);
+  String get name;
+  set name(String value);
   @override
   String get thumbnail;
   set thumbnail(String value);

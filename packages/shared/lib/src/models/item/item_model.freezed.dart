@@ -27,10 +27,8 @@ mixin _$ItemModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get nameEn => throw _privateConstructorUsedError;
-  set nameEn(String value) => throw _privateConstructorUsedError;
-  String get nameAr => throw _privateConstructorUsedError;
-  set nameAr(String value) => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   set userId(String value) => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
@@ -60,8 +58,7 @@ abstract class $ItemModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String userId,
     String categoryId,
     String status,
@@ -87,8 +84,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? nameEn = null,
-    Object? nameAr = null,
+    Object? name = null,
     Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
@@ -107,15 +103,10 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            nameEn:
-                null == nameEn
-                    ? _value.nameEn
-                    : nameEn // ignore: cast_nullable_to_non_nullable
-                        as String,
-            nameAr:
-                null == nameAr
-                    ? _value.nameAr
-                    : nameAr // ignore: cast_nullable_to_non_nullable
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
                         as String,
             userId:
                 null == userId
@@ -160,8 +151,7 @@ abstract class _$$ItemModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String userId,
     String categoryId,
     String status,
@@ -186,8 +176,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? nameEn = null,
-    Object? nameAr = null,
+    Object? name = null,
     Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
@@ -206,15 +195,10 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        nameEn:
-            null == nameEn
-                ? _value.nameEn
-                : nameEn // ignore: cast_nullable_to_non_nullable
-                    as String,
-        nameAr:
-            null == nameAr
-                ? _value.nameAr
-                : nameAr // ignore: cast_nullable_to_non_nullable
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
                     as String,
         userId:
             null == userId
@@ -248,18 +232,17 @@ class __$$ItemModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ItemModelImpl extends _ItemModel {
+class _$ItemModelImpl implements _ItemModel {
   _$ItemModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.nameEn = '',
-    this.nameAr = '',
+    this.name = '',
     this.userId = '',
     this.categoryId = '',
     this.status = '',
     this.availableQuantity = 0,
     this.stockQuantity = 0,
-  }) : super._();
+  });
 
   factory _$ItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemModelImplFromJson(json);
@@ -272,10 +255,7 @@ class _$ItemModelImpl extends _ItemModel {
   String id;
   @override
   @JsonKey()
-  String nameEn;
-  @override
-  @JsonKey()
-  String nameAr;
+  String name;
   @override
   @JsonKey()
   String userId;
@@ -294,7 +274,7 @@ class _$ItemModelImpl extends _ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, nameEn: $nameEn, nameAr: $nameAr, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, stockQuantity: $stockQuantity)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, stockQuantity: $stockQuantity)';
   }
 
   /// Create a copy of ItemModel
@@ -311,19 +291,17 @@ class _$ItemModelImpl extends _ItemModel {
   }
 }
 
-abstract class _ItemModel extends ItemModel {
+abstract class _ItemModel implements ItemModel {
   factory _ItemModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String nameEn,
-    String nameAr,
+    String name,
     String userId,
     String categoryId,
     String status,
     int availableQuantity,
     int stockQuantity,
   }) = _$ItemModelImpl;
-  _ItemModel._() : super._();
 
   factory _ItemModel.fromJson(Map<String, dynamic> json) =
       _$ItemModelImpl.fromJson;
@@ -337,11 +315,8 @@ abstract class _ItemModel extends ItemModel {
   String get id;
   set id(String value);
   @override
-  String get nameEn;
-  set nameEn(String value);
-  @override
-  String get nameAr;
-  set nameAr(String value);
+  String get name;
+  set name(String value);
   @override
   String get userId;
   set userId(String value);
