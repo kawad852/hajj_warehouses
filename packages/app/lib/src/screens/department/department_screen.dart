@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/src/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -71,22 +72,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: TextEditor(
-                          onChanged: (value) {},
-                          required: false,
-                          hintText: "ابحث عن صنف",
-                          hintStyle: TextStyle(
-                            color: context.colorPalette.grey666,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          prefixIcon: const IconButton(
-                            onPressed: null,
-                            icon: CustomSvg(MyIcons.search),
-                          ),
-                        ),
-                      ),
+                      Expanded(child: ProductsSearchScreen(indexName: AlgoliaIndices.items.value)),
                       const SizedBox(width: 10),
                       Container(
                         width: 50,
