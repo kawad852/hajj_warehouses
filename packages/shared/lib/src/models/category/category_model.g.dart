@@ -33,3 +33,14 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'published': instance.published,
       'showOnHome': instance.showOnHome,
     };
+
+_$LightCategoryModelImpl _$$LightCategoryModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$LightCategoryModelImpl(
+  id: json['id'] as String? ?? '',
+  name: json['name'] as String? ?? '',
+);
+
+Map<String, dynamic> _$$LightCategoryModelImplToJson(
+  _$LightCategoryModelImpl instance,
+) => <String, dynamic>{'id': instance.id, 'name': instance.name};

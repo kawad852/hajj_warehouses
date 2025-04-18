@@ -1,4 +1,15 @@
-enum OperationsType {
+enum OperationType {
+  category('CATEGORY'),
+  item('ITEM'),
+  order('ORDER'),
+  transfer('TRANSFER');
+
+  final String value;
+
+  const OperationType(this.value);
+}
+
+enum CategoryOperationType {
   add('Add'),
   withdraw('WITHDRAW'),
   supply('SUPPLY'),
@@ -6,5 +17,5 @@ enum OperationsType {
 
   final String value;
 
-  const OperationsType(this.value);
+  const CategoryOperationType(this.value);
 }

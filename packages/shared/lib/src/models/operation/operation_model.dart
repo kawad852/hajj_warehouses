@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../helper/time_stamp_serializer.dart';
+import '../../../shared.dart';
 
 part 'operation_model.freezed.dart';
 part 'operation_model.g.dart';
@@ -11,6 +11,10 @@ class OperationModel with _$OperationModel {
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String type,
+    LightCategoryModel? category,
+    String? orderId,
+    String? itemId,
+    String? transferId,
     @Default('') String displayName,
   }) = _OperationModel;
 

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:app/screens_exports.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class UserProvider extends ChangeNotifier {

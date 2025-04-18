@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:algoliasearch/algoliasearch.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:uuid/uuid.dart';
 
@@ -12,7 +11,7 @@ String get kUUID => const Uuid().v1().replaceAll('-', '');
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
 String get kSelectedUserId => MySharedPreferences.selectedBranchId;
-DocumentReference<UserModel> get kBranchDocRef => kFirebaseInstant.users.doc(kSelectedUserId);
+DocumentReference<UserModel> get kUserDocRef => kFirebaseInstant.users.doc(kSelectedUserId);
 
 class ApiService {
   static const String socketException = 'socket-exception';

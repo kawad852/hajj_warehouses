@@ -343,3 +343,169 @@ abstract class _CategoryModel implements CategoryModel {
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+LightCategoryModel _$LightCategoryModelFromJson(Map<String, dynamic> json) {
+  return _LightCategoryModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LightCategoryModel {
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
+
+  /// Serializes this LightCategoryModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LightCategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LightCategoryModelCopyWith<LightCategoryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LightCategoryModelCopyWith<$Res> {
+  factory $LightCategoryModelCopyWith(
+    LightCategoryModel value,
+    $Res Function(LightCategoryModel) then,
+  ) = _$LightCategoryModelCopyWithImpl<$Res, LightCategoryModel>;
+  @useResult
+  $Res call({String id, String name});
+}
+
+/// @nodoc
+class _$LightCategoryModelCopyWithImpl<$Res, $Val extends LightCategoryModel>
+    implements $LightCategoryModelCopyWith<$Res> {
+  _$LightCategoryModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LightCategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null, Object? name = null}) {
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LightCategoryModelImplCopyWith<$Res>
+    implements $LightCategoryModelCopyWith<$Res> {
+  factory _$$LightCategoryModelImplCopyWith(
+    _$LightCategoryModelImpl value,
+    $Res Function(_$LightCategoryModelImpl) then,
+  ) = __$$LightCategoryModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String name});
+}
+
+/// @nodoc
+class __$$LightCategoryModelImplCopyWithImpl<$Res>
+    extends _$LightCategoryModelCopyWithImpl<$Res, _$LightCategoryModelImpl>
+    implements _$$LightCategoryModelImplCopyWith<$Res> {
+  __$$LightCategoryModelImplCopyWithImpl(
+    _$LightCategoryModelImpl _value,
+    $Res Function(_$LightCategoryModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LightCategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null, Object? name = null}) {
+    return _then(
+      _$LightCategoryModelImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LightCategoryModelImpl implements _LightCategoryModel {
+  _$LightCategoryModelImpl({this.id = '', this.name = ''});
+
+  factory _$LightCategoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LightCategoryModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  String id;
+  @override
+  @JsonKey()
+  String name;
+
+  @override
+  String toString() {
+    return 'LightCategoryModel(id: $id, name: $name)';
+  }
+
+  /// Create a copy of LightCategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LightCategoryModelImplCopyWith<_$LightCategoryModelImpl> get copyWith =>
+      __$$LightCategoryModelImplCopyWithImpl<_$LightCategoryModelImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LightCategoryModelImplToJson(this);
+  }
+}
+
+abstract class _LightCategoryModel implements LightCategoryModel {
+  factory _LightCategoryModel({String id, String name}) =
+      _$LightCategoryModelImpl;
+
+  factory _LightCategoryModel.fromJson(Map<String, dynamic> json) =
+      _$LightCategoryModelImpl.fromJson;
+
+  @override
+  String get id;
+  set id(String value);
+  @override
+  String get name;
+  set name(String value);
+
+  /// Create a copy of LightCategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LightCategoryModelImplCopyWith<_$LightCategoryModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

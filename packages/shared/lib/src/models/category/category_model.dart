@@ -21,3 +21,12 @@ class CategoryModel with _$CategoryModel {
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
 }
+
+@unfreezed
+class LightCategoryModel with _$LightCategoryModel {
+  factory LightCategoryModel({@Default('') String id, @Default('') String name}) =
+      _LightCategoryModel;
+
+  factory LightCategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$LightCategoryModelFromJson(json);
+}

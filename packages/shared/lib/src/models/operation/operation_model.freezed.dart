@@ -29,6 +29,14 @@ mixin _$OperationModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   set type(String value) => throw _privateConstructorUsedError;
+  LightCategoryModel? get category => throw _privateConstructorUsedError;
+  set category(LightCategoryModel? value) => throw _privateConstructorUsedError;
+  String? get orderId => throw _privateConstructorUsedError;
+  set orderId(String? value) => throw _privateConstructorUsedError;
+  String? get itemId => throw _privateConstructorUsedError;
+  set itemId(String? value) => throw _privateConstructorUsedError;
+  String? get transferId => throw _privateConstructorUsedError;
+  set transferId(String? value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
 
@@ -53,8 +61,14 @@ abstract class $OperationModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String type,
+    LightCategoryModel? category,
+    String? orderId,
+    String? itemId,
+    String? transferId,
     String displayName,
   });
+
+  $LightCategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -75,6 +89,10 @@ class _$OperationModelCopyWithImpl<$Res, $Val extends OperationModel>
     Object? createdAt = freezed,
     Object? id = null,
     Object? type = null,
+    Object? category = freezed,
+    Object? orderId = freezed,
+    Object? itemId = freezed,
+    Object? transferId = freezed,
     Object? displayName = null,
   }) {
     return _then(
@@ -94,6 +112,26 @@ class _$OperationModelCopyWithImpl<$Res, $Val extends OperationModel>
                     ? _value.type
                     : type // ignore: cast_nullable_to_non_nullable
                         as String,
+            category:
+                freezed == category
+                    ? _value.category
+                    : category // ignore: cast_nullable_to_non_nullable
+                        as LightCategoryModel?,
+            orderId:
+                freezed == orderId
+                    ? _value.orderId
+                    : orderId // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            itemId:
+                freezed == itemId
+                    ? _value.itemId
+                    : itemId // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            transferId:
+                freezed == transferId
+                    ? _value.transferId
+                    : transferId // ignore: cast_nullable_to_non_nullable
+                        as String?,
             displayName:
                 null == displayName
                     ? _value.displayName
@@ -102,6 +140,20 @@ class _$OperationModelCopyWithImpl<$Res, $Val extends OperationModel>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of OperationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightCategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $LightCategoryModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
   }
 }
 
@@ -118,8 +170,15 @@ abstract class _$$OperationModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String type,
+    LightCategoryModel? category,
+    String? orderId,
+    String? itemId,
+    String? transferId,
     String displayName,
   });
+
+  @override
+  $LightCategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -139,6 +198,10 @@ class __$$OperationModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? type = null,
+    Object? category = freezed,
+    Object? orderId = freezed,
+    Object? itemId = freezed,
+    Object? transferId = freezed,
     Object? displayName = null,
   }) {
     return _then(
@@ -158,6 +221,26 @@ class __$$OperationModelImplCopyWithImpl<$Res>
                 ? _value.type
                 : type // ignore: cast_nullable_to_non_nullable
                     as String,
+        category:
+            freezed == category
+                ? _value.category
+                : category // ignore: cast_nullable_to_non_nullable
+                    as LightCategoryModel?,
+        orderId:
+            freezed == orderId
+                ? _value.orderId
+                : orderId // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        itemId:
+            freezed == itemId
+                ? _value.itemId
+                : itemId // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        transferId:
+            freezed == transferId
+                ? _value.transferId
+                : transferId // ignore: cast_nullable_to_non_nullable
+                    as String?,
         displayName:
             null == displayName
                 ? _value.displayName
@@ -175,6 +258,10 @@ class _$OperationModelImpl implements _OperationModel {
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.type = '',
+    this.category,
+    this.orderId,
+    this.itemId,
+    this.transferId,
     this.displayName = '',
   });
 
@@ -191,12 +278,20 @@ class _$OperationModelImpl implements _OperationModel {
   @JsonKey()
   String type;
   @override
+  LightCategoryModel? category;
+  @override
+  String? orderId;
+  @override
+  String? itemId;
+  @override
+  String? transferId;
+  @override
   @JsonKey()
   String displayName;
 
   @override
   String toString() {
-    return 'OperationModel(createdAt: $createdAt, id: $id, type: $type, displayName: $displayName)';
+    return 'OperationModel(createdAt: $createdAt, id: $id, type: $type, category: $category, orderId: $orderId, itemId: $itemId, transferId: $transferId, displayName: $displayName)';
   }
 
   /// Create a copy of OperationModel
@@ -221,6 +316,10 @@ abstract class _OperationModel implements OperationModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String type,
+    LightCategoryModel? category,
+    String? orderId,
+    String? itemId,
+    String? transferId,
     String displayName,
   }) = _$OperationModelImpl;
 
@@ -238,6 +337,18 @@ abstract class _OperationModel implements OperationModel {
   @override
   String get type;
   set type(String value);
+  @override
+  LightCategoryModel? get category;
+  set category(LightCategoryModel? value);
+  @override
+  String? get orderId;
+  set orderId(String? value);
+  @override
+  String? get itemId;
+  set itemId(String? value);
+  @override
+  String? get transferId;
+  set transferId(String? value);
   @override
   String get displayName;
   set displayName(String value);

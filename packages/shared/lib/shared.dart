@@ -21,6 +21,7 @@ export 'src/enums/algolia_enums.dart';
 export 'src/enums/base_enums.dart';
 export 'src/enums/filter_enums.dart';
 export 'src/enums/item_enums.dart';
+export 'src/enums/operations_enum.dart';
 export 'src/enums/stores_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';
@@ -52,6 +53,7 @@ export 'src/models/user/user_model.dart';
 export 'src/network/api_service.dart';
 export 'src/network/branch_queries.dart';
 export 'src/network/doc_reference_extension.dart';
+export 'src/network/fire_query_extension.dart';
 export 'src/network/my_collections.dart';
 export 'src/network/my_fields.dart';
 export 'src/network/my_queries.dart';

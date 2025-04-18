@@ -16,13 +16,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   ItemModel get _item => widget.item;
 
   void _initialize() {
-    _query = kFirebaseInstant.items
-        .doc(_item.id)
-        .collection(MyCollections.operations)
-        .withConverter<OperationModel>(
-          fromFirestore: (snapshot, _) => OperationModel.fromJson(snapshot.data()!),
-          toFirestore: (snapshot, _) => snapshot.toJson(),
-        );
+    _query = BranchQueries.operations.where(MyFields.idItem, isEqualTo: _item.id);
   }
 
   @override

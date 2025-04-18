@@ -37,6 +37,12 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
+  CollectionReference<OperationModel> get operations =>
+      collection(MyCollections.operations).withConverter<OperationModel>(
+        fromFirestore: (snapshot, _) => OperationModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   CollectionReference<PromoCodeModel> get promoCodes =>
       collection(MyCollections.promoCodes).withConverter<PromoCodeModel>(
         fromFirestore: (snapshot, _) => PromoCodeModel.fromJson(snapshot.data()!),
