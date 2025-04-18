@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -162,8 +161,9 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
           ProcessTimeLine(
             itemCount: 5,
+
             contentsBuilder: (context, index) {
-              return const ProcessCard();
+              return OperationCard(operation: OperationModel());
             },
           ),
         ],

@@ -13,4 +13,5 @@ class MyCollections {
   static const String policies = 'policies';
   static const String items = 'items';
   static const String itemSuggestions = 'itemSuggestions';
+  static const String operations = 'operations';
 }

@@ -46,6 +46,7 @@ export 'src/models/basket/basket_model.dart';
 export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/item/item_model.dart';
+export 'src/models/operation/operation_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';
@@ -90,8 +91,8 @@ export 'src/widgets/materials_table/custom_line.dart';
 export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_container.dart';
 export 'src/widgets/materials_table/table_text.dart';
+export 'src/widgets/operation_card.dart';
 export 'src/widgets/order_status.dart';
-export 'src/widgets/process_card.dart';
 export 'src/widgets/process_time_line.dart';
 export 'src/widgets/stretch_button.dart';
 export 'src/widgets/titled_textfield.dart';

@@ -1,18 +1,15 @@
-import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class TableContainer extends StatelessWidget {
   final List<String> items;
+  final VoidCallback onTap;
 
-  const TableContainer({super.key, required this.items});
+  const TableContainer({super.key, required this.items, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.push((context) => const ItemManagementScreen());
-      },
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: 50,

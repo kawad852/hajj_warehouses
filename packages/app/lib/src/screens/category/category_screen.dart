@@ -103,6 +103,9 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   itemBuilder: (context, index) {
                     final item = snapshot.docs[index].data();
                     return TableContainer(
+                      onTap: () {
+                        context.push((context) => ItemManagementScreen(item: item));
+                      },
                       items: [
                         "${index + 1}",
                         item.name,

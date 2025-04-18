@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared/shared.dart';
 
-class ProcessCard extends StatelessWidget {
-  const ProcessCard({super.key});
+class OperationCard extends StatelessWidget {
+  final OperationModel operation;
+
+  const OperationCard({super.key, required this.operation});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProcessCard extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: " احمد محمد ",
+                  text: " ${operation.displayName} ",
                   style: TextStyle(
                     color: context.colorPalette.grey708,
                     fontSize: 14,
@@ -52,7 +54,8 @@ class ProcessCard extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
-              "07:38:51 صباحاً - 01-03-2025",
+              DateFormat.yMd().add_jm().format(operation.createdAt!),
+
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 12,

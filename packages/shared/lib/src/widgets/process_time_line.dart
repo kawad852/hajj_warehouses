@@ -1,14 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ProcessTimeLine extends StatelessWidget {
   final Widget? Function(BuildContext, int)? contentsBuilder;
   final int itemCount;
-  const ProcessTimeLine({
-    super.key,
-    this.contentsBuilder,
-    required this.itemCount,
-  });
+  const ProcessTimeLine({super.key, this.contentsBuilder, required this.itemCount});
 
   @override
   Widget build(BuildContext context) {
