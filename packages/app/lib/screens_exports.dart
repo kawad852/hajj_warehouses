@@ -26,6 +26,5 @@ export 'src/screens/send_transfer_order/send_transfer_order_screen.dart';
 export 'src/screens/warehouse/warehouse_screen.dart';
 export 'src/screens/warehouse/widgets/warehouse_button.dart';
 export 'src/screens/item/widgets/add_quntity.dart';
-export 'src/screens/item/widgets/counter_widget.dart';
 export 'src/screens/item/widgets/quantity_supply.dart';
 export 'src/screens/item/widgets/quantity_destroy.dart';

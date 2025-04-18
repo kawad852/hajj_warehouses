@@ -1,7 +1,8 @@
 import 'package:shared/shared.dart';
 
 class CustomBack extends StatelessWidget {
-  const CustomBack({super.key});
+  final Color? color;
+  const CustomBack({super.key, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class CustomBack extends StatelessWidget {
         onPressed: () {
           context.pop();
         },
-        icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        icon: Icon(Icons.arrow_back_ios_new_outlined, color: color),
       ),
     );
   }

@@ -3,14 +3,15 @@ import 'package:shared/shared.dart';
 
 class AppBarText extends StatelessWidget {
   final String data;
-  const AppBarText(this.data, {super.key});
+  final Color? color;
+  const AppBarText(this.data, {super.key, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       data,
       style: TextStyle(
-        color: context.colorPalette.black001,
+        color: color ?? context.colorPalette.black001,
         fontSize: 16,
         fontWeight: FontWeight.w800,
       ),

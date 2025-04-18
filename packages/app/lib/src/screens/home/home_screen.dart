@@ -1,5 +1,4 @@
-import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
+import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 child: TaskCard(
-                  onTap: () {},
+                  onTap: () {
+                    context.push((context) => const WalletScreen());
+                  },
                   title: "رصيد العهدة",
                   task: "43,590 ريال",
                   prefixIcon: MyIcons.wallet,
@@ -67,10 +68,22 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(
-              child: TaskCard(onTap: () {}, title: "الكادر البشري", prefixIcon: MyIcons.people),
+              child: TaskCard(
+                onTap: () {
+                  context.push((context) => const StaffScreen());
+                },
+                title: "الكادر البشري",
+                prefixIcon: MyIcons.people,
+              ),
             ),
             const SizedBox(width: 10),
-            Expanded(child: TaskCard(onTap: () {}, title: "التقارير", prefixIcon: MyIcons.reports)),
+            Expanded(
+              child: TaskCard(
+                onTap: () {},
+                title: "التقارير",
+                prefixIcon: MyIcons.reports,
+              ),
+            ),
           ],
         ),
         Padding(
@@ -95,7 +108,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 width: double.infinity,
                 height: 45,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   color: context.colorPalette.grey708,
                   borderRadius: const BorderRadius.only(
@@ -126,7 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               ListView.separated(
-                separatorBuilder: (context, index) => Divider(color: context.colorPalette.greyC4C),
+                separatorBuilder:
+                    (context, index) =>
+                        Divider(color: context.colorPalette.greyC4C),
                 itemCount: 4,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

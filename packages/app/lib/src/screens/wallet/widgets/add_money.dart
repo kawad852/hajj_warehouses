@@ -1,13 +1,13 @@
 import 'package:shared/shared.dart';
 
-class QuantitySupply extends StatefulWidget {
-  const QuantitySupply({super.key});
+class AddMoney extends StatefulWidget {
+  const AddMoney({super.key});
 
   @override
-  State<QuantitySupply> createState() => _QuantitySupplyState();
+  State<AddMoney> createState() => _AddMoneyState();
 }
 
-class _QuantitySupplyState extends State<QuantitySupply> {
+class _AddMoneyState extends State<AddMoney> {
   int? _groupValue = 1;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
       child: Column(
         children: [
           Text(
-            "طلب تزويد كمية للصنف",
+            "اضافة عهدة",
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -38,10 +38,10 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               ),
               const SizedBox(width: 5),
               Text(
-                "حالة الطلب",
+                "سبب الإضافة",
                 style: TextStyle(
                   color: context.colorPalette.black001,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -52,7 +52,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
             children: [
               CustomRadio(
                 value: 0,
-                title: "طارئة",
+                title: "لأول مره",
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -62,7 +62,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               ),
               CustomRadio(
                 value: 1,
-                title: "عادية",
+                title: "تزويد اضافي",
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -72,35 +72,56 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               ),
             ],
           ),
-          const Spacer(),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: Text(
-              "مشروحات وملاحظات حول الطلب",
-              style: TextStyle(
-                color: context.colorPalette.black001,
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: BaseEditor(
-              onChanged: (value) {},
-              filled: true,
-              fillColor: Colors.transparent,
-              maxLines: 4,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.colorPalette.greyBDB),
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
+            child: TitledTextField(
+              title: "مشروحات وملاحظات",
+              textStyle: TextStyle(
+                color: context.colorPalette.black001,
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.colorPalette.greyBDB),
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              child: BaseEditor(
+                onChanged: (value) {},
+                filled: true,
+                fillColor: Colors.transparent,
+                maxLines: 4,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: context.colorPalette.grey708),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: context.colorPalette.grey708),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
               ),
             ),
           ),
+          TitledTextField(
+            title: "الموظف المسؤول",
+            textStyle: TextStyle(
+              color: context.colorPalette.black001,
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: context.colorPalette.grey708),
+                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              ),
+              child: DropDownEditor(
+                items: const [],
+                onChanged: (value) {},
+                title: "اختر الموظف",
+                value: "s",
+              ),
+            ),
+          ),
+          AttachImage(
+            onTap: () {},
+            title: "ارفاق صورة لسند التسليم او الحوالة",
+          ),
+          const Spacer(),
           StretchedButton(
             onPressed: () {},
             margin: const EdgeInsets.only(bottom: 10),

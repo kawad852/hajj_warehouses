@@ -105,3 +105,4 @@ export 'src/widgets/stretch_button.dart';
 export 'src/widgets/titled_textfield.dart';
 export 'src/widgets/bottom_button.dart';
 export 'src/widgets/attach_image.dart';
+export 'src/widgets/counter_widget.dart';

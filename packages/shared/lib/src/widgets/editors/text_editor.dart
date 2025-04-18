@@ -42,9 +42,7 @@ class TextEditor extends StatelessWidget {
       hintStyle: hintStyle,
       required: required,
       textAlign: textAlign,
-      enabledBorder:
-          enabledBorder ??
-          const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+      enabledBorder: enabledBorder,
       suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       keyboardType: keyboardType,

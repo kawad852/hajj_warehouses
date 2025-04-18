@@ -31,10 +31,6 @@ class _PasswordEditorState extends State<PasswordEditor> {
       initialValue: widget.initialValue,
       obscureText: _obscureText,
       obscuringCharacter: "●",
-
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
-      ),
       required: true,
       autoValidateMode:
           widget.isConfirm ? null : AutovalidateMode.onUserInteraction,

@@ -21,4 +21,11 @@ export 'src/screens/order/widgets/order_card.dart';
 export 'src/screens/processes_record/processes_record_screen.dart';
 export 'src/screens/send_transfer_order/send_transfer_order_screen.dart';
 export 'src/screens/destroying_items/destroying_items_screen.dart';
+export 'src/screens/staff/staff_screen.dart';
+export 'src/screens/staff/staff_input_screen.dart';
+export 'src/screens/staff/widgets/tool_button.dart';
+export 'src/screens/wallet/wallet_screen.dart';
+export 'src/screens/wallet/widgets/wallet_operation.dart';
+export 'src/screens/wallet/widgets/add_money.dart';
+export 'src/screens/wallet/widgets/drag_money.dart';
 

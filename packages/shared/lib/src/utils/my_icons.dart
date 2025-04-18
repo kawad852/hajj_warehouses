@@ -48,4 +48,6 @@ class MyIcons {
   static const String closeSquare = '${_path}close_square.svg';
   static const String minusSquare = '${_path}minus_square.svg';
   static const String attachCircle = '${_path}attach_circle.svg';
+  static const String eye = '${_path}eye.svg';
+  static const String currency = '${_path}currency.svg';
 }
