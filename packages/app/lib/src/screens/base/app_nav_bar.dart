@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/base/widgets/user_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
