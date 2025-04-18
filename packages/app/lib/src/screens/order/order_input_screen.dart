@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class SendNewOrderScreen extends StatefulWidget {
-  const SendNewOrderScreen({super.key});
+class OrderInputScreen extends StatefulWidget {
+  const OrderInputScreen({super.key});
 
   @override
-  State<SendNewOrderScreen> createState() => _SendNewOrderScreenState();
+  State<OrderInputScreen> createState() => _OrderInputScreenState();
 }
 
-class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
+class _OrderInputScreenState extends State<OrderInputScreen> {
   int? _groupValue = 1;
   @override
   Widget build(BuildContext context) {
@@ -124,13 +123,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
                 Expanded(flex: 2, child: TableText("#")),
                 Expanded(flex: 10, child: TableText("اسم الصنف")),
                 CustomLine(),
-                Expanded(
-                  flex: 6,
-                  child: TableText(
-                    "الكمية المطلوبة",
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                Expanded(flex: 6, child: TableText("الكمية المطلوبة", textAlign: TextAlign.center)),
               ],
             ),
           ),
@@ -154,10 +147,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
                     Expanded(flex: 2, child: TableText("25")),
                     Expanded(flex: 10, child: TableText("طماطم صناديق")),
                     CustomLine(),
-                    Expanded(
-                      flex: 6,
-                      child: TableText("00", textAlign: TextAlign.center),
-                    ),
+                    Expanded(flex: 6, child: TableText("00", textAlign: TextAlign.center)),
                   ],
                 ),
               );
@@ -173,11 +163,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
             ),
             prefixIcon: IconButton(
               onPressed: null,
-              icon: CustomSvg(
-                MyIcons.addTask,
-                color: context.colorPalette.grey708,
-                width: 20,
-              ),
+              icon: CustomSvg(MyIcons.addTask, color: context.colorPalette.grey708, width: 20),
             ),
           ),
         ],

@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class OrdersManagementScreen extends StatefulWidget {
@@ -17,10 +16,10 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
         color: Colors.transparent,
         child: StretchedButton(
           onPressed: () {
-            context.push((context) => const SendNewOrderScreen());
+            context.push((context) => const OrderInputScreen());
           },
           child: Text(
-            "اررسال طلب جديد",
+            "ارسال طلب جديد",
             style: TextStyle(
               color: context.colorPalette.white,
               fontSize: 16,
