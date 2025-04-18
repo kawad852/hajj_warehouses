@@ -11,4 +11,5 @@ class MyCollections {
   static const String orders = 'orders';
   static const String settings = 'settings';
   static const String policies = 'policies';
+  static const String items = 'items';
 }

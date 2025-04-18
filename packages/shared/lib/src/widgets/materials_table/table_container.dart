@@ -2,14 +2,11 @@ import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class TableContainer extends StatefulWidget {
-  const TableContainer({super.key});
+class TableContainer extends StatelessWidget {
+  final List<String> items;
 
-  @override
-  State<TableContainer> createState() => _TableContainerState();
-}
+  const TableContainer({super.key, required this.items});
 
-class _TableContainerState extends State<TableContainer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,12 +23,12 @@ class _TableContainerState extends State<TableContainer> {
         ),
         child: Row(
           children: [
-            const Expanded(flex: 2, child: TableText("45")),
-            const Expanded(flex: 14, child: TableText("ارز حبة طويلة ( 10 كغ )")),
+            Expanded(flex: 2, child: TableText(items[0])),
+            Expanded(flex: 14, child: TableText(items[1])),
             const CustomLine(),
-            const Expanded(flex: 4, child: TableText("91", textAlign: TextAlign.center)),
+            Expanded(flex: 4, child: TableText(items[2], textAlign: TextAlign.center)),
             const CustomLine(),
-            const Expanded(flex: 4, child: TableText("100", textAlign: TextAlign.center)),
+            Expanded(flex: 4, child: TableText(items[3], textAlign: TextAlign.center)),
             const CustomLine(),
             Expanded(
               flex: 4,

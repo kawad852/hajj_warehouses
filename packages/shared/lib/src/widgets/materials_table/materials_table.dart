@@ -32,7 +32,7 @@ class MaterialsTable extends StatelessWidget {
             ],
           ),
         ),
-        if (builder != null) TableContainer(),
+        if (builder != null) builder!,
       ],
     );
   }

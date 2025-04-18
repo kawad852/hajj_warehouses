@@ -3,15 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class DepartmentScreen extends StatefulWidget {
-  final String categoryId;
+  final CategoryModel category;
 
-  const DepartmentScreen({super.key, required this.categoryId});
+  const DepartmentScreen({super.key, required this.category});
 
   @override
   State<DepartmentScreen> createState() => _DepartmentScreenState();
 }
 
 class _DepartmentScreenState extends State<DepartmentScreen> {
+  late Query<ItemModel> _query;
+
+  CategoryModel get _category => widget.category;
+
+  void _initialize() {
+    _query = kFirebaseInstant.items
+        .where(MyFields.categoryId, isEqualTo: _category.id)
+        .where(MyFields.userId, isEqualTo: kSelectedUserId)
+        .orderBy(MyFields.createdAt, descending: true);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +51,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const CustomBack(),
-        title: const AppBarText("مواد غذائية"),
+        title: AppBarText(_category.name),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -80,13 +97,27 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
             ),
           ),
           MaterialsTable(
-            builder: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: 10,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return TableContainer();
+            builder: CustomFirestoreQueryBuilder(
+              query: _query,
+              onComplete: (context, snapshot) {
+                return ListView.separated(
+                  separatorBuilder: (context, index) => const SizedBox(height: 5),
+                  itemCount: snapshot.docs.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final item = snapshot.docs[index].data();
+                    return TableContainer(
+                      items: [
+                        "${index + 1}",
+                        item.name,
+                        item.availableQuantity.toString(),
+                        item.stockQuantity.toString(),
+                        "متوفر",
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ),

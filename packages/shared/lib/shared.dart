@@ -42,6 +42,7 @@ export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
 export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
+export 'src/models/item/item_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';
