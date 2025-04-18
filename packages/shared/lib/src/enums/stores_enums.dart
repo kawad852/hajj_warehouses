@@ -43,16 +43,3 @@ enum PaymentMethod {
 
   const PaymentMethod(this.value);
 }
-
-enum OrderStatusEnum {
-  placed('PLACED'),
-  preparing('PREPARING'),
-  outForDelivery('OUT-FOR-DELIVERY'),
-  readyForPickUp('READY-FOR-PICKUP'),
-  completed('COMPLETED'),
-  canceled('CANCELED');
-
-  final String value;
-
-  const OrderStatusEnum(this.value);
-}

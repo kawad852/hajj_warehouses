@@ -29,3 +29,18 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'availableQuantity': instance.availableQuantity,
       'stockQuantity': instance.stockQuantity,
     };
+
+_$LightItemModelImpl _$$LightItemModelImplFromJson(Map<String, dynamic> json) =>
+    _$LightItemModelImpl(
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      quantity: json['quantity'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$LightItemModelImplToJson(
+  _$LightItemModelImpl instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'quantity': instance.quantity,
+};

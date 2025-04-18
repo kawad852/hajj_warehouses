@@ -340,3 +340,199 @@ abstract class _ItemModel implements ItemModel {
   _$$ItemModelImplCopyWith<_$ItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+LightItemModel _$LightItemModelFromJson(Map<String, dynamic> json) {
+  return _LightItemModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LightItemModel {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get quantity => throw _privateConstructorUsedError;
+
+  /// Serializes this LightItemModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LightItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LightItemModelCopyWith<LightItemModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LightItemModelCopyWith<$Res> {
+  factory $LightItemModelCopyWith(
+    LightItemModel value,
+    $Res Function(LightItemModel) then,
+  ) = _$LightItemModelCopyWithImpl<$Res, LightItemModel>;
+  @useResult
+  $Res call({String id, String name, String quantity});
+}
+
+/// @nodoc
+class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
+    implements $LightItemModelCopyWith<$Res> {
+  _$LightItemModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LightItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null, Object? name = null, Object? quantity = null}) {
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+            quantity:
+                null == quantity
+                    ? _value.quantity
+                    : quantity // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LightItemModelImplCopyWith<$Res>
+    implements $LightItemModelCopyWith<$Res> {
+  factory _$$LightItemModelImplCopyWith(
+    _$LightItemModelImpl value,
+    $Res Function(_$LightItemModelImpl) then,
+  ) = __$$LightItemModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String name, String quantity});
+}
+
+/// @nodoc
+class __$$LightItemModelImplCopyWithImpl<$Res>
+    extends _$LightItemModelCopyWithImpl<$Res, _$LightItemModelImpl>
+    implements _$$LightItemModelImplCopyWith<$Res> {
+  __$$LightItemModelImplCopyWithImpl(
+    _$LightItemModelImpl _value,
+    $Res Function(_$LightItemModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LightItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null, Object? name = null, Object? quantity = null}) {
+    return _then(
+      _$LightItemModelImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String,
+        quantity:
+            null == quantity
+                ? _value.quantity
+                : quantity // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LightItemModelImpl implements _LightItemModel {
+  _$LightItemModelImpl({this.id = '', this.name = '', this.quantity = ''});
+
+  factory _$LightItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LightItemModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String quantity;
+
+  @override
+  String toString() {
+    return 'LightItemModel(id: $id, name: $name, quantity: $quantity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LightItemModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, quantity);
+
+  /// Create a copy of LightItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LightItemModelImplCopyWith<_$LightItemModelImpl> get copyWith =>
+      __$$LightItemModelImplCopyWithImpl<_$LightItemModelImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LightItemModelImplToJson(this);
+  }
+}
+
+abstract class _LightItemModel implements LightItemModel {
+  factory _LightItemModel({
+    final String id,
+    final String name,
+    final String quantity,
+  }) = _$LightItemModelImpl;
+
+  factory _LightItemModel.fromJson(Map<String, dynamic> json) =
+      _$LightItemModelImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get quantity;
+
+  /// Create a copy of LightItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LightItemModelImplCopyWith<_$LightItemModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -22,6 +22,7 @@ export 'src/enums/base_enums.dart';
 export 'src/enums/filter_enums.dart';
 export 'src/enums/item_enums.dart';
 export 'src/enums/operations_enum.dart';
+export 'src/enums/order_enums.dart';
 export 'src/enums/stores_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';
@@ -33,6 +34,7 @@ export 'src/helper/basket_helper.dart';
 export 'src/helper/my_header_delegate.dart';
 export 'src/helper/objects_comparer.dart';
 export 'src/helper/pagination_handler.dart';
+export 'src/helper/row_id_helper.dart';
 export 'src/helper/scroll_extension.dart';
 export 'src/helper/separator.dart';
 export 'src/helper/time_stamp_serializer.dart';
@@ -48,6 +50,7 @@ export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/item/item_model.dart';
 export 'src/models/operation/operation_model.dart';
+export 'src/models/order/order_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';

@@ -20,3 +20,14 @@ class ItemModel with _$ItemModel {
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);
 }
+
+@freezed
+class LightItemModel with _$LightItemModel {
+  factory LightItemModel({
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') String quantity,
+  }) = _LightItemModel;
+
+  factory LightItemModel.fromJson(Map<String, dynamic> json) => _$LightItemModelFromJson(json);
+}

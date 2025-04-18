@@ -1,16 +1,26 @@
 import 'package:app/src/screens/search/widgets/anchor_tile.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/src/widgets/my_search_anchor.dart';
 
-class ProductsSearchScreen extends StatefulWidget {
+class ProductsSearchScreen<T> extends StatefulWidget {
   final String indexName;
+  final bool isFullScreen;
+  final Widget Function(MySearchController controller)? builder;
+  final Function(ItemModel e)? onTap;
 
-  const ProductsSearchScreen({super.key, required this.indexName});
+  const ProductsSearchScreen({
+    super.key,
+    required this.indexName,
+    this.builder,
+    this.isFullScreen = true,
+    this.onTap,
+  });
 
   @override
-  State<ProductsSearchScreen> createState() => _ProductsSearchScreenState();
+  State<ProductsSearchScreen<T>> createState() => _ProductsSearchScreenState<T>();
 }
 
-class _ProductsSearchScreenState extends State<ProductsSearchScreen> {
+class _ProductsSearchScreenState<T> extends State<ProductsSearchScreen<T>> {
   Future<List<dynamic>> _searchFuture = Future.value([]);
 
   void _initialize(String value) {
@@ -57,26 +67,29 @@ class _ProductsSearchScreenState extends State<ProductsSearchScreen> {
   Widget build(BuildContext context) {
     return FireAnimatedSearchBar(
       hintText: context.appLocalization.whatAreYouLookingForHint,
+      isFullScreen: widget.isFullScreen,
       onChanged: (value) {
         setState(() {
           _initialize(value);
         });
       },
       builder: (context, controller) {
-        return BaseEditor(
-          required: false,
-          hintText: "ابحث عن صنف",
-          hintStyle: TextStyle(
-            color: context.colorPalette.grey666,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-          prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
-          readOnly: true,
-          onTap: () {
-            controller.openView();
-          },
-        );
+        return widget.builder != null
+            ? widget.builder!(controller)
+            : BaseEditor(
+              required: false,
+              hintText: "ابحث عن صنف",
+              hintStyle: TextStyle(
+                color: context.colorPalette.grey666,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+              readOnly: true,
+              onTap: () {
+                controller.openView();
+              },
+            );
       },
       resultsBuilder: (context, query) {
         if (query.isEmpty) {
@@ -99,6 +112,10 @@ class _ProductsSearchScreenState extends State<ProductsSearchScreen> {
                       return AnchorTile(
                         name: element.name,
                         onTap: () {
+                          if (widget.onTap != null) {
+                            widget.onTap!(element);
+                            return;
+                          }
                           // context.push((context) {
                           //   return ProductScreen(
                           //     id: element.id,

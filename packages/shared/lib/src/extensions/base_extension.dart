@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-
 
 extension BaseExtensions on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;

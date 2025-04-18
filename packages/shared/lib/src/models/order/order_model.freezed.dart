@@ -25,30 +25,18 @@ mixin _$OrderModel {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
-  set id(String? value) => throw _privateConstructorUsedError;
-  String? get paymentMethod => throw _privateConstructorUsedError;
-  set paymentMethod(String? value) => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
-  List<BasketModel>? get basket => throw _privateConstructorUsedError;
-  set basket(List<BasketModel>? value) => throw _privateConstructorUsedError;
-  PromoCodeModel? get promoCode => throw _privateConstructorUsedError;
-  set promoCode(PromoCodeModel? value) => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
+  set note(String value) => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  set userId(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  double? get basketTotal => throw _privateConstructorUsedError;
-  set basketTotal(double? value) => throw _privateConstructorUsedError;
-  double get deliveryFee => throw _privateConstructorUsedError;
-  set deliveryFee(double value) => throw _privateConstructorUsedError;
-  double? get discount => throw _privateConstructorUsedError;
-  set discount(double? value) => throw _privateConstructorUsedError;
-  double? get orderTotal => throw _privateConstructorUsedError;
-  set orderTotal(double? value) => throw _privateConstructorUsedError;
-  bool get reviewed => throw _privateConstructorUsedError;
-  set reviewed(bool value) => throw _privateConstructorUsedError;
-  UserModel? get user => throw _privateConstructorUsedError;
-  set user(UserModel? value) => throw _privateConstructorUsedError;
+  bool get urgent => throw _privateConstructorUsedError;
+  set urgent(bool value) => throw _privateConstructorUsedError;
+  List<LightItemModel> get items => throw _privateConstructorUsedError;
+  set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,22 +57,13 @@ abstract class $OrderModelCopyWith<$Res> {
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
-    String? id,
-    String? paymentMethod,
-    String type,
-    List<BasketModel>? basket,
-    PromoCodeModel? promoCode,
+    String id,
+    String note,
+    String userId,
     String status,
-    double? basketTotal,
-    double deliveryFee,
-    double? discount,
-    double? orderTotal,
-    bool reviewed,
-    UserModel? user,
+    bool urgent,
+    List<LightItemModel> items,
   });
-
-  $PromoCodeModelCopyWith<$Res>? get promoCode;
-  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -103,18 +82,12 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   @override
   $Res call({
     Object? createdAt = freezed,
-    Object? id = freezed,
-    Object? paymentMethod = freezed,
-    Object? type = null,
-    Object? basket = freezed,
-    Object? promoCode = freezed,
+    Object? id = null,
+    Object? note = null,
+    Object? userId = null,
     Object? status = null,
-    Object? basketTotal = freezed,
-    Object? deliveryFee = null,
-    Object? discount = freezed,
-    Object? orderTotal = freezed,
-    Object? reviewed = null,
-    Object? user = freezed,
+    Object? urgent = null,
+    Object? items = null,
   }) {
     return _then(
       _value.copyWith(
@@ -124,96 +97,38 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     : createdAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             id:
-                freezed == id
+                null == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            paymentMethod:
-                freezed == paymentMethod
-                    ? _value.paymentMethod
-                    : paymentMethod // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            type:
-                null == type
-                    ? _value.type
-                    : type // ignore: cast_nullable_to_non_nullable
                         as String,
-            basket:
-                freezed == basket
-                    ? _value.basket
-                    : basket // ignore: cast_nullable_to_non_nullable
-                        as List<BasketModel>?,
-            promoCode:
-                freezed == promoCode
-                    ? _value.promoCode
-                    : promoCode // ignore: cast_nullable_to_non_nullable
-                        as PromoCodeModel?,
+            note:
+                null == note
+                    ? _value.note
+                    : note // ignore: cast_nullable_to_non_nullable
+                        as String,
+            userId:
+                null == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
+                        as String,
             status:
                 null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
-            basketTotal:
-                freezed == basketTotal
-                    ? _value.basketTotal
-                    : basketTotal // ignore: cast_nullable_to_non_nullable
-                        as double?,
-            deliveryFee:
-                null == deliveryFee
-                    ? _value.deliveryFee
-                    : deliveryFee // ignore: cast_nullable_to_non_nullable
-                        as double,
-            discount:
-                freezed == discount
-                    ? _value.discount
-                    : discount // ignore: cast_nullable_to_non_nullable
-                        as double?,
-            orderTotal:
-                freezed == orderTotal
-                    ? _value.orderTotal
-                    : orderTotal // ignore: cast_nullable_to_non_nullable
-                        as double?,
-            reviewed:
-                null == reviewed
-                    ? _value.reviewed
-                    : reviewed // ignore: cast_nullable_to_non_nullable
+            urgent:
+                null == urgent
+                    ? _value.urgent
+                    : urgent // ignore: cast_nullable_to_non_nullable
                         as bool,
-            user:
-                freezed == user
-                    ? _value.user
-                    : user // ignore: cast_nullable_to_non_nullable
-                        as UserModel?,
+            items:
+                null == items
+                    ? _value.items
+                    : items // ignore: cast_nullable_to_non_nullable
+                        as List<LightItemModel>,
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of OrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PromoCodeModelCopyWith<$Res>? get promoCode {
-    if (_value.promoCode == null) {
-      return null;
-    }
-
-    return $PromoCodeModelCopyWith<$Res>(_value.promoCode!, (value) {
-      return _then(_value.copyWith(promoCode: value) as $Val);
-    });
-  }
-
-  /// Create a copy of OrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -228,24 +143,13 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
-    String? id,
-    String? paymentMethod,
-    String type,
-    List<BasketModel>? basket,
-    PromoCodeModel? promoCode,
+    String id,
+    String note,
+    String userId,
     String status,
-    double? basketTotal,
-    double deliveryFee,
-    double? discount,
-    double? orderTotal,
-    bool reviewed,
-    UserModel? user,
+    bool urgent,
+    List<LightItemModel> items,
   });
-
-  @override
-  $PromoCodeModelCopyWith<$Res>? get promoCode;
-  @override
-  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -263,18 +167,12 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createdAt = freezed,
-    Object? id = freezed,
-    Object? paymentMethod = freezed,
-    Object? type = null,
-    Object? basket = freezed,
-    Object? promoCode = freezed,
+    Object? id = null,
+    Object? note = null,
+    Object? userId = null,
     Object? status = null,
-    Object? basketTotal = freezed,
-    Object? deliveryFee = null,
-    Object? discount = freezed,
-    Object? orderTotal = freezed,
-    Object? reviewed = null,
-    Object? user = freezed,
+    Object? urgent = null,
+    Object? items = null,
   }) {
     return _then(
       _$OrderModelImpl(
@@ -284,87 +182,52 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 : createdAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         id:
-            freezed == id
+            null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        paymentMethod:
-            freezed == paymentMethod
-                ? _value.paymentMethod
-                : paymentMethod // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        type:
-            null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
                     as String,
-        basket:
-            freezed == basket
-                ? _value.basket
-                : basket // ignore: cast_nullable_to_non_nullable
-                    as List<BasketModel>?,
-        promoCode:
-            freezed == promoCode
-                ? _value.promoCode
-                : promoCode // ignore: cast_nullable_to_non_nullable
-                    as PromoCodeModel?,
+        note:
+            null == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                    as String,
+        userId:
+            null == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as String,
         status:
             null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
-        basketTotal:
-            freezed == basketTotal
-                ? _value.basketTotal
-                : basketTotal // ignore: cast_nullable_to_non_nullable
-                    as double?,
-        deliveryFee:
-            null == deliveryFee
-                ? _value.deliveryFee
-                : deliveryFee // ignore: cast_nullable_to_non_nullable
-                    as double,
-        discount:
-            freezed == discount
-                ? _value.discount
-                : discount // ignore: cast_nullable_to_non_nullable
-                    as double?,
-        orderTotal:
-            freezed == orderTotal
-                ? _value.orderTotal
-                : orderTotal // ignore: cast_nullable_to_non_nullable
-                    as double?,
-        reviewed:
-            null == reviewed
-                ? _value.reviewed
-                : reviewed // ignore: cast_nullable_to_non_nullable
+        urgent:
+            null == urgent
+                ? _value.urgent
+                : urgent // ignore: cast_nullable_to_non_nullable
                     as bool,
-        user:
-            freezed == user
-                ? _value.user
-                : user // ignore: cast_nullable_to_non_nullable
-                    as UserModel?,
+        items:
+            null == items
+                ? _value.items
+                : items // ignore: cast_nullable_to_non_nullable
+                    as List<LightItemModel>,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$OrderModelImpl implements _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
-    this.id,
-    this.paymentMethod,
-    this.type = "DELIVERY",
-    this.basket,
-    this.promoCode,
-    this.status = "PLACED",
-    this.basketTotal,
-    this.deliveryFee = 0.0,
-    this.discount,
-    this.orderTotal,
-    this.reviewed = false,
-    this.user,
+    this.id = '',
+    this.note = '',
+    this.userId = '',
+    required this.status,
+    this.urgent = false,
+    this.items = const [],
   });
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -374,37 +237,26 @@ class _$OrderModelImpl implements _OrderModel {
   @TimestampSerializer()
   DateTime? createdAt;
   @override
-  String? id;
-  @override
-  String? paymentMethod;
+  @JsonKey()
+  String id;
   @override
   @JsonKey()
-  String type;
-  @override
-  List<BasketModel>? basket;
-  @override
-  PromoCodeModel? promoCode;
+  String note;
   @override
   @JsonKey()
+  String userId;
+  @override
   String status;
   @override
-  double? basketTotal;
+  @JsonKey()
+  bool urgent;
   @override
   @JsonKey()
-  double deliveryFee;
-  @override
-  double? discount;
-  @override
-  double? orderTotal;
-  @override
-  @JsonKey()
-  bool reviewed;
-  @override
-  UserModel? user;
+  List<LightItemModel> items;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, paymentMethod: $paymentMethod, type: $type, basket: $basket, promoCode: $promoCode, status: $status, basketTotal: $basketTotal, deliveryFee: $deliveryFee, discount: $discount, orderTotal: $orderTotal, reviewed: $reviewed, user: $user)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, note: $note, userId: $userId, status: $status, urgent: $urgent, items: $items)';
   }
 
   /// Create a copy of OrderModel
@@ -424,18 +276,12 @@ class _$OrderModelImpl implements _OrderModel {
 abstract class _OrderModel implements OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
-    String? id,
-    String? paymentMethod,
-    String type,
-    List<BasketModel>? basket,
-    PromoCodeModel? promoCode,
-    String status,
-    double? basketTotal,
-    double deliveryFee,
-    double? discount,
-    double? orderTotal,
-    bool reviewed,
-    UserModel? user,
+    String id,
+    String note,
+    String userId,
+    required String status,
+    bool urgent,
+    List<LightItemModel> items,
   }) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -447,41 +293,23 @@ abstract class _OrderModel implements OrderModel {
   @TimestampSerializer()
   set createdAt(DateTime? value);
   @override
-  String? get id;
-  set id(String? value);
+  String get id;
+  set id(String value);
   @override
-  String? get paymentMethod;
-  set paymentMethod(String? value);
+  String get note;
+  set note(String value);
   @override
-  String get type;
-  set type(String value);
-  @override
-  List<BasketModel>? get basket;
-  set basket(List<BasketModel>? value);
-  @override
-  PromoCodeModel? get promoCode;
-  set promoCode(PromoCodeModel? value);
+  String get userId;
+  set userId(String value);
   @override
   String get status;
   set status(String value);
   @override
-  double? get basketTotal;
-  set basketTotal(double? value);
+  bool get urgent;
+  set urgent(bool value);
   @override
-  double get deliveryFee;
-  set deliveryFee(double value);
-  @override
-  double? get discount;
-  set discount(double? value);
-  @override
-  double? get orderTotal;
-  set orderTotal(double? value);
-  @override
-  bool get reviewed;
-  set reviewed(bool value);
-  @override
-  UserModel? get user;
-  set user(UserModel? value);
+  List<LightItemModel> get items;
+  set items(List<LightItemModel> value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
