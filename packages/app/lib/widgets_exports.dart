@@ -1,1 +1,1 @@
-export 'src/screens/item_management/widgets/manage_button.dart';
+export 'src/screens/item/widgets/manage_button.dart';
