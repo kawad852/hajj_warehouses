@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-
-import '../../helper/validation_helper.dart';
-import 'base_editor.dart';
 
 class TextEditor extends StatelessWidget {
   final String? initialValue;
@@ -18,6 +14,7 @@ class TextEditor extends StatelessWidget {
   final TextAlign? textAlign;
   final String? hintText;
   final TextStyle? hintStyle;
+  final bool nullable;
 
   const TextEditor({
     super.key,
@@ -34,6 +31,7 @@ class TextEditor extends StatelessWidget {
     this.minLines,
     this.hintText,
     this.hintStyle,
+    this.nullable = false,
   });
 
   @override
@@ -44,18 +42,18 @@ class TextEditor extends StatelessWidget {
       hintStyle: hintStyle,
       required: required,
       textAlign: textAlign,
-      enabledBorder: enabledBorder ?? const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent)
-      ),
+      enabledBorder:
+          enabledBorder ??
+          const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
       suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       keyboardType: keyboardType,
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
-      style: TextStyle(color: context.colorPalette.greyBDB,fontWeight: FontWeight.bold),
+      style: TextStyle(color: context.colorPalette.greyBDB, fontWeight: FontWeight.bold),
       onChanged: (value) {
-        if (value.isEmpty) {
+        if (nullable && value.isEmpty) {
           onChanged(null);
         } else {
           onChanged(value);

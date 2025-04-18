@@ -120,14 +120,11 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
                                   backgroundColor: context.colorScheme.error,
                                   foregroundColor: context.colorScheme.onError,
                                 ),
-                                icon: Icon(Icons.remove_circle),
+                                icon: const Icon(Icons.remove_circle),
                               )
                               : null,
                     );
                   }).separator(const SizedBox(height: 10)).toList(),
-              // _items.map((element) {
-
-              // }).toList(),
             ),
           ),
           SliverPadding(

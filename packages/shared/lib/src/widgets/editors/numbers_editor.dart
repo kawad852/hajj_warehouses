@@ -18,6 +18,7 @@ class NumbersEditor extends StatelessWidget {
   final InputBorder? enabledBorder;
   final TextAlign? textAlign;
   final String? hintText;
+  final bool nullable;
 
   const NumbersEditor({
     super.key,
@@ -34,6 +35,7 @@ class NumbersEditor extends StatelessWidget {
     this.textAlign,
     this.minLines,
     this.hintText,
+    this.nullable = false,
   });
 
   @override
@@ -47,7 +49,7 @@ class NumbersEditor extends StatelessWidget {
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {
-        if (value.isEmpty) {
+        if (nullable && value.isEmpty) {
           onChanged(null);
         } else if (ValidationHelper.intNumberRegex.hasMatch(value)) {
           onChanged(int.parse(value));
