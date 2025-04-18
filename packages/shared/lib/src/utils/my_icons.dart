@@ -38,4 +38,10 @@ class MyIcons {
   static const String trash = '${_path}trash.svg';
   static const String truckTime = '${_path}truck_time.svg';
   static const String truck = '${_path}truck.svg';
+  static const String edit = '${_path}edit.svg';
+  static const String filter = '${_path}filter.svg';
+  static const String plus = '${_path}plus.svg';
+  static const String subtract = '${_path}subtract.svg';
+  static const String paperclip = '${_path}paperclip.svg';
+  static const String map = '${_path}map.svg';
 }

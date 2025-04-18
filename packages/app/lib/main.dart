@@ -11,12 +11,9 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main N
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await MySharedPreferences.init();
   MyObjectBoxes.init();
-  // await FirebaseAuth.instance.signOut();
-  // MySharedPreferences.clearStorage();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -37,23 +34,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Widget _toggleScreen(BuildContext context) {
-    if (MySharedPreferences.user?.id != null) {
-      return const AppNavBar();
-    } else {
-      return const LoginScreen();
-    }
-  }
+  // Widget _toggleScreen(BuildContext context) {
+  //   if (MySharedPreferences.user?.id != null) {
+  //     return AppNavBar();
+  //   } else {
+  //     return RegistrationScreen();
+  //   }
+  // }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Consumer2<AppProvider, UserProvider>(
-      builder: (BuildContext context, appProvider, userProvider, Widget? child) {
+      builder: (
+        BuildContext context,
+        appProvider,
+        userProvider,
+        Widget? child,
+      ) {
         final colorScheme = ColorScheme.fromSeed(
           seedColor: const Color(0xFF708D81),
           surface: Colors.white,
-          brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
+          brightness: appProvider.appTheme == ThemeEnum.light
+                  ? Brightness.light
+                  : Brightness.dark,
         );
         return MultiProvider(
           providers: [
@@ -101,11 +105,13 @@ class _MyAppState extends State<MyApp> {
               colorScheme: colorScheme,
               useMaterial3: true,
               fontFamily: GoogleFonts.cairo().fontFamily!,
-              inputDecorationTheme: const InputDecorationTheme(
+              inputDecorationTheme: InputDecorationTheme(
                 filled: true,
-                fillColor: Color(0xFFF2F2F2),
+                fillColor: const Color(0xFFF2F2F2),
+                contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary)
                 ),
               ),
               cardTheme: CardThemeData(
@@ -113,8 +119,8 @@ class _MyAppState extends State<MyApp> {
                 margin: EdgeInsets.zero,
               ),
             ),
-            home: _toggleScreen(context),
-            // home: const LoginScreen(),
+            // home: _toggleScreen(context),
+            home: const AppNavBar(),
           ),
         );
       },
