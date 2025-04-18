@@ -1,3 +1,4 @@
+import 'package:app/src/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -65,17 +66,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
-                  child: TextEditor(
-                    onChanged: (value) {},
-                    required: false,
-                    hintText: "ابحث عن تصنيف",
-                    hintStyle: TextStyle(
-                      color: context.colorPalette.grey666,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
-                  ),
+                  child: ProductsSearchScreen(indexName: AlgoliaIndices.categories.value),
                 ),
               ],
             ),

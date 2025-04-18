@@ -1,6 +1,6 @@
 enum AlgoliaIndices {
-  foodStores('foodStores'),
-  products('products');
+  categories('categories'),
+  items('items');
 
   final String value;
 

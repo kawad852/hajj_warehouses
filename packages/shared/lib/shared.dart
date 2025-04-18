@@ -66,6 +66,7 @@ export 'src/utils/providers_extension.dart';
 //utils
 export 'src/utils/shared_pref.dart';
 export 'src/widgets/app_bar_text.dart';
+export 'src/widgets/base_network_image.dart';
 export 'src/widgets/custom_back.dart';
 export 'src/widgets/custom_firestore_query_builder.dart';
 export 'src/widgets/custom_radio.dart';
@@ -78,7 +79,10 @@ export 'src/widgets/editors/password_editor.dart';
 export 'src/widgets/editors/phone_editor.dart';
 export 'src/widgets/editors/text_editor.dart';
 export 'src/widgets/extensions/snackbar_extension.dart';
+export 'src/widgets/fire_animated_search_bar.dart';
 export 'src/widgets/fp_loading.dart';
+export 'src/widgets/future_builders/impeded_future_builder.dart';
+export 'src/widgets/header_tile.dart';
 export 'src/widgets/materials_table/custom_line.dart';
 export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_container.dart';
