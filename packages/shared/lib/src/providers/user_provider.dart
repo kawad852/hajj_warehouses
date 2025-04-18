@@ -53,15 +53,17 @@ class UserProvider extends ChangeNotifier {
     await ApiService.fetch(
       context,
       callBack: () async {
-        final user = UserModel();
+        // final user = UserModel();
 
-        final userDocument = await _firebaseFirestore.users.doc(user.id).get();
+        final userDocument = await _firebaseFirestore.users.doc(auth.user!.uid).get();
+        late UserModel user;
 
         if (userDocument.exists) {
           if (context.mounted && userDocument.data()!.blocked) {
             context.showSnackBar(context.appLocalization.authFailed);
             return;
           }
+
           MySharedPreferences.user = userDocument.data()!;
         } else {
           if (context.mounted) {
@@ -72,9 +74,10 @@ class UserProvider extends ChangeNotifier {
         notifyListeners();
 
         if (context.mounted) {
-          if (user.role == RoleEnum.admin.value) {
+          if (MySharedPreferences.user?.role == RoleEnum.admin.value) {
             context.pushAndRemoveUntil((context) => const ChooseBranchScreen());
           } else {
+            MySharedPreferences.selectedBranchId = MySharedPreferences.user!.id!;
             context.goToNavBar();
           }
         }

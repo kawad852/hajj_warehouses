@@ -75,6 +75,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
+                    MySharedPreferences.selectedBranchId = '';
                     setState(() {
                       currentIndex = index;
                     });
@@ -84,16 +85,16 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                     height: 48,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: currentIndex == index
-                              ? context.colorPalette.grey708
-                              : Colors.transparent,
+                      color:
+                          currentIndex == index ? context.colorPalette.grey708 : Colors.transparent,
                       borderRadius: BorderRadius.circular(kRadiusSecondary),
                       border: Border.all(color: context.colorPalette.grey708),
                     ),
                     child: Text(
                       "فرع عرفات",
                       style: TextStyle(
-                        color: currentIndex == index
+                        color:
+                            currentIndex == index
                                 ? context.colorPalette.white
                                 : context.colorPalette.black001,
                         fontSize: 16,

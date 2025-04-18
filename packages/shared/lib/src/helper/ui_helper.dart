@@ -10,7 +10,7 @@ class UiHelper {
     String? textTr,
     String? textFa,
   }) {
-    const language = 'en';
+    final language = MySharedPreferences.language;
     switch (language) {
       case LanguageEnum.arabic:
         return textAR ?? '';

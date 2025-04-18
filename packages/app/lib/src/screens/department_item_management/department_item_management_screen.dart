@@ -73,47 +73,56 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
               ),
             ),
             Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 5),
-                itemCount: 7,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      context.push((context) => const DepartmentScreen());
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(color: context.colorPalette.greyDAD),
-                        borderRadius: BorderRadius.circular(kRadiusSecondary),
-                      ),
-                      child: Row(
-                        children: [
-                          CustomSvg(
-                            MyIcons.addTask,
-                            color: context.colorPalette.grey708,
-                            width: 25,
+              child: CustomFirestoreQueryBuilder(
+                query: _query,
+                onComplete: (context, snapshot) {
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 5),
+                    itemCount: snapshot.docs.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      if (snapshot.isLoadingMore(index)) {
+                        return const FPLoading();
+                      }
+                      final category = snapshot.docs[index].data();
+                      return GestureDetector(
+                        onTap: () {
+                          context.push((context) => const DepartmentScreen());
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(color: context.colorPalette.greyDAD),
+                            borderRadius: BorderRadius.circular(kRadiusSecondary),
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              "مواد غذائية",
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: context.colorPalette.black001,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                          child: Row(
+                            children: [
+                              CustomSvg(
+                                MyIcons.addTask,
+                                color: context.colorPalette.grey708,
+                                width: 25,
                               ),
-                            ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  category.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: context.colorPalette.black001,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              const CustomSvg(MyIcons.edit),
+                            ],
                           ),
-                          const CustomSvg(MyIcons.edit),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

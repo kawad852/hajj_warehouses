@@ -10,11 +10,18 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main N
 // dart pub global activate melos
 // melos bootstrap
 
+Future<void> _logout() async {
+  await FirebaseAuth.instance.signOut();
+  MySharedPreferences.clearStorage();
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySharedPreferences.init();
   MyObjectBoxes.init();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await _logout();
   runApp(
     MultiProvider(
       providers: [

@@ -11,7 +11,7 @@ DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
-String get kSelectedUserId => MySharedPreferences.selectedUserId;
+String get kSelectedUserId => MySharedPreferences.selectedBranchId;
 DocumentReference<UserModel> get kBranchDocRef => kFirebaseInstant.users.doc(kSelectedUserId);
 
 class ApiService {
