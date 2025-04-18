@@ -36,7 +36,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         color: Colors.transparent,
         child: StretchedButton(
           onPressed: () {
-            context.push((context) => const ItemInputScreen());
+            context.push((context) => ItemInputScreen(category: _category));
           },
           child: Text(
             "اضافة اصناف جديدة",

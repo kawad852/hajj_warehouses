@@ -2,7 +2,9 @@ import 'package:app/src/screens/item/widgets/add_item_widget.dart';
 import 'package:shared/shared.dart';
 
 class ItemInputScreen extends StatefulWidget {
-  const ItemInputScreen({super.key});
+  final CategoryModel category;
+
+  const ItemInputScreen({super.key, required this.category});
 
   @override
   State<ItemInputScreen> createState() => _ItemInputScreenState();
@@ -11,7 +13,16 @@ class ItemInputScreen extends StatefulWidget {
 class _ItemInputScreenState extends State<ItemInputScreen> {
   late Query<ItemModel> _suggestionsQuery;
 
-  final List<ItemModel> _items = [ItemModel(id: kUUID)];
+  final List<ItemModel> _items = [];
+
+  ItemModel get _itemModel => ItemModel(
+    id: kUUID,
+    status: ItemStatusEnum.available.value,
+    userId: kSelectedUserId,
+    categoryId: _category.id,
+  );
+
+  CategoryModel get _category => widget.category;
 
   void _initialize() {
     _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderBy(
@@ -20,9 +31,26 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
+  void _onAdd(BuildContext context) {
+    ApiService.fetch(
+      context,
+      callBack: () async {
+        for (var e in _items) {
+          e.createdAt = kNowDate;
+          await kFirebaseInstant.items.doc(e.id).set(e);
+        }
+        if (context.mounted) {
+          Fluttertoast.showToast(msg: context.appLocalization.successfullyUpdated);
+          context.pop();
+        }
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+    _items.add(_itemModel);
     _initialize();
   }
 
@@ -32,7 +60,12 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child: StretchedButton(
-          onPressed: _items.any((e) => e.name.isEmpty) ? null : () {},
+          onPressed:
+              _items.any((e) => e.name.isEmpty)
+                  ? null
+                  : () {
+                    _onAdd(context);
+                  },
           child: Text(
             "اضافة",
             style: TextStyle(
@@ -72,7 +105,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       return IconButton.filled(
                         onPressed: () {
                           setState(() {
-                            _items.add(ItemModel(id: kUUID));
+                            _items.add(_itemModel);
                           });
                         },
                         icon: const Icon(Icons.add),

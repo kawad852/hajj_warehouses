@@ -20,6 +20,7 @@ export 'src/controllers/phone_controller.dart';
 export 'src/enums/algolia_enums.dart';
 export 'src/enums/base_enums.dart';
 export 'src/enums/filter_enums.dart';
+export 'src/enums/item_enums.dart';
 export 'src/enums/stores_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';

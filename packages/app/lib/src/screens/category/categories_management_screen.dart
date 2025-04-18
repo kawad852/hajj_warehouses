@@ -1,5 +1,4 @@
 import 'package:app/src/screens/search/search_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 import '../../../screens_exports.dart';
@@ -23,6 +22,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
   @override
   void initState() {
     super.initState();
+
     _initialize();
   }
 
