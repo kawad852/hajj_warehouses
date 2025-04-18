@@ -53,7 +53,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             sliver: SliverList.list(
               children: [
-                const ManageButton(title: "اسم الصنف : ارز حبة طويلة ( 10 كغ )"),
+                ManageButton(title: "اسم الصنف: ${_item.name}"),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
