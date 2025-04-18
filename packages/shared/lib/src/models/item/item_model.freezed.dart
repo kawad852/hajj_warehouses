@@ -35,6 +35,8 @@ mixin _$ItemModel {
   set userId(String value) => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   set categoryId(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
   int get availableQuantity => throw _privateConstructorUsedError;
   set availableQuantity(int value) => throw _privateConstructorUsedError;
   int get stockQuantity => throw _privateConstructorUsedError;
@@ -62,6 +64,7 @@ abstract class $ItemModelCopyWith<$Res> {
     String nameAr,
     String userId,
     String categoryId,
+    String status,
     int availableQuantity,
     int stockQuantity,
   });
@@ -88,6 +91,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? nameAr = null,
     Object? userId = null,
     Object? categoryId = null,
+    Object? status = null,
     Object? availableQuantity = null,
     Object? stockQuantity = null,
   }) {
@@ -123,6 +127,11 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.categoryId
                     : categoryId // ignore: cast_nullable_to_non_nullable
                         as String,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
             availableQuantity:
                 null == availableQuantity
                     ? _value.availableQuantity
@@ -155,6 +164,7 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String nameAr,
     String userId,
     String categoryId,
+    String status,
     int availableQuantity,
     int stockQuantity,
   });
@@ -180,6 +190,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? nameAr = null,
     Object? userId = null,
     Object? categoryId = null,
+    Object? status = null,
     Object? availableQuantity = null,
     Object? stockQuantity = null,
   }) {
@@ -215,6 +226,11 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.categoryId
                 : categoryId // ignore: cast_nullable_to_non_nullable
                     as String,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
         availableQuantity:
             null == availableQuantity
                 ? _value.availableQuantity
@@ -240,6 +256,7 @@ class _$ItemModelImpl extends _ItemModel {
     this.nameAr = '',
     this.userId = '',
     this.categoryId = '',
+    this.status = '',
     this.availableQuantity = 0,
     this.stockQuantity = 0,
   }) : super._();
@@ -267,6 +284,9 @@ class _$ItemModelImpl extends _ItemModel {
   String categoryId;
   @override
   @JsonKey()
+  String status;
+  @override
+  @JsonKey()
   int availableQuantity;
   @override
   @JsonKey()
@@ -274,7 +294,7 @@ class _$ItemModelImpl extends _ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, nameEn: $nameEn, nameAr: $nameAr, userId: $userId, categoryId: $categoryId, availableQuantity: $availableQuantity, stockQuantity: $stockQuantity)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, nameEn: $nameEn, nameAr: $nameAr, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, stockQuantity: $stockQuantity)';
   }
 
   /// Create a copy of ItemModel
@@ -299,6 +319,7 @@ abstract class _ItemModel extends ItemModel {
     String nameAr,
     String userId,
     String categoryId,
+    String status,
     int availableQuantity,
     int stockQuantity,
   }) = _$ItemModelImpl;
@@ -327,6 +348,9 @@ abstract class _ItemModel extends ItemModel {
   @override
   String get categoryId;
   set categoryId(String value);
+  @override
+  String get status;
+  set status(String value);
   @override
   int get availableQuantity;
   set availableQuantity(int value);

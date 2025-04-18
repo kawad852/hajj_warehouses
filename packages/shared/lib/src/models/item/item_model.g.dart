@@ -14,6 +14,7 @@ _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>
       nameAr: json['nameAr'] as String? ?? '',
       userId: json['userId'] as String? ?? '',
       categoryId: json['categoryId'] as String? ?? '',
+      status: json['status'] as String? ?? '',
       availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 0,
       stockQuantity: (json['stockQuantity'] as num?)?.toInt() ?? 0,
     );
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'nameAr': instance.nameAr,
       'userId': instance.userId,
       'categoryId': instance.categoryId,
+      'status': instance.status,
       'availableQuantity': instance.availableQuantity,
       'stockQuantity': instance.stockQuantity,
     };

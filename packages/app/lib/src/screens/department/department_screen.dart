@@ -113,7 +113,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                         item.name,
                         item.availableQuantity.toString(),
                         item.stockQuantity.toString(),
-                        "متوفر",
+                        item.status,
                       ],
                     );
                   },
