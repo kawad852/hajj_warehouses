@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -24,11 +24,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               icon: MyIcons.boxTime,
             ),
             const SizedBox(width: 10),
-            WarehouseButton(
-              onTap: () {},
-              title: "اضافة كمية للمخزون",
-              icon: MyIcons.boxAdd,
-            ),
+            WarehouseButton(onTap: () {}, title: "اضافة كمية للمخزون", icon: MyIcons.boxAdd),
           ],
         ),
         Padding(
@@ -55,12 +51,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
         ),
         Row(
           children: [
-            WarehouseButton(
-              onTap: () {},
-              flex: 4,
-              title: "سجل العمليات",
-              icon: MyIcons.book,
-            ),
+            WarehouseButton(onTap: () {}, flex: 4, title: "سجل العمليات", icon: MyIcons.book),
             const SizedBox(width: 10),
             WarehouseButton(
               onTap: () {},
@@ -90,10 +81,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            prefixIcon: const IconButton(
-              onPressed: null,
-              icon: CustomSvg(MyIcons.search),
-            ),
+            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
         ),
         Row(

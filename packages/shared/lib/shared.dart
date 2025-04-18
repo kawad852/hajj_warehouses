@@ -1,4 +1,5 @@
 //packages
+export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:easy_radio/easy_radio.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
@@ -39,11 +40,12 @@ export 'src/l10n/app_localizations.dart';
 //models
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
+export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
-export 'src/models/object_box/object_box_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';
+export 'src/network/branch_queries.dart';
 export 'src/network/doc_reference_extension.dart';
 export 'src/network/my_collections.dart';
 export 'src/network/my_fields.dart';
@@ -58,7 +60,6 @@ export 'src/utils/countries.dart';
 export 'src/utils/main_categories.dart';
 export 'src/utils/my_icons.dart';
 export 'src/utils/my_images.dart';
-export 'src/utils/my_object_boxes.dart';
 export 'src/utils/my_theme.dart';
 export 'src/utils/providers_extension.dart';
 //utils

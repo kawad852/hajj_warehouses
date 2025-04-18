@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 
 extension NavigationExtension on BuildContext {

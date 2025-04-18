@@ -13,7 +13,7 @@ import 'package:objectbox/internal.dart'
     as obx_int; // generated code can access "internal" functionality
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
-import 'package:shared/shared.dart';
+import 'package:shared/object_box_exports.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 

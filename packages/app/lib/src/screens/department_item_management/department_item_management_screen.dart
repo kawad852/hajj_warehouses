@@ -1,15 +1,28 @@
-import 'package:app/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
+import '../../../screens_exports.dart';
+
 class DepartmentItemManagementScreen extends StatefulWidget {
- const DepartmentItemManagementScreen({super.key});
+  const DepartmentItemManagementScreen({super.key});
 
   @override
   State<DepartmentItemManagementScreen> createState() => _DepartmentItemManagementScreenState();
 }
 
 class _DepartmentItemManagementScreenState extends State<DepartmentItemManagementScreen> {
+  late Query<CategoryModel> _query;
+
+  void _initialize() {
+    _query = kFirebaseInstant.branchCategories;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +69,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
-                prefixIcon: const IconButton(
-                  onPressed: null,
-                  icon: CustomSvg(MyIcons.search),
-                ),
+                prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
               ),
             ),
             Expanded(

@@ -63,6 +63,11 @@ class MySharedPreferences {
   static String get theme => _sharedPreferences.getString('theme') ?? ThemeEnum.light;
   static set theme(String value) => _sharedPreferences.setString('theme', value);
 
-  static String get countryCode => _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
+  static String get countryCode =>
+      _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
   static set countryCode(String value) => _sharedPreferences.setString('countryCode', value);
+
+  static String get selectedUserId =>
+      _sharedPreferences.getString('selectedUserId') ?? kFallBackCountryCode;
+  static set selectedUserId(String value) => _sharedPreferences.setString('selectedUserId', value);
 }

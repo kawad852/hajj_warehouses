@@ -1,5 +1,6 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
 import 'firebase_options.dart';
@@ -34,30 +35,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // Widget _toggleScreen(BuildContext context) {
-  //   if (MySharedPreferences.user?.id != null) {
-  //     return AppNavBar();
-  //   } else {
-  //     return RegistrationScreen();
-  //   }
-  // }
+  Widget _toggleScreen(BuildContext context) {
+    if (MySharedPreferences.user?.id != null) {
+      return const AppNavBar();
+    } else {
+      return const LoginScreen();
+    }
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Consumer2<AppProvider, UserProvider>(
-      builder: (
-        BuildContext context,
-        appProvider,
-        userProvider,
-        Widget? child,
-      ) {
+      builder: (BuildContext context, appProvider, userProvider, Widget? child) {
         final colorScheme = ColorScheme.fromSeed(
           seedColor: const Color(0xFF708D81),
           surface: Colors.white,
-          brightness: appProvider.appTheme == ThemeEnum.light
-                  ? Brightness.light
-                  : Brightness.dark,
+          brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
         return MultiProvider(
           providers: [
@@ -111,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                 contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary)
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
               ),
               cardTheme: CardThemeData(
@@ -119,8 +113,8 @@ class _MyAppState extends State<MyApp> {
                 margin: EdgeInsets.zero,
               ),
             ),
-            // home: _toggleScreen(context),
-            home: const AppNavBar(),
+            home: _toggleScreen(context),
+            // home: const AppNavBar(),
           ),
         );
       },

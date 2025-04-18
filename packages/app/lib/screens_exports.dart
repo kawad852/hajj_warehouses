@@ -1,6 +1,3 @@
-// export 'objectbox.g.dart';
-export 'package:app/objectbox.g.dart';
-
 export 'main.dart';
 export 'src/screens/add_new_item/add_new_item_screen.dart';
 export 'src/screens/base/app_nav_bar.dart';

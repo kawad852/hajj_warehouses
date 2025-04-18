@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:app/shared.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/screens_exports.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';

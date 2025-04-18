@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -59,10 +59,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    prefixIcon: const IconButton(
-                      onPressed: null,
-                      icon: CustomSvg(MyIcons.search),
-                    ),
+                    prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
                   ),
                 ),
                 const SizedBox(width: 10),

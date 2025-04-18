@@ -1,13 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared/shared.dart';
 
-import '../models/category/category_model.dart';
 import '../models/country/country_model.dart';
 import '../models/order/order_model.dart';
 import '../models/policy/policy_model.dart';
 import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
-import '../models/user/user_model.dart';
-import 'my_collections.dart';
 
 extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<UserModel> get users =>
@@ -28,7 +26,7 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
-  CollectionReference<CategoryModel> get categories =>
+  Query<CategoryModel> get categories =>
       collection(MyCollections.categories).withConverter<CategoryModel>(
         fromFirestore: (snapshot, _) => CategoryModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),

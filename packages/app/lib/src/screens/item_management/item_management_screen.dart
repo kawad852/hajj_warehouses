@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -42,10 +42,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                 ),
                 const SizedBox(width: 10),
                 const Expanded(
-                  child: ManageButton(
-                    title: "الحد الأدنى : 100",
-                    textAlign: TextAlign.center,
-                  ),
+                  child: ManageButton(title: "الحد الأدنى : 100", textAlign: TextAlign.center),
                 ),
               ],
             ),
@@ -64,11 +61,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
               const SizedBox(width: 10),
               Expanded(
                 flex: 3,
-                child: ManageButton(
-                  onTap: () {},
-                  title: "طلب تزويد",
-                  icon: MyIcons.truckTime,
-                ),
+                child: ManageButton(onTap: () {}, title: "طلب تزويد", icon: MyIcons.truckTime),
               ),
               const SizedBox(width: 10),
               Expanded(

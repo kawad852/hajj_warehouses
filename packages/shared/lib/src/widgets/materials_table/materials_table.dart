@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -23,20 +23,11 @@ class MaterialsTable extends StatelessWidget {
               Expanded(flex: 2, child: TableText("#")),
               Expanded(flex: 14, child: TableText("اسم الصنف")),
               CustomLine(),
-              Expanded(
-                flex: 4,
-                child: TableText("متوفر", textAlign: TextAlign.center),
-              ),
+              Expanded(flex: 4, child: TableText("متوفر", textAlign: TextAlign.center)),
               CustomLine(),
-              Expanded(
-                flex: 4,
-                child: TableText("الحد", textAlign: TextAlign.center),
-              ),
+              Expanded(flex: 4, child: TableText("الحد", textAlign: TextAlign.center)),
               CustomLine(),
-              Expanded(
-                flex: 4,
-                child: TableText("الحالة", textAlign: TextAlign.center),
-              ),
+              Expanded(flex: 4, child: TableText("الحالة", textAlign: TextAlign.center)),
             ],
           ),
         ),
@@ -61,20 +52,11 @@ class MaterialsTable extends StatelessWidget {
                 child: Row(
                   children: [
                     const Expanded(flex: 2, child: TableText("45")),
-                    const Expanded(
-                      flex: 14,
-                      child: TableText("ارز حبة طويلة ( 10 كغ )"),
-                    ),
+                    const Expanded(flex: 14, child: TableText("ارز حبة طويلة ( 10 كغ )")),
                     const CustomLine(),
-                    const Expanded(
-                      flex: 4,
-                      child: TableText("91", textAlign: TextAlign.center),
-                    ),
+                    const Expanded(flex: 4, child: TableText("91", textAlign: TextAlign.center)),
                     const CustomLine(),
-                    const Expanded(
-                      flex: 4,
-                      child: TableText("100", textAlign: TextAlign.center),
-                    ),
+                    const Expanded(flex: 4, child: TableText("100", textAlign: TextAlign.center)),
                     const CustomLine(),
                     Expanded(
                       flex: 4,

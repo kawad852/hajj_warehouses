@@ -1,4 +1,4 @@
-import 'package:app/shared.dart';
+import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -67,20 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(
-              child: TaskCard(
-                onTap: () {},
-                title: "الكادر البشري",
-                prefixIcon: MyIcons.people,
-              ),
+              child: TaskCard(onTap: () {}, title: "الكادر البشري", prefixIcon: MyIcons.people),
             ),
             const SizedBox(width: 10),
-            Expanded(
-              child: TaskCard(
-                onTap: () {},
-                title: "التقارير",
-                prefixIcon: MyIcons.reports,
-              ),
-            ),
+            Expanded(child: TaskCard(onTap: () {}, title: "التقارير", prefixIcon: MyIcons.reports)),
           ],
         ),
         Padding(
@@ -89,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {},
             title: "رسائل إدارية",
             expandedTask: true,
-            task: "يرجى الإلتزام بمواعيد تقديم الوجبات وحسن التعامل مع حجاج بيت الله ، شاكرين لكم تعاونكم وجزاكم الله خير الجزاء.",
+            task:
+                "يرجى الإلتزام بمواعيد تقديم الوجبات وحسن التعامل مع حجاج بيت الله ، شاكرين لكم تعاونكم وجزاكم الله خير الجزاء.",
           ),
         ),
         Container(
@@ -104,10 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 width: double.infinity,
                 height: 45,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(
                   color: context.colorPalette.grey708,
                   borderRadius: const BorderRadius.only(

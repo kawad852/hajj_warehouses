@@ -2,20 +2,17 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:algoliasearch/algoliasearch.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shared/src/helper/translation_extension.dart';
-import 'package:shared/src/widgets/extensions/snackbar_extension.dart';
+import 'package:shared/shared.dart';
 import 'package:uuid/uuid.dart';
-
-import '../helper/app_over_loader.dart';
-import '../utils/app_constants.dart';
 
 FirebaseFirestore get kFirebaseInstant => FirebaseFirestore.instance;
 DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
+String get kSelectedUserId => MySharedPreferences.selectedUserId;
+DocumentReference<UserModel> get kBranchDocRef => kFirebaseInstant.users.doc(kSelectedUserId);
 
 class ApiService {
   static const String socketException = 'socket-exception';
