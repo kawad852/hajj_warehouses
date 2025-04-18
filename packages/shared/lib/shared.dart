@@ -80,6 +80,7 @@ export 'src/widgets/extensions/snackbar_extension.dart';
 export 'src/widgets/fp_loading.dart';
 export 'src/widgets/materials_table/custom_line.dart';
 export 'src/widgets/materials_table/materials_table.dart';
+export 'src/widgets/materials_table/table_container.dart';
 export 'src/widgets/materials_table/table_text.dart';
 export 'src/widgets/order_status.dart';
 export 'src/widgets/process_card.dart';

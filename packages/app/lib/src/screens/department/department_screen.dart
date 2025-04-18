@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class DepartmentScreen extends StatefulWidget {
-  const DepartmentScreen({super.key});
+  final String categoryId;
+
+  const DepartmentScreen({super.key, required this.categoryId});
 
   @override
   State<DepartmentScreen> createState() => _DepartmentScreenState();
@@ -77,7 +79,17 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
               ],
             ),
           ),
-          const MaterialsTable(),
+          MaterialsTable(
+            builder: ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(height: 5),
+              itemCount: 10,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return TableContainer();
+              },
+            ),
+          ),
         ],
       ),
     );
