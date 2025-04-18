@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ProcessesRecordScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class _ProcessesRecordScreenState extends State<ProcessesRecordScreen> {
                     : MyIcons.addSquare,
               ),
               const SizedBox(width: 10),
-              const Expanded(child: ProcessCard()),
+              Expanded(child: OperationCard(operation: OperationModel(createdAt: kNowDate))),
             ],
           );
         },

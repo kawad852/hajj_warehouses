@@ -53,11 +53,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
           ),
         ),
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
-        title: const AppBarText("ارسال طلب جديد"),
-      ),
+      appBar: AppBar(title: const AppBarText("ارسال طلب جديد")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(

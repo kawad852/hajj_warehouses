@@ -40,11 +40,7 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
           ),
         ),
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
-        title: const AppBarText("ادارة الطلبيات"),
-      ),
+      appBar: AppBar(title: const AppBarText("ادارة الطلبيات")),
       body: CustomFirestoreQueryBuilder(
         query: _query,
         onComplete: (context, snapshot) {

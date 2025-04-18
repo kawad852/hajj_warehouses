@@ -92,6 +92,8 @@ export 'src/widgets/fire_animated_search_bar.dart';
 export 'src/widgets/fp_loading.dart';
 export 'src/widgets/future_builders/impeded_future_builder.dart';
 export 'src/widgets/header_tile.dart';
+export 'src/widgets/item_table_cell.dart';
+export 'src/widgets/item_table_header.dart';
 export 'src/widgets/materials_table/custom_line.dart';
 export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_container.dart';
@@ -101,7 +103,3 @@ export 'src/widgets/order_status.dart';
 export 'src/widgets/process_time_line.dart';
 export 'src/widgets/stretch_button.dart';
 export 'src/widgets/titled_textfield.dart';
-export 'src/widgets/process_card.dart';
-export 'src/widgets/item_table_header.dart';
-export 'src/widgets/item_table_cell.dart';
-

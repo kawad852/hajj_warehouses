@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -10,6 +9,9 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main N
 // dart pub global activate melos
 // melos bootstrap
 
+// khaled@gmail.com
+// 123456
+
 Future<void> _logout() async {
   await FirebaseAuth.instance.signOut();
   MySharedPreferences.clearStorage();
@@ -19,7 +21,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySharedPreferences.init();
   MyObjectBoxes.init();
-
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await _logout();
   runApp(
@@ -106,6 +107,12 @@ class _MyAppState extends State<MyApp> {
               colorScheme: colorScheme,
               useMaterial3: true,
               fontFamily: GoogleFonts.cairo().fontFamily!,
+              actionIconTheme: ActionIconThemeData(
+                backButtonIconBuilder: (BuildContext context) {
+                  return const CustomBack();
+                },
+              ),
+              appBarTheme: const AppBarTheme(centerTitle: true),
               inputDecorationTheme: InputDecorationTheme(
                 filled: true,
                 fillColor: const Color(0xFFF2F2F2),
