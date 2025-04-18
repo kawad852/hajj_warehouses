@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared/src/extensions/base_extension.dart';
 import 'package:shared/src/helper/translation_extension.dart';
 
 import '../../utils/my_theme.dart';
@@ -29,7 +30,14 @@ class DropDownEditor<T> extends StatelessWidget {
           onChanged: onChanged,
           value: value,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          decoration: InputDecoration(labelText: title),
+          decoration: InputDecoration(
+            labelText: title,
+            labelStyle: TextStyle(
+              color: context.colorPalette.grey666,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           validator: (value) {
             if (value == null) {
               return context.appLocalization.requiredField;
