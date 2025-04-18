@@ -16,7 +16,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   ItemModel get _item => widget.item;
 
   void _initialize() {
-    _query = BranchQueries.operations.where(MyFields.idItem, isEqualTo: _item.id);
+    _query = BranchQueries.operations.where(
+      MyFields.idItem,
+      isEqualTo: _item.id,
+    );
   }
 
   @override
@@ -73,7 +76,15 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                     Expanded(
                       flex: 3,
                       child: ManageButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.showBottomSheet(
+                            context,
+                            maxHeight: context.mediaQuery.height * 0.65,
+                            builder: (context) {
+                              return const AddQuntity();
+                            },
+                          );
+                        },
                         title: "اضافة كمية",
                         iconWidth: 20,
                         icon: MyIcons.addTask,
@@ -83,7 +94,15 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                     Expanded(
                       flex: 3,
                       child: ManageButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.showBottomSheet(
+                            context,
+                            maxHeight: context.mediaQuery.height * 0.65,
+                            builder: (context) {
+                              return const QuantitySupply();
+                            },
+                          );
+                        },
                         title: "طلب تزويد",
                         icon: MyIcons.truckTime,
                       ),
@@ -92,7 +111,15 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                     Expanded(
                       flex: 4,
                       child: ManageButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.showBottomSheet(
+                            context,
+                            maxHeight: context.mediaQuery.height * 0.65,
+                            builder: (context) {
+                              return const QuantityDestroy();
+                            },
+                          );
+                        },
                         title: "إتلاف اصناف",
                         backgroundColor: context.colorPalette.redC33,
                         icon: MyIcons.trash,

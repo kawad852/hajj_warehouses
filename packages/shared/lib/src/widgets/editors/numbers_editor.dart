@@ -19,6 +19,7 @@ class NumbersEditor extends StatelessWidget {
   final TextAlign? textAlign;
   final String? hintText;
   final bool nullable;
+  final TextStyle? textStyle;
 
   const NumbersEditor({
     super.key,
@@ -36,6 +37,7 @@ class NumbersEditor extends StatelessWidget {
     this.minLines,
     this.hintText,
     this.nullable = false,
+    this.textStyle,
   });
 
   @override
@@ -45,6 +47,7 @@ class NumbersEditor extends StatelessWidget {
       controller: controller,
       hintText: hintText,
       textAlign: textAlign,
+      style: textStyle,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       required: required,

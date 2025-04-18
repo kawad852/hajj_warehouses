@@ -104,3 +104,4 @@ export 'src/widgets/process_time_line.dart';
 export 'src/widgets/stretch_button.dart';
 export 'src/widgets/titled_textfield.dart';
 export 'src/widgets/bottom_button.dart';
+export 'src/widgets/attach_image.dart';

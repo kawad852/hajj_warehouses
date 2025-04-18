@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 extension FeedbacksExtensions on BuildContext {
   Future<T?> showBottomSheet<T>(
@@ -12,6 +13,7 @@ extension FeedbacksExtensions on BuildContext {
       enableDrag: true,
       showDragHandle: true,
       useSafeArea: true,
+      backgroundColor: context.colorPalette.greyF2F,
       constraints: maxHeight == null ? null : BoxConstraints(maxHeight: maxHeight),
       builder: builder,
     ).then((value) => value);
