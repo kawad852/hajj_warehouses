@@ -53,58 +53,68 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         leading: const CustomBack(),
         title: AppBarText(_category.name),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        children: [
-          Text(
-            "لإدارة الصنف او تزويده يمكنك ذلك من خلال الدخول لصفحة الصنف",
-            style: TextStyle(
-              color: context.colorPalette.grey666,
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Row(
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            sliver: SliverList.list(
               children: [
-                Expanded(
-                  child: TextEditor(
-                    onChanged: (value) {},
-                    required: false,
-                    hintText: "ابحث عن صنف",
-                    hintStyle: TextStyle(
-                      color: context.colorPalette.grey666,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                Text(
+                  "لإدارة الصنف او تزويده يمكنك ذلك من خلال الدخول لصفحة الصنف",
+                  style: TextStyle(
+                    color: context.colorPalette.grey666,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(width: 10),
-                Container(
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(color: context.colorPalette.greyD9D),
-                    borderRadius: BorderRadius.circular(kRadiusSecondary),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextEditor(
+                          onChanged: (value) {},
+                          required: false,
+                          hintText: "ابحث عن صنف",
+                          hintStyle: TextStyle(
+                            color: context.colorPalette.grey666,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          prefixIcon: const IconButton(
+                            onPressed: null,
+                            icon: CustomSvg(MyIcons.search),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Container(
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(color: context.colorPalette.greyD9D),
+                          borderRadius: BorderRadius.circular(kRadiusSecondary),
+                        ),
+                        child: const CustomSvg(MyIcons.filter),
+                      ),
+                    ],
                   ),
-                  child: const CustomSvg(MyIcons.filter),
                 ),
+                const MaterialsTable(),
               ],
             ),
           ),
-          MaterialsTable(
-            builder: CustomFirestoreQueryBuilder(
-              query: _query,
-              onComplete: (context, snapshot) {
-                return ListView.separated(
+          CustomFirestoreQueryBuilder(
+            query: _query,
+            isSliver: true,
+            onComplete: (context, snapshot) {
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                sliver: SliverList.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 5),
                   itemCount: snapshot.docs.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     final item = snapshot.docs[index].data();
                     return TableContainer(
@@ -117,9 +127,9 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                       ],
                     );
                   },
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ],
       ),

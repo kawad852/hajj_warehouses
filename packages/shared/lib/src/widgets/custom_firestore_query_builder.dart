@@ -10,6 +10,7 @@ class CustomFirestoreQueryBuilder<T> extends StatelessWidget {
   final Function(BuildContext context, FirestoreQueryBuilderSnapshot<T> snapshot) onComplete;
   final Future Function(List<QueryDocumentSnapshot<T>> docs)? secondaryQueryBuilder;
   final Function()? onLoading;
+  final bool isSliver;
 
   const CustomFirestoreQueryBuilder({
     super.key,
@@ -17,6 +18,7 @@ class CustomFirestoreQueryBuilder<T> extends StatelessWidget {
     required this.onComplete,
     this.onLoading,
     this.secondaryQueryBuilder,
+    this.isSliver = false,
   });
 
   @override
@@ -29,10 +31,16 @@ class CustomFirestoreQueryBuilder<T> extends StatelessWidget {
         if (snapshot.hasData) {
           return onComplete(context, snapshot);
         } else if (snapshot.isFetching) {
-          return onLoading == null ? const BaseLoader() : onLoading!();
+          return onLoading == null
+              ? isSliver
+                  ? const SliverToBoxAdapter(child: BaseLoader())
+                  : const BaseLoader()
+              : onLoading!();
         } else {
           debugPrint("snapshotError::: ${snapshot.error}");
-          return const ServerErrorWidget();
+          return isSliver
+              ? const SliverToBoxAdapter(child: ServerErrorWidget())
+              : const ServerErrorWidget();
         }
       },
     );
