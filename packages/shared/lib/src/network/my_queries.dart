@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
@@ -26,7 +25,7 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
-  Query<CategoryModel> get categories =>
+  CollectionReference<CategoryModel> get categories =>
       collection(MyCollections.categories).withConverter<CategoryModel>(
         fromFirestore: (snapshot, _) => CategoryModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
