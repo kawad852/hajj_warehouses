@@ -14,9 +14,10 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
   late Query<CategoryModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.categories
-        .where(MyFields.userId, isEqualTo: kSelectedUserId)
-        .orderBy(MyFields.createdAt, descending: true);
+    _query = kFirebaseInstant.categories.whereMyBranch.orderBy(
+      MyFields.createdAt,
+      descending: true,
+    );
   }
 
   @override

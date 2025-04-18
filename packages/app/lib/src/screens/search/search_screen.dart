@@ -1,5 +1,4 @@
 import 'package:app/src/screens/search/widgets/anchor_tile.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ProductsSearchScreen extends StatefulWidget {
@@ -56,7 +55,6 @@ class _ProductsSearchScreenState extends State<ProductsSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const minTileHeight = 0.0;
     return FireAnimatedSearchBar(
       hintText: context.appLocalization.whatAreYouLookingForHint,
       onChanged: (value) {
@@ -67,7 +65,7 @@ class _ProductsSearchScreenState extends State<ProductsSearchScreen> {
       builder: (context, controller) {
         return BaseEditor(
           required: false,
-          hintText: "ابحث عن تصنيف",
+          hintText: "ابحث عن صنف",
           hintStyle: TextStyle(
             color: context.colorPalette.grey666,
             fontSize: 14,
