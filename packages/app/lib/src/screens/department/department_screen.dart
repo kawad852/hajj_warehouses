@@ -1,6 +1,5 @@
 import 'package:app/screens_exports.dart';
 import 'package:app/src/screens/search/search_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class DepartmentScreen extends StatefulWidget {
@@ -37,7 +36,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         color: Colors.transparent,
         child: StretchedButton(
           onPressed: () {
-            context.push((context) => const AddNewItemScreen());
+            context.push((context) => const ItemInputScreen());
           },
           child: Text(
             "اضافة اصناف جديدة",

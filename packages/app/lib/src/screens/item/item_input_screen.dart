@@ -1,14 +1,14 @@
-import 'package:app/src/screens/add_new_item/widgets/add_item_widget.dart';
+import 'package:app/src/screens/item/widgets/add_item_widget.dart';
 import 'package:shared/shared.dart';
 
-class AddNewItemScreen extends StatefulWidget {
-  const AddNewItemScreen({super.key});
+class ItemInputScreen extends StatefulWidget {
+  const ItemInputScreen({super.key});
 
   @override
-  State<AddNewItemScreen> createState() => _AddNewItemScreenState();
+  State<ItemInputScreen> createState() => _ItemInputScreenState();
 }
 
-class _AddNewItemScreenState extends State<AddNewItemScreen> {
+class _ItemInputScreenState extends State<ItemInputScreen> {
   final List<ItemModel> _items = [ItemModel(id: kUUID)];
 
   late final TextEditingController counterCtrl;

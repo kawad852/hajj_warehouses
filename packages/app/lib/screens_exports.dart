@@ -1,5 +1,4 @@
 export 'main.dart';
-export 'src/screens/add_new_item/add_new_item_screen.dart';
 export 'src/screens/base/app_nav_bar.dart';
 export 'src/screens/base/widgets/nav_bar_item.dart';
 export 'src/screens/base/widgets/task_bubble.dart';
@@ -11,6 +10,7 @@ export 'src/screens/department_item_management/department_item_management_screen
 export 'src/screens/home/home_screen.dart';
 export 'src/screens/home/widgets/my_task.dart';
 export 'src/screens/home/widgets/task_card.dart';
+export 'src/screens/item/item_input_screen.dart';
 export 'src/screens/item_management/item_management_screen.dart';
 export 'src/screens/item_management/widgets/manage_button.dart';
 export 'src/screens/login/login_screen.dart';
