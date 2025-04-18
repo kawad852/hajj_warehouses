@@ -9,45 +9,21 @@ class ItemInputScreen extends StatefulWidget {
 }
 
 class _ItemInputScreenState extends State<ItemInputScreen> {
+  late Query<ItemModel> _suggestionsQuery;
+
   final List<ItemModel> _items = [ItemModel(id: kUUID)];
 
-  late final TextEditingController counterCtrl;
-  int quntity = 1;
-  List<String> data = [
-    "تفاح",
-    "موز",
-    "عصير المراعي برتقال",
-    "لبن المراعي كامل الدسم",
-    "صلصلة طماطم",
-    "بهارات كبسة حارة",
-  ];
+  void _initialize() {
+    _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderBy(
+      MyFields.createdAt,
+      descending: true,
+    );
+  }
 
   @override
   void initState() {
     super.initState();
-    counterCtrl = TextEditingController(text: "1");
-  }
-
-  @override
-  void dispose() {
-    counterCtrl.dispose();
-    super.dispose();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      quntity++;
-      counterCtrl.text = quntity.toString();
-    });
-  }
-
-  void _decrementCounter() {
-    if (quntity > 1) {
-      setState(() {
-        quntity--;
-        counterCtrl.text = quntity.toString();
-      });
-    }
+    _initialize();
   }
 
   @override
@@ -56,7 +32,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child: StretchedButton(
-          onPressed: () {},
+          onPressed: _items.any((e) => e.name.isEmpty) ? null : () {},
           child: Text(
             "اضافة",
             style: TextStyle(
@@ -105,8 +81,13 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                     final element = _items[index];
                     return AddItemWidget(
                       key: ValueKey(element.id),
-                      initialValue: 1,
-                      onChanged: (value) => element.name = value!,
+                      initialValue: element.name,
+                      onChanged: (value) {
+                        element.name = value!;
+                        if (value.isEmpty || value.length == 1) {
+                          setState(() {});
+                        }
+                      },
                       onQuantityChanged: (quantity) {},
                       removeButton:
                           _items.length > 1
@@ -145,45 +126,65 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: Wrap(
-                    direction: Axis.horizontal,
-                    children:
-                        data.map((item) {
-                          return Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                height: 40,
-                                alignment: Alignment.center,
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  border: Border.all(color: context.colorPalette.greyDAD),
-                                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                                ),
+                  child: CustomFirestoreQueryBuilder(
+                    query: _suggestionsQuery,
+                    onComplete: (context, snapshot) {
+                      return Wrap(
+                        direction: Axis.horizontal,
+                        children:
+                            List.generate(snapshot.docs.length, (index) {
+                              if (snapshot.isLoadingMore(index)) {
+                                return const FPLoading();
+                              }
+                              final item = snapshot.docs[index].data();
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _items.add(item);
+                                    snapshot.docs.removeAt(index);
+                                  });
+                                },
                                 child: Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    CustomSvg(
-                                      MyIcons.addTask,
-                                      color: context.colorPalette.grey708,
-                                      width: 20,
-                                    ),
-                                    const SizedBox(width: 7),
-                                    Text(
-                                      item,
-                                      style: TextStyle(
-                                        color: context.colorPalette.black001,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
+                                    Container(
+                                      height: 40,
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 2,
+                                        vertical: 3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        border: Border.all(color: context.colorPalette.greyDAD),
+                                        borderRadius: BorderRadius.circular(kRadiusSecondary),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          CustomSvg(
+                                            MyIcons.addTask,
+                                            color: context.colorPalette.grey708,
+                                            width: 20,
+                                          ),
+                                          const SizedBox(width: 7),
+                                          Text(
+                                            item.name,
+                                            style: TextStyle(
+                                              color: context.colorPalette.black001,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          );
-                        }).toList(),
+                              );
+                            }).toList(),
+                      );
+                    },
                   ),
                 ),
               ],

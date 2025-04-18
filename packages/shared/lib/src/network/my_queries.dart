@@ -71,4 +71,10 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         fromFirestore: (snapshot, _) => PolicyModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
+
+  CollectionReference<ItemModel> get itemSuggestions =>
+      collection(MyCollections.itemSuggestions).withConverter<ItemModel>(
+        fromFirestore: (snapshot, _) => ItemModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
 }

@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
 class AddItemWidget extends StatefulWidget {
-  final int initialValue;
+  final String initialValue;
   final Function(String?) onChanged;
   final Function(int) onQuantityChanged;
   final Widget? removeButton;
@@ -24,7 +24,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
   @override
   void initState() {
     super.initState();
-    _quantity = widget.initialValue;
+    _quantity = 1;
   }
 
   @override
@@ -36,6 +36,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
           child: TextEditor(
             onChanged: widget.onChanged,
             required: false,
+            initialValue: widget.initialValue,
             hintText: "اكتب اسم الصنف",
             hintStyle: TextStyle(
               color: context.colorPalette.grey666,
