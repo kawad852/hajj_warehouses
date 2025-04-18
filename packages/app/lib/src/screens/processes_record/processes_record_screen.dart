@@ -12,8 +12,6 @@ class _ProcessesRecordScreenState extends State<ProcessesRecordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
         title: const AppBarText("سجل عمليات المخزون"),
       ),
       body: ListView.separated(

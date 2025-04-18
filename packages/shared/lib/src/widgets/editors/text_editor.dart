@@ -51,7 +51,6 @@ class TextEditor extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
-      style: TextStyle(color: context.colorPalette.greyBDB, fontWeight: FontWeight.bold),
       onChanged: (value) {
         if (nullable && value.isEmpty) {
           onChanged(null);

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class SendTransferOrderScreen extends StatefulWidget {
@@ -28,11 +27,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
           ),
         ),
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
-        title: const AppBarText("ارسال طلب نقل جديد"),
-      ),
+      appBar: AppBar(title: const AppBarText("ارسال طلب نقل جديد")),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
@@ -138,6 +133,10 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
                 borderSide: BorderSide(color: context.colorPalette.greyBDB),
                 borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: context.colorPalette.greyBDB),
+                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              ),
             ),
           ),
           Text(
@@ -156,7 +155,10 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(bottom: 5),
             itemBuilder: (context, index) {
-              return const ItemTableCell();
+              return ItemTableCell(
+                onChangedQuntity: (value) {},
+                itemName: "text",
+              );
             },
           ),
           TextEditor(

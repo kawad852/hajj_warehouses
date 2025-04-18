@@ -21,7 +21,9 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
 
         await kFirebaseInstant.orders.doc(_order.id).set(_order);
         if (context.mounted) {
-          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
+          Fluttertoast.showToast(
+            msg: context.appLocalization.addedSuccessfully,
+          );
           context.pop();
         }
       },
@@ -37,26 +39,17 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: StretchedButton(
-          onPressed: () {
-            _onAdd(context);
-          },
-          child: Text(
-            "ارسال الطلب",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomButton(
+        text: "ارسال الطلب",
+        onPressed: () {
+          _onAdd(context);
+        },
       ),
       appBar: AppBar(title: const AppBarText("ارسال طلب جديد")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -123,6 +116,10 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                   borderSide: BorderSide(color: context.colorPalette.greyBDB),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: context.colorPalette.greyBDB),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
               ),
             ),
             Text(
@@ -133,27 +130,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 45,
-              margin: const EdgeInsets.only(top: 10, bottom: 5),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: context.colorPalette.grey74D,
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
-              ),
-              child: const Row(
-                children: [
-                  Expanded(flex: 2, child: TableText("#")),
-                  Expanded(flex: 10, child: TableText("اسم الصنف")),
-                  CustomLine(),
-                  Expanded(
-                    flex: 6,
-                    child: TableText("الكمية المطلوبة", textAlign: TextAlign.center),
-                  ),
-                ],
-              ),
-            ),
+            const ItemTableHeader(),
             ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(height: 5),
               itemCount: _order.items.length,
@@ -162,22 +139,9 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               padding: const EdgeInsets.only(bottom: 5),
               itemBuilder: (context, index) {
                 final item = _order.items[index];
-                return Container(
-                  width: double.infinity,
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: context.colorPalette.greyF2F,
-                    borderRadius: BorderRadius.circular(kRadiusSecondary),
-                  ),
-                  child: Row(
-                    children: [
-                      const Expanded(flex: 2, child: TableText("25")),
-                      Expanded(flex: 10, child: TableText(item.name)),
-                      const CustomLine(),
-                      const Expanded(flex: 6, child: TableText("00", textAlign: TextAlign.center)),
-                    ],
-                  ),
+                return ItemTableCell(
+                  onChangedQuntity: (value) {},
+                  itemName: item.name,
                 );
               },
             ),

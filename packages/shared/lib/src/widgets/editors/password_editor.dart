@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class PasswordEditor extends StatefulWidget {
@@ -32,11 +31,7 @@ class _PasswordEditorState extends State<PasswordEditor> {
       initialValue: widget.initialValue,
       obscureText: _obscureText,
       obscuringCharacter: "●",
-      style: TextStyle(
-        fontSize: 15,
-        color: context.colorPalette.greyBDB,
-        fontWeight: FontWeight.bold,
-      ),
+
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent),
       ),

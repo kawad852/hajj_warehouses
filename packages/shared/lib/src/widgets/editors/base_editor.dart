@@ -37,6 +37,7 @@ class BaseEditor extends StatelessWidget {
   final TextStyle? style;
   final String? obscuringCharacter;
   final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
   final TextAlign? textAlign;
 
   const BaseEditor({
@@ -76,6 +77,7 @@ class BaseEditor extends StatelessWidget {
     this.enabledBorder,
     this.textAlign,
     this.labelText,
+    this.focusedBorder,
   });
 
   @override
@@ -111,6 +113,7 @@ class BaseEditor extends StatelessWidget {
         hintStyle: hintStyle,
         labelText: labelText,
         enabledBorder: enabledBorder,
+        focusedBorder: focusedBorder,
       ),
       validator: validator,
       canRequestFocus: canRequestFocus,

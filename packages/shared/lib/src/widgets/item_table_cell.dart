@@ -1,8 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ItemTableCell extends StatelessWidget {
-  const ItemTableCell({super.key});
+  final String itemName;
+  final dynamic Function(int?) onChangedQuntity;
+  const ItemTableCell({
+    super.key,
+    required this.itemName,
+    required this.onChangedQuntity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +19,18 @@ class ItemTableCell extends StatelessWidget {
         color: context.colorPalette.greyF2F,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Expanded(flex: 2, child: TableText("25")),
-          Expanded(flex: 10, child: TableText("طماطم صناديق")),
-          CustomLine(),
+          const Expanded(flex: 2, child: TableText("25")),
+          Expanded(flex: 10, child: TableText(itemName)),
+          const CustomLine(),
           Expanded(
             flex: 6,
-            child: TableText("00", textAlign: TextAlign.center),
+            child: NumbersEditor(
+              textAlign: TextAlign.center,
+              hintText: "00",
+              onChanged: onChangedQuntity,
+            ),
           ),
         ],
       ),

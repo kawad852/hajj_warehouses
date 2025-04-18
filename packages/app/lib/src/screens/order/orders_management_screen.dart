@@ -12,7 +12,10 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
   late Query<OrderModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.orders.whereMyBranch.orderBy(MyFields.createdAt, descending: true);
+    _query = kFirebaseInstant.orders.whereMyBranch.orderBy(
+      MyFields.createdAt,
+      descending: true,
+    );
   }
 
   @override
@@ -24,21 +27,11 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: StretchedButton(
-          onPressed: () {
-            context.push((context) => const OrderInputScreen());
-          },
-          child: Text(
-            "ارسال طلب جديد",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomButton(
+        text: "ارسال طلب جديد",
+        onPressed: () {
+          context.push((context) => const OrderInputScreen());
+        },
       ),
       appBar: AppBar(title: const AppBarText("ادارة الطلبيات")),
       body: CustomFirestoreQueryBuilder(

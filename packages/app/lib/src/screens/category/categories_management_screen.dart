@@ -7,10 +7,12 @@ class DepartmentItemManagementScreen extends StatefulWidget {
   const DepartmentItemManagementScreen({super.key});
 
   @override
-  State<DepartmentItemManagementScreen> createState() => _DepartmentItemManagementScreenState();
+  State<DepartmentItemManagementScreen> createState() =>
+      _DepartmentItemManagementScreenState();
 }
 
-class _DepartmentItemManagementScreenState extends State<DepartmentItemManagementScreen> {
+class _DepartmentItemManagementScreenState
+    extends State<DepartmentItemManagementScreen> {
   late Query<CategoryModel> _query;
 
   void _initialize() {
@@ -30,26 +32,14 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: StretchedButton(
-          onPressed: () {},
-          child: Text(
-            "اضافة قسم جديد",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomButton(
+        text: "اضافة قسم جديد",
+        onPressed: () {},
       ),
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
-            centerTitle: true,
             pinned: true,
-            leading: CustomBack(),
             title: AppBarText("ادارة الأقسام والأصناف"),
           ),
           SliverPadding(
@@ -67,7 +57,9 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
-                  child: ProductsSearchScreen(indexName: AlgoliaIndices.categories.value),
+                  child: ProductsSearchScreen(
+                    indexName: AlgoliaIndices.categories.value,
+                  ),
                 ),
               ],
             ),
@@ -79,7 +71,8 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 sliver: SliverList.separated(
-                  separatorBuilder: (context, index) => const SizedBox(height: 5),
+                  separatorBuilder:
+                      (context, index) => const SizedBox(height: 5),
                   itemCount: snapshot.docs.length,
                   itemBuilder: (context, index) {
                     if (snapshot.isLoadingMore(index)) {
@@ -88,7 +81,9 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                     final category = snapshot.docs[index].data();
                     return GestureDetector(
                       onTap: () {
-                        context.push((context) => DepartmentScreen(category: category));
+                        context.push(
+                          (context) => DepartmentScreen(category: category),
+                        );
                       },
                       child: Container(
                         width: double.infinity,
@@ -96,7 +91,9 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border: Border.all(color: context.colorPalette.greyDAD),
+                          border: Border.all(
+                            color: context.colorPalette.greyDAD,
+                          ),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         child: Row(

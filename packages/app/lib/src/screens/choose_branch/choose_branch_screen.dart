@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ChooseBranchScreen extends StatefulWidget {
@@ -13,20 +12,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: StretchedButton(
-          onPressed: () {},
-          child: Text(
-            "التالي",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: BottomButton(text: "التالي", onPressed: () {}),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -86,7 +72,9 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color:
-                          currentIndex == index ? context.colorPalette.grey708 : Colors.transparent,
+                          currentIndex == index
+                              ? context.colorPalette.grey708
+                              : Colors.transparent,
                       borderRadius: BorderRadius.circular(kRadiusSecondary),
                       border: Border.all(color: context.colorPalette.grey708),
                     ),

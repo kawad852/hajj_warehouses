@@ -44,6 +44,7 @@ class NumbersEditor extends StatelessWidget {
       labelText: labelText,
       controller: controller,
       hintText: hintText,
+      textAlign: textAlign,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       required: required,

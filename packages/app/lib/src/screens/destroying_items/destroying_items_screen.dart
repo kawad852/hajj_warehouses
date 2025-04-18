@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class DestroyingItemsScreen extends StatefulWidget {
@@ -14,16 +13,50 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        height: 120,
+        height: 165,
         color: Colors.transparent,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              "يجب ان توضح الصور سبب اتلاف الأصناف",
+              style: TextStyle(
+                color: context.colorPalette.grey666,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             Container(
               width: double.infinity,
               height: 50,
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 border: Border.all(color: context.colorPalette.grey708),
+                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              ),
+              child: Row(
+                children: [
+                  const CustomSvg(MyIcons.attachCircle),
+                  const SizedBox(width: 10),
+                  Text(
+                    "*",
+                    style: TextStyle(
+                      color: context.colorPalette.redC10,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Text(
+                    "ارفاق صور للمواد التي سيتم اتلافها",
+                    style: TextStyle(
+                      color: context.colorPalette.black001,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
               ),
             ),
             StretchedButton(
@@ -40,11 +73,7 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
           ],
         ),
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
-        title: const AppBarText("اتلاف اصناف"),
-      ),
+      appBar: AppBar(title: const AppBarText("اتلاف اصناف")),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
@@ -113,6 +142,10 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
                 borderSide: BorderSide(color: context.colorPalette.greyBDB),
                 borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: context.colorPalette.greyBDB),
+                borderRadius: BorderRadius.circular(kRadiusSecondary),
+              ),
             ),
           ),
           Text(
@@ -131,7 +164,10 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(bottom: 5),
             itemBuilder: (context, index) {
-              return const ItemTableCell();
+              return ItemTableCell(
+                onChangedQuntity: (value) {},
+                itemName: "text",
+              );
             },
           ),
           TextEditor(

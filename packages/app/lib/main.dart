@@ -121,6 +121,10 @@ class _MyAppState extends State<MyApp> {
                   borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
               ),
               cardTheme: CardThemeData(
                 color: colorScheme.onInverseSurface,

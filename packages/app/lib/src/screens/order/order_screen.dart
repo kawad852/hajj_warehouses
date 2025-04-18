@@ -13,8 +13,6 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
         title: const AppBarText("طلب رقم 1731519#"),
       ),
       bottomNavigationBar: BottomAppBar(

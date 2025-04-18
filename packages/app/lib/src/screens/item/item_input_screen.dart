@@ -40,7 +40,9 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
           await kFirebaseInstant.items.doc(e.id).set(e);
         }
         if (context.mounted) {
-          Fluttertoast.showToast(msg: context.appLocalization.successfullyUpdated);
+          Fluttertoast.showToast(
+            msg: context.appLocalization.successfullyUpdated,
+          );
           context.pop();
         }
       },
@@ -57,35 +59,25 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: StretchedButton(
-          onPressed:
-              _items.any((e) => e.name.isEmpty)
-                  ? null
-                  : () {
-                    _onAdd(context);
-                  },
-          child: Text(
-            "اضافة",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomButton(
+        text: "اضافة",
+        onPressed:
+            _items.any((e) => e.name.isEmpty)
+                ? null
+                : () {
+                  _onAdd(context);
+                },
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const CustomBack(),
-        title: const AppBarText("اضافة صنف جديد"),
-      ),
+
+      appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).copyWith(top: 0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 10,
+              ).copyWith(top: 0),
               child: Text(
                 "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
                 style: TextStyle(
@@ -183,15 +175,21 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                     Container(
                                       height: 40,
                                       alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                      ),
                                       margin: const EdgeInsets.symmetric(
                                         horizontal: 2,
                                         vertical: 3,
                                       ),
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        border: Border.all(color: context.colorPalette.greyDAD),
-                                        borderRadius: BorderRadius.circular(kRadiusSecondary),
+                                        border: Border.all(
+                                          color: context.colorPalette.greyDAD,
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          kRadiusSecondary,
+                                        ),
                                       ),
                                       child: Row(
                                         children: [
@@ -204,7 +202,8 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                           Text(
                                             item.name,
                                             style: TextStyle(
-                                              color: context.colorPalette.black001,
+                                              color:
+                                                  context.colorPalette.black001,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),

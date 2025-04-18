@@ -13,7 +13,10 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
   late Query<ItemModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.items.whereMyBranch.orderBy(MyFields.createdAt, descending: true);
+    _query = kFirebaseInstant.items.whereMyBranch.orderBy(
+      MyFields.createdAt,
+      descending: true,
+    );
   }
 
   @override
@@ -39,7 +42,11 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     icon: MyIcons.boxTime,
                   ),
                   const SizedBox(width: 10),
-                  WarehouseButton(onTap: () {}, title: "اضافة كمية للمخزون", icon: MyIcons.boxAdd),
+                  WarehouseButton(
+                    onTap: () {},
+                    title: "اضافة كمية للمخزون",
+                    icon: MyIcons.boxAdd,
+                  ),
                 ],
               ),
               Padding(
@@ -48,7 +55,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   children: [
                     WarehouseButton(
                       onTap: () {
-                        context.push((context) => const DepartmentItemManagementScreen());
+                        context.push(
+                          (context) => const DepartmentItemManagementScreen(),
+                        );
                       },
                       title: "ادارة الأقسام والأصناف",
                       icon: MyIcons.department,
@@ -56,7 +65,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     const SizedBox(width: 10),
                     WarehouseButton(
                       onTap: () {
-                        context.push((context) => const OrdersManagementScreen());
+                        context.push(
+                          (context) => const OrdersManagementScreen(),
+                        );
                       },
                       title: "ادارة الطلبيات",
                       icon: MyIcons.truckTime,
@@ -66,10 +77,19 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               ),
               Row(
                 children: [
-                  WarehouseButton(onTap: () {}, flex: 4, title: "سجل العمليات", icon: MyIcons.book),
+                  WarehouseButton(
+                    onTap: () {
+                      context.push((context) => const ProcessesRecordScreen());
+                    },
+                    flex: 4,
+                    title: "سجل العمليات",
+                    icon: MyIcons.book,
+                  ),
                   const SizedBox(width: 10),
                   WarehouseButton(
-                    onTap: () {},
+                    onTap: () {
+                      context.push((context) => const DestroyingItemsScreen());
+                    },
                     flex: 3,
                     backgroundColor: context.colorPalette.redC33,
                     title: "إتلاف اصناف",
@@ -77,7 +97,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   ),
                   const SizedBox(width: 10),
                   WarehouseButton(
-                    onTap: () {},
+                    onTap: () {
+                      context.push((context) => const SendTransferOrderScreen());
+                    },
                     flex: 2,
                     backgroundColor: context.colorPalette.grey780,
                     title: "نقل مواد",
@@ -87,7 +109,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: ProductsSearchScreen(indexName: AlgoliaIndices.items.value),
+                child: ProductsSearchScreen(
+                  indexName: AlgoliaIndices.items.value,
+                ),
               ),
               Row(
                 children: [
@@ -137,7 +161,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   final item = snapshot.docs[index].data();
                   return TableContainer(
                     onTap: () {
-                      context.push((context) => ItemManagementScreen(item: item));
+                      context.push(
+                        (context) => ItemManagementScreen(item: item),
+                      );
                     },
                     items: [
                       "${index + 1}",

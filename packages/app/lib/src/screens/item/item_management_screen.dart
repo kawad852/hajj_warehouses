@@ -31,9 +31,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
-            centerTitle: true,
             pinned: true,
-            leading: CustomBack(),
             title: AppBarText("إدارة صنف"),
             actions: [
               Padding(
