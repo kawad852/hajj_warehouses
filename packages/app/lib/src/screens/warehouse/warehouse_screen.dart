@@ -56,14 +56,18 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
         Row(
           children: [
             WarehouseButton(
-              onTap: () {},
+              onTap: () {
+                context.push((context) => const ProcessesRecordScreen());
+              },
               flex: 4,
               title: "سجل العمليات",
               icon: MyIcons.book,
             ),
             const SizedBox(width: 10),
             WarehouseButton(
-              onTap: () {},
+              onTap: () {
+                context.push((context) => const DestroyingItemsScreen());
+              },
               flex: 3,
               backgroundColor: context.colorPalette.redC33,
               title: "إتلاف اصناف",
@@ -71,7 +75,9 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
             ),
             const SizedBox(width: 10),
             WarehouseButton(
-              onTap: () {},
+              onTap: () {
+                context.push((context) => const SendTransferOrderScreen());
+              },
               flex: 2,
               backgroundColor: context.colorPalette.grey780,
               title: "نقل مواد",

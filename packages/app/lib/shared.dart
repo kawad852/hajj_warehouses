@@ -26,3 +26,6 @@ export 'src/screens/item_management/widgets/manage_button.dart';
 export 'src/screens/send_new_order/send_new_order_screen.dart';
 export 'src/screens/order/order_screen.dart';
 export 'src/screens/order/widgets/order_card.dart';
+export 'src/screens/processes_record/processes_record_screen.dart';
+export 'src/screens/send_transfer_order/send_transfer_order_screen.dart';
+export 'src/screens/destroying_items/destroying_items_screen.dart';

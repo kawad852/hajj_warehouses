@@ -1,36 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class SendNewOrderScreen extends StatefulWidget {
-  const SendNewOrderScreen({super.key});
+class DestroyingItemsScreen extends StatefulWidget {
+  const DestroyingItemsScreen({super.key});
 
   @override
-  State<SendNewOrderScreen> createState() => _SendNewOrderScreenState();
+  State<DestroyingItemsScreen> createState() => _DestroyingItemsScreenState();
 }
 
-class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
+class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
   int? _groupValue = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
+        height: 120,
         color: Colors.transparent,
-        child: StretchedButton(
-          onPressed: () {},
-          child: Text(
-            "ارسال الطلب",
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(color: context.colorPalette.grey708),
+              ),
             ),
-          ),
+            StretchedButton(
+              onPressed: () {},
+              child: Text(
+                "تسجيل الإتلاف",
+                style: TextStyle(
+                  color: context.colorPalette.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       appBar: AppBar(
         centerTitle: true,
         leading: const CustomBack(),
-        title: const AppBarText("ارسال طلب جديد"),
+        title: const AppBarText("اتلاف اصناف"),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -47,7 +60,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
               ),
               const SizedBox(width: 5),
               Text(
-                "حالة الطلب",
+                "سبب الإتلاف",
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,
@@ -61,7 +74,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
             children: [
               CustomRadio(
                 value: 0,
-                title: "طارئة",
+                title: "فاسدة",
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -71,7 +84,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
               ),
               CustomRadio(
                 value: 1,
-                title: "عادية",
+                title: "سوء نقل او تخزين",
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -81,9 +94,9 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 10),
           Text(
-            "مشروحات وملاحظات حول الطلب",
+            "مشروحات وملاحظات حول الإتلاف",
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -103,7 +116,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
             ),
           ),
           Text(
-            "يمكنك اضافة اكثر من صنف إلى الطلب مع تحديد الكمية المطلوبة لكل صنف  ",
+            "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
             style: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,

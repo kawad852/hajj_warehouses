@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class SendNewOrderScreen extends StatefulWidget {
-  const SendNewOrderScreen({super.key});
+class SendTransferOrderScreen extends StatefulWidget {
+  const SendTransferOrderScreen({super.key});
 
   @override
-  State<SendNewOrderScreen> createState() => _SendNewOrderScreenState();
+  State<SendTransferOrderScreen> createState() =>
+      _SendTransferOrderScreenState();
 }
 
-class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
+class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
   int? _groupValue = 1;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const CustomBack(),
-        title: const AppBarText("ارسال طلب جديد"),
+        title: const AppBarText("ارسال طلب نقل جديد"),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -47,7 +48,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
               ),
               const SizedBox(width: 5),
               Text(
-                "حالة الطلب",
+                "حالة النقل",
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,
@@ -81,9 +82,46 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 80),
+          Padding(
+            padding: const EdgeInsets.only(top: 25, bottom: 10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TitledTextField(
+                    title: "الفرع المرسل",
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                    child: DropDownEditor(
+                      items: const [],
+                      onChanged: (value) {},
+                      title: "اختر الفرع",
+                      value: "s",
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: TitledTextField(
+                    title: "الفرع المستقبل",
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                    child: DropDownEditor(
+                      items: const [],
+                      onChanged: (value) {},
+                      title: "اختر الفرع",
+                      value: "s",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Text(
-            "مشروحات وملاحظات حول الطلب",
+            "مشروحات وملاحظات حول النقل",
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -103,7 +141,7 @@ class _SendNewOrderScreenState extends State<SendNewOrderScreen> {
             ),
           ),
           Text(
-            "يمكنك اضافة اكثر من صنف إلى الطلب مع تحديد الكمية المطلوبة لكل صنف  ",
+            "يرجى ادخال الأصناف والمواد المراد نقلها مع الكميات ",
             style: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,

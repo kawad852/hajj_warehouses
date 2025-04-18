@@ -44,4 +44,7 @@ class MyIcons {
   static const String subtract = '${_path}subtract.svg';
   static const String paperclip = '${_path}paperclip.svg';
   static const String map = '${_path}map.svg';
+  static const String addSquare = '${_path}add_square.svg';
+  static const String closeSquare = '${_path}close_square.svg';
+  static const String minusSquare = '${_path}minus_square.svg';
 }

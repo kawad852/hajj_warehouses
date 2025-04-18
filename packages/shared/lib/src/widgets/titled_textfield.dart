@@ -5,12 +5,14 @@ class TitledTextField extends StatelessWidget {
   final String title;
   final Widget child;
   final bool required;
+  final TextStyle? textStyle;
 
   const TitledTextField({
     super.key,
     required this.title,
     required this.child,
     this.required = true,
+    this.textStyle,
   });
 
   @override
@@ -20,7 +22,7 @@ class TitledTextField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.textTheme.bodySmall!.copyWith(
+          style: textStyle ?? context.textTheme.bodySmall!.copyWith(
             fontSize: 14,
           ),
         ),
