@@ -1,6 +1,6 @@
 import 'package:app/src/screens/search/widgets/anchor_tile.dart';
+import 'package:shared/algolia_exports.dart';
 import 'package:shared/shared.dart';
-import 'package:shared/src/widgets/my_search_anchor.dart';
 
 class ProductsSearchScreen<T> extends StatefulWidget {
   final String indexName;
@@ -37,10 +37,8 @@ class _ProductsSearchScreenState<T> extends State<ProductsSearchScreen<T>> {
         return [];
       }
       final productsFuture = kAlgoliaClient
-          .searchSingleIndex(
-            indexName: widget.indexName,
-
-            // requestOptions: RequestOptions(),
+          .searchIndex(
+            request: SearchForHits(indexName: widget.indexName, query: query, hitsPerPage: 10),
           )
           .then((value) {
             return value.hits.map((e) => ItemModel.fromJson(e.toJson())).toList();
@@ -101,7 +99,7 @@ class _ProductsSearchScreenState<T> extends State<ProductsSearchScreen<T>> {
           onComplete: (context, snapshot) {
             final products = snapshot.data![0] as List<ItemModel>;
             if (products.isEmpty) {
-              return const CircleAvatar();
+              return const SizedBox.shrink();
             }
             return SingleChildScrollView(
               padding: const EdgeInsets.only(bottom: kScreenMargin),

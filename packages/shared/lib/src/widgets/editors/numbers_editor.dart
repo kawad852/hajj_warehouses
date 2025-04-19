@@ -20,6 +20,7 @@ class NumbersEditor extends StatelessWidget {
   final String? hintText;
   final bool nullable;
   final TextStyle? textStyle;
+  final bool autofocus;
 
   const NumbersEditor({
     super.key,
@@ -38,6 +39,7 @@ class NumbersEditor extends StatelessWidget {
     this.hintText,
     this.nullable = false,
     this.textStyle,
+    this.autofocus = false,
   });
 
   @override
@@ -48,6 +50,7 @@ class NumbersEditor extends StatelessWidget {
       hintText: hintText,
       textAlign: textAlign,
       style: textStyle,
+      autofocus: autofocus,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       required: required,

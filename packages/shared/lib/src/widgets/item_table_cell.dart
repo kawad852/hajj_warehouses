@@ -3,10 +3,13 @@ import 'package:shared/shared.dart';
 class ItemTableCell extends StatelessWidget {
   final String itemName;
   final dynamic Function(int?) onChangedQuntity;
+  final bool autoFocus;
+
   const ItemTableCell({
     super.key,
     required this.itemName,
     required this.onChangedQuntity,
+    this.autoFocus = false,
   });
 
   @override
@@ -27,8 +30,9 @@ class ItemTableCell extends StatelessWidget {
           Expanded(
             flex: 6,
             child: NumbersEditor(
+              initialValue: 1,
+              autofocus: autoFocus,
               textAlign: TextAlign.center,
-              hintText: "00",
               onChanged: onChangedQuntity,
             ),
           ),

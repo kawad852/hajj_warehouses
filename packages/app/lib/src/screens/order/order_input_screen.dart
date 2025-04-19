@@ -137,7 +137,12 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               padding: const EdgeInsets.only(bottom: 5),
               itemBuilder: (context, index) {
                 final item = _order.items[index];
-                return ItemTableCell(onChangedQuntity: (value) {}, itemName: item.name);
+                return ItemTableCell(
+                  key: ValueKey(_order.items.length),
+                  onChangedQuntity: (value) {},
+                  itemName: item.name,
+                  autoFocus: index + 1 == _order.items.length,
+                );
               },
             ),
             ProductsSearchScreen(
