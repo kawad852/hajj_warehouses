@@ -86,6 +86,7 @@ export 'src/widgets/custom_firestore_query_builder.dart';
 export 'src/widgets/custom_radio.dart';
 //widgets
 export 'src/widgets/custom_svg.dart';
+export 'src/widgets/editor_label.dart';
 export 'src/widgets/editors/base_editor.dart';
 export 'src/widgets/editors/drop_down_editor.dart';
 export 'src/widgets/editors/numbers_editor.dart';

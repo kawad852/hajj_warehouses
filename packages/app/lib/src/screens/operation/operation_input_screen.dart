@@ -39,6 +39,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               info.title,
@@ -50,27 +51,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             ),
             CounterWidget(initialValue: widget.availableQuantity, onChanged: (value) {}),
             if (info.radio.items.isNotEmpty) ...[
-              Row(
-                children: [
-                  Text(
-                    "*",
-                    style: TextStyle(
-                      color: context.colorPalette.redC10,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    info.radio.label,
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
-              ),
+              EditorLabel(info.radio.label),
               const SizedBox(height: 8),
               Row(
                 children:
@@ -90,28 +71,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             ],
 
             Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 10),
-              child: Row(
-                children: [
-                  Text(
-                    "*",
-                    style: TextStyle(
-                      color: context.colorPalette.redC10,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "ماهي قيمة المشتريات الإجمالية ؟",
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
-              ),
+              padding: const EdgeInsets.only(top: 20, bottom: 10),
+              child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
             ),
             BaseEditor(
               initialValue: widget.availableQuantity.toString(),
