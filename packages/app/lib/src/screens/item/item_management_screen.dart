@@ -30,13 +30,15 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   void _openSheet(
     BuildContext context, {
     required int availableQuantity,
-    required String operationType,
+    required OperationType operationType,
   }) {
     context.showBottomSheet(
       context,
-
       builder: (context) {
-        return OperationSheet(availableQuantity: availableQuantity);
+        return OperationInputScreen(
+          availableQuantity: availableQuantity,
+          operationType: operationType,
+        );
       },
     );
   }
@@ -105,7 +107,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                               _openSheet(
                                 context,
                                 availableQuantity: item.availableQuantity,
-                                operationType: OperationType.add.value,
+                                operationType: OperationType.add,
                               );
                             },
                             title: "اضافة كمية",
@@ -118,11 +120,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 3,
                           child: ManageButton(
                             onTap: () {
-                              context.showBottomSheet(
+                              _openSheet(
                                 context,
-                                builder: (context) {
-                                  return QuantitySupply(availableQuantity: item.availableQuantity);
-                                },
+                                availableQuantity: item.availableQuantity,
+                                operationType: OperationType.supply,
                               );
                             },
                             title: "طلب تزويد",
@@ -134,12 +135,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 4,
                           child: ManageButton(
                             onTap: () {
-                              context.showBottomSheet(
+                              _openSheet(
                                 context,
-                                maxHeight: context.mediaQuery.height * 0.65,
-                                builder: (context) {
-                                  return const QuantityDestroy();
-                                },
+                                availableQuantity: item.availableQuantity,
+                                operationType: OperationType.destroy,
                               );
                             },
                             title: "إتلاف اصناف",

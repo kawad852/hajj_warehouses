@@ -28,6 +28,7 @@ export 'src/enums/stores_enums.dart';
 export 'src/extensions/base_extension.dart';
 export 'src/extensions/feedbacks_extensions.dart';
 export 'src/extensions/navigation_extension.dart';
+export 'src/extensions/operation_extension.dart';
 //helper
 export 'src/helper/app_over_loader.dart';
 export 'src/helper/basket_helper.dart';
@@ -50,6 +51,7 @@ export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/item/item_model.dart';
 export 'src/models/operation/inventory_operation_model.dart';
+export 'src/models/operation_info_model.dart';
 export 'src/models/order/order_model.dart';
 export 'src/models/user/user_model.dart';
 //network

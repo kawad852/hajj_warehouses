@@ -1,23 +1,30 @@
 import 'package:shared/shared.dart';
 
-class OperationSheet extends StatefulWidget {
+class OperationInputScreen extends StatefulWidget {
   final int availableQuantity;
+  final OperationType operationType;
 
-  const OperationSheet({super.key, required this.availableQuantity});
+  const OperationInputScreen({
+    super.key,
+    required this.availableQuantity,
+    required this.operationType,
+  });
 
   @override
-  State<OperationSheet> createState() => _OperationSheetState();
+  State<OperationInputScreen> createState() => _OperationInputScreenState();
 }
 
-class _OperationSheetState extends State<OperationSheet> {
+class _OperationInputScreenState extends State<OperationInputScreen> {
   int? _groupValue = 1;
   late InventoryOperationModel _operation;
+
+  OperationType get _operationType => widget.operationType;
 
   @override
   void initState() {
     super.initState();
     _operation = InventoryOperationModel(
-      operationType: OperationType.add.value,
+      operationType: _operationType.value,
       displayName: MySharedPreferences.user!.displayName!,
       supplyType: '',
     );
@@ -25,6 +32,7 @@ class _OperationSheetState extends State<OperationSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final info = _operationType.getInfo(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       bottomNavigationBar: BottomButton(text: "اضافة", onPressed: () {}),
@@ -33,7 +41,7 @@ class _OperationSheetState extends State<OperationSheet> {
         child: Column(
           children: [
             Text(
-              "إضافة كمية جديدة للصنف",
+              info.title,
               style: TextStyle(
                 color: context.colorPalette.black001,
                 fontSize: 16,
@@ -41,52 +49,46 @@ class _OperationSheetState extends State<OperationSheet> {
               ),
             ),
             CounterWidget(initialValue: widget.availableQuantity, onChanged: (value) {}),
-            Row(
-              children: [
-                Text(
-                  "*",
-                  style: TextStyle(
-                    color: context.colorPalette.redC10,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+            if (info.radio.items.isNotEmpty) ...[
+              Row(
+                children: [
+                  Text(
+                    "*",
+                    style: TextStyle(
+                      color: context.colorPalette.redC10,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  "نوع التوريد",
-                  style: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+                  const SizedBox(width: 5),
+                  Text(
+                    info.radio.label,
+                    style: TextStyle(
+                      color: context.colorPalette.black001,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                CustomRadio(
-                  value: 0,
-                  title: "مشتريات ذاتية",
-                  groupValue: _groupValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _groupValue = value;
-                    });
-                  },
-                ),
-                CustomRadio(
-                  value: 1,
-                  title: "استلام طلبية",
-                  groupValue: _groupValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _groupValue = value;
-                    });
-                  },
-                ),
-              ],
-            ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children:
+                    info.radio.items.map((e) {
+                      return CustomRadio(
+                        value: 0,
+                        title: "مشتريات ذاتية",
+                        groupValue: _groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            _groupValue = value;
+                          });
+                        },
+                      );
+                    }).toList(),
+              ),
+            ],
+
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 10),
               child: Row(
