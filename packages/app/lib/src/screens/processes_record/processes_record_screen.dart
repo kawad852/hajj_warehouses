@@ -29,7 +29,13 @@ class _ProcessesRecordScreenState extends State<ProcessesRecordScreen> {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: OperationCard(operation: InventoryOperationModel(createdAt: kNowDate)),
+                child: OperationCard(
+                  operation: InventoryOperationModel(
+                    createdAt: kNowDate,
+                    operationType: '',
+                    supplyType: '',
+                  ),
+                ),
               ),
             ],
           );

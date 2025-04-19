@@ -29,12 +29,24 @@ mixin _$InventoryOperationModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
+  String get notes => throw _privateConstructorUsedError;
+  set notes(String value) => throw _privateConstructorUsedError;
+  String get operationType => throw _privateConstructorUsedError;
+  set operationType(String value) => throw _privateConstructorUsedError;
+  String get supplyType => throw _privateConstructorUsedError;
+  set supplyType(String value) => throw _privateConstructorUsedError;
+  double get totalPayment => throw _privateConstructorUsedError;
+  set totalPayment(double value) => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
+  set quantity(int value) => throw _privateConstructorUsedError;
   List<LightItemModel> get items => throw _privateConstructorUsedError;
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
+  set images(List<String> value) => throw _privateConstructorUsedError;
+  bool get isUrgent => throw _privateConstructorUsedError;
+  set isUrgent(bool value) => throw _privateConstructorUsedError;
 
   /// Serializes this InventoryOperationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,9 +68,15 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String type,
     String displayName,
+    String notes,
+    String operationType,
+    String supplyType,
+    double totalPayment,
+    int quantity,
     List<LightItemModel> items,
+    List<String> images,
+    bool isUrgent,
   });
 }
 
@@ -82,9 +100,15 @@ class _$InventoryOperationModelCopyWithImpl<
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? type = null,
     Object? displayName = null,
+    Object? notes = null,
+    Object? operationType = null,
+    Object? supplyType = null,
+    Object? totalPayment = null,
+    Object? quantity = null,
     Object? items = null,
+    Object? images = null,
+    Object? isUrgent = null,
   }) {
     return _then(
       _value.copyWith(
@@ -98,21 +122,51 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            type:
-                null == type
-                    ? _value.type
-                    : type // ignore: cast_nullable_to_non_nullable
-                        as String,
             displayName:
                 null == displayName
                     ? _value.displayName
                     : displayName // ignore: cast_nullable_to_non_nullable
                         as String,
+            notes:
+                null == notes
+                    ? _value.notes
+                    : notes // ignore: cast_nullable_to_non_nullable
+                        as String,
+            operationType:
+                null == operationType
+                    ? _value.operationType
+                    : operationType // ignore: cast_nullable_to_non_nullable
+                        as String,
+            supplyType:
+                null == supplyType
+                    ? _value.supplyType
+                    : supplyType // ignore: cast_nullable_to_non_nullable
+                        as String,
+            totalPayment:
+                null == totalPayment
+                    ? _value.totalPayment
+                    : totalPayment // ignore: cast_nullable_to_non_nullable
+                        as double,
+            quantity:
+                null == quantity
+                    ? _value.quantity
+                    : quantity // ignore: cast_nullable_to_non_nullable
+                        as int,
             items:
                 null == items
                     ? _value.items
                     : items // ignore: cast_nullable_to_non_nullable
                         as List<LightItemModel>,
+            images:
+                null == images
+                    ? _value.images
+                    : images // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            isUrgent:
+                null == isUrgent
+                    ? _value.isUrgent
+                    : isUrgent // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -131,9 +185,15 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String type,
     String displayName,
+    String notes,
+    String operationType,
+    String supplyType,
+    double totalPayment,
+    int quantity,
     List<LightItemModel> items,
+    List<String> images,
+    bool isUrgent,
   });
 }
 
@@ -157,9 +217,15 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? type = null,
     Object? displayName = null,
+    Object? notes = null,
+    Object? operationType = null,
+    Object? supplyType = null,
+    Object? totalPayment = null,
+    Object? quantity = null,
     Object? items = null,
+    Object? images = null,
+    Object? isUrgent = null,
   }) {
     return _then(
       _$InventoryOperationModelImpl(
@@ -173,21 +239,51 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        type:
-            null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                    as String,
         displayName:
             null == displayName
                 ? _value.displayName
                 : displayName // ignore: cast_nullable_to_non_nullable
                     as String,
+        notes:
+            null == notes
+                ? _value.notes
+                : notes // ignore: cast_nullable_to_non_nullable
+                    as String,
+        operationType:
+            null == operationType
+                ? _value.operationType
+                : operationType // ignore: cast_nullable_to_non_nullable
+                    as String,
+        supplyType:
+            null == supplyType
+                ? _value.supplyType
+                : supplyType // ignore: cast_nullable_to_non_nullable
+                    as String,
+        totalPayment:
+            null == totalPayment
+                ? _value.totalPayment
+                : totalPayment // ignore: cast_nullable_to_non_nullable
+                    as double,
+        quantity:
+            null == quantity
+                ? _value.quantity
+                : quantity // ignore: cast_nullable_to_non_nullable
+                    as int,
         items:
             null == items
                 ? _value.items
                 : items // ignore: cast_nullable_to_non_nullable
                     as List<LightItemModel>,
+        images:
+            null == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        isUrgent:
+            null == isUrgent
+                ? _value.isUrgent
+                : isUrgent // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -199,9 +295,15 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   _$InventoryOperationModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.type = '',
     this.displayName = '',
+    this.notes = '',
+    required this.operationType,
+    required this.supplyType,
+    this.totalPayment = 0.0,
+    this.quantity = 0,
     this.items = const [],
+    this.images = const [],
+    this.isUrgent = false,
   });
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -215,17 +317,33 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   String id;
   @override
   @JsonKey()
-  String type;
-  @override
-  @JsonKey()
   String displayName;
   @override
   @JsonKey()
+  String notes;
+  @override
+  String operationType;
+  @override
+  String supplyType;
+  @override
+  @JsonKey()
+  double totalPayment;
+  @override
+  @JsonKey()
+  int quantity;
+  @override
+  @JsonKey()
   List<LightItemModel> items;
+  @override
+  @JsonKey()
+  List<String> images;
+  @override
+  @JsonKey()
+  bool isUrgent;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, type: $type, displayName: $displayName, items: $items)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images, isUrgent: $isUrgent)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -248,9 +366,15 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   factory _InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String type,
     String displayName,
+    String notes,
+    required String operationType,
+    required String supplyType,
+    double totalPayment,
+    int quantity,
     List<LightItemModel> items,
+    List<String> images,
+    bool isUrgent,
   }) = _$InventoryOperationModelImpl;
 
   factory _InventoryOperationModel.fromJson(Map<String, dynamic> json) =
@@ -265,14 +389,32 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   String get id;
   set id(String value);
   @override
-  String get type;
-  set type(String value);
-  @override
   String get displayName;
   set displayName(String value);
   @override
+  String get notes;
+  set notes(String value);
+  @override
+  String get operationType;
+  set operationType(String value);
+  @override
+  String get supplyType;
+  set supplyType(String value);
+  @override
+  double get totalPayment;
+  set totalPayment(double value);
+  @override
+  int get quantity;
+  set quantity(int value);
+  @override
   List<LightItemModel> get items;
   set items(List<LightItemModel> value);
+  @override
+  List<String> get images;
+  set images(List<String> value);
+  @override
+  bool get isUrgent;
+  set isUrgent(bool value);
 
   /// Create a copy of InventoryOperationModel
   /// with the given fields replaced by the non-null parameter values.

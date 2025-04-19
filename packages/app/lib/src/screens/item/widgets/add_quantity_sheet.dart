@@ -11,8 +11,17 @@ class AddQuantitySheet extends StatefulWidget {
 
 class _AddQuantitySheetState extends State<AddQuantitySheet> {
   int? _groupValue = 1;
+  late InventoryOperationModel _operation;
 
-  var _operation = InventoryOperationModel();
+  @override
+  void initState() {
+    super.initState();
+    _operation = InventoryOperationModel(
+      operationType: OperationType.add.value,
+      displayName: MySharedPreferences.user!.displayName!,
+      supplyType: '',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

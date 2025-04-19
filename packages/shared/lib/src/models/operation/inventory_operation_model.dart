@@ -10,9 +10,15 @@ class InventoryOperationModel with _$InventoryOperationModel {
   factory InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    @Default('') String type,
     @Default('') String displayName,
+    @Default('') String notes,
+    required String operationType,
+    required String supplyType,
+    @Default(0.0) double totalPayment,
+    @Default(0) int quantity,
     @Default([]) List<LightItemModel> items,
+    @Default([]) List<String> images,
+    @Default(false) bool isUrgent,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>

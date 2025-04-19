@@ -159,7 +159,13 @@ class _OrderScreenState extends State<OrderScreen> {
             itemCount: 5,
 
             contentsBuilder: (context, index) {
-              return OperationCard(operation: InventoryOperationModel(createdAt: kNowDate));
+              return OperationCard(
+                operation: InventoryOperationModel(
+                  createdAt: kNowDate,
+                  operationType: '',
+                  supplyType: '',
+                ),
+              );
             },
           ),
         ],
