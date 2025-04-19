@@ -20,8 +20,8 @@ export 'src/controllers/phone_controller.dart';
 export 'src/enums/algolia_enums.dart';
 export 'src/enums/base_enums.dart';
 export 'src/enums/filter_enums.dart';
+export 'src/enums/inventory_operation_enum.dart';
 export 'src/enums/item_enums.dart';
-export 'src/enums/operations_enum.dart';
 export 'src/enums/order_enums.dart';
 export 'src/enums/stores_enums.dart';
 //extensions
@@ -49,7 +49,7 @@ export 'src/models/basket/basket_model.dart';
 export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/item/item_model.dart';
-export 'src/models/operation/operation_model.dart';
+export 'src/models/operation/inventory_operation_model.dart';
 export 'src/models/order/order_model.dart';
 export 'src/models/user/user_model.dart';
 //network

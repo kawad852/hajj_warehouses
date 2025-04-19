@@ -12,9 +12,7 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppBarText("طلب رقم 1731519#"),
-      ),
+      appBar: AppBar(title: const AppBarText("طلب رقم 1731519#")),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child: Row(
@@ -161,7 +159,7 @@ class _OrderScreenState extends State<OrderScreen> {
             itemCount: 5,
 
             contentsBuilder: (context, index) {
-              return OperationCard(operation: OperationModel(createdAt: kNowDate));
+              return OperationCard(operation: InventoryOperationModel(createdAt: kNowDate));
             },
           ),
         ],

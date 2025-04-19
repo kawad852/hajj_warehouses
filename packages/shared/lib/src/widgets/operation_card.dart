@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:shared/shared.dart';
 
 class OperationCard extends StatelessWidget {
-  final OperationModel operation;
+  final InventoryOperationModel operation;
 
   const OperationCard({super.key, required this.operation});
 

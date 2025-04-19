@@ -11,9 +11,7 @@ class _ProcessesRecordScreenState extends State<ProcessesRecordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppBarText("سجل عمليات المخزون"),
-      ),
+      appBar: AppBar(title: const AppBarText("سجل عمليات المخزون")),
       body: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(height: 0),
         itemCount: 5,
@@ -30,7 +28,9 @@ class _ProcessesRecordScreenState extends State<ProcessesRecordScreen> {
                     : MyIcons.addSquare,
               ),
               const SizedBox(width: 10),
-              Expanded(child: OperationCard(operation: OperationModel(createdAt: kNowDate))),
+              Expanded(
+                child: OperationCard(operation: InventoryOperationModel(createdAt: kNowDate)),
+              ),
             ],
           );
         },

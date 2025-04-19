@@ -12,7 +12,7 @@ class ItemManagementScreen extends StatefulWidget {
 
 class _ItemManagementScreenState extends State<ItemManagementScreen> {
   late Stream<ItemModel> _itemStream;
-  late Query<OperationModel> _operationsQuery;
+  late Query<InventoryOperationModel> _operationsQuery;
 
   ItemModel get _item => widget.item;
 
@@ -21,7 +21,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   }
 
   void _initializeOperations() {
-    _operationsQuery = BranchQueries.operations.where(MyFields.idItem, isEqualTo: _item.id);
+    _operationsQuery = BranchQueries.inventoryOperations.where(
+      MyFields.idItem,
+      isEqualTo: _item.id,
+    );
   }
 
   @override

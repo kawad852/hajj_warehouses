@@ -12,7 +12,7 @@ class AddQuantitySheet extends StatefulWidget {
 class _AddQuantitySheetState extends State<AddQuantitySheet> {
   int? _groupValue = 1;
 
-  var _operation = OperationModel();
+  var _operation = InventoryOperationModel();
 
   @override
   Widget build(BuildContext context) {
