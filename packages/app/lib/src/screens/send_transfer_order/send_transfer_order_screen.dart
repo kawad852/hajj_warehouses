@@ -4,8 +4,7 @@ class SendTransferOrderScreen extends StatefulWidget {
   const SendTransferOrderScreen({super.key});
 
   @override
-  State<SendTransferOrderScreen> createState() =>
-      _SendTransferOrderScreenState();
+  State<SendTransferOrderScreen> createState() => _SendTransferOrderScreenState();
 }
 
 class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
@@ -84,10 +83,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
                 Expanded(
                   child: TitledTextField(
                     title: "الفرع المرسل",
-                    textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     child: DropDownEditor(
                       items: const [],
                       onChanged: (value) {},
@@ -100,10 +96,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
                 Expanded(
                   child: TitledTextField(
                     title: "الفرع المستقبل",
-                    textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     child: DropDownEditor(
                       items: const [],
                       onChanged: (value) {},
@@ -158,6 +151,8 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
               return ItemTableCell(
                 onChangedQuntity: (value) {},
                 itemName: "text",
+                length: 1,
+                onRemove: () {},
               );
             },
           ),
@@ -171,11 +166,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             ),
             prefixIcon: IconButton(
               onPressed: null,
-              icon: CustomSvg(
-                MyIcons.addTask,
-                color: context.colorPalette.grey708,
-                width: 20,
-              ),
+              icon: CustomSvg(MyIcons.addTask, color: context.colorPalette.grey708, width: 20),
             ),
           ),
         ],
