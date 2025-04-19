@@ -25,7 +25,7 @@ class _AddMoneyState extends State<AddMoney> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const CounterWidget(),
+          CounterWidget(initialValue: 1, onChanged: (value) {}),
           Row(
             children: [
               Text(
@@ -117,10 +117,7 @@ class _AddMoneyState extends State<AddMoney> {
               ),
             ),
           ),
-          AttachImage(
-            onTap: () {},
-            title: "ارفاق صورة لسند التسليم او الحوالة",
-          ),
+          ImagesAttacher(onTap: () {}, title: "ارفاق صورة لسند التسليم او الحوالة"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},

@@ -15,7 +15,8 @@ _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>
       categoryId: json['categoryId'] as String? ?? '',
       status: json['status'] as String? ?? '',
       availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 0,
-      stockQuantity: (json['stockQuantity'] as num?)?.toInt() ?? 0,
+      minimumQuantity:
+          (json['minimumQuantity'] as num?)?.toInt() ?? kItemLimitThreshold,
     );
 
 Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
@@ -27,7 +28,7 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'categoryId': instance.categoryId,
       'status': instance.status,
       'availableQuantity': instance.availableQuantity,
-      'stockQuantity': instance.stockQuantity,
+      'minimumQuantity': instance.minimumQuantity,
     };
 
 _$LightItemModelImpl _$$LightItemModelImplFromJson(Map<String, dynamic> json) =>

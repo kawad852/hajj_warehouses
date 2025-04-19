@@ -1,7 +1,6 @@
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
-import '../models/order/order_model.dart';
 import '../models/policy/policy_model.dart';
 import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
@@ -34,12 +33,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<ItemModel> get items =>
       collection(MyCollections.items).withConverter<ItemModel>(
         fromFirestore: (snapshot, _) => ItemModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<OperationModel> get operations =>
-      collection(MyCollections.operations).withConverter<OperationModel>(
-        fromFirestore: (snapshot, _) => OperationModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 

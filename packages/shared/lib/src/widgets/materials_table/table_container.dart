@@ -1,10 +1,22 @@
 import 'package:shared/shared.dart';
 
 class TableContainer extends StatelessWidget {
-  final List<String> items;
   final VoidCallback onTap;
+  final String id;
+  final String name;
+  final int availableQuantity;
+  final int minimumQuantity;
+  final String status;
 
-  const TableContainer({super.key, required this.items, required this.onTap});
+  const TableContainer({
+    super.key,
+    required this.id,
+    required this.onTap,
+    required this.availableQuantity,
+    required this.minimumQuantity,
+    required this.status,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +32,12 @@ class TableContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Expanded(flex: 2, child: TableText(items[0])),
-            Expanded(flex: 14, child: TableText(items[1])),
+            Expanded(flex: 2, child: TableText(id)),
+            Expanded(flex: 14, child: TableText(name)),
             const CustomLine(),
-            Expanded(flex: 4, child: TableText(items[2], textAlign: TextAlign.center)),
+            Expanded(flex: 4, child: TableText("$availableQuantity", textAlign: TextAlign.center)),
             const CustomLine(),
-            Expanded(flex: 4, child: TableText(items[3], textAlign: TextAlign.center)),
+            Expanded(flex: 4, child: TableText("$minimumQuantity", textAlign: TextAlign.center)),
             const CustomLine(),
             Expanded(
               flex: 4,
@@ -38,7 +50,7 @@ class TableContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(kRadiusPrimary),
                 ),
                 child: Text(
-                  items[4],
+                  status,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.white,

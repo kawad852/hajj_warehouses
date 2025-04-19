@@ -1,9 +1,9 @@
 import 'package:shared/shared.dart';
 
-class AttachImage extends StatelessWidget {
+class ImagesAttacher extends StatelessWidget {
   final void Function() onTap;
   final String title;
-  const AttachImage({super.key, required this.onTap, required this.title});
+  const ImagesAttacher({super.key, required this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {

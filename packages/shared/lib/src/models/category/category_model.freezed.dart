@@ -235,7 +235,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CategoryModelImpl implements _CategoryModel {
+class _$CategoryModelImpl extends _CategoryModel {
   _$CategoryModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
@@ -245,7 +245,7 @@ class _$CategoryModelImpl implements _CategoryModel {
     this.order = kOrder,
     this.published = true,
     this.showOnHome = false,
-  });
+  }) : super._();
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -294,7 +294,7 @@ class _$CategoryModelImpl implements _CategoryModel {
   }
 }
 
-abstract class _CategoryModel implements CategoryModel {
+abstract class _CategoryModel extends CategoryModel {
   factory _CategoryModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
@@ -305,6 +305,7 @@ abstract class _CategoryModel implements CategoryModel {
     bool published,
     bool showOnHome,
   }) = _$CategoryModelImpl;
+  _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;

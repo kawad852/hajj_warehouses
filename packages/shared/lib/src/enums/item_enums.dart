@@ -1,6 +1,8 @@
 enum ItemStatusEnum {
-  available('AVAILABLE'),
-  outOfStock('OUT-OF-STOCK');
+  needsRestock('NEEDS-RESTOCK'),
+  lowStock('LOW-STOCK'),
+  outOfStock('OUT-OF-STOCK'),
+  inStock('IN-STOCK');
 
   final String value;
 

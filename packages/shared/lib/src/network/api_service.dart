@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:algoliasearch/algoliasearch.dart';
 import 'package:shared/shared.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../algolia_exports.dart';
 
 FirebaseFirestore get kFirebaseInstant => FirebaseFirestore.instance;
 DateTime get kNowDate => DateTime.now();

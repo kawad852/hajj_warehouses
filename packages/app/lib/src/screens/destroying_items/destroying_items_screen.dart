@@ -26,10 +26,7 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            AttachImage(
-              onTap: () {},
-              title: "ارفاق صور للمواد التي سيتم اتلافها",
-            ),
+            ImagesAttacher(onTap: () {}, title: "ارفاق صور للمواد التي سيتم اتلافها"),
             StretchedButton(
               onPressed: () {},
               child: Text(
@@ -138,6 +135,8 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
               return ItemTableCell(
                 onChangedQuntity: (value) {},
                 itemName: "text",
+                length: 1,
+                onRemove: () {},
               );
             },
           ),
@@ -151,11 +150,7 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
             ),
             prefixIcon: IconButton(
               onPressed: null,
-              icon: CustomSvg(
-                MyIcons.addTask,
-                color: context.colorPalette.grey708,
-                width: 20,
-              ),
+              icon: CustomSvg(MyIcons.addTask, color: context.colorPalette.grey708, width: 20),
             ),
           ),
         ],

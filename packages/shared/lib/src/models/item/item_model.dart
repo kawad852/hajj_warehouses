@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../helper/time_stamp_serializer.dart';
+import '../../../shared.dart';
 
 part 'item_model.freezed.dart';
 part 'item_model.g.dart';
@@ -15,10 +15,14 @@ class ItemModel with _$ItemModel {
     @Default('') String categoryId,
     @Default('') String status,
     @Default(0) int availableQuantity,
-    @Default(0) int stockQuantity,
+    @Default(kItemLimitThreshold) int minimumQuantity,
   }) = _ItemModel;
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);
+
+  ItemModel._();
+
+  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
 }
 
 @freezed

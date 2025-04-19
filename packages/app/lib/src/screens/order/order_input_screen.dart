@@ -15,15 +15,13 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
     ApiService.fetch(
       context,
       callBack: () async {
-        _order.id = await RowIdHelper.getOrderId();
+        _order.id = await RowIdHelper.getOrderId(RowIdHelper.orderId);
         _order.createdAt = kNowDate;
         _order.userId = kSelectedUserId;
 
         await kFirebaseInstant.orders.doc(_order.id).set(_order);
         if (context.mounted) {
-          Fluttertoast.showToast(
-            msg: context.appLocalization.addedSuccessfully,
-          );
+          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
           context.pop();
         }
       },
@@ -32,7 +30,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
 
   @override
   void initState() {
-    _order = OrderModel(status: OrderStatusEnum.placed.value);
+    _order = OrderModel(status: OrderStatusEnum.placed.value, items: []);
     super.initState();
   }
 
@@ -97,7 +95,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 50),
             Text(
               "مشروحات وملاحظات حول الطلب",
               style: TextStyle(
@@ -112,6 +110,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 onChanged: (value) => _order.note = value,
                 filled: true,
                 fillColor: Colors.transparent,
+                maxLines: 3,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: context.colorPalette.greyBDB),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
@@ -139,9 +138,18 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               padding: const EdgeInsets.only(bottom: 5),
               itemBuilder: (context, index) {
                 final item = _order.items[index];
+                final length = _order.items.length;
                 return ItemTableCell(
+                  key: ValueKey("$length${item.id}"),
                   onChangedQuntity: (value) {},
                   itemName: item.name,
+                  autoFocus: index + 1 == length,
+                  length: length,
+                  onRemove: () {
+                    setState(() {
+                      _order.items.removeAt(index);
+                    });
+                  },
                 );
               },
             ),
@@ -149,10 +157,15 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               indexName: AlgoliaIndices.items.value,
               isFullScreen: false,
               onTap: (e) {
+                final ids = _order.items.map((e) => e.id).toList();
+                if (ids.contains(e.id)) {
+                  Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                  return;
+                }
                 context.pop();
                 final item = LightItemModel(id: e.id, name: e.name);
                 setState(() {
-                  _order.items = [..._order.items, item];
+                  _order.items.add(item);
                 });
               },
               builder: (controller) {

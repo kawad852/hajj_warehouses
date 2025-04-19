@@ -16,8 +16,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   final List<ItemModel> _items = [];
 
   ItemModel get _itemModel => ItemModel(
-    id: kUUID,
-    status: ItemStatusEnum.available.value,
+    status: ItemStatusEnum.inStock.value,
     userId: kSelectedUserId,
     categoryId: _category.id,
   );
@@ -31,18 +30,33 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
+  String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
+    if (availableQuantity <= 0) {
+      return ItemStatusEnum.outOfStock.value;
+    } else if (availableQuantity < minimumQuantity) {
+      return ItemStatusEnum.needsRestock.value;
+    } else if (availableQuantity > minimumQuantity + kItemLimitThreshold) {
+      return ItemStatusEnum.lowStock.value;
+    } else {
+      return ItemStatusEnum.inStock.value;
+    }
+  }
+
   void _onAdd(BuildContext context) {
     ApiService.fetch(
       context,
       callBack: () async {
         for (var e in _items) {
+          e.id = await e.getId();
           e.createdAt = kNowDate;
+          e.status = _getItemStatus(
+            availableQuantity: e.availableQuantity,
+            minimumQuantity: e.minimumQuantity,
+          );
           await kFirebaseInstant.items.doc(e.id).set(e);
         }
         if (context.mounted) {
-          Fluttertoast.showToast(
-            msg: context.appLocalization.successfullyUpdated,
-          );
+          Fluttertoast.showToast(msg: context.appLocalization.successfullyUpdated);
           context.pop();
         }
       },
@@ -74,10 +88,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 10,
-              ).copyWith(top: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).copyWith(top: 0),
               child: Text(
                 "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
                 style: TextStyle(
@@ -113,21 +124,15 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                           setState(() {});
                         }
                       },
-                      onQuantityChanged: (quantity) {},
-                      removeButton:
+                      onQuantityChanged: (quantity) => element.availableQuantity = quantity,
+                      showRemove: _items.length > 1,
+                      onRemove:
                           _items.length > 1
-                              ? IconButton.filled(
-                                onPressed: () {
-                                  setState(() {
-                                    _items.removeAt(index);
-                                  });
-                                },
-                                style: IconButton.styleFrom(
-                                  backgroundColor: context.colorScheme.error,
-                                  foregroundColor: context.colorScheme.onError,
-                                ),
-                                icon: const Icon(Icons.remove_circle),
-                              )
+                              ? () {
+                                setState(() {
+                                  _items.removeAt(index);
+                                });
+                              }
                               : null,
                     );
                   }).separator(const SizedBox(height: 10)).toList(),
@@ -175,21 +180,15 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                     Container(
                                       height: 40,
                                       alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                      ),
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
                                       margin: const EdgeInsets.symmetric(
                                         horizontal: 2,
                                         vertical: 3,
                                       ),
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        border: Border.all(
-                                          color: context.colorPalette.greyDAD,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          kRadiusSecondary,
-                                        ),
+                                        border: Border.all(color: context.colorPalette.greyDAD),
+                                        borderRadius: BorderRadius.circular(kRadiusSecondary),
                                       ),
                                       child: Row(
                                         children: [
@@ -202,8 +201,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                           Text(
                                             item.name,
                                             style: TextStyle(
-                                              color:
-                                                  context.colorPalette.black001,
+                                              color: context.colorPalette.black001,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),

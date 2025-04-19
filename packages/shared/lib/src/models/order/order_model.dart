@@ -14,8 +14,12 @@ class OrderModel with _$OrderModel {
     @Default('') String userId,
     required String status,
     @Default(false) bool urgent,
-    @Default([]) List<LightItemModel> items,
+    required List<LightItemModel> items,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
+
+  OrderModel._();
+
+  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
 }
