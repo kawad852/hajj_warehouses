@@ -32,4 +32,5 @@ export 'src/screens/reports/reports_screen.dart';
 export 'src/screens/reports/widgets/reports_card.dart';
 export 'src/screens/reports/widgets/reports_bubble.dart';
 export 'src/screens/profile/settings_screen.dart';
+export 'src/screens/calender/widgets/date_widget.dart';
 
