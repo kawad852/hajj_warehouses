@@ -24,7 +24,7 @@ class _DragMoneyState extends State<DragMoney> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const CounterWidget(),
+          CounterWidget(initialValue: 1, onChanged: (value) {}),
           TitledTextField(
             title: "نوع المصروف",
             textStyle: TextStyle(
@@ -37,12 +37,7 @@ class _DragMoneyState extends State<DragMoney> {
                 border: Border.all(color: context.colorPalette.grey708),
                 borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
-              child: DropDownEditor(
-                items: const [],
-                onChanged: (value) {},
-                title: "",
-                value: "",
-              ),
+              child: DropDownEditor(items: const [], onChanged: (value) {}, title: "", value: ""),
             ),
           ),
           Padding(

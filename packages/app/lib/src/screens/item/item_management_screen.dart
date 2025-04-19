@@ -89,7 +89,9 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                                 context,
                                 maxHeight: context.mediaQuery.height * 0.65,
                                 builder: (context) {
-                                  return const AddQuntity();
+                                  return AddQuantitySheet(
+                                    availableQuantity: item.availableQuantity,
+                                  );
                                 },
                               );
                             },
@@ -105,9 +107,8 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                             onTap: () {
                               context.showBottomSheet(
                                 context,
-                                maxHeight: context.mediaQuery.height * 0.65,
                                 builder: (context) {
-                                  return const QuantitySupply();
+                                  return QuantitySupply(availableQuantity: item.availableQuantity);
                                 },
                               );
                             },

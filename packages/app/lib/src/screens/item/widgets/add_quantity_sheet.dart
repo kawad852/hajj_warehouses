@@ -1,14 +1,19 @@
 import 'package:shared/shared.dart';
 
-class AddQuntity extends StatefulWidget {
-  const AddQuntity({super.key});
+class AddQuantitySheet extends StatefulWidget {
+  final int availableQuantity;
+
+  const AddQuantitySheet({super.key, required this.availableQuantity});
 
   @override
-  State<AddQuntity> createState() => _AddQuntityState();
+  State<AddQuantitySheet> createState() => _AddQuantitySheetState();
 }
 
-class _AddQuntityState extends State<AddQuntity> {
+class _AddQuantitySheetState extends State<AddQuantitySheet> {
   int? _groupValue = 1;
+
+  var _operation = OperationModel();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +30,7 @@ class _AddQuntityState extends State<AddQuntity> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const CounterWidget(),
+          CounterWidget(initialValue: widget.availableQuantity, onChanged: (value) {}),
           Row(
             children: [
               Text(
@@ -97,6 +102,7 @@ class _AddQuntityState extends State<AddQuntity> {
             ),
           ),
           BaseEditor(
+            initialValue: widget.availableQuantity.toString(),
             onChanged: (value) {},
             filled: true,
             fillColor: Colors.transparent,
@@ -122,10 +128,7 @@ class _AddQuntityState extends State<AddQuntity> {
               borderRadius: BorderRadius.circular(kRadiusSecondary),
             ),
           ),
-          AttachImage(
-            onTap: () {},
-            title: "ارفاق صورة عن الفاتورة او سند الإستلام",
-          ),
+          AttachImage(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},

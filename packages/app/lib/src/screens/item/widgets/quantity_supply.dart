@@ -1,7 +1,9 @@
 import 'package:shared/shared.dart';
 
 class QuantitySupply extends StatefulWidget {
-  const QuantitySupply({super.key});
+  final int availableQuantity;
+
+  const QuantitySupply({super.key, required this.availableQuantity});
 
   @override
   State<QuantitySupply> createState() => _QuantitySupplyState();
@@ -25,7 +27,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const CounterWidget(),
+          CounterWidget(initialValue: 1, onChanged: (value) {}),
           Row(
             children: [
               Text(

@@ -25,7 +25,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const CounterWidget(),
+          CounterWidget(initialValue: 1, onChanged: (value) {}),
           Row(
             children: [
               Text(
@@ -112,10 +112,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               ),
             ),
           ),
-          AttachImage(
-            onTap: () {},
-            title: " ارفاق صور للمواد التي سيتم اتلافها",
-          ),
+          AttachImage(onTap: () {}, title: " ارفاق صور للمواد التي سيتم اتلافها"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},
