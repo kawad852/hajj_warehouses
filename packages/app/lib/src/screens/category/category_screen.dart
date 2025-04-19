@@ -57,11 +57,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: ProductsSearchScreen(
-                          indexName: AlgoliaIndices.items.value,
-                        ),
-                      ),
+                      Expanded(child: ProductsSearchScreen(indexName: AlgoliaIndices.items.value)),
                       const SizedBox(width: 10),
                       Container(
                         width: 50,
@@ -69,9 +65,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border: Border.all(
-                            color: context.colorPalette.greyD9D,
-                          ),
+                          border: Border.all(color: context.colorPalette.greyD9D),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         child: const CustomSvg(MyIcons.filter),
@@ -90,24 +84,19 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 sliver: SliverList.separated(
-                  separatorBuilder:
-                      (context, index) => const SizedBox(height: 5),
+                  separatorBuilder: (context, index) => const SizedBox(height: 5),
                   itemCount: snapshot.docs.length,
                   itemBuilder: (context, index) {
                     final item = snapshot.docs[index].data();
                     return TableContainer(
                       onTap: () {
-                        context.push(
-                          (context) => ItemManagementScreen(item: item),
-                        );
+                        context.push((context) => ItemManagementScreen(item: item));
                       },
-                      items: [
-                        "${index + 1}",
-                        item.name,
-                        item.availableQuantity.toString(),
-                        item.stockQuantity.toString(),
-                        item.status,
-                      ],
+                      id: "$index",
+                      name: item.name,
+                      availableQuantity: item.availableQuantity,
+                      minimumQuantity: item.minimumQuantity,
+                      status: item.status,
                     );
                   },
                 ),

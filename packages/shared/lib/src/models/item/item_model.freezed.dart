@@ -37,8 +37,8 @@ mixin _$ItemModel {
   set status(String value) => throw _privateConstructorUsedError;
   int get availableQuantity => throw _privateConstructorUsedError;
   set availableQuantity(int value) => throw _privateConstructorUsedError;
-  int get stockQuantity => throw _privateConstructorUsedError;
-  set stockQuantity(int value) => throw _privateConstructorUsedError;
+  int get minimumQuantity => throw _privateConstructorUsedError;
+  set minimumQuantity(int value) => throw _privateConstructorUsedError;
 
   /// Serializes this ItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $ItemModelCopyWith<$Res> {
     String categoryId,
     String status,
     int availableQuantity,
-    int stockQuantity,
+    int minimumQuantity,
   });
 }
 
@@ -89,7 +89,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? categoryId = null,
     Object? status = null,
     Object? availableQuantity = null,
-    Object? stockQuantity = null,
+    Object? minimumQuantity = null,
   }) {
     return _then(
       _value.copyWith(
@@ -128,10 +128,10 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.availableQuantity
                     : availableQuantity // ignore: cast_nullable_to_non_nullable
                         as int,
-            stockQuantity:
-                null == stockQuantity
-                    ? _value.stockQuantity
-                    : stockQuantity // ignore: cast_nullable_to_non_nullable
+            minimumQuantity:
+                null == minimumQuantity
+                    ? _value.minimumQuantity
+                    : minimumQuantity // ignore: cast_nullable_to_non_nullable
                         as int,
           )
           as $Val,
@@ -156,7 +156,7 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String categoryId,
     String status,
     int availableQuantity,
-    int stockQuantity,
+    int minimumQuantity,
   });
 }
 
@@ -181,7 +181,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? categoryId = null,
     Object? status = null,
     Object? availableQuantity = null,
-    Object? stockQuantity = null,
+    Object? minimumQuantity = null,
   }) {
     return _then(
       _$ItemModelImpl(
@@ -220,10 +220,10 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.availableQuantity
                 : availableQuantity // ignore: cast_nullable_to_non_nullable
                     as int,
-        stockQuantity:
-            null == stockQuantity
-                ? _value.stockQuantity
-                : stockQuantity // ignore: cast_nullable_to_non_nullable
+        minimumQuantity:
+            null == minimumQuantity
+                ? _value.minimumQuantity
+                : minimumQuantity // ignore: cast_nullable_to_non_nullable
                     as int,
       ),
     );
@@ -241,7 +241,7 @@ class _$ItemModelImpl implements _ItemModel {
     this.categoryId = '',
     this.status = '',
     this.availableQuantity = 0,
-    this.stockQuantity = 0,
+    this.minimumQuantity = 0,
   });
 
   factory _$ItemModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -270,11 +270,11 @@ class _$ItemModelImpl implements _ItemModel {
   int availableQuantity;
   @override
   @JsonKey()
-  int stockQuantity;
+  int minimumQuantity;
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, stockQuantity: $stockQuantity)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, minimumQuantity: $minimumQuantity)';
   }
 
   /// Create a copy of ItemModel
@@ -300,7 +300,7 @@ abstract class _ItemModel implements ItemModel {
     String categoryId,
     String status,
     int availableQuantity,
-    int stockQuantity,
+    int minimumQuantity,
   }) = _$ItemModelImpl;
 
   factory _ItemModel.fromJson(Map<String, dynamic> json) =
@@ -330,8 +330,8 @@ abstract class _ItemModel implements ItemModel {
   int get availableQuantity;
   set availableQuantity(int value);
   @override
-  int get stockQuantity;
-  set stockQuantity(int value);
+  int get minimumQuantity;
+  set minimumQuantity(int value);
 
   /// Create a copy of ItemModel
   /// with the given fields replaced by the non-null parameter values.
