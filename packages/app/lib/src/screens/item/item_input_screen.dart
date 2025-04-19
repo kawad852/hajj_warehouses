@@ -30,6 +30,18 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
+  String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
+    if (availableQuantity <= 0) {
+      return ItemStatusEnum.outOfStock.value;
+    } else if (availableQuantity < minimumQuantity) {
+      return ItemStatusEnum.needsRestock.value;
+    } else if (availableQuantity > minimumQuantity + kItemLimitThreshold) {
+      return ItemStatusEnum.lowStock.value;
+    } else {
+      return ItemStatusEnum.inStock.value;
+    }
+  }
+
   void _onAdd(BuildContext context) {
     ApiService.fetch(
       context,
@@ -37,6 +49,10 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
         for (var e in _items) {
           e.id = await e.getId();
           e.createdAt = kNowDate;
+          e.status = _getItemStatus(
+            availableQuantity: e.availableQuantity,
+            minimumQuantity: e.minimumQuantity,
+          );
           await kFirebaseInstant.items.doc(e.id).set(e);
         }
         if (context.mounted) {

@@ -15,7 +15,7 @@ class ItemModel with _$ItemModel {
     @Default('') String categoryId,
     @Default('') String status,
     @Default(0) int availableQuantity,
-    @Default(0) int minimumQuantity,
+    @Default(kItemLimitThreshold) int minimumQuantity,
   }) = _ItemModel;
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);

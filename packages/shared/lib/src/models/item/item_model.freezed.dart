@@ -241,7 +241,7 @@ class _$ItemModelImpl extends _ItemModel {
     this.categoryId = '',
     this.status = '',
     this.availableQuantity = 0,
-    this.minimumQuantity = 0,
+    this.minimumQuantity = kItemLimitThreshold,
   }) : super._();
 
   factory _$ItemModelImpl.fromJson(Map<String, dynamic> json) =>
