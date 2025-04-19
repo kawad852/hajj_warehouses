@@ -21,9 +21,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
 
         await kFirebaseInstant.orders.doc(_order.id).set(_order);
         if (context.mounted) {
-          Fluttertoast.showToast(
-            msg: context.appLocalization.addedSuccessfully,
-          );
+          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
           context.pop();
         }
       },
@@ -32,7 +30,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
 
   @override
   void initState() {
-    _order = OrderModel(status: OrderStatusEnum.placed.value);
+    _order = OrderModel(status: OrderStatusEnum.placed.value, items: []);
     super.initState();
   }
 
@@ -139,20 +137,22 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               padding: const EdgeInsets.only(bottom: 5),
               itemBuilder: (context, index) {
                 final item = _order.items[index];
-                return ItemTableCell(
-                  onChangedQuntity: (value) {},
-                  itemName: item.name,
-                );
+                return ItemTableCell(onChangedQuntity: (value) {}, itemName: item.name);
               },
             ),
             ProductsSearchScreen(
               indexName: AlgoliaIndices.items.value,
               isFullScreen: false,
               onTap: (e) {
+                final ids = _order.items.map((e) => e.id).toList();
+                if (ids.contains(e.id)) {
+                  Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                  return;
+                }
                 context.pop();
                 final item = LightItemModel(id: e.id, name: e.name);
                 setState(() {
-                  _order.items = [..._order.items, item];
+                  _order.items.add(item);
                 });
               },
               builder: (controller) {

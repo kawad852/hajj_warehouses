@@ -227,7 +227,7 @@ class _$OrderModelImpl implements _OrderModel {
     this.userId = '',
     required this.status,
     this.urgent = false,
-    this.items = const [],
+    required this.items,
   });
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -251,7 +251,6 @@ class _$OrderModelImpl implements _OrderModel {
   @JsonKey()
   bool urgent;
   @override
-  @JsonKey()
   List<LightItemModel> items;
 
   @override
@@ -281,7 +280,7 @@ abstract class _OrderModel implements OrderModel {
     String userId,
     required String status,
     bool urgent,
-    List<LightItemModel> items,
+    required List<LightItemModel> items,
   }) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =

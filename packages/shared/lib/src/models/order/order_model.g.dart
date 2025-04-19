@@ -15,10 +15,9 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       urgent: json['urgent'] as bool? ?? false,
       items:
-          (json['items'] as List<dynamic>?)
-              ?.map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          (json['items'] as List<dynamic>)
+              .map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
