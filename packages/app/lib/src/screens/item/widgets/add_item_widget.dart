@@ -3,15 +3,17 @@ import 'package:shared/shared.dart';
 class AddItemWidget extends StatefulWidget {
   final String initialValue;
   final Function(String?) onChanged;
+  final VoidCallback? onRemove;
+  final bool showRemove;
   final Function(int) onQuantityChanged;
-  final Widget? removeButton;
 
   const AddItemWidget({
     super.key,
     required this.initialValue,
     required this.onChanged,
     required this.onQuantityChanged,
-    this.removeButton,
+    required this.onRemove,
+    required this.showRemove,
   });
 
   @override
@@ -31,7 +33,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (widget.removeButton != null) widget.removeButton!,
+        if (widget.showRemove) RemoveButton(onPressed: widget.onRemove),
         Expanded(
           child: TextEditor(
             onChanged: widget.onChanged,

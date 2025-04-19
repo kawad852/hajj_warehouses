@@ -40,9 +40,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
           await kFirebaseInstant.items.doc(e.id).set(e);
         }
         if (context.mounted) {
-          Fluttertoast.showToast(
-            msg: context.appLocalization.successfullyUpdated,
-          );
+          Fluttertoast.showToast(msg: context.appLocalization.successfullyUpdated);
           context.pop();
         }
       },
@@ -74,10 +72,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 10,
-              ).copyWith(top: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).copyWith(top: 0),
               child: Text(
                 "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
                 style: TextStyle(
@@ -109,25 +104,20 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       initialValue: element.name,
                       onChanged: (value) {
                         element.name = value!;
+
                         if (value.isEmpty || value.length == 1) {
                           setState(() {});
                         }
                       },
                       onQuantityChanged: (quantity) {},
-                      removeButton:
+                      showRemove: _items.length > 1,
+                      onRemove:
                           _items.length > 1
-                              ? IconButton.filled(
-                                onPressed: () {
-                                  setState(() {
-                                    _items.removeAt(index);
-                                  });
-                                },
-                                style: IconButton.styleFrom(
-                                  backgroundColor: context.colorScheme.error,
-                                  foregroundColor: context.colorScheme.onError,
-                                ),
-                                icon: const Icon(Icons.remove_circle),
-                              )
+                              ? () {
+                                setState(() {
+                                  _items.removeAt(index);
+                                });
+                              }
                               : null,
                     );
                   }).separator(const SizedBox(height: 10)).toList(),
@@ -175,21 +165,15 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                     Container(
                                       height: 40,
                                       alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                      ),
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
                                       margin: const EdgeInsets.symmetric(
                                         horizontal: 2,
                                         vertical: 3,
                                       ),
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        border: Border.all(
-                                          color: context.colorPalette.greyDAD,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          kRadiusSecondary,
-                                        ),
+                                        border: Border.all(color: context.colorPalette.greyDAD),
+                                        borderRadius: BorderRadius.circular(kRadiusSecondary),
                                       ),
                                       child: Row(
                                         children: [
@@ -202,8 +186,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                           Text(
                                             item.name,
                                             style: TextStyle(
-                                              color:
-                                                  context.colorPalette.black001,
+                                              color: context.colorPalette.black001,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
