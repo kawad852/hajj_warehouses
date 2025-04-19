@@ -79,7 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(width: 10),
             Expanded(
               child: TaskCard(
-                onTap: () {},
+                onTap: () {
+                  context.push((context) => const ReportsScreen());
+                },
                 title: "التقارير",
                 prefixIcon: MyIcons.reports,
               ),

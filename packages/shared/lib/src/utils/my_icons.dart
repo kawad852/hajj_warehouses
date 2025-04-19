@@ -50,4 +50,5 @@ class MyIcons {
   static const String attachCircle = '${_path}attach_circle.svg';
   static const String eye = '${_path}eye.svg';
   static const String currency = '${_path}currency.svg';
+  static const String shop = '${_path}shop.svg';
 }

@@ -28,4 +28,8 @@ export 'src/screens/wallet/wallet_screen.dart';
 export 'src/screens/wallet/widgets/wallet_operation.dart';
 export 'src/screens/wallet/widgets/add_money.dart';
 export 'src/screens/wallet/widgets/drag_money.dart';
+export 'src/screens/reports/reports_screen.dart';
+export 'src/screens/reports/widgets/reports_card.dart';
+export 'src/screens/reports/widgets/reports_bubble.dart';
+export 'src/screens/profile/settings_screen.dart';
 
