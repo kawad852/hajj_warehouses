@@ -16,7 +16,6 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   final List<ItemModel> _items = [];
 
   ItemModel get _itemModel => ItemModel(
-    id: kUUID,
     status: ItemStatusEnum.inStock.value,
     userId: kSelectedUserId,
     categoryId: _category.id,
@@ -36,6 +35,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
       context,
       callBack: () async {
         for (var e in _items) {
+          e.id = await e.getId();
           e.createdAt = kNowDate;
           await kFirebaseInstant.items.doc(e.id).set(e);
         }
@@ -104,12 +104,11 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       initialValue: element.name,
                       onChanged: (value) {
                         element.name = value!;
-
                         if (value.isEmpty || value.length == 1) {
                           setState(() {});
                         }
                       },
-                      onQuantityChanged: (quantity) {},
+                      onQuantityChanged: (quantity) => element.availableQuantity = quantity,
                       showRemove: _items.length > 1,
                       onRemove:
                           _items.length > 1

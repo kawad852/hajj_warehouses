@@ -15,7 +15,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
     ApiService.fetch(
       context,
       callBack: () async {
-        _order.id = await RowIdHelper.getOrderId();
+        _order.id = await RowIdHelper.getOrderId(RowIdHelper.orderId);
         _order.createdAt = kNowDate;
         _order.userId = kSelectedUserId;
 

@@ -92,7 +92,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                       onTap: () {
                         context.push((context) => ItemManagementScreen(item: item));
                       },
-                      id: "$index",
+                      id: item.id,
                       name: item.name,
                       availableQuantity: item.availableQuantity,
                       minimumQuantity: item.minimumQuantity,

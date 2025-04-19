@@ -219,7 +219,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$OrderModelImpl implements _OrderModel {
+class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
@@ -228,7 +228,7 @@ class _$OrderModelImpl implements _OrderModel {
     required this.status,
     this.urgent = false,
     required this.items,
-  });
+  }) : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderModelImplFromJson(json);
@@ -272,7 +272,7 @@ class _$OrderModelImpl implements _OrderModel {
   }
 }
 
-abstract class _OrderModel implements OrderModel {
+abstract class _OrderModel extends OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
@@ -282,6 +282,7 @@ abstract class _OrderModel implements OrderModel {
     bool urgent,
     required List<LightItemModel> items,
   }) = _$OrderModelImpl;
+  _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$OrderModelImpl.fromJson;

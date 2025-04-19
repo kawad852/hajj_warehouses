@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../helper/time_stamp_serializer.dart';
-import '../../utils/app_constants.dart';
+import '../../../shared.dart';
 
 part 'category_model.freezed.dart';
 part 'category_model.g.dart';
@@ -20,6 +19,10 @@ class CategoryModel with _$CategoryModel {
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
+
+  CategoryModel._();
+
+  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
 }
 
 @unfreezed

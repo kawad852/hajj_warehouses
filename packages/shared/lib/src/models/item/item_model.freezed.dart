@@ -232,7 +232,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ItemModelImpl implements _ItemModel {
+class _$ItemModelImpl extends _ItemModel {
   _$ItemModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
@@ -242,7 +242,7 @@ class _$ItemModelImpl implements _ItemModel {
     this.status = '',
     this.availableQuantity = 0,
     this.minimumQuantity = 0,
-  });
+  }) : super._();
 
   factory _$ItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemModelImplFromJson(json);
@@ -291,7 +291,7 @@ class _$ItemModelImpl implements _ItemModel {
   }
 }
 
-abstract class _ItemModel implements ItemModel {
+abstract class _ItemModel extends ItemModel {
   factory _ItemModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
@@ -302,6 +302,7 @@ abstract class _ItemModel implements ItemModel {
     int availableQuantity,
     int minimumQuantity,
   }) = _$ItemModelImpl;
+  _ItemModel._() : super._();
 
   factory _ItemModel.fromJson(Map<String, dynamic> json) =
       _$ItemModelImpl.fromJson;
