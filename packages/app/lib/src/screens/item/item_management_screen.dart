@@ -27,6 +27,20 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
     );
   }
 
+  void _openSheet(
+    BuildContext context, {
+    required int availableQuantity,
+    required String operationType,
+  }) {
+    context.showBottomSheet(
+      context,
+
+      builder: (context) {
+        return OperationSheet(availableQuantity: availableQuantity);
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -88,14 +102,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 3,
                           child: ManageButton(
                             onTap: () {
-                              context.showBottomSheet(
+                              _openSheet(
                                 context,
-                                maxHeight: context.mediaQuery.height * 0.65,
-                                builder: (context) {
-                                  return AddQuantitySheet(
-                                    availableQuantity: item.availableQuantity,
-                                  );
-                                },
+                                availableQuantity: item.availableQuantity,
+                                operationType: OperationType.add.value,
                               );
                             },
                             title: "اضافة كمية",
