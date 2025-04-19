@@ -12,6 +12,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @Default('') String id,
     @Default('') String type,
     @Default('') String displayName,
+    @Default([]) List<LightItemModel> items,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>
