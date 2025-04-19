@@ -95,7 +95,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 50),
             Text(
               "مشروحات وملاحظات حول الطلب",
               style: TextStyle(
@@ -110,6 +110,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 onChanged: (value) => _order.note = value,
                 filled: true,
                 fillColor: Colors.transparent,
+                maxLines: 3,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: context.colorPalette.greyBDB),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
