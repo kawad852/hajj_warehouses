@@ -65,7 +65,7 @@ class _DragMoneyState extends State<DragMoney> {
               ),
             ),
           ),
-          AttachImage(onTap: () {}, title: "ارفاق صورة للفاتورة"),
+          ImagesAttacher(onTap: () {}, title: "ارفاق صورة للفاتورة"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},

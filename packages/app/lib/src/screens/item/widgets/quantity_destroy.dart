@@ -112,7 +112,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               ),
             ),
           ),
-          AttachImage(onTap: () {}, title: " ارفاق صور للمواد التي سيتم اتلافها"),
+          ImagesAttacher(onTap: () {}, title: " ارفاق صور للمواد التي سيتم اتلافها"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},

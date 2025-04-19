@@ -140,7 +140,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
             ),
-            AttachImage(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
+            ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
           ],
         ),
       ),

@@ -117,7 +117,7 @@ class _AddMoneyState extends State<AddMoney> {
               ),
             ),
           ),
-          AttachImage(onTap: () {}, title: "ارفاق صورة لسند التسليم او الحوالة"),
+          ImagesAttacher(onTap: () {}, title: "ارفاق صورة لسند التسليم او الحوالة"),
           const Spacer(),
           StretchedButton(
             onPressed: () {},

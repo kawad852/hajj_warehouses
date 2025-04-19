@@ -77,7 +77,6 @@ export 'src/utils/providers_extension.dart';
 //utils
 export 'src/utils/shared_pref.dart';
 export 'src/widgets/app_bar_text.dart';
-export 'src/widgets/attach_image.dart';
 export 'src/widgets/base_network_image.dart';
 export 'src/widgets/bottom_button.dart';
 export 'src/widgets/buttons/remove_button.dart';
@@ -98,6 +97,7 @@ export 'src/widgets/fire_animated_search_bar.dart';
 export 'src/widgets/fp_loading.dart';
 export 'src/widgets/future_builders/impeded_future_builder.dart';
 export 'src/widgets/header_tile.dart';
+export 'src/widgets/images_attacher.dart';
 export 'src/widgets/item_table_cell.dart';
 export 'src/widgets/item_table_header.dart';
 export 'src/widgets/materials_table/custom_line.dart';
