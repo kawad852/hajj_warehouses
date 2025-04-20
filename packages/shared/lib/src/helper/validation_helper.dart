@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shared/shared.dart';
 
 class ValidationHelper {
@@ -12,6 +11,7 @@ class ValidationHelper {
     }
     return null;
   }
+
   //
   // static String? email(BuildContext context, String? value) {
   //   if (value!.isEmpty) {
@@ -31,21 +31,21 @@ class ValidationHelper {
   //   return null;
   // }
   //
-  // static String? numberInt(BuildContext context, String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     return context.appLocalization.requiredField;
-  //   } else if (!intNumberRegex.hasMatch(value)) {
-  //     return context.appLocalization.invalidNumber;
-  //   }
-  //   return null;
-  // }
+  static String? numberInt(BuildContext context, String? value) {
+    if (value == null || value.isEmpty) {
+      return context.appLocalization.requiredField;
+    } else if (!intNumberRegex.hasMatch(value)) {
+      return "invalidNumber";
+    }
+    return null;
+  }
 
   static String? password(BuildContext context, String? value) {
     if (value!.isEmpty) {
       return context.appLocalization.requiredField;
     } else if (value.length < 6) {
       return "كلمة المرور قصيرة جدا";
-    }//context.appLocalization.passwordTooShort
+    } //context.appLocalization.passwordTooShort
     return null;
   }
 }

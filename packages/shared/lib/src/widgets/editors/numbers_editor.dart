@@ -64,12 +64,12 @@ class NumbersEditor extends StatelessWidget {
           onChanged(int.parse(value));
         }
       },
-      // validator: (value) {
-      //   if (required && (value == null || value.isEmpty)) {
-      //     return null;
-      //   }
-      //   return ValidationHelper.numberInt(context, value);
-      // },
+      validator: (value) {
+        if (required && (value == null || value.isEmpty)) {
+          return null;
+        }
+        return ValidationHelper.numberInt(context, value);
+      },
     );
   }
 }

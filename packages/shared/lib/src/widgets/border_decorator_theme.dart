@@ -17,6 +17,10 @@ class BorderDecoratorTheme extends StatelessWidget {
           filled: false,
           enabledBorder: border,
           focusedBorder: border,
+          errorBorder: border,
+          focusedErrorBorder: border.copyWith(
+            borderSide: BorderSide(color: context.colorScheme.error),
+          ),
         ),
       ),
       child: child,
