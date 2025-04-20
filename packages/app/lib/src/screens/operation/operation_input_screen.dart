@@ -41,12 +41,15 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              info.title,
-              style: TextStyle(
-                color: context.colorPalette.black001,
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
+            Center(
+              child: Text(
+                info.title,
+                style: TextStyle(
+                  color: context.colorPalette.black001,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             CounterWidget(initialValue: widget.availableQuantity, onChanged: (value) {}),
