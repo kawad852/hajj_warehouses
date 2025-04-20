@@ -47,8 +47,6 @@ mixin _$InventoryOperationModel {
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
-  bool get urgentSupply => throw _privateConstructorUsedError;
-  set urgentSupply(bool value) => throw _privateConstructorUsedError;
 
   /// Serializes this InventoryOperationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -79,7 +77,6 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool urgentSupply,
   });
 }
 
@@ -112,7 +109,6 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? quantity = null,
     Object? items = null,
     Object? images = null,
-    Object? urgentSupply = null,
   }) {
     return _then(
       _value.copyWith(
@@ -171,11 +167,6 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.images
                     : images // ignore: cast_nullable_to_non_nullable
                         as List<String>,
-            urgentSupply:
-                null == urgentSupply
-                    ? _value.urgentSupply
-                    : urgentSupply // ignore: cast_nullable_to_non_nullable
-                        as bool,
           )
           as $Val,
     );
@@ -203,7 +194,6 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool urgentSupply,
   });
 }
 
@@ -236,7 +226,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? items = null,
     Object? images = null,
-    Object? urgentSupply = null,
   }) {
     return _then(
       _$InventoryOperationModelImpl(
@@ -295,11 +284,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.images
                 : images // ignore: cast_nullable_to_non_nullable
                     as List<String>,
-        urgentSupply:
-            null == urgentSupply
-                ? _value.urgentSupply
-                : urgentSupply // ignore: cast_nullable_to_non_nullable
-                    as bool,
       ),
     );
   }
@@ -320,7 +304,6 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.quantity = 0,
     this.items = const [],
     this.images = const [],
-    this.urgentSupply = false,
   });
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -357,13 +340,10 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @override
   @JsonKey()
   List<String> images;
-  @override
-  @JsonKey()
-  bool urgentSupply;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images, urgentSupply: $urgentSupply)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -395,7 +375,6 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool urgentSupply,
   }) = _$InventoryOperationModelImpl;
 
   factory _InventoryOperationModel.fromJson(Map<String, dynamic> json) =
@@ -436,9 +415,6 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   @override
   List<String> get images;
   set images(List<String> value);
-  @override
-  bool get urgentSupply;
-  set urgentSupply(bool value);
 
   /// Create a copy of InventoryOperationModel
   /// with the given fields replaced by the non-null parameter values.

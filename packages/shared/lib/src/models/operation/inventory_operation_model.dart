@@ -19,7 +19,6 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @Default(0) int quantity,
     @Default([]) List<LightItemModel> items,
     @Default([]) List<String> images,
-    @Default(false) bool urgentSupply,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>

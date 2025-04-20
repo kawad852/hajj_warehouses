@@ -15,10 +15,24 @@ class OperationInputScreen extends StatefulWidget {
 }
 
 class _OperationInputScreenState extends State<OperationInputScreen> {
-  int? _groupValue = 1;
   late InventoryOperationModel _operation;
 
   OperationType get _operationType => widget.operationType;
+  bool get _isAddOperation => _operationType == OperationType.add;
+  bool get _isSupplyOperation => _operationType == OperationType.supply;
+  bool get _isDestroyOperation => _operationType == OperationType.destroy;
+
+  String get _radioGroupValue {
+    if (_isAddOperation) {
+      return _operation.supplyType;
+    } else if (_isSupplyOperation) {
+      return _operation.supplyType;
+    } else if (_isDestroyOperation) {
+      return _operation.destroyReason;
+    } else {
+      throw "";
+    }
+  }
 
   Widget _builderImageAttacher() {
     return ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام");
@@ -64,12 +78,18 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 children:
                     info.radio.items.map((e) {
                       return CustomRadio(
-                        value: 0,
-                        title: "مشتريات ذاتية",
-                        groupValue: _groupValue,
+                        value: e.value,
+                        title: e.label,
+                        groupValue: _radioGroupValue,
                         onChanged: (value) {
                           setState(() {
-                            _groupValue = value;
+                            if (_isAddOperation) {
+                              _operation.supplyType = value!;
+                            } else if (_isSupplyOperation) {
+                              _operation.supplyType = value!;
+                            } else if (_isDestroyOperation) {
+                              _operation.destroyReason = value!;
+                            }
                           });
                         },
                       );
