@@ -20,6 +20,14 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
 
   OperationType get _operationType => widget.operationType;
 
+  Widget _builderImageAttacher() {
+    return ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام");
+  }
+
+  Widget _buildNotesEditor() {
+    return BorderDecoratorTheme(child: TextEditor(onChanged: (value) {}, maxLines: 4));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -73,29 +81,54 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
             ],
 
-            Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 10),
-              child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
-            ),
-            BorderDecoratorTheme(
-              child: NumbersEditor(
-                initialValue: widget.availableQuantity,
-                onChanged: (value) {},
-                textAlign: TextAlign.center,
-                suffixIcon: Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Text(
-                    "ريال",
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
+            if (_operationType == OperationType.add) ...[
+              const Padding(
+                padding: EdgeInsets.only(top: 20, bottom: 10),
+                child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
+              ),
+              BorderDecoratorTheme(
+                child: NumbersEditor(
+                  initialValue: widget.availableQuantity,
+                  onChanged: (value) {},
+                  textAlign: TextAlign.center,
+                  suffixIcon: Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Text(
+                      "ريال",
+                      style: TextStyle(
+                        color: context.colorPalette.black001,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
+              _builderImageAttacher(),
+            ],
+
+            if (_operationType == OperationType.supply ||
+                _operationType == OperationType.destroy) ...[
+              SizedBox(height: _operationType == OperationType.supply ? 50 : 30),
+              EditorLabel("مشروحات وملاحظات حول الطلب"),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _buildNotesEditor(),
+              ),
+            ],
+
+            if (_operationType == OperationType.destroy) ...[
+              SizedBox(height: 10),
+              Text(
+                "يجب ان توضح الصور سبب اتلاف الأصناف",
+                style: TextStyle(
+                  color: context.colorPalette.grey666,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              _builderImageAttacher(),
+            ],
           ],
         ),
       ),
