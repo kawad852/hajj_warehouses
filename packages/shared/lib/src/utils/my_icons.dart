@@ -51,4 +51,7 @@ class MyIcons {
   static const String eye = '${_path}eye.svg';
   static const String currency = '${_path}currency.svg';
   static const String shop = '${_path}shop.svg';
+  static const String checkSolid = '${_path}check_solid.svg';
+  static const String clockSolid = '${_path}clock_solid.svg';
+  static const String plusWhite = '${_path}plus_white.svg';
 }

@@ -24,6 +24,8 @@ class TitledTextField extends StatelessWidget {
           title,
           style: textStyle ?? context.textTheme.bodySmall!.copyWith(
             fontSize: 14,
+            fontWeight: FontWeight.w800,
+            color: context.colorPalette.black001,
           ),
         ),
         const SizedBox(height: 3),
