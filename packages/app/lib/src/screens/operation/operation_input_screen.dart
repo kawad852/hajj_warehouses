@@ -24,10 +24,6 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
     return ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام");
   }
 
-  Widget _buildNotesEditor() {
-    return BorderDecoratorTheme(child: TextEditor(onChanged: (value) {}, maxLines: 4));
-  }
-
   @override
   void initState() {
     super.initState();
@@ -113,7 +109,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               EditorLabel("مشروحات وملاحظات حول الطلب"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: _buildNotesEditor(),
+                child: BorderDecoratorTheme(child: TextEditor(onChanged: (value) {}, maxLines: 4)),
               ),
             ],
 
