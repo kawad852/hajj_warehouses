@@ -78,6 +78,7 @@ export 'src/utils/providers_extension.dart';
 export 'src/utils/shared_pref.dart';
 export 'src/widgets/app_bar_text.dart';
 export 'src/widgets/base_network_image.dart';
+export 'src/widgets/border_decorator_theme.dart';
 export 'src/widgets/bottom_button.dart';
 export 'src/widgets/buttons/remove_button.dart';
 export 'src/widgets/counter_widget.dart';

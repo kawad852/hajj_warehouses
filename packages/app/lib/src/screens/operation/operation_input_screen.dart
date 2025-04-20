@@ -74,31 +74,22 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               padding: const EdgeInsets.only(top: 20, bottom: 10),
               child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
             ),
-            BaseEditor(
-              initialValue: widget.availableQuantity.toString(),
-              onChanged: (value) {},
-              filled: true,
-              fillColor: Colors.transparent,
-              textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
-              suffixIcon: Padding(
-                padding: const EdgeInsetsDirectional.only(end: 10, top: 10),
-                child: Text(
-                  "ريال",
-                  style: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+            BorderDecoratorTheme(
+              child: NumbersEditor(
+                initialValue: widget.availableQuantity,
+                onChanged: (value) {},
+                textAlign: TextAlign.center,
+                suffixIcon: Align(
+                  alignment: AlignmentDirectional.center,
+                  child: Text(
+                    "ريال",
+                    style: TextStyle(
+                      color: context.colorPalette.black001,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.colorPalette.greyBDB),
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.colorPalette.greyBDB),
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
             ),
             ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
