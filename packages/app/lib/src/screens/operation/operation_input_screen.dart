@@ -106,7 +106,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             if (_operationType == OperationType.supply ||
                 _operationType == OperationType.destroy) ...[
               SizedBox(height: _operationType == OperationType.supply ? 50 : 30),
-              EditorLabel("مشروحات وملاحظات حول الطلب"),
+              const EditorLabel("مشروحات وملاحظات حول الطلب"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: BorderDecoratorTheme(child: TextEditor(onChanged: (value) {}, maxLines: 4)),
@@ -114,7 +114,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             ],
 
             if (_operationType == OperationType.destroy) ...[
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 "يجب ان توضح الصور سبب اتلاف الأصناف",
                 style: TextStyle(
