@@ -12,13 +12,14 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @Default('') String id,
     @Default('') String displayName,
     @Default('') String notes,
+    @Default("") String destroyReason,
     required String operationType,
     required String supplyType,
     @Default(0.0) double totalPayment,
     @Default(0) int quantity,
     @Default([]) List<LightItemModel> items,
     @Default([]) List<String> images,
-    @Default(false) bool isUrgent,
+    @Default(false) bool urgentSupply,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>

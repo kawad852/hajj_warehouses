@@ -33,6 +33,8 @@ mixin _$InventoryOperationModel {
   set displayName(String value) => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
   set notes(String value) => throw _privateConstructorUsedError;
+  String get destroyReason => throw _privateConstructorUsedError;
+  set destroyReason(String value) => throw _privateConstructorUsedError;
   String get operationType => throw _privateConstructorUsedError;
   set operationType(String value) => throw _privateConstructorUsedError;
   String get supplyType => throw _privateConstructorUsedError;
@@ -45,8 +47,8 @@ mixin _$InventoryOperationModel {
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
-  bool get isUrgent => throw _privateConstructorUsedError;
-  set isUrgent(bool value) => throw _privateConstructorUsedError;
+  bool get urgentSupply => throw _privateConstructorUsedError;
+  set urgentSupply(bool value) => throw _privateConstructorUsedError;
 
   /// Serializes this InventoryOperationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,13 +72,14 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     String id,
     String displayName,
     String notes,
+    String destroyReason,
     String operationType,
     String supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool isUrgent,
+    bool urgentSupply,
   });
 }
 
@@ -102,13 +105,14 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? id = null,
     Object? displayName = null,
     Object? notes = null,
+    Object? destroyReason = null,
     Object? operationType = null,
     Object? supplyType = null,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
     Object? images = null,
-    Object? isUrgent = null,
+    Object? urgentSupply = null,
   }) {
     return _then(
       _value.copyWith(
@@ -131,6 +135,11 @@ class _$InventoryOperationModelCopyWithImpl<
                 null == notes
                     ? _value.notes
                     : notes // ignore: cast_nullable_to_non_nullable
+                        as String,
+            destroyReason:
+                null == destroyReason
+                    ? _value.destroyReason
+                    : destroyReason // ignore: cast_nullable_to_non_nullable
                         as String,
             operationType:
                 null == operationType
@@ -162,10 +171,10 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.images
                     : images // ignore: cast_nullable_to_non_nullable
                         as List<String>,
-            isUrgent:
-                null == isUrgent
-                    ? _value.isUrgent
-                    : isUrgent // ignore: cast_nullable_to_non_nullable
+            urgentSupply:
+                null == urgentSupply
+                    ? _value.urgentSupply
+                    : urgentSupply // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -187,13 +196,14 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     String id,
     String displayName,
     String notes,
+    String destroyReason,
     String operationType,
     String supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool isUrgent,
+    bool urgentSupply,
   });
 }
 
@@ -219,13 +229,14 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? displayName = null,
     Object? notes = null,
+    Object? destroyReason = null,
     Object? operationType = null,
     Object? supplyType = null,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
     Object? images = null,
-    Object? isUrgent = null,
+    Object? urgentSupply = null,
   }) {
     return _then(
       _$InventoryOperationModelImpl(
@@ -248,6 +259,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
             null == notes
                 ? _value.notes
                 : notes // ignore: cast_nullable_to_non_nullable
+                    as String,
+        destroyReason:
+            null == destroyReason
+                ? _value.destroyReason
+                : destroyReason // ignore: cast_nullable_to_non_nullable
                     as String,
         operationType:
             null == operationType
@@ -279,10 +295,10 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.images
                 : images // ignore: cast_nullable_to_non_nullable
                     as List<String>,
-        isUrgent:
-            null == isUrgent
-                ? _value.isUrgent
-                : isUrgent // ignore: cast_nullable_to_non_nullable
+        urgentSupply:
+            null == urgentSupply
+                ? _value.urgentSupply
+                : urgentSupply // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -297,13 +313,14 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.id = '',
     this.displayName = '',
     this.notes = '',
+    this.destroyReason = "",
     required this.operationType,
     required this.supplyType,
     this.totalPayment = 0.0,
     this.quantity = 0,
     this.items = const [],
     this.images = const [],
-    this.isUrgent = false,
+    this.urgentSupply = false,
   });
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -322,6 +339,9 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   String notes;
   @override
+  @JsonKey()
+  String destroyReason;
+  @override
   String operationType;
   @override
   String supplyType;
@@ -339,11 +359,11 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   List<String> images;
   @override
   @JsonKey()
-  bool isUrgent;
+  bool urgentSupply;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images, isUrgent: $isUrgent)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images, urgentSupply: $urgentSupply)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -368,13 +388,14 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     String id,
     String displayName,
     String notes,
+    String destroyReason,
     required String operationType,
     required String supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
     List<String> images,
-    bool isUrgent,
+    bool urgentSupply,
   }) = _$InventoryOperationModelImpl;
 
   factory _InventoryOperationModel.fromJson(Map<String, dynamic> json) =
@@ -395,6 +416,9 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   String get notes;
   set notes(String value);
   @override
+  String get destroyReason;
+  set destroyReason(String value);
+  @override
   String get operationType;
   set operationType(String value);
   @override
@@ -413,8 +437,8 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   List<String> get images;
   set images(List<String> value);
   @override
-  bool get isUrgent;
-  set isUrgent(bool value);
+  bool get urgentSupply;
+  set urgentSupply(bool value);
 
   /// Create a copy of InventoryOperationModel
   /// with the given fields replaced by the non-null parameter values.

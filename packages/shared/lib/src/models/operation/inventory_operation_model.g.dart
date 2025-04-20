@@ -13,6 +13,7 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   id: json['id'] as String? ?? '',
   displayName: json['displayName'] as String? ?? '',
   notes: json['notes'] as String? ?? '',
+  destroyReason: json['destroyReason'] as String? ?? "",
   operationType: json['operationType'] as String,
   supplyType: json['supplyType'] as String,
   totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
@@ -25,7 +26,7 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
-  isUrgent: json['isUrgent'] as bool? ?? false,
+  urgentSupply: json['urgentSupply'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$$InventoryOperationModelImplToJson(
@@ -35,11 +36,12 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'id': instance.id,
   'displayName': instance.displayName,
   'notes': instance.notes,
+  'destroyReason': instance.destroyReason,
   'operationType': instance.operationType,
   'supplyType': instance.supplyType,
   'totalPayment': instance.totalPayment,
   'quantity': instance.quantity,
   'items': instance.items,
   'images': instance.images,
-  'isUrgent': instance.isUrgent,
+  'urgentSupply': instance.urgentSupply,
 };
