@@ -9,6 +9,7 @@ export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:image_picker/image_picker.dart';
 export 'package:provider/provider.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:timelines_plus/timelines_plus.dart';

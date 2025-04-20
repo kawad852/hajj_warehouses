@@ -35,7 +35,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   }
 
   Widget _builderImageAttacher() {
-    return ImagesAttacher(onTap: () {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام");
+    return ImagesAttacher(onChanged: (path) {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام");
   }
 
   @override
@@ -104,8 +104,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
               BorderDecoratorTheme(
                 child: NumbersEditor(
-                  initialValue: widget.availableQuantity,
-                  onChanged: (value) {},
+                  onChanged: (value) => _operation.quantity = value!,
                   textAlign: TextAlign.center,
                   suffixIcon: Align(
                     alignment: AlignmentDirectional.center,
@@ -129,7 +128,14 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               const EditorLabel("مشروحات وملاحظات حول الطلب"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: BorderDecoratorTheme(child: TextEditor(onChanged: (value) {}, maxLines: 4)),
+                child: BorderDecoratorTheme(
+                  child: TextEditor(
+                    onChanged: (value) {
+                      _operation.notes = value!;
+                    },
+                    maxLines: 4,
+                  ),
+                ),
               ),
             ],
 

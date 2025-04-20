@@ -26,7 +26,7 @@ class _DestroyingItemsScreenState extends State<DestroyingItemsScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            ImagesAttacher(onTap: () {}, title: "ارفاق صور للمواد التي سيتم اتلافها"),
+            ImagesAttacher(onChanged: (path) {}, title: "ارفاق صور للمواد التي سيتم اتلافها"),
             StretchedButton(
               onPressed: () {},
               child: Text(
