@@ -92,7 +92,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                         }
                         final element = _items[index];
                         return AddItemWidget(
-                          key: ValueKey(element.id),
+                          // key: ValueKey(element.id),
                           initialValue: element.name,
                           onChanged: (value) {
                             element.name = value!;

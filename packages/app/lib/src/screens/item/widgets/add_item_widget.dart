@@ -80,6 +80,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
                     setState(() {
                       _quantity = value!;
                     });
+                    widget.onQuantityChanged(_quantity);
                   },
                 ),
               ),
