@@ -101,6 +101,7 @@ class BaseEditor extends StatelessWidget {
         filled: filled,
         fillColor: fillColor,
         suffixText: suffixText,
+
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

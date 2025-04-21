@@ -28,16 +28,13 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
 
   void _openSheet(
     BuildContext context, {
-    required int availableQuantity,
+    required ItemModel item,
     required OperationType operationType,
   }) {
     context.showBottomSheet(
       context,
       builder: (context) {
-        return OperationInputScreen(
-          availableQuantity: availableQuantity,
-          operationType: operationType,
-        );
+        return OperationInputScreen(item: item, operationType: operationType);
       },
     );
   }
@@ -103,11 +100,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 3,
                           child: ManageButton(
                             onTap: () {
-                              _openSheet(
-                                context,
-                                availableQuantity: item.availableQuantity,
-                                operationType: OperationType.add,
-                              );
+                              _openSheet(context, item: item, operationType: OperationType.add);
                             },
                             title: "اضافة كمية",
                             iconWidth: 20,
@@ -119,11 +112,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 3,
                           child: ManageButton(
                             onTap: () {
-                              _openSheet(
-                                context,
-                                availableQuantity: item.availableQuantity,
-                                operationType: OperationType.supply,
-                              );
+                              _openSheet(context, item: item, operationType: OperationType.supply);
                             },
                             title: "طلب تزويد",
                             icon: MyIcons.truckTime,
@@ -134,11 +123,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 4,
                           child: ManageButton(
                             onTap: () {
-                              _openSheet(
-                                context,
-                                availableQuantity: item.availableQuantity,
-                                operationType: OperationType.destroy,
-                              );
+                              _openSheet(context, item: item, operationType: OperationType.destroy);
                             },
                             title: "إتلاف اصناف",
                             backgroundColor: context.colorPalette.redC33,

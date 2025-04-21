@@ -22,14 +22,15 @@ class ValidationHelper {
   //   return null;
   // }
   //
-  // static String? numbers(BuildContext context, String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     return context.appLocalization.requiredField;
-  //   } else if (!decimalNumbersRegex.hasMatch(value)) {
-  //     return context.appLocalization.invalidNumber;
-  //   }
-  //   return null;
-  // }
+  static String? numbers(BuildContext context, String? value) {
+    if (value == null || value.isEmpty) {
+      return context.appLocalization.requiredField;
+    } else if (!decimalNumbersRegex.hasMatch(value)) {
+      return "invalidNumber";
+    }
+    return null;
+  }
+
   //
   static String? numberInt(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {

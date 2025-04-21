@@ -33,12 +33,14 @@ mixin _$InventoryOperationModel {
   set displayName(String value) => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   set notes(String? value) => throw _privateConstructorUsedError;
+  String? get supplyType => throw _privateConstructorUsedError;
+  set supplyType(String? value) => throw _privateConstructorUsedError;
+  String? get requestType => throw _privateConstructorUsedError;
+  set requestType(String? value) => throw _privateConstructorUsedError;
   String? get destroyReason => throw _privateConstructorUsedError;
   set destroyReason(String? value) => throw _privateConstructorUsedError;
   String get operationType => throw _privateConstructorUsedError;
   set operationType(String value) => throw _privateConstructorUsedError;
-  String? get supplyType => throw _privateConstructorUsedError;
-  set supplyType(String? value) => throw _privateConstructorUsedError;
   double get totalPayment => throw _privateConstructorUsedError;
   set totalPayment(double value) => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
@@ -72,9 +74,10 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     String id,
     String displayName,
     String? notes,
+    String? supplyType,
+    String? requestType,
     String? destroyReason,
     String operationType,
-    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -105,9 +108,10 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? id = null,
     Object? displayName = null,
     Object? notes = freezed,
+    Object? supplyType = freezed,
+    Object? requestType = freezed,
     Object? destroyReason = freezed,
     Object? operationType = null,
-    Object? supplyType = freezed,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
@@ -136,6 +140,16 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.notes
                     : notes // ignore: cast_nullable_to_non_nullable
                         as String?,
+            supplyType:
+                freezed == supplyType
+                    ? _value.supplyType
+                    : supplyType // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            requestType:
+                freezed == requestType
+                    ? _value.requestType
+                    : requestType // ignore: cast_nullable_to_non_nullable
+                        as String?,
             destroyReason:
                 freezed == destroyReason
                     ? _value.destroyReason
@@ -146,11 +160,6 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.operationType
                     : operationType // ignore: cast_nullable_to_non_nullable
                         as String,
-            supplyType:
-                freezed == supplyType
-                    ? _value.supplyType
-                    : supplyType // ignore: cast_nullable_to_non_nullable
-                        as String?,
             totalPayment:
                 null == totalPayment
                     ? _value.totalPayment
@@ -196,9 +205,10 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     String id,
     String displayName,
     String? notes,
+    String? supplyType,
+    String? requestType,
     String? destroyReason,
     String operationType,
-    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -229,9 +239,10 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? displayName = null,
     Object? notes = freezed,
+    Object? supplyType = freezed,
+    Object? requestType = freezed,
     Object? destroyReason = freezed,
     Object? operationType = null,
-    Object? supplyType = freezed,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
@@ -260,6 +271,16 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.notes
                 : notes // ignore: cast_nullable_to_non_nullable
                     as String?,
+        supplyType:
+            freezed == supplyType
+                ? _value.supplyType
+                : supplyType // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        requestType:
+            freezed == requestType
+                ? _value.requestType
+                : requestType // ignore: cast_nullable_to_non_nullable
+                    as String?,
         destroyReason:
             freezed == destroyReason
                 ? _value.destroyReason
@@ -270,11 +291,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.operationType
                 : operationType // ignore: cast_nullable_to_non_nullable
                     as String,
-        supplyType:
-            freezed == supplyType
-                ? _value.supplyType
-                : supplyType // ignore: cast_nullable_to_non_nullable
-                    as String?,
         totalPayment:
             null == totalPayment
                 ? _value.totalPayment
@@ -314,9 +330,10 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.id = '',
     this.displayName = '',
     this.notes,
+    this.supplyType,
+    this.requestType,
     this.destroyReason,
     required this.operationType,
-    this.supplyType,
     this.totalPayment = 0.0,
     this.quantity = 0,
     this.items = const [],
@@ -339,11 +356,13 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @override
   String? notes;
   @override
+  String? supplyType;
+  @override
+  String? requestType;
+  @override
   String? destroyReason;
   @override
   String operationType;
-  @override
-  String? supplyType;
   @override
   @JsonKey()
   double totalPayment;
@@ -362,7 +381,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -387,9 +406,10 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     String id,
     String displayName,
     String? notes,
+    String? supplyType,
+    String? requestType,
     String? destroyReason,
     required String operationType,
-    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -415,14 +435,17 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   String? get notes;
   set notes(String? value);
   @override
+  String? get supplyType;
+  set supplyType(String? value);
+  @override
+  String? get requestType;
+  set requestType(String? value);
+  @override
   String? get destroyReason;
   set destroyReason(String? value);
   @override
   String get operationType;
   set operationType(String value);
-  @override
-  String? get supplyType;
-  set supplyType(String? value);
   @override
   double get totalPayment;
   set totalPayment(double value);
