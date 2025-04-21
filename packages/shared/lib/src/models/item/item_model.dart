@@ -15,7 +15,8 @@ class ItemModel with _$ItemModel {
     @Default('') String categoryId,
     @Default('') String status,
     @Default(0) int availableQuantity,
-    @Default(kItemLimitThreshold) int minimumQuantity,
+    @Default(0) int minimumQuantity,
+    @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool suggested,
   }) = _ItemModel;
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);
@@ -30,7 +31,7 @@ class LightItemModel with _$LightItemModel {
   factory LightItemModel({
     @Default('') String id,
     @Default('') String name,
-    @Default('') String quantity,
+    @Default(0) int quantity,
   }) = _LightItemModel;
 
   factory LightItemModel.fromJson(Map<String, dynamic> json) => _$LightItemModelFromJson(json);

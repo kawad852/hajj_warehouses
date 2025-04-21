@@ -12,10 +12,10 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   createdAt: const TimestampSerializer().fromJson(json['createdAt']),
   id: json['id'] as String? ?? '',
   displayName: json['displayName'] as String? ?? '',
-  notes: json['notes'] as String? ?? '',
-  destroyReason: json['destroyReason'] as String? ?? "",
+  notes: json['notes'] as String?,
+  destroyReason: json['destroyReason'] as String?,
   operationType: json['operationType'] as String,
-  supplyType: json['supplyType'] as String,
+  supplyType: json['supplyType'] as String?,
   totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
   quantity: (json['quantity'] as num?)?.toInt() ?? 0,
   items:
@@ -40,6 +40,6 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'supplyType': instance.supplyType,
   'totalPayment': instance.totalPayment,
   'quantity': instance.quantity,
-  'items': instance.items,
+  'items': instance.items.map((e) => e.toJson()).toList(),
   'images': instance.images,
 };

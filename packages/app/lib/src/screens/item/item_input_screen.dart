@@ -30,33 +30,46 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
-  String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
-    if (availableQuantity <= 0) {
-      return ItemStatusEnum.outOfStock.value;
-    } else if (availableQuantity < minimumQuantity) {
-      return ItemStatusEnum.needsRestock.value;
-    } else if (availableQuantity > minimumQuantity + kItemLimitThreshold) {
-      return ItemStatusEnum.lowStock.value;
-    } else {
-      return ItemStatusEnum.inStock.value;
-    }
-  }
+  // String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
+  //   if (availableQuantity <= 0) {
+  //     return ItemStatusEnum.outOfStock.value;
+  //   } else if (availableQuantity < minimumQuantity) {
+  //     return ItemStatusEnum.needsRestock.value;
+  //   } else if (availableQuantity > minimumQuantity + kItemLimitThreshold) {
+  //     return ItemStatusEnum.lowStock.value;
+  //   } else {
+  //     return ItemStatusEnum.inStock.value;
+  //   }
+  // }
 
   void _onAdd(BuildContext context) {
     ApiService.fetch(
       context,
       callBack: () async {
+        final batch = kFirebaseInstant.batch();
         for (var e in _items) {
           e.id = await e.getId();
           e.createdAt = kNowDate;
-          e.status = _getItemStatus(
-            availableQuantity: e.availableQuantity,
-            minimumQuantity: e.minimumQuantity,
-          );
-          await kFirebaseInstant.items.doc(e.id).set(e);
+          e.status = ItemStatusEnum.outOfStock.value;
+          final itemDoc = kFirebaseInstant.items.doc(e.id);
+          batch.set(itemDoc, e);
         }
+        final operationDocREF = BranchQueries.inventoryOperations.doc();
+        final operation = InventoryOperationModel(
+          createdAt: kNowDate,
+          id: operationDocREF.id,
+          displayName: MySharedPreferences.user!.displayName!,
+          operationType: OperationType.create.value,
+          items:
+              _items
+                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .toList(),
+        );
+        print("operation: $operation");
+        batch.set(operationDocREF, operation);
+        await batch.commit();
         if (context.mounted) {
-          Fluttertoast.showToast(msg: context.appLocalization.successfullyUpdated);
+          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
           context.pop();
         }
       },
@@ -82,84 +95,92 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   _onAdd(context);
                 },
       ),
-
       appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).copyWith(top: 0),
-              child: Text(
-                "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
-                style: TextStyle(
-                  color: context.colorPalette.grey666,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            sliver: SliverList.list(
-              children:
-                  List.generate(_items.length + 1, (index) {
-                    if (index == _items.length) {
-                      return IconButton.filled(
-                        onPressed: () {
-                          setState(() {
-                            _items.add(_itemModel);
-                          });
-                        },
-                        icon: const Icon(Icons.add),
-                      );
-                    }
-                    final element = _items[index];
-                    return AddItemWidget(
-                      key: ValueKey(element.id),
-                      initialValue: element.name,
-                      onChanged: (value) {
-                        element.name = value!;
-                        if (value.isEmpty || value.length == 1) {
-                          setState(() {});
-                        }
-                      },
-                      onQuantityChanged: (quantity) => element.availableQuantity = quantity,
-                      showRemove: _items.length > 1,
-                      onRemove:
-                          _items.length > 1
-                              ? () {
-                                setState(() {
-                                  _items.removeAt(index);
-                                });
-                              }
-                              : null,
-                    );
-                  }).separator(const SizedBox(height: 10)).toList(),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            sliver: SliverMainAxisGroup(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "مقترحات",
-                      style: TextStyle(
-                        color: context.colorPalette.black001,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                      ),
+      body: CustomFirestoreQueryBuilder(
+        query: _suggestionsQuery,
+        onComplete: (context, snapshot) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 10,
+                  ).copyWith(top: 0),
+                  child: Text(
+                    "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
+                    style: TextStyle(
+                      color: context.colorPalette.grey666,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: CustomFirestoreQueryBuilder(
-                    query: _suggestionsQuery,
-                    onComplete: (context, snapshot) {
-                      return Wrap(
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                sliver: SliverList.list(
+                  children:
+                      List.generate(_items.length + 1, (index) {
+                        if (index == _items.length) {
+                          return IconButton.filled(
+                            onPressed: () {
+                              setState(() {
+                                _items.add(_itemModel);
+                              });
+                            },
+                            icon: const Icon(Icons.add),
+                          );
+                        }
+                        final element = _items[index];
+                        return AddItemWidget(
+                          key: ValueKey(element.id),
+                          initialValue: element.name,
+                          onChanged: (value) {
+                            element.name = value!;
+                            if (value.isEmpty || value.length == 1) {
+                              setState(() {});
+                            }
+                          },
+                          onQuantityChanged: (quantity) => element.minimumQuantity = quantity,
+                          showRemove: _items.length > 1,
+                          onRemove:
+                              _items.length > 1
+                                  ? () {
+                                    setState(() {
+                                      // if (element.suggested) {
+                                      //   final e = snapshot.docs.firstWhere(
+                                      //     (e) => e.data().id == element.id,
+                                      //   );
+                                      //   snapshot.docs.add(e);
+                                      // }
+                                      _items.removeAt(index);
+                                    });
+                                  }
+                                  : null,
+                        );
+                      }).separator(const SizedBox(height: 10)).toList(),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          "مقترحات",
+                          style: TextStyle(
+                            color: context.colorPalette.black001,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Wrap(
                         direction: Axis.horizontal,
                         children:
                             List.generate(snapshot.docs.length, (index) {
@@ -167,6 +188,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                 return const FPLoading();
                               }
                               final item = snapshot.docs[index].data();
+                              item.suggested = true;
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -213,14 +235,14 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                 ),
                               );
                             }).toList(),
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -15,8 +15,7 @@ _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>
       categoryId: json['categoryId'] as String? ?? '',
       status: json['status'] as String? ?? '',
       availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 0,
-      minimumQuantity:
-          (json['minimumQuantity'] as num?)?.toInt() ?? kItemLimitThreshold,
+      minimumQuantity: (json['minimumQuantity'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
@@ -35,7 +34,7 @@ _$LightItemModelImpl _$$LightItemModelImplFromJson(Map<String, dynamic> json) =>
     _$LightItemModelImpl(
       id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
-      quantity: json['quantity'] as String? ?? '',
+      quantity: (json['quantity'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$LightItemModelImplToJson(

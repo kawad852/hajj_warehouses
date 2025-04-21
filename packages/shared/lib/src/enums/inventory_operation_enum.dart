@@ -1,4 +1,5 @@
 enum OperationType {
+  create('CREATE'),
   add('Add'),
   withdraw('WITHDRAW'),
   supply('SUPPLY'),

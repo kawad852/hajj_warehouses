@@ -7,14 +7,15 @@ part 'inventory_operation_model.g.dart';
 
 @unfreezed
 class InventoryOperationModel with _$InventoryOperationModel {
+  @JsonSerializable(explicitToJson: true)
   factory InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String displayName,
-    @Default('') String notes,
-    @Default("") String destroyReason,
+    String? notes,
+    String? destroyReason,
     required String operationType,
-    required String supplyType,
+    String? supplyType,
     @Default(0.0) double totalPayment,
     @Default(0) int quantity,
     @Default([]) List<LightItemModel> items,

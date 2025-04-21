@@ -39,6 +39,10 @@ mixin _$ItemModel {
   set availableQuantity(int value) => throw _privateConstructorUsedError;
   int get minimumQuantity => throw _privateConstructorUsedError;
   set minimumQuantity(int value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool get suggested => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set suggested(bool value) => throw _privateConstructorUsedError;
 
   /// Serializes this ItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,6 +68,7 @@ abstract class $ItemModelCopyWith<$Res> {
     String status,
     int availableQuantity,
     int minimumQuantity,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 }
 
@@ -90,6 +95,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? status = null,
     Object? availableQuantity = null,
     Object? minimumQuantity = null,
+    Object? suggested = null,
   }) {
     return _then(
       _value.copyWith(
@@ -133,6 +139,11 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.minimumQuantity
                     : minimumQuantity // ignore: cast_nullable_to_non_nullable
                         as int,
+            suggested:
+                null == suggested
+                    ? _value.suggested
+                    : suggested // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -157,6 +168,7 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String status,
     int availableQuantity,
     int minimumQuantity,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 }
 
@@ -182,6 +194,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? availableQuantity = null,
     Object? minimumQuantity = null,
+    Object? suggested = null,
   }) {
     return _then(
       _$ItemModelImpl(
@@ -225,6 +238,11 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.minimumQuantity
                 : minimumQuantity // ignore: cast_nullable_to_non_nullable
                     as int,
+        suggested:
+            null == suggested
+                ? _value.suggested
+                : suggested // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -241,7 +259,9 @@ class _$ItemModelImpl extends _ItemModel {
     this.categoryId = '',
     this.status = '',
     this.availableQuantity = 0,
-    this.minimumQuantity = kItemLimitThreshold,
+    this.minimumQuantity = 0,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    this.suggested = false,
   }) : super._();
 
   factory _$ItemModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -271,10 +291,13 @@ class _$ItemModelImpl extends _ItemModel {
   @override
   @JsonKey()
   int minimumQuantity;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool suggested;
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, minimumQuantity: $minimumQuantity)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, minimumQuantity: $minimumQuantity, suggested: $suggested)';
   }
 
   /// Create a copy of ItemModel
@@ -301,6 +324,7 @@ abstract class _ItemModel extends ItemModel {
     String status,
     int availableQuantity,
     int minimumQuantity,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   }) = _$ItemModelImpl;
   _ItemModel._() : super._();
 
@@ -333,6 +357,11 @@ abstract class _ItemModel extends ItemModel {
   @override
   int get minimumQuantity;
   set minimumQuantity(int value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool get suggested;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set suggested(bool value);
 
   /// Create a copy of ItemModel
   /// with the given fields replaced by the non-null parameter values.
@@ -350,7 +379,7 @@ LightItemModel _$LightItemModelFromJson(Map<String, dynamic> json) {
 mixin _$LightItemModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get quantity => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
 
   /// Serializes this LightItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -369,7 +398,7 @@ abstract class $LightItemModelCopyWith<$Res> {
     $Res Function(LightItemModel) then,
   ) = _$LightItemModelCopyWithImpl<$Res, LightItemModel>;
   @useResult
-  $Res call({String id, String name, String quantity});
+  $Res call({String id, String name, int quantity});
 }
 
 /// @nodoc
@@ -403,7 +432,7 @@ class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
                 null == quantity
                     ? _value.quantity
                     : quantity // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as int,
           )
           as $Val,
     );
@@ -419,7 +448,7 @@ abstract class _$$LightItemModelImplCopyWith<$Res>
   ) = __$$LightItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String quantity});
+  $Res call({String id, String name, int quantity});
 }
 
 /// @nodoc
@@ -452,7 +481,7 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
             null == quantity
                 ? _value.quantity
                 : quantity // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as int,
       ),
     );
   }
@@ -461,7 +490,7 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LightItemModelImpl implements _LightItemModel {
-  _$LightItemModelImpl({this.id = '', this.name = '', this.quantity = ''});
+  _$LightItemModelImpl({this.id = '', this.name = '', this.quantity = 0});
 
   factory _$LightItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightItemModelImplFromJson(json);
@@ -474,7 +503,7 @@ class _$LightItemModelImpl implements _LightItemModel {
   final String name;
   @override
   @JsonKey()
-  final String quantity;
+  final int quantity;
 
   @override
   String toString() {
@@ -517,7 +546,7 @@ abstract class _LightItemModel implements LightItemModel {
   factory _LightItemModel({
     final String id,
     final String name,
-    final String quantity,
+    final int quantity,
   }) = _$LightItemModelImpl;
 
   factory _LightItemModel.fromJson(Map<String, dynamic> json) =
@@ -528,7 +557,7 @@ abstract class _LightItemModel implements LightItemModel {
   @override
   String get name;
   @override
-  String get quantity;
+  int get quantity;
 
   /// Create a copy of LightItemModel
   /// with the given fields replaced by the non-null parameter values.

@@ -22,7 +22,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isSupplyOperation => _operationType == OperationType.supply;
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
 
-  String get _radioGroupValue {
+  String? get _radioGroupValue {
     if (_isAddOperation) {
       return _operation.supplyType;
     } else if (_isSupplyOperation) {

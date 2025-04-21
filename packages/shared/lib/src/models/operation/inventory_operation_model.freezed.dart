@@ -31,14 +31,14 @@ mixin _$InventoryOperationModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
-  String get notes => throw _privateConstructorUsedError;
-  set notes(String value) => throw _privateConstructorUsedError;
-  String get destroyReason => throw _privateConstructorUsedError;
-  set destroyReason(String value) => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
+  set notes(String? value) => throw _privateConstructorUsedError;
+  String? get destroyReason => throw _privateConstructorUsedError;
+  set destroyReason(String? value) => throw _privateConstructorUsedError;
   String get operationType => throw _privateConstructorUsedError;
   set operationType(String value) => throw _privateConstructorUsedError;
-  String get supplyType => throw _privateConstructorUsedError;
-  set supplyType(String value) => throw _privateConstructorUsedError;
+  String? get supplyType => throw _privateConstructorUsedError;
+  set supplyType(String? value) => throw _privateConstructorUsedError;
   double get totalPayment => throw _privateConstructorUsedError;
   set totalPayment(double value) => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
@@ -69,10 +69,10 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String displayName,
-    String notes,
-    String destroyReason,
+    String? notes,
+    String? destroyReason,
     String operationType,
-    String supplyType,
+    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -101,10 +101,10 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? createdAt = freezed,
     Object? id = null,
     Object? displayName = null,
-    Object? notes = null,
-    Object? destroyReason = null,
+    Object? notes = freezed,
+    Object? destroyReason = freezed,
     Object? operationType = null,
-    Object? supplyType = null,
+    Object? supplyType = freezed,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
@@ -128,25 +128,25 @@ class _$InventoryOperationModelCopyWithImpl<
                     : displayName // ignore: cast_nullable_to_non_nullable
                         as String,
             notes:
-                null == notes
+                freezed == notes
                     ? _value.notes
                     : notes // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             destroyReason:
-                null == destroyReason
+                freezed == destroyReason
                     ? _value.destroyReason
                     : destroyReason // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             operationType:
                 null == operationType
                     ? _value.operationType
                     : operationType // ignore: cast_nullable_to_non_nullable
                         as String,
             supplyType:
-                null == supplyType
+                freezed == supplyType
                     ? _value.supplyType
                     : supplyType // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             totalPayment:
                 null == totalPayment
                     ? _value.totalPayment
@@ -186,10 +186,10 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String displayName,
-    String notes,
-    String destroyReason,
+    String? notes,
+    String? destroyReason,
     String operationType,
-    String supplyType,
+    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -218,10 +218,10 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? displayName = null,
-    Object? notes = null,
-    Object? destroyReason = null,
+    Object? notes = freezed,
+    Object? destroyReason = freezed,
     Object? operationType = null,
-    Object? supplyType = null,
+    Object? supplyType = freezed,
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
@@ -245,25 +245,25 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 : displayName // ignore: cast_nullable_to_non_nullable
                     as String,
         notes:
-            null == notes
+            freezed == notes
                 ? _value.notes
                 : notes // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         destroyReason:
-            null == destroyReason
+            freezed == destroyReason
                 ? _value.destroyReason
                 : destroyReason // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         operationType:
             null == operationType
                 ? _value.operationType
                 : operationType // ignore: cast_nullable_to_non_nullable
                     as String,
         supplyType:
-            null == supplyType
+            freezed == supplyType
                 ? _value.supplyType
                 : supplyType // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         totalPayment:
             null == totalPayment
                 ? _value.totalPayment
@@ -290,16 +290,17 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   _$InventoryOperationModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.displayName = '',
-    this.notes = '',
-    this.destroyReason = "",
+    this.notes,
+    this.destroyReason,
     required this.operationType,
-    required this.supplyType,
+    this.supplyType,
     this.totalPayment = 0.0,
     this.quantity = 0,
     this.items = const [],
@@ -319,15 +320,13 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   String displayName;
   @override
-  @JsonKey()
-  String notes;
+  String? notes;
   @override
-  @JsonKey()
-  String destroyReason;
+  String? destroyReason;
   @override
   String operationType;
   @override
-  String supplyType;
+  String? supplyType;
   @override
   @JsonKey()
   double totalPayment;
@@ -367,10 +366,10 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String displayName,
-    String notes,
-    String destroyReason,
+    String? notes,
+    String? destroyReason,
     required String operationType,
-    required String supplyType,
+    String? supplyType,
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
@@ -392,17 +391,17 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   String get displayName;
   set displayName(String value);
   @override
-  String get notes;
-  set notes(String value);
+  String? get notes;
+  set notes(String? value);
   @override
-  String get destroyReason;
-  set destroyReason(String value);
+  String? get destroyReason;
+  set destroyReason(String? value);
   @override
   String get operationType;
   set operationType(String value);
   @override
-  String get supplyType;
-  set supplyType(String value);
+  String? get supplyType;
+  set supplyType(String? value);
   @override
   double get totalPayment;
   set totalPayment(double value);

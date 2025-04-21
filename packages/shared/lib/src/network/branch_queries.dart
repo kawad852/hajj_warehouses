@@ -14,11 +14,10 @@ extension SelectedUserFireExtension on FirebaseFirestore {
 // }
 
 class BranchQueries {
-  static Query<InventoryOperationModel> get inventoryOperations => kUserDocRef
+  static CollectionReference<InventoryOperationModel> get inventoryOperations => kUserDocRef
       .collection(MyCollections.inventoryOperations)
       .withConverter<InventoryOperationModel>(
         fromFirestore: (snapshot, _) => InventoryOperationModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
-      )
-      .orderBy(MyFields.createdAt, descending: true);
+      );
 }
