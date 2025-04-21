@@ -65,6 +65,7 @@ export 'src/network/my_fields.dart';
 export 'src/network/my_queries.dart';
 //providers
 export 'src/providers/app_provider.dart';
+export 'src/providers/inventory_provider.dart';
 export 'src/providers/location_provider.dart';
 export 'src/providers/user_provider.dart';
 export 'src/utils/app_constants.dart';

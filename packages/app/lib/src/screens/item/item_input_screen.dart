@@ -30,52 +30,6 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
-  // String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
-  //   if (availableQuantity <= 0) {
-  //     return ItemStatusEnum.outOfStock.value;
-  //   } else if (availableQuantity < minimumQuantity) {
-  //     return ItemStatusEnum.needsRestock.value;
-  //   } else if (availableQuantity > minimumQuantity + kItemLimitThreshold) {
-  //     return ItemStatusEnum.lowStock.value;
-  //   } else {
-  //     return ItemStatusEnum.inStock.value;
-  //   }
-  // }
-
-  void _onAdd(BuildContext context) {
-    ApiService.fetch(
-      context,
-      callBack: () async {
-        final batch = kFirebaseInstant.batch();
-        for (var e in _items) {
-          e.id = await e.getId();
-          e.createdAt = kNowDate;
-          e.status = ItemStatusEnum.outOfStock.value;
-          final itemDoc = kFirebaseInstant.items.doc(e.id);
-          batch.set(itemDoc, e);
-        }
-        final operationDocREF = BranchQueries.inventoryOperations.doc();
-        final operation = InventoryOperationModel(
-          createdAt: kNowDate,
-          id: operationDocREF.id,
-          displayName: MySharedPreferences.user!.displayName!,
-          operationType: OperationType.create.value,
-          items:
-              _items
-                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
-                  .toList(),
-        );
-        print("operation: $operation");
-        batch.set(operationDocREF, operation);
-        await batch.commit();
-        if (context.mounted) {
-          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
-          context.pop();
-        }
-      },
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -92,7 +46,11 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
             _items.any((e) => e.name.isEmpty)
                 ? null
                 : () {
-                  _onAdd(context);
+                  context.inventoryProvider.updateInventory(
+                    context,
+                    items: _items,
+                    operationType: OperationType.create.value,
+                  );
                 },
       ),
       appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),

@@ -22,7 +22,7 @@ class CategoryModel with _$CategoryModel {
 
   CategoryModel._();
 
-  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
+  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.categoryId);
 }
 
 @unfreezed

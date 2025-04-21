@@ -23,7 +23,7 @@ class ItemModel with _$ItemModel {
 
   ItemModel._();
 
-  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
+  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.itemId);
 }
 
 @freezed
