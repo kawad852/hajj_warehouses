@@ -21,10 +21,9 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   }
 
   void _initializeOperations() {
-    _operationsQuery = BranchQueries.inventoryOperations.where(
-      MyFields.idItem,
-      isEqualTo: _item.id,
-    );
+    _operationsQuery = BranchQueries.inventoryOperations
+        .where(MyFields.itemIds, arrayContains: _item.id)
+        .orderBy(MyFields.createdAt, descending: true);
   }
 
   void _openSheet(

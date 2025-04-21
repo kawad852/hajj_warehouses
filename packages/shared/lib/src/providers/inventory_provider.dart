@@ -42,6 +42,7 @@ class InventoryProvider extends ChangeNotifier {
               items
                   .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList(),
+          itemIds: items.map((e) => e.id).toList(),
         );
         batch.set(operationDocREF, operation);
         await batch.commit();

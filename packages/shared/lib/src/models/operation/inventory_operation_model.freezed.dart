@@ -45,6 +45,8 @@ mixin _$InventoryOperationModel {
   set quantity(int value) => throw _privateConstructorUsedError;
   List<LightItemModel> get items => throw _privateConstructorUsedError;
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
+  List<String> get itemIds => throw _privateConstructorUsedError;
+  set itemIds(List<String> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
 
@@ -76,6 +78,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
+    List<String> itemIds,
     List<String> images,
   });
 }
@@ -108,6 +111,7 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
+    Object? itemIds = null,
     Object? images = null,
   }) {
     return _then(
@@ -162,6 +166,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.items
                     : items // ignore: cast_nullable_to_non_nullable
                         as List<LightItemModel>,
+            itemIds:
+                null == itemIds
+                    ? _value.itemIds
+                    : itemIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             images:
                 null == images
                     ? _value.images
@@ -193,6 +202,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
+    List<String> itemIds,
     List<String> images,
   });
 }
@@ -225,6 +235,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? totalPayment = null,
     Object? quantity = null,
     Object? items = null,
+    Object? itemIds = null,
     Object? images = null,
   }) {
     return _then(
@@ -279,6 +290,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.items
                 : items // ignore: cast_nullable_to_non_nullable
                     as List<LightItemModel>,
+        itemIds:
+            null == itemIds
+                ? _value.itemIds
+                : itemIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         images:
             null == images
                 ? _value.images
@@ -304,6 +320,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.totalPayment = 0.0,
     this.quantity = 0,
     this.items = const [],
+    this.itemIds = const [],
     this.images = const [],
   });
 
@@ -338,11 +355,14 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   List<LightItemModel> items;
   @override
   @JsonKey()
+  List<String> itemIds;
+  @override
+  @JsonKey()
   List<String> images;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, images: $images)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, destroyReason: $destroyReason, operationType: $operationType, supplyType: $supplyType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -373,6 +393,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     double totalPayment,
     int quantity,
     List<LightItemModel> items,
+    List<String> itemIds,
     List<String> images,
   }) = _$InventoryOperationModelImpl;
 
@@ -411,6 +432,9 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   @override
   List<LightItemModel> get items;
   set items(List<LightItemModel> value);
+  @override
+  List<String> get itemIds;
+  set itemIds(List<String> value);
   @override
   List<String> get images;
   set images(List<String> value);

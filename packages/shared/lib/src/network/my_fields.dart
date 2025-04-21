@@ -14,5 +14,5 @@ class MyFields {
   static const String freeDelivery = 'freeDelivery';
   static const String categoryId = 'categoryId';
   static const String type = 'type';
-  static const String idItem = 'item.id';
+  static const String itemIds = 'itemIds';
 }

@@ -23,6 +23,9 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
           ?.map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
+  itemIds:
+      (json['itemIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const [],
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -41,5 +44,6 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'totalPayment': instance.totalPayment,
   'quantity': instance.quantity,
   'items': instance.items.map((e) => e.toJson()).toList(),
+  'itemIds': instance.itemIds,
   'images': instance.images,
 };

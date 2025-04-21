@@ -19,6 +19,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @Default(0.0) double totalPayment,
     @Default(0) int quantity,
     @Default([]) List<LightItemModel> items,
+    @Default([]) List<String> itemIds,
     @Default([]) List<String> images,
   }) = _InventoryOperationModel;
 
