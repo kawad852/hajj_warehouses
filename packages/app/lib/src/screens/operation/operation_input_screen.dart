@@ -68,7 +68,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
           } else {
             context.inventoryProvider.updateInventory(
               context,
-              items: [],
+              items: [_item],
               operationType: _operationType.value,
             );
           }

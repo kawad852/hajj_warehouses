@@ -15,17 +15,25 @@ class InventoryProvider extends ChangeNotifier {
     ApiService.fetch(
       context,
       callBack: () async {
+        final isUpdate = items.length == 1;
         final batch = kFirebaseInstant.batch();
         for (var e in items) {
-          e.id = await e.getId();
-          e.createdAt = kNowDate;
+          if (!isUpdate) {
+            e.id = await e.getId();
+            e.createdAt = kNowDate;
+          }
           e.status = _getItemStatus(
             availableQuantity: e.availableQuantity,
             minimumQuantity: e.minimumQuantity,
           );
           final itemDoc = kFirebaseInstant.items.doc(e.id);
-          batch.set(itemDoc, e);
+          if (isUpdate) {
+            batch.update(itemDoc, e.toJson());
+          } else {
+            batch.set(itemDoc, e);
+          }
         }
+
         final operationDocREF = BranchQueries.inventoryOperations.doc();
         final operation = InventoryOperationModel(
           createdAt: kNowDate,
