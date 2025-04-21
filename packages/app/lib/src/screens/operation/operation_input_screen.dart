@@ -69,7 +69,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             context.inventoryProvider.updateInventory(
               context,
               items: [_item],
-              operationType: _operationType.value,
+              operation: _operation,
             );
           }
         },
@@ -90,7 +90,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
-            CounterWidget(initialValue: _item.availableQuantity, onChanged: (value) {}),
+            CounterWidget(initialValue: _item.quantity, onChanged: (value) {}),
             if (info.radio.items.isNotEmpty) ...[
               EditorLabel(info.radio.label),
               const SizedBox(height: 8),

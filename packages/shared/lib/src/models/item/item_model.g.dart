@@ -14,7 +14,7 @@ _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String? ?? '',
       categoryId: json['categoryId'] as String? ?? '',
       status: json['status'] as String? ?? '',
-      availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 0,
+      quantity: (json['quantity'] as num?)?.toInt() ?? 0,
       minimumQuantity: (json['minimumQuantity'] as num?)?.toInt() ?? 0,
     );
 
@@ -26,7 +26,7 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'userId': instance.userId,
       'categoryId': instance.categoryId,
       'status': instance.status,
-      'availableQuantity': instance.availableQuantity,
+      'quantity': instance.quantity,
       'minimumQuantity': instance.minimumQuantity,
     };
 

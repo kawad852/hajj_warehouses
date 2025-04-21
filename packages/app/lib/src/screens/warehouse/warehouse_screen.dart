@@ -152,7 +152,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     },
                     id: "$index",
                     name: item.name,
-                    availableQuantity: item.availableQuantity,
+                    availableQuantity: item.quantity,
                     minimumQuantity: item.minimumQuantity,
                     status: item.status,
                   );

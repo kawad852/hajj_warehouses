@@ -1,21 +1,20 @@
+import 'package:shared/src/helper/storage_service.dart';
+
 import '../../shared.dart';
 
 class InventoryProvider extends ChangeNotifier {
+  final _storageService = StorageService();
+
   void updateInventory(
     BuildContext context, {
     required List<ItemModel> items,
-    required String operationType,
-    String? destroyReason,
-    String? notes,
-    String? supplyType,
-    int quantity = 0,
-    double totalPayment = 0.0,
-    List<String> images = const [],
+    required InventoryOperationModel operation,
+    List<XFile> files = const [],
   }) {
     ApiService.fetch(
       context,
       callBack: () async {
-        final isUpdate = items.length == 1;
+        final isUpdate = items.first.id.isNotEmpty;
         final batch = kFirebaseInstant.batch();
         for (var e in items) {
           if (!isUpdate) {
@@ -23,7 +22,7 @@ class InventoryProvider extends ChangeNotifier {
             e.createdAt = kNowDate;
           }
           e.status = _getItemStatus(
-            availableQuantity: e.availableQuantity,
+            availableQuantity: e.quantity,
             minimumQuantity: e.minimumQuantity,
           );
           final itemDoc = kFirebaseInstant.items.doc(e.id);
@@ -33,24 +32,32 @@ class InventoryProvider extends ChangeNotifier {
             batch.set(itemDoc, e);
           }
         }
-
         final operationDocREF = BranchQueries.inventoryOperations.doc();
-        final operation = InventoryOperationModel(
+        final images = await _storageService.uploadFiles(MyCollections.inventoryOperations, files);
+        if (operation.id.isEmpty) {
+          operation.id = operationDocREF.id;
+          operation.createdAt = kNowDate;
+        }
+        operation.displayName = MySharedPreferences.user!.displayName!;
+        operation = operation.copyWith(
           createdAt: kNowDate,
           id: operationDocREF.id,
           displayName: MySharedPreferences.user!.displayName!,
-          operationType: operationType,
-          totalPayment: totalPayment,
-          destroyReason: destroyReason,
-          quantity: quantity,
-          images: images,
-          notes: notes,
-          supplyType: supplyType,
           items:
               items
-                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .map(
+                    (e) => LightItemModel(
+                      id: e.id,
+                      name: e.name,
+                      quantity:
+                          operation.operationType == OperationType.create.value
+                              ? e.minimumQuantity
+                              : e.quantity,
+                    ),
+                  )
                   .toList(),
           itemIds: items.map((e) => e.id).toList(),
+          images: images,
         );
         batch.set(operationDocREF, operation);
         await batch.commit();

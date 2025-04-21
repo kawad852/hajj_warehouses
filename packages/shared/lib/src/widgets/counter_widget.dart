@@ -46,7 +46,8 @@ class _CounterWidgetState extends State<CounterWidget> {
         SizedBox(
           width: 120,
           child: NumbersEditor(
-            initialValue: widget.initialValue,
+            key: ValueKey(_quantity),
+            initialValue: _quantity,
             textAlign: TextAlign.center,
             textStyle: TextStyle(
               color: context.colorPalette.grey708,

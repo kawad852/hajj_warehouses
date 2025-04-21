@@ -14,7 +14,7 @@ class ItemModel with _$ItemModel {
     @Default('') String userId,
     @Default('') String categoryId,
     @Default('') String status,
-    @Default(0) int availableQuantity,
+    @Default(0) int quantity,
     @Default(0) int minimumQuantity,
     @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool suggested,
   }) = _ItemModel;

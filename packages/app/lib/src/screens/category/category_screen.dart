@@ -94,7 +94,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                       },
                       id: item.id,
                       name: item.name,
-                      availableQuantity: item.availableQuantity,
+                      availableQuantity: item.quantity,
                       minimumQuantity: item.minimumQuantity,
                       status: item.status,
                     );

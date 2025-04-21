@@ -35,8 +35,8 @@ mixin _$ItemModel {
   set categoryId(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  int get availableQuantity => throw _privateConstructorUsedError;
-  set availableQuantity(int value) => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
+  set quantity(int value) => throw _privateConstructorUsedError;
   int get minimumQuantity => throw _privateConstructorUsedError;
   set minimumQuantity(int value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -66,7 +66,7 @@ abstract class $ItemModelCopyWith<$Res> {
     String userId,
     String categoryId,
     String status,
-    int availableQuantity,
+    int quantity,
     int minimumQuantity,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
@@ -93,7 +93,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
-    Object? availableQuantity = null,
+    Object? quantity = null,
     Object? minimumQuantity = null,
     Object? suggested = null,
   }) {
@@ -129,10 +129,10 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
-            availableQuantity:
-                null == availableQuantity
-                    ? _value.availableQuantity
-                    : availableQuantity // ignore: cast_nullable_to_non_nullable
+            quantity:
+                null == quantity
+                    ? _value.quantity
+                    : quantity // ignore: cast_nullable_to_non_nullable
                         as int,
             minimumQuantity:
                 null == minimumQuantity
@@ -166,7 +166,7 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String userId,
     String categoryId,
     String status,
-    int availableQuantity,
+    int quantity,
     int minimumQuantity,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
@@ -192,7 +192,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
-    Object? availableQuantity = null,
+    Object? quantity = null,
     Object? minimumQuantity = null,
     Object? suggested = null,
   }) {
@@ -228,10 +228,10 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
-        availableQuantity:
-            null == availableQuantity
-                ? _value.availableQuantity
-                : availableQuantity // ignore: cast_nullable_to_non_nullable
+        quantity:
+            null == quantity
+                ? _value.quantity
+                : quantity // ignore: cast_nullable_to_non_nullable
                     as int,
         minimumQuantity:
             null == minimumQuantity
@@ -258,7 +258,7 @@ class _$ItemModelImpl extends _ItemModel {
     this.userId = '',
     this.categoryId = '',
     this.status = '',
-    this.availableQuantity = 0,
+    this.quantity = 0,
     this.minimumQuantity = 0,
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.suggested = false,
@@ -287,7 +287,7 @@ class _$ItemModelImpl extends _ItemModel {
   String status;
   @override
   @JsonKey()
-  int availableQuantity;
+  int quantity;
   @override
   @JsonKey()
   int minimumQuantity;
@@ -297,7 +297,7 @@ class _$ItemModelImpl extends _ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, availableQuantity: $availableQuantity, minimumQuantity: $minimumQuantity, suggested: $suggested)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, quantity: $quantity, minimumQuantity: $minimumQuantity, suggested: $suggested)';
   }
 
   /// Create a copy of ItemModel
@@ -322,7 +322,7 @@ abstract class _ItemModel extends ItemModel {
     String userId,
     String categoryId,
     String status,
-    int availableQuantity,
+    int quantity,
     int minimumQuantity,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   }) = _$ItemModelImpl;
@@ -352,8 +352,8 @@ abstract class _ItemModel extends ItemModel {
   String get status;
   set status(String value);
   @override
-  int get availableQuantity;
-  set availableQuantity(int value);
+  int get quantity;
+  set quantity(int value);
   @override
   int get minimumQuantity;
   set minimumQuantity(int value);
