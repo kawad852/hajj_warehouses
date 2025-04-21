@@ -18,10 +18,10 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isSupplyOperation => _operationType == OperationType.supply;
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
   ItemModel get _item => widget.item;
+  List<XFile> _files = [];
 
   String? get _radioGroupValue {
     if (_isAddOperation) {
-      print("alksfjakljsf: ${_operation.supplyType}");
       return _operation.supplyType;
     } else if (_isSupplyOperation) {
       return _operation.requestType;
@@ -31,6 +31,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
       throw "";
     }
   }
+
+  void _onFileAdd(List<XFile> files) => _files.addAll(files);
 
   @override
   void initState() {
@@ -60,7 +62,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             }
           } else if (_isAddOperation && _operation.totalPayment == 0) {
             errorMsg = "يجب تحديد قيمة المشتريات";
-          } else if (_operation.images.isEmpty) {
+          } else if (!_isSupplyOperation && _files.isEmpty) {
+            print('asflkjasklfj');
             errorMsg = "يجب إرفاق صورة";
           }
           if (errorMsg != null) {
@@ -70,6 +73,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               context,
               items: [_item],
               operation: _operation,
+              files: _files,
             );
           }
         },
@@ -90,7 +94,10 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
-            CounterWidget(initialValue: _item.quantity, onChanged: (value) {}),
+            CounterWidget(
+              initialValue: _item.quantity,
+              onChanged: (value) => _item.quantity = value,
+            ),
             if (info.radio.items.isNotEmpty) ...[
               EditorLabel(info.radio.label),
               const SizedBox(height: 8),
@@ -129,7 +136,11 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   suffixText: "ريال",
                 ),
               ),
-              ImagesAttacher(onChanged: (path) {}, title: "ارفاق صورة عن الفاتورة او سند الإستلام"),
+
+              ImagesAttacher(
+                onChanged: _onFileAdd,
+                title: "ارفاق صورة عن الفاتورة او سند الإستلام",
+              ),
             ],
 
             if (_operationType == OperationType.supply ||
@@ -159,7 +170,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              ImagesAttacher(onChanged: (path) {}, title: "ارفاق صور عن المواد التي سيتم اتلافها"),
+              ImagesAttacher(onChanged: _onFileAdd, title: "ارفاق صور عن المواد التي سيتم اتلافها"),
             ],
           ],
         ),

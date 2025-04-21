@@ -9,7 +9,7 @@ class InventoryProvider extends ChangeNotifier {
     BuildContext context, {
     required List<ItemModel> items,
     required InventoryOperationModel operation,
-    List<XFile> files = const [],
+    required List<XFile> files,
   }) {
     ApiService.fetch(
       context,

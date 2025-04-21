@@ -50,6 +50,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                     context,
                     items: _items,
                     operation: InventoryOperationModel(operationType: OperationType.create.value),
+                    files: [],
                   );
                 },
       ),

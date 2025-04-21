@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:shared/shared.dart';
 
 class ImagesAttacher extends StatefulWidget {
-  final void Function(List<String> path) onChanged;
+  final void Function(List<XFile> files) onChanged;
   final String title;
 
   const ImagesAttacher({super.key, required this.onChanged, required this.title});
@@ -24,8 +24,7 @@ class _ImagesAttacherState extends State<ImagesAttacher> {
       setState(() {
         _files.addAll(files);
       });
-      final paths = _files.map((e) => e.path).toList();
-      widget.onChanged(paths);
+      widget.onChanged(_files);
     }
   }
 
