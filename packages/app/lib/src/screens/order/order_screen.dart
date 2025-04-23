@@ -164,6 +164,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   createdAt: kNowDate,
                   operationType: '',
                   supplyType: '',
+                  files: [],
                   items: [],
                 ),
               );

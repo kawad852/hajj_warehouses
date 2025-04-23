@@ -51,6 +51,10 @@ mixin _$InventoryOperationModel {
   set itemIds(List<String> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? get files => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set files(List<XFile>? value) => throw _privateConstructorUsedError;
   String? get orderStatus => throw _privateConstructorUsedError;
   set orderStatus(String? value) => throw _privateConstructorUsedError;
 
@@ -85,6 +89,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
     String? orderStatus,
   });
 
@@ -122,6 +127,7 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
+    Object? files = freezed,
     Object? orderStatus = freezed,
   }) {
     return _then(
@@ -191,6 +197,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.images
                     : images // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            files:
+                freezed == files
+                    ? _value.files
+                    : files // ignore: cast_nullable_to_non_nullable
+                        as List<XFile>?,
             orderStatus:
                 freezed == orderStatus
                     ? _value.orderStatus
@@ -239,6 +250,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
     String? orderStatus,
   });
 
@@ -277,6 +289,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
+    Object? files = freezed,
     Object? orderStatus = freezed,
   }) {
     return _then(
@@ -346,6 +359,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.images
                 : images // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        files:
+            freezed == files
+                ? _value.files
+                : files // ignore: cast_nullable_to_non_nullable
+                    as List<XFile>?,
         orderStatus:
             freezed == orderStatus
                 ? _value.orderStatus
@@ -374,6 +392,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     required this.items,
     this.itemIds = const [],
     this.images = const [],
+    @JsonKey(includeToJson: false, includeFromJson: false) this.files,
     this.orderStatus,
   });
 
@@ -413,11 +432,14 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   List<String> images;
   @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? files;
+  @override
   String? orderStatus;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images, orderStatus: $orderStatus)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images, files: $files, orderStatus: $orderStatus)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -451,6 +473,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     required List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
     String? orderStatus,
   }) = _$InventoryOperationModelImpl;
 
@@ -498,6 +521,11 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   @override
   List<String> get images;
   set images(List<String> value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? get files;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set files(List<XFile>? value);
   @override
   String? get orderStatus;
   set orderStatus(String? value);

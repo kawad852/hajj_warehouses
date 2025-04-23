@@ -22,7 +22,6 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
   ItemModel? get _item => widget.item;
   bool get _singleItem => _item != null;
-  final List<XFile> _files = [];
 
   String? get _radioGroupValue {
     if (_isAddOperation) {
@@ -36,18 +35,25 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
     }
   }
 
-  void _onFileAdd(List<XFile> files) => _files.addAll(files);
+  void _onFileAdd(List<XFile> files) => _operation.files!.addAll(files);
 
   @override
   void initState() {
     super.initState();
     _operation = InventoryOperationModel(
       operationType: _operationType.value,
-      items: [],
-      // items:
-      //     _item != null
-      //         ? [LightItemModel(id: _item!.id, quantity: _item!.quantity, name: _item!.name)]
-      //         : [],
+      files: [],
+      items:
+          _item != null
+              ? [
+                LightItemModel(
+                  id: _item!.id,
+                  name: _item!.name,
+                  quantity: _item!.quantity,
+                  minimumQuantity: _item!.minimumQuantity,
+                ),
+              ]
+              : [],
     );
   }
 
@@ -71,18 +77,13 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             }
           } else if (_isAddOperation && _operation.totalPayment == 0) {
             errorMsg = "يجب تحديد قيمة المشتريات";
-          } else if (!_isSupplyOperation && _files.isEmpty) {
+          } else if (!_isSupplyOperation && _operation.files!.isEmpty) {
             errorMsg = "يجب إرفاق صورة";
           }
           if (errorMsg != null) {
             context.showSnackBar(errorMsg);
           } else {
-            context.inventoryProvider.createOperation(
-              context,
-              operation: _operation,
-              files: _files,
-              createdItems: _singleItem ? [_item!] : null,
-            );
+            context.inventoryProvider.createOperation(context, operation: _operation);
           }
         },
       ),

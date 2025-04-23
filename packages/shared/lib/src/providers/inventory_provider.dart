@@ -7,9 +7,8 @@ class InventoryProvider extends ChangeNotifier {
 
   void createOperation(
     BuildContext context, {
-    List<ItemModel>? createdItems,
     required InventoryOperationModel operation,
-    required List<XFile> files,
+    Future<List<ItemModel>> Function(WriteBatch bath)? onCreate,
   }) {
     ApiService.fetch(
       context,
@@ -21,53 +20,41 @@ class InventoryProvider extends ChangeNotifier {
             operation.operationType == OperationType.transfer.value;
         operation.orderStatus == null;
 
-        if (!needsApproval && operation.orderStatus == null) {
-          if (createdItems != null) {
-            for (var e in createdItems) {
-              final isUpdate = e.id.isNotEmpty;
-              if (!isUpdate) {
-                e.id = await e.getId();
-                e.createdAt = kNowDate;
-              }
-              e.status = _getItemStatus(
-                availableQuantity: operation.quantity,
-                minimumQuantity: e.minimumQuantity,
-              );
-              final itemDoc = kFirebaseInstant.items.doc(e.id);
-              final json = e.toJson();
-              if (isUpdate) {
-                final increment = operation.operationType == OperationType.add.value;
-                json[MyFields.quantity] = FieldValue.increment(
-                  increment ? operation.quantity : -operation.quantity,
-                );
-                batch.update(itemDoc, json);
-              } else {
-                batch.set(itemDoc, e);
-              }
-            }
-          } else {
-            for (var e in operation.items) {
-              e.quantity = operation.quantity;
-              final status = _getItemStatus(
-                availableQuantity: operation.quantity,
-                minimumQuantity: e.minimumQuantity,
-              );
-              final itemDoc = kFirebaseInstant.items.doc(e.id);
-              batch.update(itemDoc, {
-                ...e.toJson(),
-                MyFields.status: status,
-                MyFields.quantity: FieldValue.increment(operation.quantity),
-              });
-            }
-          }
+        if (onCreate != null) {
+          final items = await onCreate(batch);
+          operation.items =
+              items
+                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .toList();
+          operation.itemIds = items.map((e) => e.id).toList();
+        }
+
+        for (var e in operation.items) {
+          e.quantity = operation.quantity;
+          final status = _getItemStatus(
+            availableQuantity: operation.quantity,
+            minimumQuantity: e.minimumQuantity,
+          );
+          final itemDoc = kFirebaseInstant.items.doc(e.id);
+          final json = e.toJson();
+          final increment = operation.operationType == OperationType.add.value;
+          json[MyFields.quantity] = FieldValue.increment(
+            increment ? operation.quantity : -operation.quantity,
+          );
+          batch.update(itemDoc, {...json, MyFields.status: status});
         }
 
         final operationDocREF = BranchQueries.inventoryOperations.doc();
-        final images = await _storageService.uploadFiles(MyCollections.inventoryOperations, files);
-        if (operation.id.isEmpty) {
-          operation.id = operationDocREF.id;
-          operation.createdAt = kNowDate;
+
+        //Files
+        List<String> images = [];
+        if (operation.files != null) {
+          images = await _storageService.uploadFiles(
+            MyCollections.inventoryOperations,
+            operation.files!,
+          );
         }
+
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: operationDocREF.id,
@@ -76,22 +63,8 @@ class InventoryProvider extends ChangeNotifier {
             displayName: MySharedPreferences.user!.displayName!,
           ),
           images: images,
+          itemIds: operation.items.map((e) => e.id).toList(),
         );
-
-        if (createdItems != null) {
-          operation.items =
-              createdItems
-                  .map(
-                    (e) => LightItemModel(
-                      id: e.id,
-                      name: e.name,
-                      quantity: e.quantity,
-                      minimumQuantity: e.minimumQuantity,
-                    ),
-                  )
-                  .toList();
-          operation.itemIds = createdItems.map((e) => e.id).toList();
-        }
 
         batch.set(operationDocREF, operation);
         await batch.commit();

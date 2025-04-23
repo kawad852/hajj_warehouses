@@ -48,23 +48,20 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                 : () {
                   context.inventoryProvider.createOperation(
                     context,
-                    createdItems: _items,
                     operation: InventoryOperationModel(
                       operationType: OperationType.create.value,
-                      items:
-                          _items
-                              .map(
-                                (e) => LightItemModel(
-                                  id: e.id,
-                                  name: e.name,
-                                  quantity: e.minimumQuantity,
-                                ),
-                              )
-                              .toList(),
-                      itemIds: _items.map((e) => e.id).toList(),
+                      items: [],
                     ),
-
-                    files: [],
+                    onCreate: (batch) async {
+                      for (var e in _items) {
+                        e.id = await e.getId();
+                        e.createdAt = kNowDate;
+                        e.status = ItemStatusEnum.outOfStock.value;
+                        final itemDoc = kFirebaseInstant.items.doc(e.id);
+                        batch.set(itemDoc, e);
+                      }
+                      return _items;
+                    },
                   );
                 },
       ),
