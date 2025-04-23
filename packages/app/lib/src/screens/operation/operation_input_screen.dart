@@ -105,7 +105,13 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
               CounterWidget(
                 maxQuantity: widget.maxQuantity,
-                onChanged: (value) => _operation.quantity = value,
+                onChanged: (value) {
+                  if (_singleItem) {
+                    _item?.quantity = value;
+                  } else {
+                    _operation.quantity = value;
+                  }
+                },
               ),
             ],
 
