@@ -22,6 +22,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
     required List<LightItemModel> items,
     @Default([]) List<String> itemIds,
     @Default([]) List<String> images,
+    String? orderStatus,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>

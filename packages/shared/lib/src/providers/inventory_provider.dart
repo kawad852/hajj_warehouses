@@ -16,46 +16,49 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
 
-        final needsApprovals =
+        final needsApproval =
             operation.operationType == OperationType.supply.value ||
             operation.operationType == OperationType.transfer.value;
+        operation.orderStatus == null;
 
-        if (createdItems != null) {
-          for (var e in createdItems) {
-            final isUpdate = e.id.isNotEmpty;
-            if (!isUpdate) {
-              e.id = await e.getId();
-              e.createdAt = kNowDate;
-            }
-            e.status = _getItemStatus(
-              availableQuantity: operation.quantity,
-              minimumQuantity: e.minimumQuantity,
-            );
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            final json = e.toJson();
-            if (isUpdate) {
-              final increment = operation.operationType == OperationType.add.value;
-              json[MyFields.quantity] = FieldValue.increment(
-                increment ? operation.quantity : -operation.quantity,
+        if (!needsApproval && operation.orderStatus == null) {
+          if (createdItems != null) {
+            for (var e in createdItems) {
+              final isUpdate = e.id.isNotEmpty;
+              if (!isUpdate) {
+                e.id = await e.getId();
+                e.createdAt = kNowDate;
+              }
+              e.status = _getItemStatus(
+                availableQuantity: operation.quantity,
+                minimumQuantity: e.minimumQuantity,
               );
-              batch.update(itemDoc, json);
-            } else {
-              batch.set(itemDoc, e);
+              final itemDoc = kFirebaseInstant.items.doc(e.id);
+              final json = e.toJson();
+              if (isUpdate) {
+                final increment = operation.operationType == OperationType.add.value;
+                json[MyFields.quantity] = FieldValue.increment(
+                  increment ? operation.quantity : -operation.quantity,
+                );
+                batch.update(itemDoc, json);
+              } else {
+                batch.set(itemDoc, e);
+              }
             }
-          }
-        } else {
-          for (var e in operation.items) {
-            e.quantity = operation.quantity;
-            final status = _getItemStatus(
-              availableQuantity: operation.quantity,
-              minimumQuantity: e.minimumQuantity,
-            );
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            batch.update(itemDoc, {
-              ...e.toJson(),
-              MyFields.status: status,
-              MyFields.quantity: FieldValue.increment(operation.quantity),
-            });
+          } else {
+            for (var e in operation.items) {
+              e.quantity = operation.quantity;
+              final status = _getItemStatus(
+                availableQuantity: operation.quantity,
+                minimumQuantity: e.minimumQuantity,
+              );
+              final itemDoc = kFirebaseInstant.items.doc(e.id);
+              batch.update(itemDoc, {
+                ...e.toJson(),
+                MyFields.status: status,
+                MyFields.quantity: FieldValue.increment(operation.quantity),
+              });
+            }
           }
         }
 

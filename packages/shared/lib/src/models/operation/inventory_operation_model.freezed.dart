@@ -51,6 +51,8 @@ mixin _$InventoryOperationModel {
   set itemIds(List<String> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
+  String? get orderStatus => throw _privateConstructorUsedError;
+  set orderStatus(String? value) => throw _privateConstructorUsedError;
 
   /// Serializes this InventoryOperationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -83,6 +85,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    String? orderStatus,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
@@ -119,6 +122,7 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
+    Object? orderStatus = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -187,6 +191,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.images
                     : images // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            orderStatus:
+                freezed == orderStatus
+                    ? _value.orderStatus
+                    : orderStatus // ignore: cast_nullable_to_non_nullable
+                        as String?,
           )
           as $Val,
     );
@@ -230,6 +239,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    String? orderStatus,
   });
 
   @override
@@ -267,6 +277,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
+    Object? orderStatus = freezed,
   }) {
     return _then(
       _$InventoryOperationModelImpl(
@@ -335,6 +346,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.images
                 : images // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        orderStatus:
+            freezed == orderStatus
+                ? _value.orderStatus
+                : orderStatus // ignore: cast_nullable_to_non_nullable
+                    as String?,
       ),
     );
   }
@@ -358,6 +374,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     required this.items,
     this.itemIds = const [],
     this.images = const [],
+    this.orderStatus,
   });
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -395,10 +412,12 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @override
   @JsonKey()
   List<String> images;
+  @override
+  String? orderStatus;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images, orderStatus: $orderStatus)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -432,6 +451,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     required List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
+    String? orderStatus,
   }) = _$InventoryOperationModelImpl;
 
   factory _InventoryOperationModel.fromJson(Map<String, dynamic> json) =
@@ -478,6 +498,9 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   @override
   List<String> get images;
   set images(List<String> value);
+  @override
+  String? get orderStatus;
+  set orderStatus(String? value);
 
   /// Create a copy of InventoryOperationModel
   /// with the given fields replaced by the non-null parameter values.
