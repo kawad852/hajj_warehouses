@@ -16,32 +16,44 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
 
-        if (createdItems != null) {
-          for (var e in createdItems) {
-            final isUpdate = e.id.isNotEmpty;
-            if (!isUpdate) {
-              e.id = await e.getId();
-              e.createdAt = kNowDate;
-            }
-            e.status = _getItemStatus(
-              availableQuantity: e.quantity,
-              minimumQuantity: e.minimumQuantity,
-            );
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            if (isUpdate) {
-              batch.update(itemDoc, e.toJson());
-            } else {
-              batch.set(itemDoc, e);
-            }
-          }
+        if (operation.operationType == OperationType.supply.value ||
+            operation.operationType == OperationType.transfer.value) {
+          final order = OrderModel(
+            status: OrderStatusEnum.placed.value,
+            operation: operation,
+            createdAt: kNowDate,
+          );
+          order.id = await order.getId();
+          final itemDoc = kFirebaseInstant.orders.doc(order.id);
+          batch.set(itemDoc, order);
         } else {
-          for (var e in operation.items) {
-            final status = _getItemStatus(
-              availableQuantity: e.quantity,
-              minimumQuantity: e.minimumQuantity,
-            );
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            batch.update(itemDoc, {...e.toJson(), MyFields.status: status});
+          if (createdItems != null) {
+            for (var e in createdItems) {
+              final isUpdate = e.id.isNotEmpty;
+              if (!isUpdate) {
+                e.id = await e.getId();
+                e.createdAt = kNowDate;
+              }
+              e.status = _getItemStatus(
+                availableQuantity: e.quantity,
+                minimumQuantity: e.minimumQuantity,
+              );
+              final itemDoc = kFirebaseInstant.items.doc(e.id);
+              if (isUpdate) {
+                batch.update(itemDoc, e.toJson());
+              } else {
+                batch.set(itemDoc, e);
+              }
+            }
+          } else {
+            for (var e in operation.items) {
+              final status = _getItemStatus(
+                availableQuantity: e.quantity,
+                minimumQuantity: e.minimumQuantity,
+              );
+              final itemDoc = kFirebaseInstant.items.doc(e.id);
+              batch.update(itemDoc, {...e.toJson(), MyFields.status: status});
+            }
           }
         }
 
