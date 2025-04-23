@@ -14,14 +14,14 @@ class InventoryProvider extends ChangeNotifier {
     ApiService.fetch(
       context,
       callBack: () async {
-        final isUpdate = items.first.id.isNotEmpty;
         final batch = kFirebaseInstant.batch();
+
         for (var e in items) {
+          final isUpdate = e.id.isNotEmpty;
           if (!isUpdate) {
             e.id = await e.getId();
             e.createdAt = kNowDate;
           }
-
           e.status = _getItemStatus(
             availableQuantity: e.quantity,
             minimumQuantity: e.minimumQuantity,
@@ -47,7 +47,10 @@ class InventoryProvider extends ChangeNotifier {
             id: MySharedPreferences.user!.id!,
             displayName: MySharedPreferences.user!.displayName!,
           ),
-          items:
+          images: images,
+        );
+        if (items.isNotEmpty) {
+          operation.items =
               items
                   .map(
                     (e) => LightItemModel(
@@ -59,10 +62,9 @@ class InventoryProvider extends ChangeNotifier {
                               : e.quantity,
                     ),
                   )
-                  .toList(),
-          itemIds: items.map((e) => e.id).toList(),
-          images: images,
-        );
+                  .toList();
+          operation.itemIds = items.map((e) => e.id).toList();
+        }
         batch.set(operationDocREF, operation);
         await batch.commit();
         if (context.mounted) {

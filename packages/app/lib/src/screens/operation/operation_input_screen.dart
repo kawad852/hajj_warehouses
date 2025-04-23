@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
 class OperationInputScreen extends StatefulWidget {
-  final ItemModel item;
+  final ItemModel? item;
   final OperationType operationType;
   final int? maxQuantity;
 
@@ -23,8 +23,9 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isAddOperation => _operationType == OperationType.add;
   bool get _isSupplyOperation => _operationType == OperationType.supply;
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
-  ItemModel get _item => widget.item;
-  List<XFile> _files = [];
+  ItemModel? get _item => widget.item;
+  bool get _singleItem => _item != null;
+  final List<XFile> _files = [];
 
   String? get _radioGroupValue {
     if (_isAddOperation) {
@@ -43,7 +44,13 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   @override
   void initState() {
     super.initState();
-    _operation = InventoryOperationModel(operationType: _operationType.value);
+    _operation = InventoryOperationModel(
+      operationType: _operationType.value,
+      // items:
+      //     _item != null
+      //         ? [LightItemModel(id: _item!.id, quantity: _item!.quantity, name: _item!.name)]
+      //         : [],
+    );
   }
 
   @override
@@ -75,14 +82,14 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 _operationType == OperationType.transfer) {
               context.inventoryProvider.updateOrder(
                 context,
-                items: [_item],
+                items: [],
                 operation: _operation,
                 files: _files,
               );
             } else {
               context.inventoryProvider.updateInventory(
                 context,
-                items: [_item],
+                items: [],
                 operation: _operation,
                 files: _files,
               );
@@ -108,7 +115,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             ),
             CounterWidget(
               maxQuantity: widget.maxQuantity,
-              onChanged: (value) => _item.quantity = value,
+              onChanged: (value) => _operation.quantity = value,
             ),
             if (info.radio.items.isNotEmpty) ...[
               EditorLabel(info.radio.label),

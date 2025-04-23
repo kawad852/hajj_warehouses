@@ -77,7 +77,13 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   const SizedBox(width: 10),
                   WarehouseButton(
                     onTap: () {
-                      context.push((context) => const DestroyingItemsScreen());
+                      context.push(
+                        (context) => OperationInputScreen(
+                          operationType: OperationType.destroy,
+                          item: ItemModel(),
+                          maxQuantity: null,
+                        ),
+                      );
                     },
                     flex: 3,
                     backgroundColor: context.colorPalette.redC33,
