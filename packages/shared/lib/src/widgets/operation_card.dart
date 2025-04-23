@@ -3,15 +3,52 @@ import 'package:shared/shared.dart';
 
 class OperationCard extends StatelessWidget {
   final InventoryOperationModel operation;
+  final String? itemId;
 
-  const OperationCard({super.key, required this.operation});
+  const OperationCard({super.key, required this.operation, this.itemId});
+
+  bool get _singleItem => itemId != null;
+
+  (String, String) _getLabels(BuildContext context) {
+    final operationType = OperationType.values.firstWhere(
+      (e) => e.value == operation.operationType,
+    );
+    final itemsLabel = operation.items
+        .map((e) {
+          if (itemId != null) {
+            return "${e.quantity} وحدة ";
+          }
+          return "${e.quantity} وحدة ${e.name}";
+        })
+        .join(', ');
+    switch (operationType) {
+      case OperationType.create:
+        return ("إنشاء", _singleItem ? 'الصنف' : itemsLabel);
+      case OperationType.add:
+        return ("إضافة", itemsLabel);
+      case OperationType.destroy:
+        return ("إتلاف", itemsLabel);
+      default:
+        return ("", "");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (itemId != null) {
+      operation.items.removeWhere((e) => e.id != itemId);
+    }
+    final style = TextStyle(
+      color: context.colorPalette.black001,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      fontFamily: GoogleFonts.cairo().fontFamily!,
+    );
+    final labels = _getLabels(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      margin: const EdgeInsetsDirectional.only(bottom: 10, start: 10),
+      margin: const EdgeInsetsDirectional.only(bottom: 5, start: 10),
       decoration: BoxDecoration(
         color: context.colorPalette.greyF2F,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
@@ -21,32 +58,15 @@ class OperationCard extends StatelessWidget {
         children: [
           RichText(
             text: TextSpan(
-              style: TextStyle(fontFamily: GoogleFonts.cairo().fontFamily!),
+              style: style,
               children: [
-                TextSpan(
-                  text: "قام",
-                  style: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                TextSpan(text: "قام"),
                 TextSpan(
                   text: " ${operation.displayName} ",
-                  style: TextStyle(
-                    color: context.colorPalette.grey708,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: style.copyWith(color: context.colorPalette.grey708),
                 ),
-                TextSpan(
-                  text: "بـ إرسال طلب تزويد كمية 200",
-                  style: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                TextSpan(text: "بـ ${labels.$1} "),
+                TextSpan(text: labels.$2),
               ],
             ),
           ),
@@ -55,7 +75,6 @@ class OperationCard extends StatelessWidget {
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
               DateFormat.yMd().add_jm().format(operation.createdAt!),
-
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 12,

@@ -171,7 +171,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                             return const FPLoading();
                           }
                           final operation = snapshot.docs[index].data();
-                          return OperationCard(operation: operation);
+                          return OperationCard(operation: operation, itemId: _item.id);
                         },
                       );
                     },

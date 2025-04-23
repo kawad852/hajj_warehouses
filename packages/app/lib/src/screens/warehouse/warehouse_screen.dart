@@ -68,7 +68,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                 children: [
                   WarehouseButton(
                     onTap: () {
-                      context.push((context) => const ProcessesRecordScreen());
+                      context.push((context) => const OperationsScreen());
                     },
                     flex: 4,
                     title: "سجل العمليات",
