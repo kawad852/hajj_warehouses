@@ -78,11 +78,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   WarehouseButton(
                     onTap: () {
                       context.push(
-                        (context) => OperationInputScreen(
-                          operationType: OperationType.destroy,
-                          item: ItemModel(),
-                          maxQuantity: null,
-                        ),
+                        (context) => OperationInputScreen(operationType: OperationType.destroy),
                       );
                     },
                     flex: 3,

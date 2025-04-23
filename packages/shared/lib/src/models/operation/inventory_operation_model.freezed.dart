@@ -355,7 +355,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     required this.operationType,
     this.totalPayment = 0.0,
     this.quantity = 0,
-    this.items = const [],
+    required this.items,
     this.itemIds = const [],
     this.images = const [],
   });
@@ -388,7 +388,6 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   int quantity;
   @override
-  @JsonKey()
   List<LightItemModel> items;
   @override
   @JsonKey()
@@ -430,7 +429,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     required String operationType,
     double totalPayment,
     int quantity,
-    List<LightItemModel> items,
+    required List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
   }) = _$InventoryOperationModelImpl;

@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
 extension OperationExteension on OperationType {
-  OperationInfoModel getInfo(BuildContext context) {
+  OperationInfoModel getInfo(BuildContext context, bool singleItem) {
     switch (this) {
       case OperationType.add:
         return OperationInfoModel(
@@ -26,7 +26,7 @@ extension OperationExteension on OperationType {
 
       case OperationType.destroy:
         return OperationInfoModel(
-          title: "أتلاف كمية للصنف",
+          title: singleItem ? "أتلاف كمية للصنف" : "إتلاف أصناف",
           radio: RadioInfoModel(
             label: "سبب الإتلاف",
             items: [

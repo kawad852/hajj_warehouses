@@ -1,16 +1,13 @@
 import 'package:shared/shared.dart';
 
+import '../search/search_screen.dart';
+
 class OperationInputScreen extends StatefulWidget {
   final ItemModel? item;
   final OperationType operationType;
   final int? maxQuantity;
 
-  const OperationInputScreen({
-    super.key,
-    required this.operationType,
-    required this.item,
-    required this.maxQuantity,
-  });
+  const OperationInputScreen({super.key, required this.operationType, this.item, this.maxQuantity});
 
   @override
   State<OperationInputScreen> createState() => _OperationInputScreenState();
@@ -46,6 +43,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
     super.initState();
     _operation = InventoryOperationModel(
       operationType: _operationType.value,
+      items: [],
       // items:
       //     _item != null
       //         ? [LightItemModel(id: _item!.id, quantity: _item!.quantity, name: _item!.name)]
@@ -55,9 +53,10 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final info = _operationType.getInfo(context);
+    final info = _operationType.getInfo(context, _singleItem);
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: _singleItem ? Colors.transparent : null,
+      appBar: _singleItem ? null : AppBar(title: Text(info.title)),
       bottomNavigationBar: BottomButton(
         text: "اضافة",
         onPressed: () {
@@ -102,21 +101,24 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                info.title,
-                style: TextStyle(
-                  color: context.colorPalette.black001,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+            if (_singleItem) ...[
+              Center(
+                child: Text(
+                  info.title,
+                  style: TextStyle(
+                    color: context.colorPalette.black001,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            CounterWidget(
-              maxQuantity: widget.maxQuantity,
-              onChanged: (value) => _operation.quantity = value,
-            ),
+              CounterWidget(
+                maxQuantity: widget.maxQuantity,
+                onChanged: (value) => _operation.quantity = value,
+              ),
+            ],
+
             if (info.radio.items.isNotEmpty) ...[
               EditorLabel(info.radio.label),
               const SizedBox(height: 8),
@@ -162,10 +164,11 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
             ],
 
-            if (_operationType == OperationType.supply ||
-                _operationType == OperationType.destroy) ...[
-              SizedBox(height: _operationType == OperationType.supply ? 50 : 30),
-              const EditorLabel("مشروحات وملاحظات حول الطلب"),
+            if (_isSupplyOperation || _isDestroyOperation) ...[
+              SizedBox(height: _isSupplyOperation ? 50 : 30),
+              EditorLabel(
+                _isSupplyOperation ? "مشروحات وملاحظات حول الطلب" : "مشروحات وملاحظات حول الإتلاف",
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: BorderDecoratorTheme(
@@ -190,6 +193,82 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ),
               ),
               ImagesAttacher(onChanged: _onFileAdd, title: "ارفاق صور عن المواد التي سيتم اتلافها"),
+
+              ///List ...
+              if (!_singleItem) ...[
+                const SizedBox(height: 30),
+                Text(
+                  "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
+                  style: TextStyle(
+                    color: context.colorPalette.grey666,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const ItemTableHeader(),
+                ListView.separated(
+                  separatorBuilder: (context, index) => const SizedBox(height: 5),
+                  itemCount: _operation.items.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(bottom: 5),
+                  itemBuilder: (context, index) {
+                    final item = _operation.items[index];
+                    final length = _operation.items.length;
+                    return ItemTableCell(
+                      key: ValueKey("$length${item.id}"),
+                      onChangedQuntity: (value) {},
+                      itemName: item.name,
+                      autoFocus: index + 1 == length,
+                      length: length,
+                      onRemove: () {
+                        setState(() {
+                          _operation.items.removeAt(index);
+                        });
+                      },
+                    );
+                  },
+                ),
+                ProductsSearchScreen(
+                  indexName: AlgoliaIndices.items.value,
+                  isFullScreen: false,
+                  onTap: (e) {
+                    final ids = [];
+                    if (ids.contains(e.id)) {
+                      Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                      return;
+                    }
+                    context.pop();
+                    final item = LightItemModel(id: e.id, name: e.name);
+                    setState(() {
+                      _operation.items.add(item);
+                    });
+                  },
+                  builder: (controller) {
+                    return BaseEditor(
+                      hintText: "ادخل رقم الصنف او الإسم",
+                      hintStyle: TextStyle(
+                        color: context.colorPalette.grey666,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      readOnly: true,
+                      onTap: () {
+                        controller.openView();
+                      },
+                      canRequestFocus: false,
+                      prefixIcon: IconButton(
+                        onPressed: null,
+                        icon: CustomSvg(
+                          MyIcons.addTask,
+                          color: context.colorPalette.grey708,
+                          width: 20,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ],
           ],
         ),

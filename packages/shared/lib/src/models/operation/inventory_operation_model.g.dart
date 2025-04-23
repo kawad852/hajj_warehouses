@@ -23,10 +23,9 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
   quantity: (json['quantity'] as num?)?.toInt() ?? 0,
   items:
-      (json['items'] as List<dynamic>?)
-          ?.map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
+      (json['items'] as List<dynamic>)
+          .map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
   itemIds:
       (json['itemIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],

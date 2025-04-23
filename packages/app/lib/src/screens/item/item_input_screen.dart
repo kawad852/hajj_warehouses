@@ -49,7 +49,10 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   context.inventoryProvider.updateInventory(
                     context,
                     items: _items,
-                    operation: InventoryOperationModel(operationType: OperationType.create.value),
+                    operation: InventoryOperationModel(
+                      operationType: OperationType.create.value,
+                      items: [],
+                    ),
                     files: [],
                   );
                 },
