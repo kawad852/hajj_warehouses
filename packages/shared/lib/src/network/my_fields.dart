@@ -16,4 +16,5 @@ class MyFields {
   static const String type = 'type';
   static const String itemIds = 'itemIds';
   static const String status = 'status';
+  static const String quantity = 'quantity';
 }

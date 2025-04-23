@@ -378,10 +378,15 @@ LightItemModel _$LightItemModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LightItemModel {
   String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  set quantity(int value) => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   int get minimumQuantity => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set minimumQuantity(int value) => throw _privateConstructorUsedError;
 
   /// Serializes this LightItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -535,39 +540,21 @@ class _$LightItemModelImpl implements _LightItemModel {
 
   @override
   @JsonKey()
-  final String id;
+  String id;
   @override
   @JsonKey()
-  final String name;
+  String name;
   @override
   @JsonKey()
-  final int quantity;
+  int quantity;
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  final int minimumQuantity;
+  int minimumQuantity;
 
   @override
   String toString() {
     return 'LightItemModel(id: $id, name: $name, quantity: $quantity, minimumQuantity: $minimumQuantity)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LightItemModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.minimumQuantity, minimumQuantity) ||
-                other.minimumQuantity == minimumQuantity));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, quantity, minimumQuantity);
 
   /// Create a copy of LightItemModel
   /// with the given fields replaced by the non-null parameter values.
@@ -588,11 +575,10 @@ class _$LightItemModelImpl implements _LightItemModel {
 
 abstract class _LightItemModel implements LightItemModel {
   factory _LightItemModel({
-    final String id,
-    final String name,
-    final int quantity,
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    final int minimumQuantity,
+    String id,
+    String name,
+    int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
   }) = _$LightItemModelImpl;
 
   factory _LightItemModel.fromJson(Map<String, dynamic> json) =
@@ -600,13 +586,18 @@ abstract class _LightItemModel implements LightItemModel {
 
   @override
   String get id;
+  set id(String value);
   @override
   String get name;
+  set name(String value);
   @override
   int get quantity;
+  set quantity(int value);
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   int get minimumQuantity;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set minimumQuantity(int value);
 
   /// Create a copy of LightItemModel
   /// with the given fields replaced by the non-null parameter values.

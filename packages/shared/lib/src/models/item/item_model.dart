@@ -26,7 +26,7 @@ class ItemModel with _$ItemModel {
   Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.itemId);
 }
 
-@freezed
+@unfreezed
 class LightItemModel with _$LightItemModel {
   factory LightItemModel({
     @Default('') String id,

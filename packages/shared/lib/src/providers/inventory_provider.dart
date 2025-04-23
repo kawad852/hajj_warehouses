@@ -35,24 +35,36 @@ class InventoryProvider extends ChangeNotifier {
                 e.createdAt = kNowDate;
               }
               e.status = _getItemStatus(
-                availableQuantity: e.quantity,
+                availableQuantity: operation.quantity,
                 minimumQuantity: e.minimumQuantity,
               );
               final itemDoc = kFirebaseInstant.items.doc(e.id);
+              final json = e.toJson();
               if (isUpdate) {
-                batch.update(itemDoc, e.toJson());
+                final isDestory = operation.operationType == OperationType.destroy.value;
+                json[MyFields.quantity] = FieldValue.increment(
+                  isDestory ? -operation.quantity : operation.quantity,
+                );
+              }
+              if (isUpdate) {
+                batch.update(itemDoc, json);
               } else {
                 batch.set(itemDoc, e);
               }
             }
           } else {
             for (var e in operation.items) {
+              e.quantity = operation.quantity;
               final status = _getItemStatus(
-                availableQuantity: e.quantity,
+                availableQuantity: operation.quantity,
                 minimumQuantity: e.minimumQuantity,
               );
               final itemDoc = kFirebaseInstant.items.doc(e.id);
-              batch.update(itemDoc, {...e.toJson(), MyFields.status: status});
+              batch.update(itemDoc, {
+                ...e.toJson(),
+                MyFields.status: status,
+                MyFields.quantity: FieldValue.increment(operation.quantity),
+              });
             }
           }
         }
