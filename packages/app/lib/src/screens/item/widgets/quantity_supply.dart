@@ -27,7 +27,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          CounterWidget(initialValue: 1, onChanged: (value) {}),
+          CounterWidget(maxQuantity: 1, onChanged: (value) {}),
           Row(
             children: [
               Text(

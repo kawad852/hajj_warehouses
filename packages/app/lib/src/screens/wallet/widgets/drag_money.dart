@@ -24,7 +24,7 @@ class _DragMoneyState extends State<DragMoney> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          CounterWidget(initialValue: 1, onChanged: (value) {}),
+          CounterWidget(maxQuantity: 1, onChanged: (value) {}),
           TitledTextField(
             title: "نوع المصروف",
             textStyle: TextStyle(

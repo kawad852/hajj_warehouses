@@ -3,8 +3,14 @@ import 'package:shared/shared.dart';
 class OperationInputScreen extends StatefulWidget {
   final ItemModel item;
   final OperationType operationType;
+  final int? maxQuantity;
 
-  const OperationInputScreen({super.key, required this.operationType, required this.item});
+  const OperationInputScreen({
+    super.key,
+    required this.operationType,
+    required this.item,
+    required this.maxQuantity,
+  });
 
   @override
   State<OperationInputScreen> createState() => _OperationInputScreenState();
@@ -95,7 +101,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
             ),
             CounterWidget(
-              initialValue: _item.quantity,
+              maxQuantity: widget.maxQuantity,
               onChanged: (value) => _item.quantity = value,
             ),
             if (info.radio.items.isNotEmpty) ...[

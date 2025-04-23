@@ -1,33 +1,21 @@
 import 'package:shared/shared.dart';
 
 class CounterWidget extends StatefulWidget {
-  final int initialValue;
+  final int? maxQuantity;
   final Function(int value) onChanged;
 
-  const CounterWidget({super.key, required this.initialValue, required this.onChanged});
+  const CounterWidget({super.key, required this.maxQuantity, required this.onChanged});
 
   @override
   State<CounterWidget> createState() => _CounterWidgetState();
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-  late int _quantity;
+  var _quantity = 1;
 
-  @override
-  void initState() {
-    super.initState();
-    _quantity = widget.initialValue;
-  }
-
-  @override
-  void didUpdateWidget(covariant CounterWidget oldWidget) {
-    if (widget.initialValue != oldWidget.initialValue) {
-      // setState(() {
-      //   _quantity = widget.initialValue;
-      // });
-    }
-    super.didUpdateWidget(oldWidget);
-  }
+  bool get _canAddMore =>
+      widget.maxQuantity == null ||
+      (widget.maxQuantity != null && _quantity <= widget.maxQuantity! - 1);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +23,15 @@ class _CounterWidgetState extends State<CounterWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {
-            setState(() {
-              _quantity--;
-            });
-            widget.onChanged(_quantity);
-          },
+          onPressed:
+              _quantity > 1
+                  ? () {
+                    setState(() {
+                      _quantity--;
+                    });
+                    widget.onChanged(_quantity);
+                  }
+                  : null,
           icon: const Icon(Icons.remove, size: 30),
         ),
         SizedBox(
@@ -61,12 +52,15 @@ class _CounterWidgetState extends State<CounterWidget> {
           ),
         ),
         IconButton(
-          onPressed: () {
-            setState(() {
-              _quantity++;
-            });
-            widget.onChanged(_quantity);
-          },
+          onPressed:
+              _canAddMore
+                  ? () {
+                    setState(() {
+                      _quantity++;
+                    });
+                    widget.onChanged(_quantity);
+                  }
+                  : null,
           icon: const Icon(Icons.add, size: 30),
         ),
       ],

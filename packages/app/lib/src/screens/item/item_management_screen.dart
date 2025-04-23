@@ -30,11 +30,16 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
     BuildContext context, {
     required ItemModel item,
     required OperationType operationType,
+    int? maxQuantity,
   }) {
     context.showBottomSheet(
       context,
       builder: (context) {
-        return OperationInputScreen(item: item, operationType: operationType);
+        return OperationInputScreen(
+          item: item,
+          operationType: operationType,
+          maxQuantity: maxQuantity,
+        );
       },
     );
   }
@@ -123,7 +128,12 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           flex: 4,
                           child: ManageButton(
                             onTap: () {
-                              _openSheet(context, item: item, operationType: OperationType.destroy);
+                              _openSheet(
+                                context,
+                                item: item,
+                                operationType: OperationType.destroy,
+                                maxQuantity: _item.quantity,
+                              );
                             },
                             title: "إتلاف اصناف",
                             backgroundColor: context.colorPalette.redC33,
