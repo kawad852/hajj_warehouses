@@ -16,20 +16,23 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final isUpdate = items.first.id.isNotEmpty;
         final batch = kFirebaseInstant.batch();
-        for (var e in items) {
-          if (!isUpdate) {
-            e.id = await e.getId();
-            e.createdAt = kNowDate;
-          }
-          e.status = _getItemStatus(
-            availableQuantity: e.quantity,
-            minimumQuantity: e.minimumQuantity,
-          );
-          final itemDoc = kFirebaseInstant.items.doc(e.id);
-          if (isUpdate) {
-            batch.update(itemDoc, e.toJson());
-          } else {
-            batch.set(itemDoc, e);
+        if (operation.operationType != OperationType.supply.value) {
+          for (var e in items) {
+            if (!isUpdate) {
+              e.id = await e.getId();
+              e.createdAt = kNowDate;
+            }
+
+            e.status = _getItemStatus(
+              availableQuantity: e.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            if (isUpdate) {
+              batch.update(itemDoc, e.toJson());
+            } else {
+              batch.set(itemDoc, e);
+            }
           }
         }
         final operationDocREF = BranchQueries.inventoryOperations.doc();
