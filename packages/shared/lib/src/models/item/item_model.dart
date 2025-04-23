@@ -32,6 +32,7 @@ class LightItemModel with _$LightItemModel {
     @Default('') String id,
     @Default('') String name,
     @Default(0) int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) @Default(0) int minimumQuantity,
   }) = _LightItemModel;
 
   factory LightItemModel.fromJson(Map<String, dynamic> json) => _$LightItemModelFromJson(json);

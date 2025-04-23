@@ -15,4 +15,5 @@ class MyFields {
   static const String categoryId = 'categoryId';
   static const String type = 'type';
   static const String itemIds = 'itemIds';
+  static const String status = 'status';
 }

@@ -48,11 +48,22 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                 : () {
                   context.inventoryProvider.updateInventory(
                     context,
-                    items: _items,
+                    createdItems: _items,
                     operation: InventoryOperationModel(
                       operationType: OperationType.create.value,
-                      items: [],
+                      items:
+                          _items
+                              .map(
+                                (e) => LightItemModel(
+                                  id: e.id,
+                                  name: e.name,
+                                  quantity: e.minimumQuantity,
+                                ),
+                              )
+                              .toList(),
+                      itemIds: _items.map((e) => e.id).toList(),
                     ),
+
                     files: [],
                   );
                 },

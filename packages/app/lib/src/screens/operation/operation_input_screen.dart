@@ -88,7 +88,6 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             } else {
               context.inventoryProvider.updateInventory(
                 context,
-                items: [],
                 operation: _operation,
                 files: _files,
               );
@@ -239,7 +238,12 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                       return;
                     }
                     context.pop();
-                    final item = LightItemModel(id: e.id, name: e.name);
+                    final item = LightItemModel(
+                      id: e.id,
+                      name: e.name,
+                      quantity: e.quantity,
+                      minimumQuantity: e.minimumQuantity,
+                    );
                     setState(() {
                       _operation.items.add(item);
                     });

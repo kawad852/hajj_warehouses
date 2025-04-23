@@ -380,6 +380,8 @@ mixin _$LightItemModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  int get minimumQuantity => throw _privateConstructorUsedError;
 
   /// Serializes this LightItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -398,7 +400,12 @@ abstract class $LightItemModelCopyWith<$Res> {
     $Res Function(LightItemModel) then,
   ) = _$LightItemModelCopyWithImpl<$Res, LightItemModel>;
   @useResult
-  $Res call({String id, String name, int quantity});
+  $Res call({
+    String id,
+    String name,
+    int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
+  });
 }
 
 /// @nodoc
@@ -415,7 +422,12 @@ class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? name = null, Object? quantity = null}) {
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? quantity = null,
+    Object? minimumQuantity = null,
+  }) {
     return _then(
       _value.copyWith(
             id:
@@ -433,6 +445,11 @@ class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
                     ? _value.quantity
                     : quantity // ignore: cast_nullable_to_non_nullable
                         as int,
+            minimumQuantity:
+                null == minimumQuantity
+                    ? _value.minimumQuantity
+                    : minimumQuantity // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -448,7 +465,12 @@ abstract class _$$LightItemModelImplCopyWith<$Res>
   ) = __$$LightItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, int quantity});
+  $Res call({
+    String id,
+    String name,
+    int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
+  });
 }
 
 /// @nodoc
@@ -464,7 +486,12 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? name = null, Object? quantity = null}) {
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? quantity = null,
+    Object? minimumQuantity = null,
+  }) {
     return _then(
       _$LightItemModelImpl(
         id:
@@ -482,6 +509,11 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
                 ? _value.quantity
                 : quantity // ignore: cast_nullable_to_non_nullable
                     as int,
+        minimumQuantity:
+            null == minimumQuantity
+                ? _value.minimumQuantity
+                : minimumQuantity // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -490,7 +522,13 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LightItemModelImpl implements _LightItemModel {
-  _$LightItemModelImpl({this.id = '', this.name = '', this.quantity = 0});
+  _$LightItemModelImpl({
+    this.id = '',
+    this.name = '',
+    this.quantity = 0,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    this.minimumQuantity = 0,
+  });
 
   factory _$LightItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightItemModelImplFromJson(json);
@@ -504,10 +542,13 @@ class _$LightItemModelImpl implements _LightItemModel {
   @override
   @JsonKey()
   final int quantity;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final int minimumQuantity;
 
   @override
   String toString() {
-    return 'LightItemModel(id: $id, name: $name, quantity: $quantity)';
+    return 'LightItemModel(id: $id, name: $name, quantity: $quantity, minimumQuantity: $minimumQuantity)';
   }
 
   @override
@@ -518,12 +559,15 @@ class _$LightItemModelImpl implements _LightItemModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+                other.quantity == quantity) &&
+            (identical(other.minimumQuantity, minimumQuantity) ||
+                other.minimumQuantity == minimumQuantity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, quantity);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, quantity, minimumQuantity);
 
   /// Create a copy of LightItemModel
   /// with the given fields replaced by the non-null parameter values.
@@ -547,6 +591,8 @@ abstract class _LightItemModel implements LightItemModel {
     final String id,
     final String name,
     final int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    final int minimumQuantity,
   }) = _$LightItemModelImpl;
 
   factory _LightItemModel.fromJson(Map<String, dynamic> json) =
@@ -558,6 +604,9 @@ abstract class _LightItemModel implements LightItemModel {
   String get name;
   @override
   int get quantity;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  int get minimumQuantity;
 
   /// Create a copy of LightItemModel
   /// with the given fields replaced by the non-null parameter values.

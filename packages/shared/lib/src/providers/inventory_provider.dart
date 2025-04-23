@@ -7,7 +7,7 @@ class InventoryProvider extends ChangeNotifier {
 
   void updateInventory(
     BuildContext context, {
-    required List<ItemModel> items,
+    List<ItemModel>? createdItems,
     required InventoryOperationModel operation,
     required List<XFile> files,
   }) {
@@ -16,21 +16,32 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
 
-        for (var e in items) {
-          final isUpdate = e.id.isNotEmpty;
-          if (!isUpdate) {
-            e.id = await e.getId();
-            e.createdAt = kNowDate;
+        if (createdItems != null) {
+          for (var e in createdItems) {
+            final isUpdate = e.id.isNotEmpty;
+            if (!isUpdate) {
+              e.id = await e.getId();
+              e.createdAt = kNowDate;
+            }
+            e.status = _getItemStatus(
+              availableQuantity: e.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            if (isUpdate) {
+              batch.update(itemDoc, e.toJson());
+            } else {
+              batch.set(itemDoc, e);
+            }
           }
-          e.status = _getItemStatus(
-            availableQuantity: e.quantity,
-            minimumQuantity: e.minimumQuantity,
-          );
-          final itemDoc = kFirebaseInstant.items.doc(e.id);
-          if (isUpdate) {
-            batch.update(itemDoc, e.toJson());
-          } else {
-            batch.set(itemDoc, e);
+        } else {
+          for (var e in operation.items) {
+            final status = _getItemStatus(
+              availableQuantity: e.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            batch.update(itemDoc, {...e.toJson(), MyFields.status: status});
           }
         }
 
@@ -49,22 +60,7 @@ class InventoryProvider extends ChangeNotifier {
           ),
           images: images,
         );
-        if (items.isNotEmpty) {
-          operation.items =
-              items
-                  .map(
-                    (e) => LightItemModel(
-                      id: e.id,
-                      name: e.name,
-                      quantity:
-                          operation.operationType == OperationType.create.value
-                              ? e.minimumQuantity
-                              : e.quantity,
-                    ),
-                  )
-                  .toList();
-          operation.itemIds = items.map((e) => e.id).toList();
-        }
+
         batch.set(operationDocREF, operation);
         await batch.commit();
         if (context.mounted) {
