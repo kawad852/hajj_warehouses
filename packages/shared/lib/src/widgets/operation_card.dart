@@ -26,6 +26,8 @@ class OperationCard extends StatelessWidget {
         return ("إنشاء", _singleItem ? 'الصنف' : itemsLabel);
       case OperationType.add:
         return ("إضافة", itemsLabel);
+      case OperationType.supply:
+        return ("طلب تزويد", itemsLabel);
       case OperationType.destroy:
         return ("إتلاف", itemsLabel);
       default:

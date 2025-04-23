@@ -125,7 +125,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                             if (_isAddOperation) {
                               _operation.supplyType = value!;
                             } else if (_isSupplyOperation) {
-                              _operation.supplyType = value!;
+                              _operation.requestType = value!;
                             } else if (_isDestroyOperation) {
                               _operation.destroyReason = value!;
                             }
