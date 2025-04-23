@@ -29,19 +29,22 @@ class InventoryProvider extends ChangeNotifier {
           operation.itemIds = items.map((e) => e.id).toList();
         }
 
-        for (var e in operation.items) {
-          e.quantity = operation.quantity;
-          final status = _getItemStatus(
-            availableQuantity: operation.quantity,
-            minimumQuantity: e.minimumQuantity,
-          );
-          final itemDoc = kFirebaseInstant.items.doc(e.id);
-          final json = e.toJson();
-          final increment = operation.operationType == OperationType.add.value;
-          json[MyFields.quantity] = FieldValue.increment(
-            increment ? operation.quantity : -operation.quantity,
-          );
-          batch.update(itemDoc, {...json, MyFields.status: status});
+        if (!needsApproval) {
+          for (var e in operation.items) {
+            e.quantity = operation.quantity;
+            final status = _getItemStatus(
+              availableQuantity: operation.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            final json = e.toJson();
+            final increment = operation.operationType == OperationType.add.value;
+            json[MyFields.quantity] = FieldValue.increment(
+              increment ? operation.quantity : -operation.quantity,
+            );
+            json[MyFields.status] = status;
+            batch.update(itemDoc, json);
+          }
         }
 
         final operationDocREF = BranchQueries.inventoryOperations.doc();
