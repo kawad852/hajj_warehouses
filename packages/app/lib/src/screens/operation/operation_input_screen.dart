@@ -43,10 +43,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   @override
   void initState() {
     super.initState();
-    _operation = InventoryOperationModel(
-      operationType: _operationType.value,
-      displayName: MySharedPreferences.user!.displayName!,
-    );
+    _operation = InventoryOperationModel(operationType: _operationType.value);
   }
 
   @override
@@ -69,18 +66,27 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
           } else if (_isAddOperation && _operation.totalPayment == 0) {
             errorMsg = "يجب تحديد قيمة المشتريات";
           } else if (!_isSupplyOperation && _files.isEmpty) {
-            print('asflkjasklfj');
             errorMsg = "يجب إرفاق صورة";
           }
           if (errorMsg != null) {
             context.showSnackBar(errorMsg);
           } else {
-            context.inventoryProvider.updateInventory(
-              context,
-              items: [_item],
-              operation: _operation,
-              files: _files,
-            );
+            if (_operationType == OperationType.supply ||
+                _operationType == OperationType.transfer) {
+              context.inventoryProvider.updateOrder(
+                context,
+                items: [_item],
+                operation: _operation,
+                files: _files,
+              );
+            } else {
+              context.inventoryProvider.updateInventory(
+                context,
+                items: [_item],
+                operation: _operation,
+                files: _files,
+              );
+            }
           }
         },
       ),

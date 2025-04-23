@@ -29,8 +29,8 @@ mixin _$InventoryOperationModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get displayName => throw _privateConstructorUsedError;
-  set displayName(String value) => throw _privateConstructorUsedError;
+  LightUserModel? get user => throw _privateConstructorUsedError;
+  set user(LightUserModel? value) => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   set notes(String? value) => throw _privateConstructorUsedError;
   String? get supplyType => throw _privateConstructorUsedError;
@@ -72,7 +72,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String displayName,
+    LightUserModel? user,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -84,6 +84,8 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     List<String> itemIds,
     List<String> images,
   });
+
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -106,7 +108,7 @@ class _$InventoryOperationModelCopyWithImpl<
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? displayName = null,
+    Object? user = freezed,
     Object? notes = freezed,
     Object? supplyType = freezed,
     Object? requestType = freezed,
@@ -130,11 +132,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            displayName:
-                null == displayName
-                    ? _value.displayName
-                    : displayName // ignore: cast_nullable_to_non_nullable
-                        as String,
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
             notes:
                 freezed == notes
                     ? _value.notes
@@ -189,6 +191,20 @@ class _$InventoryOperationModelCopyWithImpl<
           as $Val,
     );
   }
+
+  /// Create a copy of InventoryOperationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -203,7 +219,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String displayName,
+    LightUserModel? user,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -215,6 +231,9 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     List<String> itemIds,
     List<String> images,
   });
+
+  @override
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -237,7 +256,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? displayName = null,
+    Object? user = freezed,
     Object? notes = freezed,
     Object? supplyType = freezed,
     Object? requestType = freezed,
@@ -261,11 +280,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        displayName:
-            null == displayName
-                ? _value.displayName
-                : displayName // ignore: cast_nullable_to_non_nullable
-                    as String,
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
         notes:
             freezed == notes
                 ? _value.notes
@@ -328,7 +347,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   _$InventoryOperationModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.displayName = '',
+    this.user,
     this.notes,
     this.supplyType,
     this.requestType,
@@ -351,8 +370,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   String id;
   @override
-  @JsonKey()
-  String displayName;
+  LightUserModel? user;
   @override
   String? notes;
   @override
@@ -381,7 +399,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, displayName: $displayName, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -404,7 +422,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   factory _InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String displayName,
+    LightUserModel? user,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -429,8 +447,8 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   String get id;
   set id(String value);
   @override
-  String get displayName;
-  set displayName(String value);
+  LightUserModel? get user;
+  set user(LightUserModel? value);
   @override
   String? get notes;
   set notes(String? value);

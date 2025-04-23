@@ -27,3 +27,10 @@ class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }
+
+@freezed
+class LightUserModel with _$LightUserModel {
+  factory LightUserModel({String? id, String? displayName}) = _LightUserModel;
+
+  factory LightUserModel.fromJson(Map<String, dynamic> json) => _$LightUserModelFromJson(json);
+}

@@ -486,3 +486,177 @@ abstract class _UserModel implements UserModel {
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+LightUserModel _$LightUserModelFromJson(Map<String, dynamic> json) {
+  return _LightUserModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LightUserModel {
+  String? get id => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
+
+  /// Serializes this LightUserModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LightUserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LightUserModelCopyWith<LightUserModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LightUserModelCopyWith<$Res> {
+  factory $LightUserModelCopyWith(
+    LightUserModel value,
+    $Res Function(LightUserModel) then,
+  ) = _$LightUserModelCopyWithImpl<$Res, LightUserModel>;
+  @useResult
+  $Res call({String? id, String? displayName});
+}
+
+/// @nodoc
+class _$LightUserModelCopyWithImpl<$Res, $Val extends LightUserModel>
+    implements $LightUserModelCopyWith<$Res> {
+  _$LightUserModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LightUserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = freezed, Object? displayName = freezed}) {
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            displayName:
+                freezed == displayName
+                    ? _value.displayName
+                    : displayName // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LightUserModelImplCopyWith<$Res>
+    implements $LightUserModelCopyWith<$Res> {
+  factory _$$LightUserModelImplCopyWith(
+    _$LightUserModelImpl value,
+    $Res Function(_$LightUserModelImpl) then,
+  ) = __$$LightUserModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? id, String? displayName});
+}
+
+/// @nodoc
+class __$$LightUserModelImplCopyWithImpl<$Res>
+    extends _$LightUserModelCopyWithImpl<$Res, _$LightUserModelImpl>
+    implements _$$LightUserModelImplCopyWith<$Res> {
+  __$$LightUserModelImplCopyWithImpl(
+    _$LightUserModelImpl _value,
+    $Res Function(_$LightUserModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LightUserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = freezed, Object? displayName = freezed}) {
+    return _then(
+      _$LightUserModelImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        displayName:
+            freezed == displayName
+                ? _value.displayName
+                : displayName // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LightUserModelImpl implements _LightUserModel {
+  _$LightUserModelImpl({this.id, this.displayName});
+
+  factory _$LightUserModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LightUserModelImplFromJson(json);
+
+  @override
+  final String? id;
+  @override
+  final String? displayName;
+
+  @override
+  String toString() {
+    return 'LightUserModel(id: $id, displayName: $displayName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LightUserModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, displayName);
+
+  /// Create a copy of LightUserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LightUserModelImplCopyWith<_$LightUserModelImpl> get copyWith =>
+      __$$LightUserModelImplCopyWithImpl<_$LightUserModelImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LightUserModelImplToJson(this);
+  }
+}
+
+abstract class _LightUserModel implements LightUserModel {
+  factory _LightUserModel({final String? id, final String? displayName}) =
+      _$LightUserModelImpl;
+
+  factory _LightUserModel.fromJson(Map<String, dynamic> json) =
+      _$LightUserModelImpl.fromJson;
+
+  @override
+  String? get id;
+  @override
+  String? get displayName;
+
+  /// Create a copy of LightUserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LightUserModelImplCopyWith<_$LightUserModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

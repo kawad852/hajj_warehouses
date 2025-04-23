@@ -27,16 +27,11 @@ mixin _$OrderModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get note => throw _privateConstructorUsedError;
-  set note(String value) => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  set userId(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  bool get urgent => throw _privateConstructorUsedError;
-  set urgent(bool value) => throw _privateConstructorUsedError;
-  List<LightItemModel> get items => throw _privateConstructorUsedError;
-  set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
+  InventoryOperationModel? get operation => throw _privateConstructorUsedError;
+  set operation(InventoryOperationModel? value) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,12 +53,11 @@ abstract class $OrderModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String note,
-    String userId,
     String status,
-    bool urgent,
-    List<LightItemModel> items,
+    InventoryOperationModel? operation,
   });
+
+  $InventoryOperationModelCopyWith<$Res>? get operation;
 }
 
 /// @nodoc
@@ -83,11 +77,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? note = null,
-    Object? userId = null,
     Object? status = null,
-    Object? urgent = null,
-    Object? items = null,
+    Object? operation = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -101,34 +92,33 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            note:
-                null == note
-                    ? _value.note
-                    : note // ignore: cast_nullable_to_non_nullable
-                        as String,
-            userId:
-                null == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
-                        as String,
             status:
                 null == status
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
-            urgent:
-                null == urgent
-                    ? _value.urgent
-                    : urgent // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            items:
-                null == items
-                    ? _value.items
-                    : items // ignore: cast_nullable_to_non_nullable
-                        as List<LightItemModel>,
+            operation:
+                freezed == operation
+                    ? _value.operation
+                    : operation // ignore: cast_nullable_to_non_nullable
+                        as InventoryOperationModel?,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InventoryOperationModelCopyWith<$Res>? get operation {
+    if (_value.operation == null) {
+      return null;
+    }
+
+    return $InventoryOperationModelCopyWith<$Res>(_value.operation!, (value) {
+      return _then(_value.copyWith(operation: value) as $Val);
+    });
   }
 }
 
@@ -144,12 +134,12 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String note,
-    String userId,
     String status,
-    bool urgent,
-    List<LightItemModel> items,
+    InventoryOperationModel? operation,
   });
+
+  @override
+  $InventoryOperationModelCopyWith<$Res>? get operation;
 }
 
 /// @nodoc
@@ -168,11 +158,8 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? note = null,
-    Object? userId = null,
     Object? status = null,
-    Object? urgent = null,
-    Object? items = null,
+    Object? operation = freezed,
   }) {
     return _then(
       _$OrderModelImpl(
@@ -186,31 +173,16 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        note:
-            null == note
-                ? _value.note
-                : note // ignore: cast_nullable_to_non_nullable
-                    as String,
-        userId:
-            null == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
-                    as String,
         status:
             null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
-        urgent:
-            null == urgent
-                ? _value.urgent
-                : urgent // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        items:
-            null == items
-                ? _value.items
-                : items // ignore: cast_nullable_to_non_nullable
-                    as List<LightItemModel>,
+        operation:
+            freezed == operation
+                ? _value.operation
+                : operation // ignore: cast_nullable_to_non_nullable
+                    as InventoryOperationModel?,
       ),
     );
   }
@@ -223,11 +195,8 @@ class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.note = '',
-    this.userId = '',
     required this.status,
-    this.urgent = false,
-    required this.items,
+    this.operation,
   }) : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -240,22 +209,13 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey()
   String id;
   @override
-  @JsonKey()
-  String note;
-  @override
-  @JsonKey()
-  String userId;
-  @override
   String status;
   @override
-  @JsonKey()
-  bool urgent;
-  @override
-  List<LightItemModel> items;
+  InventoryOperationModel? operation;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, note: $note, userId: $userId, status: $status, urgent: $urgent, items: $items)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, status: $status, operation: $operation)';
   }
 
   /// Create a copy of OrderModel
@@ -276,11 +236,8 @@ abstract class _OrderModel extends OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String note,
-    String userId,
     required String status,
-    bool urgent,
-    required List<LightItemModel> items,
+    InventoryOperationModel? operation,
   }) = _$OrderModelImpl;
   _OrderModel._() : super._();
 
@@ -296,20 +253,11 @@ abstract class _OrderModel extends OrderModel {
   String get id;
   set id(String value);
   @override
-  String get note;
-  set note(String value);
-  @override
-  String get userId;
-  set userId(String value);
-  @override
   String get status;
   set status(String value);
   @override
-  bool get urgent;
-  set urgent(bool value);
-  @override
-  List<LightItemModel> get items;
-  set items(List<LightItemModel> value);
+  InventoryOperationModel? get operation;
+  set operation(InventoryOperationModel? value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.

@@ -10,11 +10,8 @@ class OrderModel with _$OrderModel {
   factory OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    @Default('') String note,
-    @Default('') String userId,
     required String status,
-    @Default(false) bool urgent,
-    required List<LightItemModel> items,
+    InventoryOperationModel? operation,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);

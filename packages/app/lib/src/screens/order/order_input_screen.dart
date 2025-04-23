@@ -17,7 +17,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
       callBack: () async {
         _order.id = await _order.getId();
         _order.createdAt = kNowDate;
-        _order.userId = kSelectedUserId;
+        // _order.userId = kSelectedUserId;
 
         await kFirebaseInstant.orders.doc(_order.id).set(_order);
         if (context.mounted) {
@@ -30,7 +30,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
 
   @override
   void initState() {
-    _order = OrderModel(status: OrderStatusEnum.placed.value, items: []);
+    _order = OrderModel(status: OrderStatusEnum.placed.value);
     super.initState();
   }
 
@@ -76,21 +76,17 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 CustomRadio(
                   value: false,
                   title: "عادية",
-                  groupValue: _order.urgent,
+                  groupValue: '0',
                   onChanged: (value) {
-                    setState(() {
-                      _order.urgent = false;
-                    });
+                    setState(() {});
                   },
                 ),
                 CustomRadio(
                   value: true,
                   title: "طارئة",
-                  groupValue: _order.urgent,
+                  groupValue: '0',
                   onChanged: (value) {
-                    setState(() {
-                      _order.urgent = true;
-                    });
+                    setState(() {});
                   },
                 ),
               ],
@@ -107,7 +103,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: BaseEditor(
-                onChanged: (value) => _order.note = value,
+                onChanged: (value) {},
                 filled: true,
                 fillColor: Colors.transparent,
                 maxLines: 3,
@@ -132,13 +128,13 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
             const ItemTableHeader(),
             ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: _order.items.length,
+              itemCount: 1,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 5),
               itemBuilder: (context, index) {
-                final item = _order.items[index];
-                final length = _order.items.length;
+                final item = ItemModel();
+                final length = 1;
                 return ItemTableCell(
                   key: ValueKey("$length${item.id}"),
                   onChangedQuntity: (value) {},
@@ -146,9 +142,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                   autoFocus: index + 1 == length,
                   length: length,
                   onRemove: () {
-                    setState(() {
-                      _order.items.removeAt(index);
-                    });
+                    setState(() {});
                   },
                 );
               },
@@ -157,16 +151,14 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               indexName: AlgoliaIndices.items.value,
               isFullScreen: false,
               onTap: (e) {
-                final ids = _order.items.map((e) => e.id).toList();
+                final ids = [];
                 if (ids.contains(e.id)) {
                   Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
                   return;
                 }
                 context.pop();
                 final item = LightItemModel(id: e.id, name: e.name);
-                setState(() {
-                  _order.items.add(item);
-                });
+                setState(() {});
               },
               builder: (controller) {
                 return BaseEditor(

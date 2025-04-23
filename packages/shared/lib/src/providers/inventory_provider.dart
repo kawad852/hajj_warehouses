@@ -16,36 +16,37 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final isUpdate = items.first.id.isNotEmpty;
         final batch = kFirebaseInstant.batch();
-        if (operation.operationType != OperationType.supply.value) {
-          for (var e in items) {
-            if (!isUpdate) {
-              e.id = await e.getId();
-              e.createdAt = kNowDate;
-            }
+        for (var e in items) {
+          if (!isUpdate) {
+            e.id = await e.getId();
+            e.createdAt = kNowDate;
+          }
 
-            e.status = _getItemStatus(
-              availableQuantity: e.quantity,
-              minimumQuantity: e.minimumQuantity,
-            );
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            if (isUpdate) {
-              batch.update(itemDoc, e.toJson());
-            } else {
-              batch.set(itemDoc, e);
-            }
+          e.status = _getItemStatus(
+            availableQuantity: e.quantity,
+            minimumQuantity: e.minimumQuantity,
+          );
+          final itemDoc = kFirebaseInstant.items.doc(e.id);
+          if (isUpdate) {
+            batch.update(itemDoc, e.toJson());
+          } else {
+            batch.set(itemDoc, e);
           }
         }
+
         final operationDocREF = BranchQueries.inventoryOperations.doc();
         final images = await _storageService.uploadFiles(MyCollections.inventoryOperations, files);
         if (operation.id.isEmpty) {
           operation.id = operationDocREF.id;
           operation.createdAt = kNowDate;
         }
-        operation.displayName = MySharedPreferences.user!.displayName!;
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: operationDocREF.id,
-          displayName: MySharedPreferences.user!.displayName!,
+          user: LightUserModel(
+            id: MySharedPreferences.user!.id!,
+            displayName: MySharedPreferences.user!.displayName!,
+          ),
           items:
               items
                   .map(
@@ -71,6 +72,13 @@ class InventoryProvider extends ChangeNotifier {
       },
     );
   }
+
+  void updateOrder(
+    BuildContext context, {
+    required List<ItemModel> items,
+    required InventoryOperationModel operation,
+    required List<XFile> files,
+  }) {}
 
   String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
     if (availableQuantity <= 0) {

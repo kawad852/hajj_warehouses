@@ -11,7 +11,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
   factory InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    @Default('') String displayName,
+    LightUserModel? user,
     String? notes,
     String? supplyType,
     String? requestType,

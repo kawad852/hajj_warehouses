@@ -62,7 +62,7 @@ class OperationCard extends StatelessWidget {
               children: [
                 TextSpan(text: "قام"),
                 TextSpan(
-                  text: " ${operation.displayName} ",
+                  text: " ${operation.user?.displayName} ",
                   style: style.copyWith(color: context.colorPalette.grey708),
                 ),
                 TextSpan(text: "بـ ${labels.$1} "),

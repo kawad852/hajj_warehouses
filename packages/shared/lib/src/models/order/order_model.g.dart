@@ -10,23 +10,19 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
     _$OrderModelImpl(
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
-      note: json['note'] as String? ?? '',
-      userId: json['userId'] as String? ?? '',
       status: json['status'] as String,
-      urgent: json['urgent'] as bool? ?? false,
-      items:
-          (json['items'] as List<dynamic>)
-              .map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      operation:
+          json['operation'] == null
+              ? null
+              : InventoryOperationModel.fromJson(
+                json['operation'] as Map<String, dynamic>,
+              ),
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
-      'note': instance.note,
-      'userId': instance.userId,
       'status': instance.status,
-      'urgent': instance.urgent,
-      'items': instance.items.map((e) => e.toJson()).toList(),
+      'operation': instance.operation?.toJson(),
     };
