@@ -41,9 +41,9 @@ class InventoryProvider extends ChangeNotifier {
               final itemDoc = kFirebaseInstant.items.doc(e.id);
               final json = e.toJson();
               if (isUpdate) {
-                final isDestory = operation.operationType == OperationType.destroy.value;
+                final increment = operation.operationType == OperationType.add.value;
                 json[MyFields.quantity] = FieldValue.increment(
-                  isDestory ? -operation.quantity : operation.quantity,
+                  increment ? operation.quantity : -operation.quantity,
                 );
               }
               if (isUpdate) {
@@ -102,13 +102,6 @@ class InventoryProvider extends ChangeNotifier {
       },
     );
   }
-
-  void updateOrder(
-    BuildContext context, {
-    required List<ItemModel> items,
-    required InventoryOperationModel operation,
-    required List<XFile> files,
-  }) {}
 
   String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
     if (availableQuantity <= 0) {
