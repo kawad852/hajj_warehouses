@@ -77,21 +77,12 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
           if (errorMsg != null) {
             context.showSnackBar(errorMsg);
           } else {
-            if (_operationType == OperationType.supply ||
-                _operationType == OperationType.transfer) {
-              context.inventoryProvider.updateOrder(
-                context,
-                items: [],
-                operation: _operation,
-                files: _files,
-              );
-            } else {
-              context.inventoryProvider.updateInventory(
-                context,
-                operation: _operation,
-                files: _files,
-              );
-            }
+            context.inventoryProvider.updateInventory(
+              context,
+              operation: _operation,
+              files: _files,
+              createdItems: _singleItem ? [_item!] : null,
+            );
           }
         },
       ),

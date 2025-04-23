@@ -73,6 +73,14 @@ class InventoryProvider extends ChangeNotifier {
           images: images,
         );
 
+        if (createdItems != null) {
+          operation.items =
+              createdItems
+                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .toList();
+          operation.itemIds = createdItems.map((e) => e.id).toList();
+        }
+
         batch.set(operationDocREF, operation);
         await batch.commit();
         if (context.mounted) {
