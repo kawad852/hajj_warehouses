@@ -77,7 +77,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
           if (errorMsg != null) {
             context.showSnackBar(errorMsg);
           } else {
-            context.inventoryProvider.updateInventory(
+            context.inventoryProvider.createOperation(
               context,
               operation: _operation,
               files: _files,

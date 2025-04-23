@@ -46,7 +46,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
             _items.any((e) => e.name.isEmpty)
                 ? null
                 : () {
-                  context.inventoryProvider.updateInventory(
+                  context.inventoryProvider.createOperation(
                     context,
                     createdItems: _items,
                     operation: InventoryOperationModel(

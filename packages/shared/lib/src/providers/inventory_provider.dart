@@ -5,7 +5,7 @@ import '../../shared.dart';
 class InventoryProvider extends ChangeNotifier {
   final _storageService = StorageService();
 
-  void updateInventory(
+  void createOperation(
     BuildContext context, {
     List<ItemModel>? createdItems,
     required InventoryOperationModel operation,
@@ -16,56 +16,46 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
 
-        if (operation.operationType == OperationType.supply.value ||
-            operation.operationType == OperationType.transfer.value) {
-          final order = OrderModel(
-            status: OrderStatusEnum.placed.value,
-            operation: operation,
-            createdAt: kNowDate,
-          );
-          order.id = await order.getId();
-          final itemDoc = kFirebaseInstant.orders.doc(order.id);
-          batch.set(itemDoc, order);
+        final needsApprovals =
+            operation.operationType == OperationType.supply.value ||
+            operation.operationType == OperationType.transfer.value;
+
+        if (createdItems != null) {
+          for (var e in createdItems) {
+            final isUpdate = e.id.isNotEmpty;
+            if (!isUpdate) {
+              e.id = await e.getId();
+              e.createdAt = kNowDate;
+            }
+            e.status = _getItemStatus(
+              availableQuantity: operation.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            final json = e.toJson();
+            if (isUpdate) {
+              final increment = operation.operationType == OperationType.add.value;
+              json[MyFields.quantity] = FieldValue.increment(
+                increment ? operation.quantity : -operation.quantity,
+              );
+              batch.update(itemDoc, json);
+            } else {
+              batch.set(itemDoc, e);
+            }
+          }
         } else {
-          if (createdItems != null) {
-            for (var e in createdItems) {
-              final isUpdate = e.id.isNotEmpty;
-              if (!isUpdate) {
-                e.id = await e.getId();
-                e.createdAt = kNowDate;
-              }
-              e.status = _getItemStatus(
-                availableQuantity: operation.quantity,
-                minimumQuantity: e.minimumQuantity,
-              );
-              final itemDoc = kFirebaseInstant.items.doc(e.id);
-              final json = e.toJson();
-              if (isUpdate) {
-                final increment = operation.operationType == OperationType.add.value;
-                json[MyFields.quantity] = FieldValue.increment(
-                  increment ? operation.quantity : -operation.quantity,
-                );
-              }
-              if (isUpdate) {
-                batch.update(itemDoc, json);
-              } else {
-                batch.set(itemDoc, e);
-              }
-            }
-          } else {
-            for (var e in operation.items) {
-              e.quantity = operation.quantity;
-              final status = _getItemStatus(
-                availableQuantity: operation.quantity,
-                minimumQuantity: e.minimumQuantity,
-              );
-              final itemDoc = kFirebaseInstant.items.doc(e.id);
-              batch.update(itemDoc, {
-                ...e.toJson(),
-                MyFields.status: status,
-                MyFields.quantity: FieldValue.increment(operation.quantity),
-              });
-            }
+          for (var e in operation.items) {
+            e.quantity = operation.quantity;
+            final status = _getItemStatus(
+              availableQuantity: operation.quantity,
+              minimumQuantity: e.minimumQuantity,
+            );
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            batch.update(itemDoc, {
+              ...e.toJson(),
+              MyFields.status: status,
+              MyFields.quantity: FieldValue.increment(operation.quantity),
+            });
           }
         }
 
@@ -88,7 +78,14 @@ class InventoryProvider extends ChangeNotifier {
         if (createdItems != null) {
           operation.items =
               createdItems
-                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .map(
+                    (e) => LightItemModel(
+                      id: e.id,
+                      name: e.name,
+                      quantity: e.quantity,
+                      minimumQuantity: e.minimumQuantity,
+                    ),
+                  )
                   .toList();
           operation.itemIds = createdItems.map((e) => e.id).toList();
         }
