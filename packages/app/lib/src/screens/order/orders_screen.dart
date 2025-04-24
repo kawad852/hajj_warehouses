@@ -1,21 +1,22 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
-class OrdersManagementScreen extends StatefulWidget {
-  const OrdersManagementScreen({super.key});
+class OrdersScreen extends StatefulWidget {
+  const OrdersScreen({super.key});
 
   @override
-  State<OrdersManagementScreen> createState() => _OrdersManagementScreenState();
+  State<OrdersScreen> createState() => _OrdersScreenState();
 }
 
-class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
-  late Query<OrderModel> _query;
+class _OrdersScreenState extends State<OrdersScreen> {
+  late Query<InventoryOperationModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.orders.whereMyBranch.orderBy(
-      MyFields.createdAt,
-      descending: true,
+    final filter = Filter.and(
+      Filter(MyFields.orderStatus, isNull: false),
+      Filter(MyFields.idUser, isEqualTo: kSelectedUserId),
     );
+    _query = kFirebaseInstant.inventoryOperations.where(filter).orderByDesc;
   }
 
   @override
@@ -49,7 +50,7 @@ class _OrdersManagementScreenState extends State<OrdersManagementScreen> {
               final order = snapshot.docs[index].data();
               return GestureDetector(
                 onTap: () {
-                  context.push((context) => const OrderScreen());
+                  context.push((context) => const OrderDetailsScreen());
                 },
                 child: Container(
                   width: double.infinity,

@@ -14,7 +14,7 @@ export 'src/screens/home/widgets/my_task.dart';
 export 'src/screens/home/widgets/task_card.dart';
 export 'src/screens/login/login_screen.dart';
 export 'src/screens/operation/operations_screen.dart';
-export 'src/screens/order/order_screen.dart';
+export 'src/screens/order/order_details_screen.dart';
 export 'src/screens/order/widgets/order_card.dart';
 export 'src/screens/profile/profile_screen.dart';
 export 'src/screens/profile/widgets/profile_card.dart';

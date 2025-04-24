@@ -27,4 +27,8 @@ class InventoryOperationModel with _$InventoryOperationModel {
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>
       _$InventoryOperationModelFromJson(json);
+
+  InventoryOperationModel._();
+
+  Future<String> getId() async => RowIdHelper.get(RowIdHelper.operationId);
 }

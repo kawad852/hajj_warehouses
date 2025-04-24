@@ -361,7 +361,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$InventoryOperationModelImpl implements _InventoryOperationModel {
+class _$InventoryOperationModelImpl extends _InventoryOperationModel {
   _$InventoryOperationModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
@@ -377,7 +377,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.images = const [],
     @JsonKey(includeToJson: false, includeFromJson: false) this.files,
     this.orderStatus,
-  });
+  }) : super._();
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$InventoryOperationModelImplFromJson(json);
@@ -438,7 +438,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   }
 }
 
-abstract class _InventoryOperationModel implements InventoryOperationModel {
+abstract class _InventoryOperationModel extends InventoryOperationModel {
   factory _InventoryOperationModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
@@ -455,6 +455,7 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
     String? orderStatus,
   }) = _$InventoryOperationModelImpl;
+  _InventoryOperationModel._() : super._();
 
   factory _InventoryOperationModel.fromJson(Map<String, dynamic> json) =
       _$InventoryOperationModelImpl.fromJson;

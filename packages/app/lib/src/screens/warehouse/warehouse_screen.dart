@@ -64,7 +64,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     const SizedBox(width: 10),
                     WarehouseButton(
                       onTap: () {
-                        context.push((context) => const OrdersManagementScreen());
+                        context.push((context) => const OrdersScreen());
                       },
                       title: "ادارة الطلبيات",
                       icon: MyIcons.truckTime,

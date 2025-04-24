@@ -1,14 +1,14 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({super.key});
+class OrderDetailsScreen extends StatefulWidget {
+  const OrderDetailsScreen({super.key});
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

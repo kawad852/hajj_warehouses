@@ -15,8 +15,4 @@ class OrderModel with _$OrderModel {
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
-
-  OrderModel._();
-
-  Future<String> getId() async => RowIdHelper.getOrderId(RowIdHelper.orderId);
 }

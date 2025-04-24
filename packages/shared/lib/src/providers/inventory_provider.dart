@@ -54,7 +54,7 @@ class InventoryProvider extends ChangeNotifier {
         ///Operation
         operation = operation.copyWith(
           createdAt: kNowDate,
-          id: operationDocREF.id,
+          id: await operation.getId(),
           user: LightUserModel(
             id: MySharedPreferences.user!.id!,
             displayName: MySharedPreferences.user!.displayName!,

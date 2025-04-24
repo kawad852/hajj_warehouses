@@ -15,15 +15,15 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
     ApiService.fetch(
       context,
       callBack: () async {
-        _order.id = await _order.getId();
-        _order.createdAt = kNowDate;
-        // _order.userId = kSelectedUserId;
-
-        await kFirebaseInstant.orders.doc(_order.id).set(_order);
-        if (context.mounted) {
-          Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
-          context.pop();
-        }
+        // _order.id = await _order.getId();
+        // _order.createdAt = kNowDate;
+        // // _order.userId = kSelectedUserId;
+        //
+        // await kFirebaseInstant.orders.doc(_order.id).set(_order);
+        // if (context.mounted) {
+        //   Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
+        //   context.pop();
+        // }
       },
     );
   }
