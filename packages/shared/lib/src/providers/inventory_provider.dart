@@ -24,7 +24,7 @@ class InventoryProvider extends ChangeNotifier {
           final items = await onCreate(batch);
           operation.items =
               items
-                  .map((e) => LightItemModel(id: e.id, name: e.name, increment: e.minimumQuantity))
+                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
         }
@@ -32,19 +32,11 @@ class InventoryProvider extends ChangeNotifier {
         if (!needsApproval) {
           final isPlus = operation.operationType == OperationType.add.value;
           for (var e in operation.items) {
-            final increment = e.increment;
-            final status = _getItemStatus(
-              availableQuantity: isPlus ? e.quantity + increment : e.quantity - increment,
-              minimumQuantity: e.minimumQuantity,
-            );
+            final increment = e.quantity;
             final itemDoc = kFirebaseInstant.items.doc(e.id);
             final json = e.toJson();
             json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
-            json[MyFields.status] = status;
             batch.update(itemDoc, json);
-
-            ///For The Operation Model - to handle the incremented quantity
-            e.quantity = e.increment;
           }
         }
 
@@ -80,10 +72,10 @@ class InventoryProvider extends ChangeNotifier {
     );
   }
 
-  String _getItemStatus({required int availableQuantity, required int minimumQuantity}) {
-    if (availableQuantity <= 0) {
+  String _getItemStatus({required int quantity, required int minimumQuantity}) {
+    if (quantity <= 0) {
       return ItemStatusEnum.outOfStock.value;
-    } else if (availableQuantity > 0 && availableQuantity < minimumQuantity) {
+    } else if (quantity > 0 && quantity < minimumQuantity) {
       return ItemStatusEnum.lowStock.value;
     } else {
       return ItemStatusEnum.inStock.value;

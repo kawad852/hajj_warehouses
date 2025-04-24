@@ -32,7 +32,6 @@ class LightItemModel with _$LightItemModel {
     @Default('') String id,
     @Default('') String name,
     @Default(0) int quantity,
-    @JsonKey(includeFromJson: false, includeToJson: false) @Default(1) int increment,
     @JsonKey(includeFromJson: false, includeToJson: false) @Default(0) int minimumQuantity,
   }) = _LightItemModel;
 
