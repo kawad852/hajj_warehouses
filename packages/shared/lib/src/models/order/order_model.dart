@@ -10,9 +10,28 @@ class OrderModel with _$OrderModel {
   factory OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
+    LightUserModel? user,
     required String status,
     InventoryOperationModel? operation,
+    @Default([]) List<OrderRecordModel> orderRecords,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
+
+  OrderModel._();
+
+  Future<String> getId() async => RowIdHelper.get(RowIdHelper.orderId);
+}
+
+@unfreezed
+class OrderRecordModel with _$OrderRecordModel {
+  @JsonSerializable(explicitToJson: true)
+  factory OrderRecordModel({
+    @TimestampSerializer() DateTime? time,
+    required String status,
+    LightUserModel? user,
+    @Default([]) List<String> images,
+  }) = _OrderRecordModel;
+
+  factory OrderRecordModel.fromJson(Map<String, dynamic> json) => _$OrderRecordModelFromJson(json);
 }

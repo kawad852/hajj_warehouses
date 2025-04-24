@@ -2,24 +2,21 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
-  final InventoryOperationModel operation;
+  final OrderModel order;
 
-  const OrderDetailsScreen({super.key, required this.operation});
+  const OrderDetailsScreen({super.key, required this.order});
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
 }
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  late Stream<InventoryOperationModel> _operationStream;
+  late Stream<OrderModel> _operationStream;
 
-  InventoryOperationModel get _operation => widget.operation;
+  OrderModel get _operation => widget.order;
 
   void _initialize() {
-    _operationStream = kFirebaseInstant.inventoryOperations
-        .doc(_operation.id)
-        .snapshots()
-        .map((e) => e.data()!);
+    _operationStream = kFirebaseInstant.orders.doc(_operation.id).snapshots().map((e) => e.data()!);
   }
 
   @override
@@ -34,9 +31,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       stream: _operationStream,
       initialData: _operation,
       onComplete: (context, snapshot) {
-        final operation = snapshot.data!;
+        final order = snapshot.data!;
+        final operation = order.operation!;
         return Scaffold(
-          appBar: AppBar(title: AppBarText("طلب رقم ${operation.id}#")),
+          appBar: AppBar(title: AppBarText("طلب رقم ${order.id}#")),
           bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
             child: Row(
@@ -80,7 +78,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        "حالة الطلب : ${operation.orderStatus}",
+                        "حالة الطلب : ${operation.requestType}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.black001,
@@ -96,7 +94,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               const SizedBox(height: 70),
               OrderCard(
                 child: Text(
-                  "وقت الطلب : ${operation.createdAt}",
+                  "وقت الطلب : ${order.createdAt}",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.black001,
@@ -180,14 +178,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ),
               ),
               ProcessTimeLine(
-                itemCount: 5,
-
+                itemCount: order.orderRecords.length,
                 contentsBuilder: (context, index) {
+                  final record = order.orderRecords[index];
                   return OperationCard(
                     operation: InventoryOperationModel(
                       createdAt: kNowDate,
                       operationType: '',
                       supplyType: '',
+                      user: record.user,
                       files: [],
                       items: [],
                     ),

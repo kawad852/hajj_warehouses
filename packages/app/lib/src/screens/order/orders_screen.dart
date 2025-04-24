@@ -9,14 +9,10 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  late Query<InventoryOperationModel> _query;
+  late Query<OrderModel> _query;
 
   void _initialize() {
-    final filter = Filter.and(
-      Filter(MyFields.orderStatus, isNull: false),
-      Filter(MyFields.idUser, isEqualTo: kSelectedUserId),
-    );
-    _query = kFirebaseInstant.inventoryOperations.where(filter).orderByDesc;
+    _query = kFirebaseInstant.orders.whereMyBranchNested.orderByDesc;
   }
 
   @override
@@ -28,6 +24,16 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     try {
+      //       final d = await kFirebaseInstant.orders.whereMyBranchNested.orderByDesc.get();
+      //       print("idddd::: ${d.docs.length}");
+      //     } catch (e) {
+      //       print("alskfaslkf : $e");
+      //     }
+      //   },
+      // ),
       bottomNavigationBar: BottomButton(
         text: "ارسال طلب جديد",
         onPressed: () {
@@ -47,10 +53,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
               if (snapshot.isLoadingMore(index)) {
                 return const FPLoading();
               }
-              final operation = snapshot.docs[index].data();
+              final order = snapshot.docs[index].data();
               return GestureDetector(
                 onTap: () {
-                  context.push((context) => OrderDetailsScreen(operation: operation));
+                  context.push((context) => OrderDetailsScreen(order: order));
                 },
                 child: Container(
                   width: double.infinity,
@@ -64,7 +70,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          "طلب رقم ${operation.id}#",
+                          "طلب رقم ${order.id}#",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.black001,

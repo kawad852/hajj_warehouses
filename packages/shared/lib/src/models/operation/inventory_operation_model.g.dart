@@ -31,7 +31,6 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
-  orderStatus: json['orderStatus'] as String?,
 );
 
 Map<String, dynamic> _$$InventoryOperationModelImplToJson(
@@ -49,5 +48,4 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'items': instance.items.map((e) => e.toJson()).toList(),
   'itemIds': instance.itemIds,
   'images': instance.images,
-  'orderStatus': instance.orderStatus,
 };

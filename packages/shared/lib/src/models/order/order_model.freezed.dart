@@ -27,10 +27,15 @@ mixin _$OrderModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
+  LightUserModel? get user => throw _privateConstructorUsedError;
+  set user(LightUserModel? value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
   InventoryOperationModel? get operation => throw _privateConstructorUsedError;
   set operation(InventoryOperationModel? value) =>
+      throw _privateConstructorUsedError;
+  List<OrderRecordModel> get orderRecords => throw _privateConstructorUsedError;
+  set orderRecords(List<OrderRecordModel> value) =>
       throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
@@ -53,10 +58,13 @@ abstract class $OrderModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
+    LightUserModel? user,
     String status,
     InventoryOperationModel? operation,
+    List<OrderRecordModel> orderRecords,
   });
 
+  $LightUserModelCopyWith<$Res>? get user;
   $InventoryOperationModelCopyWith<$Res>? get operation;
 }
 
@@ -77,8 +85,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
+    Object? user = freezed,
     Object? status = null,
     Object? operation = freezed,
+    Object? orderRecords = null,
   }) {
     return _then(
       _value.copyWith(
@@ -92,6 +102,11 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
             status:
                 null == status
                     ? _value.status
@@ -102,9 +117,28 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.operation
                     : operation // ignore: cast_nullable_to_non_nullable
                         as InventoryOperationModel?,
+            orderRecords:
+                null == orderRecords
+                    ? _value.orderRecords
+                    : orderRecords // ignore: cast_nullable_to_non_nullable
+                        as List<OrderRecordModel>,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 
   /// Create a copy of OrderModel
@@ -134,10 +168,14 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
+    LightUserModel? user,
     String status,
     InventoryOperationModel? operation,
+    List<OrderRecordModel> orderRecords,
   });
 
+  @override
+  $LightUserModelCopyWith<$Res>? get user;
   @override
   $InventoryOperationModelCopyWith<$Res>? get operation;
 }
@@ -158,8 +196,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
+    Object? user = freezed,
     Object? status = null,
     Object? operation = freezed,
+    Object? orderRecords = null,
   }) {
     return _then(
       _$OrderModelImpl(
@@ -173,6 +213,11 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
         status:
             null == status
                 ? _value.status
@@ -183,6 +228,11 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.operation
                 : operation // ignore: cast_nullable_to_non_nullable
                     as InventoryOperationModel?,
+        orderRecords:
+            null == orderRecords
+                ? _value.orderRecords
+                : orderRecords // ignore: cast_nullable_to_non_nullable
+                    as List<OrderRecordModel>,
       ),
     );
   }
@@ -191,13 +241,15 @@ class __$$OrderModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$OrderModelImpl implements _OrderModel {
+class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
+    this.user,
     required this.status,
     this.operation,
-  });
+    this.orderRecords = const [],
+  }) : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderModelImplFromJson(json);
@@ -209,13 +261,18 @@ class _$OrderModelImpl implements _OrderModel {
   @JsonKey()
   String id;
   @override
+  LightUserModel? user;
+  @override
   String status;
   @override
   InventoryOperationModel? operation;
+  @override
+  @JsonKey()
+  List<OrderRecordModel> orderRecords;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, status: $status, operation: $operation)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, user: $user, status: $status, operation: $operation, orderRecords: $orderRecords)';
   }
 
   /// Create a copy of OrderModel
@@ -232,13 +289,16 @@ class _$OrderModelImpl implements _OrderModel {
   }
 }
 
-abstract class _OrderModel implements OrderModel {
+abstract class _OrderModel extends OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
+    LightUserModel? user,
     required String status,
     InventoryOperationModel? operation,
+    List<OrderRecordModel> orderRecords,
   }) = _$OrderModelImpl;
+  _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$OrderModelImpl.fromJson;
@@ -252,16 +312,275 @@ abstract class _OrderModel implements OrderModel {
   String get id;
   set id(String value);
   @override
+  LightUserModel? get user;
+  set user(LightUserModel? value);
+  @override
   String get status;
   set status(String value);
   @override
   InventoryOperationModel? get operation;
   set operation(InventoryOperationModel? value);
+  @override
+  List<OrderRecordModel> get orderRecords;
+  set orderRecords(List<OrderRecordModel> value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderModelImplCopyWith<_$OrderModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OrderRecordModel _$OrderRecordModelFromJson(Map<String, dynamic> json) {
+  return _OrderRecordModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderRecordModel {
+  @TimestampSerializer()
+  DateTime? get time => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set time(DateTime? value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
+  LightUserModel? get user => throw _privateConstructorUsedError;
+  set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
+  set images(List<String> value) => throw _privateConstructorUsedError;
+
+  /// Serializes this OrderRecordModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $OrderRecordModelCopyWith<OrderRecordModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderRecordModelCopyWith<$Res> {
+  factory $OrderRecordModelCopyWith(
+    OrderRecordModel value,
+    $Res Function(OrderRecordModel) then,
+  ) = _$OrderRecordModelCopyWithImpl<$Res, OrderRecordModel>;
+  @useResult
+  $Res call({
+    @TimestampSerializer() DateTime? time,
+    String status,
+    LightUserModel? user,
+    List<String> images,
+  });
+
+  $LightUserModelCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
+    implements $OrderRecordModelCopyWith<$Res> {
+  _$OrderRecordModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = null,
+    Object? user = freezed,
+    Object? images = null,
+  }) {
+    return _then(
+      _value.copyWith(
+            time:
+                freezed == time
+                    ? _value.time
+                    : time // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
+            images:
+                null == images
+                    ? _value.images
+                    : images // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+          )
+          as $Val,
+    );
+  }
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$OrderRecordModelImplCopyWith<$Res>
+    implements $OrderRecordModelCopyWith<$Res> {
+  factory _$$OrderRecordModelImplCopyWith(
+    _$OrderRecordModelImpl value,
+    $Res Function(_$OrderRecordModelImpl) then,
+  ) = __$$OrderRecordModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @TimestampSerializer() DateTime? time,
+    String status,
+    LightUserModel? user,
+    List<String> images,
+  });
+
+  @override
+  $LightUserModelCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$$OrderRecordModelImplCopyWithImpl<$Res>
+    extends _$OrderRecordModelCopyWithImpl<$Res, _$OrderRecordModelImpl>
+    implements _$$OrderRecordModelImplCopyWith<$Res> {
+  __$$OrderRecordModelImplCopyWithImpl(
+    _$OrderRecordModelImpl _value,
+    $Res Function(_$OrderRecordModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = null,
+    Object? user = freezed,
+    Object? images = null,
+  }) {
+    return _then(
+      _$OrderRecordModelImpl(
+        time:
+            freezed == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
+        images:
+            null == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$OrderRecordModelImpl implements _OrderRecordModel {
+  _$OrderRecordModelImpl({
+    @TimestampSerializer() this.time,
+    required this.status,
+    this.user,
+    this.images = const [],
+  });
+
+  factory _$OrderRecordModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderRecordModelImplFromJson(json);
+
+  @override
+  @TimestampSerializer()
+  DateTime? time;
+  @override
+  String status;
+  @override
+  LightUserModel? user;
+  @override
+  @JsonKey()
+  List<String> images;
+
+  @override
+  String toString() {
+    return 'OrderRecordModel(time: $time, status: $status, user: $user, images: $images)';
+  }
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderRecordModelImplCopyWith<_$OrderRecordModelImpl> get copyWith =>
+      __$$OrderRecordModelImplCopyWithImpl<_$OrderRecordModelImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OrderRecordModelImplToJson(this);
+  }
+}
+
+abstract class _OrderRecordModel implements OrderRecordModel {
+  factory _OrderRecordModel({
+    @TimestampSerializer() DateTime? time,
+    required String status,
+    LightUserModel? user,
+    List<String> images,
+  }) = _$OrderRecordModelImpl;
+
+  factory _OrderRecordModel.fromJson(Map<String, dynamic> json) =
+      _$OrderRecordModelImpl.fromJson;
+
+  @override
+  @TimestampSerializer()
+  DateTime? get time;
+  @TimestampSerializer()
+  set time(DateTime? value);
+  @override
+  String get status;
+  set status(String value);
+  @override
+  LightUserModel? get user;
+  set user(LightUserModel? value);
+  @override
+  List<String> get images;
+  set images(List<String> value);
+
+  /// Create a copy of OrderRecordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OrderRecordModelImplCopyWith<_$OrderRecordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

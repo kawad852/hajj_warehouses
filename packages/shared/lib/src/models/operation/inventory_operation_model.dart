@@ -22,7 +22,6 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @Default([]) List<String> itemIds,
     @Default([]) List<String> images,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
-    String? orderStatus,
   }) = _InventoryOperationModel;
 
   factory InventoryOperationModel.fromJson(Map<String, dynamic> json) =>

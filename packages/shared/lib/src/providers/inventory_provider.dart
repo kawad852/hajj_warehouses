@@ -19,7 +19,7 @@ class InventoryProvider extends ChangeNotifier {
         final isSupplyOperation = operation.operationType == OperationType.supply.value;
         final isTransferOperation = operation.operationType == OperationType.transfer.value;
 
-        final needsApproval = isSupplyOperation || isTransferOperation;
+        final isOrder = isSupplyOperation || isTransferOperation;
 
         ///Items
         if (onCreate != null) {
@@ -29,7 +29,7 @@ class InventoryProvider extends ChangeNotifier {
                   .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
-        } else if (!needsApproval) {
+        } else if (!isOrder) {
           final isPlus = isAddOperation;
           for (var e in operation.items) {
             final increment = e.quantity;
@@ -50,21 +50,34 @@ class InventoryProvider extends ChangeNotifier {
         }
 
         ///Operation
+        final user = LightUserModel(
+          id: MySharedPreferences.user!.id!,
+          displayName: MySharedPreferences.user!.displayName!,
+        );
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: await operation.getId(),
-          user: LightUserModel(
-            id: MySharedPreferences.user!.id!,
-            displayName: MySharedPreferences.user!.displayName!,
-          ),
+          user: user,
           images: images,
           itemIds: operation.items.map((e) => e.id).toList(),
-          orderStatus: isSupplyOperation ? OrderStatusEnum.placed.value : null,
         );
 
-        final operationDocREF = kFirebaseInstant.inventoryOperations.doc(operation.id);
+        if (isOrder) {
+          final order = OrderModel(
+            createdAt: kNowDate,
+            status: OrderStatusEnum.placed.value,
+            operation: operation,
+            user: user,
+          );
+          order.id = await order.getId();
+          order.orderRecords = [OrderRecordModel(status: order.status, user: user, time: kNowDate)];
+          final orderDocREF = kFirebaseInstant.orders.doc(order.id);
+          batch.set(orderDocREF, order);
+        } else {
+          final operationDocREF = kFirebaseInstant.inventoryOperations.doc(operation.id);
+          batch.set(operationDocREF, operation);
+        }
 
-        batch.set(operationDocREF, operation);
         await batch.commit();
         if (context.mounted) {
           Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);

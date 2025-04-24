@@ -2,6 +2,7 @@ import '../../shared.dart';
 
 class RowIdHelper {
   static const String operationId = 'operation_id';
+  static const String orderId = 'order_id';
   static const String itemId = 'item_id';
   static const String categoryId = 'category_id';
 

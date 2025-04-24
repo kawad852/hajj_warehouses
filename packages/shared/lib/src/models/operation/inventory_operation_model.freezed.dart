@@ -53,8 +53,6 @@ mixin _$InventoryOperationModel {
   List<XFile>? get files => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   set files(List<XFile>? value) => throw _privateConstructorUsedError;
-  String? get orderStatus => throw _privateConstructorUsedError;
-  set orderStatus(String? value) => throw _privateConstructorUsedError;
 
   /// Serializes this InventoryOperationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -87,7 +85,6 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     List<String> itemIds,
     List<String> images,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
-    String? orderStatus,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
@@ -124,7 +121,6 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? itemIds = null,
     Object? images = null,
     Object? files = freezed,
-    Object? orderStatus = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -193,11 +189,6 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.files
                     : files // ignore: cast_nullable_to_non_nullable
                         as List<XFile>?,
-            orderStatus:
-                freezed == orderStatus
-                    ? _value.orderStatus
-                    : orderStatus // ignore: cast_nullable_to_non_nullable
-                        as String?,
           )
           as $Val,
     );
@@ -241,7 +232,6 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     List<String> itemIds,
     List<String> images,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
-    String? orderStatus,
   });
 
   @override
@@ -279,7 +269,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? itemIds = null,
     Object? images = null,
     Object? files = freezed,
-    Object? orderStatus = freezed,
   }) {
     return _then(
       _$InventoryOperationModelImpl(
@@ -348,11 +337,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.files
                 : files // ignore: cast_nullable_to_non_nullable
                     as List<XFile>?,
-        orderStatus:
-            freezed == orderStatus
-                ? _value.orderStatus
-                : orderStatus // ignore: cast_nullable_to_non_nullable
-                    as String?,
       ),
     );
   }
@@ -376,7 +360,6 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
     this.itemIds = const [],
     this.images = const [],
     @JsonKey(includeToJson: false, includeFromJson: false) this.files,
-    this.orderStatus,
   }) : super._();
 
   factory _$InventoryOperationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -414,12 +397,10 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? files;
-  @override
-  String? orderStatus;
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files, orderStatus: $orderStatus)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -453,7 +434,6 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
     List<String> itemIds,
     List<String> images,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
-    String? orderStatus,
   }) = _$InventoryOperationModelImpl;
   _InventoryOperationModel._() : super._();
 
@@ -503,9 +483,6 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
   List<XFile>? get files;
   @JsonKey(includeToJson: false, includeFromJson: false)
   set files(List<XFile>? value);
-  @override
-  String? get orderStatus;
-  set orderStatus(String? value);
 
   /// Create a copy of InventoryOperationModel
   /// with the given fields replaced by the non-null parameter values.
