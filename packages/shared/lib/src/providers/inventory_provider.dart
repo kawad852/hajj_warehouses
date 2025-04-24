@@ -24,7 +24,7 @@ class InventoryProvider extends ChangeNotifier {
           final items = await onCreate(batch);
           operation.items =
               items
-                  .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
+                  .map((e) => LightItemModel(id: e.id, name: e.name, increment: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
         }
