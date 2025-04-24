@@ -41,8 +41,10 @@ class InventoryProvider extends ChangeNotifier {
             final json = e.toJson();
             json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
             json[MyFields.status] = status;
-            e.quantity = e.increment;
             batch.update(itemDoc, json);
+
+            ///For The Operation Model - to handle the incremented quantity
+            e.quantity = e.increment;
           }
         }
 
