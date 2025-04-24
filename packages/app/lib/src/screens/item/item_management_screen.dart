@@ -171,20 +171,22 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 sliver: SliverFillRemaining(
-                  child: CustomFirestoreQueryBuilder(
-                    query: _operationsQuery,
-                    onComplete: (context, snapshot) {
-                      return ProcessTimeLine(
-                        itemCount: snapshot.docs.length,
-                        contentsBuilder: (context, index) {
-                          if (snapshot.isLoadingMore(index)) {
-                            return const FPLoading();
-                          }
-                          final operation = snapshot.docs[index].data();
-                          return OperationCard(operation: operation, itemId: _item.id);
-                        },
-                      );
-                    },
+                  child: SingleChildScrollView(
+                    child: CustomFirestoreQueryBuilder(
+                      query: _operationsQuery,
+                      onComplete: (context, snapshot) {
+                        return ProcessTimeLine(
+                          itemCount: snapshot.docs.length,
+                          contentsBuilder: (context, index) {
+                            if (snapshot.isLoadingMore(index)) {
+                              return const FPLoading();
+                            }
+                            final operation = snapshot.docs[index].data();
+                            return OperationCard(operation: operation, itemId: _item.id);
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
