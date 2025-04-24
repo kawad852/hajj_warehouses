@@ -186,87 +186,87 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ),
               ),
               ImagesAttacher(onChanged: _onFileAdd, title: "ارفاق صور عن المواد التي سيتم اتلافها"),
+            ],
 
-              ///List ...
-              if (!_singleItem) ...[
-                const SizedBox(height: 30),
-                Text(
-                  "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
-                  style: TextStyle(
-                    color: context.colorPalette.grey666,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+            ///List ...
+            if (!_singleItem) ...[
+              const SizedBox(height: 30),
+              Text(
+                "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
+                style: TextStyle(
+                  color: context.colorPalette.grey666,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
-                const ItemTableHeader(),
-                ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(height: 5),
-                  itemCount: _operation.items.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.only(bottom: 5),
-                  itemBuilder: (context, index) {
-                    final item = _operation.items[index];
-                    final length = _operation.items.length;
-                    return ItemTableCell(
-                      key: ValueKey("$length${item.id}"),
-                      onChangedQuntity: (value) => item.quantity = value!,
-                      itemName: item.name,
-                      autoFocus: index + 1 == length,
-                      length: length,
-                      onRemove: () {
-                        setState(() {
-                          _operation.items.removeAt(index);
-                        });
-                      },
-                    );
-                  },
-                ),
-                ProductsSearchScreen(
-                  indexName: AlgoliaIndices.items.value,
-                  isFullScreen: false,
-                  onTap: (e) {
-                    final ids = [];
-                    if (ids.contains(e.id)) {
-                      Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
-                      return;
-                    }
-                    context.pop();
-                    final item = LightItemModel(
-                      id: e.id,
-                      name: e.name,
-                      quantity: e.quantity,
-                      minimumQuantity: e.minimumQuantity,
-                    );
-                    setState(() {
-                      _operation.items.add(item);
-                    });
-                  },
-                  builder: (controller) {
-                    return BaseEditor(
-                      hintText: "ادخل رقم الصنف او الإسم",
-                      hintStyle: TextStyle(
-                        color: context.colorPalette.grey666,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+              ),
+              const ItemTableHeader(),
+              ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox(height: 5),
+                itemCount: _operation.items.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: 5),
+                itemBuilder: (context, index) {
+                  final item = _operation.items[index];
+                  final length = _operation.items.length;
+                  return ItemTableCell(
+                    key: ValueKey("$length${item.id}"),
+                    onChangedQuntity: (value) => item.quantity = value!,
+                    itemName: item.name,
+                    autoFocus: index + 1 == length,
+                    length: length,
+                    onRemove: () {
+                      setState(() {
+                        _operation.items.removeAt(index);
+                      });
+                    },
+                  );
+                },
+              ),
+              ProductsSearchScreen(
+                indexName: AlgoliaIndices.items.value,
+                isFullScreen: false,
+                onTap: (e) {
+                  final ids = [];
+                  if (ids.contains(e.id)) {
+                    Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                    return;
+                  }
+                  context.pop();
+                  final item = LightItemModel(
+                    id: e.id,
+                    name: e.name,
+                    quantity: e.quantity,
+                    minimumQuantity: e.minimumQuantity,
+                  );
+                  setState(() {
+                    _operation.items.add(item);
+                  });
+                },
+                builder: (controller) {
+                  return BaseEditor(
+                    hintText: "ادخل رقم الصنف او الإسم",
+                    hintStyle: TextStyle(
+                      color: context.colorPalette.grey666,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    readOnly: true,
+                    onTap: () {
+                      controller.openView();
+                    },
+                    canRequestFocus: false,
+                    prefixIcon: IconButton(
+                      onPressed: null,
+                      icon: CustomSvg(
+                        MyIcons.addTask,
+                        color: context.colorPalette.grey708,
+                        width: 20,
                       ),
-                      readOnly: true,
-                      onTap: () {
-                        controller.openView();
-                      },
-                      canRequestFocus: false,
-                      prefixIcon: IconButton(
-                        onPressed: null,
-                        icon: CustomSvg(
-                          MyIcons.addTask,
-                          color: context.colorPalette.grey708,
-                          width: 20,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                    ),
+                  );
+                },
+              ),
             ],
           ],
         ),

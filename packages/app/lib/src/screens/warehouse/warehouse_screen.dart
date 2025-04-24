@@ -39,7 +39,15 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     icon: MyIcons.boxTime,
                   ),
                   const SizedBox(width: 10),
-                  WarehouseButton(onTap: () {}, title: "اضافة كمية للمخزون", icon: MyIcons.boxAdd),
+                  WarehouseButton(
+                    onTap: () {
+                      context.push(
+                        (context) => const OperationInputScreen(operationType: OperationType.add),
+                      );
+                    },
+                    title: "اضافة كمية للمخزون",
+                    icon: MyIcons.boxAdd,
+                  ),
                 ],
               ),
               Padding(
@@ -78,7 +86,8 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   WarehouseButton(
                     onTap: () {
                       context.push(
-                        (context) => OperationInputScreen(operationType: OperationType.destroy),
+                        (context) =>
+                            const OperationInputScreen(operationType: OperationType.destroy),
                       );
                     },
                     flex: 3,
