@@ -28,6 +28,9 @@ class BigStreamBuilder<T> extends StatelessWidget {
         builder: (context, AsyncSnapshot<T?> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
+              if (initialData != null) {
+                return onComplete(context, snapshot);
+              }
               return Scaffold(
                 appBar: AppBar(),
                 body: onLoading == null ? const BaseLoader() : onLoading!(),
@@ -37,6 +40,7 @@ class BigStreamBuilder<T> extends StatelessWidget {
               if (snapshot.hasData) {
                 return onComplete(context, snapshot);
               } else {
+                debugPrint("StreamError::: ${snapshot.error}");
                 return Scaffold(
                   appBar: AppBar(),
                   body: onError == null ? const ServerErrorWidget() : onError!(snapshot),

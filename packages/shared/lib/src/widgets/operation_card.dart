@@ -10,6 +10,7 @@ class OperationCard extends StatelessWidget {
   bool get _singleItem => itemId != null;
 
   (String, String) _getLabels(BuildContext context) {
+    return ("", "");
     final operationType = OperationType.values.firstWhere(
       (e) => e.value == operation.operationType,
     );

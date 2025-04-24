@@ -112,6 +112,7 @@ export 'src/widgets/materials_table/table_text.dart';
 export 'src/widgets/operation_card.dart';
 export 'src/widgets/order_status.dart';
 export 'src/widgets/process_time_line.dart';
+export 'src/widgets/stream_builders/big_stream_builder.dart';
 export 'src/widgets/stream_builders/impeded_stream_builder.dart';
 export 'src/widgets/stretch_button.dart';
 export 'src/widgets/titled_textfield.dart';

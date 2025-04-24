@@ -47,10 +47,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
               if (snapshot.isLoadingMore(index)) {
                 return const FPLoading();
               }
-              final order = snapshot.docs[index].data();
+              final operation = snapshot.docs[index].data();
               return GestureDetector(
                 onTap: () {
-                  context.push((context) => const OrderDetailsScreen());
+                  context.push((context) => OrderDetailsScreen(operation: operation));
                 },
                 child: Container(
                   width: double.infinity,
@@ -64,7 +64,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          "طلب رقم ${order.id}#",
+                          "طلب رقم ${operation.id}#",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.black001,

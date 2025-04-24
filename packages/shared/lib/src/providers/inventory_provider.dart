@@ -40,8 +40,6 @@ class InventoryProvider extends ChangeNotifier {
           }
         }
 
-        final operationDocREF = kFirebaseInstant.inventoryOperations.doc();
-
         ///Files
         List<String> images = [];
         if (operation.files != null) {
@@ -63,6 +61,8 @@ class InventoryProvider extends ChangeNotifier {
           itemIds: operation.items.map((e) => e.id).toList(),
           orderStatus: isSupplyOperation ? OrderStatusEnum.placed.value : null,
         );
+
+        final operationDocREF = kFirebaseInstant.inventoryOperations.doc(operation.id);
 
         batch.set(operationDocREF, operation);
         await batch.commit();
