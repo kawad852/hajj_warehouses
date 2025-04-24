@@ -20,6 +20,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     _operationStream = _docREF.snapshots().map((e) => e.data()!);
   }
 
+  void _updateOrderStatus(String status) {
+    _docREF.update({MyFields.status: status});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +46,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               children: [
                 Expanded(
                   child: StretchedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _updateOrderStatus(OrderStatusEnum.completed.value);
+                      context.inventoryProvider.createOperation(
+                        context,
+                        operation: operation.copyWith(operationType: OperationType.add.value),
+                      );
+                    },
                     child: Text(
                       "قبول الطلب",
                       style: TextStyle(
@@ -57,7 +67,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 Expanded(
                   child: StretchedButton(
                     onPressed: () {
-                      _docREF.update({MyFields.status: OrderStatusEnum.rejected.value});
+                      _updateOrderStatus(OrderStatusEnum.rejected.value);
                     },
                     backgroundColor: context.colorPalette.redC10,
                     child: Text(
@@ -187,7 +197,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   return OperationCard(
                     operation: InventoryOperationModel(
                       createdAt: kNowDate,
-                      operationType: '',
+                      operationType: 'ADD',
                       supplyType: '',
                       user: record.user,
                       files: [],
