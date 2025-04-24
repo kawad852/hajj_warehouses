@@ -11,10 +11,7 @@ class _OperationsScreenState extends State<OperationsScreen> {
   late Query<InventoryOperationModel> _operationsQuery;
 
   void _initializeOperations() {
-    _operationsQuery = BranchQueries.inventoryOperations.orderBy(
-      MyFields.createdAt,
-      descending: true,
-    );
+    _operationsQuery = BranchQueries.inventoryOperations;
   }
 
   @override

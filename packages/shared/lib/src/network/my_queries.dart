@@ -76,4 +76,10 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         fromFirestore: (snapshot, _) => ItemModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
+
+  CollectionReference<InventoryOperationModel> get inventoryOperations =>
+      collection(MyCollections.inventoryOperations).withConverter<InventoryOperationModel>(
+        fromFirestore: (snapshot, _) => InventoryOperationModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
 }

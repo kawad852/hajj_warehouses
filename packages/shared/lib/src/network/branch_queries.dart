@@ -14,10 +14,6 @@ extension SelectedUserFireExtension on FirebaseFirestore {
 // }
 
 class BranchQueries {
-  static CollectionReference<InventoryOperationModel> get inventoryOperations => kUserDocRef
-      .collection(MyCollections.inventoryOperations)
-      .withConverter<InventoryOperationModel>(
-        fromFirestore: (snapshot, _) => InventoryOperationModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
+  static Query<InventoryOperationModel> get inventoryOperations =>
+      kFirebaseInstant.inventoryOperations.whereMyBranchNested.orderByDesc;
 }

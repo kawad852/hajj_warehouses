@@ -27,9 +27,7 @@ class InventoryProvider extends ChangeNotifier {
                   .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
-        }
-
-        if (!needsApproval) {
+        } else if (!needsApproval) {
           final isPlus = operation.operationType == OperationType.add.value;
           for (var e in operation.items) {
             final increment = e.quantity;
@@ -40,7 +38,7 @@ class InventoryProvider extends ChangeNotifier {
           }
         }
 
-        final operationDocREF = BranchQueries.inventoryOperations.doc();
+        final operationDocREF = kFirebaseInstant.inventoryOperations.doc();
 
         //Files
         List<String> images = [];
