@@ -384,6 +384,10 @@ mixin _$LightItemModel {
   int get quantity => throw _privateConstructorUsedError;
   set quantity(int value) => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
+  int get increment => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set increment(int value) => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   int get minimumQuantity => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   set minimumQuantity(int value) => throw _privateConstructorUsedError;
@@ -409,6 +413,7 @@ abstract class $LightItemModelCopyWith<$Res> {
     String id,
     String name,
     int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int increment,
     @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
   });
 }
@@ -431,6 +436,7 @@ class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
     Object? id = null,
     Object? name = null,
     Object? quantity = null,
+    Object? increment = null,
     Object? minimumQuantity = null,
   }) {
     return _then(
@@ -449,6 +455,11 @@ class _$LightItemModelCopyWithImpl<$Res, $Val extends LightItemModel>
                 null == quantity
                     ? _value.quantity
                     : quantity // ignore: cast_nullable_to_non_nullable
+                        as int,
+            increment:
+                null == increment
+                    ? _value.increment
+                    : increment // ignore: cast_nullable_to_non_nullable
                         as int,
             minimumQuantity:
                 null == minimumQuantity
@@ -474,6 +485,7 @@ abstract class _$$LightItemModelImplCopyWith<$Res>
     String id,
     String name,
     int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int increment,
     @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
   });
 }
@@ -495,6 +507,7 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? quantity = null,
+    Object? increment = null,
     Object? minimumQuantity = null,
   }) {
     return _then(
@@ -514,6 +527,11 @@ class __$$LightItemModelImplCopyWithImpl<$Res>
                 ? _value.quantity
                 : quantity // ignore: cast_nullable_to_non_nullable
                     as int,
+        increment:
+            null == increment
+                ? _value.increment
+                : increment // ignore: cast_nullable_to_non_nullable
+                    as int,
         minimumQuantity:
             null == minimumQuantity
                 ? _value.minimumQuantity
@@ -531,6 +549,7 @@ class _$LightItemModelImpl implements _LightItemModel {
     this.id = '',
     this.name = '',
     this.quantity = 0,
+    @JsonKey(includeFromJson: false, includeToJson: false) this.increment = 1,
     @JsonKey(includeFromJson: false, includeToJson: false)
     this.minimumQuantity = 0,
   });
@@ -549,11 +568,14 @@ class _$LightItemModelImpl implements _LightItemModel {
   int quantity;
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
+  int increment;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   int minimumQuantity;
 
   @override
   String toString() {
-    return 'LightItemModel(id: $id, name: $name, quantity: $quantity, minimumQuantity: $minimumQuantity)';
+    return 'LightItemModel(id: $id, name: $name, quantity: $quantity, increment: $increment, minimumQuantity: $minimumQuantity)';
   }
 
   /// Create a copy of LightItemModel
@@ -578,6 +600,7 @@ abstract class _LightItemModel implements LightItemModel {
     String id,
     String name,
     int quantity,
+    @JsonKey(includeFromJson: false, includeToJson: false) int increment,
     @JsonKey(includeFromJson: false, includeToJson: false) int minimumQuantity,
   }) = _$LightItemModelImpl;
 
@@ -593,6 +616,11 @@ abstract class _LightItemModel implements LightItemModel {
   @override
   int get quantity;
   set quantity(int value);
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  int get increment;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set increment(int value);
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   int get minimumQuantity;

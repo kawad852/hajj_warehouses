@@ -21,7 +21,6 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   destroyReason: json['destroyReason'] as String?,
   operationType: json['operationType'] as String,
   totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
-  quantity: (json['quantity'] as num?)?.toInt() ?? 0,
   items:
       (json['items'] as List<dynamic>)
           .map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
@@ -47,7 +46,6 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'destroyReason': instance.destroyReason,
   'operationType': instance.operationType,
   'totalPayment': instance.totalPayment,
-  'quantity': instance.quantity,
   'items': instance.items.map((e) => e.toJson()).toList(),
   'itemIds': instance.itemIds,
   'images': instance.images,

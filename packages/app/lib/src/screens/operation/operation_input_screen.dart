@@ -106,7 +106,9 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
               CounterWidget(
                 maxQuantity: widget.maxQuantity,
-                onChanged: (value) => _operation.quantity = value,
+                onChanged: (value) {
+                  _operation.items.first.increment = value;
+                },
               ),
             ],
 
@@ -208,7 +210,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     final length = _operation.items.length;
                     return ItemTableCell(
                       key: ValueKey("$length${item.id}"),
-                      onChangedQuntity: (value) {},
+                      onChangedQuntity: (value) => item.increment = value!,
                       itemName: item.name,
                       autoFocus: index + 1 == length,
                       length: length,

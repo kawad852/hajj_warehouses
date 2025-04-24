@@ -30,19 +30,18 @@ class InventoryProvider extends ChangeNotifier {
         }
 
         if (!needsApproval) {
+          final isPlus = operation.operationType == OperationType.add.value;
           for (var e in operation.items) {
-            e.quantity = operation.quantity;
+            final increment = e.increment;
             final status = _getItemStatus(
-              availableQuantity: operation.quantity,
+              availableQuantity: isPlus ? e.quantity + increment : e.quantity - increment,
               minimumQuantity: e.minimumQuantity,
             );
             final itemDoc = kFirebaseInstant.items.doc(e.id);
             final json = e.toJson();
-            final increment = operation.operationType == OperationType.add.value;
-            json[MyFields.quantity] = FieldValue.increment(
-              increment ? operation.quantity : -operation.quantity,
-            );
+            json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
             json[MyFields.status] = status;
+            e.quantity = e.increment;
             batch.update(itemDoc, json);
           }
         }

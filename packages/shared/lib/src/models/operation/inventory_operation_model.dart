@@ -18,7 +18,6 @@ class InventoryOperationModel with _$InventoryOperationModel {
     String? destroyReason,
     required String operationType,
     @Default(0.0) double totalPayment,
-    @Default(0) int quantity,
     required List<LightItemModel> items,
     @Default([]) List<String> itemIds,
     @Default([]) List<String> images,

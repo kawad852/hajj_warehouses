@@ -43,8 +43,6 @@ mixin _$InventoryOperationModel {
   set operationType(String value) => throw _privateConstructorUsedError;
   double get totalPayment => throw _privateConstructorUsedError;
   set totalPayment(double value) => throw _privateConstructorUsedError;
-  int get quantity => throw _privateConstructorUsedError;
-  set quantity(int value) => throw _privateConstructorUsedError;
   List<LightItemModel> get items => throw _privateConstructorUsedError;
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
   List<String> get itemIds => throw _privateConstructorUsedError;
@@ -85,7 +83,6 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     String? destroyReason,
     String operationType,
     double totalPayment,
-    int quantity,
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -123,7 +120,6 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? destroyReason = freezed,
     Object? operationType = null,
     Object? totalPayment = null,
-    Object? quantity = null,
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
@@ -177,11 +173,6 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.totalPayment
                     : totalPayment // ignore: cast_nullable_to_non_nullable
                         as double,
-            quantity:
-                null == quantity
-                    ? _value.quantity
-                    : quantity // ignore: cast_nullable_to_non_nullable
-                        as int,
             items:
                 null == items
                     ? _value.items
@@ -246,7 +237,6 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     String? destroyReason,
     String operationType,
     double totalPayment,
-    int quantity,
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -285,7 +275,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? destroyReason = freezed,
     Object? operationType = null,
     Object? totalPayment = null,
-    Object? quantity = null,
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
@@ -339,11 +328,6 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.totalPayment
                 : totalPayment // ignore: cast_nullable_to_non_nullable
                     as double,
-        quantity:
-            null == quantity
-                ? _value.quantity
-                : quantity // ignore: cast_nullable_to_non_nullable
-                    as int,
         items:
             null == items
                 ? _value.items
@@ -388,7 +372,6 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
     this.destroyReason,
     required this.operationType,
     this.totalPayment = 0.0,
-    this.quantity = 0,
     required this.items,
     this.itemIds = const [],
     this.images = const [],
@@ -421,9 +404,6 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
   @JsonKey()
   double totalPayment;
   @override
-  @JsonKey()
-  int quantity;
-  @override
   List<LightItemModel> items;
   @override
   @JsonKey()
@@ -439,7 +419,7 @@ class _$InventoryOperationModelImpl implements _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, quantity: $quantity, items: $items, itemIds: $itemIds, images: $images, files: $files, orderStatus: $orderStatus)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files, orderStatus: $orderStatus)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -469,7 +449,6 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
     String? destroyReason,
     required String operationType,
     double totalPayment,
-    int quantity,
     required List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -509,9 +488,6 @@ abstract class _InventoryOperationModel implements InventoryOperationModel {
   @override
   double get totalPayment;
   set totalPayment(double value);
-  @override
-  int get quantity;
-  set quantity(int value);
   @override
   List<LightItemModel> get items;
   set items(List<LightItemModel> value);
