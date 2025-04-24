@@ -13,7 +13,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
   late Query<ItemModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.items.whereMyBranch.orderBy(MyFields.createdAt, descending: true);
+    _query = kFirebaseInstant.items.whereMyBranch.orderByDesc;
   }
 
   @override

@@ -15,10 +15,11 @@ class InventoryProvider extends ChangeNotifier {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
 
-        final needsApproval =
-            operation.operationType == OperationType.supply.value ||
-            operation.operationType == OperationType.transfer.value;
-        operation.orderStatus == null;
+        final isAddOperation = operation.operationType == OperationType.add.value;
+        final isSupplyOperation = operation.operationType == OperationType.supply.value;
+        final isTransferOperation = operation.operationType == OperationType.transfer.value;
+
+        final needsApproval = isSupplyOperation || isTransferOperation;
 
         ///Items
         if (onCreate != null) {
@@ -29,7 +30,7 @@ class InventoryProvider extends ChangeNotifier {
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
         } else if (!needsApproval) {
-          final isPlus = operation.operationType == OperationType.add.value;
+          final isPlus = isAddOperation;
           for (var e in operation.items) {
             final increment = e.quantity;
             final itemDoc = kFirebaseInstant.items.doc(e.id);
@@ -60,6 +61,7 @@ class InventoryProvider extends ChangeNotifier {
           ),
           images: images,
           itemIds: operation.items.map((e) => e.id).toList(),
+          orderStatus: isSupplyOperation ? OrderStatusEnum.placed.value : null,
         );
 
         batch.set(operationDocREF, operation);
