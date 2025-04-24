@@ -20,6 +20,7 @@ class InventoryProvider extends ChangeNotifier {
             operation.operationType == OperationType.transfer.value;
         operation.orderStatus == null;
 
+        ///Items
         if (onCreate != null) {
           final items = await onCreate(batch);
           operation.items =
@@ -40,7 +41,7 @@ class InventoryProvider extends ChangeNotifier {
 
         final operationDocREF = kFirebaseInstant.inventoryOperations.doc();
 
-        //Files
+        ///Files
         List<String> images = [];
         if (operation.files != null) {
           images = await _storageService.uploadFiles(
@@ -49,6 +50,7 @@ class InventoryProvider extends ChangeNotifier {
           );
         }
 
+        ///Operation
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: operationDocREF.id,
