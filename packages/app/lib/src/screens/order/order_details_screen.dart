@@ -14,9 +14,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   late Stream<OrderModel> _operationStream;
 
   OrderModel get _operation => widget.order;
+  DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(_operation.id);
 
   void _initialize() {
-    _operationStream = kFirebaseInstant.orders.doc(_operation.id).snapshots().map((e) => e.data()!);
+    _operationStream = _docREF.snapshots().map((e) => e.data()!);
   }
 
   @override
@@ -55,7 +56,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: StretchedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _docREF.update({MyFields.status: OrderStatusEnum.rejected.value});
+                    },
                     backgroundColor: context.colorPalette.redC10,
                     child: Text(
                       "رفض الطلب",
@@ -87,7 +90,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ),
                     ),
-                    const OrderStatus(),
+                    OrderStatus(status: order.status),
                   ],
                 ),
               ),

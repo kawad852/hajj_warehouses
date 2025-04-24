@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class OrderStatus extends StatelessWidget {
-  const OrderStatus({super.key});
+  final String status;
+
+  const OrderStatus({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class OrderStatus extends StatelessWidget {
         borderRadius: BorderRadius.circular(kRadiusPrimary),
       ),
       child: Text(
-        "بالإنتظار",
+        status,
         style: TextStyle(
           color: context.colorPalette.white,
           fontSize: 14,

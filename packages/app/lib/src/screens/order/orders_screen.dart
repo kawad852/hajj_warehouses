@@ -79,7 +79,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           ),
                         ),
                       ),
-                      const OrderStatus(),
+                      OrderStatus(status: order.status),
                     ],
                   ),
                 ),
