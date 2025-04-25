@@ -1,3 +1,4 @@
+import 'package:app/src/screens/category/category_input_screen.dart';
 import 'package:app/src/screens/search/search_screen.dart';
 import 'package:shared/shared.dart';
 
@@ -7,25 +8,19 @@ class DepartmentItemManagementScreen extends StatefulWidget {
   const DepartmentItemManagementScreen({super.key});
 
   @override
-  State<DepartmentItemManagementScreen> createState() =>
-      _DepartmentItemManagementScreenState();
+  State<DepartmentItemManagementScreen> createState() => _DepartmentItemManagementScreenState();
 }
 
-class _DepartmentItemManagementScreenState
-    extends State<DepartmentItemManagementScreen> {
+class _DepartmentItemManagementScreenState extends State<DepartmentItemManagementScreen> {
   late Query<CategoryModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.categories.whereMyBranch.orderBy(
-      MyFields.createdAt,
-      descending: true,
-    );
+    _query = kFirebaseInstant.categories.whereMyBranch.orderByDesc;
   }
 
   @override
   void initState() {
     super.initState();
-
     _initialize();
   }
 
@@ -34,14 +29,15 @@ class _DepartmentItemManagementScreenState
     return Scaffold(
       bottomNavigationBar: BottomButton(
         text: "اضافة قسم جديد",
-        onPressed: () {},
+        onPressed: () {
+          context.push((context) {
+            return const CategoryInputScreen();
+          });
+        },
       ),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            pinned: true,
-            title: AppBarText("ادارة الأقسام والأصناف"),
-          ),
+          const SliverAppBar(pinned: true, title: AppBarText("ادارة الأقسام والأصناف")),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             sliver: SliverList.list(
@@ -57,9 +53,7 @@ class _DepartmentItemManagementScreenState
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
-                  child: ProductsSearchScreen(
-                    indexName: AlgoliaIndices.categories.value,
-                  ),
+                  child: ProductsSearchScreen(indexName: AlgoliaIndices.categories.value),
                 ),
               ],
             ),
@@ -71,8 +65,7 @@ class _DepartmentItemManagementScreenState
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 sliver: SliverList.separated(
-                  separatorBuilder:
-                      (context, index) => const SizedBox(height: 5),
+                  separatorBuilder: (context, index) => const SizedBox(height: 5),
                   itemCount: snapshot.docs.length,
                   itemBuilder: (context, index) {
                     if (snapshot.isLoadingMore(index)) {
@@ -81,9 +74,7 @@ class _DepartmentItemManagementScreenState
                     final category = snapshot.docs[index].data();
                     return GestureDetector(
                       onTap: () {
-                        context.push(
-                          (context) => DepartmentScreen(category: category),
-                        );
+                        context.push((context) => DepartmentScreen(category: category));
                       },
                       child: Container(
                         width: double.infinity,
@@ -91,9 +82,7 @@ class _DepartmentItemManagementScreenState
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border: Border.all(
-                            color: context.colorPalette.greyDAD,
-                          ),
+                          border: Border.all(color: context.colorPalette.greyDAD),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         child: Row(

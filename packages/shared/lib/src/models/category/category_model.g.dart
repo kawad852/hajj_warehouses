@@ -11,15 +11,6 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
-      thumbnail: json['thumbnail'] as String? ?? '',
-      parentCategoryIds:
-          (json['parentCategoryIds'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      order: (json['order'] as num?)?.toInt() ?? kOrder,
-      published: json['published'] as bool? ?? true,
-      showOnHome: json['showOnHome'] as bool? ?? false,
       branchId: json['branchId'] as String,
       user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
@@ -29,13 +20,8 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
       'name': instance.name,
-      'thumbnail': instance.thumbnail,
-      'parentCategoryIds': instance.parentCategoryIds,
-      'order': instance.order,
-      'published': instance.published,
-      'showOnHome': instance.showOnHome,
       'branchId': instance.branchId,
-      'user': instance.user,
+      'user': instance.user.toJson(),
     };
 
 _$LightCategoryModelImpl _$$LightCategoryModelImplFromJson(

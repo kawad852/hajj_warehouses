@@ -7,15 +7,11 @@ part 'category_model.g.dart';
 
 @unfreezed
 class CategoryModel with _$CategoryModel {
+  @JsonSerializable(explicitToJson: true)
   factory CategoryModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String name,
-    @Default('') String thumbnail,
-    @Default([]) List<String> parentCategoryIds,
-    @Default(kOrder) int order,
-    @Default(true) bool published,
-    @Default(false) bool showOnHome,
     required String branchId,
     required LightUserModel user,
   }) = _CategoryModel;

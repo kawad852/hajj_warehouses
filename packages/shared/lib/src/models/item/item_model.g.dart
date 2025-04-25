@@ -29,7 +29,7 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'branchId': instance.branchId,
       'quantity': instance.quantity,
       'minimumQuantity': instance.minimumQuantity,
-      'user': instance.user,
+      'user': instance.user.toJson(),
     };
 
 _$LightItemModelImpl _$$LightItemModelImplFromJson(Map<String, dynamic> json) =>

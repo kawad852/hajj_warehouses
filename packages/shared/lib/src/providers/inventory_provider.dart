@@ -69,6 +69,7 @@ class InventoryProvider extends ChangeNotifier {
             status: OrderStatusEnum.placed.value,
             operation: operation,
             user: user,
+            branchId: kSelectedBranchId,
           );
           order.id = await order.getId();
           order.orderRecords = [

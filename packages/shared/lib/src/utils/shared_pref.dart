@@ -68,8 +68,7 @@ class MySharedPreferences {
       _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
   static set countryCode(String value) => _sharedPreferences.setString('countryCode', value);
 
-  static String get selectedBranchId =>
-      _sharedPreferences.getString('selectedBranchId') ?? kFallBackCountryCode;
+  static String get selectedBranchId => _sharedPreferences.getString('selectedBranchId') ?? "";
   static set selectedBranchId(String value) =>
       _sharedPreferences.setString('selectedBranchId', value);
 }

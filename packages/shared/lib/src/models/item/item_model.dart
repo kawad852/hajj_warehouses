@@ -7,6 +7,7 @@ part 'item_model.g.dart';
 
 @unfreezed
 class ItemModel with _$ItemModel {
+  @JsonSerializable(explicitToJson: true)
   factory ItemModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,

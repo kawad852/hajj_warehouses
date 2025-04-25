@@ -10,7 +10,8 @@ class OrderModel with _$OrderModel {
   factory OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    LightUserModel? user,
+    required String branchId,
+    required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
     @Default([]) List<OrderRecordModel> orderRecords,

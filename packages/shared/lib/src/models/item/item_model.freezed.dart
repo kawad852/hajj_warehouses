@@ -280,7 +280,8 @@ class __$$ItemModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$ItemModelImpl extends _ItemModel {
   _$ItemModelImpl({
     @TimestampSerializer() this.createdAt,

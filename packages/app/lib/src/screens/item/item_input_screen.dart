@@ -25,10 +25,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   CategoryModel get _category => widget.category;
 
   void _initialize() {
-    _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderBy(
-      MyFields.createdAt,
-      descending: true,
-    );
+    _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderByDesc;
   }
 
   @override
@@ -135,84 +132,84 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       }).separator(const SizedBox(height: 10)).toList(),
                 ),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          "مقترحات",
-                          style: TextStyle(
-                            color: context.colorPalette.black001,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        children:
-                            List.generate(snapshot.docs.length, (index) {
-                              if (snapshot.isLoadingMore(index)) {
-                                return const FPLoading();
-                              }
-                              final item = snapshot.docs[index].data();
-                              item.suggested = true;
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _items.add(item);
-                                    snapshot.docs.removeAt(index);
-                                  });
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                      height: 40,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 2,
-                                        vertical: 3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        border: Border.all(color: context.colorPalette.greyDAD),
-                                        borderRadius: BorderRadius.circular(kRadiusSecondary),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          CustomSvg(
-                                            MyIcons.addTask,
-                                            color: context.colorPalette.grey708,
-                                            width: 20,
-                                          ),
-                                          const SizedBox(width: 7),
-                                          Text(
-                                            item.name,
-                                            style: TextStyle(
-                                              color: context.colorPalette.black001,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // SliverPadding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              //   sliver: SliverMainAxisGroup(
+              //     slivers: [
+              //       SliverToBoxAdapter(
+              //         child: Padding(
+              //           padding: const EdgeInsets.only(bottom: 5),
+              //           child: Text(
+              //             "مقترحات",
+              //             style: TextStyle(
+              //               color: context.colorPalette.black001,
+              //               fontSize: 16,
+              //               fontWeight: FontWeight.w800,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       SliverToBoxAdapter(
+              //         child: Wrap(
+              //           direction: Axis.horizontal,
+              //           children:
+              //               List.generate(snapshot.docs.length, (index) {
+              //                 if (snapshot.isLoadingMore(index)) {
+              //                   return const FPLoading();
+              //                 }
+              //                 final item = snapshot.docs[index].data();
+              //                 item.suggested = true;
+              //                 return GestureDetector(
+              //                   onTap: () {
+              //                     setState(() {
+              //                       _items.add(item);
+              //                       snapshot.docs.removeAt(index);
+              //                     });
+              //                   },
+              //                   child: Row(
+              //                     mainAxisSize: MainAxisSize.min,
+              //                     children: [
+              //                       Container(
+              //                         height: 40,
+              //                         alignment: Alignment.center,
+              //                         padding: const EdgeInsets.symmetric(horizontal: 10),
+              //                         margin: const EdgeInsets.symmetric(
+              //                           horizontal: 2,
+              //                           vertical: 3,
+              //                         ),
+              //                         decoration: BoxDecoration(
+              //                           color: Colors.transparent,
+              //                           border: Border.all(color: context.colorPalette.greyDAD),
+              //                           borderRadius: BorderRadius.circular(kRadiusSecondary),
+              //                         ),
+              //                         child: Row(
+              //                           children: [
+              //                             CustomSvg(
+              //                               MyIcons.addTask,
+              //                               color: context.colorPalette.grey708,
+              //                               width: 20,
+              //                             ),
+              //                             const SizedBox(width: 7),
+              //                             Text(
+              //                               item.name,
+              //                               style: TextStyle(
+              //                                 color: context.colorPalette.black001,
+              //                                 fontSize: 14,
+              //                                 fontWeight: FontWeight.w500,
+              //                               ),
+              //                             ),
+              //                           ],
+              //                         ),
+              //                       ),
+              //                     ],
+              //                   ),
+              //                 );
+              //               }).toList(),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           );
         },

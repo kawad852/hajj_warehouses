@@ -27,8 +27,10 @@ mixin _$OrderModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  LightUserModel? get user => throw _privateConstructorUsedError;
-  set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  String get branchId => throw _privateConstructorUsedError;
+  set branchId(String value) => throw _privateConstructorUsedError;
+  LightUserModel get user => throw _privateConstructorUsedError;
+  set user(LightUserModel value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
   InventoryOperationModel? get operation => throw _privateConstructorUsedError;
@@ -58,13 +60,14 @@ abstract class $OrderModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    LightUserModel? user,
+    String branchId,
+    LightUserModel user,
     String status,
     InventoryOperationModel? operation,
     List<OrderRecordModel> orderRecords,
   });
 
-  $LightUserModelCopyWith<$Res>? get user;
+  $LightUserModelCopyWith<$Res> get user;
   $InventoryOperationModelCopyWith<$Res>? get operation;
 }
 
@@ -85,7 +88,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? user = freezed,
+    Object? branchId = null,
+    Object? user = null,
     Object? status = null,
     Object? operation = freezed,
     Object? orderRecords = null,
@@ -102,11 +106,16 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
+            branchId:
+                null == branchId
+                    ? _value.branchId
+                    : branchId // ignore: cast_nullable_to_non_nullable
+                        as String,
             user:
-                freezed == user
+                null == user
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
-                        as LightUserModel?,
+                        as LightUserModel,
             status:
                 null == status
                     ? _value.status
@@ -131,12 +140,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LightUserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+  $LightUserModelCopyWith<$Res> get user {
+    return $LightUserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -168,14 +173,15 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    LightUserModel? user,
+    String branchId,
+    LightUserModel user,
     String status,
     InventoryOperationModel? operation,
     List<OrderRecordModel> orderRecords,
   });
 
   @override
-  $LightUserModelCopyWith<$Res>? get user;
+  $LightUserModelCopyWith<$Res> get user;
   @override
   $InventoryOperationModelCopyWith<$Res>? get operation;
 }
@@ -196,7 +202,8 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? user = freezed,
+    Object? branchId = null,
+    Object? user = null,
     Object? status = null,
     Object? operation = freezed,
     Object? orderRecords = null,
@@ -213,11 +220,16 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
+        branchId:
+            null == branchId
+                ? _value.branchId
+                : branchId // ignore: cast_nullable_to_non_nullable
+                    as String,
         user:
-            freezed == user
+            null == user
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
-                    as LightUserModel?,
+                    as LightUserModel,
         status:
             null == status
                 ? _value.status
@@ -245,7 +257,8 @@ class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    this.user,
+    required this.branchId,
+    required this.user,
     required this.status,
     this.operation,
     this.orderRecords = const [],
@@ -261,7 +274,9 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey()
   String id;
   @override
-  LightUserModel? user;
+  String branchId;
+  @override
+  LightUserModel user;
   @override
   String status;
   @override
@@ -272,7 +287,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, user: $user, status: $status, operation: $operation, orderRecords: $orderRecords)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, orderRecords: $orderRecords)';
   }
 
   /// Create a copy of OrderModel
@@ -293,7 +308,8 @@ abstract class _OrderModel extends OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    LightUserModel? user,
+    required String branchId,
+    required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
     List<OrderRecordModel> orderRecords,
@@ -312,8 +328,11 @@ abstract class _OrderModel extends OrderModel {
   String get id;
   set id(String value);
   @override
-  LightUserModel? get user;
-  set user(LightUserModel? value);
+  String get branchId;
+  set branchId(String value);
+  @override
+  LightUserModel get user;
+  set user(LightUserModel value);
   @override
   String get status;
   set status(String value);

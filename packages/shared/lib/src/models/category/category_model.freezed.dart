@@ -29,17 +29,6 @@ mixin _$CategoryModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
-  String get thumbnail => throw _privateConstructorUsedError;
-  set thumbnail(String value) => throw _privateConstructorUsedError;
-  List<String> get parentCategoryIds => throw _privateConstructorUsedError;
-  set parentCategoryIds(List<String> value) =>
-      throw _privateConstructorUsedError;
-  int get order => throw _privateConstructorUsedError;
-  set order(int value) => throw _privateConstructorUsedError;
-  bool get published => throw _privateConstructorUsedError;
-  set published(bool value) => throw _privateConstructorUsedError;
-  bool get showOnHome => throw _privateConstructorUsedError;
-  set showOnHome(bool value) => throw _privateConstructorUsedError;
   String get branchId => throw _privateConstructorUsedError;
   set branchId(String value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
@@ -66,11 +55,6 @@ abstract class $CategoryModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String thumbnail,
-    List<String> parentCategoryIds,
-    int order,
-    bool published,
-    bool showOnHome,
     String branchId,
     LightUserModel user,
   });
@@ -96,11 +80,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? thumbnail = null,
-    Object? parentCategoryIds = null,
-    Object? order = null,
-    Object? published = null,
-    Object? showOnHome = null,
     Object? branchId = null,
     Object? user = null,
   }) {
@@ -121,31 +100,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
                         as String,
-            thumbnail:
-                null == thumbnail
-                    ? _value.thumbnail
-                    : thumbnail // ignore: cast_nullable_to_non_nullable
-                        as String,
-            parentCategoryIds:
-                null == parentCategoryIds
-                    ? _value.parentCategoryIds
-                    : parentCategoryIds // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
-            order:
-                null == order
-                    ? _value.order
-                    : order // ignore: cast_nullable_to_non_nullable
-                        as int,
-            published:
-                null == published
-                    ? _value.published
-                    : published // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            showOnHome:
-                null == showOnHome
-                    ? _value.showOnHome
-                    : showOnHome // ignore: cast_nullable_to_non_nullable
-                        as bool,
             branchId:
                 null == branchId
                     ? _value.branchId
@@ -185,11 +139,6 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String thumbnail,
-    List<String> parentCategoryIds,
-    int order,
-    bool published,
-    bool showOnHome,
     String branchId,
     LightUserModel user,
   });
@@ -215,11 +164,6 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? thumbnail = null,
-    Object? parentCategoryIds = null,
-    Object? order = null,
-    Object? published = null,
-    Object? showOnHome = null,
     Object? branchId = null,
     Object? user = null,
   }) {
@@ -240,31 +184,6 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
-        thumbnail:
-            null == thumbnail
-                ? _value.thumbnail
-                : thumbnail // ignore: cast_nullable_to_non_nullable
-                    as String,
-        parentCategoryIds:
-            null == parentCategoryIds
-                ? _value.parentCategoryIds
-                : parentCategoryIds // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
-        order:
-            null == order
-                ? _value.order
-                : order // ignore: cast_nullable_to_non_nullable
-                    as int,
-        published:
-            null == published
-                ? _value.published
-                : published // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        showOnHome:
-            null == showOnHome
-                ? _value.showOnHome
-                : showOnHome // ignore: cast_nullable_to_non_nullable
-                    as bool,
         branchId:
             null == branchId
                 ? _value.branchId
@@ -281,17 +200,13 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$CategoryModelImpl extends _CategoryModel {
   _$CategoryModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.name = '',
-    this.thumbnail = '',
-    this.parentCategoryIds = const [],
-    this.order = kOrder,
-    this.published = true,
-    this.showOnHome = false,
     required this.branchId,
     required this.user,
   }) : super._();
@@ -309,28 +224,13 @@ class _$CategoryModelImpl extends _CategoryModel {
   @JsonKey()
   String name;
   @override
-  @JsonKey()
-  String thumbnail;
-  @override
-  @JsonKey()
-  List<String> parentCategoryIds;
-  @override
-  @JsonKey()
-  int order;
-  @override
-  @JsonKey()
-  bool published;
-  @override
-  @JsonKey()
-  bool showOnHome;
-  @override
   String branchId;
   @override
   LightUserModel user;
 
   @override
   String toString() {
-    return 'CategoryModel(createdAt: $createdAt, id: $id, name: $name, thumbnail: $thumbnail, parentCategoryIds: $parentCategoryIds, order: $order, published: $published, showOnHome: $showOnHome, branchId: $branchId, user: $user)';
+    return 'CategoryModel(createdAt: $createdAt, id: $id, name: $name, branchId: $branchId, user: $user)';
   }
 
   /// Create a copy of CategoryModel
@@ -352,11 +252,6 @@ abstract class _CategoryModel extends CategoryModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String thumbnail,
-    List<String> parentCategoryIds,
-    int order,
-    bool published,
-    bool showOnHome,
     required String branchId,
     required LightUserModel user,
   }) = _$CategoryModelImpl;
@@ -376,21 +271,6 @@ abstract class _CategoryModel extends CategoryModel {
   @override
   String get name;
   set name(String value);
-  @override
-  String get thumbnail;
-  set thumbnail(String value);
-  @override
-  List<String> get parentCategoryIds;
-  set parentCategoryIds(List<String> value);
-  @override
-  int get order;
-  set order(int value);
-  @override
-  bool get published;
-  set published(bool value);
-  @override
-  bool get showOnHome;
-  set showOnHome(bool value);
   @override
   String get branchId;
   set branchId(String value);
