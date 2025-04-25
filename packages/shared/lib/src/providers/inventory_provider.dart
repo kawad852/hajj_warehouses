@@ -9,6 +9,7 @@ class InventoryProvider extends ChangeNotifier {
     BuildContext context, {
     required InventoryOperationModel operation,
     Future<List<ItemModel>> Function(WriteBatch bath)? onCreate,
+    Function(WriteBatch bath)? onCompleteOrder,
   }) {
     ApiService.fetch(
       context,
@@ -19,7 +20,7 @@ class InventoryProvider extends ChangeNotifier {
         final isSupplyOperation = operation.operationType == OperationType.supply.value;
         final isTransferOperation = operation.operationType == OperationType.transfer.value;
 
-        final isOrder = isSupplyOperation || isTransferOperation;
+        final needsApproval = isSupplyOperation || isTransferOperation;
 
         ///Items
         if (onCreate != null) {
@@ -29,7 +30,10 @@ class InventoryProvider extends ChangeNotifier {
                   .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
-        } else if (!isOrder) {
+        } else if (!needsApproval) {
+          if (onCompleteOrder != null) {
+            onCompleteOrder(batch);
+          }
           final isPlus = isAddOperation;
           for (var e in operation.items) {
             final increment = e.quantity;
@@ -62,7 +66,7 @@ class InventoryProvider extends ChangeNotifier {
           itemIds: operation.items.map((e) => e.id).toList(),
         );
 
-        if (isOrder) {
+        if (needsApproval) {
           final order = OrderModel(
             createdAt: kNowDate,
             status: OrderStatusEnum.placed.value,

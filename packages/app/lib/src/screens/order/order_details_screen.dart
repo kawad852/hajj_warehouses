@@ -47,11 +47,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 Expanded(
                   child: StretchedButton(
                     onPressed: () {
-                      _updateOrderStatus(OrderStatusEnum.completed.value);
-                      context.inventoryProvider.createOperation(
-                        context,
-                        operation: operation.copyWith(operationType: OperationType.add.value),
-                      );
+                      _updateOrderStatus(OrderStatusEnum.approved.value);
                     },
                     child: Text(
                       "قبول الطلب",
@@ -145,7 +141,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: StretchedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.inventoryProvider.createOperation(
+                            context,
+                            operation: operation.copyWith(operationType: OperationType.add.value),
+                            onCompleteOrder: (batch) {
+                              batch.update(_docREF, {
+                                MyFields.status: OrderStatusEnum.completed.value,
+                              });
+                            },
+                          );
+                        },
                         backgroundColor: context.colorPalette.greyC4C,
                         child: Text(
                           "إستلام الطلب",

@@ -1,6 +1,6 @@
 enum OrderStatusEnum {
   placed('PLACED'),
-  preparing('APPROVED'),
+  approved('APPROVED'),
   inDelivery('IN-DELIVERY'),
   rejected('REJECTED'),
   completed('COMPLETED'),
