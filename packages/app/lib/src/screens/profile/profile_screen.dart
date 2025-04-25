@@ -1,5 +1,4 @@
-import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
+import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -15,7 +14,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       children: [
-        ProfileCard(title: "الإدارة", icon: MyIcons.setting, onTap: () {}),
+        ProfileCard(
+          title: "الإدارة",
+          icon: MyIcons.setting,
+          onTap: () {
+            context.push((context) => const SettingsScreen());
+          },
+        ),
         ProfileCard(title: "المساعد الذكي", icon: MyIcons.helper, onTap: () {}),
         ProfileCard(title: "تغيير اللغة", icon: MyIcons.language, onTap: () {}),
         ProfileCard(title: "تسجيل الخروج", icon: MyIcons.logout, onTap: () {}),
@@ -30,9 +35,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ),
-        ProfileCard(title: "الشروط والأحكام", icon: MyIcons.terms, onTap: () {}),
-        ProfileCard(title: "سياسة الخصوصية", icon: MyIcons.policy, onTap: () {}),
-        ProfileCard(title: "عن مخازن الحج", icon: MyIcons.information, onTap: () {}),
+        ProfileCard(
+          title: "الشروط والأحكام",
+          icon: MyIcons.terms,
+          onTap: () {},
+        ),
+        ProfileCard(
+          title: "سياسة الخصوصية",
+          icon: MyIcons.policy,
+          onTap: () {},
+        ),
+        ProfileCard(
+          title: "عن مخازن الحج",
+          icon: MyIcons.information,
+          onTap: () {},
+        ),
       ],
     );
   }
