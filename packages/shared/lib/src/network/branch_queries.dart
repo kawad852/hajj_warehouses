@@ -15,5 +15,5 @@ extension SelectedUserFireExtension on FirebaseFirestore {
 
 class BranchQueries {
   static Query<InventoryOperationModel> get inventoryOperations =>
-      kFirebaseInstant.inventoryOperations.whereMyBranchNested.orderByDesc;
+      kFirebaseInstant.inventoryOperations.whereMyBranch.orderByDesc;
 }

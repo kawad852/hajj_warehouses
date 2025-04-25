@@ -1,6 +1,5 @@
 class MyFields {
   static const String id = 'id';
-  static const String userId = 'userId';
   static const String createdAt = 'createdAt';
   static const String deviceToken = 'deviceToken';
   static const String deliveryAddress = 'deliveryAddress';
@@ -17,6 +16,6 @@ class MyFields {
   static const String itemIds = 'itemIds';
   static const String status = 'status';
   static const String quantity = 'quantity';
-  static const String idUser = 'user.id';
   static const String orderStatus = 'orderStatus';
+  static const String branchId = 'branchId';
 }

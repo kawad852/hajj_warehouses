@@ -17,10 +17,11 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
   CategoryModel get _category => widget.category;
 
   void _initialize() {
-    _query = kFirebaseInstant.items
-        .where(MyFields.categoryId, isEqualTo: _category.id)
-        .where(MyFields.userId, isEqualTo: kSelectedBranchId)
-        .orderBy(MyFields.createdAt, descending: true);
+    _query =
+        kFirebaseInstant.items
+            .where(MyFields.categoryId, isEqualTo: _category.id)
+            .whereMyBranch
+            .orderByDesc;
   }
 
   @override
