@@ -22,7 +22,7 @@ void main() async {
   await MySharedPreferences.init();
   MyObjectBoxes.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await _logout();
+  await _logout();
   runApp(
     MultiProvider(
       providers: [

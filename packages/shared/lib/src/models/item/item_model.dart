@@ -11,7 +11,6 @@ class ItemModel with _$ItemModel {
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String name,
-    @Default('') String userId,
     @Default('') String categoryId,
     @Default('') String status,
     required String branchId,

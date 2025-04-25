@@ -20,6 +20,8 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       order: (json['order'] as num?)?.toInt() ?? kOrder,
       published: json['published'] as bool? ?? true,
       showOnHome: json['showOnHome'] as bool? ?? false,
+      branchId: json['branchId'] as String,
+      user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -32,6 +34,8 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'order': instance.order,
       'published': instance.published,
       'showOnHome': instance.showOnHome,
+      'branchId': instance.branchId,
+      'user': instance.user,
     };
 
 _$LightCategoryModelImpl _$$LightCategoryModelImplFromJson(

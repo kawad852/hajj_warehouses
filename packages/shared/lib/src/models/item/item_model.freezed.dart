@@ -29,8 +29,6 @@ mixin _$ItemModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  set userId(String value) => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   set categoryId(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -67,7 +65,6 @@ abstract class $ItemModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String userId,
     String categoryId,
     String status,
     String branchId,
@@ -98,7 +95,6 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
     Object? branchId = null,
@@ -123,11 +119,6 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                 null == name
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
-                        as String,
-            userId:
-                null == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
                         as String,
             categoryId:
                 null == categoryId
@@ -193,7 +184,6 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String userId,
     String categoryId,
     String status,
     String branchId,
@@ -224,7 +214,6 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? userId = null,
     Object? categoryId = null,
     Object? status = null,
     Object? branchId = null,
@@ -249,11 +238,6 @@ class __$$ItemModelImplCopyWithImpl<$Res>
             null == name
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
-                    as String,
-        userId:
-            null == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
                     as String,
         categoryId:
             null == categoryId
@@ -302,7 +286,6 @@ class _$ItemModelImpl extends _ItemModel {
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.name = '',
-    this.userId = '',
     this.categoryId = '',
     this.status = '',
     required this.branchId,
@@ -327,9 +310,6 @@ class _$ItemModelImpl extends _ItemModel {
   String name;
   @override
   @JsonKey()
-  String userId;
-  @override
-  @JsonKey()
   String categoryId;
   @override
   @JsonKey()
@@ -350,7 +330,7 @@ class _$ItemModelImpl extends _ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, userId: $userId, categoryId: $categoryId, status: $status, branchId: $branchId, quantity: $quantity, minimumQuantity: $minimumQuantity, user: $user, suggested: $suggested)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, categoryId: $categoryId, status: $status, branchId: $branchId, quantity: $quantity, minimumQuantity: $minimumQuantity, user: $user, suggested: $suggested)';
   }
 
   /// Create a copy of ItemModel
@@ -372,7 +352,6 @@ abstract class _ItemModel extends ItemModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    String userId,
     String categoryId,
     String status,
     required String branchId,
@@ -397,9 +376,6 @@ abstract class _ItemModel extends ItemModel {
   @override
   String get name;
   set name(String value);
-  @override
-  String get userId;
-  set userId(String value);
   @override
   String get categoryId;
   set categoryId(String value);

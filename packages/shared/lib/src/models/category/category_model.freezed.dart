@@ -40,6 +40,10 @@ mixin _$CategoryModel {
   set published(bool value) => throw _privateConstructorUsedError;
   bool get showOnHome => throw _privateConstructorUsedError;
   set showOnHome(bool value) => throw _privateConstructorUsedError;
+  String get branchId => throw _privateConstructorUsedError;
+  set branchId(String value) => throw _privateConstructorUsedError;
+  LightUserModel get user => throw _privateConstructorUsedError;
+  set user(LightUserModel value) => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -67,7 +71,11 @@ abstract class $CategoryModelCopyWith<$Res> {
     int order,
     bool published,
     bool showOnHome,
+    String branchId,
+    LightUserModel user,
   });
+
+  $LightUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -93,6 +101,8 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? order = null,
     Object? published = null,
     Object? showOnHome = null,
+    Object? branchId = null,
+    Object? user = null,
   }) {
     return _then(
       _value.copyWith(
@@ -136,9 +146,29 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
                     ? _value.showOnHome
                     : showOnHome // ignore: cast_nullable_to_non_nullable
                         as bool,
+            branchId:
+                null == branchId
+                    ? _value.branchId
+                    : branchId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            user:
+                null == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of CategoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res> get user {
+    return $LightUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -160,7 +190,12 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
     int order,
     bool published,
     bool showOnHome,
+    String branchId,
+    LightUserModel user,
   });
+
+  @override
+  $LightUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -185,6 +220,8 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? order = null,
     Object? published = null,
     Object? showOnHome = null,
+    Object? branchId = null,
+    Object? user = null,
   }) {
     return _then(
       _$CategoryModelImpl(
@@ -228,6 +265,16 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
                 ? _value.showOnHome
                 : showOnHome // ignore: cast_nullable_to_non_nullable
                     as bool,
+        branchId:
+            null == branchId
+                ? _value.branchId
+                : branchId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel,
       ),
     );
   }
@@ -245,6 +292,8 @@ class _$CategoryModelImpl extends _CategoryModel {
     this.order = kOrder,
     this.published = true,
     this.showOnHome = false,
+    required this.branchId,
+    required this.user,
   }) : super._();
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -274,10 +323,14 @@ class _$CategoryModelImpl extends _CategoryModel {
   @override
   @JsonKey()
   bool showOnHome;
+  @override
+  String branchId;
+  @override
+  LightUserModel user;
 
   @override
   String toString() {
-    return 'CategoryModel(createdAt: $createdAt, id: $id, name: $name, thumbnail: $thumbnail, parentCategoryIds: $parentCategoryIds, order: $order, published: $published, showOnHome: $showOnHome)';
+    return 'CategoryModel(createdAt: $createdAt, id: $id, name: $name, thumbnail: $thumbnail, parentCategoryIds: $parentCategoryIds, order: $order, published: $published, showOnHome: $showOnHome, branchId: $branchId, user: $user)';
   }
 
   /// Create a copy of CategoryModel
@@ -304,6 +357,8 @@ abstract class _CategoryModel extends CategoryModel {
     int order,
     bool published,
     bool showOnHome,
+    required String branchId,
+    required LightUserModel user,
   }) = _$CategoryModelImpl;
   _CategoryModel._() : super._();
 
@@ -336,6 +391,12 @@ abstract class _CategoryModel extends CategoryModel {
   @override
   bool get showOnHome;
   set showOnHome(bool value);
+  @override
+  String get branchId;
+  set branchId(String value);
+  @override
+  LightUserModel get user;
+  set user(LightUserModel value);
 
   /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.

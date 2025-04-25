@@ -16,6 +16,8 @@ class CategoryModel with _$CategoryModel {
     @Default(kOrder) int order,
     @Default(true) bool published,
     @Default(false) bool showOnHome,
+    required String branchId,
+    required LightUserModel user,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);

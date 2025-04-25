@@ -17,7 +17,6 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
 
   ItemModel get _itemModel => ItemModel(
     status: ItemStatusEnum.inStock.value,
-    userId: kSelectedBranchId,
     categoryId: _category.id,
     user: kCurrentLightUser,
     branchId: kSelectedBranchId,

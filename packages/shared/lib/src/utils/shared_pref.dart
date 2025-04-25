@@ -16,6 +16,7 @@ class MySharedPreferences {
 
   static void clearStorage() {
     user = null;
+    selectedBranchId = "";
   }
 
   static UserModel? get user {
