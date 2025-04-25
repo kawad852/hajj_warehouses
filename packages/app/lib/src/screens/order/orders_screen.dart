@@ -37,7 +37,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
       bottomNavigationBar: BottomButton(
         text: "ارسال طلب جديد",
         onPressed: () {
-          context.push((context) => const OrderInputScreen());
+          context.push(
+            (context) => const OperationInputScreen(operationType: OperationType.supply),
+          );
         },
       ),
       appBar: AppBar(title: const AppBarText("ادارة الطلبيات")),
