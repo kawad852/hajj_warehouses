@@ -98,7 +98,10 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   const SizedBox(width: 10),
                   WarehouseButton(
                     onTap: () {
-                      context.push((context) => const SendTransferOrderScreen());
+                      context.push(
+                        (context) =>
+                            const OperationInputScreen(operationType: OperationType.transfer),
+                      );
                     },
                     flex: 2,
                     backgroundColor: context.colorPalette.grey780,

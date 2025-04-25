@@ -20,13 +20,14 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isAddOperation => _operationType == OperationType.add;
   bool get _isSupplyOperation => _operationType == OperationType.supply;
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
+  bool get _isTransferOperation => _operationType == OperationType.transfer;
   ItemModel? get _item => widget.item;
   bool get _singleItem => _item != null;
 
   String? get _radioGroupValue {
     if (_isAddOperation) {
       return _operation.supplyType;
-    } else if (_isSupplyOperation) {
+    } else if (_isSupplyOperation || _isTransferOperation) {
       return _operation.requestType;
     } else if (_isDestroyOperation) {
       return _operation.destroyReason;
@@ -157,7 +158,41 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ),
             ],
 
-            if (_isSupplyOperation || _isDestroyOperation) ...[
+            if (_isTransferOperation)
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TitledTextField(
+                        title: "الفرع المرسل",
+                        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                        child: DropDownEditor(
+                          items: const [],
+                          onChanged: (value) {},
+                          title: "اختر الفرع",
+                          value: "s",
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TitledTextField(
+                        title: "الفرع المستقبل",
+                        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                        child: DropDownEditor(
+                          items: const [],
+                          onChanged: (value) {},
+                          title: "اختر الفرع",
+                          value: "s",
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+            if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[
               SizedBox(height: _isSupplyOperation ? 50 : 30),
               EditorLabel(
                 _isSupplyOperation ? "مشروحات وملاحظات حول الطلب" : "مشروحات وملاحظات حول الإتلاف",

@@ -16,6 +16,7 @@ extension OperationExteension on OperationType {
         );
 
       case OperationType.supply:
+      case OperationType.transfer:
         return OperationInfoModel(
           title: "طلب تزويد كمية للصنف",
           radio: RadioInfoModel(
