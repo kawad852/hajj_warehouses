@@ -44,6 +44,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
     _operation = InventoryOperationModel(
       operationType: _operationType.value,
       files: [],
+      branchId: kSelectedBranchId,
+      user: kCurrentLightUser,
       items:
           _item != null
               ? [

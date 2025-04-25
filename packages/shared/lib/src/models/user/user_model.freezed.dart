@@ -33,6 +33,8 @@ mixin _$UserModel {
   set email(String? value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
+  String? get branchId => throw _privateConstructorUsedError;
+  set branchId(String? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
@@ -72,6 +74,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? displayName,
     String? email,
     String? deviceToken,
+    String? branchId,
     String? role,
     String? username,
     String? languageCode,
@@ -106,6 +109,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
+    Object? branchId = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
@@ -141,6 +145,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == deviceToken
                     ? _value.deviceToken
                     : deviceToken // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            branchId:
+                freezed == branchId
+                    ? _value.branchId
+                    : branchId // ignore: cast_nullable_to_non_nullable
                         as String?,
             role:
                 freezed == role
@@ -231,6 +240,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? displayName,
     String? email,
     String? deviceToken,
+    String? branchId,
     String? role,
     String? username,
     String? languageCode,
@@ -266,6 +276,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
+    Object? branchId = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
@@ -301,6 +312,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == deviceToken
                 ? _value.deviceToken
                 : deviceToken // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        branchId:
+            freezed == branchId
+                ? _value.branchId
+                : branchId // ignore: cast_nullable_to_non_nullable
                     as String?,
         role:
             freezed == role
@@ -356,6 +372,7 @@ class _$UserModelImpl implements _UserModel {
     this.displayName,
     this.email,
     this.deviceToken,
+    this.branchId,
     this.role,
     this.username,
     this.languageCode,
@@ -381,6 +398,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? deviceToken;
   @override
+  String? branchId;
+  @override
   String? role;
   @override
   String? username;
@@ -400,7 +419,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branchId: $branchId, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
   }
 
   /// Create a copy of UserModel
@@ -424,6 +443,7 @@ abstract class _UserModel implements UserModel {
     String? displayName,
     String? email,
     String? deviceToken,
+    String? branchId,
     String? role,
     String? username,
     String? languageCode,
@@ -454,6 +474,9 @@ abstract class _UserModel implements UserModel {
   @override
   String? get deviceToken;
   set deviceToken(String? value);
+  @override
+  String? get branchId;
+  set branchId(String? value);
   @override
   String? get role;
   set role(String? value);

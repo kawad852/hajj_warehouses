@@ -54,10 +54,7 @@ class InventoryProvider extends ChangeNotifier {
         }
 
         ///Operation
-        final user = LightUserModel(
-          id: MySharedPreferences.user!.id!,
-          displayName: MySharedPreferences.user!.displayName!,
-        );
+        final user = kCurrentLightUser;
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: await operation.getId(),
@@ -74,7 +71,14 @@ class InventoryProvider extends ChangeNotifier {
             user: user,
           );
           order.id = await order.getId();
-          order.orderRecords = [OrderRecordModel(status: order.status, user: user, time: kNowDate)];
+          order.orderRecords = [
+            OrderRecordModel(
+              status: order.status,
+              user: user,
+              time: kNowDate,
+              branchId: kSelectedBranchId,
+            ),
+          ];
           final orderDocREF = kFirebaseInstant.orders.doc(order.id);
           batch.set(orderDocREF, order);
         } else {

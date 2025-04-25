@@ -15,6 +15,7 @@ class UserModel with _$UserModel {
     String? displayName,
     String? email,
     String? deviceToken,
+    String? branchId,
     String? role,
     String? username,
     String? languageCode,

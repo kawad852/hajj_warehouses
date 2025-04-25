@@ -43,10 +43,8 @@ _$OrderRecordModelImpl _$$OrderRecordModelImplFromJson(
 ) => _$OrderRecordModelImpl(
   time: const TimestampSerializer().fromJson(json['time']),
   status: json['status'] as String,
-  user:
-      json['user'] == null
-          ? null
-          : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  branchId: json['branchId'] as String,
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -57,6 +55,7 @@ Map<String, dynamic> _$$OrderRecordModelImplToJson(
 ) => <String, dynamic>{
   'time': const TimestampSerializer().toJson(instance.time),
   'status': instance.status,
-  'user': instance.user?.toJson(),
+  'user': instance.user.toJson(),
+  'branchId': instance.branchId,
   'images': instance.images,
 };

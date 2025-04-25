@@ -17,8 +17,10 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
 
   ItemModel get _itemModel => ItemModel(
     status: ItemStatusEnum.inStock.value,
-    userId: kSelectedUserId,
+    userId: kSelectedBranchId,
     categoryId: _category.id,
+    user: kCurrentLightUser,
+    branchId: kSelectedBranchId,
   );
 
   CategoryModel get _category => widget.category;
@@ -51,6 +53,8 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                     operation: InventoryOperationModel(
                       operationType: OperationType.create.value,
                       items: [],
+                      branchId: kSelectedBranchId,
+                      user: kCurrentLightUser,
                     ),
                     onCreate: (batch) async {
                       for (var e in _items) {

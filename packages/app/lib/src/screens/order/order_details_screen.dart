@@ -205,9 +205,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       createdAt: kNowDate,
                       operationType: 'ADD',
                       supplyType: '',
-                      user: record.user,
                       files: [],
                       items: [],
+                      branchId: kSelectedBranchId,
+                      user: kCurrentLightUser,
                     ),
                   );
                 },

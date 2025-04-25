@@ -344,8 +344,10 @@ mixin _$OrderRecordModel {
   set time(DateTime? value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  LightUserModel? get user => throw _privateConstructorUsedError;
-  set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  LightUserModel get user => throw _privateConstructorUsedError;
+  set user(LightUserModel value) => throw _privateConstructorUsedError;
+  String get branchId => throw _privateConstructorUsedError;
+  set branchId(String value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
 
@@ -369,11 +371,12 @@ abstract class $OrderRecordModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? time,
     String status,
-    LightUserModel? user,
+    LightUserModel user,
+    String branchId,
     List<String> images,
   });
 
-  $LightUserModelCopyWith<$Res>? get user;
+  $LightUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -393,7 +396,8 @@ class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
   $Res call({
     Object? time = freezed,
     Object? status = null,
-    Object? user = freezed,
+    Object? user = null,
+    Object? branchId = null,
     Object? images = null,
   }) {
     return _then(
@@ -409,10 +413,15 @@ class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
             user:
-                freezed == user
+                null == user
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
-                        as LightUserModel?,
+                        as LightUserModel,
+            branchId:
+                null == branchId
+                    ? _value.branchId
+                    : branchId // ignore: cast_nullable_to_non_nullable
+                        as String,
             images:
                 null == images
                     ? _value.images
@@ -427,12 +436,8 @@ class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LightUserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+  $LightUserModelCopyWith<$Res> get user {
+    return $LightUserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -450,12 +455,13 @@ abstract class _$$OrderRecordModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? time,
     String status,
-    LightUserModel? user,
+    LightUserModel user,
+    String branchId,
     List<String> images,
   });
 
   @override
-  $LightUserModelCopyWith<$Res>? get user;
+  $LightUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -474,7 +480,8 @@ class __$$OrderRecordModelImplCopyWithImpl<$Res>
   $Res call({
     Object? time = freezed,
     Object? status = null,
-    Object? user = freezed,
+    Object? user = null,
+    Object? branchId = null,
     Object? images = null,
   }) {
     return _then(
@@ -490,10 +497,15 @@ class __$$OrderRecordModelImplCopyWithImpl<$Res>
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
         user:
-            freezed == user
+            null == user
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
-                    as LightUserModel?,
+                    as LightUserModel,
+        branchId:
+            null == branchId
+                ? _value.branchId
+                : branchId // ignore: cast_nullable_to_non_nullable
+                    as String,
         images:
             null == images
                 ? _value.images
@@ -511,7 +523,8 @@ class _$OrderRecordModelImpl implements _OrderRecordModel {
   _$OrderRecordModelImpl({
     @TimestampSerializer() this.time,
     required this.status,
-    this.user,
+    required this.user,
+    required this.branchId,
     this.images = const [],
   });
 
@@ -524,14 +537,16 @@ class _$OrderRecordModelImpl implements _OrderRecordModel {
   @override
   String status;
   @override
-  LightUserModel? user;
+  LightUserModel user;
+  @override
+  String branchId;
   @override
   @JsonKey()
   List<String> images;
 
   @override
   String toString() {
-    return 'OrderRecordModel(time: $time, status: $status, user: $user, images: $images)';
+    return 'OrderRecordModel(time: $time, status: $status, user: $user, branchId: $branchId, images: $images)';
   }
 
   /// Create a copy of OrderRecordModel
@@ -555,7 +570,8 @@ abstract class _OrderRecordModel implements OrderRecordModel {
   factory _OrderRecordModel({
     @TimestampSerializer() DateTime? time,
     required String status,
-    LightUserModel? user,
+    required LightUserModel user,
+    required String branchId,
     List<String> images,
   }) = _$OrderRecordModelImpl;
 
@@ -571,8 +587,11 @@ abstract class _OrderRecordModel implements OrderRecordModel {
   String get status;
   set status(String value);
   @override
-  LightUserModel? get user;
-  set user(LightUserModel? value);
+  LightUserModel get user;
+  set user(LightUserModel value);
+  @override
+  String get branchId;
+  set branchId(String value);
   @override
   List<String> get images;
   set images(List<String> value);

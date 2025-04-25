@@ -11,10 +11,8 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
 ) => _$InventoryOperationModelImpl(
   createdAt: const TimestampSerializer().fromJson(json['createdAt']),
   id: json['id'] as String? ?? '',
-  user:
-      json['user'] == null
-          ? null
-          : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  branchId: json['branchId'] as String,
   notes: json['notes'] as String?,
   supplyType: json['supplyType'] as String?,
   requestType: json['requestType'] as String?,
@@ -38,7 +36,8 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
 ) => <String, dynamic>{
   'createdAt': const TimestampSerializer().toJson(instance.createdAt),
   'id': instance.id,
-  'user': instance.user?.toJson(),
+  'user': instance.user.toJson(),
+  'branchId': instance.branchId,
   'notes': instance.notes,
   'supplyType': instance.supplyType,
   'requestType': instance.requestType,

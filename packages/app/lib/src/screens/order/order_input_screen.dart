@@ -126,27 +126,27 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               ),
             ),
             const ItemTableHeader(),
-            ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: 1,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.only(bottom: 5),
-              itemBuilder: (context, index) {
-                final item = ItemModel();
-                final length = 1;
-                return ItemTableCell(
-                  key: ValueKey("$length${item.id}"),
-                  onChangedQuntity: (value) {},
-                  itemName: item.name,
-                  autoFocus: index + 1 == length,
-                  length: length,
-                  onRemove: () {
-                    setState(() {});
-                  },
-                );
-              },
-            ),
+            // ListView.separated(
+            //   separatorBuilder: (context, index) => const SizedBox(height: 5),
+            //   itemCount: 1,
+            //   shrinkWrap: true,
+            //   physics: const NeverScrollableScrollPhysics(),
+            //   padding: const EdgeInsets.only(bottom: 5),
+            //   itemBuilder: (context, index) {
+            //     final item = ItemModel();
+            //     final length = 1;
+            //     return ItemTableCell(
+            //       key: ValueKey("$length${item.id}"),
+            //       onChangedQuntity: (value) {},
+            //       itemName: item.name,
+            //       autoFocus: index + 1 == length,
+            //       length: length,
+            //       onRemove: () {
+            //         setState(() {});
+            //       },
+            //     );
+            //   },
+            // ),
             ProductsSearchScreen(
               indexName: AlgoliaIndices.items.value,
               isFullScreen: false,

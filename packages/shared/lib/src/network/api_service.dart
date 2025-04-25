@@ -11,8 +11,11 @@ DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
-String get kSelectedUserId => MySharedPreferences.selectedBranchId;
-DocumentReference<UserModel> get kUserDocRef => kFirebaseInstant.users.doc(kSelectedUserId);
+String get kSelectedBranchId => MySharedPreferences.selectedBranchId;
+LightUserModel get kCurrentLightUser => LightUserModel(
+  id: MySharedPreferences.user?.id,
+  displayName: MySharedPreferences.user?.displayName,
+);
 
 class ApiService {
   static const String socketException = 'socket-exception';

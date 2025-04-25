@@ -29,7 +29,8 @@ class OrderRecordModel with _$OrderRecordModel {
   factory OrderRecordModel({
     @TimestampSerializer() DateTime? time,
     required String status,
-    LightUserModel? user,
+    required LightUserModel user,
+    required String branchId,
     @Default([]) List<String> images,
   }) = _OrderRecordModel;
 
