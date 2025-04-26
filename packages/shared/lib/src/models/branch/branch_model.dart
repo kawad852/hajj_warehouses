@@ -16,3 +16,11 @@ class BranchModel with _$BranchModel {
 
   factory BranchModel.fromJson(Map<String, dynamic> json) => _$BranchModelFromJson(json);
 }
+
+@unfreezed
+class LightBranchModel with _$LightBranchModel {
+  @JsonSerializable(explicitToJson: true)
+  factory LightBranchModel({String? id, @Default('') String name}) = _LightBranchModel;
+
+  factory LightBranchModel.fromJson(Map<String, dynamic> json) => _$LightBranchModelFromJson(json);
+}

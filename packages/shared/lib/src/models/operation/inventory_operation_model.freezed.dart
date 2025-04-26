@@ -41,10 +41,13 @@ mixin _$InventoryOperationModel {
   set requestType(String? value) => throw _privateConstructorUsedError;
   String? get destroyReason => throw _privateConstructorUsedError;
   set destroyReason(String? value) => throw _privateConstructorUsedError;
-  String? get transferFromBranchId => throw _privateConstructorUsedError;
-  set transferFromBranchId(String? value) => throw _privateConstructorUsedError;
-  String? get transferToBranchId => throw _privateConstructorUsedError;
-  set transferToBranchId(String? value) => throw _privateConstructorUsedError;
+  LightBranchModel? get transferFromBranch =>
+      throw _privateConstructorUsedError;
+  set transferFromBranch(LightBranchModel? value) =>
+      throw _privateConstructorUsedError;
+  LightBranchModel? get transferToBranch => throw _privateConstructorUsedError;
+  set transferToBranch(LightBranchModel? value) =>
+      throw _privateConstructorUsedError;
   String get operationType => throw _privateConstructorUsedError;
   set operationType(String value) => throw _privateConstructorUsedError;
   double get totalPayment => throw _privateConstructorUsedError;
@@ -86,8 +89,8 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     String? supplyType,
     String? requestType,
     String? destroyReason,
-    String? transferFromBranchId,
-    String? transferToBranchId,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     String operationType,
     double totalPayment,
     List<LightItemModel> items,
@@ -97,6 +100,8 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
   });
 
   $LightUserModelCopyWith<$Res> get user;
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch;
+  $LightBranchModelCopyWith<$Res>? get transferToBranch;
 }
 
 /// @nodoc
@@ -125,8 +130,8 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? supplyType = freezed,
     Object? requestType = freezed,
     Object? destroyReason = freezed,
-    Object? transferFromBranchId = freezed,
-    Object? transferToBranchId = freezed,
+    Object? transferFromBranch = freezed,
+    Object? transferToBranch = freezed,
     Object? operationType = null,
     Object? totalPayment = null,
     Object? items = null,
@@ -176,16 +181,16 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.destroyReason
                     : destroyReason // ignore: cast_nullable_to_non_nullable
                         as String?,
-            transferFromBranchId:
-                freezed == transferFromBranchId
-                    ? _value.transferFromBranchId
-                    : transferFromBranchId // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            transferToBranchId:
-                freezed == transferToBranchId
-                    ? _value.transferToBranchId
-                    : transferToBranchId // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            transferFromBranch:
+                freezed == transferFromBranch
+                    ? _value.transferFromBranch
+                    : transferFromBranch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel?,
+            transferToBranch:
+                freezed == transferToBranch
+                    ? _value.transferToBranch
+                    : transferToBranch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel?,
             operationType:
                 null == operationType
                     ? _value.operationType
@@ -230,6 +235,34 @@ class _$InventoryOperationModelCopyWithImpl<
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
+
+  /// Create a copy of InventoryOperationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch {
+    if (_value.transferFromBranch == null) {
+      return null;
+    }
+
+    return $LightBranchModelCopyWith<$Res>(_value.transferFromBranch!, (value) {
+      return _then(_value.copyWith(transferFromBranch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of InventoryOperationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res>? get transferToBranch {
+    if (_value.transferToBranch == null) {
+      return null;
+    }
+
+    return $LightBranchModelCopyWith<$Res>(_value.transferToBranch!, (value) {
+      return _then(_value.copyWith(transferToBranch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -250,8 +283,8 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     String? supplyType,
     String? requestType,
     String? destroyReason,
-    String? transferFromBranchId,
-    String? transferToBranchId,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     String operationType,
     double totalPayment,
     List<LightItemModel> items,
@@ -262,6 +295,10 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
 
   @override
   $LightUserModelCopyWith<$Res> get user;
+  @override
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch;
+  @override
+  $LightBranchModelCopyWith<$Res>? get transferToBranch;
 }
 
 /// @nodoc
@@ -290,8 +327,8 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? supplyType = freezed,
     Object? requestType = freezed,
     Object? destroyReason = freezed,
-    Object? transferFromBranchId = freezed,
-    Object? transferToBranchId = freezed,
+    Object? transferFromBranch = freezed,
+    Object? transferToBranch = freezed,
     Object? operationType = null,
     Object? totalPayment = null,
     Object? items = null,
@@ -341,16 +378,16 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.destroyReason
                 : destroyReason // ignore: cast_nullable_to_non_nullable
                     as String?,
-        transferFromBranchId:
-            freezed == transferFromBranchId
-                ? _value.transferFromBranchId
-                : transferFromBranchId // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        transferToBranchId:
-            freezed == transferToBranchId
-                ? _value.transferToBranchId
-                : transferToBranchId // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        transferFromBranch:
+            freezed == transferFromBranch
+                ? _value.transferFromBranch
+                : transferFromBranch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel?,
+        transferToBranch:
+            freezed == transferToBranch
+                ? _value.transferToBranch
+                : transferToBranch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel?,
         operationType:
             null == operationType
                 ? _value.operationType
@@ -399,8 +436,8 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
     this.supplyType,
     this.requestType,
     this.destroyReason,
-    this.transferFromBranchId,
-    this.transferToBranchId,
+    this.transferFromBranch,
+    this.transferToBranch,
     required this.operationType,
     this.totalPayment = 0.0,
     required this.items,
@@ -431,9 +468,9 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
   @override
   String? destroyReason;
   @override
-  String? transferFromBranchId;
+  LightBranchModel? transferFromBranch;
   @override
-  String? transferToBranchId;
+  LightBranchModel? transferToBranch;
   @override
   String operationType;
   @override
@@ -453,7 +490,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branchId: $branchId, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranchId: $transferFromBranchId, transferToBranchId: $transferToBranchId, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branchId: $branchId, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -482,8 +519,8 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
     String? supplyType,
     String? requestType,
     String? destroyReason,
-    String? transferFromBranchId,
-    String? transferToBranchId,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     required String operationType,
     double totalPayment,
     required List<LightItemModel> items,
@@ -523,11 +560,11 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
   String? get destroyReason;
   set destroyReason(String? value);
   @override
-  String? get transferFromBranchId;
-  set transferFromBranchId(String? value);
+  LightBranchModel? get transferFromBranch;
+  set transferFromBranch(LightBranchModel? value);
   @override
-  String? get transferToBranchId;
-  set transferToBranchId(String? value);
+  LightBranchModel? get transferToBranch;
+  set transferToBranch(LightBranchModel? value);
   @override
   String get operationType;
   set operationType(String value);

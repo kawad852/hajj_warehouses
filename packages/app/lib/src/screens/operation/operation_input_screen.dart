@@ -183,16 +183,16 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                           children: [
                             Expanded(
                               child: BranchesDropdown(
-                                key: ValueKey(_operation.transferToBranchId),
-                                value: _operation.transferFromBranchId,
+                                key: ValueKey(_operation.transferToBranch?.id),
+                                value: _operation.transferFromBranch?.id,
                                 branches: branches,
                                 title: "الفرع المرسل",
                                 onChanged: (value) {
                                   setState(() {
-                                    _operation.transferFromBranchId = value;
-                                    if (_operation.transferFromBranchId ==
-                                        _operation.transferToBranchId) {
-                                      _operation.transferToBranchId = null;
+                                    _operation.transferFromBranch?.id = value;
+                                    if (_operation.transferFromBranch?.id ==
+                                        _operation.transferToBranch?.id) {
+                                      _operation.transferToBranch?.id = null;
                                     }
                                   });
                                 },
@@ -201,19 +201,19 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                             const SizedBox(width: 10),
                             Expanded(
                               child: BranchesDropdown(
-                                key: ValueKey(_operation.transferFromBranchId),
-                                value: _operation.transferToBranchId,
+                                key: ValueKey(_operation.transferFromBranch?.id),
+                                value: _operation.transferToBranch?.id,
                                 branches:
                                     branches
-                                        .where((e) => e.id != _operation.transferFromBranchId)
+                                        .where((e) => e.id != _operation.transferFromBranch?.id)
                                         .toList(),
                                 title: "الفرع المستقبل",
                                 onChanged:
-                                    _operation.transferFromBranchId != null
+                                    _operation.transferFromBranch?.id != null
                                         ? (value) {
-                                          if (_operation.transferFromBranchId ==
-                                              _operation.transferToBranchId) {
-                                            _operation.transferFromBranchId = null;
+                                          if (_operation.transferFromBranch?.id ==
+                                              _operation.transferToBranch?.id) {
+                                            _operation.transferFromBranch?.id = null;
                                           }
                                         }
                                         : null,
