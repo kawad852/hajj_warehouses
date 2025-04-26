@@ -96,7 +96,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ),
                     ),
-                    OrderStatus(status: order.status),
+                    OrderStatusChip(status: order.status),
                   ],
                 ),
               ),

@@ -18,8 +18,19 @@ class TableContainer extends StatelessWidget {
     required this.name,
   });
 
+  String _getStatusLabel(BuildContext context) {
+    if (this == ItemStatusEnum.outOfStock.value) {
+      return "غير متوفر";
+    } else if (this == ItemStatusEnum.lowStock.value) {
+      return "بحاحة";
+    } else {
+      return "متوفر";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final statusLabel = _getStatusLabel(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -50,7 +61,7 @@ class TableContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(kRadiusPrimary),
                 ),
                 child: Text(
-                  status.itemStatusLabel(context),
+                  statusLabel,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.white,

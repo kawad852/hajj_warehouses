@@ -81,7 +81,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           ),
                         ),
                       ),
-                      OrderStatus(status: order.status),
+                      OrderStatusChip(status: order.status),
                     ],
                   ),
                 ),

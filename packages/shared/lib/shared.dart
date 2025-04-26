@@ -30,7 +30,6 @@ export 'src/extensions/base_extension.dart';
 export 'src/extensions/feedbacks_extensions.dart';
 export 'src/extensions/navigation_extension.dart';
 export 'src/extensions/operation_extension.dart';
-export 'src/extensions/status_extensions.dart';
 //helper
 export 'src/helper/app_over_loader.dart';
 export 'src/helper/basket_helper.dart';
@@ -111,7 +110,7 @@ export 'src/widgets/materials_table/materials_table.dart';
 export 'src/widgets/materials_table/table_container.dart';
 export 'src/widgets/materials_table/table_text.dart';
 export 'src/widgets/operation_card.dart';
-export 'src/widgets/order_status.dart';
+export 'src/widgets/order_status_chip.dart';
 export 'src/widgets/process_time_line.dart';
 export 'src/widgets/stream_builders/big_stream_builder.dart';
 export 'src/widgets/stream_builders/impeded_stream_builder.dart';
