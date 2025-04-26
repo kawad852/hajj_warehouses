@@ -29,6 +29,7 @@ class DecimalsEditor extends StatelessWidget {
       textAlign: textAlign,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       onTap: onTap,
+      inputFormatters: [ArabicDigitConverterFormatter(digitsOnly: false)],
       readOnly: readOnly,
       suffixText: suffixText,
       initialValue: initialValue == null ? null : '$initialValue}',

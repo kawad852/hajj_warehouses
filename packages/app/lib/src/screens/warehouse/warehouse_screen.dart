@@ -15,7 +15,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
   void _initialize() {
     final filter = Filter.and(
       Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
-      Filter(MyFields.status, isEqualTo: ItemStatusEnum.outOfStock.value),
+      Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
     );
     _query = kFirebaseInstant.items.where(filter).orderByDesc;
   }

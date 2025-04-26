@@ -54,7 +54,7 @@ class NumbersEditor extends StatelessWidget {
       suffixIcon: suffixIcon,
       suffixIconConstraints: const BoxConstraints(maxWidth: 60),
       keyboardType: TextInputType.number,
-      inputFormatters: [DigitsOnlyWithArabicSupportFormatter()],
+      inputFormatters: [ArabicDigitConverterFormatter()],
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {
@@ -74,7 +74,11 @@ class NumbersEditor extends StatelessWidget {
   }
 }
 
-class DigitsOnlyWithArabicSupportFormatter extends TextInputFormatter {
+class ArabicDigitConverterFormatter extends TextInputFormatter {
+  final bool digitsOnly;
+
+  ArabicDigitConverterFormatter({this.digitsOnly = true});
+
   static final _arabicToEnglishMap = {
     '٠': '0',
     '١': '1',
@@ -90,20 +94,25 @@ class DigitsOnlyWithArabicSupportFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    String updatedText =
-        newValue.text.split('').map((char) {
-          if (_arabicToEnglishMap.containsKey(char)) {
-            return _arabicToEnglishMap[char]!;
-          } else if (RegExp(r'[0-9]').hasMatch(char)) {
-            return char;
-          } else {
-            return ''; // remove any non-digit character
-          }
-        }).join();
+    final newTextBuffer = StringBuffer();
+
+    for (final char in newValue.text.characters) {
+      final converted = _arabicToEnglishMap[char] ?? char;
+
+      if (digitsOnly) {
+        if (RegExp(r'[0-9]').hasMatch(converted)) {
+          newTextBuffer.write(converted);
+        }
+      } else {
+        newTextBuffer.write(converted);
+      }
+    }
+
+    final newText = newTextBuffer.toString();
 
     return TextEditingValue(
-      text: updatedText,
-      selection: TextSelection.collapsed(offset: updatedText.length),
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
     );
   }
 }

@@ -21,7 +21,7 @@ class TableContainer extends StatelessWidget {
   String _getStatusLabel(BuildContext context) {
     if (status == ItemStatusEnum.outOfStock.value) {
       return "غير متوفر";
-    } else if (this == ItemStatusEnum.lowStock.value) {
+    } else if (status == ItemStatusEnum.lowStock.value) {
       return "بحاحة";
     } else {
       return "متوفر";
