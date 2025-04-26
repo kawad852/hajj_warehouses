@@ -15,6 +15,7 @@ class OperationInputScreen extends StatefulWidget {
 
 class _OperationInputScreenState extends State<OperationInputScreen> {
   late InventoryOperationModel _operation;
+  late Future<List<BranchModel>> _branchesFuture;
 
   OperationType get _operationType => widget.operationType;
   bool get _isAddOperation => _operationType == OperationType.add;
@@ -33,6 +34,14 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
       return _operation.destroyReason;
     } else {
       throw "";
+    }
+  }
+
+  void _initializeBranches() {
+    if (_isTransferOperation) {
+      _branchesFuture = context.appProvider.getBranches();
+    } else {
+      _branchesFuture = Future.value([]);
     }
   }
 
@@ -58,257 +67,269 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               ]
               : [],
     );
+    _initializeBranches();
   }
 
   @override
   Widget build(BuildContext context) {
     final info = _operationType.getInfo(context, _singleItem);
-    return Scaffold(
-      backgroundColor: _singleItem ? Colors.transparent : null,
-      appBar: _singleItem ? null : AppBar(title: Text(info.title)),
-      bottomNavigationBar: BottomButton(
-        text: "اضافة",
-        onPressed: () {
-          String? errorMsg;
-          if (_radioGroupValue == null) {
-            if (_isAddOperation) {
-              errorMsg = 'يجب تحديد نوع التوريد';
-            } else if (_isSupplyOperation) {
-              errorMsg = 'يجب تحديد حالة الطلب';
-            } else if (_isDestroyOperation) {
-              errorMsg = 'يجب تحديد سبب الإتلاف';
-            }
-          } else if (_isAddOperation && _operation.totalPayment == 0) {
-            errorMsg = "يجب تحديد قيمة المشتريات";
-          } else if (!_isSupplyOperation && _operation.files!.isEmpty) {
-            errorMsg = "يجب إرفاق صورة";
-          }
-          if (errorMsg != null) {
-            context.showSnackBar(errorMsg);
-          } else {
-            context.inventoryProvider.createOperation(context, operation: _operation);
-          }
-        },
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (_singleItem) ...[
-              Center(
-                child: Text(
-                  info.title,
-                  style: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+    return BigFutureBuilder(
+      future: _branchesFuture,
+      onComplete: (context, snapshot) {
+        final branches = snapshot.data;
+        return Scaffold(
+          backgroundColor: _singleItem ? Colors.transparent : null,
+          appBar: _singleItem ? null : AppBar(title: Text(info.title)),
+          bottomNavigationBar: BottomButton(
+            text: "اضافة",
+            onPressed: () {
+              String? errorMsg;
+              if (_radioGroupValue == null) {
+                if (_isAddOperation) {
+                  errorMsg = 'يجب تحديد نوع التوريد';
+                } else if (_isSupplyOperation) {
+                  errorMsg = 'يجب تحديد حالة الطلب';
+                } else if (_isDestroyOperation) {
+                  errorMsg = 'يجب تحديد سبب الإتلاف';
+                }
+              } else if (_isAddOperation && _operation.totalPayment == 0) {
+                errorMsg = "يجب تحديد قيمة المشتريات";
+              } else if (!_isSupplyOperation && _operation.files!.isEmpty) {
+                errorMsg = "يجب إرفاق صورة";
+              }
+              if (errorMsg != null) {
+                context.showSnackBar(errorMsg);
+              } else {
+                context.inventoryProvider.createOperation(context, operation: _operation);
+              }
+            },
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (_singleItem) ...[
+                  Center(
+                    child: Text(
+                      info.title,
+                      style: TextStyle(
+                        color: context.colorPalette.black001,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              CounterWidget(
-                maxQuantity: widget.maxQuantity,
-                onChanged: (value) {
-                  _operation.items.first.quantity = value;
-                },
-              ),
-            ],
-
-            if (info.radio.items.isNotEmpty) ...[
-              EditorLabel(info.radio.label),
-              const SizedBox(height: 8),
-              Row(
-                children:
-                    info.radio.items.map((e) {
-                      return CustomRadio(
-                        value: e.value,
-                        title: e.label,
-                        groupValue: _radioGroupValue,
-                        onChanged: (value) {
-                          setState(() {
-                            if (_isAddOperation) {
-                              _operation.supplyType = value!;
-                            } else if (_isSupplyOperation) {
-                              _operation.requestType = value!;
-                            } else if (_isDestroyOperation) {
-                              _operation.destroyReason = value!;
-                            }
-                          });
-                        },
-                      );
-                    }).toList(),
-              ),
-            ],
-
-            if (_operationType == OperationType.add) ...[
-              const Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 10),
-                child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
-              ),
-              BorderDecoratorTheme(
-                child: DecimalsEditor(
-                  onChanged: (value) => _operation.totalPayment = value!,
-                  textAlign: TextAlign.center,
-                  suffixText: "ريال",
-                ),
-              ),
-
-              ImagesAttacher(
-                onChanged: _onFileAdd,
-                title: "ارفاق صورة عن الفاتورة او سند الإستلام",
-              ),
-            ],
-
-            if (_isTransferOperation)
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TitledTextField(
-                        title: "الفرع المرسل",
-                        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                        child: DropDownEditor(
-                          items: const [],
-                          onChanged: (value) {},
-                          title: "اختر الفرع",
-                          value: "s",
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: TitledTextField(
-                        title: "الفرع المستقبل",
-                        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                        child: DropDownEditor(
-                          items: const [],
-                          onChanged: (value) {},
-                          title: "اختر الفرع",
-                          value: "s",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-            if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[
-              SizedBox(height: _isSupplyOperation ? 50 : 30),
-              EditorLabel(
-                _isSupplyOperation ? "مشروحات وملاحظات حول الطلب" : "مشروحات وملاحظات حول الإتلاف",
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: BorderDecoratorTheme(
-                  child: TextEditor(
+                  CounterWidget(
+                    maxQuantity: widget.maxQuantity,
                     onChanged: (value) {
-                      _operation.notes = value!;
+                      _operation.items.first.quantity = value;
                     },
-                    maxLines: 4,
                   ),
-                ),
-              ),
-            ],
+                ],
 
-            if (_operationType == OperationType.destroy) ...[
-              const SizedBox(height: 10),
-              Text(
-                "يجب ان توضح الصور سبب اتلاف الأصناف",
-                style: TextStyle(
-                  color: context.colorPalette.grey666,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              ImagesAttacher(onChanged: _onFileAdd, title: "ارفاق صور عن المواد التي سيتم اتلافها"),
-            ],
+                if (info.radio.items.isNotEmpty) ...[
+                  EditorLabel(info.radio.label),
+                  const SizedBox(height: 8),
+                  Row(
+                    children:
+                        info.radio.items.map((e) {
+                          return CustomRadio(
+                            value: e.value,
+                            title: e.label,
+                            groupValue: _radioGroupValue,
+                            onChanged: (value) {
+                              setState(() {
+                                if (_isAddOperation) {
+                                  _operation.supplyType = value!;
+                                } else if (_isSupplyOperation) {
+                                  _operation.requestType = value!;
+                                } else if (_isDestroyOperation) {
+                                  _operation.destroyReason = value!;
+                                }
+                              });
+                            },
+                          );
+                        }).toList(),
+                  ),
+                ],
 
-            ///List ...
-            if (!_singleItem) ...[
-              const SizedBox(height: 30),
-              Text(
-                "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
-                style: TextStyle(
-                  color: context.colorPalette.grey666,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const ItemTableHeader(),
-              ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 5),
-                itemCount: _operation.items.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.only(bottom: 5),
-                itemBuilder: (context, index) {
-                  final item = _operation.items[index];
-                  final length = _operation.items.length;
-                  return ItemTableCell(
-                    key: ValueKey("$length${item.id}"),
-                    onChangedQuntity: (value) => item.quantity = value!,
-                    itemName: item.name,
-                    autoFocus: index + 1 == length,
-                    length: length,
-                    onRemove: () {
-                      setState(() {
-                        _operation.items.removeAt(index);
-                      });
-                    },
-                  );
-                },
-              ),
-              SearchScreen(
-                indexName: AlgoliaIndices.items.value,
-                isFullScreen: false,
-                hintText: "ادخل رقم الصنف او الإسم",
-                onTap: (e) {
-                  final ids = [];
-                  if (ids.contains(e.id)) {
-                    Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
-                    return;
-                  }
-                  context.pop();
-                  final item = LightItemModel(
-                    id: e.id,
-                    name: e.name,
-                    quantity: e.quantity,
-                    minimumQuantity: e.minimumQuantity,
-                  );
-                  setState(() {
-                    _operation.items.add(item);
-                  });
-                },
-                builder: (controller) {
-                  return BaseEditor(
-                    hintText: "ادخل رقم الصنف او الإسم",
-                    hintStyle: TextStyle(
+                if (_operationType == OperationType.add) ...[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
+                  ),
+                  BorderDecoratorTheme(
+                    child: DecimalsEditor(
+                      onChanged: (value) => _operation.totalPayment = value!,
+                      textAlign: TextAlign.center,
+                      suffixText: "ريال",
+                    ),
+                  ),
+
+                  ImagesAttacher(
+                    onChanged: _onFileAdd,
+                    title: "ارفاق صورة عن الفاتورة او سند الإستلام",
+                  ),
+                ],
+
+                if (_isTransferOperation)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TitledTextField(
+                            title: "الفرع المرسل",
+                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                            child: DropDownEditor(
+                              items: const [],
+                              onChanged: (value) {},
+                              title: "اختر الفرع",
+                              value: "s",
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: TitledTextField(
+                            title: "الفرع المستقبل",
+                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                            child: DropDownEditor(
+                              items: const [],
+                              onChanged: (value) {},
+                              title: "اختر الفرع",
+                              value: "s",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[
+                  SizedBox(height: _isSupplyOperation ? 50 : 30),
+                  EditorLabel(
+                    _isSupplyOperation
+                        ? "مشروحات وملاحظات حول الطلب"
+                        : "مشروحات وملاحظات حول الإتلاف",
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: BorderDecoratorTheme(
+                      child: TextEditor(
+                        onChanged: (value) {
+                          _operation.notes = value!;
+                        },
+                        maxLines: 4,
+                      ),
+                    ),
+                  ),
+                ],
+
+                if (_operationType == OperationType.destroy) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    "يجب ان توضح الصور سبب اتلاف الأصناف",
+                    style: TextStyle(
                       color: context.colorPalette.grey666,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    readOnly: true,
-                    onTap: () {
-                      controller.openView();
-                    },
-                    canRequestFocus: false,
-                    prefixIcon: IconButton(
-                      onPressed: null,
-                      icon: CustomSvg(
-                        MyIcons.addTask,
-                        color: context.colorPalette.grey708,
-                        width: 20,
-                      ),
+                  ),
+                  ImagesAttacher(
+                    onChanged: _onFileAdd,
+                    title: "ارفاق صور عن المواد التي سيتم اتلافها",
+                  ),
+                ],
+
+                ///List ...
+                if (!_singleItem) ...[
+                  const SizedBox(height: 30),
+                  Text(
+                    "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
+                    style: TextStyle(
+                      color: context.colorPalette.grey666,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
-                  );
-                },
-              ),
-            ],
-          ],
-        ),
-      ),
+                  ),
+                  const ItemTableHeader(),
+                  ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 5),
+                    itemCount: _operation.items.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.only(bottom: 5),
+                    itemBuilder: (context, index) {
+                      final item = _operation.items[index];
+                      final length = _operation.items.length;
+                      return ItemTableCell(
+                        key: ValueKey("$length${item.id}"),
+                        onChangedQuntity: (value) => item.quantity = value!,
+                        itemName: item.name,
+                        autoFocus: index + 1 == length,
+                        length: length,
+                        onRemove: () {
+                          setState(() {
+                            _operation.items.removeAt(index);
+                          });
+                        },
+                      );
+                    },
+                  ),
+                  SearchScreen(
+                    indexName: AlgoliaIndices.items.value,
+                    isFullScreen: false,
+                    hintText: "ادخل رقم الصنف او الإسم",
+                    onTap: (e) {
+                      final ids = [];
+                      if (ids.contains(e.id)) {
+                        Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                        return;
+                      }
+                      context.pop();
+                      final item = LightItemModel(
+                        id: e.id,
+                        name: e.name,
+                        quantity: e.quantity,
+                        minimumQuantity: e.minimumQuantity,
+                      );
+                      setState(() {
+                        _operation.items.add(item);
+                      });
+                    },
+                    builder: (controller) {
+                      return BaseEditor(
+                        hintText: "ادخل رقم الصنف او الإسم",
+                        hintStyle: TextStyle(
+                          color: context.colorPalette.grey666,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        readOnly: true,
+                        onTap: () {
+                          controller.openView();
+                        },
+                        canRequestFocus: false,
+                        prefixIcon: IconButton(
+                          onPressed: null,
+                          icon: CustomSvg(
+                            MyIcons.addTask,
+                            color: context.colorPalette.grey708,
+                            width: 20,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

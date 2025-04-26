@@ -1,30 +1,21 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/country_code_model.dart';
-import '../utils/app_constants.dart';
-import '../utils/shared_pref.dart';
+import '../../shared.dart';
 
 class AppProvider extends ChangeNotifier {
   Locale appLocale = Locale(MySharedPreferences.language);
   String appTheme = MySharedPreferences.theme;
   static String countryCode = MySharedPreferences.countryCode;
 
-  void setLanguage(
-    BuildContext context, {
-    required String languageCode,
-  }) async {
+  void setLanguage(BuildContext context, {required String languageCode}) async {
     MySharedPreferences.language = languageCode;
     appLocale = Locale(languageCode);
     notifyListeners();
   }
 
-  void setTheme(
-    BuildContext context, {
-    required String theme,
-  }) async {
+  void setTheme(BuildContext context, {required String theme}) async {
     MySharedPreferences.theme = theme;
     appTheme = theme;
     notifyListeners();
@@ -46,5 +37,11 @@ class AppProvider extends ChangeNotifier {
     } finally {
       debugPrint('countryCode:: $countryCode');
     }
+  }
+
+  Future<List<BranchModel>> getBranches() {
+    return kFirebaseInstant.branches.orderByDesc.get().then(
+      (value) => value.docs.map((e) => e.data()).toList(),
+    );
   }
 }

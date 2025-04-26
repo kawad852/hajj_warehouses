@@ -8,10 +8,10 @@ class ChooseBranchScreen extends StatefulWidget {
 }
 
 class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
-  late Future<QuerySnapshot<BranchModel>> _future;
+  late Future<List<BranchModel>> _future;
 
   void _initialize() {
-    _future = kFirebaseInstant.branches.orderByDesc.get();
+    _future = context.appProvider.getBranches();
   }
 
   @override
@@ -25,7 +25,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
     return BigFutureBuilder(
       future: _future,
       onComplete: (context, snapshot) {
-        final branches = snapshot.data!.docs;
+        final branches = snapshot.data!;
         return Scaffold(
           bottomNavigationBar: BottomButton(
             text: "التالي",
@@ -82,7 +82,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
-                    final branch = branches[index].data();
+                    final branch = branches[index];
                     final isSelected = MySharedPreferences.selectedBranchId == branch.id;
                     return GestureDetector(
                       onTap: () {
