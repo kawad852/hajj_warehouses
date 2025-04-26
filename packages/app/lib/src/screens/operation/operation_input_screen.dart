@@ -106,9 +106,11 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 errorMsg = "يجب إرفاق صورة";
               } else if (!_singleItem && _operation.items.isEmpty) {
                 errorMsg = "يجب تحديد الأصناف";
+              } else if (!_singleItem && _operation.items.any((e) => e.quantity == 0)) {
+                errorMsg = "يجب تحديد الكمية لجميع الأصناف";
               }
               if (errorMsg != null) {
-                context.showSnackBar(errorMsg);
+                Fluttertoast.showToast(msg: errorMsg);
               } else {
                 context.inventoryProvider.createOperation(context, operation: _operation);
               }
@@ -222,6 +224,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                             onChanged:
                                 _operation.transferFromBranch?.id != null
                                     ? (value) {
+                                      _operation.transferToBranch?.id = value;
                                       if (_operation.transferFromBranch?.id ==
                                           _operation.transferToBranch?.id) {
                                         _operation.transferFromBranch?.id = null;
