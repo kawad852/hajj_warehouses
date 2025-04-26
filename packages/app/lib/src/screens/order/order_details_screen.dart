@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
@@ -103,7 +104,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               const SizedBox(height: 70),
               OrderCard(
                 child: Text(
-                  "وقت الطلب : ${order.createdAt}",
+                  "وقت الطلب : ${DateFormat.yMd().add_jm().format(order.createdAt!)}",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.black001,
