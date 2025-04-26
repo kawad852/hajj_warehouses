@@ -286,6 +286,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                       final length = _operation.items.length;
                       return ItemTableCell(
                         key: ValueKey("$length${item.id}"),
+                        initialValue: item.quantity == 0 ? null : item.quantity,
                         onChangedQuntity: (value) => item.quantity = value!,
                         itemName: item.name,
                         autoFocus: index + 1 == length,

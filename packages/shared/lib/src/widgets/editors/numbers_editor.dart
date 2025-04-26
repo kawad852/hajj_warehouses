@@ -54,7 +54,7 @@ class NumbersEditor extends StatelessWidget {
       suffixIcon: suffixIcon,
       suffixIconConstraints: const BoxConstraints(maxWidth: 60),
       keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      inputFormatters: [DigitsOnlyWithArabicSupportFormatter()],
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {
@@ -70,6 +70,40 @@ class NumbersEditor extends StatelessWidget {
         }
         return ValidationHelper.numberInt(context, value);
       },
+    );
+  }
+}
+
+class DigitsOnlyWithArabicSupportFormatter extends TextInputFormatter {
+  static final _arabicToEnglishMap = {
+    '٠': '0',
+    '١': '1',
+    '٢': '2',
+    '٣': '3',
+    '٤': '4',
+    '٥': '5',
+    '٦': '6',
+    '٧': '7',
+    '٨': '8',
+    '٩': '9',
+  };
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String updatedText =
+        newValue.text.split('').map((char) {
+          if (_arabicToEnglishMap.containsKey(char)) {
+            return _arabicToEnglishMap[char]!;
+          } else if (RegExp(r'[0-9]').hasMatch(char)) {
+            return char;
+          } else {
+            return ''; // remove any non-digit character
+          }
+        }).join();
+
+    return TextEditingValue(
+      text: updatedText,
+      selection: TextSelection.collapsed(offset: updatedText.length),
     );
   }
 }

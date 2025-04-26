@@ -6,6 +6,7 @@ class ItemTableCell extends StatelessWidget {
   final bool autoFocus;
   final int length;
   final VoidCallback? onRemove;
+  final int? initialValue;
 
   const ItemTableCell({
     super.key,
@@ -14,6 +15,7 @@ class ItemTableCell extends StatelessWidget {
     this.autoFocus = false,
     required this.length,
     required this.onRemove,
+    this.initialValue,
   });
 
   @override
@@ -38,7 +40,7 @@ class ItemTableCell extends StatelessWidget {
                 Expanded(
                   flex: 6,
                   child: NumbersEditor(
-                    initialValue: 1,
+                    initialValue: initialValue,
                     autofocus: autoFocus,
                     textAlign: TextAlign.center,
                     onChanged: onChangedQuntity,
