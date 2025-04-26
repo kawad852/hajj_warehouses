@@ -45,7 +45,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Widget _toggleScreen(BuildContext context) {
-    if (MySharedPreferences.user?.id != null) {
+    if (MySharedPreferences.user?.id != null && MySharedPreferences.selectedBranchId.isNotEmpty) {
       return const AppNavBar();
     } else {
       return const LoginScreen();

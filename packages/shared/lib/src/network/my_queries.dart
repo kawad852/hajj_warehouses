@@ -82,4 +82,10 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         fromFirestore: (snapshot, _) => InventoryOperationModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
+
+  CollectionReference<BranchModel> get branches =>
+      collection(MyCollections.branches).withConverter<BranchModel>(
+        fromFirestore: (snapshot, _) => BranchModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
 }

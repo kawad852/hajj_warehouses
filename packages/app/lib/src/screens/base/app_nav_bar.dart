@@ -1,6 +1,5 @@
 import 'package:app/screens_exports.dart';
 import 'package:app/src/screens/base/widgets/user_info_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class AppNavBar extends StatefulWidget {

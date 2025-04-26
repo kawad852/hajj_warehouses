@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -49,7 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: BottomButton(
+        text: "تسجيل الدخول",
+        onPressed: () {
+          _login(context);
+        },
+      ),
       body: Form(
         key: _formKey,
         child: Column(
@@ -109,26 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 90),
-                  StretchedButton(
-                    onPressed: () async {
-                      _login(context);
-                      // try {
-                      //   final userDocument = await kFirebaseInstant.collection("branches").get();
-                      //   print("res::: ${userDocument.docs.map((e) => e.id).toList()}");
-                      // } catch (e) {
-                      //   print('e:: $e');
-                      // }
-                    },
-                    child: Text(
-                      "تسجيل الدخول",
-                      style: TextStyle(
-                        color: context.colorPalette.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
                 ],
               ),

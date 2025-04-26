@@ -48,6 +48,7 @@ export 'src/l10n/app_localizations.dart';
 //models
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
+export 'src/models/branch/branch_model.dart';
 export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/item/item_model.dart';
@@ -100,6 +101,7 @@ export 'src/widgets/editors/text_editor.dart';
 export 'src/widgets/extensions/snackbar_extension.dart';
 export 'src/widgets/fire_animated_search_bar.dart';
 export 'src/widgets/fp_loading.dart';
+export 'src/widgets/future_builders/big_future_builder.dart';
 export 'src/widgets/future_builders/impeded_future_builder.dart';
 export 'src/widgets/header_tile.dart';
 export 'src/widgets/images_attacher.dart';

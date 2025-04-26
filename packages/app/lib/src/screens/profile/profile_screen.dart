@@ -23,7 +23,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         ProfileCard(title: "المساعد الذكي", icon: MyIcons.helper, onTap: () {}),
         ProfileCard(title: "تغيير اللغة", icon: MyIcons.language, onTap: () {}),
-        ProfileCard(title: "تسجيل الخروج", icon: MyIcons.logout, onTap: () {}),
+        ProfileCard(
+          title: "تسجيل الخروج",
+          icon: MyIcons.logout,
+          onTap: () {
+            context.userProvider.logout(context);
+          },
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 10),
           child: Text(
@@ -35,21 +41,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ),
-        ProfileCard(
-          title: "الشروط والأحكام",
-          icon: MyIcons.terms,
-          onTap: () {},
-        ),
-        ProfileCard(
-          title: "سياسة الخصوصية",
-          icon: MyIcons.policy,
-          onTap: () {},
-        ),
-        ProfileCard(
-          title: "عن مخازن الحج",
-          icon: MyIcons.information,
-          onTap: () {},
-        ),
+        ProfileCard(title: "الشروط والأحكام", icon: MyIcons.terms, onTap: () {}),
+        ProfileCard(title: "سياسة الخصوصية", icon: MyIcons.policy, onTap: () {}),
+        ProfileCard(title: "عن مخازن الحج", icon: MyIcons.information, onTap: () {}),
       ],
     );
   }

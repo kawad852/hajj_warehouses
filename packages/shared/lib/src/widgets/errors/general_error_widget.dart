@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class GeneralErrorWidget extends StatelessWidget {
@@ -12,7 +11,7 @@ class GeneralErrorWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const FaIcon(FontAwesomeIcons.solidCircleExclamation),
+            // const FaIcon(FontAwesomeIcons.solidCircleExclamation),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 10),
               child: Text(

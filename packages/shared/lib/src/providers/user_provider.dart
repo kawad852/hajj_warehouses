@@ -76,7 +76,7 @@ class UserProvider extends ChangeNotifier {
           if (MySharedPreferences.user?.role == RoleEnum.admin.value) {
             context.pushAndRemoveUntil((context) => const ChooseBranchScreen());
           } else {
-            MySharedPreferences.selectedBranchId = MySharedPreferences.user!.id!;
+            MySharedPreferences.selectedBranchId = MySharedPreferences.user!.branchId!;
             context.goToNavBar();
           }
         }
@@ -117,18 +117,13 @@ class UserProvider extends ChangeNotifier {
     ApiService.fetch(
       context,
       callBack: () async {
-        await userDocRef.update({'deviceId': null});
         await _firebaseAuth.signOut();
         MySharedPreferences.clearStorage();
         notifyListeners();
         if (context.mounted) {
-          // Navigator.pushAndRemoveUntil(
-          //   context,
-          //   MaterialPageRoute(builder: (context) {
-          //     return const RegistrationScreen();
-          //   }),
-          //   (route) => false,
-          // );
+          context.pushAndRemoveUntil((context) {
+            return LoginScreen();
+          });
         }
       },
     );
