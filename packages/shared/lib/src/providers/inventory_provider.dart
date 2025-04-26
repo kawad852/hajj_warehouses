@@ -10,6 +10,7 @@ class InventoryProvider extends ChangeNotifier {
     required InventoryOperationModel operation,
     Future<List<ItemModel>> Function(WriteBatch bath)? onCreate,
     Function(WriteBatch bath)? onCompleteOrder,
+    String? transferToBranchId,
   }) {
     ApiService.fetch(
       context,
@@ -34,13 +35,20 @@ class InventoryProvider extends ChangeNotifier {
           if (onCompleteOrder != null) {
             onCompleteOrder(batch);
           }
-          final isPlus = isAddOperation;
-          for (var e in operation.items) {
-            final increment = e.quantity;
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
-            final json = e.toJson();
-            json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
-            batch.update(itemDoc, json);
+          if (transferToBranchId != null) {
+            for (var e in operation.items) {
+              final ref = kFirebaseInstant.items.doc(e.id);
+              batch.update(ref, {MyFields.branchId: transferToBranchId});
+            }
+          } else {
+            final isPlus = isAddOperation;
+            for (var e in operation.items) {
+              final increment = e.quantity;
+              final itemDoc = kFirebaseInstant.items.doc(e.id);
+              final json = e.toJson();
+              json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
+              batch.update(itemDoc, json);
+            }
           }
         }
 

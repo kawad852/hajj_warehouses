@@ -163,6 +163,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           context.inventoryProvider.createOperation(
                             context,
                             operation: operation.copyWith(operationType: OperationType.add.value),
+                            transferToBranchId: order.transferToBranch?.id,
                             onCompleteOrder: (batch) {
                               batch.update(_docREF, {
                                 MyFields.status: OrderStatusEnum.completed.value,
