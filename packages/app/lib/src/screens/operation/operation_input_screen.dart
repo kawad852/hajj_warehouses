@@ -89,15 +89,23 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               if (_radioGroupValue == null) {
                 if (_isAddOperation) {
                   errorMsg = 'يجب تحديد نوع التوريد';
-                } else if (_isSupplyOperation) {
+                } else if (_isSupplyOperation || _isTransferOperation) {
                   errorMsg = 'يجب تحديد حالة الطلب';
                 } else if (_isDestroyOperation) {
                   errorMsg = 'يجب تحديد سبب الإتلاف';
                 }
               } else if (_isAddOperation && _operation.totalPayment == 0) {
                 errorMsg = "يجب تحديد قيمة المشتريات";
-              } else if (!_isSupplyOperation && _operation.files!.isEmpty) {
+              } else if (_isTransferOperation &&
+                  (_operation.transferFromBranch?.id == null ||
+                      _operation.transferToBranch?.id == null)) {
+                errorMsg = "يجب تحديد الفرع المرسل والفرع المستقبل";
+              } else if (!_isSupplyOperation &&
+                  !_isTransferOperation &&
+                  _operation.files!.isEmpty) {
                 errorMsg = "يجب إرفاق صورة";
+              } else if (!_singleItem && _operation.items.isEmpty) {
+                errorMsg = "يجب تحديد الأصناف";
               }
               if (errorMsg != null) {
                 context.showSnackBar(errorMsg);
@@ -145,7 +153,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                               setState(() {
                                 if (_isAddOperation) {
                                   _operation.supplyType = value!;
-                                } else if (_isSupplyOperation) {
+                                } else if (_isSupplyOperation || _isTransferOperation) {
                                   _operation.requestType = value!;
                                 } else if (_isDestroyOperation) {
                                   _operation.destroyReason = value!;
