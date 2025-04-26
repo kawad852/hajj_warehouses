@@ -17,6 +17,8 @@ class InventoryOperationModel with _$InventoryOperationModel {
     String? supplyType,
     String? requestType,
     String? destroyReason,
+    String? transferFromBranchId,
+    String? transferToBranchId,
     required String operationType,
     @Default(0.0) double totalPayment,
     required List<LightItemModel> items,

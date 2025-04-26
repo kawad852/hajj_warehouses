@@ -6,7 +6,7 @@ import '../../utils/my_theme.dart';
 
 class DropDownEditor<T> extends StatelessWidget {
   final T? value;
-  final Function(T?) onChanged;
+  final Function(T?)? onChanged;
   final String title;
   final List<DropdownMenuItem<T>> items;
   final EdgeInsetsGeometry? padding;
@@ -29,6 +29,7 @@ class DropDownEditor<T> extends StatelessWidget {
         child: DropdownButtonFormField(
           onChanged: onChanged,
           value: value,
+
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             labelText: title,

@@ -76,7 +76,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
     return BigFutureBuilder(
       future: _branchesFuture,
       onComplete: (context, snapshot) {
-        final branches = snapshot.data;
+        final branches = snapshot.data!;
         return Scaffold(
           backgroundColor: _singleItem ? Colors.transparent : null,
           appBar: _singleItem ? null : AppBar(title: Text(info.title)),
@@ -175,37 +175,54 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ],
 
                 if (_isTransferOperation)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TitledTextField(
-                            title: "الفرع المرسل",
-                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                            child: DropDownEditor(
-                              items: const [],
-                              onChanged: (value) {},
-                              title: "اختر الفرع",
-                              value: "s",
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: BranchesDropdown(
+                                key: ValueKey(_operation.transferToBranchId),
+                                value: _operation.transferFromBranchId,
+                                branches: branches,
+                                title: "الفرع المرسل",
+                                onChanged: (value) {
+                                  setState(() {
+                                    _operation.transferFromBranchId = value;
+                                    if (_operation.transferFromBranchId ==
+                                        _operation.transferToBranchId) {
+                                      _operation.transferToBranchId = null;
+                                    }
+                                  });
+                                },
+                              ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: TitledTextField(
-                            title: "الفرع المستقبل",
-                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                            child: DropDownEditor(
-                              items: const [],
-                              onChanged: (value) {},
-                              title: "اختر الفرع",
-                              value: "s",
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: BranchesDropdown(
+                                key: ValueKey(_operation.transferFromBranchId),
+                                value: _operation.transferToBranchId,
+                                branches:
+                                    branches
+                                        .where((e) => e.id != _operation.transferFromBranchId)
+                                        .toList(),
+                                title: "الفرع المستقبل",
+                                onChanged:
+                                    _operation.transferFromBranchId != null
+                                        ? (value) {
+                                          if (_operation.transferFromBranchId ==
+                                              _operation.transferToBranchId) {
+                                            _operation.transferFromBranchId = null;
+                                          }
+                                        }
+                                        : null,
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
 
                 if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[

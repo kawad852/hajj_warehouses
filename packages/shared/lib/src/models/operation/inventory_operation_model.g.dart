@@ -17,6 +17,8 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
   supplyType: json['supplyType'] as String?,
   requestType: json['requestType'] as String?,
   destroyReason: json['destroyReason'] as String?,
+  transferFromBranchId: json['transferFromBranchId'] as String?,
+  transferToBranchId: json['transferToBranchId'] as String?,
   operationType: json['operationType'] as String,
   totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
   items:
@@ -42,6 +44,8 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'supplyType': instance.supplyType,
   'requestType': instance.requestType,
   'destroyReason': instance.destroyReason,
+  'transferFromBranchId': instance.transferFromBranchId,
+  'transferToBranchId': instance.transferToBranchId,
   'operationType': instance.operationType,
   'totalPayment': instance.totalPayment,
   'items': instance.items.map((e) => e.toJson()).toList(),
