@@ -9,22 +9,26 @@ class CategoryInputScreen extends StatefulWidget {
 
 class _CategoryInputScreenState extends State<CategoryInputScreen> {
   late CategoryModel _category;
+  final _formKey = GlobalKey<FormState>();
 
   void _onAdd(BuildContext context) {
-    ApiService.fetch(
-      context,
-      callBack: () async {
-        final ref = kFirebaseInstant.categories.doc();
-        final id = ref.id;
-        _category.id = id;
-        _category.createdAt = kNowDate;
-        await ref.set(_category);
-        if (context.mounted) {
-          context.showSnackBar(context.appLocalization.addedSuccessfully);
-          Navigator.pop(context);
-        }
-      },
-    );
+    if (_formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final ref = kFirebaseInstant.categories.doc();
+          final id = ref.id;
+          _category.id = id;
+          _category.createdAt = kNowDate;
+          await ref.set(_category);
+          if (context.mounted) {
+            context.showSnackBar(context.appLocalization.addedSuccessfully);
+            Navigator.pop(context);
+          }
+        },
+      );
+    }
   }
 
   @override
@@ -39,17 +43,20 @@ class _CategoryInputScreenState extends State<CategoryInputScreen> {
       appBar: AppBar(title: const Text("إضافة قسم")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            TextEditor(onChanged: (value) => _category.name = value!, hintText: "إسم الصنف"),
-            StretchedButton(
-              margin: const EdgeInsets.only(top: 30),
-              onPressed: () {
-                _onAdd(context);
-              },
-              child: const Text("إضافة"),
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextEditor(onChanged: (value) => _category.name = value!, hintText: "إسم الصنف"),
+              StretchedButton(
+                margin: const EdgeInsets.only(top: 30),
+                onPressed: () {
+                  _onAdd(context);
+                },
+                child: const Text("إضافة"),
+              ),
+            ],
+          ),
         ),
       ),
     );
