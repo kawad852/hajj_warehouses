@@ -50,7 +50,7 @@ class TableContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(kRadiusPrimary),
                 ),
                 child: Text(
-                  status.itemStatusLabel,
+                  status.itemStatusLabel(context),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.white,

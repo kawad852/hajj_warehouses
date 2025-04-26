@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
 extension StatusExtensions on String {
-  String get itemStatusLabel {
+  String itemStatusLabel(BuildContext context) {
     if (this == ItemStatusEnum.outOfStock.value) {
       return "غير متوفر";
     } else if (this == ItemStatusEnum.lowStock.value) {
