@@ -25,6 +25,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     _docREF.update({MyFields.status: status});
   }
 
+  Future<void> _showItemsDialog(BuildContext context, List<LightItemModel> items) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text('الأصناف'),
+          children:
+              items.map((e) {
+                return SimpleDialogOption(child: Text("(${e.quantity}) ${e.name}"));
+              }).toList(),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -104,7 +119,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               const SizedBox(height: 70),
               OrderCard(
                 child: Text(
-                  "وقت الطلب : ${DateFormat.yMd().add_jm().format(order.createdAt!)}",
+                  "وقت الطلب : ${DateFormat.yMd(context.languageCode).add_jm().format(order.createdAt!)}",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.black001,
@@ -119,7 +134,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Expanded(
                       child: StretchedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _showItemsDialog(context, operation.items);
+                        },
                         child: Row(
                           children: [
                             const CustomSvg(MyIcons.paperclip),
