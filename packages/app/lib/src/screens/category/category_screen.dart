@@ -33,6 +33,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     try {
+      //       final filter = Filter.and(
+      //         Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
+      //         Filter(MyFields.status, isEqualTo: ItemStatusEnum.outOfStock.value),
+      //       );
+      //       await kFirebaseInstant.items.where(filter).orderByDesc.get();
+      //     } catch (e) {
+      //       print("e:: $e");
+      //     }
+      //   },
+      // ),
       bottomNavigationBar: BottomButton(
         text: "اضافة اصناف جديدة",
         onPressed: () {

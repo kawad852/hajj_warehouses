@@ -13,7 +13,11 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
   late Query<ItemModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.items.whereMyBranch.orderByDesc;
+    final filter = Filter.and(
+      Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
+      Filter(MyFields.status, isEqualTo: ItemStatusEnum.outOfStock.value),
+    );
+    _query = kFirebaseInstant.items.where(filter).orderByDesc;
   }
 
   @override
