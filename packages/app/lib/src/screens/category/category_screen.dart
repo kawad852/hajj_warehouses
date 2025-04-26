@@ -2,16 +2,16 @@ import 'package:app/screens_exports.dart';
 import 'package:app/src/screens/search/search_screen.dart';
 import 'package:shared/shared.dart';
 
-class DepartmentScreen extends StatefulWidget {
+class CategoryScreen extends StatefulWidget {
   final CategoryModel category;
 
-  const DepartmentScreen({super.key, required this.category});
+  const CategoryScreen({super.key, required this.category});
 
   @override
-  State<DepartmentScreen> createState() => _DepartmentScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _DepartmentScreenState extends State<DepartmentScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   late Query<ItemModel> _query;
 
   CategoryModel get _category => widget.category;

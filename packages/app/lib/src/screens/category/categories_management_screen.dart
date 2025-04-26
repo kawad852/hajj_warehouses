@@ -74,7 +74,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                     final category = snapshot.docs[index].data();
                     return GestureDetector(
                       onTap: () {
-                        context.push((context) => DepartmentScreen(category: category));
+                        context.push((context) => CategoryScreen(category: category));
                       },
                       child: Container(
                         width: double.infinity,
