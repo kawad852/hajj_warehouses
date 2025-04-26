@@ -260,7 +260,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   );
                 },
               ),
-              ProductsSearchScreen(
+              SearchScreen(
                 indexName: AlgoliaIndices.items.value,
                 isFullScreen: false,
                 onTap: (e) {

@@ -58,7 +58,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
                     children: [
-                      Expanded(child: ProductsSearchScreen(indexName: AlgoliaIndices.items.value)),
+                      Expanded(child: SearchScreen(indexName: AlgoliaIndices.items.value)),
                       const SizedBox(width: 10),
                       Container(
                         width: 50,

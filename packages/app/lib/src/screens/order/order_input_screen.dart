@@ -151,7 +151,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
             //     );
             //   },
             // ),
-            ProductsSearchScreen(
+            SearchScreen(
               indexName: AlgoliaIndices.items.value,
               isFullScreen: false,
               onTap: (e) {

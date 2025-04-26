@@ -53,7 +53,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
-                  child: ProductsSearchScreen(indexName: AlgoliaIndices.categories.value),
+                  child: SearchScreen(indexName: AlgoliaIndices.categories.value),
                 ),
               ],
             ),

@@ -112,7 +112,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: ProductsSearchScreen(indexName: AlgoliaIndices.items.value),
+                child: SearchScreen(indexName: AlgoliaIndices.items.value),
               ),
               Row(
                 children: [

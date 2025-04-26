@@ -2,13 +2,13 @@ import 'package:app/src/screens/search/widgets/anchor_tile.dart';
 import 'package:shared/algolia_exports.dart';
 import 'package:shared/shared.dart';
 
-class ProductsSearchScreen<T> extends StatefulWidget {
+class SearchScreen<T> extends StatefulWidget {
   final String indexName;
   final bool isFullScreen;
   final Widget Function(MySearchController controller)? builder;
   final Function(ItemModel e)? onTap;
 
-  const ProductsSearchScreen({
+  const SearchScreen({
     super.key,
     required this.indexName,
     this.builder,
@@ -17,10 +17,10 @@ class ProductsSearchScreen<T> extends StatefulWidget {
   });
 
   @override
-  State<ProductsSearchScreen<T>> createState() => _ProductsSearchScreenState<T>();
+  State<SearchScreen<T>> createState() => _SearchScreenState<T>();
 }
 
-class _ProductsSearchScreenState<T> extends State<ProductsSearchScreen<T>> {
+class _SearchScreenState<T> extends State<SearchScreen<T>> {
   Future<List<dynamic>> _searchFuture = Future.value([]);
 
   void _initialize(String value) {
@@ -64,7 +64,7 @@ class _ProductsSearchScreenState<T> extends State<ProductsSearchScreen<T>> {
   @override
   Widget build(BuildContext context) {
     return FireAnimatedSearchBar(
-      hintText: context.appLocalization.whatAreYouLookingForHint,
+      hintText: "ابحث عن صنف",
       isFullScreen: widget.isFullScreen,
       onChanged: (value) {
         setState(() {
