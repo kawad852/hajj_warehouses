@@ -14,6 +14,8 @@ class OrderModel with _$OrderModel {
     required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     @Default([]) List<OrderRecordModel> orderRecords,
   }) = _OrderModel;
 

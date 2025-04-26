@@ -70,6 +70,8 @@ class InventoryProvider extends ChangeNotifier {
             operation: operation,
             user: user,
             branchId: kSelectedBranchId,
+            transferFromBranch: operation.transferFromBranch,
+            transferToBranch: operation.transferToBranch,
           );
           order.id = await order.getId();
           order.orderRecords = [

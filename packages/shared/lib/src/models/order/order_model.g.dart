@@ -19,6 +19,18 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
               : InventoryOperationModel.fromJson(
                 json['operation'] as Map<String, dynamic>,
               ),
+      transferFromBranch:
+          json['transferFromBranch'] == null
+              ? null
+              : LightBranchModel.fromJson(
+                json['transferFromBranch'] as Map<String, dynamic>,
+              ),
+      transferToBranch:
+          json['transferToBranch'] == null
+              ? null
+              : LightBranchModel.fromJson(
+                json['transferToBranch'] as Map<String, dynamic>,
+              ),
       orderRecords:
           (json['orderRecords'] as List<dynamic>?)
               ?.map((e) => OrderRecordModel.fromJson(e as Map<String, dynamic>))
@@ -34,6 +46,8 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'user': instance.user.toJson(),
       'status': instance.status,
       'operation': instance.operation?.toJson(),
+      'transferFromBranch': instance.transferFromBranch?.toJson(),
+      'transferToBranch': instance.transferToBranch?.toJson(),
       'orderRecords': instance.orderRecords.map((e) => e.toJson()).toList(),
     };
 

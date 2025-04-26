@@ -40,7 +40,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   void _initializeBranches() {
     if (_isTransferOperation) {
       _branchesFuture = context.appProvider.getBranches();
-      _operation.transferFromBranch = LightBranchModel();
+      _operation.transferFromBranch = LightBranchModel(id: kSelectedBranchId);
       _operation.transferToBranch = LightBranchModel();
     } else {
       _branchesFuture = Future.value([]);

@@ -36,6 +36,13 @@ mixin _$OrderModel {
   InventoryOperationModel? get operation => throw _privateConstructorUsedError;
   set operation(InventoryOperationModel? value) =>
       throw _privateConstructorUsedError;
+  LightBranchModel? get transferFromBranch =>
+      throw _privateConstructorUsedError;
+  set transferFromBranch(LightBranchModel? value) =>
+      throw _privateConstructorUsedError;
+  LightBranchModel? get transferToBranch => throw _privateConstructorUsedError;
+  set transferToBranch(LightBranchModel? value) =>
+      throw _privateConstructorUsedError;
   List<OrderRecordModel> get orderRecords => throw _privateConstructorUsedError;
   set orderRecords(List<OrderRecordModel> value) =>
       throw _privateConstructorUsedError;
@@ -64,11 +71,15 @@ abstract class $OrderModelCopyWith<$Res> {
     LightUserModel user,
     String status,
     InventoryOperationModel? operation,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     List<OrderRecordModel> orderRecords,
   });
 
   $LightUserModelCopyWith<$Res> get user;
   $InventoryOperationModelCopyWith<$Res>? get operation;
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch;
+  $LightBranchModelCopyWith<$Res>? get transferToBranch;
 }
 
 /// @nodoc
@@ -92,6 +103,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? user = null,
     Object? status = null,
     Object? operation = freezed,
+    Object? transferFromBranch = freezed,
+    Object? transferToBranch = freezed,
     Object? orderRecords = null,
   }) {
     return _then(
@@ -126,6 +139,16 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.operation
                     : operation // ignore: cast_nullable_to_non_nullable
                         as InventoryOperationModel?,
+            transferFromBranch:
+                freezed == transferFromBranch
+                    ? _value.transferFromBranch
+                    : transferFromBranch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel?,
+            transferToBranch:
+                freezed == transferToBranch
+                    ? _value.transferToBranch
+                    : transferToBranch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel?,
             orderRecords:
                 null == orderRecords
                     ? _value.orderRecords
@@ -159,6 +182,34 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       return _then(_value.copyWith(operation: value) as $Val);
     });
   }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch {
+    if (_value.transferFromBranch == null) {
+      return null;
+    }
+
+    return $LightBranchModelCopyWith<$Res>(_value.transferFromBranch!, (value) {
+      return _then(_value.copyWith(transferFromBranch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res>? get transferToBranch {
+    if (_value.transferToBranch == null) {
+      return null;
+    }
+
+    return $LightBranchModelCopyWith<$Res>(_value.transferToBranch!, (value) {
+      return _then(_value.copyWith(transferToBranch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -177,6 +228,8 @@ abstract class _$$OrderModelImplCopyWith<$Res>
     LightUserModel user,
     String status,
     InventoryOperationModel? operation,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     List<OrderRecordModel> orderRecords,
   });
 
@@ -184,6 +237,10 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $LightUserModelCopyWith<$Res> get user;
   @override
   $InventoryOperationModelCopyWith<$Res>? get operation;
+  @override
+  $LightBranchModelCopyWith<$Res>? get transferFromBranch;
+  @override
+  $LightBranchModelCopyWith<$Res>? get transferToBranch;
 }
 
 /// @nodoc
@@ -206,6 +263,8 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? user = null,
     Object? status = null,
     Object? operation = freezed,
+    Object? transferFromBranch = freezed,
+    Object? transferToBranch = freezed,
     Object? orderRecords = null,
   }) {
     return _then(
@@ -240,6 +299,16 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.operation
                 : operation // ignore: cast_nullable_to_non_nullable
                     as InventoryOperationModel?,
+        transferFromBranch:
+            freezed == transferFromBranch
+                ? _value.transferFromBranch
+                : transferFromBranch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel?,
+        transferToBranch:
+            freezed == transferToBranch
+                ? _value.transferToBranch
+                : transferToBranch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel?,
         orderRecords:
             null == orderRecords
                 ? _value.orderRecords
@@ -261,6 +330,8 @@ class _$OrderModelImpl extends _OrderModel {
     required this.user,
     required this.status,
     this.operation,
+    this.transferFromBranch,
+    this.transferToBranch,
     this.orderRecords = const [],
   }) : super._();
 
@@ -282,12 +353,16 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   InventoryOperationModel? operation;
   @override
+  LightBranchModel? transferFromBranch;
+  @override
+  LightBranchModel? transferToBranch;
+  @override
   @JsonKey()
   List<OrderRecordModel> orderRecords;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, orderRecords: $orderRecords)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, orderRecords: $orderRecords)';
   }
 
   /// Create a copy of OrderModel
@@ -312,6 +387,8 @@ abstract class _OrderModel extends OrderModel {
     required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
+    LightBranchModel? transferFromBranch,
+    LightBranchModel? transferToBranch,
     List<OrderRecordModel> orderRecords,
   }) = _$OrderModelImpl;
   _OrderModel._() : super._();
@@ -339,6 +416,12 @@ abstract class _OrderModel extends OrderModel {
   @override
   InventoryOperationModel? get operation;
   set operation(InventoryOperationModel? value);
+  @override
+  LightBranchModel? get transferFromBranch;
+  set transferFromBranch(LightBranchModel? value);
+  @override
+  LightBranchModel? get transferToBranch;
+  set transferToBranch(LightBranchModel? value);
   @override
   List<OrderRecordModel> get orderRecords;
   set orderRecords(List<OrderRecordModel> value);
