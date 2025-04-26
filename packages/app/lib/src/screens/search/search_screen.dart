@@ -9,7 +9,7 @@ class SearchScreen<T> extends StatefulWidget {
   final String? hintText;
   final Widget Function(MySearchController controller)? builder;
   final Function(ItemModel e)? onTap;
-  final String? categoryId;
+  final String? filters;
 
   const SearchScreen({
     super.key,
@@ -18,7 +18,7 @@ class SearchScreen<T> extends StatefulWidget {
     this.isFullScreen = true,
     this.onTap,
     this.hintText,
-    this.categoryId,
+    this.filters,
   });
 
   @override
@@ -47,7 +47,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
               indexName: widget.indexName,
               query: query,
               hitsPerPage: 10,
-              filters: widget.categoryId != null ? 'categoryId:${widget.categoryId}' : null,
+              filters: widget.filters,
             ),
           )
           .then((value) {

@@ -74,7 +74,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       Expanded(
                         child: SearchScreen(
                           indexName: AlgoliaIndices.items.value,
-                          categoryId: _category.id,
+                          filters: '${MyFields.categoryId}:${_category.id}',
                         ),
                       ),
                       const SizedBox(width: 10),

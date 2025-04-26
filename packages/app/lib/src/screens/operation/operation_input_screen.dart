@@ -177,54 +177,53 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ],
 
                 if (_isTransferOperation)
-                  StatefulBuilder(
-                    builder: (context, setState) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: BranchesDropdown(
-                                key: ValueKey(_operation.transferToBranch?.id),
-                                value: _operation.transferFromBranch?.id,
-                                branches: branches,
-                                title: "الفرع المرسل",
-                                onChanged: (value) {
-                                  setState(() {
-                                    _operation.transferFromBranch?.id = value;
-                                    if (_operation.transferFromBranch?.id ==
-                                        _operation.transferToBranch?.id) {
-                                      _operation.transferToBranch?.id = null;
-                                    }
-                                  });
-                                },
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: BranchesDropdown(
-                                key: ValueKey(_operation.transferFromBranch?.id),
-                                value: _operation.transferToBranch?.id,
-                                branches:
-                                    branches
-                                        .where((e) => e.id != _operation.transferFromBranch?.id)
-                                        .toList(),
-                                title: "الفرع المستقبل",
-                                onChanged:
-                                    _operation.transferFromBranch?.id != null
-                                        ? (value) {
-                                          if (_operation.transferFromBranch?.id ==
-                                              _operation.transferToBranch?.id) {
-                                            _operation.transferFromBranch?.id = null;
-                                          }
-                                        }
-                                        : null,
-                              ),
-                            ),
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: BranchesDropdown(
+                            key: ValueKey(_operation.transferToBranch?.id),
+                            value: _operation.transferFromBranch?.id,
+                            branches: branches,
+                            title: "الفرع المرسل",
+                            onChanged: (value) {
+                              setState(() {
+                                if (_operation.transferFromBranch?.id != value) {
+                                  _operation.items.clear();
+                                }
+                                _operation.transferFromBranch?.id = value;
+                                if (_operation.transferFromBranch?.id ==
+                                    _operation.transferToBranch?.id) {
+                                  _operation.transferToBranch?.id = null;
+                                }
+                              });
+                            },
+                          ),
                         ),
-                      );
-                    },
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: BranchesDropdown(
+                            key: ValueKey(_operation.transferFromBranch?.id),
+                            value: _operation.transferToBranch?.id,
+                            branches:
+                                branches
+                                    .where((e) => e.id != _operation.transferFromBranch?.id)
+                                    .toList(),
+                            title: "الفرع المستقبل",
+                            onChanged:
+                                _operation.transferFromBranch?.id != null
+                                    ? (value) {
+                                      if (_operation.transferFromBranch?.id ==
+                                          _operation.transferToBranch?.id) {
+                                        _operation.transferFromBranch?.id = null;
+                                      }
+                                    }
+                                    : null,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
 
                 if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[
@@ -303,6 +302,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     indexName: AlgoliaIndices.items.value,
                     isFullScreen: false,
                     hintText: "ادخل رقم الصنف او الإسم",
+                    filters: '${MyFields.branchId}:${_operation.transferFromBranch?.id}',
                     onTap: (e) {
                       final ids = [];
                       if (ids.contains(e.id)) {
@@ -330,6 +330,10 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                         ),
                         readOnly: true,
                         onTap: () {
+                          if (_isTransferOperation && _operation.transferFromBranch == null) {
+                            Fluttertoast.showToast(msg: "يجب إختيار الفرع أولا");
+                            return;
+                          }
                           controller.openView();
                         },
                         canRequestFocus: false,
