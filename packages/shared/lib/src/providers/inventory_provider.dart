@@ -16,6 +16,7 @@ class InventoryProvider extends ChangeNotifier {
       context,
       callBack: () async {
         final batch = kFirebaseInstant.batch();
+        final user = kCurrentLightUser;
 
         final isAddOperation = operation.operationType == OperationType.add.value;
         final isSupplyOperation = operation.operationType == OperationType.supply.value;
@@ -35,19 +36,25 @@ class InventoryProvider extends ChangeNotifier {
           if (onCompleteOrder != null) {
             onCompleteOrder(batch);
           }
-          if (transferToBranchId != null) {
-            for (var e in operation.items) {
-              final ref = kFirebaseInstant.items.doc(e.id);
-              batch.update(ref, {MyFields.branchId: transferToBranchId});
-            }
-          } else {
-            final isPlus = isAddOperation;
-            for (var e in operation.items) {
-              final increment = e.quantity;
-              final itemDoc = kFirebaseInstant.items.doc(e.id);
-              final json = e.toJson();
-              json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
-              batch.update(itemDoc, json);
+          final isPlus = isAddOperation;
+          for (var e in operation.items) {
+            final increment = e.quantity;
+            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            final json = e.toJson();
+            json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
+            batch.update(itemDoc, json);
+            if (transferToBranchId != null) {
+              final documentSnapshot = await itemDoc.get();
+              final data = documentSnapshot.data()!;
+              final newId = await RowIdHelper.get(RowIdHelper.itemId);
+              final newDocRef = kFirebaseInstant.items.doc(newId);
+              final newData = data.copyWith(
+                id: newId,
+                branchId: transferToBranchId,
+                quantity: e.quantity,
+                user: user,
+              );
+              batch.set(newDocRef, newData);
             }
           }
         }
@@ -62,7 +69,6 @@ class InventoryProvider extends ChangeNotifier {
         }
 
         ///Operation
-        final user = kCurrentLightUser;
         operation = operation.copyWith(
           createdAt: kNowDate,
           id: await operation.getId(),
