@@ -263,6 +263,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               SearchScreen(
                 indexName: AlgoliaIndices.items.value,
                 isFullScreen: false,
+                hintText: "ادخل رقم الصنف او الإسم",
                 onTap: (e) {
                   final ids = [];
                   if (ids.contains(e.id)) {

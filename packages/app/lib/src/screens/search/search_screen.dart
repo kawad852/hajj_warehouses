@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:app/src/screens/search/widgets/anchor_tile.dart';
 import 'package:shared/algolia_exports.dart';
 import 'package:shared/shared.dart';
@@ -5,8 +6,10 @@ import 'package:shared/shared.dart';
 class SearchScreen<T> extends StatefulWidget {
   final String indexName;
   final bool isFullScreen;
+  final String? hintText;
   final Widget Function(MySearchController controller)? builder;
   final Function(ItemModel e)? onTap;
+  final String? categoryId;
 
   const SearchScreen({
     super.key,
@@ -14,6 +17,8 @@ class SearchScreen<T> extends StatefulWidget {
     this.builder,
     this.isFullScreen = true,
     this.onTap,
+    this.hintText,
+    this.categoryId,
   });
 
   @override
@@ -38,7 +43,12 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
       }
       final productsFuture = kAlgoliaClient
           .searchIndex(
-            request: SearchForHits(indexName: widget.indexName, query: query, hitsPerPage: 10),
+            request: SearchForHits(
+              indexName: widget.indexName,
+              query: query,
+              hitsPerPage: 10,
+              filters: widget.categoryId != null ? 'categoryId:${widget.categoryId}' : null,
+            ),
           )
           .then((value) {
             return value.hits.map((e) => ItemModel.fromJson(e.toJson())).toList();
@@ -64,7 +74,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
   @override
   Widget build(BuildContext context) {
     return FireAnimatedSearchBar(
-      hintText: "ابحث عن صنف",
+      hintText: widget.hintText ?? "ابحث عن صنف",
       isFullScreen: widget.isFullScreen,
       onChanged: (value) {
         setState(() {
@@ -113,14 +123,11 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                           if (widget.onTap != null) {
                             widget.onTap!(element);
                             return;
+                          } else {
+                            context.push((context) {
+                              return ItemManagementScreen(item: element);
+                            });
                           }
-                          // context.push((context) {
-                          //   return ProductScreen(
-                          //     id: element.id,
-                          //     product: null,
-                          //     storeId: '',
-                          //   );
-                          // });
                         },
                       );
                     }).toList(),
