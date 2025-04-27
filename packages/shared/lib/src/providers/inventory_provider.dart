@@ -38,24 +38,34 @@ class InventoryProvider extends ChangeNotifier {
           }
           final isPlus = isAddOperation;
           for (var e in operation.items) {
-            final itemDoc = kFirebaseInstant.items.doc(e.id);
+            var itemDocRef = kFirebaseInstant.items.doc(e.id);
             if (transferToBranchId != null) {
-              final documentSnapshot = await itemDoc.get();
+              final documentSnapshot = await itemDocRef.get();
               final data = documentSnapshot.data()!;
               final newId = await RowIdHelper.get(RowIdHelper.itemId);
-              final newDocRef = kFirebaseInstant.items.doc(newId);
-              final newData = data.copyWith(
-                id: newId,
-                branchId: transferToBranchId,
-                quantity: e.quantity,
-                user: user,
-              );
-              batch.set(newDocRef, newData);
+              var newDocRef = kFirebaseInstant.items.doc(newId);
+              final docSnapshot =
+                  await kFirebaseInstant.items
+                      .where(MyFields.name, isEqualTo: e.name)
+                      .limit(1)
+                      .get();
+              if (docSnapshot.docs.isNotEmpty) {
+                newDocRef = docSnapshot.docs.first.reference;
+                newDocRef.update({MyFields.quantity: FieldValue.increment(e.quantity)});
+              } else {
+                final newData = data.copyWith(
+                  id: newId,
+                  branchId: transferToBranchId,
+                  quantity: e.quantity,
+                  user: user,
+                );
+                batch.set(newDocRef, newData);
+              }
             } else {
               final increment = e.quantity;
               final json = e.toJson();
               json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
-              batch.update(itemDoc, json);
+              batch.update(itemDocRef, json);
             }
           }
         }
@@ -111,15 +121,5 @@ class InventoryProvider extends ChangeNotifier {
         }
       },
     );
-  }
-
-  String _getItemStatus({required int quantity, required int minimumQuantity}) {
-    if (quantity <= 0) {
-      return ItemStatusEnum.outOfStock.value;
-    } else if (quantity > 0 && quantity < minimumQuantity) {
-      return ItemStatusEnum.lowStock.value;
-    } else {
-      return ItemStatusEnum.inStock.value;
-    }
   }
 }

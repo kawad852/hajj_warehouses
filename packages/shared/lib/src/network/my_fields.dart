@@ -18,4 +18,5 @@ class MyFields {
   static const String quantity = 'quantity';
   static const String orderStatus = 'orderStatus';
   static const String branchId = 'branchId';
+  static const String name = 'name';
 }
