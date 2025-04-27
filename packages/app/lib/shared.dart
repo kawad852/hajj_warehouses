@@ -17,6 +17,7 @@ export 'src/screens/destroying_items/destroying_items_screen.dart';
 export 'src/screens/home/home_screen.dart';
 export 'src/screens/home/widgets/my_task.dart';
 export 'src/screens/home/widgets/task_card.dart';
+export 'src/screens/item/out_of_stock_items_screen.dart';
 export 'src/screens/login/login_screen.dart';
 export 'src/screens/operation/operations_screen.dart';
 export 'src/screens/order/order_details_screen.dart';

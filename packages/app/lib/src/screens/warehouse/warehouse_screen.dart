@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/shared.dart';
 import 'package:app/src/screens/search/search_screen.dart';
 import 'package:shared/shared.dart';
 
@@ -10,22 +11,6 @@ class WarehouseScreen extends StatefulWidget {
 }
 
 class _WarehouseScreenState extends State<WarehouseScreen> {
-  late Query<ItemModel> _query;
-
-  void _initialize() {
-    final filter = Filter.and(
-      Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
-      Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
-    );
-    _query = kFirebaseInstant.items.where(filter).orderByDesc;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initialize();
-  }
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -118,63 +103,76 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: SearchScreen(indexName: AlgoliaIndices.items.value),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "اصناف بحاجة إلى تزويد",
-                      style: TextStyle(
-                        color: context.colorPalette.black001,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          "المزيد",
-                          style: TextStyle(
-                            color: context.colorPalette.black001,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(Icons.arrow_forward_ios_outlined),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const MaterialsTable(),
             ],
           ),
         ),
-        CustomFirestoreQueryBuilder(
-          query: _query,
-          isSliver: true,
-          onComplete: (context, snapshot) {
+        OutOfStockSelector(
+          builder: (context, items) {
+            if (items.isEmpty) {
+              return const SliverToBoxAdapter(child: SizedBox.shrink());
+            }
             return SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              sliver: SliverList.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 5),
-                itemCount: snapshot.docs.length,
-                itemBuilder: (context, index) {
-                  final item = snapshot.docs[index].data();
-                  return TableContainer(
-                    onTap: () {
-                      context.push((context) => ItemManagementScreen(item: item));
+              sliver: SliverMainAxisGroup(
+                slivers: [
+                  SliverList.list(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "اصناف بحاجة إلى تزويد",
+                              style: TextStyle(
+                                color: context.colorPalette.black001,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              context.push((context) {
+                                return const OutOfStockItemsScreen();
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "المزيد",
+                                  style: TextStyle(
+                                    color: context.colorPalette.black001,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                const SizedBox(width: 5),
+                                const Icon(Icons.arrow_forward_ios_outlined),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const MaterialsTable(),
+                    ],
+                  ),
+                  SliverList.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 5),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return TableContainer(
+                        onTap: () {
+                          context.push((context) => ItemManagementScreen(item: item));
+                        },
+                        id: "$index",
+                        name: item.name,
+                        availableQuantity: item.quantity,
+                        minimumQuantity: item.minimumQuantity,
+                        status: item.status,
+                      );
                     },
-                    id: "$index",
-                    name: item.name,
-                    availableQuantity: item.quantity,
-                    minimumQuantity: item.minimumQuantity,
-                    status: item.status,
-                  );
-                },
+                  ),
+                ],
               ),
             );
           },

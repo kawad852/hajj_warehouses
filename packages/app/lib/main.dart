@@ -44,12 +44,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late Stream<List<ItemModel>> _outOfStockStream;
+
+  void _initializeOutOfStock() {
+    final filter = Filter.and(
+      Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
+      Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
+    );
+    _outOfStockStream = kFirebaseInstant.items
+        .where(filter)
+        .orderByDesc
+        .snapshots()
+        .map((e) => e.docs.map((e) => e.data()).toList());
+  }
+
   Widget _toggleScreen(BuildContext context) {
     if (MySharedPreferences.user?.id != null && MySharedPreferences.selectedBranchId.isNotEmpty) {
       return const AppNavBar();
     } else {
       return const LoginScreen();
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeOutOfStock();
   }
 
   // This widget is the root of your application.
@@ -83,13 +103,11 @@ class _MyAppState extends State<MyApp> {
                   return true;
                 },
               ),
-              StreamProvider<List<BasketModel>>.value(
-                value: userProvider.userBasketStream.map(
-                  (event) => event.docs.map((e) => e.data()).toList(),
-                ),
-                initialData: MySharedPreferences.basket,
+              StreamProvider<List<ItemModel>>.value(
+                key: ValueKey(userProvider.isAuthenticated),
+                value: _outOfStockStream,
+                initialData: const [],
                 updateShouldNotify: (initialValue, value) {
-                  MySharedPreferences.basket = value;
                   return true;
                 },
               ),
