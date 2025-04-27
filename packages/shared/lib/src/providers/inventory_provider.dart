@@ -45,7 +45,7 @@ class InventoryProvider extends ChangeNotifier {
               final newId = await RowIdHelper.get(RowIdHelper.itemId);
               var newDocRef = kFirebaseInstant.items.doc(newId);
               final docSnapshot =
-                  await kFirebaseInstant.items
+                  await kFirebaseInstant.items.whereMyBranch
                       .where(MyFields.name, isEqualTo: e.name)
                       .limit(1)
                       .get();

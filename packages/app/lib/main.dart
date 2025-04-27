@@ -44,14 +44,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Stream<List<ItemModel>> _outOfStockStream;
-
-  void _initializeOutOfStock() {
+  get _outOfStockStream {
     final filter = Filter.and(
       Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
       Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
     );
-    _outOfStockStream = kFirebaseInstant.items
+    return kFirebaseInstant.items
         .where(filter)
         .orderByDesc
         .snapshots()
@@ -69,7 +67,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _initializeOutOfStock();
   }
 
   // This widget is the root of your application.

@@ -79,7 +79,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 Expanded(
                   child: StretchedButton(
                     onPressed: () {
-                      _updateOrderStatus(OrderStatusEnum.rejected.value);
+                      if (operation.operationType != OperationType.transfer.value) {
+                        _updateOrderStatus(OrderStatusEnum.rejected.value);
+                      } else {
+                        context.inventoryProvider.createOperation(
+                          context,
+                          operation: operation.copyWith(operationType: OperationType.add.value),
+                        );
+                      }
                     },
                     backgroundColor: context.colorPalette.redC10,
                     child: Text(
