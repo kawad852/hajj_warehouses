@@ -83,7 +83,7 @@ class InventoryProvider extends ChangeNotifier {
             status: OrderStatusEnum.placed.value,
             operation: operation,
             user: user,
-            branchId: kSelectedBranchId,
+            branchId: isTransferOperation ? operation.transferToBranch!.id! : kSelectedBranchId,
             transferFromBranch: operation.transferFromBranch,
             transferToBranch: operation.transferToBranch,
           );
