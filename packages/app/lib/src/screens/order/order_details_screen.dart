@@ -161,13 +161,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       child: StretchedButton(
                         onPressed: () {
                           final transferToBranchId = order.transferToBranch?.id;
-                          final operationType =
-                              transferToBranchId != null
-                                  ? OperationType.withdraw.value
-                                  : OperationType.add.value;
                           context.inventoryProvider.createOperation(
                             context,
-                            operation: operation.copyWith(operationType: operationType),
+                            operation: operation.copyWith(operationType: OperationType.add.value),
                             transferToBranchId: transferToBranchId,
                             onCompleteOrder: (batch) {
                               batch.update(_docREF, {

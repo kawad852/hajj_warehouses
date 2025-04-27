@@ -38,11 +38,7 @@ class InventoryProvider extends ChangeNotifier {
           }
           final isPlus = isAddOperation;
           for (var e in operation.items) {
-            final increment = e.quantity;
             final itemDoc = kFirebaseInstant.items.doc(e.id);
-            final json = e.toJson();
-            json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
-            batch.update(itemDoc, json);
             if (transferToBranchId != null) {
               final documentSnapshot = await itemDoc.get();
               final data = documentSnapshot.data()!;
@@ -55,6 +51,11 @@ class InventoryProvider extends ChangeNotifier {
                 user: user,
               );
               batch.set(newDocRef, newData);
+            } else {
+              final increment = e.quantity;
+              final json = e.toJson();
+              json[MyFields.quantity] = FieldValue.increment(isPlus ? increment : -increment);
+              batch.update(itemDoc, json);
             }
           }
         }
