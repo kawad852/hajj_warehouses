@@ -13,7 +13,12 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       displayName: json['displayName'] as String?,
       email: json['email'] as String?,
       deviceToken: json['deviceToken'] as String?,
-      branchId: json['branchId'] as String?,
+      branch:
+          json['branch'] == null
+              ? null
+              : LightBranchModel.fromJson(
+                json['branch'] as Map<String, dynamic>,
+              ),
       role: json['role'] as String?,
       username: json['username'] as String?,
       languageCode: json['languageCode'] as String?,
@@ -41,13 +46,13 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'displayName': instance.displayName,
       'email': instance.email,
       'deviceToken': instance.deviceToken,
-      'branchId': instance.branchId,
+      'branch': instance.branch?.toJson(),
       'role': instance.role,
       'username': instance.username,
       'languageCode': instance.languageCode,
       'blocked': instance.blocked,
-      'deliveryAddress': instance.deliveryAddress,
-      'pickupInfo': instance.pickupInfo,
+      'deliveryAddress': instance.deliveryAddress?.toJson(),
+      'pickupInfo': instance.pickupInfo?.toJson(),
       'phoneCountryCode': instance.phoneCountryCode,
       'phoneNum': instance.phoneNum,
     };

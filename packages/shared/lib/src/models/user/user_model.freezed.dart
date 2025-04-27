@@ -33,8 +33,8 @@ mixin _$UserModel {
   set email(String? value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
-  String? get branchId => throw _privateConstructorUsedError;
-  set branchId(String? value) => throw _privateConstructorUsedError;
+  LightBranchModel? get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
@@ -74,7 +74,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? displayName,
     String? email,
     String? deviceToken,
-    String? branchId,
+    LightBranchModel? branch,
     String? role,
     String? username,
     String? languageCode,
@@ -85,6 +85,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? phoneNum,
   });
 
+  $LightBranchModelCopyWith<$Res>? get branch;
   $AddressModelCopyWith<$Res>? get deliveryAddress;
   $PickUpInfoModelCopyWith<$Res>? get pickupInfo;
 }
@@ -109,7 +110,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
-    Object? branchId = freezed,
+    Object? branch = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
@@ -146,11 +147,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.deviceToken
                     : deviceToken // ignore: cast_nullable_to_non_nullable
                         as String?,
-            branchId:
-                freezed == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            branch:
+                freezed == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel?,
             role:
                 freezed == role
                     ? _value.role
@@ -200,6 +201,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res>? get branch {
+    if (_value.branch == null) {
+      return null;
+    }
+
+    return $LightBranchModelCopyWith<$Res>(_value.branch!, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $AddressModelCopyWith<$Res>? get deliveryAddress {
     if (_value.deliveryAddress == null) {
       return null;
@@ -240,7 +255,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? displayName,
     String? email,
     String? deviceToken,
-    String? branchId,
+    LightBranchModel? branch,
     String? role,
     String? username,
     String? languageCode,
@@ -251,6 +266,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? phoneNum,
   });
 
+  @override
+  $LightBranchModelCopyWith<$Res>? get branch;
   @override
   $AddressModelCopyWith<$Res>? get deliveryAddress;
   @override
@@ -276,7 +293,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? deviceToken = freezed,
-    Object? branchId = freezed,
+    Object? branch = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? languageCode = freezed,
@@ -313,11 +330,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.deviceToken
                 : deviceToken // ignore: cast_nullable_to_non_nullable
                     as String?,
-        branchId:
-            freezed == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        branch:
+            freezed == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel?,
         role:
             freezed == role
                 ? _value.role
@@ -364,7 +381,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$UserModelImpl implements _UserModel {
   _$UserModelImpl({
     @TimestampSerializer() this.createdAt,
@@ -372,7 +390,7 @@ class _$UserModelImpl implements _UserModel {
     this.displayName,
     this.email,
     this.deviceToken,
-    this.branchId,
+    this.branch,
     this.role,
     this.username,
     this.languageCode,
@@ -398,7 +416,7 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? deviceToken;
   @override
-  String? branchId;
+  LightBranchModel? branch;
   @override
   String? role;
   @override
@@ -419,7 +437,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branchId: $branchId, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
   }
 
   /// Create a copy of UserModel
@@ -443,7 +461,7 @@ abstract class _UserModel implements UserModel {
     String? displayName,
     String? email,
     String? deviceToken,
-    String? branchId,
+    LightBranchModel? branch,
     String? role,
     String? username,
     String? languageCode,
@@ -475,8 +493,8 @@ abstract class _UserModel implements UserModel {
   String? get deviceToken;
   set deviceToken(String? value);
   @override
-  String? get branchId;
-  set branchId(String? value);
+  LightBranchModel? get branch;
+  set branch(LightBranchModel? value);
   @override
   String? get role;
   set role(String? value);
