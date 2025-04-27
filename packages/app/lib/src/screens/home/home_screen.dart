@@ -54,12 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: TaskCard(
-                  onTap: () {},
-                  title: "المخزون",
-                  task: "لديك اصناف بحاجة لتزويد",
-                  prefixIcon: MyIcons.box,
-                  taskColor: context.colorPalette.redC10,
+                child: OutOfStockSelector(
+                  builder: (context, items) {
+                    return TaskCard(
+                      onTap: () {},
+                      title: "المخزون",
+                      task: items.isNotEmpty ? "لديك اصناف بحاجة لتزويد" : "-",
+                      prefixIcon: MyIcons.box,
+                      taskColor: context.colorPalette.redC10,
+                    );
+                  },
                 ),
               ),
             ],
@@ -110,10 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 width: double.infinity,
                 height: 45,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(
                   color: context.colorPalette.grey708,
                   borderRadius: const BorderRadius.only(
@@ -144,9 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               ListView.separated(
-                separatorBuilder:
-                    (context, index) =>
-                        Divider(color: context.colorPalette.greyC4C),
+                separatorBuilder: (context, index) => Divider(color: context.colorPalette.greyC4C),
                 itemCount: 4,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

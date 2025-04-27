@@ -21,11 +21,19 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
             children: [
               Row(
                 children: [
-                  WarehouseButton(
-                    onTap: () {},
-                    title: "اصناف بحاجة تزويد",
-                    value: "(45) ",
-                    icon: MyIcons.boxTime,
+                  OutOfStockSelector(
+                    builder: (context, items) {
+                      return WarehouseButton(
+                        onTap: () {
+                          context.push((context) {
+                            return const OutOfStockItemsScreen();
+                          });
+                        },
+                        title: "اصناف بحاجة تزويد",
+                        value: "(${items.length}) ",
+                        icon: MyIcons.boxTime,
+                      );
+                    },
                   ),
                   const SizedBox(width: 10),
                   WarehouseButton(
@@ -135,19 +143,22 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                                 return const OutOfStockItemsScreen();
                               });
                             },
-                            child: Row(
-                              children: [
-                                Text(
-                                  "المزيد",
-                                  style: TextStyle(
-                                    color: context.colorPalette.black001,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w800,
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "المزيد",
+                                    style: TextStyle(
+                                      color: context.colorPalette.black001,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 5),
-                                const Icon(Icons.arrow_forward_ios_outlined),
-                              ],
+                                  const SizedBox(width: 5),
+                                  const Icon(Icons.arrow_forward_ios_outlined),
+                                ],
+                              ),
                             ),
                           ),
                         ],
