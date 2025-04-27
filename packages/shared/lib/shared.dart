@@ -116,6 +116,7 @@ export 'src/widgets/operation_card.dart';
 export 'src/widgets/order_status_chip.dart';
 export 'src/widgets/process_time_line.dart';
 export 'src/widgets/selectors/out_of_stock_selector.dart';
+export 'src/widgets/selectors/user_selector.dart';
 export 'src/widgets/stream_builders/big_stream_builder.dart';
 export 'src/widgets/stream_builders/impeded_stream_builder.dart';
 export 'src/widgets/stretch_button.dart';
