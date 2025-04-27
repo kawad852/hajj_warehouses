@@ -22,7 +22,7 @@ class InventoryProvider extends ChangeNotifier {
         final isSupplyOperation = operation.operationType == OperationType.supply.value;
         final isTransferOperation = operation.operationType == OperationType.transfer.value;
 
-        final needsApproval = isSupplyOperation || isTransferOperation;
+        final createOrder = isSupplyOperation || isTransferOperation;
 
         ///Items
         if (onCreate != null) {
@@ -32,7 +32,7 @@ class InventoryProvider extends ChangeNotifier {
                   .map((e) => LightItemModel(id: e.id, name: e.name, quantity: e.minimumQuantity))
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
-        } else if (!needsApproval) {
+        } else if (!isSupplyOperation) {
           if (onCompleteOrder != null) {
             onCompleteOrder(batch);
           }
@@ -77,7 +77,7 @@ class InventoryProvider extends ChangeNotifier {
           itemIds: operation.items.map((e) => e.id).toList(),
         );
 
-        if (needsApproval) {
+        if (createOrder) {
           final order = OrderModel(
             createdAt: kNowDate,
             status: OrderStatusEnum.placed.value,
