@@ -14,8 +14,8 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   late Stream<OrderModel> _operationStream;
 
-  OrderModel get _operation => widget.order;
-  DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(_operation.id);
+  OrderModel get _order => widget.order;
+  DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(_order.id);
 
   void _initialize() {
     _operationStream = _docREF.snapshots().map((e) => e.data()!);
@@ -50,7 +50,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   Widget build(BuildContext context) {
     return BigStreamBuilder(
       stream: _operationStream,
-      initialData: _operation,
+      initialData: _order,
       onComplete: (context, snapshot) {
         final order = snapshot.data!;
         final operation = order.operation!;
@@ -79,14 +79,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 Expanded(
                   child: StretchedButton(
                     onPressed: () {
-                      if (operation.operationType != OperationType.transfer.value) {
+                      if (operation.operationType == OperationType.transfer.value) {
                         context.inventoryProvider.createOperation(
                           context,
                           operation: operation.copyWith(operationType: OperationType.add.value),
+                          orderValues: (order.id, OrderStatusEnum.rejected.value),
                         );
                       } else {
                         _updateOrderStatus(OrderStatusEnum.rejected.value);
-
                       }
                     },
                     backgroundColor: context.colorPalette.redC10,
@@ -173,11 +173,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             context,
                             operation: operation.copyWith(operationType: OperationType.add.value),
                             transferToBranchId: transferToBranchId,
-                            onCompleteOrder: (batch) {
-                              batch.update(_docREF, {
-                                MyFields.status: OrderStatusEnum.completed.value,
-                              });
-                            },
+                            orderValues: (order.id, OrderStatusEnum.completed.value),
                           );
                         },
                         backgroundColor: context.colorPalette.greyC4C,

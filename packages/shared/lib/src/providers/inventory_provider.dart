@@ -9,8 +9,8 @@ class InventoryProvider extends ChangeNotifier {
     BuildContext context, {
     required InventoryOperationModel operation,
     Future<List<ItemModel>> Function(WriteBatch bath)? onCreate,
-    Function(WriteBatch bath)? onCompleteOrder,
     String? transferToBranchId,
+    (String, String)? orderValues,
   }) {
     ApiService.fetch(
       context,
@@ -22,7 +22,7 @@ class InventoryProvider extends ChangeNotifier {
         final isSupplyOperation = operation.operationType == OperationType.supply.value;
         final isTransferOperation = operation.operationType == OperationType.transfer.value;
 
-        final createOrder = isSupplyOperation || isTransferOperation;
+        final createOrder = (isSupplyOperation || isTransferOperation) && orderValues == null;
 
         ///Items
         if (onCreate != null) {
@@ -33,8 +33,11 @@ class InventoryProvider extends ChangeNotifier {
                   .toList();
           operation.itemIds = items.map((e) => e.id).toList();
         } else if (!isSupplyOperation) {
-          if (onCompleteOrder != null) {
-            onCompleteOrder(batch);
+          if (orderValues != null) {
+            final id = orderValues.$1;
+            final status = orderValues.$2;
+            final ref = kFirebaseInstant.orders.doc(id);
+            batch.update(ref, {MyFields.status: status});
           }
           final isPlus = isAddOperation;
           for (var e in operation.items) {
