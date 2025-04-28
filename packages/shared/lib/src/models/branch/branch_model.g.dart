@@ -25,8 +25,13 @@ _$LightBranchModelImpl _$$LightBranchModelImplFromJson(
 ) => _$LightBranchModelImpl(
   id: json['id'] as String?,
   name: json['name'] as String? ?? '',
+  balanceAmount: (json['balanceAmount'] as num?)?.toDouble() ?? 0.0,
 );
 
 Map<String, dynamic> _$$LightBranchModelImplToJson(
   _$LightBranchModelImpl instance,
-) => <String, dynamic>{'id': instance.id, 'name': instance.name};
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'balanceAmount': instance.balanceAmount,
+};

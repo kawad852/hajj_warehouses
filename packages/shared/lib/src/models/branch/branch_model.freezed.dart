@@ -234,6 +234,8 @@ mixin _$LightBranchModel {
   set id(String? value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
+  double get balanceAmount => throw _privateConstructorUsedError;
+  set balanceAmount(double value) => throw _privateConstructorUsedError;
 
   /// Serializes this LightBranchModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -252,7 +254,7 @@ abstract class $LightBranchModelCopyWith<$Res> {
     $Res Function(LightBranchModel) then,
   ) = _$LightBranchModelCopyWithImpl<$Res, LightBranchModel>;
   @useResult
-  $Res call({String? id, String name});
+  $Res call({String? id, String name, double balanceAmount});
 }
 
 /// @nodoc
@@ -269,7 +271,11 @@ class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? name = null}) {
+  $Res call({
+    Object? id = freezed,
+    Object? name = null,
+    Object? balanceAmount = null,
+  }) {
     return _then(
       _value.copyWith(
             id:
@@ -282,6 +288,11 @@ class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
                         as String,
+            balanceAmount:
+                null == balanceAmount
+                    ? _value.balanceAmount
+                    : balanceAmount // ignore: cast_nullable_to_non_nullable
+                        as double,
           )
           as $Val,
     );
@@ -297,7 +308,7 @@ abstract class _$$LightBranchModelImplCopyWith<$Res>
   ) = __$$LightBranchModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String name});
+  $Res call({String? id, String name, double balanceAmount});
 }
 
 /// @nodoc
@@ -313,7 +324,11 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? name = null}) {
+  $Res call({
+    Object? id = freezed,
+    Object? name = null,
+    Object? balanceAmount = null,
+  }) {
     return _then(
       _$LightBranchModelImpl(
         id:
@@ -326,6 +341,11 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
+        balanceAmount:
+            null == balanceAmount
+                ? _value.balanceAmount
+                : balanceAmount // ignore: cast_nullable_to_non_nullable
+                    as double,
       ),
     );
   }
@@ -335,7 +355,7 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$LightBranchModelImpl implements _LightBranchModel {
-  _$LightBranchModelImpl({this.id, this.name = ''});
+  _$LightBranchModelImpl({this.id, this.name = '', this.balanceAmount = 0.0});
 
   factory _$LightBranchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightBranchModelImplFromJson(json);
@@ -345,10 +365,13 @@ class _$LightBranchModelImpl implements _LightBranchModel {
   @override
   @JsonKey()
   String name;
+  @override
+  @JsonKey()
+  double balanceAmount;
 
   @override
   String toString() {
-    return 'LightBranchModel(id: $id, name: $name)';
+    return 'LightBranchModel(id: $id, name: $name, balanceAmount: $balanceAmount)';
   }
 
   /// Create a copy of LightBranchModel
@@ -369,7 +392,8 @@ class _$LightBranchModelImpl implements _LightBranchModel {
 }
 
 abstract class _LightBranchModel implements LightBranchModel {
-  factory _LightBranchModel({String? id, String name}) = _$LightBranchModelImpl;
+  factory _LightBranchModel({String? id, String name, double balanceAmount}) =
+      _$LightBranchModelImpl;
 
   factory _LightBranchModel.fromJson(Map<String, dynamic> json) =
       _$LightBranchModelImpl.fromJson;
@@ -380,6 +404,9 @@ abstract class _LightBranchModel implements LightBranchModel {
   @override
   String get name;
   set name(String value);
+  @override
+  double get balanceAmount;
+  set balanceAmount(double value);
 
   /// Create a copy of LightBranchModel
   /// with the given fields replaced by the non-null parameter values.

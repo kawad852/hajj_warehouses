@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
-part 'wallet_model.freezed.dart';
-part 'wallet_model.g.dart';
+part 'transaction_model.freezed.dart';
+part 'transaction_model.g.dart';
 
 @unfreezed
-class WalletModel with _$WalletModel {
+class TransactionModel with _$TransactionModel {
   @JsonSerializable(explicitToJson: true)
-  factory WalletModel({
+  factory TransactionModel({
     @TimestampSerializer() required DateTime createdAt,
     required String id,
     required String branchId,
@@ -17,7 +17,7 @@ class WalletModel with _$WalletModel {
     required double amount,
     required String operationId,
     required LightUserModel user,
-  }) = _WalletModel;
+  }) = _TransactionModel;
 
-  factory WalletModel.fromJson(Map<String, dynamic> json) => _$WalletModelFromJson(json);
+  factory TransactionModel.fromJson(Map<String, dynamic> json) => _$TransactionModelFromJson(json);
 }

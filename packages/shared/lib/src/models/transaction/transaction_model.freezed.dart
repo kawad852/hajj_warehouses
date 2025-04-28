@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'wallet_model.dart';
+part of 'transaction_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-WalletModel _$WalletModelFromJson(Map<String, dynamic> json) {
-  return _WalletModel.fromJson(json);
+TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
+  return _TransactionModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$WalletModel {
+mixin _$TransactionModel {
   @TimestampSerializer()
   DateTime get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
@@ -42,22 +42,22 @@ mixin _$WalletModel {
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
 
-  /// Serializes this WalletModel to a JSON map.
+  /// Serializes this TransactionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WalletModelCopyWith<WalletModel> get copyWith =>
+  $TransactionModelCopyWith<TransactionModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletModelCopyWith<$Res> {
-  factory $WalletModelCopyWith(
-    WalletModel value,
-    $Res Function(WalletModel) then,
-  ) = _$WalletModelCopyWithImpl<$Res, WalletModel>;
+abstract class $TransactionModelCopyWith<$Res> {
+  factory $TransactionModelCopyWith(
+    TransactionModel value,
+    $Res Function(TransactionModel) then,
+  ) = _$TransactionModelCopyWithImpl<$Res, TransactionModel>;
   @useResult
   $Res call({
     @TimestampSerializer() DateTime createdAt,
@@ -75,16 +75,16 @@ abstract class $WalletModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
-    implements $WalletModelCopyWith<$Res> {
-  _$WalletModelCopyWithImpl(this._value, this._then);
+class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
+    implements $TransactionModelCopyWith<$Res> {
+  _$TransactionModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -151,7 +151,7 @@ class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
     );
   }
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -163,12 +163,12 @@ class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
 }
 
 /// @nodoc
-abstract class _$$WalletModelImplCopyWith<$Res>
-    implements $WalletModelCopyWith<$Res> {
-  factory _$$WalletModelImplCopyWith(
-    _$WalletModelImpl value,
-    $Res Function(_$WalletModelImpl) then,
-  ) = __$$WalletModelImplCopyWithImpl<$Res>;
+abstract class _$$TransactionModelImplCopyWith<$Res>
+    implements $TransactionModelCopyWith<$Res> {
+  factory _$$TransactionModelImplCopyWith(
+    _$TransactionModelImpl value,
+    $Res Function(_$TransactionModelImpl) then,
+  ) = __$$TransactionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
@@ -188,15 +188,15 @@ abstract class _$$WalletModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WalletModelImplCopyWithImpl<$Res>
-    extends _$WalletModelCopyWithImpl<$Res, _$WalletModelImpl>
-    implements _$$WalletModelImplCopyWith<$Res> {
-  __$$WalletModelImplCopyWithImpl(
-    _$WalletModelImpl _value,
-    $Res Function(_$WalletModelImpl) _then,
+class __$$TransactionModelImplCopyWithImpl<$Res>
+    extends _$TransactionModelCopyWithImpl<$Res, _$TransactionModelImpl>
+    implements _$$TransactionModelImplCopyWith<$Res> {
+  __$$TransactionModelImplCopyWithImpl(
+    _$TransactionModelImpl _value,
+    $Res Function(_$TransactionModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -212,7 +212,7 @@ class __$$WalletModelImplCopyWithImpl<$Res>
     Object? user = null,
   }) {
     return _then(
-      _$WalletModelImpl(
+      _$TransactionModelImpl(
         createdAt:
             null == createdAt
                 ? _value.createdAt
@@ -266,8 +266,8 @@ class __$$WalletModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$WalletModelImpl implements _WalletModel {
-  _$WalletModelImpl({
+class _$TransactionModelImpl implements _TransactionModel {
+  _$TransactionModelImpl({
     @TimestampSerializer() required this.createdAt,
     required this.id,
     required this.branchId,
@@ -279,8 +279,8 @@ class _$WalletModelImpl implements _WalletModel {
     required this.user,
   });
 
-  factory _$WalletModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WalletModelImplFromJson(json);
+  factory _$TransactionModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TransactionModelImplFromJson(json);
 
   @override
   @TimestampSerializer()
@@ -304,25 +304,28 @@ class _$WalletModelImpl implements _WalletModel {
 
   @override
   String toString() {
-    return 'WalletModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, addReason: $addReason, notes: $notes, amount: $amount, operationId: $operationId, user: $user)';
+    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, addReason: $addReason, notes: $notes, amount: $amount, operationId: $operationId, user: $user)';
   }
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$WalletModelImplCopyWith<_$WalletModelImpl> get copyWith =>
-      __$$WalletModelImplCopyWithImpl<_$WalletModelImpl>(this, _$identity);
+  _$$TransactionModelImplCopyWith<_$TransactionModelImpl> get copyWith =>
+      __$$TransactionModelImplCopyWithImpl<_$TransactionModelImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WalletModelImplToJson(this);
+    return _$$TransactionModelImplToJson(this);
   }
 }
 
-abstract class _WalletModel implements WalletModel {
-  factory _WalletModel({
+abstract class _TransactionModel implements TransactionModel {
+  factory _TransactionModel({
     @TimestampSerializer() required DateTime createdAt,
     required String id,
     required String branchId,
@@ -332,10 +335,10 @@ abstract class _WalletModel implements WalletModel {
     required double amount,
     required String operationId,
     required LightUserModel user,
-  }) = _$WalletModelImpl;
+  }) = _$TransactionModelImpl;
 
-  factory _WalletModel.fromJson(Map<String, dynamic> json) =
-      _$WalletModelImpl.fromJson;
+  factory _TransactionModel.fromJson(Map<String, dynamic> json) =
+      _$TransactionModelImpl.fromJson;
 
   @override
   @TimestampSerializer()
@@ -367,10 +370,10 @@ abstract class _WalletModel implements WalletModel {
   LightUserModel get user;
   set user(LightUserModel value);
 
-  /// Create a copy of WalletModel
+  /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WalletModelImplCopyWith<_$WalletModelImpl> get copyWith =>
+  _$$TransactionModelImplCopyWith<_$TransactionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -9,6 +9,18 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+  late Query<TransactionModel> _query;
+
+  void _initialize() {
+    _query = kFirebaseInstant.transactions.whereMyBranch.orderByDesc;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +48,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  CustomSvg(
-                    MyIcons.currency,
-                    color: context.colorPalette.white,
-                    width: 30,
-                  ),
+                  CustomSvg(MyIcons.currency, color: context.colorPalette.white, width: 30),
                 ],
               ),
             ),
@@ -94,28 +102,35 @@ class _WalletScreenState extends State<WalletScreen> {
           ],
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        children: [
-          Text(
-            "عمليات تمت على العهدة",
-            style: TextStyle(
-              color: context.colorPalette.black001,
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: 10),
-          ListView.builder(
-            itemCount: 5,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return const WalletOperation();
-            },
-          ),
-        ],
+      body: CustomFirestoreQueryBuilder(
+        query: _query,
+        onComplete: (context, snapshot) {
+          final transactions = snapshot.docs;
+          return ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            children: [
+              Text(
+                "عمليات تمت على العهدة",
+                style: TextStyle(
+                  color: context.colorPalette.black001,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 10),
+              ListView.builder(
+                itemCount: transactions.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  final transaction = transactions[index].data();
+                  return const WalletOperation();
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

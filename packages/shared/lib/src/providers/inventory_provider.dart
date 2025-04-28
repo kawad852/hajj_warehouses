@@ -1,5 +1,4 @@
 import 'package:shared/src/helper/storage_service.dart';
-import 'package:shared/src/models/wallet/wallet_model.dart';
 
 import '../../shared.dart';
 
@@ -93,7 +92,13 @@ class InventoryProvider extends ChangeNotifier {
         );
 
         if (isAddOperation) {
-          _updateWallet(batch, user: user, operationId: operation.id, amount: operation.amount!);
+          _setTransaction(
+            context,
+            batch,
+            user: user,
+            operationId: operation.id,
+            amount: operation.amount!,
+          );
         }
 
         if (createOrder) {
@@ -131,14 +136,15 @@ class InventoryProvider extends ChangeNotifier {
     );
   }
 
-  void _updateWallet(
+  void _setTransaction(
+    BuildContext context,
     WriteBatch batch, {
     required LightUserModel user,
     required String operationId,
     required double amount,
   }) {
-    final walletDocRef = kFirebaseInstant.wallets.doc();
-    final wallet = WalletModel(
+    final walletDocRef = kFirebaseInstant.transactions.doc();
+    final transaction = TransactionModel(
       createdAt: kNowDate,
       id: walletDocRef.id,
       branchId: kSelectedBranchId,
@@ -147,6 +153,7 @@ class InventoryProvider extends ChangeNotifier {
       amount: amount,
       user: user,
     );
-    batch.set(walletDocRef, wallet);
+    kFirebaseInstant.branches.doc(kSelectedBranchId).update({});
+    batch.set(walletDocRef, transaction);
   }
 }

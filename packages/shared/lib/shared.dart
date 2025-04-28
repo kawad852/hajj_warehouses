@@ -55,6 +55,7 @@ export 'src/models/item/item_model.dart';
 export 'src/models/operation/inventory_operation_model.dart';
 export 'src/models/operation_info_model.dart';
 export 'src/models/order/order_model.dart';
+export 'src/models/transaction/transaction_model.dart';
 export 'src/models/user/user_model.dart';
 //network
 export 'src/network/api_service.dart';
