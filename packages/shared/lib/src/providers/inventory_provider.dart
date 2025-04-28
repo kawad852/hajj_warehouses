@@ -92,6 +92,10 @@ class InventoryProvider extends ChangeNotifier {
           itemIds: operation.items.map((e) => e.id).toList(),
         );
 
+        if (isAddOperation) {
+          _updateWallet(batch, user: user, operationId: operation.id, amount: operation.amount!);
+        }
+
         if (createOrder) {
           final order = OrderModel(
             createdAt: kNowDate,
@@ -138,7 +142,7 @@ class InventoryProvider extends ChangeNotifier {
       createdAt: kNowDate,
       id: walletDocRef.id,
       branchId: kSelectedBranchId,
-      transactionType: TransactionType.deposit.value,
+      transactionType: TransactionType.withdrawal.value,
       operationId: operationId,
       amount: amount,
       user: user,
