@@ -137,14 +137,13 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                               ),
                             ),
                           ),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               context.push((context) {
                                 return const OutOfStockItemsScreen();
                               });
                             },
-                            child: Material(
-                              type: MaterialType.transparency,
+                            child: Ink(
                               child: Row(
                                 children: [
                                   Text(

@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/item/inventory_screen.dart';
 import 'package:shared/shared.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,13 +44,17 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               Expanded(
-                child: TaskCard(
-                  onTap: () {
-                    context.push((context) => const WalletScreen());
+                child: BranchSelector(
+                  builder: (context, branch) {
+                    return TaskCard(
+                      onTap: () {
+                        context.push((context) => const WalletScreen());
+                      },
+                      title: "رصيد العهدة",
+                      task: "${branch.balance.toStringAsFixed(2)} ريال",
+                      prefixIcon: MyIcons.wallet,
+                    );
                   },
-                  title: "رصيد العهدة",
-                  task: "43,590 ريال",
-                  prefixIcon: MyIcons.wallet,
                 ),
               ),
               const SizedBox(width: 10),
@@ -57,7 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: OutOfStockSelector(
                   builder: (context, items) {
                     return TaskCard(
-                      onTap: () {},
+                      onTap: () {
+                        context.push((context) {
+                          return const InventoryScreen();
+                        });
+                      },
                       title: "المخزون",
                       task: items.isNotEmpty ? "لديك اصناف بحاجة لتزويد" : "-",
                       prefixIcon: MyIcons.box,

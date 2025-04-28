@@ -1,0 +1,67 @@
+import 'package:shared/shared.dart';
+
+import '../../../screens_exports.dart';
+
+class InventoryScreen extends StatefulWidget {
+  const InventoryScreen({super.key});
+
+  @override
+  State<InventoryScreen> createState() => _InventoryScreenState();
+}
+
+class _InventoryScreenState extends State<InventoryScreen> {
+  late Query<ItemModel> _query;
+
+  void _initialize() {
+    _query = kFirebaseInstant.items.whereMyBranch.orderByDesc;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("المخزون"), forceMaterialTransparency: true),
+      body: CustomFirestoreQueryBuilder(
+        query: _query,
+        onComplete: (context, snapshot) {
+          final items = snapshot.docs;
+          return Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                const MaterialsTable(),
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 5),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      if (snapshot.isLoadingMore(index)) {
+                        return const FPLoading();
+                      }
+                      final item = items[index].data();
+                      return TableContainer(
+                        onTap: () {
+                          context.push((context) => ItemManagementScreen(item: item));
+                        },
+                        id: "$index",
+                        name: item.name,
+                        availableQuantity: item.quantity,
+                        minimumQuantity: item.minimumQuantity,
+                        status: item.status,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
