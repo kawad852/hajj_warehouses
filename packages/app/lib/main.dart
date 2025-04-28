@@ -56,6 +56,9 @@ class _MyAppState extends State<MyApp> {
         .map((e) => e.docs.map((e) => e.data()).toList());
   }
 
+  get _branchStream =>
+      kFirebaseInstant.branches.doc(kSelectedBranchId).snapshots().map((e) => e.data()!);
+
   Widget _toggleScreen(BuildContext context) {
     if (MySharedPreferences.user?.id != null && MySharedPreferences.selectedBranchId.isNotEmpty) {
       return const AppNavBar();
@@ -104,6 +107,14 @@ class _MyAppState extends State<MyApp> {
                 key: ValueKey(userProvider.isAuthenticated),
                 value: _outOfStockStream,
                 initialData: const [],
+                updateShouldNotify: (initialValue, value) {
+                  return true;
+                },
+              ),
+              StreamProvider<BranchModel>.value(
+                key: ValueKey(userProvider.isAuthenticated),
+                value: _branchStream,
+                initialData: BranchModel(),
                 updateShouldNotify: (initialValue, value) {
                   return true;
                 },

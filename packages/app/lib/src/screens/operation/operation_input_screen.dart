@@ -112,7 +112,11 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               if (errorMsg != null) {
                 Fluttertoast.showToast(msg: errorMsg);
               } else {
-                context.inventoryProvider.createOperation(context, operation: _operation);
+                context.inventoryProvider.createOperation(
+                  context,
+                  operation: _operation,
+                  updateBalance: _isAddOperation,
+                );
               }
             },
           ),

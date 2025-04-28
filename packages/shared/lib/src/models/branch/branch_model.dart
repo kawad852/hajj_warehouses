@@ -12,6 +12,7 @@ class BranchModel with _$BranchModel {
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String name,
+    @Default(0.0) double balance,
   }) = _BranchModel;
 
   factory BranchModel.fromJson(Map<String, dynamic> json) => _$BranchModelFromJson(json);
@@ -20,11 +21,7 @@ class BranchModel with _$BranchModel {
 @unfreezed
 class LightBranchModel with _$LightBranchModel {
   @JsonSerializable(explicitToJson: true)
-  factory LightBranchModel({
-    String? id,
-    @Default('') String name,
-    @Default(0.0) double balanceAmount,
-  }) = _LightBranchModel;
+  factory LightBranchModel({String? id, @Default('') String name}) = _LightBranchModel;
 
   factory LightBranchModel.fromJson(Map<String, dynamic> json) => _$LightBranchModelFromJson(json);
 }

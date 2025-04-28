@@ -11,6 +11,7 @@ class InventoryProvider extends ChangeNotifier {
     Future<List<ItemModel>> Function(WriteBatch bath)? onCreate,
     String? transferToBranchId,
     (String, String)? orderValues,
+    bool updateBalance = false,
   }) {
     ApiService.fetch(
       context,
@@ -91,8 +92,9 @@ class InventoryProvider extends ChangeNotifier {
           itemIds: operation.items.map((e) => e.id).toList(),
         );
 
-        if (isAddOperation) {
-          _setTransaction(
+        if (updateBalance) {
+          setTransaction(
+            // ignore: use_build_context_synchronously
             context,
             batch,
             user: user,
@@ -136,7 +138,7 @@ class InventoryProvider extends ChangeNotifier {
     );
   }
 
-  void _setTransaction(
+  void setTransaction(
     BuildContext context,
     WriteBatch batch, {
     required LightUserModel user,
@@ -153,7 +155,8 @@ class InventoryProvider extends ChangeNotifier {
       amount: amount,
       user: user,
     );
-    kFirebaseInstant.branches.doc(kSelectedBranchId).update({});
+    final branchDocRef = kFirebaseInstant.branches.doc(kSelectedBranchId);
+    batch.update(branchDocRef, {MyFields.balance: FieldValue.increment(-amount)});
     batch.set(walletDocRef, transaction);
   }
 }
