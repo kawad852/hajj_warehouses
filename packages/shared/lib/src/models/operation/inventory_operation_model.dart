@@ -20,7 +20,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
     required String operationType,
-    @Default(0.0) double totalPayment,
+    double? amount,
     required List<LightItemModel> items,
     @Default([]) List<String> itemIds,
     @Default([]) List<String> images,

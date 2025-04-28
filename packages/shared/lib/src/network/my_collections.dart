@@ -15,4 +15,5 @@ class MyCollections {
   static const String itemSuggestions = 'itemSuggestions';
   static const String inventoryOperations = 'inventoryOperations';
   static const String branches = 'branches';
+  static const String wallets = 'wallets';
 }

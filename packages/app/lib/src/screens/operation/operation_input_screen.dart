@@ -94,7 +94,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 } else if (_isDestroyOperation) {
                   errorMsg = 'يجب تحديد سبب الإتلاف';
                 }
-              } else if (_isAddOperation && _operation.totalPayment == 0) {
+              } else if (_isAddOperation && (_operation.amount == null || _operation.amount == 0)) {
                 errorMsg = "يجب تحديد قيمة المشتريات";
               } else if (_isTransferOperation &&
                   (_operation.transferFromBranch?.id == null ||
@@ -174,7 +174,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   ),
                   BorderDecoratorTheme(
                     child: DecimalsEditor(
-                      onChanged: (value) => _operation.totalPayment = value!,
+                      onChanged: (value) => _operation.amount = value,
                       textAlign: TextAlign.center,
                       suffixText: "ريال",
                     ),

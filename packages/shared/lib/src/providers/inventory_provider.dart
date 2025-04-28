@@ -1,4 +1,5 @@
 import 'package:shared/src/helper/storage_service.dart';
+import 'package:shared/src/models/wallet/wallet_model.dart';
 
 import '../../shared.dart';
 
@@ -124,5 +125,24 @@ class InventoryProvider extends ChangeNotifier {
         }
       },
     );
+  }
+
+  void _updateWallet(
+    WriteBatch batch, {
+    required LightUserModel user,
+    required String operationId,
+    required double amount,
+  }) {
+    final walletDocRef = kFirebaseInstant.wallets.doc();
+    final wallet = WalletModel(
+      createdAt: kNowDate,
+      id: walletDocRef.id,
+      branchId: kSelectedBranchId,
+      transactionType: TransactionType.deposit.value,
+      operationId: operationId,
+      amount: amount,
+      user: user,
+    );
+    batch.set(walletDocRef, wallet);
   }
 }

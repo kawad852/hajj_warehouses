@@ -10,3 +10,12 @@ enum OperationType {
 
   const OperationType(this.value);
 }
+
+enum TransactionType {
+  deposit('DEPOSIT'),
+  withdrawal('WITHDRAWAL');
+
+  final String value;
+
+  const TransactionType(this.value);
+}

@@ -30,7 +30,7 @@ _$InventoryOperationModelImpl _$$InventoryOperationModelImplFromJson(
             json['transferToBranch'] as Map<String, dynamic>,
           ),
   operationType: json['operationType'] as String,
-  totalPayment: (json['totalPayment'] as num?)?.toDouble() ?? 0.0,
+  amount: (json['amount'] as num?)?.toDouble(),
   items:
       (json['items'] as List<dynamic>)
           .map((e) => LightItemModel.fromJson(e as Map<String, dynamic>))
@@ -57,7 +57,7 @@ Map<String, dynamic> _$$InventoryOperationModelImplToJson(
   'transferFromBranch': instance.transferFromBranch?.toJson(),
   'transferToBranch': instance.transferToBranch?.toJson(),
   'operationType': instance.operationType,
-  'totalPayment': instance.totalPayment,
+  'amount': instance.amount,
   'items': instance.items.map((e) => e.toJson()).toList(),
   'itemIds': instance.itemIds,
   'images': instance.images,

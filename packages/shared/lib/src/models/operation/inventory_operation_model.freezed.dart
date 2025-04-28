@@ -50,8 +50,8 @@ mixin _$InventoryOperationModel {
       throw _privateConstructorUsedError;
   String get operationType => throw _privateConstructorUsedError;
   set operationType(String value) => throw _privateConstructorUsedError;
-  double get totalPayment => throw _privateConstructorUsedError;
-  set totalPayment(double value) => throw _privateConstructorUsedError;
+  double? get amount => throw _privateConstructorUsedError;
+  set amount(double? value) => throw _privateConstructorUsedError;
   List<LightItemModel> get items => throw _privateConstructorUsedError;
   set items(List<LightItemModel> value) => throw _privateConstructorUsedError;
   List<String> get itemIds => throw _privateConstructorUsedError;
@@ -92,7 +92,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
     String operationType,
-    double totalPayment,
+    double? amount,
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -133,7 +133,7 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
     Object? operationType = null,
-    Object? totalPayment = null,
+    Object? amount = freezed,
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
@@ -196,11 +196,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.operationType
                     : operationType // ignore: cast_nullable_to_non_nullable
                         as String,
-            totalPayment:
-                null == totalPayment
-                    ? _value.totalPayment
-                    : totalPayment // ignore: cast_nullable_to_non_nullable
-                        as double,
+            amount:
+                freezed == amount
+                    ? _value.amount
+                    : amount // ignore: cast_nullable_to_non_nullable
+                        as double?,
             items:
                 null == items
                     ? _value.items
@@ -286,7 +286,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
     String operationType,
-    double totalPayment,
+    double? amount,
     List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -330,7 +330,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
     Object? operationType = null,
-    Object? totalPayment = null,
+    Object? amount = freezed,
     Object? items = null,
     Object? itemIds = null,
     Object? images = null,
@@ -393,11 +393,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.operationType
                 : operationType // ignore: cast_nullable_to_non_nullable
                     as String,
-        totalPayment:
-            null == totalPayment
-                ? _value.totalPayment
-                : totalPayment // ignore: cast_nullable_to_non_nullable
-                    as double,
+        amount:
+            freezed == amount
+                ? _value.amount
+                : amount // ignore: cast_nullable_to_non_nullable
+                    as double?,
         items:
             null == items
                 ? _value.items
@@ -439,7 +439,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
     this.transferFromBranch,
     this.transferToBranch,
     required this.operationType,
-    this.totalPayment = 0.0,
+    this.amount,
     required this.items,
     this.itemIds = const [],
     this.images = const [],
@@ -474,8 +474,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
   @override
   String operationType;
   @override
-  @JsonKey()
-  double totalPayment;
+  double? amount;
   @override
   List<LightItemModel> items;
   @override
@@ -490,7 +489,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branchId: $branchId, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, operationType: $operationType, totalPayment: $totalPayment, items: $items, itemIds: $itemIds, images: $images, files: $files)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branchId: $branchId, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, operationType: $operationType, amount: $amount, items: $items, itemIds: $itemIds, images: $images, files: $files)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -522,7 +521,7 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
     required String operationType,
-    double totalPayment,
+    double? amount,
     required List<LightItemModel> items,
     List<String> itemIds,
     List<String> images,
@@ -569,8 +568,8 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
   String get operationType;
   set operationType(String value);
   @override
-  double get totalPayment;
-  set totalPayment(double value);
+  double? get amount;
+  set amount(double? value);
   @override
   List<LightItemModel> get items;
   set items(List<LightItemModel> value);

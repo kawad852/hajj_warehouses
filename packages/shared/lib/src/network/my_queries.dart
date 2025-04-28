@@ -1,4 +1,5 @@
 import 'package:shared/shared.dart';
+import 'package:shared/src/models/wallet/wallet_model.dart';
 
 import '../models/country/country_model.dart';
 import '../models/policy/policy_model.dart';
@@ -86,6 +87,12 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<BranchModel> get branches =>
       collection(MyCollections.branches).withConverter<BranchModel>(
         fromFirestore: (snapshot, _) => BranchModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
+  CollectionReference<WalletModel> get wallets =>
+      collection(MyCollections.wallets).withConverter<WalletModel>(
+        fromFirestore: (snapshot, _) => WalletModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 }
