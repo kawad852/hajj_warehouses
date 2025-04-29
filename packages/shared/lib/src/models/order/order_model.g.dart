@@ -31,11 +31,6 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
               : LightBranchModel.fromJson(
                 json['transferToBranch'] as Map<String, dynamic>,
               ),
-      orderRecords:
-          (json['orderRecords'] as List<dynamic>?)
-              ?.map((e) => OrderRecordModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
@@ -48,12 +43,11 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'operation': instance.operation?.toJson(),
       'transferFromBranch': instance.transferFromBranch?.toJson(),
       'transferToBranch': instance.transferToBranch?.toJson(),
-      'orderRecords': instance.orderRecords.map((e) => e.toJson()).toList(),
     };
 
-_$OrderRecordModelImpl _$$OrderRecordModelImplFromJson(
+_$OrderHistoryModelImpl _$$OrderHistoryModelImplFromJson(
   Map<String, dynamic> json,
-) => _$OrderRecordModelImpl(
+) => _$OrderHistoryModelImpl(
   time: const TimestampSerializer().fromJson(json['time']),
   status: json['status'] as String,
   user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
@@ -63,8 +57,8 @@ _$OrderRecordModelImpl _$$OrderRecordModelImplFromJson(
       const [],
 );
 
-Map<String, dynamic> _$$OrderRecordModelImplToJson(
-  _$OrderRecordModelImpl instance,
+Map<String, dynamic> _$$OrderHistoryModelImplToJson(
+  _$OrderHistoryModelImpl instance,
 ) => <String, dynamic>{
   'time': const TimestampSerializer().toJson(instance.time),
   'status': instance.status,

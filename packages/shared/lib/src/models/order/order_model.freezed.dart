@@ -43,9 +43,6 @@ mixin _$OrderModel {
   LightBranchModel? get transferToBranch => throw _privateConstructorUsedError;
   set transferToBranch(LightBranchModel? value) =>
       throw _privateConstructorUsedError;
-  List<OrderRecordModel> get orderRecords => throw _privateConstructorUsedError;
-  set orderRecords(List<OrderRecordModel> value) =>
-      throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,7 +70,6 @@ abstract class $OrderModelCopyWith<$Res> {
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
-    List<OrderRecordModel> orderRecords,
   });
 
   $LightUserModelCopyWith<$Res> get user;
@@ -105,7 +101,6 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? operation = freezed,
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
-    Object? orderRecords = null,
   }) {
     return _then(
       _value.copyWith(
@@ -149,11 +144,6 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.transferToBranch
                     : transferToBranch // ignore: cast_nullable_to_non_nullable
                         as LightBranchModel?,
-            orderRecords:
-                null == orderRecords
-                    ? _value.orderRecords
-                    : orderRecords // ignore: cast_nullable_to_non_nullable
-                        as List<OrderRecordModel>,
           )
           as $Val,
     );
@@ -230,7 +220,6 @@ abstract class _$$OrderModelImplCopyWith<$Res>
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
-    List<OrderRecordModel> orderRecords,
   });
 
   @override
@@ -265,7 +254,6 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? operation = freezed,
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
-    Object? orderRecords = null,
   }) {
     return _then(
       _$OrderModelImpl(
@@ -309,11 +297,6 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.transferToBranch
                 : transferToBranch // ignore: cast_nullable_to_non_nullable
                     as LightBranchModel?,
-        orderRecords:
-            null == orderRecords
-                ? _value.orderRecords
-                : orderRecords // ignore: cast_nullable_to_non_nullable
-                    as List<OrderRecordModel>,
       ),
     );
   }
@@ -332,7 +315,6 @@ class _$OrderModelImpl extends _OrderModel {
     this.operation,
     this.transferFromBranch,
     this.transferToBranch,
-    this.orderRecords = const [],
   }) : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -356,13 +338,10 @@ class _$OrderModelImpl extends _OrderModel {
   LightBranchModel? transferFromBranch;
   @override
   LightBranchModel? transferToBranch;
-  @override
-  @JsonKey()
-  List<OrderRecordModel> orderRecords;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, orderRecords: $orderRecords)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch)';
   }
 
   /// Create a copy of OrderModel
@@ -389,7 +368,6 @@ abstract class _OrderModel extends OrderModel {
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
-    List<OrderRecordModel> orderRecords,
   }) = _$OrderModelImpl;
   _OrderModel._() : super._();
 
@@ -422,9 +400,6 @@ abstract class _OrderModel extends OrderModel {
   @override
   LightBranchModel? get transferToBranch;
   set transferToBranch(LightBranchModel? value);
-  @override
-  List<OrderRecordModel> get orderRecords;
-  set orderRecords(List<OrderRecordModel> value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -434,12 +409,12 @@ abstract class _OrderModel extends OrderModel {
       throw _privateConstructorUsedError;
 }
 
-OrderRecordModel _$OrderRecordModelFromJson(Map<String, dynamic> json) {
-  return _OrderRecordModel.fromJson(json);
+OrderHistoryModel _$OrderHistoryModelFromJson(Map<String, dynamic> json) {
+  return _OrderHistoryModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderRecordModel {
+mixin _$OrderHistoryModel {
   @TimestampSerializer()
   DateTime? get time => throw _privateConstructorUsedError;
   @TimestampSerializer()
@@ -453,22 +428,22 @@ mixin _$OrderRecordModel {
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
 
-  /// Serializes this OrderRecordModel to a JSON map.
+  /// Serializes this OrderHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderRecordModelCopyWith<OrderRecordModel> get copyWith =>
+  $OrderHistoryModelCopyWith<OrderHistoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderRecordModelCopyWith<$Res> {
-  factory $OrderRecordModelCopyWith(
-    OrderRecordModel value,
-    $Res Function(OrderRecordModel) then,
-  ) = _$OrderRecordModelCopyWithImpl<$Res, OrderRecordModel>;
+abstract class $OrderHistoryModelCopyWith<$Res> {
+  factory $OrderHistoryModelCopyWith(
+    OrderHistoryModel value,
+    $Res Function(OrderHistoryModel) then,
+  ) = _$OrderHistoryModelCopyWithImpl<$Res, OrderHistoryModel>;
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? time,
@@ -482,16 +457,16 @@ abstract class $OrderRecordModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
-    implements $OrderRecordModelCopyWith<$Res> {
-  _$OrderRecordModelCopyWithImpl(this._value, this._then);
+class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
+    implements $OrderHistoryModelCopyWith<$Res> {
+  _$OrderHistoryModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -534,7 +509,7 @@ class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
     );
   }
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -546,12 +521,12 @@ class _$OrderRecordModelCopyWithImpl<$Res, $Val extends OrderRecordModel>
 }
 
 /// @nodoc
-abstract class _$$OrderRecordModelImplCopyWith<$Res>
-    implements $OrderRecordModelCopyWith<$Res> {
-  factory _$$OrderRecordModelImplCopyWith(
-    _$OrderRecordModelImpl value,
-    $Res Function(_$OrderRecordModelImpl) then,
-  ) = __$$OrderRecordModelImplCopyWithImpl<$Res>;
+abstract class _$$OrderHistoryModelImplCopyWith<$Res>
+    implements $OrderHistoryModelCopyWith<$Res> {
+  factory _$$OrderHistoryModelImplCopyWith(
+    _$OrderHistoryModelImpl value,
+    $Res Function(_$OrderHistoryModelImpl) then,
+  ) = __$$OrderHistoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
@@ -567,15 +542,15 @@ abstract class _$$OrderRecordModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$OrderRecordModelImplCopyWithImpl<$Res>
-    extends _$OrderRecordModelCopyWithImpl<$Res, _$OrderRecordModelImpl>
-    implements _$$OrderRecordModelImplCopyWith<$Res> {
-  __$$OrderRecordModelImplCopyWithImpl(
-    _$OrderRecordModelImpl _value,
-    $Res Function(_$OrderRecordModelImpl) _then,
+class __$$OrderHistoryModelImplCopyWithImpl<$Res>
+    extends _$OrderHistoryModelCopyWithImpl<$Res, _$OrderHistoryModelImpl>
+    implements _$$OrderHistoryModelImplCopyWith<$Res> {
+  __$$OrderHistoryModelImplCopyWithImpl(
+    _$OrderHistoryModelImpl _value,
+    $Res Function(_$OrderHistoryModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -587,7 +562,7 @@ class __$$OrderRecordModelImplCopyWithImpl<$Res>
     Object? images = null,
   }) {
     return _then(
-      _$OrderRecordModelImpl(
+      _$OrderHistoryModelImpl(
         time:
             freezed == time
                 ? _value.time
@@ -621,8 +596,8 @@ class __$$OrderRecordModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$OrderRecordModelImpl implements _OrderRecordModel {
-  _$OrderRecordModelImpl({
+class _$OrderHistoryModelImpl implements _OrderHistoryModel {
+  _$OrderHistoryModelImpl({
     @TimestampSerializer() this.time,
     required this.status,
     required this.user,
@@ -630,8 +605,8 @@ class _$OrderRecordModelImpl implements _OrderRecordModel {
     this.images = const [],
   });
 
-  factory _$OrderRecordModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderRecordModelImplFromJson(json);
+  factory _$OrderHistoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderHistoryModelImplFromJson(json);
 
   @override
   @TimestampSerializer()
@@ -648,37 +623,37 @@ class _$OrderRecordModelImpl implements _OrderRecordModel {
 
   @override
   String toString() {
-    return 'OrderRecordModel(time: $time, status: $status, user: $user, branchId: $branchId, images: $images)';
+    return 'OrderHistoryModel(time: $time, status: $status, user: $user, branchId: $branchId, images: $images)';
   }
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderRecordModelImplCopyWith<_$OrderRecordModelImpl> get copyWith =>
-      __$$OrderRecordModelImplCopyWithImpl<_$OrderRecordModelImpl>(
+  _$$OrderHistoryModelImplCopyWith<_$OrderHistoryModelImpl> get copyWith =>
+      __$$OrderHistoryModelImplCopyWithImpl<_$OrderHistoryModelImpl>(
         this,
         _$identity,
       );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrderRecordModelImplToJson(this);
+    return _$$OrderHistoryModelImplToJson(this);
   }
 }
 
-abstract class _OrderRecordModel implements OrderRecordModel {
-  factory _OrderRecordModel({
+abstract class _OrderHistoryModel implements OrderHistoryModel {
+  factory _OrderHistoryModel({
     @TimestampSerializer() DateTime? time,
     required String status,
     required LightUserModel user,
     required String branchId,
     List<String> images,
-  }) = _$OrderRecordModelImpl;
+  }) = _$OrderHistoryModelImpl;
 
-  factory _OrderRecordModel.fromJson(Map<String, dynamic> json) =
-      _$OrderRecordModelImpl.fromJson;
+  factory _OrderHistoryModel.fromJson(Map<String, dynamic> json) =
+      _$OrderHistoryModelImpl.fromJson;
 
   @override
   @TimestampSerializer()
@@ -698,10 +673,10 @@ abstract class _OrderRecordModel implements OrderRecordModel {
   List<String> get images;
   set images(List<String> value);
 
-  /// Create a copy of OrderRecordModel
+  /// Create a copy of OrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderRecordModelImplCopyWith<_$OrderRecordModelImpl> get copyWith =>
+  _$$OrderHistoryModelImplCopyWith<_$OrderHistoryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

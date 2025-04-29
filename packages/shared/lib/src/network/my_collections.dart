@@ -16,4 +16,5 @@ class MyCollections {
   static const String inventoryOperations = 'inventoryOperations';
   static const String branches = 'branches';
   static const String transactions = 'transactions';
+  static const String orderHistory = 'orderHistory';
 }

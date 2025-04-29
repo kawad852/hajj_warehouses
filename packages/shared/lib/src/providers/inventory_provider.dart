@@ -114,16 +114,16 @@ class InventoryProvider extends ChangeNotifier {
             transferToBranch: operation.transferToBranch,
           );
           order.id = await order.getId();
-          order.orderRecords = [
-            OrderRecordModel(
-              status: order.status,
-              user: user,
-              time: kNowDate,
-              branchId: kSelectedBranchId,
-            ),
-          ];
           final orderDocREF = kFirebaseInstant.orders.doc(order.id);
+          final orderHistoryDocRef = orderDocREF.collection(MyCollections.orderHistory).doc();
+          final orderHistory = OrderHistoryModel(
+            status: order.status,
+            user: user,
+            time: kNowDate,
+            branchId: kSelectedBranchId,
+          );
           batch.set(orderDocREF, order);
+          batch.set(orderHistoryDocRef, orderHistory.toJson());
         } else {
           final operationDocREF = kFirebaseInstant.inventoryOperations.doc(operation.id);
           batch.set(operationDocREF, operation);

@@ -16,7 +16,6 @@ class OrderModel with _$OrderModel {
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
-    @Default([]) List<OrderRecordModel> orderRecords,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
@@ -27,15 +26,16 @@ class OrderModel with _$OrderModel {
 }
 
 @unfreezed
-class OrderRecordModel with _$OrderRecordModel {
+class OrderHistoryModel with _$OrderHistoryModel {
   @JsonSerializable(explicitToJson: true)
-  factory OrderRecordModel({
+  factory OrderHistoryModel({
     @TimestampSerializer() DateTime? time,
     required String status,
     required LightUserModel user,
     required String branchId,
     @Default([]) List<String> images,
-  }) = _OrderRecordModel;
+  }) = _OrderHistoryModel;
 
-  factory OrderRecordModel.fromJson(Map<String, dynamic> json) => _$OrderRecordModelFromJson(json);
+  factory OrderHistoryModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderHistoryModelFromJson(json);
 }

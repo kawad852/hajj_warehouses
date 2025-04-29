@@ -12,17 +12,35 @@ class OrderDetailsScreen extends StatefulWidget {
 }
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  late Stream<OrderModel> _operationStream;
+  late Stream<OrderModel> _orderStream;
+  late Stream<QuerySnapshot<OrderHistoryModel>> _orderHistoryStream;
 
   OrderModel get _order => widget.order;
   DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(_order.id);
 
   void _initialize() {
-    _operationStream = _docREF.snapshots().map((e) => e.data()!);
+    _orderStream = _docREF.snapshots().map((e) => e.data()!);
+    _orderHistoryStream =
+        _docREF
+            .collection(MyCollections.orderHistory)
+            .withConverter<OrderHistoryModel>(
+              fromFirestore: (snapshot, _) => OrderHistoryModel.fromJson(snapshot.data()!),
+              toFirestore: (snapshot, _) => snapshot.toJson(),
+            )
+            .snapshots();
   }
 
   void _updateOrderStatus(String status) {
-    _docREF.update({MyFields.status: status});
+    final batch = kFirebaseInstant.batch();
+    batch.update(_docREF, {MyFields.status: status});
+    final orderHistoryDocRef = _docREF.collection(MyCollections.orderHistory).doc();
+    final history = OrderHistoryModel(
+      status: status,
+      user: kCurrentLightUser,
+      branchId: kSelectedBranchId,
+      time: kNowDate,
+    );
+    batch.set(orderHistoryDocRef, history.toJson());
   }
 
   Future<void> _showItemsDialog(BuildContext context, List<LightItemModel> items) async {
@@ -49,7 +67,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BigStreamBuilder(
-      stream: _operationStream,
+      stream: _orderStream,
       initialData: _order,
       onComplete: (context, snapshot) {
         final order = snapshot.data!;
@@ -227,20 +245,25 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ),
                 ),
               ),
-              ProcessTimeLine(
-                itemCount: order.orderRecords.length,
-                contentsBuilder: (context, index) {
-                  final record = order.orderRecords[index];
-                  return OperationCard(
-                    operation: InventoryOperationModel(
-                      createdAt: kNowDate,
-                      operationType: 'ADD',
-                      supplyType: '',
-                      files: [],
-                      items: [],
-                      branchId: kSelectedBranchId,
-                      user: kCurrentLightUser,
-                    ),
+              ImpededStreamBuilder(
+                stream: _orderHistoryStream,
+                onComplete: (context, snapshot) {
+                  return ProcessTimeLine(
+                    itemCount: snapshot.data!.docs.length,
+                    contentsBuilder: (context, index) {
+                      final history = snapshot.data!.docs[index].data();
+                      return OperationCard(
+                        operation: InventoryOperationModel(
+                          createdAt: kNowDate,
+                          operationType: 'ADD',
+                          supplyType: '',
+                          files: [],
+                          items: [],
+                          branchId: kSelectedBranchId,
+                          user: kCurrentLightUser,
+                        ),
+                      );
+                    },
                   );
                 },
               ),
