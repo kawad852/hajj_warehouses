@@ -75,7 +75,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         return Scaffold(
           appBar: AppBar(title: AppBarText("طلب رقم ${order.id}#")),
           bottomNavigationBar:
-              order.status == OrderStatusEnum.placed.value
+              order.status == OrderStatusEnum.placed.value && kIsAdmin
                   ? BottomAppBar(
                     color: Colors.transparent,
                     child: Row(
@@ -187,7 +187,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ),
                     ),
-                    if (order.status == OrderStatusEnum.approved.value) ...[
+                    if (order.status == OrderStatusEnum.approved.value && !kIsAdmin) ...[
                       const SizedBox(width: 10),
                       Expanded(
                         child: StretchedButton(

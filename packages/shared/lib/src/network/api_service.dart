@@ -16,6 +16,7 @@ LightUserModel get kCurrentLightUser => LightUserModel(
   id: MySharedPreferences.user?.id,
   displayName: MySharedPreferences.user?.displayName,
 );
+bool get kIsAdmin => MySharedPreferences.user?.role == RoleEnum.admin.value;
 
 class ApiService {
   static const String socketException = 'socket-exception';
