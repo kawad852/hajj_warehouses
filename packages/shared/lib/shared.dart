@@ -100,6 +100,7 @@ export 'src/widgets/editors/numbers_editor.dart';
 export 'src/widgets/editors/password_editor.dart';
 export 'src/widgets/editors/phone_editor.dart';
 export 'src/widgets/editors/text_editor.dart';
+export 'src/widgets/empty_widget.dart';
 export 'src/widgets/extensions/snackbar_extension.dart';
 export 'src/widgets/fire_animated_search_bar.dart';
 export 'src/widgets/fp_loading.dart';
