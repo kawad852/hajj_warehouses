@@ -39,8 +39,8 @@ mixin _$ItemModel {
   set quantity(int value) => throw _privateConstructorUsedError;
   int get minimumQuantity => throw _privateConstructorUsedError;
   set minimumQuantity(int value) => throw _privateConstructorUsedError;
-  LightUserModel get user => throw _privateConstructorUsedError;
-  set user(LightUserModel value) => throw _privateConstructorUsedError;
+  LightUserModel? get user => throw _privateConstructorUsedError;
+  set user(LightUserModel? value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get suggested => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -70,11 +70,11 @@ abstract class $ItemModelCopyWith<$Res> {
     String branchId,
     int quantity,
     int minimumQuantity,
-    LightUserModel user,
+    LightUserModel? user,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 
-  $LightUserModelCopyWith<$Res> get user;
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? branchId = null,
     Object? quantity = null,
     Object? minimumQuantity = null,
-    Object? user = null,
+    Object? user = freezed,
     Object? suggested = null,
   }) {
     return _then(
@@ -146,10 +146,10 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     : minimumQuantity // ignore: cast_nullable_to_non_nullable
                         as int,
             user:
-                null == user
+                freezed == user
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
-                        as LightUserModel,
+                        as LightUserModel?,
             suggested:
                 null == suggested
                     ? _value.suggested
@@ -164,8 +164,12 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LightUserModelCopyWith<$Res> get user {
-    return $LightUserModelCopyWith<$Res>(_value.user, (value) {
+  $LightUserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -189,12 +193,12 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String branchId,
     int quantity,
     int minimumQuantity,
-    LightUserModel user,
+    LightUserModel? user,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 
   @override
-  $LightUserModelCopyWith<$Res> get user;
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -219,7 +223,7 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? branchId = null,
     Object? quantity = null,
     Object? minimumQuantity = null,
-    Object? user = null,
+    Object? user = freezed,
     Object? suggested = null,
   }) {
     return _then(
@@ -265,10 +269,10 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 : minimumQuantity // ignore: cast_nullable_to_non_nullable
                     as int,
         user:
-            null == user
+            freezed == user
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
-                    as LightUserModel,
+                    as LightUserModel?,
         suggested:
             null == suggested
                 ? _value.suggested
@@ -289,10 +293,10 @@ class _$ItemModelImpl extends _ItemModel {
     this.name = '',
     this.categoryId = '',
     this.status = '',
-    required this.branchId,
+    this.branchId = '',
     this.quantity = 0,
     this.minimumQuantity = 0,
-    required this.user,
+    this.user,
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.suggested = false,
   }) : super._();
@@ -316,6 +320,7 @@ class _$ItemModelImpl extends _ItemModel {
   @JsonKey()
   String status;
   @override
+  @JsonKey()
   String branchId;
   @override
   @JsonKey()
@@ -324,7 +329,7 @@ class _$ItemModelImpl extends _ItemModel {
   @JsonKey()
   int minimumQuantity;
   @override
-  LightUserModel user;
+  LightUserModel? user;
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool suggested;
@@ -355,10 +360,10 @@ abstract class _ItemModel extends ItemModel {
     String name,
     String categoryId,
     String status,
-    required String branchId,
+    String branchId,
     int quantity,
     int minimumQuantity,
-    required LightUserModel user,
+    LightUserModel? user,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   }) = _$ItemModelImpl;
   _ItemModel._() : super._();
@@ -393,8 +398,8 @@ abstract class _ItemModel extends ItemModel {
   int get minimumQuantity;
   set minimumQuantity(int value);
   @override
-  LightUserModel get user;
-  set user(LightUserModel value);
+  LightUserModel? get user;
+  set user(LightUserModel? value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get suggested;
