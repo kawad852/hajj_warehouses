@@ -46,7 +46,7 @@ class UserInfoWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    "${user.branch!.name} - شركة الفارس",
+                    "${user.branch?.name} - شركة الفارس",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: context.colorPalette.grey708,

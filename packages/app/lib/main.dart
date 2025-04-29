@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
         );
         return MultiProvider(
           providers: [
-            if (userProvider.isAuthenticated) ...[
+            if (userProvider.isAuthenticated && kSelectedBranchId.isNotEmpty) ...[
               StreamProvider<UserModel>.value(
                 value: userProvider.userDocRef.snapshots().map(
                   (event) => event.data() ?? UserModel(),

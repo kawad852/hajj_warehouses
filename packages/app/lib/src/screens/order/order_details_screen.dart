@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/src/screens/order/widgets/order_history_card.dart';
 import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -31,16 +32,22 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   }
 
   void _updateOrderStatus(String status) {
-    final batch = kFirebaseInstant.batch();
-    batch.update(_docREF, {MyFields.status: status});
-    final orderHistoryDocRef = _docREF.collection(MyCollections.orderHistory).doc();
-    final history = OrderHistoryModel(
-      status: status,
-      user: kCurrentLightUser,
-      branchId: kSelectedBranchId,
-      time: kNowDate,
+    ApiService.fetch(
+      context,
+      callBack: () async {
+        final batch = kFirebaseInstant.batch();
+        batch.update(_docREF, {MyFields.status: status});
+        final orderHistoryDocRef = _docREF.collection(MyCollections.orderHistory).doc();
+        final history = OrderHistoryModel(
+          status: status,
+          user: kCurrentLightUser,
+          branchId: kSelectedBranchId,
+          time: kNowDate,
+        );
+        batch.set(orderHistoryDocRef, history.toJson());
+        await batch.commit();
+      },
     );
-    batch.set(orderHistoryDocRef, history.toJson());
   }
 
   Future<void> _showItemsDialog(BuildContext context, List<LightItemModel> items) async {
@@ -252,17 +259,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     itemCount: snapshot.data!.docs.length,
                     contentsBuilder: (context, index) {
                       final history = snapshot.data!.docs[index].data();
-                      return OperationCard(
-                        operation: InventoryOperationModel(
-                          createdAt: kNowDate,
-                          operationType: 'ADD',
-                          supplyType: '',
-                          files: [],
-                          items: [],
-                          branchId: kSelectedBranchId,
-                          user: kCurrentLightUser,
-                        ),
-                      );
+                      return OrderHistoryCard(history: history);
                     },
                   );
                 },
