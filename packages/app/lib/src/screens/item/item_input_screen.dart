@@ -93,13 +93,17 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   children:
                       List.generate(_items.length + 1, (index) {
                         if (index == _items.length) {
-                          return IconButton.filled(
-                            onPressed: () {
-                              setState(() {
-                                _items.add(_itemModel);
-                              });
-                            },
-                            icon: const Icon(Icons.add),
+                          return Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                setState(() {
+                                  _items.add(_itemModel);
+                                });
+                              },
+                              label: Text("إضافة المزيد"),
+                              icon: const Icon(Icons.add),
+                            ),
                           );
                         }
                         final element = _items[index];

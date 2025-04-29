@@ -34,7 +34,7 @@ class _OutOfStockItemsScreenState extends State<OutOfStockItemsScreen> {
                         onTap: () {
                           context.push((context) => ItemManagementScreen(item: item));
                         },
-                        id: "$index",
+                        id: item.id,
                         name: item.name,
                         availableQuantity: item.quantity,
                         minimumQuantity: item.minimumQuantity,

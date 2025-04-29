@@ -174,7 +174,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                         onTap: () {
                           context.push((context) => ItemManagementScreen(item: item));
                         },
-                        id: "$index",
+                        id: item.id,
                         name: item.name,
                         availableQuantity: item.quantity,
                         minimumQuantity: item.minimumQuantity,

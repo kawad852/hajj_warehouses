@@ -51,7 +51,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
                         onTap: () {
                           context.push((context) => ItemManagementScreen(item: item));
                         },
-                        id: "$index",
+                        id: item.id,
                         name: item.name,
                         availableQuantity: item.quantity,
                         minimumQuantity: item.minimumQuantity,
