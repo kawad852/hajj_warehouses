@@ -101,14 +101,14 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                   _items.add(_itemModel);
                                 });
                               },
-                              label: Text("إضافة المزيد"),
+                              label: const Text("إضافة المزيد"),
                               icon: const Icon(Icons.add),
                             ),
                           );
                         }
                         final element = _items[index];
                         return AddItemWidget(
-                          // key: ValueKey(element.id),
+                          key: ValueKey("${element.id}$index"),
                           initialValue: element.name,
                           onChanged: (value) {
                             element.name = value!;

@@ -49,7 +49,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
         ),
         const SizedBox(width: 10),
         Container(
-          width: 100,
+          width: 120,
           height: 48,
           decoration: BoxDecoration(
             color: context.colorPalette.greyF2F,
@@ -71,15 +71,14 @@ class _AddItemWidgetState extends State<AddItemWidget> {
                   icon: const Icon(Icons.remove, size: 20),
                 ),
               ),
-
               Expanded(
                 child: NumbersEditor(
                   key: ValueKey(_quantity),
                   initialValue: _quantity,
                   onChanged: (value) {
-                    setState(() {
-                      _quantity = value!;
-                    });
+                    // setState(() {
+                    _quantity = value!;
+                    // });
                     widget.onQuantityChanged(_quantity);
                   },
                 ),
