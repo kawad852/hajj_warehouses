@@ -317,9 +317,12 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     indexName: AlgoliaIndices.items.value,
                     isFullScreen: false,
                     hintText: "ادخل رقم الصنف او الإسم",
-                    filters: '${MyFields.branchId}:${_operation.transferFromBranch?.id}',
+                    filters:
+                        _isTransferOperation
+                            ? '${MyFields.branchId}:${_operation.transferFromBranch?.id}'
+                            : null,
                     onTap: (e) {
-                      final ids = [];
+                      final ids = _operation.items.map((e) => e.id).toList();
                       if (ids.contains(e.id)) {
                         Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
                         return;
@@ -328,7 +331,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                       final item = LightItemModel(
                         id: e.id,
                         name: e.name,
-                        quantity: e.quantity,
+                        quantity: 0,
                         minimumQuantity: e.minimumQuantity,
                       );
                       setState(() {
