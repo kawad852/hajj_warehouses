@@ -18,19 +18,19 @@ class TableContainer extends StatelessWidget {
     required this.name,
   });
 
-  String _getStatusLabel(BuildContext context) {
+  (String, Color) _getStatusLabel(BuildContext context) {
     if (status == ItemStatusEnum.outOfStock.value) {
-      return "غير متوفر";
+      return ("غير متوفر", context.colorPalette.yellowC02);
     } else if (status == ItemStatusEnum.lowStock.value) {
-      return "بحاحة";
+      return ("بحاحة", context.colorPalette.redC10);
     } else {
-      return "متوفر";
+      return ("متوفر", context.colorPalette.grey708);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final statusLabel = _getStatusLabel(context);
+    final statusInfo = _getStatusLabel(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -57,17 +57,16 @@ class TableContainer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: context.colorPalette.redC10,
+                  color: statusInfo.$2,
                   borderRadius: BorderRadius.circular(kRadiusPrimary),
                 ),
-                child: Text(
-                  statusLabel,
+                child: AutoSizeText(
+                  statusInfo.$1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: context.colorPalette.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: TextStyle(color: context.colorPalette.white, fontWeight: FontWeight.w800),
+                  maxLines: 1,
+                  maxFontSize: 12,
+                  minFontSize: 6,
                 ),
               ),
             ),
