@@ -37,4 +37,5 @@ class ColorPalette {
   Color get yellowC39 => const Color(0xFFC39600);
   Color get yellowC02 => const Color(0xFFDFAC02);
   Color get yellowFFE => const Color(0xFFFFE48A);
+  Color get yellow600 => const Color(0xFFC39600);
 }

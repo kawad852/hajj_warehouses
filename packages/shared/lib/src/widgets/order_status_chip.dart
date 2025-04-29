@@ -5,34 +5,34 @@ class OrderStatusChip extends StatelessWidget {
 
   const OrderStatusChip({super.key, required this.status});
 
-  String getLabel(BuildContext context) {
+  (String, Color) getLabel(BuildContext context) {
     if (status == OrderStatusEnum.placed.value) {
-      return "بالإنتظار";
+      return ("بالإنتظار", context.colorPalette.yellow600);
     } else if (status == OrderStatusEnum.inDelivery.value) {
-      return "جاري التوصيل";
+      return ("جاري التوصيل", context.colorPalette.yellow600);
     } else if (status == OrderStatusEnum.approved.value) {
-      return "مقبول";
+      return ("مقبول", context.colorPalette.grey708);
     } else if (status == OrderStatusEnum.rejected.value) {
-      return "مرفوض";
+      return ("مرفوض", context.colorPalette.redC10);
     } else if (status == OrderStatusEnum.canceled.value) {
-      return "ملغى";
+      return ("ملغى", context.colorPalette.redC10);
     }
-    return 'تم الإستلام';
+    return ("تم الإستلام", context.colorPalette.grey708);
   }
 
   @override
   Widget build(BuildContext context) {
-    final label = getLabel(context);
+    final info = getLabel(context);
     return Container(
       height: 25,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-        color: context.colorPalette.yellowC39,
+        color: info.$2,
         borderRadius: BorderRadius.circular(kRadiusPrimary),
       ),
       child: Text(
-        label,
+        info.$1,
         style: TextStyle(
           color: context.colorPalette.white,
           fontSize: 14,

@@ -56,6 +56,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 return const FPLoading();
               }
               final order = snapshot.docs[index].data();
+              final isSupplyOperation =
+                  order.operation!.operationType == OperationType.supply.value;
               return GestureDetector(
                 onTap: () {
                   context.push((context) => OrderDetailsScreen(order: order));
@@ -72,7 +74,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          "طلب رقم ${order.id}#",
+                          "طلب ${isSupplyOperation ? "تزويد" : "نقل"} رقم ${order.id}#",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.black001,
