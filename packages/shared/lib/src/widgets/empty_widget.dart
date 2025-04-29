@@ -2,20 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:shared/shared.dart';
 
 class EmptyWidget extends StatelessWidget {
-  final IconData icon;
-  final String title;
+  final IconData? icon;
+  final String? title;
   final String? body;
   final VoidCallback? onPressed;
   final String? buttonText;
 
-  const EmptyWidget({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.body,
-    this.onPressed,
-    this.buttonText,
-  });
+  const EmptyWidget({super.key, this.icon, this.title, this.body, this.onPressed, this.buttonText});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +21,18 @@ class EmptyWidget extends StatelessWidget {
             CircleAvatar(
               radius: 40,
               backgroundColor: context.colorScheme.tertiaryContainer,
-              child: ElasticIn(child: Icon(icon, size: 40, color: context.colorScheme.tertiary)),
+              child: ZoomIn(
+                child: Icon(
+                  icon ?? FontAwesomeIcons.folderOpen,
+                  size: 40,
+                  color: context.colorScheme.tertiary,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 10, top: 20),
               child: Text(
-                title,
+                title ?? "لا يوجد نتائج",
                 style: context.textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: context.colorScheme.onSurfaceVariant,

@@ -31,7 +31,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
         onComplete: (context, snapshot) {
           final items = snapshot.docs;
           if (items.isEmpty) {
-            return EmptyWidget(icon: FontAwesomeIcons.folderOpen, title: "لا يوجد اصناف بالمخزون");
+            return EmptyWidget(title: "لا يوجد اصناف بالمخزون");
           }
           return Padding(
             padding: const EdgeInsets.all(20),
