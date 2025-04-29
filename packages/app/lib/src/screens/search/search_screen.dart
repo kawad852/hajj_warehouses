@@ -86,7 +86,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
             ? widget.builder!(controller)
             : BaseEditor(
               required: false,
-              hintText: "ابحث عن صنف",
+              hintText: widget.hintText ?? "ابحث عن صنف",
               hintStyle: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 14,
