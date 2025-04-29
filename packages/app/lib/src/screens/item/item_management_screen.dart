@@ -21,7 +21,11 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   }
 
   void _initializeOperations() {
-    _operationsQuery = BranchQueries.inventoryOperations;
+    final filter = Filter.and(
+      Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
+      Filter(MyFields.itemIds, arrayContains: _item.id),
+    );
+    _operationsQuery = kFirebaseInstant.inventoryOperations.orderByDesc.where(filter);
   }
 
   void _openSheet(
