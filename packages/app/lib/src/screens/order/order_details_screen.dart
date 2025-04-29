@@ -56,53 +56,58 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         final operation = order.operation!;
         return Scaffold(
           appBar: AppBar(title: AppBarText("طلب رقم ${order.id}#")),
-          bottomNavigationBar: BottomAppBar(
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                Expanded(
-                  child: StretchedButton(
-                    onPressed: () {
-                      _updateOrderStatus(OrderStatusEnum.approved.value);
-                    },
-                    child: Text(
-                      "قبول الطلب",
-                      style: TextStyle(
-                        color: context.colorPalette.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+          bottomNavigationBar:
+              order.status == OrderStatusEnum.placed.value
+                  ? BottomAppBar(
+                    color: Colors.transparent,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: StretchedButton(
+                            onPressed: () {
+                              _updateOrderStatus(OrderStatusEnum.approved.value);
+                            },
+                            child: Text(
+                              "قبول الطلب",
+                              style: TextStyle(
+                                color: context.colorPalette.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: StretchedButton(
+                            onPressed: () {
+                              if (operation.operationType == OperationType.transfer.value) {
+                                context.inventoryProvider.createOperation(
+                                  context,
+                                  operation: operation.copyWith(
+                                    operationType: OperationType.add.value,
+                                  ),
+                                  orderValues: (order.id, OrderStatusEnum.rejected.value),
+                                );
+                              } else {
+                                _updateOrderStatus(OrderStatusEnum.rejected.value);
+                              }
+                            },
+                            backgroundColor: context.colorPalette.redC10,
+                            child: Text(
+                              "رفض الطلب",
+                              style: TextStyle(
+                                color: context.colorPalette.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: StretchedButton(
-                    onPressed: () {
-                      if (operation.operationType == OperationType.transfer.value) {
-                        context.inventoryProvider.createOperation(
-                          context,
-                          operation: operation.copyWith(operationType: OperationType.add.value),
-                          orderValues: (order.id, OrderStatusEnum.rejected.value),
-                        );
-                      } else {
-                        _updateOrderStatus(OrderStatusEnum.rejected.value);
-                      }
-                    },
-                    backgroundColor: context.colorPalette.redC10,
-                    child: Text(
-                      "رفض الطلب",
-                      style: TextStyle(
-                        color: context.colorPalette.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+                  )
+                  : null,
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             children: [
@@ -111,7 +116,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        "حالة الطلب : ${operation.requestType}",
+                        "حالة الطلب : ${operation.requestType == RequestTypeEnum.normal.value ? "عادية" : "طارئة"}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.black001,
@@ -164,29 +169,31 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: StretchedButton(
-                        onPressed: () {
-                          final transferToBranchId = order.transferToBranch?.id;
-                          context.inventoryProvider.createOperation(
-                            context,
-                            operation: operation.copyWith(operationType: OperationType.add.value),
-                            transferToBranchId: transferToBranchId,
-                            orderValues: (order.id, OrderStatusEnum.completed.value),
-                          );
-                        },
-                        backgroundColor: context.colorPalette.greyC4C,
-                        child: Text(
-                          "إستلام الطلب",
-                          style: TextStyle(
-                            color: context.colorPalette.black001,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
+                    if (order.status == OrderStatusEnum.approved.value) ...[
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: StretchedButton(
+                          onPressed: () {
+                            final transferToBranchId = order.transferToBranch?.id;
+                            context.inventoryProvider.createOperation(
+                              context,
+                              operation: operation.copyWith(operationType: OperationType.add.value),
+                              transferToBranchId: transferToBranchId,
+                              orderValues: (order.id, OrderStatusEnum.completed.value),
+                            );
+                          },
+                          backgroundColor: context.colorPalette.greyC4C,
+                          child: Text(
+                            "إستلام الطلب",
+                            style: TextStyle(
+                              color: context.colorPalette.black001,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ],
                 ),
               ),

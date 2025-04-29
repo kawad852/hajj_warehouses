@@ -3,7 +3,10 @@ import 'package:shared/shared.dart';
 extension OperationExteension on OperationType {
   RadioInfoModel get _requestTypeRadioInfoModel => RadioInfoModel(
     label: "حالة الطلب",
-    items: [RadioModel(label: "طارئة", value: "1"), RadioModel(label: "عادية", value: "2")],
+    items: [
+      RadioModel(label: "طارئة", value: RequestTypeEnum.urgent.value),
+      RadioModel(label: "عادية", value: RequestTypeEnum.normal.value),
+    ],
   );
 
   OperationInfoModel getInfo(BuildContext context, bool singleItem) {
@@ -17,8 +20,8 @@ extension OperationExteension on OperationType {
           radio: RadioInfoModel(
             label: "نوع التوريد",
             items: [
-              RadioModel(label: "مشتريات ذاتية", value: "1"),
-              RadioModel(label: "استلام طلبية", value: "2"),
+              RadioModel(label: "مشتريات ذاتية", value: SupplyTypeEnum.selfPurchase.value),
+              RadioModel(label: "استلام طلبية", value: SupplyTypeEnum.orderReceiving.value),
             ],
           ),
         );
@@ -43,8 +46,11 @@ extension OperationExteension on OperationType {
           radio: RadioInfoModel(
             label: "سبب الإتلاف",
             items: [
-              RadioModel(label: "فاسدة", value: "1"),
-              RadioModel(label: "سوء نقل أو تخزين", value: "2"),
+              RadioModel(label: "فاسدة", value: DestroyReasonEnum.spoiled.value),
+              RadioModel(
+                label: "سوء نقل أو تخزين",
+                value: DestroyReasonEnum.badTransportOrStorage.value,
+              ),
             ],
           ),
         );
