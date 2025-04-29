@@ -83,7 +83,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
           backgroundColor: _singleItem ? Colors.transparent : null,
           appBar: _singleItem ? null : AppBar(title: Text(info.title)),
           bottomNavigationBar: BottomButton(
-            text: "اضافة",
+            text: info.buttonLabel,
             onPressed: () {
               String? errorMsg;
               if (_radioGroupValue == null) {
