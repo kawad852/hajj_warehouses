@@ -11,7 +11,7 @@ class ItemInputScreen extends StatefulWidget {
 }
 
 class _ItemInputScreenState extends State<ItemInputScreen> {
-  late Query<ItemModel> _suggestionsQuery;
+  late Stream<List<ItemModel>> _suggestionsQuery;
 
   final List<ItemModel> _items = [];
 
@@ -25,7 +25,9 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   CategoryModel get _category => widget.category;
 
   void _initialize() {
-    _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderByDesc;
+    _suggestionsQuery = kFirebaseInstant.itemSuggestions.orderByDesc.snapshots().map(
+      (e) => e.docs.map((e) => e.data()).toList(),
+    );
   }
 
   @override
@@ -66,8 +68,8 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                 },
       ),
       appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),
-      body: CustomFirestoreQueryBuilder(
-        query: _suggestionsQuery,
+      body: ImpededStreamBuilder(
+        stream: _suggestionsQuery,
         onComplete: (context, snapshot) {
           return CustomScrollView(
             slivers: [
@@ -122,12 +124,9 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                               _items.length > 1
                                   ? () {
                                     setState(() {
-                                      // if (element.suggested) {
-                                      //   final e = snapshot.docs.firstWhere(
-                                      //     (e) => e.data().id == element.id,
-                                      //   );
-                                      //   snapshot.docs.add(e);
-                                      // }
+                                      if (element.suggested) {
+                                        snapshot.data!.add(element);
+                                      }
                                       _items.removeAt(index);
                                     });
                                   }
@@ -159,19 +158,15 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       child: Wrap(
                         direction: Axis.horizontal,
                         children:
-                            List.generate(snapshot.docs.length, (index) {
-                              if (snapshot.isLoadingMore(index)) {
-                                return const FPLoading();
-                              }
-
-                              final item = snapshot.docs[index].data();
+                            List.generate(snapshot.data!.length, (index) {
+                              final item = snapshot.data![index];
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     _items.add(
                                       _itemModel.copyWith(name: item.name, suggested: true),
                                     );
-                                    snapshot.docs.removeAt(index);
+                                    snapshot.data!.removeAt(index);
                                   });
                                 },
                                 child: Row(
