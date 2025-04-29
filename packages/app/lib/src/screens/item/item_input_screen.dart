@@ -30,6 +30,17 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     );
   }
 
+  bool _hasDuplicateName(List<String> list) {
+    final seenNames = <String>{};
+    for (var name in list) {
+      if (seenNames.contains(name)) {
+        return true; // Duplicate found
+      }
+      seenNames.add(name);
+    }
+    return false; // No duplicates
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,25 +57,31 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
             _items.any((e) => e.name.isEmpty)
                 ? null
                 : () {
-                  context.inventoryProvider.createOperation(
-                    context,
-                    operation: InventoryOperationModel(
-                      operationType: OperationType.create.value,
-                      items: [],
-                      branchId: kSelectedBranchId,
-                      user: kCurrentLightUser,
-                    ),
-                    onCreate: (batch) async {
-                      for (var e in _items) {
-                        e.id = await e.getId();
-                        e.createdAt = kNowDate;
-                        e.status = ItemStatusEnum.outOfStock.value;
-                        final itemDoc = kFirebaseInstant.items.doc(e.id);
-                        batch.set(itemDoc, e);
-                      }
-                      return _items;
-                    },
-                  );
+                  final names = _items.map((e) => e.name).toList();
+                  final hasDuplicateNames = _hasDuplicateName(names);
+                  if (hasDuplicateNames) {
+                    Fluttertoast.showToast(msg: "لا يسمح بتكرار إسم الصنف");
+                  } else {
+                    context.inventoryProvider.createOperation(
+                      context,
+                      operation: InventoryOperationModel(
+                        operationType: OperationType.create.value,
+                        items: [],
+                        branchId: kSelectedBranchId,
+                        user: kCurrentLightUser,
+                      ),
+                      onCreate: (batch) async {
+                        for (var e in _items) {
+                          e.id = await e.getId();
+                          e.createdAt = kNowDate;
+                          e.status = ItemStatusEnum.outOfStock.value;
+                          final itemDoc = kFirebaseInstant.items.doc(e.id);
+                          batch.set(itemDoc, e);
+                        }
+                        return _items;
+                      },
+                    );
+                  }
                 },
       ),
       appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),
