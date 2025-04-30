@@ -41,18 +41,11 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      bottomNavigationBar: StretchedButton(
+      bottomNavigationBar: BottomButton(
+        text: "اضافة",
         onPressed: () {
           _submit(context);
         },
-        child: Text(
-          "اضافة",
-          style: TextStyle(
-            color: context.colorPalette.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
