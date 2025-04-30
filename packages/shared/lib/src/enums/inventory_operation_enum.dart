@@ -46,3 +46,12 @@ enum DestroyReasonEnum {
 
   const DestroyReasonEnum(this.value);
 }
+
+enum DepositReasonEnum {
+  one('1'),
+  two('2');
+
+  final String value;
+
+  const DepositReasonEnum(this.value);
+}

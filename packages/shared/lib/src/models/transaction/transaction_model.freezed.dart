@@ -31,8 +31,8 @@ mixin _$TransactionModel {
   set branchId(String value) => throw _privateConstructorUsedError;
   String get transactionType => throw _privateConstructorUsedError;
   set transactionType(String value) => throw _privateConstructorUsedError;
-  String? get addReason => throw _privateConstructorUsedError;
-  set addReason(String? value) => throw _privateConstructorUsedError;
+  String? get depositReason => throw _privateConstructorUsedError;
+  set depositReason(String? value) => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   set notes(String? value) => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $TransactionModelCopyWith<$Res> {
     String id,
     String branchId,
     String transactionType,
-    String? addReason,
+    String? depositReason,
     String? notes,
     double amount,
     String operationId,
@@ -93,7 +93,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? id = null,
     Object? branchId = null,
     Object? transactionType = null,
-    Object? addReason = freezed,
+    Object? depositReason = freezed,
     Object? notes = freezed,
     Object? amount = null,
     Object? operationId = null,
@@ -121,10 +121,10 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
                     ? _value.transactionType
                     : transactionType // ignore: cast_nullable_to_non_nullable
                         as String,
-            addReason:
-                freezed == addReason
-                    ? _value.addReason
-                    : addReason // ignore: cast_nullable_to_non_nullable
+            depositReason:
+                freezed == depositReason
+                    ? _value.depositReason
+                    : depositReason // ignore: cast_nullable_to_non_nullable
                         as String?,
             notes:
                 freezed == notes
@@ -176,7 +176,7 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
     String id,
     String branchId,
     String transactionType,
-    String? addReason,
+    String? depositReason,
     String? notes,
     double amount,
     String operationId,
@@ -205,7 +205,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? branchId = null,
     Object? transactionType = null,
-    Object? addReason = freezed,
+    Object? depositReason = freezed,
     Object? notes = freezed,
     Object? amount = null,
     Object? operationId = null,
@@ -233,10 +233,10 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
                 ? _value.transactionType
                 : transactionType // ignore: cast_nullable_to_non_nullable
                     as String,
-        addReason:
-            freezed == addReason
-                ? _value.addReason
-                : addReason // ignore: cast_nullable_to_non_nullable
+        depositReason:
+            freezed == depositReason
+                ? _value.depositReason
+                : depositReason // ignore: cast_nullable_to_non_nullable
                     as String?,
         notes:
             freezed == notes
@@ -272,7 +272,7 @@ class _$TransactionModelImpl implements _TransactionModel {
     required this.id,
     required this.branchId,
     required this.transactionType,
-    this.addReason,
+    this.depositReason,
     this.notes,
     required this.amount,
     required this.operationId,
@@ -292,7 +292,7 @@ class _$TransactionModelImpl implements _TransactionModel {
   @override
   String transactionType;
   @override
-  String? addReason;
+  String? depositReason;
   @override
   String? notes;
   @override
@@ -304,7 +304,7 @@ class _$TransactionModelImpl implements _TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, addReason: $addReason, notes: $notes, amount: $amount, operationId: $operationId, user: $user)';
+    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, depositReason: $depositReason, notes: $notes, amount: $amount, operationId: $operationId, user: $user)';
   }
 
   /// Create a copy of TransactionModel
@@ -330,7 +330,7 @@ abstract class _TransactionModel implements TransactionModel {
     required String id,
     required String branchId,
     required String transactionType,
-    String? addReason,
+    String? depositReason,
     String? notes,
     required double amount,
     required String operationId,
@@ -355,8 +355,8 @@ abstract class _TransactionModel implements TransactionModel {
   String get transactionType;
   set transactionType(String value);
   @override
-  String? get addReason;
-  set addReason(String? value);
+  String? get depositReason;
+  set depositReason(String? value);
   @override
   String? get notes;
   set notes(String? value);

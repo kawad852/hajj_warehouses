@@ -12,7 +12,7 @@ class TransactionModel with _$TransactionModel {
     required String id,
     required String branchId,
     required String transactionType,
-    String? addReason,
+    String? depositReason,
     String? notes,
     required double amount,
     required String operationId,

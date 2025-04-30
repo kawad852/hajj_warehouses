@@ -11,8 +11,10 @@ class TransactionInputScreen extends StatefulWidget {
 
 class _TransactionInputScreenState extends State<TransactionInputScreen> {
   final _formKey = GlobalKey<FormState>();
-  int? _groupValue = 1;
   late TransactionModel _transaction;
+
+  bool get _isDeposit => _transaction.transactionType == TransactionType.deposit.value;
+  bool get _isWithdrawal => _transaction.transactionType == TransactionType.withdrawal.value;
 
   void _submit(BuildContext context) {
     if (_formKey.currentState!.validate()) {
@@ -42,7 +44,6 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
         onPressed: () {
           _submit(context);
         },
-        margin: const EdgeInsets.only(bottom: 10),
         child: Text(
           "اضافة",
           style: TextStyle(
@@ -57,62 +58,62 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "اضافة عهدة",
-                style: TextStyle(
-                  color: context.colorPalette.black001,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+              Center(
+                child: Text(
+                  _isDeposit ? "اضافة عهدة" : "تسجيل مصروف",
+                  style: TextStyle(
+                    color: context.colorPalette.black001,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
               CounterWidget(maxQuantity: 1, onChanged: (value) {}),
-              Row(
-                children: [
-                  Text(
-                    "*",
-                    style: TextStyle(
-                      color: context.colorPalette.redC10,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
+
+              if (_isDeposit) ...[
+                const EditorLabel("سبب الإضافة"),
+                const SizedBox(height: 8),
+                Row(
+                  children:
+                      DepositReasonEnum.values.map((e) {
+                        final isOne = e == DepositReasonEnum.one;
+                        return CustomRadio(
+                          value: e.value,
+                          title: isOne ? "لأول مره" : "تزويد أضافي",
+                          groupValue: _transaction.depositReason,
+                          onChanged: (value) {
+                            setState(() {
+                              _transaction.depositReason = value;
+                            });
+                          },
+                        );
+                      }).toList(),
+                ),
+              ],
+
+              if (_isWithdrawal)
+                TitledTextField(
+                  title: "نوع المصروف",
+                  textStyle: TextStyle(
+                    color: context.colorPalette.black001,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: context.colorPalette.grey708),
+                      borderRadius: BorderRadius.circular(kRadiusSecondary),
+                    ),
+                    child: DropDownEditor(
+                      items: const [],
+                      onChanged: (value) {},
+                      title: "",
+                      value: "",
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "سبب الإضافة",
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  CustomRadio(
-                    value: 0,
-                    title: "لأول مره",
-                    groupValue: _groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _groupValue = value;
-                      });
-                    },
-                  ),
-                  CustomRadio(
-                    value: 1,
-                    title: "تزويد اضافي",
-                    groupValue: _groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _groupValue = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
+                ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TitledTextField(
@@ -138,27 +139,32 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                   ),
                 ),
               ),
-              TitledTextField(
-                title: "الموظف المسؤول",
-                textStyle: TextStyle(
-                  color: context.colorPalette.black001,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: context.colorPalette.grey708),
-                    borderRadius: BorderRadius.circular(kRadiusSecondary),
+
+              if (_isDeposit)
+                TitledTextField(
+                  title: "الموظف المسؤول",
+                  textStyle: TextStyle(
+                    color: context.colorPalette.black001,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
                   ),
-                  child: DropDownEditor(
-                    items: const [],
-                    onChanged: (value) {},
-                    title: "اختر الموظف",
-                    value: "s",
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: context.colorPalette.grey708),
+                      borderRadius: BorderRadius.circular(kRadiusSecondary),
+                    ),
+                    child: DropDownEditor(
+                      items: const [],
+                      onChanged: (value) {},
+                      title: "اختر الموظف",
+                      value: "s",
+                    ),
                   ),
                 ),
+              ImagesAttacher(
+                onChanged: (path) {},
+                title: _isDeposit ? "ارفاق صورة لسند التسليم او الحوالة" : "ارفاق صورة للفاتورة",
               ),
-              ImagesAttacher(onChanged: (path) {}, title: "ارفاق صورة لسند التسليم او الحوالة"),
             ],
           ),
         ),
