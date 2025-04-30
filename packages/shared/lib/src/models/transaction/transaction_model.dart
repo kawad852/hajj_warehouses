@@ -13,10 +13,12 @@ class TransactionModel with _$TransactionModel {
     required String branchId,
     required String transactionType,
     String? depositReason,
+    String? expenseType,
     String? notes,
     required double amount,
     required String operationId,
     required LightUserModel user,
+    LightUserModel? employee,
   }) = _TransactionModel;
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) => _$TransactionModelFromJson(json);

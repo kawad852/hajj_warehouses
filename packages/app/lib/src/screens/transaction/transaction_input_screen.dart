@@ -1,3 +1,4 @@
+import 'package:app/src/screens/transaction/widgets/expenses_dropdown.dart';
 import 'package:shared/shared.dart';
 
 class TransactionInputScreen extends StatefulWidget {
@@ -94,25 +95,9 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
               ],
 
               if (_isWithdrawal)
-                TitledTextField(
-                  title: "نوع المصروف",
-                  textStyle: TextStyle(
-                    color: context.colorPalette.black001,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                  ),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: context.colorPalette.grey708),
-                      borderRadius: BorderRadius.circular(kRadiusSecondary),
-                    ),
-                    child: DropDownEditor(
-                      items: const [],
-                      onChanged: (value) {},
-                      title: "",
-                      value: "",
-                    ),
-                  ),
+                ExpensesDropdown(
+                  value: _transaction.expenseType,
+                  onChanged: (value) => _transaction.expenseType = value,
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),

@@ -33,6 +33,8 @@ mixin _$TransactionModel {
   set transactionType(String value) => throw _privateConstructorUsedError;
   String? get depositReason => throw _privateConstructorUsedError;
   set depositReason(String? value) => throw _privateConstructorUsedError;
+  String? get expenseType => throw _privateConstructorUsedError;
+  set expenseType(String? value) => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   set notes(String? value) => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
@@ -41,6 +43,8 @@ mixin _$TransactionModel {
   set operationId(String value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
+  LightUserModel? get employee => throw _privateConstructorUsedError;
+  set employee(LightUserModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this TransactionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,13 +69,16 @@ abstract class $TransactionModelCopyWith<$Res> {
     String branchId,
     String transactionType,
     String? depositReason,
+    String? expenseType,
     String? notes,
     double amount,
     String operationId,
     LightUserModel user,
+    LightUserModel? employee,
   });
 
   $LightUserModelCopyWith<$Res> get user;
+  $LightUserModelCopyWith<$Res>? get employee;
 }
 
 /// @nodoc
@@ -94,10 +101,12 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? branchId = null,
     Object? transactionType = null,
     Object? depositReason = freezed,
+    Object? expenseType = freezed,
     Object? notes = freezed,
     Object? amount = null,
     Object? operationId = null,
     Object? user = null,
+    Object? employee = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -126,6 +135,11 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
                     ? _value.depositReason
                     : depositReason // ignore: cast_nullable_to_non_nullable
                         as String?,
+            expenseType:
+                freezed == expenseType
+                    ? _value.expenseType
+                    : expenseType // ignore: cast_nullable_to_non_nullable
+                        as String?,
             notes:
                 freezed == notes
                     ? _value.notes
@@ -146,6 +160,11 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
                         as LightUserModel,
+            employee:
+                freezed == employee
+                    ? _value.employee
+                    : employee // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
           )
           as $Val,
     );
@@ -158,6 +177,20 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   $LightUserModelCopyWith<$Res> get user {
     return $LightUserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get employee {
+    if (_value.employee == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.employee!, (value) {
+      return _then(_value.copyWith(employee: value) as $Val);
     });
   }
 }
@@ -177,14 +210,18 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
     String branchId,
     String transactionType,
     String? depositReason,
+    String? expenseType,
     String? notes,
     double amount,
     String operationId,
     LightUserModel user,
+    LightUserModel? employee,
   });
 
   @override
   $LightUserModelCopyWith<$Res> get user;
+  @override
+  $LightUserModelCopyWith<$Res>? get employee;
 }
 
 /// @nodoc
@@ -206,10 +243,12 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? branchId = null,
     Object? transactionType = null,
     Object? depositReason = freezed,
+    Object? expenseType = freezed,
     Object? notes = freezed,
     Object? amount = null,
     Object? operationId = null,
     Object? user = null,
+    Object? employee = freezed,
   }) {
     return _then(
       _$TransactionModelImpl(
@@ -238,6 +277,11 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
                 ? _value.depositReason
                 : depositReason // ignore: cast_nullable_to_non_nullable
                     as String?,
+        expenseType:
+            freezed == expenseType
+                ? _value.expenseType
+                : expenseType // ignore: cast_nullable_to_non_nullable
+                    as String?,
         notes:
             freezed == notes
                 ? _value.notes
@@ -258,6 +302,11 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
                     as LightUserModel,
+        employee:
+            freezed == employee
+                ? _value.employee
+                : employee // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
       ),
     );
   }
@@ -273,10 +322,12 @@ class _$TransactionModelImpl implements _TransactionModel {
     required this.branchId,
     required this.transactionType,
     this.depositReason,
+    this.expenseType,
     this.notes,
     required this.amount,
     required this.operationId,
     required this.user,
+    this.employee,
   });
 
   factory _$TransactionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -294,6 +345,8 @@ class _$TransactionModelImpl implements _TransactionModel {
   @override
   String? depositReason;
   @override
+  String? expenseType;
+  @override
   String? notes;
   @override
   double amount;
@@ -301,10 +354,12 @@ class _$TransactionModelImpl implements _TransactionModel {
   String operationId;
   @override
   LightUserModel user;
+  @override
+  LightUserModel? employee;
 
   @override
   String toString() {
-    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, depositReason: $depositReason, notes: $notes, amount: $amount, operationId: $operationId, user: $user)';
+    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, depositReason: $depositReason, expenseType: $expenseType, notes: $notes, amount: $amount, operationId: $operationId, user: $user, employee: $employee)';
   }
 
   /// Create a copy of TransactionModel
@@ -331,10 +386,12 @@ abstract class _TransactionModel implements TransactionModel {
     required String branchId,
     required String transactionType,
     String? depositReason,
+    String? expenseType,
     String? notes,
     required double amount,
     required String operationId,
     required LightUserModel user,
+    LightUserModel? employee,
   }) = _$TransactionModelImpl;
 
   factory _TransactionModel.fromJson(Map<String, dynamic> json) =
@@ -358,6 +415,9 @@ abstract class _TransactionModel implements TransactionModel {
   String? get depositReason;
   set depositReason(String? value);
   @override
+  String? get expenseType;
+  set expenseType(String? value);
+  @override
   String? get notes;
   set notes(String? value);
   @override
@@ -369,6 +429,9 @@ abstract class _TransactionModel implements TransactionModel {
   @override
   LightUserModel get user;
   set user(LightUserModel value);
+  @override
+  LightUserModel? get employee;
+  set employee(LightUserModel? value);
 
   /// Create a copy of TransactionModel
   /// with the given fields replaced by the non-null parameter values.
