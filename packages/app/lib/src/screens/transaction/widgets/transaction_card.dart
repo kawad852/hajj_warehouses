@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
-class WalletOperation extends StatelessWidget {
-  const WalletOperation({super.key});
+class TransactionCard extends StatelessWidget {
+  const TransactionCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,7 @@ class WalletOperation extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(
-                      fontFamily: GoogleFonts.cairo().fontFamily!,
-                    ),
+                    style: TextStyle(fontFamily: GoogleFonts.cairo().fontFamily!),
                     children: [
                       TextSpan(
                         text: "قام",

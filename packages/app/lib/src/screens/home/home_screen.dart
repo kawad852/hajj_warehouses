@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, branch) {
                     return TaskCard(
                       onTap: () {
-                        context.push((context) => const WalletScreen());
+                        context.push((context) => const TransactionsScreen());
                       },
                       title: "رصيد العهدة",
                       task: "${branch.balance.toStringAsFixed(2)} ريال",

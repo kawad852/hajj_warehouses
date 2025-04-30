@@ -1,18 +1,27 @@
 import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
-class WalletScreen extends StatefulWidget {
-  const WalletScreen({super.key});
+class TransactionsScreen extends StatefulWidget {
+  const TransactionsScreen({super.key});
 
   @override
-  State<WalletScreen> createState() => _WalletScreenState();
+  State<TransactionsScreen> createState() => _TransactionsScreenState();
 }
 
-class _WalletScreenState extends State<WalletScreen> {
+class _TransactionsScreenState extends State<TransactionsScreen> {
   late Query<TransactionModel> _query;
 
   void _initialize() {
     _query = kFirebaseInstant.transactions.whereMyBranch.orderByDesc;
+  }
+
+  void _openSheet(BuildContext context, {required TransactionType type}) {
+    context.showBottomSheet(
+      context,
+      builder: (context) {
+        return TransactionInputScreen(transactionType: type);
+      },
+    );
   }
 
   @override
@@ -65,13 +74,7 @@ class _WalletScreenState extends State<WalletScreen> {
               children: [
                 StretchedButton(
                   onPressed: () {
-                    context.showBottomSheet(
-                      context,
-                      maxHeight: context.mediaQuery.height * 0.65,
-                      builder: (context) {
-                        return const DragMoney();
-                      },
-                    );
+                    _openSheet(context, type: TransactionType.withdrawal);
                   },
                   child: Text(
                     "تسجيل مصروف",
@@ -85,13 +88,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 const SizedBox(height: 10),
                 StretchedButton(
                   onPressed: () {
-                    context.showBottomSheet(
-                      context,
-                      maxHeight: context.mediaQuery.height * 0.73,
-                      builder: (context) {
-                        return const AddMoney();
-                      },
-                    );
+                    _openSheet(context, type: TransactionType.deposit);
                   },
                   child: Text(
                     "اضافة عهدة ( خاصة بالإدارة )",
@@ -128,7 +125,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       final transaction = transactions[index].data();
-                      return const WalletOperation();
+                      return const TransactionCard();
                     },
                   ),
                 ],
