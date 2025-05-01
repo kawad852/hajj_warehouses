@@ -84,6 +84,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     ),
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: TitledTextField(
@@ -108,6 +109,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: TitledTextField(
@@ -126,6 +128,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     ),
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: TitledTextField(
@@ -178,6 +181,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: TitledTextField(

@@ -152,6 +152,14 @@ class _MyAppState extends State<MyApp> {
                   borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorScheme.error),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorScheme.error),
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
               ),
               cardTheme: CardThemeData(
                 color: colorScheme.onInverseSurface,
