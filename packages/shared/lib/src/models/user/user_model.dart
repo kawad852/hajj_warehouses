@@ -16,6 +16,7 @@ class UserModel with _$UserModel {
     LightBranchModel? branch,
     String? role,
     String? languageCode,
+    String? profilePhoto,
     @Default(false) bool blocked,
     String? phoneCountryCode,
     String? phoneNum,
@@ -25,6 +26,7 @@ class UserModel with _$UserModel {
     @Default('') String address,
     @Default('') String username,
     @Default(0.0) double salary,
+    List<String>? images,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

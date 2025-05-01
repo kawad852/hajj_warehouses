@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/src/helper/storage_service.dart';
 
 class UserInputScreen extends StatefulWidget {
   const UserInputScreen({super.key});
@@ -13,39 +14,58 @@ class _UserInputScreenState extends State<UserInputScreen> {
   late PhoneController _phoneController;
   late UserModel _user;
   late Future<List<BranchModel>> _branchesFuture;
+  final _storageService = StorageService();
+  XFile? _file;
+  List<XFile> _files = [];
 
   void _initialize() {
     _branchesFuture = context.appProvider.getBranches();
   }
 
   void _submit(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      context.unFocusKeyboard();
-      ApiService.fetch(
-        context,
-        callBack: () async {
-          final uid = _user.username;
-          var callable = FirebaseFunctions.instanceFor(
-            region: "europe-west3",
-          ).httpsCallable('generateCustomToken');
-          final results = await callable.call(<String, dynamic>{'uid': uid});
-          final customToken = results.data as String;
-          final auth = await FirebaseAuth.instance.signInWithCustomToken(customToken);
-          if (context.mounted) {
-            final userDocRef = kFirebaseInstant.users.doc();
-            _user.id = auth.user!.uid;
-            _user.createdAt = kNowDate;
-            _user.languageCode = context.languageCode;
-            _user.phoneNum = _phoneController.getPhoneNumber;
-            _user.phoneCountryCode = _phoneController.countryCode;
-            await userDocRef.set(_user);
-          }
-          if (context.mounted) {
-            Navigator.pop(context);
-            Fluttertoast.showToast(msg: "تمت العملية بنجاح");
-          }
-        },
-      );
+    String? errorMsg;
+    if (_file == null) {
+      errorMsg = "الصورة الشخصية مطلوبة";
+      return;
+    } else if (_files.isEmpty) {
+      errorMsg = "أرفق صور لشهادة الصحة ، او عقد التوظيف او البطاقة";
+    }
+    if (errorMsg != null) {
+      Fluttertoast.showToast(msg: errorMsg);
+    } else {
+      if (_formKey.currentState!.validate()) {
+        context.unFocusKeyboard();
+        ApiService.fetch(
+          context,
+          callBack: () async {
+            final uid = _user.username;
+            var callable = FirebaseFunctions.instanceFor(
+              region: "europe-west3",
+            ).httpsCallable('generateCustomToken');
+            final results = await callable.call(<String, dynamic>{'uid': uid});
+            final customToken = results.data as String;
+            final auth = await FirebaseAuth.instance.signInWithCustomToken(customToken);
+            if (context.mounted) {
+              final userDocRef = kFirebaseInstant.users.doc();
+              _user.id = auth.user!.uid;
+              _user.createdAt = kNowDate;
+              _user.languageCode = context.languageCode;
+              _user.phoneNum = _phoneController.getPhoneNumber;
+              _user.phoneCountryCode = _phoneController.countryCode;
+              _user.profilePhoto = await _storageService.uploadFile(
+                collection: "personalPhotos",
+                file: _file!,
+              );
+              _user.images = await _storageService.uploadFiles("personalPhotos", _files);
+              await userDocRef.set(_user);
+            }
+            if (context.mounted) {
+              Navigator.pop(context);
+              Fluttertoast.showToast(msg: "تمت العملية بنجاح");
+            }
+          },
+        );
+      }
     }
   }
 

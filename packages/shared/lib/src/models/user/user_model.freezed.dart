@@ -39,6 +39,8 @@ mixin _$UserModel {
   set role(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
   set languageCode(String? value) => throw _privateConstructorUsedError;
+  String? get profilePhoto => throw _privateConstructorUsedError;
+  set profilePhoto(String? value) => throw _privateConstructorUsedError;
   bool get blocked => throw _privateConstructorUsedError;
   set blocked(bool value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
@@ -57,6 +59,8 @@ mixin _$UserModel {
   set username(String value) => throw _privateConstructorUsedError;
   double get salary => throw _privateConstructorUsedError;
   set salary(double value) => throw _privateConstructorUsedError;
+  List<String>? get images => throw _privateConstructorUsedError;
+  set images(List<String>? value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -82,6 +86,7 @@ abstract class $UserModelCopyWith<$Res> {
     LightBranchModel? branch,
     String? role,
     String? languageCode,
+    String? profilePhoto,
     bool blocked,
     String? phoneCountryCode,
     String? phoneNum,
@@ -91,6 +96,7 @@ abstract class $UserModelCopyWith<$Res> {
     String address,
     String username,
     double salary,
+    List<String>? images,
   });
 
   $LightBranchModelCopyWith<$Res>? get branch;
@@ -119,6 +125,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? branch = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
+    Object? profilePhoto = freezed,
     Object? blocked = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
@@ -128,6 +135,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? address = null,
     Object? username = null,
     Object? salary = null,
+    Object? images = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -170,6 +178,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == languageCode
                     ? _value.languageCode
                     : languageCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            profilePhoto:
+                freezed == profilePhoto
+                    ? _value.profilePhoto
+                    : profilePhoto // ignore: cast_nullable_to_non_nullable
                         as String?,
             blocked:
                 null == blocked
@@ -216,6 +229,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.salary
                     : salary // ignore: cast_nullable_to_non_nullable
                         as double,
+            images:
+                freezed == images
+                    ? _value.images
+                    : images // ignore: cast_nullable_to_non_nullable
+                        as List<String>?,
           )
           as $Val,
     );
@@ -254,6 +272,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     LightBranchModel? branch,
     String? role,
     String? languageCode,
+    String? profilePhoto,
     bool blocked,
     String? phoneCountryCode,
     String? phoneNum,
@@ -263,6 +282,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String address,
     String username,
     double salary,
+    List<String>? images,
   });
 
   @override
@@ -291,6 +311,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? branch = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
+    Object? profilePhoto = freezed,
     Object? blocked = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
@@ -300,6 +321,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? address = null,
     Object? username = null,
     Object? salary = null,
+    Object? images = freezed,
   }) {
     return _then(
       _$UserModelImpl(
@@ -342,6 +364,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == languageCode
                 ? _value.languageCode
                 : languageCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        profilePhoto:
+            freezed == profilePhoto
+                ? _value.profilePhoto
+                : profilePhoto // ignore: cast_nullable_to_non_nullable
                     as String?,
         blocked:
             null == blocked
@@ -388,6 +415,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.salary
                 : salary // ignore: cast_nullable_to_non_nullable
                     as double,
+        images:
+            freezed == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                    as List<String>?,
       ),
     );
   }
@@ -406,6 +438,7 @@ class _$UserModelImpl implements _UserModel {
     this.branch,
     this.role,
     this.languageCode,
+    this.profilePhoto,
     this.blocked = false,
     this.phoneCountryCode,
     this.phoneNum,
@@ -415,6 +448,7 @@ class _$UserModelImpl implements _UserModel {
     this.address = '',
     this.username = '',
     this.salary = 0.0,
+    this.images,
   });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -438,6 +472,8 @@ class _$UserModelImpl implements _UserModel {
   String? role;
   @override
   String? languageCode;
+  @override
+  String? profilePhoto;
   @override
   @JsonKey()
   bool blocked;
@@ -463,10 +499,12 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   double salary;
+  @override
+  List<String>? images;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, blocked: $blocked, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
   }
 
   /// Create a copy of UserModel
@@ -493,6 +531,7 @@ abstract class _UserModel implements UserModel {
     LightBranchModel? branch,
     String? role,
     String? languageCode,
+    String? profilePhoto,
     bool blocked,
     String? phoneCountryCode,
     String? phoneNum,
@@ -502,6 +541,7 @@ abstract class _UserModel implements UserModel {
     String address,
     String username,
     double salary,
+    List<String>? images,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -534,6 +574,9 @@ abstract class _UserModel implements UserModel {
   String? get languageCode;
   set languageCode(String? value);
   @override
+  String? get profilePhoto;
+  set profilePhoto(String? value);
+  @override
   bool get blocked;
   set blocked(bool value);
   @override
@@ -560,6 +603,9 @@ abstract class _UserModel implements UserModel {
   @override
   double get salary;
   set salary(double value);
+  @override
+  List<String>? get images;
+  set images(List<String>? value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
