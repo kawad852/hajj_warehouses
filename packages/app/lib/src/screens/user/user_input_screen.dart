@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 import 'package:shared/src/helper/storage_service.dart';
@@ -20,6 +22,26 @@ class _UserInputScreenState extends State<UserInputScreen> {
 
   void _initialize() {
     _branchesFuture = context.appProvider.getBranches();
+  }
+
+  Future<void> _pickImage(BuildContext context) async {
+    AppOverlayLoader.fakeLoading();
+    final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null) {
+      setState(() {
+        _file = file;
+      });
+    }
+  }
+
+  Future<void> _pickImages(BuildContext context) async {
+    AppOverlayLoader.fakeLoading();
+    List<XFile> files = await ImagePicker().pickMultiImage();
+    if (files.isNotEmpty) {
+      setState(() {
+        _files.addAll(files);
+      });
+    }
   }
 
   void _submit(BuildContext context) {
@@ -104,7 +126,39 @@ class _UserInputScreenState extends State<UserInputScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Align(child: BaseNetworkImage(kBurgerImage, width: 90, height: 90)),
+                  // const Align(child: BaseNetworkImage(kBurgerImage, width: 90, height: 90)),
+                  Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Builder(
+                        builder: (context) {
+                          if (_file != null) {
+                            return GestureDetector(
+                              onTap: () {
+                                _pickImage(context);
+                              },
+                              child: Image.file(
+                                File(_file!.path),
+                                height: 90,
+                                width: 90,
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          }
+                          return MaterialButton(
+                            color: context.colorPalette.greyF2F,
+                            elevation: 0,
+                            onPressed: () {
+                              _pickImage(context);
+                            },
+                            height: 90,
+                            minWidth: 90,
+                            child: const Icon(Icons.add),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
@@ -250,7 +304,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      _pickImages(context);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
@@ -279,6 +335,29 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ),
                     ),
                   ),
+                  if (_files.isNotEmpty)
+                    SizedBox(
+                      height: 90,
+                      child: SingleChildScrollView(
+                        child: Row(
+                          children:
+                              _files
+                                  .map((e) {
+                                    return ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.file(
+                                        File(e.path),
+                                        height: 90,
+                                        width: 90,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    );
+                                  })
+                                  .separator(const SizedBox(width: 10))
+                                  .toList(),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
