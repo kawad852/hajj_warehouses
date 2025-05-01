@@ -34,6 +34,21 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
   void _submit(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final docRef = kFirebaseInstant.transactions.doc();
+          _transaction.id = docRef.id;
+          if (_isWithdrawal) {
+            _transaction.amount = -_transaction.amount;
+          }
+          await docRef.set(_transaction);
+          if (context.mounted) {
+            Navigator.pop(context);
+            Fluttertoast.showToast(msg: "تمت العملية بنجاح");
+          }
+        },
+      );
     }
   }
 
