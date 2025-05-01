@@ -66,7 +66,6 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
       branchId: kSelectedBranchId,
       transactionType: widget.transactionType.value,
       amount: 0.0,
-      operationId: '0',
       user: kCurrentLightUser,
     );
     _initialize();

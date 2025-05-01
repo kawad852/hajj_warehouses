@@ -35,34 +35,29 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     return BranchSelector(
       builder: (context, branch) {
         return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(140.0),
-            child: AppBar(
-              title: AppBarText("العهدة", color: context.colorPalette.white),
-              leading: CustomBack(color: context.colorPalette.white),
-              flexibleSpace: Container(
-                height: 155,
-                alignment: Alignment.bottomCenter,
-                width: double.infinity,
-                color: context.colorPalette.grey708,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        branch.balance.toStringAsFixed(2),
-                        style: TextStyle(
-                          color: context.colorPalette.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textDirection: TextDirection.ltr,
+          appBar: AppBar(
+            backgroundColor: context.colorPalette.grey708,
+            leading: CustomBack(color: context.colorPalette.white),
+            title: AppBarText("العهدة", color: context.colorPalette.white),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(40),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      branch.balance.toStringAsFixed(2),
+                      style: TextStyle(
+                        color: context.colorPalette.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const SizedBox(width: 10),
-                      CustomSvg(MyIcons.currency, color: context.colorPalette.white, width: 20),
-                    ],
-                  ),
+                      textDirection: TextDirection.ltr,
+                    ),
+                    const SizedBox(width: 10),
+                    CustomSvg(MyIcons.currency, color: context.colorPalette.white, width: 20),
+                  ],
                 ),
               ),
             ),
@@ -106,27 +101,32 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             query: _query,
             onComplete: (context, snapshot) {
               final transactions = snapshot.docs;
-              return ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "عمليات تمت على العهدة",
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    child: Text(
+                      "عمليات تمت على العهدة",
+                      style: TextStyle(
+                        color: context.colorPalette.black001,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  ListView.builder(
-                    itemCount: transactions.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) {
-                      final transaction = transactions[index].data();
-                      return TransactionCard(transaction: transaction);
-                    },
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: transactions.length,
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      itemBuilder: (context, index) {
+                        if (snapshot.isLoadingMore(index)) {
+                          return const FPLoading();
+                        }
+                        final transaction = transactions[index].data();
+                        return TransactionCard(transaction: transaction);
+                      },
+                    ),
                   ),
                 ],
               );
