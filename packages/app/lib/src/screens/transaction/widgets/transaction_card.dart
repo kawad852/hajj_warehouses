@@ -45,6 +45,11 @@ class TransactionCard extends StatelessWidget {
                               " ${expenses.firstWhere((e) => e.id == transaction.expenseType).nameAr}",
                           style: greenStyle,
                         ),
+                      if (transaction.operationId != null)
+                        TextSpan(
+                          text: " مقابل طلب شراء مواد للمحزون رقم: ${transaction.operationId}",
+                          style: style,
+                        ),
                     ],
                   ),
                 ),

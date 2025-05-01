@@ -39,8 +39,8 @@ mixin _$TransactionModel {
   set notes(String? value) => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   set amount(double value) => throw _privateConstructorUsedError;
-  String get operationId => throw _privateConstructorUsedError;
-  set operationId(String value) => throw _privateConstructorUsedError;
+  String? get operationId => throw _privateConstructorUsedError;
+  set operationId(String? value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
@@ -72,7 +72,7 @@ abstract class $TransactionModelCopyWith<$Res> {
     String? expenseType,
     String? notes,
     double amount,
-    String operationId,
+    String? operationId,
     LightUserModel user,
     LightUserModel? employee,
   });
@@ -104,7 +104,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? expenseType = freezed,
     Object? notes = freezed,
     Object? amount = null,
-    Object? operationId = null,
+    Object? operationId = freezed,
     Object? user = null,
     Object? employee = freezed,
   }) {
@@ -151,10 +151,10 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
                     : amount // ignore: cast_nullable_to_non_nullable
                         as double,
             operationId:
-                null == operationId
+                freezed == operationId
                     ? _value.operationId
                     : operationId // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             user:
                 null == user
                     ? _value.user
@@ -213,7 +213,7 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
     String? expenseType,
     String? notes,
     double amount,
-    String operationId,
+    String? operationId,
     LightUserModel user,
     LightUserModel? employee,
   });
@@ -246,7 +246,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? expenseType = freezed,
     Object? notes = freezed,
     Object? amount = null,
-    Object? operationId = null,
+    Object? operationId = freezed,
     Object? user = null,
     Object? employee = freezed,
   }) {
@@ -293,10 +293,10 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
                 : amount // ignore: cast_nullable_to_non_nullable
                     as double,
         operationId:
-            null == operationId
+            freezed == operationId
                 ? _value.operationId
                 : operationId // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         user:
             null == user
                 ? _value.user
@@ -325,7 +325,7 @@ class _$TransactionModelImpl implements _TransactionModel {
     this.expenseType,
     this.notes,
     required this.amount,
-    required this.operationId,
+    this.operationId,
     required this.user,
     this.employee,
   });
@@ -351,7 +351,7 @@ class _$TransactionModelImpl implements _TransactionModel {
   @override
   double amount;
   @override
-  String operationId;
+  String? operationId;
   @override
   LightUserModel user;
   @override
@@ -389,7 +389,7 @@ abstract class _TransactionModel implements TransactionModel {
     String? expenseType,
     String? notes,
     required double amount,
-    required String operationId,
+    String? operationId,
     required LightUserModel user,
     LightUserModel? employee,
   }) = _$TransactionModelImpl;
@@ -424,8 +424,8 @@ abstract class _TransactionModel implements TransactionModel {
   double get amount;
   set amount(double value);
   @override
-  String get operationId;
-  set operationId(String value);
+  String? get operationId;
+  set operationId(String? value);
   @override
   LightUserModel get user;
   set user(LightUserModel value);

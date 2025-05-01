@@ -16,7 +16,7 @@ class TransactionModel with _$TransactionModel {
     String? expenseType,
     String? notes,
     required double amount,
-    required String operationId,
+    String? operationId,
     required LightUserModel user,
     LightUserModel? employee,
   }) = _TransactionModel;

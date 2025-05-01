@@ -17,7 +17,7 @@ _$TransactionModelImpl _$$TransactionModelImplFromJson(
   expenseType: json['expenseType'] as String?,
   notes: json['notes'] as String?,
   amount: (json['amount'] as num).toDouble(),
-  operationId: json['operationId'] as String,
+  operationId: json['operationId'] as String?,
   user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
   employee:
       json['employee'] == null
