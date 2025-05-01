@@ -1,13 +1,13 @@
 import 'package:shared/shared.dart';
 
-class StaffInputScreen extends StatefulWidget {
-  const StaffInputScreen({super.key});
+class UserInputScreen extends StatefulWidget {
+  const UserInputScreen({super.key});
 
   @override
-  State<StaffInputScreen> createState() => _StaffInputScreenState();
+  State<UserInputScreen> createState() => _UserInputScreenState();
 }
 
-class _StaffInputScreenState extends State<StaffInputScreen> {
+class _UserInputScreenState extends State<UserInputScreen> {
   late PhoneController _phoneController;
 
   @override
@@ -29,15 +29,10 @@ class _StaffInputScreenState extends State<StaffInputScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
-          const Align(
-            child: BaseNetworkImage(kBurgerImage, width: 90, height: 90),
-          ),
+          const Align(child: BaseNetworkImage(kBurgerImage, width: 90, height: 90)),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: TitledTextField(
-              title: "الاسم الكامل",
-              child: TextEditor(onChanged: (value) {}),
-            ),
+            child: TitledTextField(title: "الاسم الكامل", child: TextEditor(onChanged: (value) {})),
           ),
           Row(
             children: [
@@ -108,10 +103,7 @@ class _StaffInputScreenState extends State<StaffInputScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: TitledTextField(
-              title: "العنوان",
-              child: TextEditor(onChanged: (value) {}),
-            ),
+            child: TitledTextField(title: "العنوان", child: TextEditor(onChanged: (value) {})),
           ),
           Row(
             children: [
@@ -146,10 +138,7 @@ class _StaffInputScreenState extends State<StaffInputScreen> {
                 Expanded(
                   child: TitledTextField(
                     title: "كلمة المرور",
-                    child: PasswordEditor(
-                      onChanged: (value) {},
-                      initialValue: null,
-                    ),
+                    child: PasswordEditor(onChanged: (value) {}, initialValue: null),
                   ),
                 ),
               ],

@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: TaskCard(
                 onTap: () {
-                  context.push((context) => const StaffScreen());
+                  context.push((context) => const UsersScreen());
                 },
                 title: "الكادر البشري",
                 prefixIcon: MyIcons.people,

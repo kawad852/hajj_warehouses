@@ -1,14 +1,14 @@
 import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
-class StaffScreen extends StatefulWidget {
-  const StaffScreen({super.key});
+class UsersScreen extends StatefulWidget {
+  const UsersScreen({super.key});
 
   @override
-  State<StaffScreen> createState() => _StaffScreenState();
+  State<UsersScreen> createState() => _UsersScreenState();
 }
 
-class _StaffScreenState extends State<StaffScreen> {
+class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class _StaffScreenState extends State<StaffScreen> {
       bottomNavigationBar: BottomButton(
         text: "اضافة",
         onPressed: () {
-          context.push((context) => const StaffInputScreen());
+          context.push((context) => const UserInputScreen());
         },
       ),
       body: ListView.separated(
