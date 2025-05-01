@@ -32,8 +32,7 @@ class _PasswordEditorState extends State<PasswordEditor> {
       obscureText: _obscureText,
       obscuringCharacter: "●",
       required: true,
-      autoValidateMode:
-          widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
+      autoValidateMode: widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
       prefixIcon: IconButton(
         onPressed: () {
           setState(() {
@@ -52,11 +51,7 @@ class _PasswordEditorState extends State<PasswordEditor> {
       //   icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
       // ),
       onChanged: (value) {
-        if (value.isEmpty) {
-          widget.onChanged(null);
-        } else {
-          widget.onChanged(value);
-        }
+        widget.onChanged(value);
         if (widget.isConfirm) {
           setState(() {});
         }

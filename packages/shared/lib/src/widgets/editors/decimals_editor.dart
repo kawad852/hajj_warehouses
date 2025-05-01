@@ -9,6 +9,7 @@ class DecimalsEditor extends StatelessWidget {
   final bool readOnly;
   final TextAlign? textAlign;
   final bool nullable;
+  final Widget? suffixIcon;
 
   const DecimalsEditor({
     super.key,
@@ -20,6 +21,7 @@ class DecimalsEditor extends StatelessWidget {
     this.onTap,
     this.textAlign,
     this.nullable = false,
+    this.suffixIcon,
   });
 
   @override
@@ -32,6 +34,7 @@ class DecimalsEditor extends StatelessWidget {
       inputFormatters: [ArabicDigitConverterFormatter(digitsOnly: false)],
       readOnly: readOnly,
       suffixText: suffixText,
+      suffixIcon: suffixIcon,
       initialValue: initialValue == null ? null : '$initialValue}',
       onChanged: (value) {
         if (nullable && value.isEmpty) {

@@ -10,7 +10,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String?,
-      displayName: json['displayName'] as String?,
+      displayName: json['displayName'] as String? ?? '',
       email: json['email'] as String?,
       deviceToken: json['deviceToken'] as String?,
       branch:
@@ -20,23 +20,16 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
                 json['branch'] as Map<String, dynamic>,
               ),
       role: json['role'] as String?,
-      username: json['username'] as String?,
       languageCode: json['languageCode'] as String?,
       blocked: json['blocked'] as bool? ?? false,
-      deliveryAddress:
-          json['deliveryAddress'] == null
-              ? null
-              : AddressModel.fromJson(
-                json['deliveryAddress'] as Map<String, dynamic>,
-              ),
-      pickupInfo:
-          json['pickupInfo'] == null
-              ? null
-              : PickUpInfoModel.fromJson(
-                json['pickupInfo'] as Map<String, dynamic>,
-              ),
       phoneCountryCode: json['phoneCountryCode'] as String?,
       phoneNum: json['phoneNum'] as String?,
+      password: json['password'] as String? ?? '',
+      jobTitle: json['jobTitle'] as String? ?? '',
+      nationalNumber: json['nationalNumber'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      username: json['username'] as String? ?? '',
+      salary: (json['salary'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -48,13 +41,16 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'deviceToken': instance.deviceToken,
       'branch': instance.branch?.toJson(),
       'role': instance.role,
-      'username': instance.username,
       'languageCode': instance.languageCode,
       'blocked': instance.blocked,
-      'deliveryAddress': instance.deliveryAddress?.toJson(),
-      'pickupInfo': instance.pickupInfo?.toJson(),
       'phoneCountryCode': instance.phoneCountryCode,
       'phoneNum': instance.phoneNum,
+      'password': instance.password,
+      'jobTitle': instance.jobTitle,
+      'nationalNumber': instance.nationalNumber,
+      'address': instance.address,
+      'username': instance.username,
+      'salary': instance.salary,
     };
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>

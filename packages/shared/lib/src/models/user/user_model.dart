@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
-import '../pickup_info/pickup_info_model.dart';
-
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
@@ -12,18 +10,21 @@ class UserModel with _$UserModel {
   factory UserModel({
     @TimestampSerializer() DateTime? createdAt,
     String? id,
-    String? displayName,
+    @Default('') String displayName,
     String? email,
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
-    String? username,
     String? languageCode,
     @Default(false) bool blocked,
-    AddressModel? deliveryAddress,
-    PickUpInfoModel? pickupInfo,
     String? phoneCountryCode,
     String? phoneNum,
+    @Default('') String password,
+    @Default('') String jobTitle,
+    @Default('') String nationalNumber,
+    @Default('') String address,
+    @Default('') String username,
+    @Default(0.0) double salary,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

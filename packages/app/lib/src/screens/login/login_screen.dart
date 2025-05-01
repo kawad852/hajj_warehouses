@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String? _email;
-  String? _password;
+  var _password = '';
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
 
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         AppOverlayLoader.show();
         final auth = await _firebaseAuth.signInWithEmailAndPassword(
           email: _email!,
-          password: _password!,
+          password: _password,
         );
         if (context.mounted) {
           await context.userProvider.login(context, auth);
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TitledTextField(
                     title: "كلمة المرور",
                     child: PasswordEditor(
-                      onChanged: (value) => _password = value,
+                      onChanged: (value) => _password = value!,
                       initialValue: null,
                     ),
                   ),

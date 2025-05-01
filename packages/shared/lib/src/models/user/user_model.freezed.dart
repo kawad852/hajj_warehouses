@@ -27,8 +27,8 @@ mixin _$UserModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
-  String? get displayName => throw _privateConstructorUsedError;
-  set displayName(String? value) => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
+  set displayName(String value) => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   set email(String? value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
@@ -37,21 +37,26 @@ mixin _$UserModel {
   set branch(LightBranchModel? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
-  set username(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
   set languageCode(String? value) => throw _privateConstructorUsedError;
   bool get blocked => throw _privateConstructorUsedError;
   set blocked(bool value) => throw _privateConstructorUsedError;
-  AddressModel? get deliveryAddress => throw _privateConstructorUsedError;
-  set deliveryAddress(AddressModel? value) =>
-      throw _privateConstructorUsedError;
-  PickUpInfoModel? get pickupInfo => throw _privateConstructorUsedError;
-  set pickupInfo(PickUpInfoModel? value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
   set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
   String? get phoneNum => throw _privateConstructorUsedError;
   set phoneNum(String? value) => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  set password(String value) => throw _privateConstructorUsedError;
+  String get jobTitle => throw _privateConstructorUsedError;
+  set jobTitle(String value) => throw _privateConstructorUsedError;
+  String get nationalNumber => throw _privateConstructorUsedError;
+  set nationalNumber(String value) => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  set address(String value) => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  set username(String value) => throw _privateConstructorUsedError;
+  double get salary => throw _privateConstructorUsedError;
+  set salary(double value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,23 +76,24 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String? id,
-    String? displayName,
+    String displayName,
     String? email,
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
-    String? username,
     String? languageCode,
     bool blocked,
-    AddressModel? deliveryAddress,
-    PickUpInfoModel? pickupInfo,
     String? phoneCountryCode,
     String? phoneNum,
+    String password,
+    String jobTitle,
+    String nationalNumber,
+    String address,
+    String username,
+    double salary,
   });
 
   $LightBranchModelCopyWith<$Res>? get branch;
-  $AddressModelCopyWith<$Res>? get deliveryAddress;
-  $PickUpInfoModelCopyWith<$Res>? get pickupInfo;
 }
 
 /// @nodoc
@@ -107,18 +113,21 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = freezed,
-    Object? displayName = freezed,
+    Object? displayName = null,
     Object? email = freezed,
     Object? deviceToken = freezed,
     Object? branch = freezed,
     Object? role = freezed,
-    Object? username = freezed,
     Object? languageCode = freezed,
     Object? blocked = null,
-    Object? deliveryAddress = freezed,
-    Object? pickupInfo = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
+    Object? password = null,
+    Object? jobTitle = null,
+    Object? nationalNumber = null,
+    Object? address = null,
+    Object? username = null,
+    Object? salary = null,
   }) {
     return _then(
       _value.copyWith(
@@ -133,10 +142,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : id // ignore: cast_nullable_to_non_nullable
                         as String?,
             displayName:
-                freezed == displayName
+                null == displayName
                     ? _value.displayName
                     : displayName // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
             email:
                 freezed == email
                     ? _value.email
@@ -157,11 +166,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.role
                     : role // ignore: cast_nullable_to_non_nullable
                         as String?,
-            username:
-                freezed == username
-                    ? _value.username
-                    : username // ignore: cast_nullable_to_non_nullable
-                        as String?,
             languageCode:
                 freezed == languageCode
                     ? _value.languageCode
@@ -172,16 +176,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.blocked
                     : blocked // ignore: cast_nullable_to_non_nullable
                         as bool,
-            deliveryAddress:
-                freezed == deliveryAddress
-                    ? _value.deliveryAddress
-                    : deliveryAddress // ignore: cast_nullable_to_non_nullable
-                        as AddressModel?,
-            pickupInfo:
-                freezed == pickupInfo
-                    ? _value.pickupInfo
-                    : pickupInfo // ignore: cast_nullable_to_non_nullable
-                        as PickUpInfoModel?,
             phoneCountryCode:
                 freezed == phoneCountryCode
                     ? _value.phoneCountryCode
@@ -192,6 +186,36 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.phoneNum
                     : phoneNum // ignore: cast_nullable_to_non_nullable
                         as String?,
+            password:
+                null == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String,
+            jobTitle:
+                null == jobTitle
+                    ? _value.jobTitle
+                    : jobTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            nationalNumber:
+                null == nationalNumber
+                    ? _value.nationalNumber
+                    : nationalNumber // ignore: cast_nullable_to_non_nullable
+                        as String,
+            address:
+                null == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
+                        as String,
+            username:
+                null == username
+                    ? _value.username
+                    : username // ignore: cast_nullable_to_non_nullable
+                        as String,
+            salary:
+                null == salary
+                    ? _value.salary
+                    : salary // ignore: cast_nullable_to_non_nullable
+                        as double,
           )
           as $Val,
     );
@@ -210,34 +234,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       return _then(_value.copyWith(branch: value) as $Val);
     });
   }
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AddressModelCopyWith<$Res>? get deliveryAddress {
-    if (_value.deliveryAddress == null) {
-      return null;
-    }
-
-    return $AddressModelCopyWith<$Res>(_value.deliveryAddress!, (value) {
-      return _then(_value.copyWith(deliveryAddress: value) as $Val);
-    });
-  }
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PickUpInfoModelCopyWith<$Res>? get pickupInfo {
-    if (_value.pickupInfo == null) {
-      return null;
-    }
-
-    return $PickUpInfoModelCopyWith<$Res>(_value.pickupInfo!, (value) {
-      return _then(_value.copyWith(pickupInfo: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -252,26 +248,25 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String? id,
-    String? displayName,
+    String displayName,
     String? email,
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
-    String? username,
     String? languageCode,
     bool blocked,
-    AddressModel? deliveryAddress,
-    PickUpInfoModel? pickupInfo,
     String? phoneCountryCode,
     String? phoneNum,
+    String password,
+    String jobTitle,
+    String nationalNumber,
+    String address,
+    String username,
+    double salary,
   });
 
   @override
   $LightBranchModelCopyWith<$Res>? get branch;
-  @override
-  $AddressModelCopyWith<$Res>? get deliveryAddress;
-  @override
-  $PickUpInfoModelCopyWith<$Res>? get pickupInfo;
 }
 
 /// @nodoc
@@ -290,18 +285,21 @@ class __$$UserModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = freezed,
-    Object? displayName = freezed,
+    Object? displayName = null,
     Object? email = freezed,
     Object? deviceToken = freezed,
     Object? branch = freezed,
     Object? role = freezed,
-    Object? username = freezed,
     Object? languageCode = freezed,
     Object? blocked = null,
-    Object? deliveryAddress = freezed,
-    Object? pickupInfo = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
+    Object? password = null,
+    Object? jobTitle = null,
+    Object? nationalNumber = null,
+    Object? address = null,
+    Object? username = null,
+    Object? salary = null,
   }) {
     return _then(
       _$UserModelImpl(
@@ -316,10 +314,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : id // ignore: cast_nullable_to_non_nullable
                     as String?,
         displayName:
-            freezed == displayName
+            null == displayName
                 ? _value.displayName
                 : displayName // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
         email:
             freezed == email
                 ? _value.email
@@ -340,11 +338,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.role
                 : role // ignore: cast_nullable_to_non_nullable
                     as String?,
-        username:
-            freezed == username
-                ? _value.username
-                : username // ignore: cast_nullable_to_non_nullable
-                    as String?,
         languageCode:
             freezed == languageCode
                 ? _value.languageCode
@@ -355,16 +348,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.blocked
                 : blocked // ignore: cast_nullable_to_non_nullable
                     as bool,
-        deliveryAddress:
-            freezed == deliveryAddress
-                ? _value.deliveryAddress
-                : deliveryAddress // ignore: cast_nullable_to_non_nullable
-                    as AddressModel?,
-        pickupInfo:
-            freezed == pickupInfo
-                ? _value.pickupInfo
-                : pickupInfo // ignore: cast_nullable_to_non_nullable
-                    as PickUpInfoModel?,
         phoneCountryCode:
             freezed == phoneCountryCode
                 ? _value.phoneCountryCode
@@ -375,6 +358,36 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.phoneNum
                 : phoneNum // ignore: cast_nullable_to_non_nullable
                     as String?,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+        jobTitle:
+            null == jobTitle
+                ? _value.jobTitle
+                : jobTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        nationalNumber:
+            null == nationalNumber
+                ? _value.nationalNumber
+                : nationalNumber // ignore: cast_nullable_to_non_nullable
+                    as String,
+        address:
+            null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                    as String,
+        username:
+            null == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
+                    as String,
+        salary:
+            null == salary
+                ? _value.salary
+                : salary // ignore: cast_nullable_to_non_nullable
+                    as double,
       ),
     );
   }
@@ -387,18 +400,21 @@ class _$UserModelImpl implements _UserModel {
   _$UserModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id,
-    this.displayName,
+    this.displayName = '',
     this.email,
     this.deviceToken,
     this.branch,
     this.role,
-    this.username,
     this.languageCode,
     this.blocked = false,
-    this.deliveryAddress,
-    this.pickupInfo,
     this.phoneCountryCode,
     this.phoneNum,
+    this.password = '',
+    this.jobTitle = '',
+    this.nationalNumber = '',
+    this.address = '',
+    this.username = '',
+    this.salary = 0.0,
   });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -410,7 +426,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? id;
   @override
-  String? displayName;
+  @JsonKey()
+  String displayName;
   @override
   String? email;
   @override
@@ -420,24 +437,36 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? role;
   @override
-  String? username;
-  @override
   String? languageCode;
   @override
   @JsonKey()
   bool blocked;
   @override
-  AddressModel? deliveryAddress;
-  @override
-  PickUpInfoModel? pickupInfo;
-  @override
   String? phoneCountryCode;
   @override
   String? phoneNum;
+  @override
+  @JsonKey()
+  String password;
+  @override
+  @JsonKey()
+  String jobTitle;
+  @override
+  @JsonKey()
+  String nationalNumber;
+  @override
+  @JsonKey()
+  String address;
+  @override
+  @JsonKey()
+  String username;
+  @override
+  @JsonKey()
+  double salary;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, username: $username, languageCode: $languageCode, blocked: $blocked, deliveryAddress: $deliveryAddress, pickupInfo: $pickupInfo, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, blocked: $blocked, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary)';
   }
 
   /// Create a copy of UserModel
@@ -458,18 +487,21 @@ abstract class _UserModel implements UserModel {
   factory _UserModel({
     @TimestampSerializer() DateTime? createdAt,
     String? id,
-    String? displayName,
+    String displayName,
     String? email,
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
-    String? username,
     String? languageCode,
     bool blocked,
-    AddressModel? deliveryAddress,
-    PickUpInfoModel? pickupInfo,
     String? phoneCountryCode,
     String? phoneNum,
+    String password,
+    String jobTitle,
+    String nationalNumber,
+    String address,
+    String username,
+    double salary,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -484,8 +516,8 @@ abstract class _UserModel implements UserModel {
   String? get id;
   set id(String? value);
   @override
-  String? get displayName;
-  set displayName(String? value);
+  String get displayName;
+  set displayName(String value);
   @override
   String? get email;
   set email(String? value);
@@ -499,26 +531,35 @@ abstract class _UserModel implements UserModel {
   String? get role;
   set role(String? value);
   @override
-  String? get username;
-  set username(String? value);
-  @override
   String? get languageCode;
   set languageCode(String? value);
   @override
   bool get blocked;
   set blocked(bool value);
   @override
-  AddressModel? get deliveryAddress;
-  set deliveryAddress(AddressModel? value);
-  @override
-  PickUpInfoModel? get pickupInfo;
-  set pickupInfo(PickUpInfoModel? value);
-  @override
   String? get phoneCountryCode;
   set phoneCountryCode(String? value);
   @override
   String? get phoneNum;
   set phoneNum(String? value);
+  @override
+  String get password;
+  set password(String value);
+  @override
+  String get jobTitle;
+  set jobTitle(String value);
+  @override
+  String get nationalNumber;
+  set nationalNumber(String value);
+  @override
+  String get address;
+  set address(String value);
+  @override
+  String get username;
+  set username(String value);
+  @override
+  double get salary;
+  set salary(double value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
