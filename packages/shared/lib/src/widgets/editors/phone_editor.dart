@@ -53,34 +53,53 @@ class _PhoneEditorState extends State<PhoneEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseEditor(
-      initialValue: _controller.phoneNum,
-      labelText: widget.labelText,
-      onChanged: (value) {
-        if (value.isEmpty) {
-          _controller.phoneNum = null;
-        } else {
-          _controller.phoneNum = value;
-        }
-      },
-      keyboardType: TextInputType.phone,
-      required: widget.required,
-      validator: (value) {
-        if (!widget.required && (value == null || value.isEmpty)) {
-          return null;
-        } else if (value!.length < 9 || value.length > 11) {
-          return "invalidPhoneNum";
-        }
-        return ValidationHelper.general(context, value);
-      },
-      prefixIcon: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: TextButton.icon(
-          onPressed: () {
-            _showCountriesSheet(context);
-          },
-          label: Text(_controller.getDialCode(), textDirection: TextDirection.ltr),
-          icon: const Icon(Icons.arrow_drop_down_rounded),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: BaseEditor(
+        initialValue: _controller.phoneNum,
+        labelText: widget.labelText,
+        textDirection: TextDirection.ltr,
+        onChanged: (value) {
+          if (value.isEmpty) {
+            _controller.phoneNum = null;
+          } else {
+            _controller.phoneNum = value;
+          }
+        },
+        keyboardType: TextInputType.phone,
+        alignLabelWithHint: false,
+        required: widget.required,
+        validator: (value) {
+          if (!widget.required && (value == null || value.isEmpty)) {
+            return null;
+          } else if (value!.length < 9 || value.length > 11) {
+            return "invalidPhoneNum";
+          }
+          return ValidationHelper.general(context, value);
+        },
+        suffixIconConstraints: const BoxConstraints(maxWidth: 75),
+        prefixIcon: Center(
+          child: Material(
+            type: MaterialType.transparency,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(30),
+              onTap: () {
+                _showCountriesSheet(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(_controller.getDialCode(), textDirection: TextDirection.ltr),
+                    const SizedBox(width: 5),
+                    const Icon(Icons.arrow_drop_down_rounded),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

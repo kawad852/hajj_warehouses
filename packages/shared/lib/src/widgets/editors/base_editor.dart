@@ -38,6 +38,7 @@ class BaseEditor extends StatelessWidget {
   final InputBorder? enabledBorder;
   final InputBorder? focusedBorder;
   final TextAlign? textAlign;
+  final bool alignLabelWithHint;
 
   const BaseEditor({
     super.key,
@@ -77,6 +78,7 @@ class BaseEditor extends StatelessWidget {
     this.textAlign,
     this.labelText,
     this.focusedBorder,
+    this.alignLabelWithHint = true,
   });
 
   @override
@@ -101,13 +103,14 @@ class BaseEditor extends StatelessWidget {
         filled: filled,
         fillColor: fillColor,
         suffixText: suffixText,
+
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         suffixIconConstraints: suffixIconConstraints,
         prefixIconConstraints: suffixIconConstraints,
         floatingLabelBehavior: floatingLabelBehavior,
-        alignLabelWithHint: true,
+        alignLabelWithHint: alignLabelWithHint,
         helperText: helperText,
         hintStyle: hintStyle,
         labelText: labelText,
@@ -115,6 +118,7 @@ class BaseEditor extends StatelessWidget {
         focusedBorder: focusedBorder,
       ),
       validator: validator,
+
       canRequestFocus: canRequestFocus,
       mouseCursor: mouseCursor,
       onTapOutside: (value) => onTapOutside ?? context.unFocusKeyboard(),
