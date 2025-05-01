@@ -1,7 +1,5 @@
 import 'package:shared/shared.dart';
 
-import '../../object_box_exports.dart';
-
 class BaseCard extends StatelessWidget {
   final String displayName;
   final String action1, action2;
@@ -52,7 +50,7 @@ class BaseCard extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
-              DateFormat.yMd(context.languageCode).add_jm().format(date),
+              context.defaultDateFormat(date),
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 12,

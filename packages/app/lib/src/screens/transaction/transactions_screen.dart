@@ -125,7 +125,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       final transaction = transactions[index].data();
-                      return const TransactionCard();
+                      return TransactionCard(transaction: transaction);
                     },
                   ),
                 ],

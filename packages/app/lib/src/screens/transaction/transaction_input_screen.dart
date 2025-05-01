@@ -37,12 +37,17 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
       ApiService.fetch(
         context,
         callBack: () async {
+          final batch = kFirebaseInstant.batch();
           final docRef = kFirebaseInstant.transactions.doc();
           _transaction.id = docRef.id;
-          if (_isWithdrawal) {
-            _transaction.amount = -_transaction.amount;
-          }
-          await docRef.set(_transaction);
+          batch.set(docRef, _transaction);
+          final branchDocRef = kFirebaseInstant.branches.doc(_transaction.branchId);
+          batch.update(branchDocRef, {
+            MyFields.balance: FieldValue.increment(
+              _isDeposit ? _transaction.amount : -_transaction.amount,
+            ),
+          });
+          await batch.commit();
           if (context.mounted) {
             Navigator.pop(context);
             Fluttertoast.showToast(msg: "تمت العملية بنجاح");

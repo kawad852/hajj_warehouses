@@ -1,13 +1,23 @@
 import 'package:shared/shared.dart';
 
 class TransactionCard extends StatelessWidget {
-  const TransactionCard({super.key});
+  final TransactionModel transaction;
+
+  const TransactionCard({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
+    final isDeposit = transaction.transactionType == TransactionType.deposit.value;
+    final style = TextStyle(
+      fontFamily: GoogleFonts.cairo().fontFamily!,
+      color: context.colorPalette.black001,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+    );
+    final greenStyle = style.copyWith(color: context.colorPalette.grey708);
     return Row(
       children: [
-        const CustomSvg(MyIcons.addSquare),
+        CustomSvg(isDeposit ? MyIcons.addSquare : MyIcons.minusSquare),
         const SizedBox(width: 10),
         Expanded(
           child: Container(
@@ -23,32 +33,14 @@ class TransactionCard extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontFamily: GoogleFonts.cairo().fontFamily!),
+                    style: style,
                     children: [
-                      TextSpan(
-                        text: "قام",
-                        style: TextStyle(
-                          color: context.colorPalette.black001,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      TextSpan(
-                        text: " أحمد محمد ",
-                        style: TextStyle(
-                          color: context.colorPalette.grey708,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "بـ إرسال طلب تزويد كمية 200",
-                        style: TextStyle(
-                          color: context.colorPalette.black001,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      TextSpan(text: "قام", style: style),
+                      TextSpan(text: " ${transaction.user.displayName} ", style: greenStyle),
+                      TextSpan(text: "بـ ${isDeposit ? "إضافة" : "سحب"} ", style: style),
+                      TextSpan(text: "${transaction.amount} ريال", style: style),
+                      if (transaction.expenseType != null)
+                        TextSpan(text: " ${transaction.expenseType}", style: greenStyle),
                     ],
                   ),
                 ),
@@ -74,7 +66,7 @@ class TransactionCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "08:13:51 صباحاً - 01-03-2025",
+                      context.defaultDateFormat(transaction.createdAt),
                       style: TextStyle(
                         color: context.colorPalette.grey666,
                         fontSize: 12,
