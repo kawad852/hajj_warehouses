@@ -40,7 +40,11 @@ class TransactionCard extends StatelessWidget {
                       TextSpan(text: "بـ ${isDeposit ? "إضافة" : "سحب"} ", style: style),
                       TextSpan(text: "${transaction.amount} ريال", style: style),
                       if (transaction.expenseType != null)
-                        TextSpan(text: " ${transaction.expenseType}", style: greenStyle),
+                        TextSpan(
+                          text:
+                              " ${expenses.firstWhere((e) => e.id == transaction.expenseType).nameAr}",
+                          style: greenStyle,
+                        ),
                     ],
                   ),
                 ),

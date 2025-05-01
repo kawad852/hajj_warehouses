@@ -21,13 +21,6 @@ class _ExpensesDropdownState extends State<ExpensesDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> expenses = [
-      {"id": "1", "name": "إيجار معدات"},
-      {"id": "2", "name": "كهرباء"},
-      {"id": "3", "name": "مصاريف نقل"},
-      {"id": "4", "name": "مصاريف موظفين"},
-      {"id": "5", "name": "مصاريف صيانة"},
-    ];
     return TitledTextField(
       title: "نوع المصروف",
       textStyle: TextStyle(
@@ -44,8 +37,8 @@ class _ExpensesDropdownState extends State<ExpensesDropdown> {
           value: _value,
           items:
               expenses.map((e) {
-                final id = e['id'] as String;
-                final name = e['name'] as String;
+                final id = e.id;
+                final name = e.name;
                 return DropdownMenuItem(value: id, child: Text(name));
               }).toList(),
           onChanged: (value) {
