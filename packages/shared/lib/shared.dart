@@ -2,6 +2,7 @@
 //packages
 export 'package:auto_size_text/auto_size_text.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:cloud_functions/cloud_functions.dart';
 export 'package:easy_radio/easy_radio.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';

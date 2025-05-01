@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 
 class UserInputScreen extends StatefulWidget {
@@ -9,7 +10,6 @@ class UserInputScreen extends StatefulWidget {
 
 class _UserInputScreenState extends State<UserInputScreen> {
   final _formKey = GlobalKey<FormState>();
-  FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
   late PhoneController _phoneController;
   late UserModel _user;
   late Future<List<BranchModel>> _branchesFuture;
@@ -24,10 +24,13 @@ class _UserInputScreenState extends State<UserInputScreen> {
       ApiService.fetch(
         context,
         callBack: () async {
-          final auth = await _firebaseAuth.createUserWithEmailAndPassword(
-            email: _user.email!,
-            password: _user.password!,
-          );
+          final uid = _user.username;
+          var callable = FirebaseFunctions.instanceFor(
+            region: "europe-west3",
+          ).httpsCallable('generateCustomToken');
+          final results = await callable.call(<String, dynamic>{'uid': uid});
+          final customToken = results.data as String;
+          final auth = await FirebaseAuth.instance.signInWithCustomToken(customToken);
           if (context.mounted) {
             final userDocRef = kFirebaseInstant.users.doc();
             _user.id = auth.user!.uid;
@@ -68,6 +71,12 @@ class _UserInputScreenState extends State<UserInputScreen> {
         final branches = snapshot.data!;
         return Scaffold(
           appBar: AppBar(title: const AppBarText("اضافة موظف")),
+          bottomNavigationBar: BottomButton(
+            text: "إضافة",
+            onPressed: () {
+              _submit(context);
+            },
+          ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Form(
@@ -101,7 +110,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                             final branch = branches.firstWhere((e) => e.id == value);
                             _user.branch = LightBranchModel(id: branch.id, name: branch.name);
                           },
-                          value: _user.branch?.id,
+                          value: _user.branch?.id ?? kSelectedBranchId,
                         ),
                       ),
                     ],
@@ -121,7 +130,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         Expanded(
                           child: TitledTextField(
                             title: "رقم الهاتف",
-                            child: PhoneEditor(controller: _phoneController),
+                            child: PhoneEditor(controller: _phoneController, required: true),
                           ),
                         ),
                       ],
@@ -186,7 +195,13 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         Expanded(
                           child: TitledTextField(
                             title: "اسم المستخدم",
-                            child: TextEditor(onChanged: (value) => _user.username = value!),
+                            child: TextEditor(
+                              onChanged: (value) => _user.username = value!,
+                              hintText: "بالأحرف الإنجليزية",
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(width: 10),

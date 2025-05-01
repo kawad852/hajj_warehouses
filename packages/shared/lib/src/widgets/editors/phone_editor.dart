@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
-import '../../controllers/phone_controller.dart';
+import '../../../shared.dart';
 import '../../models/country/country_model.dart';
 import '../countries_bottomsheet.dart';
-import 'base_editor.dart';
 
 class PhoneEditor extends StatefulWidget {
   final PhoneController controller;
@@ -68,24 +65,21 @@ class _PhoneEditorState extends State<PhoneEditor> {
       },
       keyboardType: TextInputType.phone,
       required: widget.required,
-      // validator: (value) {
-      //   if (!widget.required && (value == null || value.isEmpty)) {
-      //     return null;
-      //   } else if (value!.length < 9 || value.length > 11) {
-      //     return context.appLocalization.invalidPhoneNum;
-      //   }
-      //   return ValidationHelper.general(context, value);
-      // },
+      validator: (value) {
+        if (!widget.required && (value == null || value.isEmpty)) {
+          return null;
+        } else if (value!.length < 9 || value.length > 11) {
+          return "invalidPhoneNum";
+        }
+        return ValidationHelper.general(context, value);
+      },
       prefixIcon: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: TextButton.icon(
           onPressed: () {
             _showCountriesSheet(context);
           },
-          label: Text(
-            _controller.getDialCode(),
-            textDirection: TextDirection.ltr,
-          ),
+          label: Text(_controller.getDialCode(), textDirection: TextDirection.ltr),
           icon: const Icon(Icons.arrow_drop_down_rounded),
         ),
       ),

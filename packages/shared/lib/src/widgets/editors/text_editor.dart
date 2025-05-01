@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 
 class TextEditor extends StatelessWidget {
@@ -15,6 +16,7 @@ class TextEditor extends StatelessWidget {
   final String? hintText;
   final TextStyle? hintStyle;
   final bool nullable;
+  final List<TextInputFormatter>? inputFormatters;
 
   const TextEditor({
     super.key,
@@ -32,6 +34,7 @@ class TextEditor extends StatelessWidget {
     this.hintText,
     this.hintStyle,
     this.nullable = false,
+    this.inputFormatters,
   });
 
   @override
@@ -46,6 +49,7 @@ class TextEditor extends StatelessWidget {
       suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
