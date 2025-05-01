@@ -43,6 +43,8 @@ mixin _$UserModel {
   set profilePhoto(String? value) => throw _privateConstructorUsedError;
   bool get blocked => throw _privateConstructorUsedError;
   set blocked(bool value) => throw _privateConstructorUsedError;
+  bool get canAccessApp => throw _privateConstructorUsedError;
+  set canAccessApp(bool value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
   set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
   String? get phoneNum => throw _privateConstructorUsedError;
@@ -88,6 +90,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
@@ -127,6 +130,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
+    Object? canAccessApp = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? password = null,
@@ -188,6 +192,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 null == blocked
                     ? _value.blocked
                     : blocked // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            canAccessApp:
+                null == canAccessApp
+                    ? _value.canAccessApp
+                    : canAccessApp // ignore: cast_nullable_to_non_nullable
                         as bool,
             phoneCountryCode:
                 freezed == phoneCountryCode
@@ -274,6 +283,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
@@ -313,6 +323,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
+    Object? canAccessApp = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? password = null,
@@ -374,6 +385,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             null == blocked
                 ? _value.blocked
                 : blocked // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        canAccessApp:
+            null == canAccessApp
+                ? _value.canAccessApp
+                : canAccessApp // ignore: cast_nullable_to_non_nullable
                     as bool,
         phoneCountryCode:
             freezed == phoneCountryCode
@@ -440,6 +456,7 @@ class _$UserModelImpl implements _UserModel {
     this.languageCode,
     this.profilePhoto,
     this.blocked = false,
+    this.canAccessApp = false,
     this.phoneCountryCode,
     this.phoneNum,
     this.password = '',
@@ -478,6 +495,9 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   bool blocked;
   @override
+  @JsonKey()
+  bool canAccessApp;
+  @override
   String? phoneCountryCode;
   @override
   String? phoneNum;
@@ -504,7 +524,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
   }
 
   /// Create a copy of UserModel
@@ -533,6 +553,7 @@ abstract class _UserModel implements UserModel {
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
@@ -579,6 +600,9 @@ abstract class _UserModel implements UserModel {
   @override
   bool get blocked;
   set blocked(bool value);
+  @override
+  bool get canAccessApp;
+  set canAccessApp(bool value);
   @override
   String? get phoneCountryCode;
   set phoneCountryCode(String? value);

@@ -247,8 +247,8 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       Switch(
                         activeColor: context.colorPalette.grey708,
                         activeTrackColor: context.colorPalette.greyD9D,
-                        value: true,
-                        onChanged: (value) {},
+                        value: _user.canAccessApp,
+                        onChanged: (value) => _user.canAccessApp = value,
                       ),
                       const SizedBox(width: 5),
                       Text(

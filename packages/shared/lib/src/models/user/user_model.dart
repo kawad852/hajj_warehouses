@@ -18,6 +18,7 @@ class UserModel with _$UserModel {
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,
+    @Default(false) bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     @Default('') String password,
