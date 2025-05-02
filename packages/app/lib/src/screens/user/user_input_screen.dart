@@ -44,49 +44,61 @@ class _UserInputScreenState extends State<UserInputScreen> {
     }
   }
 
-  void _submit(BuildContext context) {
-    String? errorMsg;
-    if (_file == null) {
-      errorMsg = "الصورة الشخصية مطلوبة";
-    } else if (_files.isEmpty) {
-      errorMsg = "أرفق صور لشهادة الصحة ، او عقد التوظيف او البطاقة";
-    }
-    if (errorMsg != null) {
-      Fluttertoast.showToast(msg: errorMsg);
-    } else {
-      if (_formKey.currentState!.validate()) {
-        context.unFocusKeyboard();
-        ApiService.fetch(
-          context,
-          callBack: () async {
-            final userDocRef = kFirebaseInstant.users.doc();
-            final uid = userDocRef.id;
-            var callable = FirebaseFunctions.instanceFor(
-              region: "europe-west3",
-            ).httpsCallable('generateCustomToken');
-            final results = await callable.call(<String, dynamic>{'uid': uid});
-            final customToken = results.data as String;
-            final auth = await FirebaseAuth.instance.signInWithCustomToken(customToken);
-            if (context.mounted) {
-              _user.id = auth.user!.uid;
-              _user.createdAt = kNowDate;
-              _user.languageCode = context.languageCode;
-              _user.phoneNum = _phoneController.getPhoneNumber;
-              _user.phoneCountryCode = _phoneController.countryCode;
-              _user.profilePhoto = await _storageService.uploadFile(
-                collection: "personalPhotos",
-                file: _file!,
-              );
-              _user.images = await _storageService.uploadFiles("personalPhotos", _files);
-              await userDocRef.set(_user);
-            }
-            if (context.mounted) {
-              Navigator.pop(context);
-              Fluttertoast.showToast(msg: "تمت العملية بنجاح");
-            }
-          },
-        );
+  Future<void> _submit(BuildContext context) async {
+    try {
+      String? errorMsg;
+      if (_file == null) {
+        errorMsg = "الصورة الشخصية مطلوبة";
+      } else if (_files.isEmpty) {
+        errorMsg = "أرفق صور لشهادة الصحة ، او عقد التوظيف او البطاقة";
       }
+      if (errorMsg != null) {
+        Fluttertoast.showToast(msg: errorMsg);
+      } else {
+        if (_formKey.currentState!.validate()) {
+          AppOverlayLoader.show();
+          context.unFocusKeyboard();
+          final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: "${_user.username}@hajjwarehouses.com",
+            password: _user.password,
+          );
+          final id = auth.user!.uid;
+          final userDocRef = kFirebaseInstant.users.doc(id);
+          if (context.mounted) {
+            _user.id = id;
+            _user.createdAt = kNowDate;
+            _user.languageCode = context.languageCode;
+            _user.phoneNum = _phoneController.getPhoneNumber;
+            _user.phoneCountryCode = _phoneController.countryCode;
+            _user.profilePhoto = await _storageService.uploadFile(
+              collection: "personalPhotos",
+              file: _file!,
+            );
+            _user.images = await _storageService.uploadFiles("personalPhotos", _files);
+            await userDocRef.set(_user);
+          }
+          if (context.mounted) {
+            Navigator.pop(context);
+            Fluttertoast.showToast(msg: "تمت العملية بنجاح");
+          }
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) {
+        if (e.code == 'weak-password') {
+          context.showSnackBar("passwordWeakError");
+        } else if (e.code == 'email-already-in-use') {
+          context.showSnackBar("emailAlreadyInUse");
+        } else {
+          context.showSnackBar(context.appLocalization.generalError);
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        context.showSnackBar(context.appLocalization.generalError);
+      }
+    } finally {
+      AppOverlayLoader.hide();
     }
   }
 
