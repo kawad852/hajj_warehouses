@@ -29,7 +29,6 @@ class DropDownEditor<T> extends StatelessWidget {
         child: DropdownButtonFormField(
           onChanged: onChanged,
           value: value,
-
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             labelText: title,

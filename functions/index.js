@@ -5,8 +5,11 @@
 const admin = require("firebase-admin");
 const {onDocumentUpdated} = require("firebase-functions/v2/firestore");
 const {onCall} = require("firebase-functions/v2/https");
+const serviceAccount = require("./serviceAccountKey.json");
 
-admin.initializeApp();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",

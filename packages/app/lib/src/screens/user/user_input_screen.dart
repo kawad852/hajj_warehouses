@@ -48,7 +48,6 @@ class _UserInputScreenState extends State<UserInputScreen> {
     String? errorMsg;
     if (_file == null) {
       errorMsg = "الصورة الشخصية مطلوبة";
-      return;
     } else if (_files.isEmpty) {
       errorMsg = "أرفق صور لشهادة الصحة ، او عقد التوظيف او البطاقة";
     }
@@ -60,7 +59,8 @@ class _UserInputScreenState extends State<UserInputScreen> {
         ApiService.fetch(
           context,
           callBack: () async {
-            final uid = _user.username;
+            final userDocRef = kFirebaseInstant.users.doc();
+            final uid = userDocRef.id;
             var callable = FirebaseFunctions.instanceFor(
               region: "europe-west3",
             ).httpsCallable('generateCustomToken');
@@ -68,7 +68,6 @@ class _UserInputScreenState extends State<UserInputScreen> {
             final customToken = results.data as String;
             final auth = await FirebaseAuth.instance.signInWithCustomToken(customToken);
             if (context.mounted) {
-              final userDocRef = kFirebaseInstant.users.doc();
               _user.id = auth.user!.uid;
               _user.createdAt = kNowDate;
               _user.languageCode = context.languageCode;
@@ -248,7 +247,11 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         activeColor: context.colorPalette.grey708,
                         activeTrackColor: context.colorPalette.greyD9D,
                         value: _user.canAccessApp,
-                        onChanged: (value) => _user.canAccessApp = value,
+                        onChanged: (value) {
+                          setState(() {
+                            _user.canAccessApp = value;
+                          });
+                        },
                       ),
                       const SizedBox(width: 5),
                       Text(
