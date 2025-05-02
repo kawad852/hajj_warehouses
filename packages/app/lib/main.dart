@@ -83,44 +83,51 @@ class _MyAppState extends State<MyApp> {
           brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
         return MultiProvider(
-          key: ValueKey(userProvider.isAuthenticated),
+          // key: ValueKey(userProvider.isAuthenticated),
           providers: [
-            if (userProvider.isAuthenticated && kBranch != null) ...[
-              StreamProvider<UserModel>.value(
-                value: userProvider.userDocRef.snapshots().map(
-                  (event) => event.data() ?? UserModel(),
-                ),
-                initialData: MySharedPreferences.user ?? UserModel(),
-                lazy: false,
-                updateShouldNotify: (initialValue, value) {
-                  MySharedPreferences.user = value;
-                  Future.microtask(() {
-                    if (value.id == null || value.blocked) {
-                      Fluttertoast.showToast(msg: "Authorization Failed");
-                      // ignore: use_build_context_synchronously
-                      userProvider.logout(rootNavigatorKey.currentContext!);
-                    }
-                  });
-                  return true;
-                },
-              ),
-              StreamProvider<List<ItemModel>>.value(
-                key: ValueKey(userProvider.isAuthenticated),
-                value: _outOfStockStream,
-                initialData: const [],
-                updateShouldNotify: (initialValue, value) {
-                  return true;
-                },
-              ),
-              StreamProvider<BranchModel>.value(
-                key: ValueKey(userProvider.isAuthenticated),
-                value: _branchStream,
-                initialData: BranchModel(),
-                updateShouldNotify: (initialValue, value) {
-                  return true;
-                },
-              ),
-            ],
+            StreamProvider<UserModel>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value:
+                  userProvider.isAuthenticated
+                      ? userProvider.userDocRef.snapshots().map(
+                        (event) => event.data() ?? UserModel(),
+                      )
+                      : Stream.value(UserModel()),
+              initialData: MySharedPreferences.user ?? UserModel(),
+              updateShouldNotify: (initialValue, value) {
+                MySharedPreferences.user = value;
+                Future.microtask(() {
+                  if (userProvider.isAuthenticated && (value.id == null || value.blocked)) {
+                    Fluttertoast.showToast(msg: "Authorization Failed");
+                    // ignore: use_build_context_synchronously
+                    userProvider.logout(rootNavigatorKey.currentContext!);
+                  }
+                });
+                return true;
+              },
+            ),
+            StreamProvider<List<ItemModel>>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value:
+                  userProvider.isAuthenticated && kBranch != null
+                      ? _outOfStockStream
+                      : Stream.value([]),
+              initialData: const [],
+              updateShouldNotify: (initialValue, value) {
+                return true;
+              },
+            ),
+            StreamProvider<BranchModel>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value:
+                  userProvider.isAuthenticated && kBranch != null
+                      ? _branchStream
+                      : Stream.value(BranchModel()),
+              initialData: BranchModel(),
+              updateShouldNotify: (initialValue, value) {
+                return true;
+              },
+            ),
             StreamProvider<bool>.value(value: null, initialData: true),
           ],
           child: MaterialApp(
