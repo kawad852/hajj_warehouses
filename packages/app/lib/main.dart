@@ -83,8 +83,9 @@ class _MyAppState extends State<MyApp> {
           brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
         );
         return MultiProvider(
+          key: ValueKey(userProvider.isAuthenticated),
           providers: [
-            if (userProvider.isAuthenticated && kSelectedBranchId.isNotEmpty) ...[
+            if (userProvider.isAuthenticated && kBranch != null) ...[
               StreamProvider<UserModel>.value(
                 value: userProvider.userDocRef.snapshots().map(
                   (event) => event.data() ?? UserModel(),
