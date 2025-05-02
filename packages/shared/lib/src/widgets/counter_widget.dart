@@ -66,6 +66,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                   final value = _maxQuantity ?? _quantity;
                   _quantityCtrl.text = '$value';
                   _quantity = value;
+                  widget.onChanged(_quantity);
                 });
                 return;
               }
