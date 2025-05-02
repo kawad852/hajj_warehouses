@@ -17,7 +17,7 @@ class _UsersScreenState extends State<UsersScreen> {
     if (kIsAdmin) {
       _usersQuery = query;
     } else {
-      _usersQuery = query.whereMyBranch;
+      _usersQuery = query.whereIdBranch;
     }
   }
 
