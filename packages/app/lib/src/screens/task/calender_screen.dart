@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/task/widgets/date_widget.dart';
 import 'package:shared/shared.dart';
 
 class CalenderScreen extends StatefulWidget {
@@ -17,9 +18,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
     return Scaffold(
       bottomNavigationBar: const BottomAppBar(
         color: Colors.transparent,
-        child: AddTaskWidget(
-          taskInputType: TaskInputType.main,
-        ),
+        child: AddTaskWidget(taskInputType: TaskInputType.main),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -32,10 +31,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 top: 26,
                 left: 0,
                 right: 0,
-                child: Divider(
-                  color: context.colorPalette.greyC4C,
-                  thickness: 2,
-                ),
+                child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -98,6 +98,7 @@ export 'src/widgets/custom_radio.dart';
 export 'src/widgets/custom_svg.dart';
 export 'src/widgets/editor_label.dart';
 export 'src/widgets/editors/base_editor.dart';
+export 'src/widgets/editors/date_picker_editor.dart';
 export 'src/widgets/editors/decimals_editor.dart';
 export 'src/widgets/editors/drop_down_editor.dart';
 export 'src/widgets/editors/numbers_editor.dart';

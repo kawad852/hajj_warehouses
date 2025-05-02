@@ -10,6 +10,7 @@ _$UserModelImpl _$$UserModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$UserModelImpl(
   createdAt: const TimestampSerializer().fromJson(json['createdAt']),
+  workStartDate: const TimestampSerializer().fromJson(json['workStartDate']),
   id: json['id'] as String?,
   displayName: json['displayName'] as String? ?? '',
   email: json['email'] as String?,
@@ -34,29 +35,31 @@ _$UserModelImpl _$$UserModelImplFromJson(
   images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
-Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
-    <String, dynamic>{
-      'createdAt': const TimestampSerializer().toJson(instance.createdAt),
-      'id': instance.id,
-      'displayName': instance.displayName,
-      'email': instance.email,
-      'deviceToken': instance.deviceToken,
-      'branch': instance.branch?.toJson(),
-      'role': instance.role,
-      'languageCode': instance.languageCode,
-      'profilePhoto': instance.profilePhoto,
-      'blocked': instance.blocked,
-      'canAccessApp': instance.canAccessApp,
-      'phoneCountryCode': instance.phoneCountryCode,
-      'phoneNum': instance.phoneNum,
-      'password': instance.password,
-      'jobTitle': instance.jobTitle,
-      'nationalNumber': instance.nationalNumber,
-      'address': instance.address,
-      'username': instance.username,
-      'salary': instance.salary,
-      'images': instance.images,
-    };
+Map<String, dynamic> _$$UserModelImplToJson(
+  _$UserModelImpl instance,
+) => <String, dynamic>{
+  'createdAt': const TimestampSerializer().toJson(instance.createdAt),
+  'workStartDate': const TimestampSerializer().toJson(instance.workStartDate),
+  'id': instance.id,
+  'displayName': instance.displayName,
+  'email': instance.email,
+  'deviceToken': instance.deviceToken,
+  'branch': instance.branch?.toJson(),
+  'role': instance.role,
+  'languageCode': instance.languageCode,
+  'profilePhoto': instance.profilePhoto,
+  'blocked': instance.blocked,
+  'canAccessApp': instance.canAccessApp,
+  'phoneCountryCode': instance.phoneCountryCode,
+  'phoneNum': instance.phoneNum,
+  'password': instance.password,
+  'jobTitle': instance.jobTitle,
+  'nationalNumber': instance.nationalNumber,
+  'address': instance.address,
+  'username': instance.username,
+  'salary': instance.salary,
+  'images': instance.images,
+};
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>
     _$LightUserModelImpl(

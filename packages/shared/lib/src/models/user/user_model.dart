@@ -9,6 +9,7 @@ class UserModel with _$UserModel {
   @JsonSerializable(explicitToJson: true)
   factory UserModel({
     @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     @Default('') String displayName,
     String? email,

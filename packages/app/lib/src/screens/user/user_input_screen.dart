@@ -195,6 +195,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                             final branch = branches.firstWhere((e) => e.id == value);
                             _user.branch = LightBranchModel(id: branch.id, name: branch.name);
                           },
+                          labelText: '',
                           value: _user.branch?.id ?? kSelectedBranchId,
                         ),
                       ),
@@ -241,7 +242,12 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       Expanded(
                         child: TitledTextField(
                           title: "تاريخ بدأ العمل",
-                          child: TextEditor(onChanged: (value) {}),
+                          child: DatePickerEditor(
+                            value: _user.workStartDate ?? kNowDate,
+                            onChanged: (value) {
+                              _user.workStartDate = value;
+                            },
+                          ),
                         ),
                       ),
                     ],

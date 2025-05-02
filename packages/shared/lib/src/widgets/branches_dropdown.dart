@@ -5,6 +5,7 @@ class BranchesDropdown extends StatelessWidget {
   final String title;
   final String? value;
   final Function(String? id)? onChanged;
+  final String? labelText;
 
   const BranchesDropdown({
     super.key,
@@ -12,6 +13,7 @@ class BranchesDropdown extends StatelessWidget {
     required this.title,
     required this.onChanged,
     required this.value,
+    this.labelText,
   });
 
   @override
@@ -26,7 +28,7 @@ class BranchesDropdown extends StatelessWidget {
               return DropdownMenuItem(value: e.id, child: Text(e.name));
             }).toList(),
         onChanged: onChanged,
-        title: "اختر الفرع",
+        title: labelText ?? "اختر الفرع",
       ),
     );
   }
