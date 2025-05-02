@@ -12,10 +12,23 @@ class CounterWidget extends StatefulWidget {
 
 class _CounterWidgetState extends State<CounterWidget> {
   var _quantity = 1;
+  late TextEditingController _quantityCtrl;
 
+  int? get _maxQuantity => widget.maxQuantity;
   bool get _canAddMore =>
-      widget.maxQuantity == null ||
-      (widget.maxQuantity != null && _quantity <= widget.maxQuantity! - 1);
+      _maxQuantity == null || (_maxQuantity != null && _quantity <= _maxQuantity! - 1);
+
+  @override
+  void initState() {
+    super.initState();
+    _quantityCtrl = TextEditingController(text: _quantity.toString());
+  }
+
+  @override
+  void dispose() {
+    _quantityCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +41,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                   ? () {
                     setState(() {
                       _quantity--;
+                      _quantityCtrl.text = _quantity.toString();
                     });
                     widget.onChanged(_quantity);
                   }
@@ -37,8 +51,7 @@ class _CounterWidgetState extends State<CounterWidget> {
         SizedBox(
           width: 120,
           child: NumbersEditor(
-            key: ValueKey(_quantity),
-            initialValue: _quantity,
+            controller: _quantityCtrl,
             textAlign: TextAlign.center,
             textStyle: TextStyle(
               color: context.colorPalette.grey708,
@@ -46,6 +59,16 @@ class _CounterWidgetState extends State<CounterWidget> {
               fontWeight: FontWeight.w800,
             ),
             onChanged: (value) {
+              if (_maxQuantity != null && value! > _maxQuantity!) {
+                Fluttertoast.showToast(msg: "الحد الأقصى للصنف $_maxQuantity");
+                _quantityCtrl.clear();
+                setState(() {
+                  final value = _maxQuantity ?? _quantity;
+                  _quantityCtrl.text = '$value';
+                  _quantity = value;
+                });
+                return;
+              }
               _quantity = value!;
               widget.onChanged(_quantity);
             },
@@ -57,6 +80,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                   ? () {
                     setState(() {
                       _quantity++;
+                      _quantityCtrl.text = _quantity.toString();
                     });
                     widget.onChanged(_quantity);
                   }
