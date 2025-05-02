@@ -54,7 +54,7 @@ class NumbersEditor extends StatelessWidget {
       suffixIcon: suffixIcon,
       suffixIconConstraints: const BoxConstraints(maxWidth: 60),
       keyboardType: TextInputType.number,
-      inputFormatters: [ArabicDigitConverterFormatter()],
+      inputFormatters: [ArabicDigitConverterFormatter(digitsOnly: true)],
       required: required,
       initialValue: initialValue?.toString(),
       onChanged: (value) {
@@ -77,7 +77,7 @@ class NumbersEditor extends StatelessWidget {
 class ArabicDigitConverterFormatter extends TextInputFormatter {
   final bool digitsOnly;
 
-  ArabicDigitConverterFormatter({this.digitsOnly = true});
+  ArabicDigitConverterFormatter({this.digitsOnly = false});
 
   static final _arabicToEnglishMap = {
     '٠': '0',
@@ -94,21 +94,22 @@ class ArabicDigitConverterFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextBuffer = StringBuffer();
+    final buffer = StringBuffer();
+    bool dotAlreadyExists = false;
 
     for (final char in newValue.text.characters) {
       final converted = _arabicToEnglishMap[char] ?? char;
 
-      if (digitsOnly) {
-        if (RegExp(r'[0-9]').hasMatch(converted)) {
-          newTextBuffer.write(converted);
-        }
-      } else {
-        newTextBuffer.write(converted);
+      if (RegExp(r'[0-9]').hasMatch(converted)) {
+        buffer.write(converted);
+      } else if (!digitsOnly && converted == '.' && !dotAlreadyExists) {
+        buffer.write('.');
+        dotAlreadyExists = true;
       }
+      // Ignore all other characters
     }
 
-    final newText = newTextBuffer.toString();
+    final newText = buffer.toString();
 
     return TextEditingValue(
       text: newText,

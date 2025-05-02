@@ -80,7 +80,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
       onComplete: (context, snapshot) {
         final branches = snapshot.data!;
         return Scaffold(
-          // backgroundColor: context.colorPalette.greyF2F,
+          backgroundColor: _singleItem ? context.colorPalette.greyF2F : null,
           appBar: _singleItem ? null : AppBar(title: Text(info.title)),
           bottomNavigationBar: BottomButton(
             text: info.buttonLabel,
