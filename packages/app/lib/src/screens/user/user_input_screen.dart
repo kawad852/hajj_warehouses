@@ -105,7 +105,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
   @override
   void initState() {
     super.initState();
-    _user = UserModel();
+    _user = UserModel(branch: kBranch);
     _phoneController = PhoneController(context);
     _initialize();
   }

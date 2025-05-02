@@ -11,7 +11,8 @@ DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
-String get kSelectedBranchId => MySharedPreferences.selectedBranchId;
+LightBranchModel get kBranch => MySharedPreferences.branch!;
+String get kSelectedBranchId => kBranch.id!;
 LightUserModel get kCurrentLightUser => LightUserModel(
   id: MySharedPreferences.user?.id,
   displayName: MySharedPreferences.user?.displayName,

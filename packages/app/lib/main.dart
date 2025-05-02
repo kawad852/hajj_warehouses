@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       kFirebaseInstant.branches.doc(kSelectedBranchId).snapshots().map((e) => e.data()!);
 
   Widget _toggleScreen(BuildContext context) {
-    if (MySharedPreferences.user?.id != null && MySharedPreferences.selectedBranchId.isNotEmpty) {
+    if (MySharedPreferences.user?.id != null && MySharedPreferences.branch?.id != null) {
       return const AppNavBar();
     } else {
       return const LoginScreen();

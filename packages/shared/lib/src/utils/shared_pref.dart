@@ -1,11 +1,6 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../enums/base_enums.dart';
-import '../models/basket/basket_model.dart';
-import '../models/user/user_model.dart';
-import 'app_constants.dart';
+import 'package:shared/shared.dart';
 
 class MySharedPreferences {
   static late SharedPreferences _sharedPreferences;
@@ -16,7 +11,7 @@ class MySharedPreferences {
 
   static void clearStorage() {
     user = null;
-    selectedBranchId = "";
+    branch = null;
   }
 
   static UserModel? get user {
@@ -33,28 +28,6 @@ class MySharedPreferences {
     _sharedPreferences.setString('user', jsonEncode(value?.toJson()));
   }
 
-  static List<BasketModel> get basket {
-    var value = _sharedPreferences.getString('basket');
-    List<BasketModel>? basket = [];
-    if (value != null && value.isNotEmpty && value != 'null') {
-      List<dynamic> result = jsonDecode(value);
-      basket = result.toList().map((element) => BasketModel.fromJson(element)).toList();
-      return basket;
-    } else {
-      return [];
-    }
-  }
-
-  static set basket(List<BasketModel>? value) {
-    if (value != null) {
-      for (var element in value) {
-        element.createdAt = null;
-        element.product?.createdAt = null;
-      }
-    }
-    _sharedPreferences.setString('basket', jsonEncode(value));
-  }
-
   static bool get passedIntro => _sharedPreferences.getBool('passedIntro') ?? false;
   static set passedIntro(bool value) => _sharedPreferences.setBool('passedIntro', value);
 
@@ -68,7 +41,16 @@ class MySharedPreferences {
       _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
   static set countryCode(String value) => _sharedPreferences.setString('countryCode', value);
 
-  static String get selectedBranchId => _sharedPreferences.getString('selectedBranchId') ?? "";
-  static set selectedBranchId(String value) =>
-      _sharedPreferences.setString('selectedBranchId', value);
+  static LightBranchModel? get branch {
+    String? value = _sharedPreferences.getString('branch');
+    LightBranchModel? branch;
+    if (value != null && value.isNotEmpty && value != 'null') {
+      branch = LightBranchModel.fromJson(jsonDecode(value));
+    }
+    return branch;
+  }
+
+  static set branch(LightBranchModel? value) {
+    _sharedPreferences.setString('branch', jsonEncode(value?.toJson()));
+  }
 }

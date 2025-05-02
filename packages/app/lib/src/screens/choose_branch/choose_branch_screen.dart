@@ -30,7 +30,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
           bottomNavigationBar: BottomButton(
             text: "التالي",
             onPressed:
-                MySharedPreferences.selectedBranchId.isNotEmpty
+                MySharedPreferences.branch != null
                     ? () {
                       context.goToNavBar();
                     }
@@ -83,11 +83,14 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     final branch = branches[index];
-                    final isSelected = MySharedPreferences.selectedBranchId == branch.id;
+                    final isSelected = MySharedPreferences.branch?.id == branch.id;
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          MySharedPreferences.selectedBranchId = branch.id;
+                          MySharedPreferences.branch = LightBranchModel(
+                            id: branch.id,
+                            name: branch.name,
+                          );
                         });
                       },
                       child: Container(
