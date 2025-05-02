@@ -126,6 +126,10 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                           );
                         }
                         final element = _items[index];
+                        // Fake/Temp id for ValueKey
+                        if (element.id.isEmpty) {
+                          element.id = kUUID;
+                        }
                         return AddItemWidget(
                           key: ValueKey("${element.id}$index"),
                           initialValue: element.name,

@@ -125,24 +125,26 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                             icon: MyIcons.truckTime,
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          flex: 4,
-                          child: ManageButton(
-                            onTap: () {
-                              _openSheet(
-                                context,
-                                item: item,
-                                operationType: OperationType.destroy,
-                                maxQuantity: _item.quantity,
-                              );
-                            },
-                            title: "إتلاف اصناف",
-                            backgroundColor: context.colorPalette.redC33,
-                            icon: MyIcons.trash,
-                            iconColor: null,
+                        if (item.quantity > 0) ...[
+                          const SizedBox(width: 10),
+                          Expanded(
+                            flex: 4,
+                            child: ManageButton(
+                              onTap: () {
+                                _openSheet(
+                                  context,
+                                  item: item,
+                                  operationType: OperationType.destroy,
+                                  maxQuantity: item.quantity,
+                                );
+                              },
+                              title: "إتلاف اصناف",
+                              backgroundColor: context.colorPalette.redC33,
+                              icon: MyIcons.trash,
+                              iconColor: null,
+                            ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -184,7 +186,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                               return const FPLoading();
                             }
                             final operation = snapshot.docs[index].data();
-                            return OperationCard(operation: operation, itemId: _item.id);
+                            return OperationCard(operation: operation, itemId: item.id);
                           },
                         );
                       },
