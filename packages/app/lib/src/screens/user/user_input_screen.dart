@@ -174,7 +174,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
                       title: "الاسم الكامل",
-                      child: TextEditor(onChanged: (value) => _user.displayName),
+                      child: TextEditor(onChanged: (value) => _user.displayName = value!),
                     ),
                   ),
                   Row(
@@ -183,7 +183,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       Expanded(
                         child: TitledTextField(
                           title: "المسمى الوظيفي",
-                          child: TextEditor(onChanged: (value) => _user.jobTitle),
+                          child: TextEditor(onChanged: (value) => _user.jobTitle = value!),
                         ),
                       ),
                       const SizedBox(width: 10),

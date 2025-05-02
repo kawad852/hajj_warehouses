@@ -20,7 +20,7 @@ class UserCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const BaseNetworkImage(kBurgerImage, width: 64, height: 64),
+          BaseNetworkImage(user.profilePhoto!, width: 64, height: 64),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -28,7 +28,7 @@ class UserCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "محمد عبدالله",
+                  user.displayName,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
@@ -40,7 +40,7 @@ class UserCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "شيف رئيسي",
+                      user.jobTitle,
                       style: TextStyle(
                         color: context.colorPalette.black,
                         fontSize: 14,
@@ -49,7 +49,7 @@ class UserCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        "- فرع منى",
+                        "- ${user.branch?.name}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.grey708,
