@@ -31,6 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
             context.showSnackBar("context.appLocalization.emailNotFount");
           } else if (e.code == 'wrong-password') {
             context.showSnackBar("context.appLocalization.wrongPassword");
+          } else if (e.code == 'invalid-credential') {
+            context.showSnackBar("context.appLocalization.invalidCredintial");
           } else {
             context.showSnackBar(context.appLocalization.generalError);
           }
