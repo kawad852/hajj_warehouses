@@ -17,4 +17,6 @@ class MyCollections {
   static const String branches = 'branches';
   static const String transactions = 'transactions';
   static const String orderHistory = 'orderHistory';
+  static const String tasks = 'tasks';
+  static const String subTasks = 'subTasks';
 }

@@ -1,19 +1,18 @@
-import 'package:shared/shared.dart';
+import '../../shared.dart';
 
-extension SelectedUserFireExtension on FirebaseFirestore {
-  // CollectionReference<CategoryModel> get branchCategories => kUserDocRef
-  //     .collection(MyCollections.categories)
-  //     .withConverter<CategoryModel>(
-  //       fromFirestore: (snapshot, _) => CategoryModel.fromJson(snapshot.data()!),
-  //       toFirestore: (snapshot, _) => snapshot.toJson(),
-  //     );
+extension BranchQueries on FirebaseFirestore {
+  DocumentReference get branchDocRef => collection(MyCollections.branches).doc(kSelectedBranchId);
+  CollectionReference get tasksCollectionRef => branchDocRef.collection(MyCollections.tasks);
+
+  CollectionReference<TaskModel> get tasks => tasksCollectionRef.taskConvertor;
+
+  CollectionReference<TaskModel> subTasks(String id) =>
+      tasksCollectionRef.doc(id).collection(MyCollections.subTasks).taskConvertor;
 }
 
-// extension BranchQueries on DocumentReference {
-//   CollectionReference<OperationModel> get operationsQ => operations;
-// }
-
-class BranchQueries {
-  static Query<InventoryOperationModel> get inventoryOperations =>
-      kFirebaseInstant.inventoryOperations.whereMyBranch.orderByDesc;
+extension FireConvertorExtension on CollectionReference {
+  get taskConvertor => withConverter<TaskModel>(
+    fromFirestore: (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
+    toFirestore: (snapshot, _) => snapshot.toJson(),
+  );
 }

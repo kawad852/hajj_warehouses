@@ -11,7 +11,7 @@ class _OperationsScreenState extends State<OperationsScreen> {
   late Query<InventoryOperationModel> _operationsQuery;
 
   void _initializeOperations() {
-    _operationsQuery = BranchQueries.inventoryOperations;
+    _operationsQuery = kFirebaseInstant.inventoryOperations.whereMyBranch.orderByDesc;
   }
 
   @override
