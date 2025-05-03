@@ -11,6 +11,7 @@ class NavEditor extends StatelessWidget {
   final bool required;
   final String? initialValue;
   final double maxWidth;
+  final TextStyle? style;
 
   const NavEditor({
     super.key,
@@ -25,6 +26,7 @@ class NavEditor extends StatelessWidget {
     this.required = true,
     this.initialValue,
     this.maxWidth = 50,
+    this.style,
   });
 
   @override
@@ -37,6 +39,7 @@ class NavEditor extends StatelessWidget {
       suffixIconConstraints: BoxConstraints(maxWidth: maxWidth),
       controller: TextEditingController(text: value),
       labelText: labelText,
+      style: style,
       readOnly: true,
       canRequestFocus: false,
       onTap: onTap,

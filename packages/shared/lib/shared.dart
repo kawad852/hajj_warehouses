@@ -102,6 +102,7 @@ export 'src/widgets/editors/base_editor.dart';
 export 'src/widgets/editors/date_picker_editor.dart';
 export 'src/widgets/editors/decimals_editor.dart';
 export 'src/widgets/editors/drop_down_editor.dart';
+export 'src/widgets/editors/nav_editor.dart';
 export 'src/widgets/editors/numbers_editor.dart';
 export 'src/widgets/editors/password_editor.dart';
 export 'src/widgets/editors/phone_editor.dart';

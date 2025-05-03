@@ -1,7 +1,7 @@
+import 'package:flutter_cupertino_datetime_picker/flutter_cupertino_datetime_picker.dart';
 import 'package:shared/shared.dart';
 
 import '../../../object_box_exports.dart';
-import 'nav_editor.dart';
 
 class DatePickerEditor extends StatefulWidget {
   final DateTime value;
@@ -10,6 +10,8 @@ class DatePickerEditor extends StatefulWidget {
   final String? labelText;
   final DateTime? fistDate;
   final DateTime? lastDate;
+  final bool includeTime;
+  final TextStyle? style;
 
   const DatePickerEditor({
     super.key,
@@ -19,6 +21,8 @@ class DatePickerEditor extends StatefulWidget {
     this.labelText,
     this.fistDate,
     this.lastDate,
+    this.includeTime = false,
+    this.style,
   });
 
   @override
@@ -28,19 +32,37 @@ class DatePickerEditor extends StatefulWidget {
 class _DatePickerEditorState extends State<DatePickerEditor> {
   late DateTime _value;
 
-  Future<void> _showDatePicker(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _value,
-      firstDate: widget.fistDate ?? DateTime.now(),
-      lastDate: widget.lastDate ?? DateTime(2050, 8),
+  // Future<void> _showDatePicker(BuildContext context) async {
+  //   final DateTime? picked = await showDatePicker(
+  //     context: context,
+  //     initialDate: _value,
+  //     firstDate: widget.fistDate ?? DateTime.now(),
+  //     lastDate: widget.lastDate ?? DateTime(2050, 8),
+  //   );
+  //   if (picked != null) {
+  //     setState(() {
+  //       _value = picked;
+  //     });
+  //     widget.onChanged(_value);
+  //   }
+  // }
+
+  void _showDateTimePicker(BuildContext context) {
+    DatePicker.showDatePicker(
+      context,
+      dateFormat: widget.includeTime ? 'dd MMMM yyyy HH:mm' : 'dd MMMM yyyy',
+      initialDateTime: kNowDate,
+      minDateTime: DateTime(2000),
+      maxDateTime: DateTime(3000),
+      locale: context.isRTL ? DateTimePickerLocale.ar_eg : DateTimePickerLocale.en_us,
+      onMonthChangeStartWithFirstDate: true,
+      onConfirm: (date, list) {
+        setState(() {
+          _value = date;
+        });
+        widget.onChanged(_value);
+      },
     );
-    if (picked != null) {
-      setState(() {
-        _value = picked;
-      });
-      widget.onChanged(_value);
-    }
   }
 
   @override
@@ -51,12 +73,18 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
 
   @override
   Widget build(BuildContext context) {
+    final date = DateFormat.yMMMd(context.languageCode);
+    if (widget.includeTime) {
+      date.add_jm();
+    }
     return NavEditor(
-      value: DateFormat.yMMMd(context.languageCode).format(_value),
+      value: date.format(_value),
       labelText: widget.labelText,
       required: widget.required,
+      style: widget.style,
       onTap: () {
-        _showDatePicker(context);
+        // _showDatePicker(context);
+        _showDateTimePicker(context);
       },
       validator: widget.required ? (value) => ValidationHelper.general(context, value) : null,
       suffixIcon: const Center(child: CustomSvg(MyIcons.calendar, width: 18)),

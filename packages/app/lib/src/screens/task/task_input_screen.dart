@@ -64,13 +64,13 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
           ),
           Row(
             children: [
-              Expanded(
-                child: TitledTextField(
-                  title: "التاريخ",
-                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
-                ),
-              ),
-              const SizedBox(width: 10),
+              // Expanded(
+              //   child: TitledTextField(
+              //     title: "التاريخ",
+              //     child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
+              //   ),
+              // ),
+              // const SizedBox(width: 10),
               Expanded(
                 child: TitledTextField(
                   title: "الموظف المسؤول",
@@ -90,14 +90,28 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               Expanded(
                 child: TitledTextField(
                   title: "وقت بداية التنفيذ",
-                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
+                  child: DatePickerEditor(
+                    includeTime: true,
+                    style: context.textTheme.labelMedium,
+                    value: _task.startTime ?? kNowDate,
+                    onChanged: (value) {
+                      _task.startTime = value;
+                    },
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: TitledTextField(
                   title: "وقت نهاية المهمة",
-                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
+                  child: DatePickerEditor(
+                    includeTime: true,
+                    style: context.textTheme.labelMedium,
+                    value: _task.endTime ?? kNowDate,
+                    onChanged: (value) {
+                      _task.endTime = value;
+                    },
+                  ),
                 ),
               ),
             ],
