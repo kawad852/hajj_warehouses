@@ -34,3 +34,5 @@ export 'src/screens/user/users_screen.dart';
 export 'src/screens/user/widgets/tool_button.dart';
 export 'src/screens/warehouse/warehouse_screen.dart';
 export 'src/screens/warehouse/widgets/warehouse_button.dart';
+export 'src/screens/task/widgets/status_widget.dart';
+export 'src/screens/task/task_follow_screen.dart';

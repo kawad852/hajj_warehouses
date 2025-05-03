@@ -54,4 +54,8 @@ class MyIcons {
   static const String checkSolid = '${_path}check_solid.svg';
   static const String clockSolid = '${_path}clock_solid.svg';
   static const String plusWhite = '${_path}plus_white.svg';
+  static const String greyRect = '${_path}grey_rect.svg';
+  static const String rect = '${_path}rect.svg';
+  static const String redRect = '${_path}red_rect.svg';
+  static const String yellowRect = '${_path}yellow_rect.svg';
 }

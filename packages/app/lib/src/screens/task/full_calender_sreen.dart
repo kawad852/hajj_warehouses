@@ -60,6 +60,7 @@ class _FullCalenderSreenState extends State<FullCalenderSreen> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
           ),
+          const StatusWidget(),
           Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(height: 15),

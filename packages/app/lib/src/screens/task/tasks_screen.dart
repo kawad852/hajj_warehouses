@@ -40,6 +40,7 @@ class _TasksScreenState extends State<TasksScreen> {
     return Scaffold(
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(10),
@@ -91,6 +92,7 @@ class _TasksScreenState extends State<TasksScreen> {
               ],
             ),
           ),
+          const StatusWidget(),
           Expanded(
             child: CustomFirestoreQueryBuilder(
               key: ValueKey(_selectedDate),
