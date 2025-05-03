@@ -2,16 +2,16 @@ import 'package:app/shared.dart';
 import 'package:app/src/screens/task/widgets/date_widget.dart';
 import 'package:shared/shared.dart';
 
-class CalenderScreen extends StatefulWidget {
-  const CalenderScreen({super.key});
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
 
   @override
-  State<CalenderScreen> createState() => _CalenderScreenState();
+  State<TasksScreen> createState() => _TasksScreenState();
 }
 
 enum DateType { yestarday, today, tomorrow }
 
-class _CalenderScreenState extends State<CalenderScreen> {
+class _TasksScreenState extends State<TasksScreen> {
   DateType dateType = DateType.today;
   @override
   Widget build(BuildContext context) {

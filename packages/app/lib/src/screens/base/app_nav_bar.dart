@@ -33,7 +33,7 @@ class _AppNavBarState extends State<AppNavBar> {
     const HomeScreen(),
     const WarehouseScreen(),
     Container(),
-    const CalenderScreen(),
+    const TasksScreen(),
     const ProfileScreen(),
   ];
 
