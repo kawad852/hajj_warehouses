@@ -16,10 +16,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomAppBar(
-        color: Colors.transparent,
-        child: AddTaskWidget(taskInputType: TaskInputType.main),
-      ),
+      bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         children: [

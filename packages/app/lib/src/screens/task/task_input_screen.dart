@@ -1,28 +1,34 @@
 import 'package:shared/shared.dart';
 
 class TaskInputScreen extends StatefulWidget {
-  final TaskInputType taskInputType;
-  const TaskInputScreen({super.key, required this.taskInputType});
+  final String? mainTaskId;
+
+  const TaskInputScreen({super.key, this.mainTaskId});
 
   @override
   State<TaskInputScreen> createState() => _TaskInputScreenState();
 }
 
 class _TaskInputScreenState extends State<TaskInputScreen> {
-  bool get _isSingleTask => widget.taskInputType == TaskInputType.single;
+  late TaskModel _task;
+
+  bool get _isSubTask => widget.mainTaskId != null;
+
+  @override
+  void initState() {
+    super.initState();
+    _task = TaskModel(createdBy: kCurrentLightUser);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: AppBarText(
-          _isSingleTask ? "إضافة مهمة فرعية" : "إضافة مهمة رئيسية",
-        ),
-      ),
+      appBar: AppBar(title: AppBarText(_isSubTask ? "إضافة مهمة فرعية" : "إضافة مهمة رئيسية")),
       bottomNavigationBar: BottomButton(text: "اضافة", onPressed: () {}),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
-          if (_isSingleTask)
+          if (_isSubTask)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,13 +53,13 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             ),
           TitledTextField(
             title: "عنوان المهمة",
-            child: TextEditor(onChanged: (value) {}),
+            child: TextEditor(onChanged: (value) => _task.title = value!),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: TitledTextField(
               title: "وصف توضيحي",
-              child: TextEditor(onChanged: (value) {}, maxLines: 4),
+              child: TextEditor(onChanged: (value) => _task.description = value!, maxLines: 4),
             ),
           ),
           Row(
@@ -61,10 +67,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               Expanded(
                 child: TitledTextField(
                   title: "التاريخ",
-                  child: TextEditor(
-                    onChanged: (value) {},
-                    textAlign: TextAlign.center,
-                  ),
+                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
                 ),
               ),
               const SizedBox(width: 10),
@@ -87,20 +90,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               Expanded(
                 child: TitledTextField(
                   title: "وقت بداية التنفيذ",
-                  child: TextEditor(
-                    onChanged: (value) {},
-                    textAlign: TextAlign.center,
-                  ),
+                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: TitledTextField(
                   title: "وقت نهاية المهمة",
-                  child: TextEditor(
-                    onChanged: (value) {},
-                    textAlign: TextAlign.center,
-                  ),
+                  child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
                 ),
               ),
             ],

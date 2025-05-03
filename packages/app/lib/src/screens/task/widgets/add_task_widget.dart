@@ -2,8 +2,7 @@ import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class AddTaskWidget extends StatelessWidget {
-  final TaskInputType taskInputType;
-  const AddTaskWidget({super.key, required this.taskInputType});
+  const AddTaskWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +10,7 @@ class AddTaskWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.push((context) => TaskInputScreen(taskInputType: taskInputType));
+            context.push((context) => TaskInputScreen(mainTaskId: ""));
           },
           child: Container(
             width: 40,

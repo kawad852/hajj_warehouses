@@ -25,5 +25,3 @@ enum RoleEnum {
 
   const RoleEnum(this.value);
 }
-
-enum TaskInputType { main, single}

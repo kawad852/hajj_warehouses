@@ -14,10 +14,7 @@ class _FullCalenderSreenState extends State<FullCalenderSreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const AppBarText("جميع المهام")),
-      bottomNavigationBar: const BottomAppBar(
-        color: Colors.transparent,
-        child: AddTaskWidget(taskInputType: TaskInputType.main),
-      ),
+      bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,11 +42,7 @@ class _FullCalenderSreenState extends State<FullCalenderSreen> {
               itemCount: 20,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsetsDirectional.only(
-                start: 15,
-                top: 10,
-                bottom: 7,
-              ),
+              padding: const EdgeInsetsDirectional.only(start: 15, top: 10, bottom: 7),
               itemBuilder: (context, index) {
                 return CalenderCard(
                   onTap: () {
