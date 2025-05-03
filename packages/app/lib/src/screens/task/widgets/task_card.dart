@@ -7,6 +7,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const int testIndex = 0;
+    final time = TimeOfDay(hour: task.startTime!.hour, minute: task.startTime!.minute);
     return Container(
       width: double.infinity,
       height: 67,
@@ -97,7 +98,7 @@ class TaskCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
                       child: Text(
-                        "02:00 مساءً",
+                        time.format(context),
                         style: TextStyle(
                           color: context.colorPalette.grey666,
                           fontSize: 12,
