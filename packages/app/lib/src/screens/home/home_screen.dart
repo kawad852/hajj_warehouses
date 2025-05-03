@@ -33,31 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             if (tasks.isNotEmpty)
               Row(
-                children: [
-                  if (tasks.isNotEmpty)
-                    Expanded(
-                      child: HomeBubble(
-                        onTap: () {},
-                        title: "المهمة الحالية",
-                        task: tasks[0].data().title,
-                        value: "02 : 31 : 56",
-                        valueIcon: MyIcons.timer,
-                      ),
-                    ),
-                  if (tasks.length > 1) ...[
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: HomeBubble(
-                        onTap: () {},
-                        title: "المهمة التالية",
-                        task: tasks[1].data().title,
-                        value: "30 : 06 صباحاً",
-                        valueColor: context.colorPalette.black001,
-                        valueIcon: MyIcons.clock,
-                      ),
-                    ),
-                  ],
-                ],
+                spacing: 10,
+                children:
+                    tasks.take(2).map((e) {
+                      return Expanded(
+                        child: HomeBubble(
+                          onTap: () {},
+                          title: "المهمة الحالية",
+                          task: e.data().title,
+                          value: "02 : 31 : 56",
+                          valueIcon: MyIcons.timer,
+                        ),
+                      );
+                    }).toList(),
               ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
