@@ -30,6 +30,6 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'employee': instance.employee,
-      'createdBy': instance.createdBy,
+      'employee': instance.employee?.toJson(),
+      'createdBy': instance.createdBy.toJson(),
     };

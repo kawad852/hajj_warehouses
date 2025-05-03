@@ -4,7 +4,7 @@ import 'package:shared/shared.dart';
 import '../../../object_box_exports.dart';
 
 class DatePickerEditor extends StatefulWidget {
-  final DateTime value;
+  final DateTime? value;
   final Function(DateTime value) onChanged;
   final bool required;
   final String? labelText;
@@ -30,7 +30,7 @@ class DatePickerEditor extends StatefulWidget {
 }
 
 class _DatePickerEditorState extends State<DatePickerEditor> {
-  late DateTime _value;
+  late DateTime? _value;
 
   // Future<void> _showDatePicker(BuildContext context) async {
   //   final DateTime? picked = await showDatePicker(
@@ -51,16 +51,16 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
     DatePicker.showDatePicker(
       context,
       dateFormat: widget.includeTime ? 'dd MMMM yyyy HH:mm' : 'dd MMMM yyyy',
-      initialDateTime: kNowDate,
-      minDateTime: DateTime(2000),
-      maxDateTime: DateTime(3000),
+      initialDateTime: _value ?? kNowDate,
+      minDateTime: kNowDate,
+      maxDateTime: kNowDate.add(const Duration(days: 999)),
       locale: context.isRTL ? DateTimePickerLocale.ar_eg : DateTimePickerLocale.en_us,
       onMonthChangeStartWithFirstDate: true,
       onConfirm: (date, list) {
         setState(() {
           _value = date;
         });
-        widget.onChanged(_value);
+        widget.onChanged(_value!);
       },
     );
   }
@@ -78,7 +78,7 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
       date.add_jm();
     }
     return NavEditor(
-      value: date.format(_value),
+      value: _value != null ? date.format(_value!) : null,
       labelText: widget.labelText,
       required: widget.required,
       style: widget.style,

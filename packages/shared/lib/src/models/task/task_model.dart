@@ -6,6 +6,7 @@ part 'task_model.g.dart';
 
 @unfreezed
 class TaskModel with _$TaskModel {
+  @JsonSerializable(explicitToJson: true)
   factory TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,

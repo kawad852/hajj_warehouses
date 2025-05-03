@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      FocusManager.instance.primaryFocus?.unfocus();
+      context.unFocusKeyboard();
       try {
         AppOverlayLoader.show();
         final auth = await _firebaseAuth.signInWithEmailAndPassword(

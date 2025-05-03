@@ -267,7 +267,8 @@ class __$$TaskModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TaskModelImpl implements _TaskModel {
   _$TaskModelImpl({
     @TimestampSerializer() this.createdAt,
