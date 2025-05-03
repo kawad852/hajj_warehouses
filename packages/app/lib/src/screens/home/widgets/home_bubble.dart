@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class TaskCard extends StatelessWidget {
+class HomeBubble extends StatelessWidget {
   final String title;
   final void Function() onTap;
   final bool expandedTask;
@@ -11,7 +10,8 @@ class TaskCard extends StatelessWidget {
   final Color? valueColor;
   final Color? taskColor;
   final String? prefixIcon;
-  const TaskCard({
+
+  const HomeBubble({
     super.key,
     required this.title,
     required this.onTap,

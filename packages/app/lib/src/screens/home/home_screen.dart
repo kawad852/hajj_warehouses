@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(
-              child: TaskCard(
+              child: HomeBubble(
                 onTap: () {},
                 title: "المهمة الحالية",
                 task: "التحضير لوجبة الإفطار",
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: TaskCard(
+              child: HomeBubble(
                 onTap: () {},
                 title: "المهمة التالية",
                 task: "تجهيز وجبة الإفطار",
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: BranchSelector(
                   builder: (context, branch) {
-                    return TaskCard(
+                    return HomeBubble(
                       onTap: () {
                         context.push((context) => const TransactionsScreen());
                       },
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: OutOfStockSelector(
                   builder: (context, items) {
-                    return TaskCard(
+                    return HomeBubble(
                       onTap: () {
                         context.push((context) {
                           return const InventoryScreen();
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(
-              child: TaskCard(
+              child: HomeBubble(
                 onTap: () {
                   context.push((context) => const UsersScreen());
                 },
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: TaskCard(
+              child: HomeBubble(
                 onTap: () {
                   context.push((context) => const ReportsScreen());
                 },
@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: TaskCard(
+          child: HomeBubble(
             onTap: () {},
             title: "رسائل إدارية",
             expandedTask: true,

@@ -67,7 +67,7 @@ class _FullCalenderSreenState extends State<FullCalenderSreen> {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               itemBuilder: (context, index) {
-                return TaskWidget(testIndex: index);
+                return TaskCard(task: TaskModel(createdBy: kCurrentLightUser));
               },
             ),
           ),

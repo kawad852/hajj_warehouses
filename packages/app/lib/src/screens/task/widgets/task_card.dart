@@ -1,19 +1,17 @@
 import 'package:shared/shared.dart';
 
-class TaskWidget extends StatelessWidget {
-  final int testIndex;
-  const TaskWidget({super.key, required this.testIndex});
+class TaskCard extends StatelessWidget {
+  final TaskModel task;
+  const TaskCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
+    const int testIndex = 0;
     return Container(
       width: double.infinity,
       height: 67,
       decoration: BoxDecoration(
-        color:
-            testIndex == 0
-                ? context.colorPalette.greyE2E
-                : context.colorPalette.greyF2F,
+        color: testIndex == 0 ? context.colorPalette.greyE2E : context.colorPalette.greyF2F,
         borderRadius: BorderRadius.circular(kRadiusPrimary),
       ),
       child: Row(
@@ -22,10 +20,7 @@ class TaskWidget extends StatelessWidget {
             width: 5,
             height: 67,
             decoration: BoxDecoration(
-              color:
-                  testIndex == 0
-                      ? context.colorPalette.grey708
-                      : context.colorPalette.greyC4C,
+              color: testIndex == 0 ? context.colorPalette.grey708 : context.colorPalette.greyC4C,
               borderRadius: const BorderRadiusDirectional.only(
                 topStart: Radius.circular(kRadiusPrimary),
                 bottomStart: Radius.circular(kRadiusPrimary),
@@ -55,7 +50,7 @@ class TaskWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "وجبة العشاء",
+                        task.title,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.black001,
@@ -88,10 +83,7 @@ class TaskWidget extends StatelessWidget {
                   children: [
                     const CustomSvg(MyIcons.checkOutlined),
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 5,
-                        end: 10,
-                      ),
+                      padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
                       child: Text(
                         "1/4",
                         style: TextStyle(
@@ -103,10 +95,7 @@ class TaskWidget extends StatelessWidget {
                     ),
                     const CustomSvg(MyIcons.clockOutlined),
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 5,
-                        end: 10,
-                      ),
+                      padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
                       child: Text(
                         "02:00 مساءً",
                         style: TextStyle(
