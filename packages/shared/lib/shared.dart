@@ -8,6 +8,8 @@ export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
+//l10n
+export 'package:flutter_gen/gen_l10n/app_localizations.dart';
 export 'package:flutter_html/flutter_html.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -48,8 +50,6 @@ export 'src/helper/time_stamp_serializer.dart';
 export 'src/helper/translation_extension.dart';
 export 'src/helper/ui_helper.dart';
 export 'src/helper/validation_helper.dart';
-//l10n
-export 'src/l10n/app_localizations.dart';
 //models
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';

@@ -78,7 +78,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> with AutomaticKeepAliveCl
             appBar: AppBar(
               centerTitle: false,
               forceMaterialTransparency: true,
-              title: Text("context.appLocalization.smartGuide"),
+              title: Text(context.appLocalization.khaled),
             ),
             body: Column(
               children: [

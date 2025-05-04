@@ -143,7 +143,7 @@ class UserProvider extends ChangeNotifier {
         // await user?.delete();
         if (context.mounted) {
           logout(context);
-          context.showSnackBar(context.appLocalization.deleteAccountSuccess);
+          context.showSnackBar("context.appLocalization.deleteAccountSuccess");
         }
       },
     );
