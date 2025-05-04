@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Stream<QuerySnapshot<TaskModel>> _tasksStream;
 
   void _initialize() {
-    _tasksStream = kFirebaseInstant.tasks.orderByDesc.snapshots();
+    _tasksStream = kFirebaseInstant.tasks.orderByDesc.limit(5).snapshots();
   }
 
   @override
@@ -164,12 +164,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ListView.separated(
                     separatorBuilder:
                         (context, index) => Divider(color: context.colorPalette.greyC4C),
-                    itemCount: 4,
+                    itemCount: tasks.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     itemBuilder: (context, index) {
-                      return const MyTask();
+                      final task = tasks[index].data();
+                      return MyTask(task: task);
                     },
                   ),
                 ],

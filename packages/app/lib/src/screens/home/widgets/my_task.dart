@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class MyTask extends StatelessWidget {
-  const MyTask({super.key});
+  final TaskModel task;
+
+  const MyTask({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MyTask extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "وجبة العشاء",
+                  task.title,
                   style: TextStyle(
                     color: context.colorPalette.black001,
                     fontSize: 14,
@@ -26,16 +27,18 @@ class MyTask extends StatelessWidget {
                 const SizedBox(height: 7),
                 Row(
                   children: [
-                    const CustomSvg(MyIcons.checkOutlined),
-                    const SizedBox(width: 5),
-                    Text(
-                      "4/4",
-                      style: TextStyle(
-                        color: context.colorPalette.grey666,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
+                    if (task.hasSubTasks) ...[
+                      const CustomSvg(MyIcons.checkOutlined),
+                      const SizedBox(width: 5),
+                      Text(
+                        "4/4",
+                        style: TextStyle(
+                          color: context.colorPalette.grey666,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
+                    ],
                     const SizedBox(width: 12),
                     const CustomSvg(MyIcons.clockOutlined),
                     const SizedBox(width: 5),
@@ -63,10 +66,7 @@ class MyTask extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {},
-            child: const Icon(Icons.arrow_forward_ios_rounded),
-          ),
+          GestureDetector(onTap: () {}, child: const Icon(Icons.arrow_forward_ios_rounded)),
         ],
       ),
     );
