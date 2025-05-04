@@ -30,7 +30,7 @@ class _ExpensesDropdownState extends State<ExpensesDropdown> {
       ),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: context.colorPalette.grey708),
+          border: Border.all(color: context.colorPalette.primary),
           borderRadius: BorderRadius.circular(kRadiusSecondary),
         ),
         child: DropDownEditor(

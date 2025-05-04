@@ -24,7 +24,7 @@ class TableContainer extends StatelessWidget {
     } else if (status == ItemStatusEnum.lowStock.value) {
       return ("بحاحة", context.colorPalette.yellowC02);
     } else {
-      return ("متوفر", context.colorPalette.grey708);
+      return ("متوفر", context.colorPalette.primary);
     }
   }
 

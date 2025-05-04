@@ -17,7 +17,7 @@ class AddTaskWidget extends StatelessWidget {
             height: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: context.colorPalette.grey708,
+              color: context.colorPalette.primary,
               borderRadius: BorderRadius.circular(kRadiusSecondary),
             ),
             child: const CustomSvg(MyIcons.plusWhite),

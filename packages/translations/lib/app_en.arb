@@ -48,5 +48,10 @@
   "managingHajjOperations":"Managing Hajj Warehouse Operations",
   "emailAlreadyInUse": "This email is already registered.",
   "emailNotFount": "No user found with this email.",
-  "wrongPassword": "Incorrect password for this email."
+  "wrongPassword": "Incorrect password for this email.",
+  "khaled": "Khaled",
+  "searchCountryOrCode": "إبحث عن اسم البلد او الرمز",
+  "faris": "Faris",
+  "termsOfUse": "Terms of use",
+  "privacyPolicy": "privacyPolicy"
 }

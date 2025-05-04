@@ -13,10 +13,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const AppBarText("التقارير")),
-      bottomNavigationBar: BottomButton(
-        text: "اضافة قسم جديد",
-        onPressed: () {},
-      ),
+      bottomNavigationBar: BottomButton(text: "اضافة قسم جديد", onPressed: () {}),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
@@ -51,7 +48,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   title: "اجمالي المهام",
                   value: "119",
                   flex: 2,
-                  backgroungColor: context.colorPalette.grey708,
+                  backgroungColor: context.colorPalette.primary,
                   textColor: context.colorPalette.white,
                 ),
                 const SizedBox(width: 10),
@@ -59,7 +56,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   title: "مهام مكتملة",
                   value: "99",
                   flex: 2,
-                  backgroungColor: context.colorPalette.grey708,
+                  backgroungColor: context.colorPalette.primary,
                   textColor: context.colorPalette.white,
                 ),
                 const SizedBox(width: 10),
@@ -94,23 +91,11 @@ class _ReportsScreenState extends State<ReportsScreen> {
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
               children: [
-                ReportsBubble(
-                  title: "اجمالي العهدة",
-                  value: "50,000",
-                  isWallet: true,
-                ),
+                ReportsBubble(title: "اجمالي العهدة", value: "50,000", isWallet: true),
                 SizedBox(width: 10),
-                ReportsBubble(
-                  title: "المصروفات",
-                  value: "50,000",
-                  isWallet: true,
-                ),
+                ReportsBubble(title: "المصروفات", value: "50,000", isWallet: true),
                 SizedBox(width: 10),
-                ReportsBubble(
-                  title: "صافي العهدة",
-                  value: "50,000",
-                  isWallet: true,
-                ),
+                ReportsBubble(title: "صافي العهدة", value: "50,000", isWallet: true),
               ],
             ),
           ),

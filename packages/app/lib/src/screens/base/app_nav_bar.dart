@@ -99,7 +99,7 @@ class _AppNavBarState extends State<AppNavBar> {
           color: context.colorPalette.white,
           boxShadow: [
             BoxShadow(
-              color: context.colorPalette.grey708,
+              color: context.colorPalette.primary,
               offset: const Offset(0.0, 1.0),
               blurRadius: 3.0,
             ),

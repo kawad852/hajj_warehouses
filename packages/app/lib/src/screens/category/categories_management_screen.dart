@@ -92,7 +92,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                           children: [
                             CustomSvg(
                               MyIcons.addTask,
-                              color: context.colorPalette.grey708,
+                              color: context.colorPalette.primary,
                               width: 25,
                             ),
                             const SizedBox(width: 10),

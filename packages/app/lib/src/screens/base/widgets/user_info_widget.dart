@@ -15,7 +15,7 @@ class UserInfoWidget extends StatelessWidget {
                 Text(
                   "السلام عليكم ، ",
                   style: TextStyle(
-                    color: context.colorPalette.grey708,
+                    color: context.colorPalette.primary,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -49,7 +49,7 @@ class UserInfoWidget extends StatelessWidget {
                     "${kBranch?.name} - شركة الفارس",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: context.colorPalette.grey708,
+                      color: context.colorPalette.primary,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -57,7 +57,7 @@ class UserInfoWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: Icon(Icons.arrow_drop_down, color: context.colorPalette.grey708),
+                  child: Icon(Icons.arrow_drop_down, color: context.colorPalette.primary),
                 ),
               ],
             ),

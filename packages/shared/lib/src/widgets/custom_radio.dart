@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class CustomRadio<T> extends StatelessWidget {
@@ -20,7 +19,7 @@ class CustomRadio<T> extends StatelessWidget {
       children: [
         EasyRadio<T>(
           value: value,
-          dotColor: context.colorPalette.grey708,
+          dotColor: context.colorPalette.primary,
           activeFillColor: context.colorPalette.greyD9D,
           activeBorderColor: Colors.transparent,
           inactiveBorderColor: Colors.transparent,

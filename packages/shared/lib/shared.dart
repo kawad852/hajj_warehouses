@@ -8,13 +8,19 @@ export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
+export 'package:flutter_html/flutter_html.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:image_picker/image_picker.dart';
+export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:timelines_plus/timelines_plus.dart';
+
+///l10n
+// export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+export 'package:translations/app_localizations.dart';
 
 //controllers
 export 'src/controllers/map_controller.dart';
@@ -27,6 +33,7 @@ export 'src/enums/inventory_operation_enum.dart';
 export 'src/enums/item_enums.dart';
 export 'src/enums/order_enums.dart';
 export 'src/enums/stores_enums.dart';
+export 'src/enums/task_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';
 export 'src/extensions/feedbacks_extensions.dart';
@@ -45,8 +52,6 @@ export 'src/helper/time_stamp_serializer.dart';
 export 'src/helper/translation_extension.dart';
 export 'src/helper/ui_helper.dart';
 export 'src/helper/validation_helper.dart';
-//l10n
-export 'src/l10n/app_localizations.dart';
 //models
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
@@ -55,9 +60,11 @@ export 'src/models/category/category_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/expense_model.dart';
 export 'src/models/item/item_model.dart';
+export 'src/models/message/message_model.dart';
 export 'src/models/operation/inventory_operation_model.dart';
 export 'src/models/operation_info_model.dart';
 export 'src/models/order/order_model.dart';
+export 'src/models/policy/policy_model.dart';
 export 'src/models/task/task_model.dart';
 export 'src/models/transaction/transaction_model.dart';
 export 'src/models/user/user_model.dart';

@@ -21,7 +21,7 @@ class CalenderCard extends StatelessWidget {
         decoration: BoxDecoration(
           color:
               dateIndex == currentIndex
-                  ? context.colorPalette.grey708
+                  ? context.colorPalette.primary
                   : context.colorPalette.greyF2F,
           borderRadius: BorderRadius.circular(kRadiusPrimary),
         ),

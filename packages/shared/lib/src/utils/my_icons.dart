@@ -58,4 +58,8 @@ class MyIcons {
   static const String rect = '${_path}rect.svg';
   static const String redRect = '${_path}red_rect.svg';
   static const String yellowRect = '${_path}yellow_rect.svg';
+  static const String send = '${_path}send.svg';
+  static const String taskBackground = '${_path}task_background.svg';
+  static const String checkWhite = '${_path}check_white.svg';
+  static const String camera = '${_path}camera.svg';
 }

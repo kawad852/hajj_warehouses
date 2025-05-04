@@ -8,7 +8,7 @@ class BorderDecoratorTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
-      borderSide: BorderSide(color: context.colorPalette.grey708),
+      borderSide: BorderSide(color: context.colorPalette.primary),
       borderRadius: BorderRadius.circular(kRadiusSecondary),
     );
     return Theme(

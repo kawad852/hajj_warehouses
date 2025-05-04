@@ -262,7 +262,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   Row(
                     children: [
                       Switch(
-                        activeColor: context.colorPalette.grey708,
+                        activeColor: context.colorPalette.primary,
                         activeTrackColor: context.colorPalette.greyD9D,
                         value: _user.canAccessApp,
                         onChanged: (value) {

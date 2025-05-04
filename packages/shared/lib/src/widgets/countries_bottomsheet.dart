@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
-import 'editors/base_editor.dart';
 
 class CountriesBottomSheet extends StatefulWidget {
   const CountriesBottomSheet({super.key});
@@ -61,7 +59,7 @@ class _CountriesBottomSheetState extends State<CountriesBottomSheet> {
           padding: const EdgeInsets.only(bottom: 10, left: 20, right: 20),
           child: BaseEditor(
             prefixIcon: const Icon(Icons.search),
-            hintText: context.appLocalization.countrySearchHint,
+            hintText: context.appLocalization.searchCountryOrCode,
             onChanged: _onSearchChanged,
           ),
         ),

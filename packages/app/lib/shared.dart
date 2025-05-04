@@ -36,3 +36,7 @@ export 'src/screens/warehouse/warehouse_screen.dart';
 export 'src/screens/warehouse/widgets/warehouse_button.dart';
 export 'src/screens/task/widgets/status_widget.dart';
 export 'src/screens/task/task_follow_screen.dart';
+export 'src/screens/task/widgets/task_header.dart';
+export 'src/screens/task/widgets/task_info.dart';
+export 'src/screens/task/widgets/sub_task_info.dart';
+export 'src/screens/task/widgets/sub_task_widget.dart';

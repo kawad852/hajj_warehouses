@@ -43,7 +43,7 @@ class ReportsCard extends StatelessWidget {
             child: Text(
               suffixText,
               style: TextStyle(
-                color: context.colorPalette.grey708,
+                color: context.colorPalette.primary,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),

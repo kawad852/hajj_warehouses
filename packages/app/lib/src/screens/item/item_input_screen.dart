@@ -210,7 +210,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                         children: [
                                           CustomSvg(
                                             MyIcons.addTask,
-                                            color: context.colorPalette.grey708,
+                                            color: context.colorPalette.primary,
                                             width: 20,
                                           ),
                                           const SizedBox(width: 7),

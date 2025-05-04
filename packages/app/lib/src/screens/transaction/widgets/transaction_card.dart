@@ -14,7 +14,7 @@ class TransactionCard extends StatelessWidget {
       fontSize: 14,
       fontWeight: FontWeight.w500,
     );
-    final greenStyle = style.copyWith(color: context.colorPalette.grey708);
+    final greenStyle = style.copyWith(color: context.colorPalette.primary);
     return Row(
       children: [
         CustomSvg(isDeposit ? MyIcons.addSquare : MyIcons.minusSquare),

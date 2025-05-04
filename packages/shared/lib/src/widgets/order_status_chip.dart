@@ -11,13 +11,13 @@ class OrderStatusChip extends StatelessWidget {
     } else if (status == OrderStatusEnum.inDelivery.value) {
       return ("جاري التوصيل", context.colorPalette.yellow600);
     } else if (status == OrderStatusEnum.approved.value) {
-      return ("مقبول", context.colorPalette.grey708);
+      return ("مقبول", context.colorPalette.primary);
     } else if (status == OrderStatusEnum.rejected.value) {
       return ("مرفوض", context.colorPalette.redC10);
     } else if (status == OrderStatusEnum.canceled.value) {
       return ("ملغى", context.colorPalette.redC10);
     }
-    return ("تم الإستلام", context.colorPalette.grey708);
+    return ("تم الإستلام", context.colorPalette.primary);
   }
 
   @override

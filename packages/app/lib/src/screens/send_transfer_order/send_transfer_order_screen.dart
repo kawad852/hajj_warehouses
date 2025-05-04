@@ -166,7 +166,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             ),
             prefixIcon: IconButton(
               onPressed: null,
-              icon: CustomSvg(MyIcons.addTask, color: context.colorPalette.grey708, width: 20),
+              icon: CustomSvg(MyIcons.addTask, color: context.colorPalette.primary, width: 20),
             ),
           ),
         ],

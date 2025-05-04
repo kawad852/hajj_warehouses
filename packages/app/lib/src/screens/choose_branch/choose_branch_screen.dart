@@ -56,7 +56,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                   Text(
                     "“مطابخ الفارس”",
                     style: TextStyle(
-                      color: context.colorPalette.grey708,
+                      color: context.colorPalette.primary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -98,9 +98,9 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                         height: 48,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: isSelected ? context.colorPalette.grey708 : Colors.transparent,
+                          color: isSelected ? context.colorPalette.primary : Colors.transparent,
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
-                          border: Border.all(color: context.colorPalette.grey708),
+                          border: Border.all(color: context.colorPalette.primary),
                         ),
                         child: Text(
                           branch.name,

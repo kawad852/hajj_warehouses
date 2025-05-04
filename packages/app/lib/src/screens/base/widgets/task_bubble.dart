@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class TaskBubble extends StatelessWidget {
@@ -22,15 +21,9 @@ class TaskBubble extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CustomSvg(MyIcons.addTask, color: context.colorPalette.grey708),
+            CustomSvg(MyIcons.addTask, color: context.colorPalette.primary),
             const SizedBox(width: 10),
-            Text(
-              title,
-              style: TextStyle(
-                color: context.colorPalette.black001,
-                fontSize: 16,
-              ),
-            ),
+            Text(title, style: TextStyle(color: context.colorPalette.black001, fontSize: 16)),
           ],
         ),
       ),

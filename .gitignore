@@ -47,3 +47,4 @@ app.*.map.json
 # Project exclude paths
 /packages/app/build/
 /packages/shared/build/
+/packages/translations/lib/app_localizations*.dart
