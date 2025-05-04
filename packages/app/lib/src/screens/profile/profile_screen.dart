@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/policy/policy_screen.dart';
 import 'package:shared/shared.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -41,9 +42,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ),
-        ProfileCard(title: "الشروط والأحكام", icon: MyIcons.terms, onTap: () {}),
-        ProfileCard(title: "سياسة الخصوصية", icon: MyIcons.policy, onTap: () {}),
-        ProfileCard(title: "عن مخازن الحج", icon: MyIcons.information, onTap: () {}),
+        // ProfileCard(
+        //   title: "الشروط والأحكام",
+        //   icon: MyIcons.terms,
+        //   onTap: () {
+        //     context.push((context) {
+        //       return PolicyScreen(id: PolicyDocuments.termsOfUse.value);
+        //     });
+        //   },
+        // ),
+        ProfileCard(
+          title: "سياسة الخصوصية",
+          icon: MyIcons.policy,
+          onTap: () {
+            context.push((context) {
+              return PolicyScreen(id: PolicyDocuments.privacyPolicy.value);
+            });
+          },
+        ),
+        // ProfileCard(
+        //   title: "عن مخازن الحج",
+        //   icon: MyIcons.information,
+        //   onTap: () {
+        //     context.push((context) {
+        //       return PolicyScreen(id: PolicyDocuments.aboutUs.value);
+        //     });
+        //   },
+        // ),
       ],
     );
   }
