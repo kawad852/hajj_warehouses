@@ -1,3 +1,4 @@
+import '../../object_box_exports.dart';
 import '../../shared.dart';
 
 extension LanguageExtension on BuildContext {
@@ -7,6 +8,6 @@ extension LanguageExtension on BuildContext {
 
   bool get isRTL => Localizations.localeOf(this).languageCode == LanguageEnum.arabic;
 
-  static get localizationsDelegates => AppLocalizations.localizationsDelegates;
-  static get supportedLocales => AppLocalizations.supportedLocales;
+  // static get localizationsDelegates => AppLocalizations.localizationsDelegates;
+  // static get supportedLocales => AppLocalizations.supportedLocales;
 }

@@ -135,8 +135,8 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: rootNavigatorKey,
             builder: EasyLoading.init(),
             debugShowCheckedModeBanner: false,
-            localizationsDelegates: LanguageExtension.localizationsDelegates,
-            supportedLocales: LanguageExtension.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
             theme: ThemeData(
               colorScheme: colorScheme,

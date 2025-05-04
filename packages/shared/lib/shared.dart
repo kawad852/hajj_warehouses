@@ -8,8 +8,6 @@ export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
-//l10n
-export 'package:flutter_gen/gen_l10n/app_localizations.dart';
 export 'package:flutter_html/flutter_html.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,6 +17,10 @@ export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:timelines_plus/timelines_plus.dart';
+
+///l10n
+// export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+export 'package:translations/app_localizations.dart';
 
 //controllers
 export 'src/controllers/map_controller.dart';

@@ -50,5 +50,8 @@
   "emailNotFount": "No user found with this email.",
   "wrongPassword": "Incorrect password for this email.",
   "khaled": "Khaled",
-  "searchCountryOrCode": "إبحث عن اسم البلد او الرمز"
+  "searchCountryOrCode": "إبحث عن اسم البلد او الرمز",
+  "faris": "Faris",
+  "termsOfUse": "Terms of use",
+  "privacyPolicy": "privacyPolicy"
 }

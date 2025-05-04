@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: shared
+# melos_managed_dependency_overrides: shared,translations
 dependency_overrides:
   shared:
     path: ../shared
+  translations:
+    path: ../translations
