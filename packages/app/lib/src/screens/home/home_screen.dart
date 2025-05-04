@@ -119,63 +119,64 @@ class _HomeScreenState extends State<HomeScreen> {
                     "يرجى الإلتزام بمواعيد تقديم الوجبات وحسن التعامل مع حجاج بيت الله ، شاكرين لكم تعاونكم وجزاكم الله خير الجزاء.",
               ),
             ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: context.colorPalette.greyF2F,
-                borderRadius: BorderRadius.circular(kRadiusSecondary),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 45,
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: context.colorPalette.grey708,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(kRadiusSecondary),
-                        topRight: Radius.circular(kRadiusSecondary),
+            if (tasks.isNotEmpty)
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: context.colorPalette.greyF2F,
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 45,
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: context.colorPalette.grey708,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(kRadiusSecondary),
+                          topRight: Radius.circular(kRadiusSecondary),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "مهامي",
-                            style: TextStyle(
-                              color: context.colorPalette.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "مهامي",
+                              style: TextStyle(
+                                color: context.colorPalette.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: context.colorPalette.white,
+                          GestureDetector(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: context.colorPalette.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  ListView.separated(
-                    separatorBuilder:
-                        (context, index) => Divider(color: context.colorPalette.greyC4C),
-                    itemCount: tasks.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    itemBuilder: (context, index) {
-                      final task = tasks[index].data();
-                      return MyTask(task: task);
-                    },
-                  ),
-                ],
+                    ListView.separated(
+                      separatorBuilder:
+                          (context, index) => Divider(color: context.colorPalette.greyC4C),
+                      itemCount: tasks.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      itemBuilder: (context, index) {
+                        final task = tasks[index].data();
+                        return MyTask(task: task);
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
           ],
         );
       },
