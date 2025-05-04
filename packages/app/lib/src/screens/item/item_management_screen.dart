@@ -86,7 +86,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           Expanded(
                             child: ManageButton(
                               title: "الكمية المتوفرة : ${item.quantity}",
-                              backgroundColor: context.colorPalette.grey708,
+                              backgroundColor: context.colorPalette.primary,
                               textColor: context.colorPalette.white,
                               textAlign: TextAlign.center,
                             ),

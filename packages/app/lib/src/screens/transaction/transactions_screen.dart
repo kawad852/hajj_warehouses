@@ -36,7 +36,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       builder: (context, branch) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: context.colorPalette.grey708,
+            backgroundColor: context.colorPalette.primary,
             leading: CustomBack(color: context.colorPalette.white),
             title: AppBarText("العهدة", color: context.colorPalette.white),
             bottom: PreferredSize(

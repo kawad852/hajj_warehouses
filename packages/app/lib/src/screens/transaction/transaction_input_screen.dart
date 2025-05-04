@@ -148,11 +148,11 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                         fillColor: Colors.transparent,
                         maxLines: 4,
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: context.colorPalette.grey708),
+                          borderSide: BorderSide(color: context.colorPalette.primary),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: context.colorPalette.grey708),
+                          borderSide: BorderSide(color: context.colorPalette.primary),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                       ),
@@ -169,7 +169,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: context.colorPalette.grey708),
+                          border: Border.all(color: context.colorPalette.primary),
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         child: DropDownEditor(

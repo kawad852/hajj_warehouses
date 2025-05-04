@@ -39,7 +39,7 @@ class BaseCard extends StatelessWidget {
                 const TextSpan(text: "قام"),
                 TextSpan(
                   text: " $displayName ",
-                  style: style.copyWith(color: context.colorPalette.grey708),
+                  style: style.copyWith(color: context.colorPalette.primary),
                 ),
                 TextSpan(text: "بـ $action1 "),
                 TextSpan(text: action2),

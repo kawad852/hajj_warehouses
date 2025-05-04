@@ -10,18 +10,18 @@ class ProcessTimeLine extends StatelessWidget {
     return FixedTimeline.tileBuilder(
       theme: TimelineTheme.of(context).copyWith(
         nodePosition: 0,
-        connectorTheme: ConnectorThemeData(color: context.colorPalette.grey708),
-        indicatorTheme: IndicatorThemeData(color: context.colorPalette.grey708),
+        connectorTheme: ConnectorThemeData(color: context.colorPalette.primary),
+        indicatorTheme: IndicatorThemeData(color: context.colorPalette.primary),
       ),
 
       builder: TimelineTileBuilder.connected(
         itemCount: itemCount,
 
         connectorBuilder: (context, index, type) {
-          return SolidLineConnector(color: context.colorPalette.grey708);
+          return SolidLineConnector(color: context.colorPalette.primary);
         },
         indicatorBuilder: (context, index) {
-          return DotIndicator(color: context.colorPalette.grey708, size: 20);
+          return DotIndicator(color: context.colorPalette.primary, size: 20);
         },
         contentsBuilder: contentsBuilder,
       ),

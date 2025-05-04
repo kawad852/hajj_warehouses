@@ -28,6 +28,13 @@ class UserProvider extends ChangeNotifier {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
+  CollectionReference<MessageModel> get messagesCollectionRef => userDocRef
+      .collection(MyCollections.messages)
+      .withConverter<MessageModel>(
+        fromFirestore: (snapshot, _) => MessageModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   Stream<QuerySnapshot<BasketModel>> get userBasketStream => userBasketCollectionRef.snapshots();
   CollectionReference<Map<String, dynamic>> get addressesCollectionRef =>
       userDocRef.collection(MyCollections.addresses);

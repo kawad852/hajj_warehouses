@@ -21,4 +21,5 @@ class MyFields {
   static const String name = 'name';
   static const String balance = 'balance';
   static const String idBranch = 'branch.id';
+  static const String createTime = 'createTime';
 }

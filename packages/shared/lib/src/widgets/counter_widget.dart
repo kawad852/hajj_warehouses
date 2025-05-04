@@ -54,7 +54,7 @@ class _CounterWidgetState extends State<CounterWidget> {
             controller: _quantityCtrl,
             textAlign: TextAlign.center,
             textStyle: TextStyle(
-              color: context.colorPalette.grey708,
+              color: context.colorPalette.primary,
               fontSize: 45,
               fontWeight: FontWeight.w800,
             ),

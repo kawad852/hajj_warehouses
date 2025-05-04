@@ -21,7 +21,7 @@ class TaskCard extends StatelessWidget {
             width: 5,
             height: 67,
             decoration: BoxDecoration(
-              color: isCompleted ? context.colorPalette.grey708 : context.colorPalette.greyC4C,
+              color: isCompleted ? context.colorPalette.primary : context.colorPalette.greyC4C,
               borderRadius: const BorderRadiusDirectional.only(
                 topStart: Radius.circular(kRadiusPrimary),
                 bottomStart: Radius.circular(kRadiusPrimary),
@@ -66,7 +66,7 @@ class TaskCard extends StatelessWidget {
                           Text(
                             "02:31:56",
                             style: TextStyle(
-                              color: context.colorPalette.grey708,
+                              color: context.colorPalette.primary,
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
                             ),

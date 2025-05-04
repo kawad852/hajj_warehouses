@@ -4,12 +4,7 @@ class ToolButton extends StatelessWidget {
   final void Function() onTap;
   final String icon;
   final String text;
-  const ToolButton({
-    super.key,
-    required this.onTap,
-    required this.icon,
-    required this.text,
-  });
+  const ToolButton({super.key, required this.onTap, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +20,7 @@ class ToolButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CustomSvg(icon, color: context.colorPalette.grey708),
+            CustomSvg(icon, color: context.colorPalette.primary),
             const SizedBox(width: 4),
             Text(
               text,

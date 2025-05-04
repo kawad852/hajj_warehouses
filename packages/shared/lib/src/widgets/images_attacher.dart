@@ -44,7 +44,7 @@ class _ImagesAttacherState extends State<ImagesAttacher> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all(color: context.colorPalette.grey708),
+              border: Border.all(color: context.colorPalette.primary),
               borderRadius: BorderRadius.circular(kRadiusSecondary),
             ),
             child: Row(

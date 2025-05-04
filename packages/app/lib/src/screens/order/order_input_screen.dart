@@ -181,7 +181,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                     onPressed: null,
                     icon: CustomSvg(
                       MyIcons.addTask,
-                      color: context.colorPalette.grey708,
+                      color: context.colorPalette.primary,
                       width: 20,
                     ),
                   ),

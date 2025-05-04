@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class StretchedButton extends StatelessWidget {
@@ -23,10 +22,8 @@ class StretchedButton extends StatelessWidget {
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           minimumSize: const Size(600, 48),
-          backgroundColor: backgroundColor ?? context.colorPalette.grey708,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kRadiusSecondary),
-          ),
+          backgroundColor: backgroundColor ?? context.colorPalette.primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusSecondary)),
         ),
         child: child,
       ),

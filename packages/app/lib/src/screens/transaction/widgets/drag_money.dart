@@ -34,7 +34,7 @@ class _DragMoneyState extends State<DragMoney> {
             ),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: context.colorPalette.grey708),
+                border: Border.all(color: context.colorPalette.primary),
                 borderRadius: BorderRadius.circular(kRadiusSecondary),
               ),
               child: DropDownEditor(items: const [], onChanged: (value) {}, title: "", value: ""),
@@ -55,11 +55,11 @@ class _DragMoneyState extends State<DragMoney> {
                 fillColor: Colors.transparent,
                 maxLines: 4,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: context.colorPalette.grey708),
+                  borderSide: BorderSide(color: context.colorPalette.primary),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: context.colorPalette.grey708),
+                  borderSide: BorderSide(color: context.colorPalette.primary),
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
               ),

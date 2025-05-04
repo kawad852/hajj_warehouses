@@ -4,12 +4,7 @@ class DateWidget extends StatelessWidget {
   final String title;
   final bool isSelected;
   final void Function() onTap;
-  const DateWidget({
-    super.key,
-    required this.title,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const DateWidget({super.key, required this.title, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +16,7 @@ class DateWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color:
-                  isSelected
-                      ? context.colorPalette.grey708
-                      : context.colorPalette.greyC4C,
+              color: isSelected ? context.colorPalette.primary : context.colorPalette.greyC4C,
               width: 2,
             ),
           ),
@@ -32,10 +24,7 @@ class DateWidget extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-            color:
-                isSelected
-                    ? context.colorPalette.grey708
-                    : context.colorPalette.greyC4C,
+            color: isSelected ? context.colorPalette.primary : context.colorPalette.greyC4C,
             fontSize: 14,
             fontWeight: FontWeight.w800,
           ),

@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/chatbot/chatbot_screen.dart';
 import 'package:app/src/screens/policy/policy_screen.dart';
 import 'package:shared/shared.dart';
 
@@ -15,15 +16,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       children: [
+        // ProfileCard(
+        //   title: "الإدارة",
+        //   icon: MyIcons.setting,
+        //   onTap: () {
+        //     context.push((context) => const SettingsScreen());
+        //   },
+        // ),
         ProfileCard(
-          title: "الإدارة",
-          icon: MyIcons.setting,
+          title: "المساعد الذكي",
+          icon: MyIcons.helper,
           onTap: () {
-            context.push((context) => const SettingsScreen());
+            context.push((context) {
+              return const ChatbotScreen();
+            });
           },
         ),
-        ProfileCard(title: "المساعد الذكي", icon: MyIcons.helper, onTap: () {}),
-        ProfileCard(title: "تغيير اللغة", icon: MyIcons.language, onTap: () {}),
+        // ProfileCard(title: "تغيير اللغة", icon: MyIcons.language, onTap: () {}),
         ProfileCard(
           title: "تسجيل الخروج",
           icon: MyIcons.logout,

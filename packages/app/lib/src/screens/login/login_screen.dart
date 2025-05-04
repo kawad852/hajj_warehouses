@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Text(
               "ببساطة",
               style: TextStyle(
-                color: context.colorPalette.grey708,
+                color: context.colorPalette.primary,
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
               ),
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         child: Text(
                           "استعادة كلمة المرور",
-                          style: TextStyle(color: context.colorPalette.grey708, fontSize: 14),
+                          style: TextStyle(color: context.colorPalette.primary, fontSize: 14),
                         ),
                       ),
                     ],

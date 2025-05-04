@@ -87,7 +87,7 @@ class HomeBubble extends StatelessWidget {
                           Text(
                             value!,
                             style: TextStyle(
-                              color: valueColor ?? context.colorPalette.grey708,
+                              color: valueColor ?? context.colorPalette.primary,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
