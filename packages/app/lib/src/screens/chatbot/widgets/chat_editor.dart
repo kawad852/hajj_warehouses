@@ -16,7 +16,7 @@ class ChatEditor extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         maxLines: null,
         // padding: const EdgeInsetsDirectional.only(end: 10),
-        hintText: context.appLocalization.aiHint,
+        hintText: "context.appLocalization.aiHint",
         suffixIconConstraints: const BoxConstraints(maxHeight: 60),
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
