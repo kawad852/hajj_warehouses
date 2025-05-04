@@ -26,12 +26,12 @@ enum RoleEnum {
   const RoleEnum(this.value);
 }
 
-enum PolicyDocuments {
+enum PolicyDocument {
   privacyPolicy('BklYRnbuGMi4r2Y7Qe3Y'),
   termsOfUse('9heum2QGHq0mNBnhbRs2'),
   aboutUs('qq28whc9BmBCHpeiWE3O');
 
   final String value;
 
-  const PolicyDocuments(this.value);
+  const PolicyDocument(this.value);
 }

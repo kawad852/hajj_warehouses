@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: MyIcons.policy,
           onTap: () {
             context.push((context) {
-              return PolicyScreen(id: PolicyDocuments.privacyPolicy.value);
+              return PolicyScreen(id: PolicyDocument.privacyPolicy.value);
             });
           },
         ),

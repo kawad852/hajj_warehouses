@@ -16,9 +16,9 @@ class _PolicyScreenState extends State<PolicyScreen> {
   String get _policyId => widget.id;
 
   String getTitle(BuildContext context) {
-    if (_policyId == PolicyDocuments.termsOfUse.value) {
+    if (_policyId == PolicyDocument.termsOfUse.value) {
       return context.appLocalization.termsOfUse;
-    } else if (_policyId == PolicyDocuments.termsOfUse.value) {
+    } else if (_policyId == PolicyDocument.termsOfUse.value) {
       return "عن مخازن الحج";
     } else {
       return context.appLocalization.privacyPolicy;
