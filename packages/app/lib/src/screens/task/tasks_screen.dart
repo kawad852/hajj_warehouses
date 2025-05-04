@@ -12,7 +12,7 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   late DateTime _selectedDate;
 
-  List<DateTime> _dates = [];
+  List<(DateTime, String)> _dates = [];
 
   Query<TaskModel> get _tasksQuery {
     final startDate = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day);
@@ -28,10 +28,15 @@ class _TasksScreenState extends State<TasksScreen> {
   void initState() {
     super.initState();
     _selectedDate = DateTime(kNowDate.year, kNowDate.month, kNowDate.day, 0, 0, 0, 0, 0);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _dates = [
-      _selectedDate.subtract(const Duration(days: 1)),
-      _selectedDate,
-      _selectedDate.add(const Duration(days: 1)),
+      (_selectedDate.subtract(const Duration(days: 1)), "الأمس"),
+      (_selectedDate, "اليوم"),
+      (_selectedDate.add(const Duration(days: 1)), "غداً"),
     ];
   }
 
@@ -62,11 +67,11 @@ class _TasksScreenState extends State<TasksScreen> {
                             return DateWidget(
                               onTap: () {
                                 setState(() {
-                                  _selectedDate = e;
+                                  _selectedDate = e.$1;
                                 });
                               },
-                              title: "الأمس",
-                              isSelected: _selectedDate == e,
+                              title: e.$2,
+                              isSelected: _selectedDate == e.$1,
                             );
                           }).toList(),
                     ),

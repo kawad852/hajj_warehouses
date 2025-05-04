@@ -14,6 +14,9 @@ class TaskModel with _$TaskModel {
     @Default("") String id,
     @Default("") String title,
     @Default("") String description,
+    @Default("") String status,
+    @Default(0.0) double completedDuration, // in minutes
+    @Default(false) bool hasSubTasks,
     LightUserModel? employee,
     required LightUserModel createdBy,
   }) = _TaskModel;

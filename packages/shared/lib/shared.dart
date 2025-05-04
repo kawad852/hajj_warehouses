@@ -27,6 +27,7 @@ export 'src/enums/inventory_operation_enum.dart';
 export 'src/enums/item_enums.dart';
 export 'src/enums/order_enums.dart';
 export 'src/enums/stores_enums.dart';
+export 'src/enums/task_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';
 export 'src/extensions/feedbacks_extensions.dart';

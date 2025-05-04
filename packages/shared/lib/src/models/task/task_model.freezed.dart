@@ -39,6 +39,13 @@ mixin _$TaskModel {
   set title(String value) => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   set description(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
+  double get completedDuration => throw _privateConstructorUsedError;
+  set completedDuration(double value) =>
+      throw _privateConstructorUsedError; // in minutes
+  bool get hasSubTasks => throw _privateConstructorUsedError; // in minutes
+  set hasSubTasks(bool value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
@@ -66,6 +73,9 @@ abstract class $TaskModelCopyWith<$Res> {
     String id,
     String title,
     String description,
+    String status,
+    double completedDuration,
+    bool hasSubTasks,
     LightUserModel? employee,
     LightUserModel createdBy,
   });
@@ -95,6 +105,9 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? id = null,
     Object? title = null,
     Object? description = null,
+    Object? status = null,
+    Object? completedDuration = null,
+    Object? hasSubTasks = null,
     Object? employee = freezed,
     Object? createdBy = null,
   }) {
@@ -130,6 +143,21 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.description
                     : description // ignore: cast_nullable_to_non_nullable
                         as String,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
+            completedDuration:
+                null == completedDuration
+                    ? _value.completedDuration
+                    : completedDuration // ignore: cast_nullable_to_non_nullable
+                        as double,
+            hasSubTasks:
+                null == hasSubTasks
+                    ? _value.hasSubTasks
+                    : hasSubTasks // ignore: cast_nullable_to_non_nullable
+                        as bool,
             employee:
                 freezed == employee
                     ? _value.employee
@@ -186,6 +214,9 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String id,
     String title,
     String description,
+    String status,
+    double completedDuration,
+    bool hasSubTasks,
     LightUserModel? employee,
     LightUserModel createdBy,
   });
@@ -216,6 +247,9 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? description = null,
+    Object? status = null,
+    Object? completedDuration = null,
+    Object? hasSubTasks = null,
     Object? employee = freezed,
     Object? createdBy = null,
   }) {
@@ -251,6 +285,21 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
                     as String,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
+        completedDuration:
+            null == completedDuration
+                ? _value.completedDuration
+                : completedDuration // ignore: cast_nullable_to_non_nullable
+                    as double,
+        hasSubTasks:
+            null == hasSubTasks
+                ? _value.hasSubTasks
+                : hasSubTasks // ignore: cast_nullable_to_non_nullable
+                    as bool,
         employee:
             freezed == employee
                 ? _value.employee
@@ -277,6 +326,9 @@ class _$TaskModelImpl implements _TaskModel {
     this.id = "",
     this.title = "",
     this.description = "",
+    this.status = "",
+    this.completedDuration = 0.0,
+    this.hasSubTasks = false,
     this.employee,
     required this.createdBy,
   });
@@ -303,13 +355,23 @@ class _$TaskModelImpl implements _TaskModel {
   @JsonKey()
   String description;
   @override
+  @JsonKey()
+  String status;
+  @override
+  @JsonKey()
+  double completedDuration;
+  // in minutes
+  @override
+  @JsonKey()
+  bool hasSubTasks;
+  @override
   LightUserModel? employee;
   @override
   LightUserModel createdBy;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, id: $id, title: $title, description: $description, employee: $employee, createdBy: $createdBy)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, hasSubTasks: $hasSubTasks, employee: $employee, createdBy: $createdBy)';
   }
 
   /// Create a copy of TaskModel
@@ -334,6 +396,9 @@ abstract class _TaskModel implements TaskModel {
     String id,
     String title,
     String description,
+    String status,
+    double completedDuration,
+    bool hasSubTasks,
     LightUserModel? employee,
     required LightUserModel createdBy,
   }) = _$TaskModelImpl;
@@ -365,6 +430,15 @@ abstract class _TaskModel implements TaskModel {
   @override
   String get description;
   set description(String value);
+  @override
+  String get status;
+  set status(String value);
+  @override
+  double get completedDuration;
+  set completedDuration(double value); // in minutes
+  @override
+  bool get hasSubTasks; // in minutes
+  set hasSubTasks(bool value);
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);

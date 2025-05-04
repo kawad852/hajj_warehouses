@@ -6,13 +6,13 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const int testIndex = 0;
     final time = TimeOfDay(hour: task.startTime!.hour, minute: task.startTime!.minute);
+    final isCompleted = task.status == TaskStatusEnum.completed.value;
     return Container(
       width: double.infinity,
       height: 67,
       decoration: BoxDecoration(
-        color: testIndex == 0 ? context.colorPalette.greyE2E : context.colorPalette.greyF2F,
+        color: isCompleted ? context.colorPalette.greyE2E : context.colorPalette.greyF2F,
         borderRadius: BorderRadius.circular(kRadiusPrimary),
       ),
       child: Row(
@@ -21,14 +21,14 @@ class TaskCard extends StatelessWidget {
             width: 5,
             height: 67,
             decoration: BoxDecoration(
-              color: testIndex == 0 ? context.colorPalette.grey708 : context.colorPalette.greyC4C,
+              color: isCompleted ? context.colorPalette.grey708 : context.colorPalette.greyC4C,
               borderRadius: const BorderRadiusDirectional.only(
                 topStart: Radius.circular(kRadiusPrimary),
                 bottomStart: Radius.circular(kRadiusPrimary),
               ),
             ),
           ),
-          testIndex == 0
+          isCompleted
               ? const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: CustomSvg(MyIcons.checkSolid),
@@ -60,7 +60,7 @@ class TaskCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (testIndex == 1)
+                    if (isCompleted)
                       Row(
                         children: [
                           Text(
@@ -82,18 +82,20 @@ class TaskCard extends StatelessWidget {
                 const SizedBox(height: 5),
                 Row(
                   children: [
-                    const CustomSvg(MyIcons.checkOutlined),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
-                      child: Text(
-                        "1/4",
-                        style: TextStyle(
-                          color: context.colorPalette.grey666,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w800,
+                    if (task.hasSubTasks) ...[
+                      const CustomSvg(MyIcons.checkOutlined),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
+                        child: Text(
+                          "1/4",
+                          style: TextStyle(
+                            color: context.colorPalette.grey666,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                     const CustomSvg(MyIcons.clockOutlined),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
