@@ -23,7 +23,7 @@ class _OperationsScreenState extends State<OperationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const AppBarText("سجل عمليات المخزون")),
+      appBar: AppBar(title: AppBarText(context.appLocalization.operationsLog)),
       body: CustomFirestoreQueryBuilder(
         query: _operationsQuery,
         onComplete: (context, snapshot) {

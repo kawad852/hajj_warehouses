@@ -39,7 +39,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
             onChanged: widget.onChanged,
             required: false,
             initialValue: widget.initialValue,
-            hintText: "اكتب اسم الصنف",
+            hintText: context.appLocalization.writeTheItemName,
             hintStyle: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,

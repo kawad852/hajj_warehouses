@@ -52,7 +52,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomButton(
-        text: "اضافة",
+        text: context.appLocalization.add,
         onPressed:
             _items.any((e) => e.name.isEmpty)
                 ? null
@@ -60,7 +60,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   final names = _items.map((e) => e.name).toList();
                   final hasDuplicateNames = _hasDuplicateName(names);
                   if (hasDuplicateNames) {
-                    Fluttertoast.showToast(msg: "لا يسمح بتكرار إسم الصنف");
+                    Fluttertoast.showToast(msg: context.appLocalization.duplicateItemNamesAreNotAllowed);
                   } else {
                     context.inventoryProvider.createOperation(
                       context,
@@ -84,7 +84,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                   }
                 },
       ),
-      appBar: AppBar(title: const AppBarText("اضافة صنف جديد")),
+      appBar: AppBar(title:AppBarText(context.appLocalization.addNewItem)),
       body: ImpededStreamBuilder(
         stream: _suggestionsQuery,
         onComplete: (context, snapshot) {
@@ -97,7 +97,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                     vertical: 10,
                   ).copyWith(top: 0),
                   child: Text(
-                    "يمكنك اضافة اكثر من صنف في نفس الوقت، لا يمكن تكرار اسماء الأصناف الجديدة مع الأصناف الموجوده مسبقاً.",
+                    context.appLocalization.warningItemName,
                     style: TextStyle(
                       color: context.colorPalette.grey666,
                       fontSize: 15,
@@ -120,7 +120,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                                   _items.add(_itemModel);
                                 });
                               },
-                              label: const Text("إضافة المزيد"),
+                              label:Text(context.appLocalization.addMore),
                               icon: const Icon(Icons.add),
                             ),
                           );
@@ -166,7 +166,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 5),
                         child: Text(
-                          "مقترحات",
+                          context.appLocalization.suggestions,
                           style: TextStyle(
                             color: context.colorPalette.black001,
                             fontSize: 16,

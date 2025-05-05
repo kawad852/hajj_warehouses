@@ -14,16 +14,16 @@ class MaterialsTable extends StatelessWidget {
         color: context.colorPalette.grey74D,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
       ),
-      child: const Row(
+      child: Row(
         children: [
           Expanded(flex: 2, child: TableText("#")),
-          Expanded(flex: 14, child: TableText("اسم الصنف")),
+          Expanded(flex: 14, child: TableText(context.appLocalization.itemName)),
           CustomLine(),
-          Expanded(flex: 4, child: TableText("متوفر", textAlign: TextAlign.center)),
+          Expanded(flex: 4, child: TableText(context.appLocalization.available, textAlign: TextAlign.center)),
           CustomLine(),
-          Expanded(flex: 4, child: TableText("الحد", textAlign: TextAlign.center)),
+          Expanded(flex: 4, child: TableText(context.appLocalization.limit, textAlign: TextAlign.center)),
           CustomLine(),
-          Expanded(flex: 4, child: TableText("الحالة", textAlign: TextAlign.center)),
+          Expanded(flex: 4, child: TableText(context.appLocalization.status, textAlign: TextAlign.center)),
         ],
       ),
     );

@@ -15,14 +15,14 @@ class ItemTableHeader extends StatelessWidget {
         color: context.colorPalette.grey74D,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
       ),
-      child: const Row(
+      child:  Row(
         children: [
           Expanded(flex: 2, child: TableText("#")),
-          Expanded(flex: 10, child: TableText("اسم الصنف")),
+          Expanded(flex: 10, child: TableText(context.appLocalization.itemName)),
           CustomLine(),
           Expanded(
             flex: 6,
-            child: TableText("الكمية المطلوبة", textAlign: TextAlign.center),
+            child: TableText(context.appLocalization.quantityRequired, textAlign: TextAlign.center),
           ),
         ],
       ),

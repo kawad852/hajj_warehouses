@@ -7,7 +7,7 @@ class ValidationHelper {
 
   static String? general(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {
-      return "requiredField";
+      return context.appLocalization.requiredField;
     }
     return null;
   }
@@ -26,7 +26,7 @@ class ValidationHelper {
     if (value == null || value.isEmpty) {
       return context.appLocalization.requiredField;
     } else if (!decimalNumbersRegex.hasMatch(value)) {
-      return "invalidNumber";
+      return context.appLocalization.invalidNumber;
     }
     return null;
   }
@@ -36,7 +36,7 @@ class ValidationHelper {
     if (value == null || value.isEmpty) {
       return context.appLocalization.requiredField;
     } else if (!intNumberRegex.hasMatch(value)) {
-      return "invalidNumber";
+      return context.appLocalization.invalidNumber;
     }
     return null;
   }
@@ -45,7 +45,7 @@ class ValidationHelper {
     if (value!.isEmpty) {
       return context.appLocalization.requiredField;
     } else if (value.length < 6) {
-      return "كلمة المرور قصيرة جدا";
+      return context.appLocalization.passwordTooShort;
     } //context.appLocalization.passwordTooShort
     return null;
   }

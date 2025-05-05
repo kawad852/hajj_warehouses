@@ -1,5 +1,6 @@
 import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 class TaskDialog extends StatelessWidget {
   const TaskDialog({super.key});
@@ -17,10 +18,10 @@ class TaskDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TaskBubble(onTap: () {}, title: "اضافة مهمة جديدة"),
-            TaskBubble(onTap: () {}, title: "اضافة طلب جديد"),
-            TaskBubble(onTap: () {}, title: "سحب مواد من المخزون"),
-            TaskBubble(onTap: () {}, title: "اضافة مواد للمخزون"),
+            TaskBubble(onTap: () {}, title: context.appLocalization.addNewTask),
+            TaskBubble(onTap: () {}, title: context.appLocalization.addNewRequest),
+            TaskBubble(onTap: () {}, title: context.appLocalization.withdrawMaterialsFromStock),
+            TaskBubble(onTap: () {}, title: context.appLocalization.addMaterialsToStock),
           ],
         ),
       ),

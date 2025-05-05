@@ -89,27 +89,27 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               String? errorMsg;
               if (info.radio != null && _radioGroupValue == null) {
                 if (_isAddOperation) {
-                  errorMsg = 'يجب تحديد نوع التوريد';
+                  errorMsg = context.appLocalization.mustSelectSupplyType;
                 } else if (_isSupplyOperation || _isTransferOperation) {
-                  errorMsg = 'يجب تحديد حالة الطلب';
+                  errorMsg = context.appLocalization.mustSelectRequestStatus;
                 } else if (_isDestroyOperation) {
-                  errorMsg = 'يجب تحديد سبب الإتلاف';
+                  errorMsg = context.appLocalization.mustSpecifyReasonDisposal;
                 }
               } else if (_isAddOperation && (_operation.amount == null || _operation.amount == 0)) {
-                errorMsg = "يجب تحديد قيمة المشتريات";
+                errorMsg = context.appLocalization.mustSpecifyPurchaseValue;
               } else if (_isTransferOperation &&
                   (_operation.transferFromBranch?.id == null ||
                       _operation.transferToBranch?.id == null)) {
-                errorMsg = "يجب تحديد الفرع المرسل والفرع المستقبل";
+                errorMsg = context.appLocalization.mustSpecifyBranch;
               } else if (!_isWithdrawOperation &&
                   !_isSupplyOperation &&
                   !_isTransferOperation &&
                   _operation.files!.isEmpty) {
-                errorMsg = "يجب إرفاق صورة";
+                errorMsg = context.appLocalization.mustAttachImage;
               } else if (!_singleItem && _operation.items.isEmpty) {
-                errorMsg = "يجب تحديد الأصناف";
+                errorMsg = context.appLocalization.mustSelectItems;
               } else if (!_singleItem && _operation.items.any((e) => e.quantity == 0)) {
-                errorMsg = "يجب تحديد الكمية لجميع الأصناف";
+                errorMsg = context.appLocalization.mustSpecifyQuantityItems;
               }
               if (errorMsg != null) {
                 Fluttertoast.showToast(msg: errorMsg);
@@ -174,21 +174,21 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ],
 
                 if (_operationType == OperationType.add) ...[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 10),
-                    child: EditorLabel("ماهي قيمة المشتريات الإجمالية ؟"),
+                   Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    child: EditorLabel(context.appLocalization.whatTotalPurchaseValue),
                   ),
                   BorderDecoratorTheme(
                     child: DecimalsEditor(
                       onChanged: (value) => _operation.amount = value,
                       textAlign: TextAlign.center,
-                      suffixText: "ريال",
+                      suffixText: context.appLocalization.riyal,
                     ),
                   ),
 
                   ImagesAttacher(
                     onChanged: _onFileAdd,
-                    title: "ارفاق صورة عن الفاتورة او سند الإستلام",
+                    title: context.appLocalization.attachImageOfInvoice,
                   ),
                 ],
 
@@ -202,7 +202,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                             key: ValueKey(_operation.transferToBranch?.id),
                             value: _operation.transferFromBranch?.id,
                             branches: branches,
-                            title: "الفرع المرسل",
+                            title: context.appLocalization.sendingBranch,
                             onChanged: (value) {
                               setState(() {
                                 if (_operation.transferFromBranch?.id != value) {
@@ -226,7 +226,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                                 branches
                                     .where((e) => e.id != _operation.transferFromBranch?.id)
                                     .toList(),
-                            title: "الفرع المستقبل",
+                            title: context.appLocalization.receivingBranch,
                             onChanged:
                                 _operation.transferFromBranch?.id != null
                                     ? (value) {
@@ -262,7 +262,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 if (_operationType == OperationType.destroy) ...[
                   const SizedBox(height: 10),
                   Text(
-                    "يجب ان توضح الصور سبب اتلاف الأصناف",
+                    context.appLocalization.mustImageClarifyReasonDisposing,
                     style: TextStyle(
                       color: context.colorPalette.grey666,
                       fontSize: 14,
@@ -271,7 +271,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   ),
                   ImagesAttacher(
                     onChanged: _onFileAdd,
-                    title: "ارفاق صور عن المواد التي سيتم اتلافها",
+                    title: context.appLocalization.attachImageOfMaterialsDisposed,
                   ),
                 ],
 
@@ -279,7 +279,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 if (!_singleItem) ...[
                   const SizedBox(height: 30),
                   Text(
-                    "يرجى ادخال الأصناف والكميات المراد اتلافها من كل صنف",
+                    context.appLocalization.enterItemsToBeDisposed,
                     style: TextStyle(
                       color: context.colorPalette.grey666,
                       fontSize: 14,
@@ -314,7 +314,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   SearchScreen(
                     indexName: AlgoliaIndices.items.value,
                     isFullScreen: false,
-                    hintText: "ادخل رقم الصنف او الإسم",
+                    hintText: context.appLocalization.enterItemNumberOrName,
                     filters:
                         _isTransferOperation
                             ? '${MyFields.branchId}:${_operation.transferFromBranch?.id}'
@@ -322,7 +322,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     onTap: (e) {
                       final ids = _operation.items.map((e) => e.id).toList();
                       if (ids.contains(e.id)) {
-                        Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                        Fluttertoast.showToast(msg: context.appLocalization.itemAlreadyAdded);
                         return;
                       }
                       context.pop();
@@ -338,7 +338,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     },
                     builder: (controller) {
                       return BaseEditor(
-                        hintText: "ادخل رقم الصنف او الإسم",
+                        hintText: context.appLocalization.enterItemNumberOrName,
                         hintStyle: TextStyle(
                           color: context.colorPalette.grey666,
                           fontSize: 14,
@@ -347,7 +347,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                         readOnly: true,
                         onTap: () {
                           if (_isTransferOperation && _operation.transferFromBranch == null) {
-                            Fluttertoast.showToast(msg: "يجب إختيار الفرع أولا");
+                            Fluttertoast.showToast(msg: context.appLocalization.mustSelectBranchFirst);
                             return;
                           }
                           controller.openView();

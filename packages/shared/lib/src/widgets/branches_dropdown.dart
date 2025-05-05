@@ -28,7 +28,7 @@ class BranchesDropdown extends StatelessWidget {
               return DropdownMenuItem(value: e.id, child: Text(e.name));
             }).toList(),
         onChanged: onChanged,
-        title: labelText ?? "اختر الفرع",
+        title: labelText ?? context.appLocalization.selectBranch,
       ),
     );
   }

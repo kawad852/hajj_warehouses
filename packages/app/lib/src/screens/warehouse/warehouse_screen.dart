@@ -29,7 +29,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                             return const OutOfStockItemsScreen();
                           });
                         },
-                        title: "اصناف بحاجة تزويد",
+                        title: context.appLocalization.itemsNeedingRestock,
                         value: "(${items.length}) ",
                         icon: MyIcons.boxTime,
                       );
@@ -42,7 +42,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                         (context) => const OperationInputScreen(operationType: OperationType.add),
                       );
                     },
-                    title: "اضافة كمية للمخزون",
+                    title: context.appLocalization.addQuantityToStock,
                     icon: MyIcons.boxAdd,
                   ),
                 ],
@@ -55,7 +55,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                       onTap: () {
                         context.push((context) => const DepartmentItemManagementScreen());
                       },
-                      title: "ادارة الأقسام والأصناف",
+                      title: context.appLocalization.departmentAndItemManagement,
                       icon: MyIcons.department,
                     ),
                     const SizedBox(width: 10),
@@ -63,7 +63,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                       onTap: () {
                         context.push((context) => const OrdersScreen());
                       },
-                      title: "ادارة الطلبيات",
+                      title: context.appLocalization.manageOrders,
                       icon: MyIcons.truckTime,
                     ),
                   ],
@@ -76,7 +76,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                       context.push((context) => const OperationsScreen());
                     },
                     flex: 4,
-                    title: "سجل العمليات",
+                    title: context.appLocalization.operationsLog,
                     icon: MyIcons.book,
                   ),
                   const SizedBox(width: 10),
@@ -89,7 +89,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     },
                     flex: 3,
                     backgroundColor: context.colorPalette.redC33,
-                    title: "إتلاف اصناف",
+                    title: context.appLocalization.discardItems,
                     icon: MyIcons.trash,
                   ),
                   const SizedBox(width: 10),
@@ -102,7 +102,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     },
                     flex: 2,
                     backgroundColor: context.colorPalette.grey780,
-                    title: "نقل مواد",
+                    title: context.appLocalization.transferMaterials,
                     icon: MyIcons.truck,
                   ),
                 ],
@@ -129,7 +129,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              "اصناف بحاجة إلى تزويد",
+                              context.appLocalization.itemsNeedingRestock,
                               style: TextStyle(
                                 color: context.colorPalette.black001,
                                 fontSize: 16,
@@ -147,7 +147,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                               child: Row(
                                 children: [
                                   Text(
-                                    "المزيد",
+                                    context.appLocalization.more,
                                     style: TextStyle(
                                       color: context.colorPalette.black001,
                                       fontSize: 14,

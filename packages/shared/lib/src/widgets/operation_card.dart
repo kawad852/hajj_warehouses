@@ -16,22 +16,22 @@ class OperationCard extends StatelessWidget {
     final itemsLabel = operation.items
         .map((e) {
           if (itemId != null) {
-            return "${e.quantity} وحدة ";
+            return "${e.quantity} ${context.appLocalization.unit} ";
           }
-          return "${e.quantity} وحدة ${e.name}";
+          return "${e.quantity} ${context.appLocalization.unit} ${e.name}";
         })
         .join(', ');
     switch (operationType) {
       case OperationType.create:
-        return ("إنشاء", _singleItem ? 'الصنف' : itemsLabel);
+        return (context.appLocalization.create, _singleItem ? context.appLocalization.item : itemsLabel);
       case OperationType.add:
-        return ("إضافة", itemsLabel);
+        return (context.appLocalization.add, itemsLabel);
       case OperationType.supply:
-        return ("طلب تزويد", itemsLabel);
+        return (context.appLocalization.supplyRequest, itemsLabel);
       case OperationType.destroy:
-        return ("إتلاف", itemsLabel);
+        return (context.appLocalization.destroy, itemsLabel);
       case OperationType.withdraw:
-        return ("سحب", itemsLabel);
+        return (context.appLocalization.withdraw, itemsLabel);
       default:
         return ("", "");
     }

@@ -7,17 +7,17 @@ class OrderStatusChip extends StatelessWidget {
 
   (String, Color) getLabel(BuildContext context) {
     if (status == OrderStatusEnum.placed.value) {
-      return ("بالإنتظار", context.colorPalette.yellow600);
+      return (context.appLocalization.pending, context.colorPalette.yellow600);
     } else if (status == OrderStatusEnum.inDelivery.value) {
-      return ("جاري التوصيل", context.colorPalette.yellow600);
+      return (context.appLocalization.beingDelivered, context.colorPalette.yellow600);
     } else if (status == OrderStatusEnum.approved.value) {
-      return ("مقبول", context.colorPalette.primary);
+      return (context.appLocalization.accepted, context.colorPalette.primary);
     } else if (status == OrderStatusEnum.rejected.value) {
-      return ("مرفوض", context.colorPalette.redC10);
+      return (context.appLocalization.rejected, context.colorPalette.redC10);
     } else if (status == OrderStatusEnum.canceled.value) {
-      return ("ملغى", context.colorPalette.redC10);
+      return (context.appLocalization.cancelled, context.colorPalette.redC10);
     }
-    return ("تم الإستلام", context.colorPalette.primary);
+    return (context.appLocalization.received, context.colorPalette.primary);
   }
 
   @override

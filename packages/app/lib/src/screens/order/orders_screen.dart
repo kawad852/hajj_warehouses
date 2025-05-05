@@ -35,14 +35,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
       //   },
       // ),
       bottomNavigationBar: BottomButton(
-        text: "ارسال طلب جديد",
+        text: context.appLocalization.sendNewRequest,
         onPressed: () {
           context.push(
             (context) => const OperationInputScreen(operationType: OperationType.supply),
           );
         },
       ),
-      appBar: AppBar(title: const AppBarText("ادارة الطلبيات")),
+      appBar: AppBar(title: AppBarText(context.appLocalization.manageOrders)),
       body: CustomFirestoreQueryBuilder(
         query: _query,
         onComplete: (context, snapshot) {
@@ -74,7 +74,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          "طلب ${isSupplyOperation ? "تزويد" : "نقل"} رقم ${order.id}#",
+                          "${context.appLocalization.request} ${isSupplyOperation ? context.appLocalization.restock : context.appLocalization.transfer} ${context.appLocalization.number} ${order.id}#",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.black001,
