@@ -55,7 +55,7 @@ class _TasksScreenState extends State<TasksScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.fullCalendar)
-            FullCalendarBuilder()
+            const FullCalendarBuilder()
           else
             Padding(
               padding: const EdgeInsets.all(10),
@@ -116,7 +116,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 final tasks = snapshot.docs;
                 if (tasks.isEmpty) {
                   return const EmptyWidget(
-                    icon: FontAwesomeIcons.tasks,
+                    icon: FontAwesomeIcons.listCheck,
                     title: "لا يوجد مهمات مضافة",
                   );
                 }
