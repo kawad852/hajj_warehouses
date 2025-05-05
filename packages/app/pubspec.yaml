@@ -45,6 +45,21 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path_android: "assets/android_launcher.png"
+  image_path_ios: "assets/ios_launcher.png"
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: ../../assets/android_12_splash.png
+  android: true
+  ios: true
+  android_12:
+    image: ../../assets/android_12_splash.png
+    color: "#FFFFFF"
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
