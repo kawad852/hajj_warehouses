@@ -5,7 +5,9 @@ import 'package:shared/shared.dart';
 import 'package:shared/src/helper/storage_service.dart';
 
 class UserInputScreen extends StatefulWidget {
-  const UserInputScreen({super.key});
+  final UserModel? user;
+
+  const UserInputScreen({super.key, this.user});
 
   @override
   State<UserInputScreen> createState() => _UserInputScreenState();
@@ -58,15 +60,17 @@ class _UserInputScreenState extends State<UserInputScreen> {
         if (_formKey.currentState!.validate()) {
           AppOverlayLoader.show();
           context.unFocusKeyboard();
-          final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: "${_user.username}@hajjwarehouses.com",
-            password: _user.password,
-          );
-          final id = auth.user!.uid;
-          final userDocRef = kFirebaseInstant.users.doc(id);
-          if (context.mounted) {
+          if (widget.user == null) {
+            final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: "${_user.username}@hajjwarehouses.com",
+              password: _user.password,
+            );
+            final id = auth.user!.uid;
             _user.id = id;
             _user.createdAt = kNowDate;
+          }
+          final userDocRef = kFirebaseInstant.users.doc(_user.id);
+          if (context.mounted) {
             _user.languageCode = context.languageCode;
             _user.phoneNum = _phoneController.getPhoneNumber;
             _user.phoneCountryCode = _phoneController.countryCode;
@@ -105,8 +109,12 @@ class _UserInputScreenState extends State<UserInputScreen> {
   @override
   void initState() {
     super.initState();
-    _user = UserModel(branch: kBranch);
-    _phoneController = PhoneController(context);
+    _user = UserModel.fromJson(widget.user?.toJson() ?? UserModel(branch: kBranch).toJson());
+    _phoneController = PhoneController(
+      context,
+      countryCode: _user.phoneCountryCode,
+      phoneNum: _user.phoneNum,
+    );
     _initialize();
   }
 
@@ -137,7 +145,6 @@ class _UserInputScreenState extends State<UserInputScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // const Align(child: BaseNetworkImage(kBurgerImage, width: 90, height: 90)),
                   Center(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -174,7 +181,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
                       title: "الاسم الكامل",
-                      child: TextEditor(onChanged: (value) => _user.displayName = value!),
+                      child: TextEditor(
+                        initialValue: _user.displayName,
+                        onChanged: (value) => _user.displayName = value!,
+                      ),
                     ),
                   ),
                   Row(
@@ -183,7 +193,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       Expanded(
                         child: TitledTextField(
                           title: "المسمى الوظيفي",
-                          child: TextEditor(onChanged: (value) => _user.jobTitle = value!),
+                          child: TextEditor(
+                            initialValue: _user.jobTitle,
+                            onChanged: (value) => _user.jobTitle = value!,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -209,7 +222,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         Expanded(
                           child: TitledTextField(
                             title: "الرقم الوطني",
-                            child: TextEditor(onChanged: (value) => _user.nationalNumber = value!),
+                            child: TextEditor(
+                              initialValue: _user.nationalNumber,
+                              onChanged: (value) => _user.nationalNumber = value!,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -229,6 +245,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         child: TitledTextField(
                           title: "الأجر",
                           child: DecimalsEditor(
+                            initialValue: _user.salary,
                             onChanged: (value) => _user.salary = value!,
                             textAlign: TextAlign.center,
                             suffixIcon: const IconButton(
@@ -256,7 +273,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
                       title: "العنوان",
-                      child: TextEditor(onChanged: (value) => _user.address = value!),
+                      child: TextEditor(
+                        initialValue: _user.address,
+                        onChanged: (value) => _user.address = value!,
+                      ),
                     ),
                   ),
                   Row(
@@ -291,6 +311,8 @@ class _UserInputScreenState extends State<UserInputScreen> {
                           child: TitledTextField(
                             title: "اسم المستخدم",
                             child: TextEditor(
+                              initialValue: _user.username,
+                              readOnly: widget.user != null,
                               onChanged: (value) => _user.username = value!,
                               hintText: "بالأحرف الإنجليزية",
                               inputFormatters: [
@@ -304,8 +326,8 @@ class _UserInputScreenState extends State<UserInputScreen> {
                           child: TitledTextField(
                             title: "كلمة المرور",
                             child: PasswordEditor(
+                              initialValue: _user.password,
                               onChanged: (value) => _user.password = value!,
-                              initialValue: null,
                             ),
                           ),
                         ),

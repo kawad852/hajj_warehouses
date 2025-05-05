@@ -68,7 +68,15 @@ class UserCard extends StatelessWidget {
             children: [
               ToolButton(onTap: () {}, text: "عرض", icon: MyIcons.eye),
               const SizedBox(height: 5),
-              ToolButton(onTap: () {}, text: "تحرير", icon: MyIcons.edit),
+              ToolButton(
+                onTap: () {
+                  context.push((context) {
+                    return UserInputScreen(user: user);
+                  });
+                },
+                text: "تحرير",
+                icon: MyIcons.edit,
+              ),
             ],
           ),
         ],

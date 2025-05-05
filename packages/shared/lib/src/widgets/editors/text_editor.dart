@@ -17,6 +17,7 @@ class TextEditor extends StatelessWidget {
   final TextStyle? hintStyle;
   final bool nullable;
   final List<TextInputFormatter>? inputFormatters;
+  final bool readOnly;
 
   const TextEditor({
     super.key,
@@ -35,6 +36,7 @@ class TextEditor extends StatelessWidget {
     this.hintStyle,
     this.nullable = false,
     this.inputFormatters,
+    this.readOnly = false,
   });
 
   @override
@@ -47,6 +49,7 @@ class TextEditor extends StatelessWidget {
       textAlign: textAlign,
       enabledBorder: enabledBorder,
       suffixIcon: suffixIcon,
+      readOnly: readOnly,
       prefixIcon: prefixIcon,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
