@@ -1,4 +1,3 @@
-import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
@@ -11,7 +10,7 @@ class TaskCard extends StatelessWidget {
     final isCompleted = task.status == TaskStatusEnum.completed.value;
     return GestureDetector(
       onTap: () {
-        context.push((context) => const TaskFollowScreen());
+        // context.push((context) => const TaskFollowScreen());
       },
       child: Container(
         width: double.infinity,
