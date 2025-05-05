@@ -312,18 +312,18 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ],
                     ),
                   ),
-                  TitledTextField(
-                    title: "صلاحية الوصول",
-                    child: SizedBox(
-                      width: context.mediaQuery.width * 0.45,
-                      child: DropDownEditor(
-                        items: const [],
-                        onChanged: (value) {},
-                        title: "اختر الفرع",
-                        value: "s",
-                      ),
-                    ),
-                  ),
+                  // TitledTextField(
+                  //   title: "صلاحية الوصول",
+                  //   child: SizedBox(
+                  //     width: context.mediaQuery.width * 0.45,
+                  //     child: DropDownEditor(
+                  //       items: const [],
+                  //       onChanged: (value) {},
+                  //       title: "اختر الفرع",
+                  //       value: "s",
+                  //     ),
+                  //   ),
+                  // ),
                   InkWell(
                     onTap: () {
                       _pickImages(context);

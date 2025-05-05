@@ -1,7 +1,9 @@
 import 'package:shared/shared.dart';
 
 class ChooseBranchScreen extends StatefulWidget {
-  const ChooseBranchScreen({super.key});
+  final bool showAppBar;
+
+  const ChooseBranchScreen({super.key, this.showAppBar = false});
 
   @override
   State<ChooseBranchScreen> createState() => _ChooseBranchScreenState();
@@ -27,8 +29,9 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
       onComplete: (context, snapshot) {
         final branches = snapshot.data!;
         return Scaffold(
+          appBar: widget.showAppBar ? AppBar() : null,
           bottomNavigationBar: BottomButton(
-            text: "التالي",
+            text: widget.showAppBar ? "إختيار" : "التالي",
             onPressed:
                 MySharedPreferences.branch != null
                     ? () {
@@ -39,7 +42,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(width: context.mediaQuery.width, height: 100),
+              SizedBox(width: context.mediaQuery.width, height: widget.showAppBar ? 20 : 100),
               const CustomSvg(MyIcons.logo),
               const SizedBox(height: 50),
               Row(
