@@ -55,7 +55,13 @@ class _TasksScreenState extends State<TasksScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.fullCalendar)
-            const FullCalendarBuilder()
+            FullCalendarBuilder(
+              onChanged: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+            )
           else
             Padding(
               padding: const EdgeInsets.all(10),

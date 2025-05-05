@@ -1,15 +1,12 @@
+import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
 class CalenderCard extends StatelessWidget {
-  final int dateIndex;
-  final int currentIndex;
+  final bool selected;
   final void Function() onTap;
-  const CalenderCard({
-    super.key,
-    required this.dateIndex,
-    required this.currentIndex,
-    required this.onTap,
-  });
+  final DateTime date;
+
+  const CalenderCard({super.key, required this.selected, required this.onTap, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -19,35 +16,31 @@ class CalenderCard extends StatelessWidget {
         width: 43,
         height: 52,
         decoration: BoxDecoration(
-          color:
-              dateIndex == currentIndex
-                  ? context.colorPalette.primary
-                  : context.colorPalette.greyF2F,
+          color: selected ? context.colorPalette.primary : context.colorPalette.greyF2F,
           borderRadius: BorderRadius.circular(kRadiusPrimary),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "28",
+              "${date.day}",
               style: TextStyle(
-                color:
-                    dateIndex == currentIndex
-                        ? context.colorPalette.white
-                        : context.colorPalette.black001,
+                color: selected ? context.colorPalette.white : context.colorPalette.black001,
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
               ),
             ),
-            Text(
-              "الأحد",
-              style: TextStyle(
-                color:
-                    dateIndex == currentIndex
-                        ? context.colorPalette.white
-                        : context.colorPalette.black001,
-                fontSize: 14,
-                fontWeight: FontWeight.w800,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: AutoSizeText(
+                DateFormat('EEEE', context.languageCode).format(date),
+                style: TextStyle(
+                  color: selected ? context.colorPalette.white : context.colorPalette.black001,
+                  fontWeight: FontWeight.w800,
+                ),
+                minFontSize: 8,
+                maxFontSize: 12,
+                maxLines: 1,
               ),
             ),
           ],
