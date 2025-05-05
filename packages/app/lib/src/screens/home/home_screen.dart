@@ -28,24 +28,25 @@ class _HomeScreenState extends State<HomeScreen> {
       stream: _tasksStream,
       onComplete: (context, snapshot) {
         final tasks = snapshot.data!.docs;
+        final currentTasks = tasks.take(2).toList();
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           children: [
             if (tasks.isNotEmpty)
               Row(
                 spacing: 10,
-                children:
-                    tasks.take(2).map((e) {
-                      return Expanded(
-                        child: HomeBubble(
-                          onTap: () {},
-                          title: "المهمة الحالية",
-                          task: e.data().title,
-                          value: "02 : 31 : 56",
-                          valueIcon: MyIcons.timer,
-                        ),
-                      );
-                    }).toList(),
+                children: List.generate(currentTasks.length, (index) {
+                  final task = currentTasks[index];
+                  return Expanded(
+                    child: HomeBubble(
+                      onTap: () {},
+                      title: index == 0 ? "المهمة الحالية" : "المهمة التالية",
+                      task: task.data().title,
+                      value: "02 : 31 : 56",
+                      valueIcon: MyIcons.timer,
+                    ),
+                  );
+                }),
               ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -95,16 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     title: "الكادر البشري",
                     prefixIcon: MyIcons.people,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: HomeBubble(
-                    onTap: () {
-                      context.push((context) => const ReportsScreen());
-                    },
-                    title: "التقارير",
-                    prefixIcon: MyIcons.reports,
                   ),
                 ),
               ],

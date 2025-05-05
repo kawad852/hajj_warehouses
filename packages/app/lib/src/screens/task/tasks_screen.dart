@@ -76,22 +76,22 @@ class _TasksScreenState extends State<TasksScreen> {
                             );
                           }).toList(),
                     ),
-                    InkWell(
-                      onTap: () {
-                        context.push((context) => const FullCalenderSreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          "عرض الكل",
-                          style: TextStyle(
-                            color: context.colorPalette.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // InkWell(
+                    //   onTap: () {
+                    //     context.push((context) => const FullCalenderSreen());
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(bottom: 10),
+                    //     child: Text(
+                    //       "عرض الكل",
+                    //       style: TextStyle(
+                    //         color: context.colorPalette.black,
+                    //         fontSize: 14,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],
@@ -104,6 +104,9 @@ class _TasksScreenState extends State<TasksScreen> {
               query: _tasksQuery,
               onComplete: (context, snapshot) {
                 final tasks = snapshot.docs;
+                if (tasks.isEmpty) {
+                  return EmptyWidget(icon: FontAwesomeIcons.tasks, title: "لا يوجد مهمات مضافة");
+                }
                 return ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 15),
                   itemCount: tasks.length,

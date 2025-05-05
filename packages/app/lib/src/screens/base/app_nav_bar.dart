@@ -74,23 +74,23 @@ class _AppNavBarState extends State<AppNavBar> {
       appBar: AppBar(
         toolbarHeight: 80,
         title: const UserInfoWidget(),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: context.colorPalette.greyD9D),
-                borderRadius: BorderRadius.circular(kRadiusTertiary),
-              ),
-              child: const CustomSvg(MyIcons.notification),
-            ),
-          ),
-        ],
+        // actions: [
+        //   GestureDetector(
+        //     onTap: () {},
+        //     child: Container(
+        //       width: 40,
+        //       height: 40,
+        //       alignment: Alignment.center,
+        //       margin: const EdgeInsets.symmetric(horizontal: 15),
+        //       decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         border: Border.all(color: context.colorPalette.greyD9D),
+        //         borderRadius: BorderRadius.circular(kRadiusTertiary),
+        //       ),
+        //       child: const CustomSvg(MyIcons.notification),
+        //     ),
+        //   ),
+        // ],
       ),
       bottomNavigationBar: Container(
         height: withNotch ? 85 : 75,
