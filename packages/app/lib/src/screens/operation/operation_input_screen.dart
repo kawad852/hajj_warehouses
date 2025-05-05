@@ -22,6 +22,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isSupplyOperation => _operationType == OperationType.supply;
   bool get _isDestroyOperation => _operationType == OperationType.destroy;
   bool get _isTransferOperation => _operationType == OperationType.transfer;
+  bool get _isWithdrawOperation => _operationType == OperationType.withdraw;
   ItemModel? get _item => widget.item;
   bool get _singleItem => _item != null;
 
@@ -86,7 +87,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
             text: info.buttonLabel,
             onPressed: () {
               String? errorMsg;
-              if (_radioGroupValue == null) {
+              if (info.radio != null && _radioGroupValue == null) {
                 if (_isAddOperation) {
                   errorMsg = 'يجب تحديد نوع التوريد';
                 } else if (_isSupplyOperation || _isTransferOperation) {
@@ -100,7 +101,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   (_operation.transferFromBranch?.id == null ||
                       _operation.transferToBranch?.id == null)) {
                 errorMsg = "يجب تحديد الفرع المرسل والفرع المستقبل";
-              } else if (!_isSupplyOperation &&
+              } else if (!_isWithdrawOperation &&
+                  !_isSupplyOperation &&
                   !_isTransferOperation &&
                   _operation.files!.isEmpty) {
                 errorMsg = "يجب إرفاق صورة";
@@ -145,12 +147,12 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   ),
                 ],
 
-                if (info.radio.items.isNotEmpty) ...[
-                  EditorLabel(info.radio.label),
+                if (info.radio != null && info.radio!.items.isNotEmpty) ...[
+                  EditorLabel(info.radio!.label),
                   const SizedBox(height: 8),
                   Row(
                     children:
-                        info.radio.items.map((e) {
+                        info.radio!.items.map((e) {
                           return CustomRadio(
                             value: e.value,
                             title: e.label,
@@ -241,13 +243,9 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     ),
                   ),
 
-                if (_isSupplyOperation || _isDestroyOperation || _isTransferOperation) ...[
+                if (info.noteLabel != null) ...[
                   SizedBox(height: _isSupplyOperation ? 50 : 30),
-                  EditorLabel(
-                    _isSupplyOperation
-                        ? "مشروحات وملاحظات حول الطلب"
-                        : "مشروحات وملاحظات حول الإتلاف",
-                  ),
+                  EditorLabel(info.noteLabel!),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: BorderDecoratorTheme(

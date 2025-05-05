@@ -148,15 +148,19 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.center,
-                      child: ManageButton(
-                        onTap: () {},
-                        width: 115,
-                        title: "سحب كمية",
-                        iconWidth: 20,
-                        icon: MyIcons.addTask,
-                      ),
+                    ManageButton(
+                      onTap: () {
+                        _openSheet(
+                          context,
+                          item: item,
+                          operationType: OperationType.withdraw,
+                          maxQuantity: item.quantity,
+                        );
+                      },
+                      width: 115,
+                      title: "سحب كمية",
+                      iconWidth: 20,
+                      icon: MyIcons.addTask,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 60, bottom: 10),

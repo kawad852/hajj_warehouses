@@ -1,15 +1,15 @@
 class OperationInfoModel {
   final String title;
-  final RadioInfoModel radio;
+  final RadioInfoModel? radio;
   final String buttonLabel;
-  // final String noteLabel;
+  final String? noteLabel;
   // final String imageEditorLabel;
 
   OperationInfoModel({
     required this.title,
     required this.radio,
     required this.buttonLabel,
-    // required this.noteLabel,
+    this.noteLabel,
     // required this.imageEditorLabel,
   });
 }

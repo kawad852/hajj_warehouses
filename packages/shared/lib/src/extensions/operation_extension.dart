@@ -31,12 +31,14 @@ extension OperationExteension on OperationType {
           title: "طلب تزويد كمية للصنف",
           radio: _requestTypeRadioInfoModel,
           buttonLabel: sendOrderButtonLabel,
+          noteLabel: "مشروحات وملاحظات حول الطلب",
         );
       case OperationType.transfer:
         return OperationInfoModel(
           title: "نقل مواد",
           buttonLabel: sendOrderButtonLabel,
           radio: _requestTypeRadioInfoModel,
+          noteLabel: "مشروحات وملاحظات حول الطلب",
         );
 
       case OperationType.destroy:
@@ -53,6 +55,15 @@ extension OperationExteension on OperationType {
               ),
             ],
           ),
+          noteLabel: "مشروحات وملاحظات حول الإتلاف",
+        );
+
+      case OperationType.withdraw:
+        return OperationInfoModel(
+          title: singleItem ? "سحب كمية للصنف" : "سحب أصناف",
+          buttonLabel: "سحب",
+          radio: null,
+          noteLabel: "مشروحات وملاحظات حول السحب",
         );
 
       default:

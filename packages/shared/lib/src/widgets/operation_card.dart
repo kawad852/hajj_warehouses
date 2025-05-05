@@ -30,6 +30,8 @@ class OperationCard extends StatelessWidget {
         return ("طلب تزويد", itemsLabel);
       case OperationType.destroy:
         return ("إتلاف", itemsLabel);
+      case OperationType.withdraw:
+        return ("سحب", itemsLabel);
       default:
         return ("", "");
     }
