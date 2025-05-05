@@ -154,7 +154,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 70),
+              const SizedBox(height: 10),
               OrderCard(
                 child: Text(
                   "وقت الطلب : ${DateFormat.yMd(context.languageCode).add_jm().format(order.createdAt!)}",
@@ -222,6 +222,28 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ],
                 ),
               ),
+              if (_order.operation?.notes != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ListBody(
+                    children: [
+                      Text(
+                        "ملاحظات حول الطلب",
+                        style: TextStyle(
+                          color: context.colorPalette.black001,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextEditor(
+                        readOnly: true,
+                        initialValue: _order.operation!.notes,
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                ),
               // StretchedButton(
               //   onPressed: () {},
               //   child: Row(
