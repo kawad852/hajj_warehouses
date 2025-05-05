@@ -1,9 +1,12 @@
 import 'package:app/shared.dart';
 import 'package:app/src/screens/task/widgets/date_widget.dart';
+import 'package:app/src/screens/task/widgets/full_calendar_builder.dart';
 import 'package:shared/shared.dart';
 
 class TasksScreen extends StatefulWidget {
-  const TasksScreen({super.key});
+  final bool fullCalendar;
+
+  const TasksScreen({super.key, this.fullCalendar = false});
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -43,60 +46,67 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          widget.fullCalendar
+              ? AppBar(title: const AppBarText("جميع المهام"), forceMaterialTransparency: true)
+              : null,
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Positioned(
-                  bottom: 0,
-                  top: 26,
-                  left: 0,
-                  right: 0,
-                  child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children:
-                          _dates.map((e) {
-                            return DateWidget(
-                              onTap: () {
-                                setState(() {
-                                  _selectedDate = e.$1;
-                                });
-                              },
-                              title: e.$2,
-                              isSelected: _selectedDate == e.$1,
-                            );
-                          }).toList(),
-                    ),
-                    // InkWell(
-                    //   onTap: () {
-                    //     context.push((context) => const FullCalenderSreen());
-                    //   },
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(bottom: 10),
-                    //     child: Text(
-                    //       "عرض الكل",
-                    //       style: TextStyle(
-                    //         color: context.colorPalette.black,
-                    //         fontSize: 14,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ],
+          if (widget.fullCalendar)
+            FullCalendarBuilder()
+          else
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Positioned(
+                    bottom: 0,
+                    top: 26,
+                    left: 0,
+                    right: 0,
+                    child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children:
+                            _dates.map((e) {
+                              return DateWidget(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedDate = e.$1;
+                                  });
+                                },
+                                title: e.$2,
+                                isSelected: _selectedDate == e.$1,
+                              );
+                            }).toList(),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push((context) => const TasksScreen(fullCalendar: true));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "عرض الكل",
+                            style: TextStyle(
+                              color: context.colorPalette.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
           const StatusWidget(),
           Expanded(
             child: CustomFirestoreQueryBuilder(
@@ -105,7 +115,10 @@ class _TasksScreenState extends State<TasksScreen> {
               onComplete: (context, snapshot) {
                 final tasks = snapshot.docs;
                 if (tasks.isEmpty) {
-                  return EmptyWidget(icon: FontAwesomeIcons.tasks, title: "لا يوجد مهمات مضافة");
+                  return const EmptyWidget(
+                    icon: FontAwesomeIcons.tasks,
+                    title: "لا يوجد مهمات مضافة",
+                  );
                 }
                 return ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 15),
