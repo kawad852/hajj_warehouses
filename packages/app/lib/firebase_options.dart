@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDx9WusTB5MzyPqMfvO5yJQtBMI7Xc3w0M',
-    appId: '1:240438237901:android:8cdeb3bdedd6ed60e8a784',
+    appId: '1:240438237901:android:fa0ff4b258d43747e8a784',
     messagingSenderId: '240438237901',
     projectId: 'hajjwarehouses',
     storageBucket: 'hajjwarehouses.firebasestorage.app',
@@ -60,11 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCR3tj_GUnCHbybRRInBBCDVtNsQQOe4fg',
-    appId: '1:240438237901:ios:949308c949775b0de8a784',
+    appId: '1:240438237901:ios:55acaa71f873367ce8a784',
     messagingSenderId: '240438237901',
     projectId: 'hajjwarehouses',
     storageBucket: 'hajjwarehouses.firebasestorage.app',
-    iosBundleId: 'com.example.app',
+    iosBundleId: 'com.hajjwarehouses.wecan',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
