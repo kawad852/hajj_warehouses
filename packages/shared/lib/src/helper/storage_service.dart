@@ -16,11 +16,16 @@ class StorageService {
     return url;
   }
 
-  Future<List<String>> uploadFiles(String collection, List<XFile> files) async {
+  Future<List<String>> uploadFiles(String collection, List<Object> files) async {
     List<String> images = [];
     for (var element in files) {
-      final image = await uploadFile(collection: collection, file: element);
-      images.add(image);
+      if (element is String) {
+        images.add(element);
+      }
+      if (element is XFile) {
+        final image = await uploadFile(collection: collection, file: element);
+        images.add(image);
+      }
     }
     return images;
   }

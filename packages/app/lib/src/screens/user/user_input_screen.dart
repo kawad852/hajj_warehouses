@@ -20,7 +20,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
   late Future<List<BranchModel>> _branchesFuture;
   final _storageService = StorageService();
   XFile? _file;
-  List<XFile> _files = [];
+  List<Object> _files = [];
 
   void _initialize() {
     _branchesFuture = context.appProvider.getBranches();
@@ -74,11 +74,15 @@ class _UserInputScreenState extends State<UserInputScreen> {
             _user.languageCode = context.languageCode;
             _user.phoneNum = _phoneController.getPhoneNumber;
             _user.phoneCountryCode = _phoneController.countryCode;
-            _user.profilePhoto = await _storageService.uploadFile(
-              collection: "personalPhotos",
-              file: _file!,
-            );
-            _user.images = await _storageService.uploadFiles("personalPhotos", _files);
+            if (_file != null) {
+              _user.profilePhoto = await _storageService.uploadFile(
+                collection: "personalPhotos",
+                file: _file!,
+              );
+            }
+            if (_files.isNotEmpty) {
+              _user.images = await _storageService.uploadFiles("personalPhotos", _files);
+            }
             await userDocRef.set(_user);
           }
           if (context.mounted) {
@@ -115,6 +119,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
       countryCode: _user.phoneCountryCode,
       phoneNum: _user.phoneNum,
     );
+    if (_user.images != null) {
+      _files.addAll(_user.images!);
+    }
     _initialize();
   }
 
@@ -161,6 +168,15 @@ class _UserInputScreenState extends State<UserInputScreen> {
                                 width: 90,
                                 fit: BoxFit.cover,
                               ),
+                            );
+                          } else if (_user.profilePhoto != null) {
+                            return BaseNetworkImage(
+                              _user.profilePhoto!,
+                              height: 90,
+                              width: 90,
+                              onTap: () {
+                                _pickImage(context);
+                              },
                             );
                           }
                           return MaterialButton(
@@ -386,15 +402,19 @@ class _UserInputScreenState extends State<UserInputScreen> {
                           children:
                               _files
                                   .map((e) {
-                                    return ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.file(
-                                        File(e.path),
-                                        height: 90,
-                                        width: 90,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    );
+                                    if (e is XFile) {
+                                      return ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.file(
+                                          File(e.path),
+                                          height: 90,
+                                          width: 90,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    } else {
+                                      return BaseNetworkImage(e as String, height: 90, width: 90);
+                                    }
                                   })
                                   .separator(const SizedBox(width: 10))
                                   .toList(),
