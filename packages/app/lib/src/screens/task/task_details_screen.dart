@@ -33,6 +33,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       initialData: widget.task,
       onComplete: (context, snapshot) {
         final task = snapshot.data!;
+        final status = task.status;
+        final inProgress = status == TaskStatusEnum.inProgress.value;
+        final inCompleted = status == TaskStatusEnum.completed.value;
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
@@ -67,13 +70,17 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               children: [
                 Row(
                   children: [
-                    TaskInfo(
-                      title: "بدأت المهمة في",
-                      value: "${task.startTime!.getTime(context)} ",
-                    ),
-                    const SizedBox(width: 10),
-                    TaskInfo(title: "وقت الإنتهاء عند", value: task.endTime!.getTime(context)),
-                    if (task.endTime!.isAfter(kNowDate)) ...[
+                    if ((inProgress || inCompleted) && task.startedAt != null) ...[
+                      TaskInfo(
+                        title: "بدأت المهمة في",
+                        value: "${task.startedAt!.getTime(context)} ",
+                      ),
+                    ],
+                    if (inCompleted) ...[
+                      const SizedBox(width: 10),
+                      TaskInfo(title: "وقت الإنتهاء عند", value: task.endTime!.getTime(context)),
+                    ],
+                    if (inProgress && task.endTime!.isAfter(kNowDate)) ...[
                       const SizedBox(width: 10),
                       TimerBuilder(
                         endDateTime: task.endTime!,

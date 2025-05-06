@@ -66,7 +66,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   @override
   void initState() {
     super.initState();
-    _task = TaskModel(createdBy: kCurrentLightUser);
+    _task = TaskModel(createdBy: kCurrentLightUser, status: TaskStatusEnum.notStarted.value);
     _initialize();
   }
 

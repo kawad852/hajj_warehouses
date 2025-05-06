@@ -25,4 +25,6 @@ class MyFields {
   static const String totalSubTasks = 'totalSubTasks';
   static const String completedSubTasksCount = 'completedSubTasksCount';
   static const String images = 'images';
+  static const String startedAt = 'startedAt';
+  static const String endedAt = 'endedAt';
 }
