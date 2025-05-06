@@ -48,8 +48,10 @@ mixin _$TaskModel {
   double get completedDuration => throw _privateConstructorUsedError;
   set completedDuration(double value) =>
       throw _privateConstructorUsedError; // in minutes
-  bool get hasSubTasks => throw _privateConstructorUsedError; // in minutes
-  set hasSubTasks(bool value) => throw _privateConstructorUsedError;
+  int get totalSubTasks => throw _privateConstructorUsedError; // in minutes
+  set totalSubTasks(int value) => throw _privateConstructorUsedError;
+  int get completedSubTasksCount => throw _privateConstructorUsedError;
+  set completedSubTasksCount(int value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
@@ -82,7 +84,8 @@ abstract class $TaskModelCopyWith<$Res> {
     String description,
     String status,
     double completedDuration,
-    bool hasSubTasks,
+    int totalSubTasks,
+    int completedSubTasksCount,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -116,7 +119,8 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? description = null,
     Object? status = null,
     Object? completedDuration = null,
-    Object? hasSubTasks = null,
+    Object? totalSubTasks = null,
+    Object? completedSubTasksCount = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -168,11 +172,16 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.completedDuration
                     : completedDuration // ignore: cast_nullable_to_non_nullable
                         as double,
-            hasSubTasks:
-                null == hasSubTasks
-                    ? _value.hasSubTasks
-                    : hasSubTasks // ignore: cast_nullable_to_non_nullable
-                        as bool,
+            totalSubTasks:
+                null == totalSubTasks
+                    ? _value.totalSubTasks
+                    : totalSubTasks // ignore: cast_nullable_to_non_nullable
+                        as int,
+            completedSubTasksCount:
+                null == completedSubTasksCount
+                    ? _value.completedSubTasksCount
+                    : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
             employee:
                 freezed == employee
                     ? _value.employee
@@ -237,7 +246,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String description,
     String status,
     double completedDuration,
-    bool hasSubTasks,
+    int totalSubTasks,
+    int completedSubTasksCount,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -272,7 +282,8 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? description = null,
     Object? status = null,
     Object? completedDuration = null,
-    Object? hasSubTasks = null,
+    Object? totalSubTasks = null,
+    Object? completedSubTasksCount = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -324,11 +335,16 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.completedDuration
                 : completedDuration // ignore: cast_nullable_to_non_nullable
                     as double,
-        hasSubTasks:
-            null == hasSubTasks
-                ? _value.hasSubTasks
-                : hasSubTasks // ignore: cast_nullable_to_non_nullable
-                    as bool,
+        totalSubTasks:
+            null == totalSubTasks
+                ? _value.totalSubTasks
+                : totalSubTasks // ignore: cast_nullable_to_non_nullable
+                    as int,
+        completedSubTasksCount:
+            null == completedSubTasksCount
+                ? _value.completedSubTasksCount
+                : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
         employee:
             freezed == employee
                 ? _value.employee
@@ -363,7 +379,8 @@ class _$TaskModelImpl implements _TaskModel {
     this.description = "",
     this.status = "",
     this.completedDuration = 0.0,
-    this.hasSubTasks = false,
+    this.totalSubTasks = 0,
+    this.completedSubTasksCount = 0,
     this.employee,
     required this.createdBy,
     this.images = const [],
@@ -402,7 +419,10 @@ class _$TaskModelImpl implements _TaskModel {
   // in minutes
   @override
   @JsonKey()
-  bool hasSubTasks;
+  int totalSubTasks;
+  @override
+  @JsonKey()
+  int completedSubTasksCount;
   @override
   LightUserModel? employee;
   @override
@@ -413,7 +433,7 @@ class _$TaskModelImpl implements _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, hasSubTasks: $hasSubTasks, employee: $employee, createdBy: $createdBy, images: $images)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, employee: $employee, createdBy: $createdBy, images: $images)';
   }
 
   /// Create a copy of TaskModel
@@ -441,7 +461,8 @@ abstract class _TaskModel implements TaskModel {
     String description,
     String status,
     double completedDuration,
-    bool hasSubTasks,
+    int totalSubTasks,
+    int completedSubTasksCount,
     LightUserModel? employee,
     required LightUserModel createdBy,
     List<String> images,
@@ -486,8 +507,11 @@ abstract class _TaskModel implements TaskModel {
   double get completedDuration;
   set completedDuration(double value); // in minutes
   @override
-  bool get hasSubTasks; // in minutes
-  set hasSubTasks(bool value);
+  int get totalSubTasks; // in minutes
+  set totalSubTasks(int value);
+  @override
+  int get completedSubTasksCount;
+  set completedSubTasksCount(int value);
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);

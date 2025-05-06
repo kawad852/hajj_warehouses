@@ -34,9 +34,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       onComplete: (context, snapshot) {
         final task = snapshot.data!;
         return Scaffold(
-          bottomNavigationBar: const BottomAppBar(
+          bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
-            child: AddTaskWidget(),
+            child: AddTaskWidget(task: task),
           ),
           appBar: AppBar(
             backgroundColor: context.colorPalette.greyE2E,
@@ -84,7 +84,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     ],
                   ],
                 ),
-                if (task.hasSubTasks)
+                if (task.totalSubTasks > 0)
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 10),
                     child: Text(
@@ -110,7 +110,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           }
                           final taskDocSnapshot = snapshot.docs[index];
                           final task = taskDocSnapshot.data();
-                          return SubTaskWidget(task: task);
+                          return SubTaskCard(task: task);
                         },
                       );
                     },

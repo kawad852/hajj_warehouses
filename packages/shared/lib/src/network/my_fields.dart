@@ -22,4 +22,6 @@ class MyFields {
   static const String balance = 'balance';
   static const String idBranch = 'branch.id';
   static const String createTime = 'createTime';
+  static const String totalSubTasks = 'totalSubTasks';
+  static const String completedSubTasksCount = 'completedSubTasksCount';
 }

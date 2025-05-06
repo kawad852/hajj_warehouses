@@ -8,8 +8,8 @@ class DatePickerEditor extends StatefulWidget {
   final Function(DateTime value) onChanged;
   final bool required;
   final String? labelText;
-  final DateTime? fistDate;
-  final DateTime? lastDate;
+  final DateTime? minDateTime;
+  final DateTime? maxDateTime;
   final bool includeTime;
   final TextStyle? style;
 
@@ -19,8 +19,8 @@ class DatePickerEditor extends StatefulWidget {
     required this.onChanged,
     this.required = true,
     this.labelText,
-    this.fistDate,
-    this.lastDate,
+    this.minDateTime,
+    this.maxDateTime,
     this.includeTime = false,
     this.style,
   });
@@ -51,9 +51,9 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
     DatePicker.showDatePicker(
       context,
       dateFormat: widget.includeTime ? 'dd MMMM yyyy HH:mm' : 'dd MMMM yyyy',
-      initialDateTime: _value ?? kNowDate,
-      minDateTime: kNowDate,
-      maxDateTime: kNowDate.add(const Duration(days: 999)),
+      initialDateTime: _value ?? (widget.minDateTime ?? kNowDate),
+      minDateTime: widget.minDateTime ?? kNowDate,
+      maxDateTime: widget.maxDateTime ?? kNowDate.add(const Duration(days: 999)),
       locale: context.isRTL ? DateTimePickerLocale.ar_eg : DateTimePickerLocale.en_us,
       onMonthChangeStartWithFirstDate: true,
       onConfirm: (date, list) {
@@ -69,6 +69,7 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
   void initState() {
     super.initState();
     _value = widget.value;
+    print("widget.maxDateTime::: ${widget.maxDateTime}");
   }
 
   @override

@@ -1,9 +1,9 @@
 import 'package:shared/shared.dart';
 
 class TaskInputScreen extends StatefulWidget {
-  final String? mainTaskId;
+  final TaskModel? task;
 
-  const TaskInputScreen({super.key, this.mainTaskId});
+  const TaskInputScreen({super.key, this.task});
 
   @override
   State<TaskInputScreen> createState() => _TaskInputScreenState();
@@ -14,7 +14,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   final _formKey = GlobalKey<FormState>();
   late Future<List<UserModel>> _employeesFuture;
 
-  bool get _isSubTask => widget.mainTaskId != null;
+  TaskModel? get _mainTask => widget.task;
+  bool get _isSubTask => _mainTask != null;
 
   void _initialize() {
     _employeesFuture = kFirebaseInstant.users
@@ -28,13 +29,31 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   void _submit(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
+      if (_task.startTime!.isAfter(_task.endTime!)) {
+        Fluttertoast.showToast(msg: "وقت إنتهاء المهمة يجب ان يكون بعد وقت البداية");
+        return;
+      }
       ApiService.fetch(
         context,
         callBack: () async {
-          final docRef = kFirebaseInstant.tasks.doc();
+          late DocumentReference<TaskModel> docRef;
+          if (_isSubTask) {
+            docRef = kFirebaseInstant.subTasks(_mainTask!.id).doc();
+          } else {
+            docRef = kFirebaseInstant.tasks.doc();
+          }
           _task.id = docRef.id;
           _task.createdAt = kNowDate;
-          await docRef.set(_task);
+          if (_isSubTask) {
+            final batch = kFirebaseInstant.batch();
+            final mainTaskDocRef = kFirebaseInstant.tasks.doc(_mainTask!.id);
+            batch.set(docRef, _task);
+            batch.update(mainTaskDocRef, {MyFields.totalSubTasks: FieldValue.increment(1)});
+            await batch.commit();
+          } else {
+            await docRef.set(_task);
+          }
+
           if (context.mounted) {
             Navigator.pop(context);
             Fluttertoast.showToast(msg: "تم أضافة المهمة بنجاح");
@@ -118,26 +137,30 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                       //   ),
                       // ),
                       // const SizedBox(width: 10),
-                      Expanded(
-                        child: TitledTextField(
-                          title: "الموظف المسؤول",
-                          child: DropDownEditor(
-                            value: _task.employee?.id,
-                            items:
-                                employees.map((e) {
-                                  return DropdownMenuItem(value: e.id, child: Text(e.displayName));
-                                }).toList(),
-                            onChanged: (value) {
-                              final user = employees.firstWhere((e) => e.id == value);
-                              _task.employee = LightUserModel(
-                                id: user.id,
-                                displayName: user.displayName,
-                              );
-                            },
-                            title: "اختر الموظف",
+                      if (!_isSubTask)
+                        Expanded(
+                          child: TitledTextField(
+                            title: "الموظف المسؤول",
+                            child: DropDownEditor(
+                              value: _task.employee?.id,
+                              items:
+                                  employees.map((e) {
+                                    return DropdownMenuItem(
+                                      value: e.id,
+                                      child: Text(e.displayName),
+                                    );
+                                  }).toList(),
+                              onChanged: (value) {
+                                final user = employees.firstWhere((e) => e.id == value);
+                                _task.employee = LightUserModel(
+                                  id: user.id,
+                                  displayName: user.displayName,
+                                );
+                              },
+                              title: "اختر الموظف",
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -151,6 +174,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                             includeTime: true,
                             style: context.textTheme.labelMedium,
                             value: _task.startTime,
+                            minDateTime: _mainTask?.startTime,
+                            maxDateTime: _mainTask?.endTime,
                             onChanged: (value) {
                               _task.startTime = value;
                             },
@@ -165,6 +190,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                             includeTime: true,
                             style: context.textTheme.labelMedium,
                             value: _task.endTime,
+                            minDateTime: _mainTask?.startTime,
+                            maxDateTime: _mainTask?.endTime,
                             onChanged: (value) {
                               _task.endTime = value;
                             },

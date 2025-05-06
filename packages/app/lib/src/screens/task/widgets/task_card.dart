@@ -88,12 +88,12 @@ class TaskCard extends StatelessWidget {
                   const SizedBox(height: 5),
                   Row(
                     children: [
-                      if (task.hasSubTasks) ...[
+                      if (task.totalSubTasks > 0) ...[
                         const CustomSvg(MyIcons.checkOutlined),
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 5, end: 10),
                           child: Text(
-                            "1/4",
+                            "${task.completedSubTasksCount}/${task.totalSubTasks}",
                             style: TextStyle(
                               color: context.colorPalette.grey666,
                               fontSize: 12,

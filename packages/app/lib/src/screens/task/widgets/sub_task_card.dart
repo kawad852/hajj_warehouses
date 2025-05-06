@@ -2,16 +2,16 @@ import 'package:app/shared.dart';
 import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
 
-class SubTaskWidget extends StatefulWidget {
+class SubTaskCard extends StatefulWidget {
   final TaskModel task;
 
-  const SubTaskWidget({super.key, required this.task});
+  const SubTaskCard({super.key, required this.task});
 
   @override
-  State<SubTaskWidget> createState() => _SubTaskWidgetState();
+  State<SubTaskCard> createState() => _SubTaskCardState();
 }
 
-class _SubTaskWidgetState extends State<SubTaskWidget> {
+class _SubTaskCardState extends State<SubTaskCard> {
   bool isExpanded = false;
 
   TaskModel get task => widget.task;

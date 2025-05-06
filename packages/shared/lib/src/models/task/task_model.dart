@@ -17,7 +17,8 @@ class TaskModel with _$TaskModel {
     @Default("") String description,
     @Default("") String status,
     @Default(0.0) double completedDuration, // in minutes
-    @Default(false) bool hasSubTasks,
+    @Default(0) int totalSubTasks,
+    @Default(0) int completedSubTasksCount,
     LightUserModel? employee,
     required LightUserModel createdBy,
     @Default([]) List<String> images,

@@ -27,11 +27,11 @@ class MyTask extends StatelessWidget {
                 const SizedBox(height: 7),
                 Row(
                   children: [
-                    if (task.hasSubTasks) ...[
+                    if (task.totalSubTasks > 0) ...[
                       const CustomSvg(MyIcons.checkOutlined),
                       const SizedBox(width: 5),
                       Text(
-                        "4/4",
+                        "${task.completedSubTasksCount}/${task.totalSubTasks}",
                         style: TextStyle(
                           color: context.colorPalette.grey666,
                           fontSize: 12,
