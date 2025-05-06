@@ -1,9 +1,10 @@
-import 'package:shared/shared.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
-
+import 'package:shared/shared.dart';
 
 class TaskHeader extends StatelessWidget {
-  const TaskHeader({super.key});
+  final TaskModel task;
+
+  const TaskHeader({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,14 @@ class TaskHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: const BoxDecoration(
         color: Colors.transparent,
-        image: DecorationImage(
-          image: sv.Svg(MyIcons.taskBackground),
-          fit: BoxFit.fill,
-        ),
+        image: DecorationImage(image: sv.Svg(MyIcons.taskBackground), fit: BoxFit.fill),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "وجبة الإفطار",
+            task.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -34,7 +32,7 @@ class TaskHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              "إعداد وتحضير وجبة الغداء لحجاج بيت الله الحرام من الجالية العربية وتقديمها لهم في الوقت المناسب",
+              task.description,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -50,7 +48,7 @@ class TaskHeader extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  "01.03.2025",
+                  task.startTime!.getDefaultFormattedDate(context),
                   style: TextStyle(
                     color: context.colorPalette.black,
                     fontSize: 14,
@@ -62,7 +60,7 @@ class TaskHeader extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  "01:30 صباحاً",
+                  task.startTime!.getTime(context),
                   style: TextStyle(
                     color: context.colorPalette.black,
                     fontSize: 14,
@@ -75,7 +73,7 @@ class TaskHeader extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.only(start: 10),
                   child: Text(
-                    "صهيب العجارمة",
+                    task.employee!.displayName!,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: context.colorPalette.black,

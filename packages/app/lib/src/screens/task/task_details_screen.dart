@@ -1,75 +1,113 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
-  const TaskDetailsScreen({super.key});
+  final TaskModel task;
+
+  const TaskDetailsScreen({super.key, required this.task});
 
   @override
   State<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
+  late Stream<TaskModel> _stream;
+
+  void _initialize() {
+    _stream = kFirebaseInstant.tasks.doc(widget.task.id).snapshots().map((e) => e.data()!);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
-      appBar: AppBar(
-        backgroundColor: context.colorPalette.greyE2E,
-        title: const AppBarText("متابعة المهمة"),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "السجل",
-              style: TextStyle(
-                color: context.colorPalette.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
+    return BigStreamBuilder(
+      stream: _stream,
+      initialData: widget.task,
+      onComplete: (context, snapshot) {
+        final task = snapshot.data!;
+        return Scaffold(
+          bottomNavigationBar: const BottomAppBar(
+            color: Colors.transparent,
+            child: AddTaskWidget(),
           ),
-        ],
-        bottom: const PreferredSize(preferredSize: Size.fromHeight(150), child: TaskHeader()),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Row(
-              children: [
-                TaskInfo(title: "بدأت المهمة في", value: "02 : 48 : 59 "),
-                SizedBox(width: 10),
-                TaskInfo(title: "وقت الإنتهاء عند", value: "06:30 صباحاً"),
-                SizedBox(width: 10),
-                TaskInfo(title: "يجب الإنهاء خلال", value: "00 : 33 : 22"),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 10),
-              child: Text(
-                "المهام الفرعية",
-                style: TextStyle(
-                  color: context.colorPalette.black001,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+          appBar: AppBar(
+            backgroundColor: context.colorPalette.greyE2E,
+            title: const AppBarText("متابعة المهمة"),
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "السجل",
+                  style: TextStyle(
+                    color: context.colorPalette.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(150),
+              child: TaskHeader(task: task),
             ),
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 30),
-                itemCount: 5,
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(bottom: 20),
-                itemBuilder: (context, index) {
-                  return const SubTaskWidget();
-                },
-              ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    TaskInfo(
+                      title: "بدأت المهمة في",
+                      value: "${task.startTime!.getTime(context)} ",
+                    ),
+                    const SizedBox(width: 10),
+                    TaskInfo(title: "وقت الإنتهاء عند", value: task.endTime!.getTime(context)),
+                    if (task.endTime!.isAfter(kNowDate)) ...[
+                      const SizedBox(width: 10),
+                      TimerBuilder(
+                        endDateTime: task.endTime!,
+                        child: (time) {
+                          return TaskInfo(title: "يجب الإنهاء خلال", value: time);
+                        },
+                      ),
+                    ],
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 10),
+                  child: Text(
+                    "المهام الفرعية",
+                    style: TextStyle(
+                      color: context.colorPalette.black001,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 30),
+                    itemCount: 5,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(bottom: 20),
+                    itemBuilder: (context, index) {
+                      return const SubTaskWidget();
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

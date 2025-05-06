@@ -36,6 +36,7 @@ export 'src/enums/stores_enums.dart';
 export 'src/enums/task_enums.dart';
 //extensions
 export 'src/extensions/base_extension.dart';
+export 'src/extensions/datetime_extension.dart';
 export 'src/extensions/feedbacks_extensions.dart';
 export 'src/extensions/navigation_extension.dart';
 export 'src/extensions/operation_extension.dart';

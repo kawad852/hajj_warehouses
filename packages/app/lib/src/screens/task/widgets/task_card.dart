@@ -12,7 +12,7 @@ class TaskCard extends StatelessWidget {
     final isCompleted = task.status == TaskStatusEnum.completed.value;
     return GestureDetector(
       onTap: () {
-        context.push((context) => const TaskDetailsScreen());
+        context.push((context) => TaskDetailsScreen(task: task));
       },
       child: Container(
         width: double.infinity,
