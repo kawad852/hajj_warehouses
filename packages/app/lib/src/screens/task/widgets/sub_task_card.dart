@@ -143,8 +143,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
             ),
           ),
         ),
-        Visibility(
-          visible: isExpanded,
+        AnimatedOpacity(
+          opacity: isExpanded ? 1 : 0,
+          duration: const Duration(milliseconds: 100),
           child: Column(
             children: [
               Container(
