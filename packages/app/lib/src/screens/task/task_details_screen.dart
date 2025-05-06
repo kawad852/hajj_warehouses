@@ -109,8 +109,8 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                             return const FPLoading();
                           }
                           final taskDocSnapshot = snapshot.docs[index];
-                          final task = taskDocSnapshot.data();
-                          return SubTaskCard(task: task);
+                          final subTask = taskDocSnapshot.data();
+                          return SubTaskCard(mainTaskId: task.id, task: subTask);
                         },
                       );
                     },

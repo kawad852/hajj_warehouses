@@ -1,11 +1,13 @@
 import 'package:app/shared.dart';
 import 'package:app/src/screens/task/widgets/timer_builder.dart';
+import 'package:app/src/screens/task/widgets/toggle_button_child.dart';
 import 'package:shared/shared.dart';
 
 class SubTaskCard extends StatefulWidget {
+  final String mainTaskId;
   final TaskModel task;
 
-  const SubTaskCard({super.key, required this.task});
+  const SubTaskCard({super.key, required this.task, required this.mainTaskId});
 
   @override
   State<SubTaskCard> createState() => _SubTaskCardState();
@@ -25,7 +27,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
         context,
         callBack: () async {
           final image = await _storageService.uploadFile(collection: "subTasks", file: file);
-          final docRef = kFirebaseInstant.tasks.doc(task.id);
+          final docRef = kFirebaseInstant.subTasks(widget.mainTaskId).doc(task.id);
           docRef.update({
             MyFields.images: FieldValue.arrayUnion([image]),
           });
@@ -40,7 +42,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
             color: context.colorPalette.greyE2E,
             borderRadius: BorderRadius.circular(kRadiusPrimary),
@@ -104,18 +106,20 @@ class _SubTaskCardState extends State<SubTaskCard> {
               ),
               children: [
                 if (task.images.isNotEmpty)
-                  SizedBox(
-                    height: 105,
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(width: 10),
-                      itemCount: task.images.length,
-                      shrinkWrap: true,
-                      padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final image = task.images[index];
-                        return BaseNetworkImage(image, width: 95, height: 95);
-                      },
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: SizedBox(
+                      height: 105,
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(width: 10),
+                        itemCount: task.images.length,
+                        padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final image = task.images[index];
+                          return BaseNetworkImage(image, width: 95, height: 95);
+                        },
+                      ),
                     ),
                   ),
                 Padding(
@@ -143,64 +147,44 @@ class _SubTaskCardState extends State<SubTaskCard> {
             ),
           ),
         ),
-        AnimatedOpacity(
-          opacity: isExpanded ? 1 : 0,
-          duration: const Duration(milliseconds: 100),
-          child: Column(
-            children: [
-              Container(
-                width: 330,
-                height: 40,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+        Visibility(
+          visible: isExpanded,
+          child: SizedBox(
+            height: 40,
+            child: Center(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorPalette.primary,
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
+                  border: Border.all(color: Colors.white),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CustomSvg(MyIcons.camera),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: Text(
-                        "ارفاق صور",
-                        style: TextStyle(
-                          color: context.colorPalette.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                    VerticalDivider(color: context.colorPalette.white),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: Text(
-                        "01 : 33 : 22",
-                        style: TextStyle(
-                          color: context.colorPalette.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                    VerticalDivider(color: context.colorPalette.white),
-                    const CustomSvg(MyIcons.checkWhite),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 6),
-                      child: Text(
-                        "إنهاء المهمة",
-                        style: TextStyle(
-                          color: context.colorPalette.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
+                child: ToggleButtons(
+                  constraints: const BoxConstraints(minWidth: 120, minHeight: 40),
+                  isSelected: const [true, true, true],
+                  fillColor: context.colorPalette.primary,
+                  selectedColor: context.colorPalette.white,
+                  color: Colors.white,
+                  borderColor: Colors.white,
+                  textStyle: TextStyle(
+                    color: context.colorPalette.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: GoogleFonts.cairo().fontFamily!,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  onPressed: (value) {
+                    if (value == 0) {
+                      _pickImage(context);
+                    }
+                  },
+                  children: const [
+                    ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
+                    ToggleButtonChild(title: "01 : 33 : 22"),
+                    ToggleButtonChild(icon: MyIcons.checkWhite, title: "إنهاء المهمة"),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-            ],
+            ),
           ),
         ),
       ],
