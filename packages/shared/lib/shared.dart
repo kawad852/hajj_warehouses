@@ -49,6 +49,7 @@ export 'src/helper/pagination_handler.dart';
 export 'src/helper/row_id_helper.dart';
 export 'src/helper/scroll_extension.dart';
 export 'src/helper/separator.dart';
+export 'src/helper/storage_service.dart';
 export 'src/helper/time_stamp_serializer.dart';
 export 'src/helper/translation_extension.dart';
 export 'src/helper/ui_helper.dart';

@@ -13,8 +13,26 @@ class SubTaskCard extends StatefulWidget {
 
 class _SubTaskCardState extends State<SubTaskCard> {
   bool isExpanded = false;
+  final _storageService = StorageService();
 
   TaskModel get task => widget.task;
+
+  Future<void> _pickImage(BuildContext context) async {
+    AppOverlayLoader.fakeLoading();
+    final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null && context.mounted) {
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final image = await _storageService.uploadFile(collection: "subTasks", file: file);
+          final docRef = kFirebaseInstant.tasks.doc(task.id);
+          docRef.update({
+            MyFields.images: FieldValue.arrayUnion([image]),
+          });
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +66,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
                       children: [
@@ -67,33 +86,39 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       ],
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      task.description,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: context.colorPalette.black001,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        "غير",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: context.colorPalette.black001,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.start,
                       ),
                     ),
                   ],
                 ),
               ),
               children: [
-                SizedBox(
-                  height: 105,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(width: 10),
-                    itemCount: 6,
-                    shrinkWrap: true,
-                    padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return const BaseNetworkImage(kBurgerImage, width: 95, height: 95);
-                    },
+                if (task.images.isNotEmpty)
+                  SizedBox(
+                    height: 105,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => const SizedBox(width: 10),
+                      itemCount: task.images.length,
+                      shrinkWrap: true,
+                      padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final image = task.images[index];
+                        return BaseNetworkImage(image, width: 95, height: 95);
+                      },
+                    ),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
