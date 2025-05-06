@@ -6,6 +6,8 @@ const admin = require("firebase-admin");
 const {onDocumentUpdated} = require("firebase-functions/v2/firestore");
 const {onCall} = require("firebase-functions/v2/https");
 const serviceAccount = require("./serviceAccountKey.json");
+const {onSchedule} = require("firebase-functions/v2/scheduler");
+const {Timestamp} = require("firebase-admin/firestore");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -60,3 +62,39 @@ exports.generateCustomToken = onCall({region: "europe-west3"},
         throw error;
       }
     });
+
+exports.markLateTasks = onSchedule(
+  {
+    schedule: "every 1 minutes",
+    timeoutSeconds: 300, // Default timeout, adjust as needed
+    memory: "256MiB", // Default memory, adjust as needed
+  },
+  async (event) => {
+    try {
+      const now = Timestamp.now();
+      const fiveMinutesAgo = Timestamp.fromMillis(now.toMillis() - 5 * 60 * 1000);
+
+      const snapshot = await admin.firestore()
+        .collectionGroup("tasks")
+        .where("status", "==", "NOT-STARTED")
+        .where("startTime", "<=", fiveMinutesAgo)
+        .where("markedAsLate", "==", false)
+        .get();
+
+      const batch = admin.firestore().batch();
+      snapshot.forEach((doc) => {
+        batch.update(doc.ref, { markedAsLate: true });
+      });
+
+      if (!snapshot.empty) {
+        await batch.commit();
+        console.log(`Marked ${snapshot.size} tasks as late.`);
+      } else {
+        console.log("No tasks to mark as late.");
+      }
+    } catch (error) {
+      console.error("Error marking tasks as late:", error);
+      throw error; // Rethrow to ensure function failure is logged
+    }
+  },
+);
