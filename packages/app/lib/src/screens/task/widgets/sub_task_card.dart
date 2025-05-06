@@ -38,10 +38,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
-      clipBehavior: Clip.none,
       children: [
         Container(
-          width: double.infinity,
+          margin: EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
             color: context.colorPalette.greyE2E,
             borderRadius: BorderRadius.circular(kRadiusPrimary),
@@ -139,71 +138,68 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
               ],
             ),
           ),
         ),
         Visibility(
           visible: isExpanded,
-          child: Positioned(
-            bottom: -30,
-            child: Column(
-              children: [
-                Container(
-                  width: 330,
-                  height: 40,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: context.colorPalette.primary,
-                    borderRadius: BorderRadius.circular(kRadiusSecondary),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CustomSvg(MyIcons.camera),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: Text(
-                          "ارفاق صور",
-                          style: TextStyle(
-                            color: context.colorPalette.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                      VerticalDivider(color: context.colorPalette.white),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: Text(
-                          "01 : 33 : 22",
-                          style: TextStyle(
-                            color: context.colorPalette.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                      VerticalDivider(color: context.colorPalette.white),
-                      const CustomSvg(MyIcons.checkWhite),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(start: 6),
-                        child: Text(
-                          "إنهاء المهمة",
-                          style: TextStyle(
-                            color: context.colorPalette.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+          child: Column(
+            children: [
+              Container(
+                width: 330,
+                height: 40,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                  color: context.colorPalette.primary,
+                  borderRadius: BorderRadius.circular(kRadiusSecondary),
                 ),
-                const SizedBox(height: 10),
-              ],
-            ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CustomSvg(MyIcons.camera),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Text(
+                        "ارفاق صور",
+                        style: TextStyle(
+                          color: context.colorPalette.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                    VerticalDivider(color: context.colorPalette.white),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Text(
+                        "01 : 33 : 22",
+                        style: TextStyle(
+                          color: context.colorPalette.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                    VerticalDivider(color: context.colorPalette.white),
+                    const CustomSvg(MyIcons.checkWhite),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 6),
+                      child: Text(
+                        "إنهاء المهمة",
+                        style: TextStyle(
+                          color: context.colorPalette.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+            ],
           ),
         ),
       ],
