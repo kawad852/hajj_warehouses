@@ -34,6 +34,10 @@ mixin _$TaskModel {
   @TimestampSerializer()
   set endTime(DateTime? value) => throw _privateConstructorUsedError;
   @TimestampSerializer()
+  DateTime? get startedAt => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set startedAt(DateTime? value) => throw _privateConstructorUsedError;
+  @TimestampSerializer()
   DateTime? get endedAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set endedAt(DateTime? value) => throw _privateConstructorUsedError;
@@ -45,13 +49,12 @@ mixin _$TaskModel {
   set description(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  double get completedDuration => throw _privateConstructorUsedError;
-  set completedDuration(double value) =>
-      throw _privateConstructorUsedError; // in minutes
-  int get totalSubTasks => throw _privateConstructorUsedError; // in minutes
+  int get totalSubTasks => throw _privateConstructorUsedError;
   set totalSubTasks(int value) => throw _privateConstructorUsedError;
   int get completedSubTasksCount => throw _privateConstructorUsedError;
   set completedSubTasksCount(int value) => throw _privateConstructorUsedError;
+  bool get markAsLate => throw _privateConstructorUsedError;
+  set markAsLate(bool value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
@@ -78,14 +81,15 @@ abstract class $TaskModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? startedAt,
     @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
     String status,
-    double completedDuration,
     int totalSubTasks,
     int completedSubTasksCount,
+    bool markAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -113,14 +117,15 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? createdAt = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
-    Object? completedDuration = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
+    Object? markAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -141,6 +146,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 freezed == endTime
                     ? _value.endTime
                     : endTime // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            startedAt:
+                freezed == startedAt
+                    ? _value.startedAt
+                    : startedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             endedAt:
                 freezed == endedAt
@@ -167,11 +177,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
-            completedDuration:
-                null == completedDuration
-                    ? _value.completedDuration
-                    : completedDuration // ignore: cast_nullable_to_non_nullable
-                        as double,
             totalSubTasks:
                 null == totalSubTasks
                     ? _value.totalSubTasks
@@ -182,6 +187,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.completedSubTasksCount
                     : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
+            markAsLate:
+                null == markAsLate
+                    ? _value.markAsLate
+                    : markAsLate // ignore: cast_nullable_to_non_nullable
+                        as bool,
             employee:
                 freezed == employee
                     ? _value.employee
@@ -240,14 +250,15 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? startedAt,
     @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
     String status,
-    double completedDuration,
     int totalSubTasks,
     int completedSubTasksCount,
+    bool markAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -276,14 +287,15 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
-    Object? completedDuration = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
+    Object? markAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -304,6 +316,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             freezed == endTime
                 ? _value.endTime
                 : endTime // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        startedAt:
+            freezed == startedAt
+                ? _value.startedAt
+                : startedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         endedAt:
             freezed == endedAt
@@ -330,11 +347,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
-        completedDuration:
-            null == completedDuration
-                ? _value.completedDuration
-                : completedDuration // ignore: cast_nullable_to_non_nullable
-                    as double,
         totalSubTasks:
             null == totalSubTasks
                 ? _value.totalSubTasks
@@ -345,6 +357,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.completedSubTasksCount
                 : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
+        markAsLate:
+            null == markAsLate
+                ? _value.markAsLate
+                : markAsLate // ignore: cast_nullable_to_non_nullable
+                    as bool,
         employee:
             freezed == employee
                 ? _value.employee
@@ -373,14 +390,15 @@ class _$TaskModelImpl implements _TaskModel {
     @TimestampSerializer() this.createdAt,
     @TimestampSerializer() this.startTime,
     @TimestampSerializer() this.endTime,
+    @TimestampSerializer() this.startedAt,
     @TimestampSerializer() this.endedAt,
     this.id = "",
     this.title = "",
     this.description = "",
     this.status = "",
-    this.completedDuration = 0.0,
     this.totalSubTasks = 0,
     this.completedSubTasksCount = 0,
+    this.markAsLate = false,
     this.employee,
     required this.createdBy,
     this.images = const [],
@@ -400,6 +418,9 @@ class _$TaskModelImpl implements _TaskModel {
   DateTime? endTime;
   @override
   @TimestampSerializer()
+  DateTime? startedAt;
+  @override
+  @TimestampSerializer()
   DateTime? endedAt;
   @override
   @JsonKey()
@@ -415,14 +436,13 @@ class _$TaskModelImpl implements _TaskModel {
   String status;
   @override
   @JsonKey()
-  double completedDuration;
-  // in minutes
-  @override
-  @JsonKey()
   int totalSubTasks;
   @override
   @JsonKey()
   int completedSubTasksCount;
+  @override
+  @JsonKey()
+  bool markAsLate;
   @override
   LightUserModel? employee;
   @override
@@ -433,7 +453,7 @@ class _$TaskModelImpl implements _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, employee: $employee, createdBy: $createdBy, images: $images)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markAsLate: $markAsLate, employee: $employee, createdBy: $createdBy, images: $images)';
   }
 
   /// Create a copy of TaskModel
@@ -455,14 +475,15 @@ abstract class _TaskModel implements TaskModel {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? startedAt,
     @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
     String status,
-    double completedDuration,
     int totalSubTasks,
     int completedSubTasksCount,
+    bool markAsLate,
     LightUserModel? employee,
     required LightUserModel createdBy,
     List<String> images,
@@ -488,6 +509,11 @@ abstract class _TaskModel implements TaskModel {
   set endTime(DateTime? value);
   @override
   @TimestampSerializer()
+  DateTime? get startedAt;
+  @TimestampSerializer()
+  set startedAt(DateTime? value);
+  @override
+  @TimestampSerializer()
   DateTime? get endedAt;
   @TimestampSerializer()
   set endedAt(DateTime? value);
@@ -504,14 +530,14 @@ abstract class _TaskModel implements TaskModel {
   String get status;
   set status(String value);
   @override
-  double get completedDuration;
-  set completedDuration(double value); // in minutes
-  @override
-  int get totalSubTasks; // in minutes
+  int get totalSubTasks;
   set totalSubTasks(int value);
   @override
   int get completedSubTasksCount;
   set completedSubTasksCount(int value);
+  @override
+  bool get markAsLate;
+  set markAsLate(bool value);
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);
