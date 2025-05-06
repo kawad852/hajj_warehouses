@@ -1,5 +1,7 @@
 import 'package:shared/shared.dart';
 
+import '../../../../shared.dart';
+
 class TaskCard extends StatelessWidget {
   final TaskModel task;
   const TaskCard({super.key, required this.task});
@@ -10,7 +12,7 @@ class TaskCard extends StatelessWidget {
     final isCompleted = task.status == TaskStatusEnum.completed.value;
     return GestureDetector(
       onTap: () {
-        // context.push((context) => const TaskFollowScreen());
+        context.push((context) => const TaskDetailsScreen());
       },
       child: Container(
         width: double.infinity,

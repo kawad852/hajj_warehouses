@@ -1,21 +1,18 @@
 import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
-class TaskFollowScreen extends StatefulWidget {
-  const TaskFollowScreen({super.key});
+class TaskDetailsScreen extends StatefulWidget {
+  const TaskDetailsScreen({super.key});
 
   @override
-  State<TaskFollowScreen> createState() => _TaskFollowScreenState();
+  State<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
 }
 
-class _TaskFollowScreenState extends State<TaskFollowScreen> {
+class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomAppBar(
-        color: Colors.transparent,
-        child: AddTaskWidget(),
-      ),
+      bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       appBar: AppBar(
         backgroundColor: context.colorPalette.greyE2E,
         title: const AppBarText("متابعة المهمة"),
@@ -32,10 +29,7 @@ class _TaskFollowScreenState extends State<TaskFollowScreen> {
             ),
           ),
         ],
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(150),
-          child: TaskHeader(),
-        ),
+        bottom: const PreferredSize(preferredSize: Size.fromHeight(150), child: TaskHeader()),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

@@ -19,7 +19,7 @@ export 'src/screens/reports/reports_screen.dart';
 export 'src/screens/reports/widgets/reports_bubble.dart';
 export 'src/screens/reports/widgets/reports_card.dart';
 export 'src/screens/send_transfer_order/send_transfer_order_screen.dart';
-export 'src/screens/task/task_follow_screen.dart';
+export 'src/screens/task/task_details_screen.dart';
 export 'src/screens/task/task_input_screen.dart';
 export 'src/screens/task/tasks_screen.dart';
 export 'src/screens/task/widgets/add_task_widget.dart';
