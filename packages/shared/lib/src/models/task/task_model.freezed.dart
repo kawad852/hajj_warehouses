@@ -33,6 +33,10 @@ mixin _$TaskModel {
   DateTime? get endTime => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set endTime(DateTime? value) => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  DateTime? get endedAt => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set endedAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -50,6 +54,8 @@ mixin _$TaskModel {
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
   set createdBy(LightUserModel value) => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
+  set images(List<String> value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,6 +76,7 @@ abstract class $TaskModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
@@ -78,6 +85,7 @@ abstract class $TaskModelCopyWith<$Res> {
     bool hasSubTasks,
     LightUserModel? employee,
     LightUserModel createdBy,
+    List<String> images,
   });
 
   $LightUserModelCopyWith<$Res>? get employee;
@@ -102,6 +110,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? createdAt = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? endedAt = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
@@ -110,6 +119,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? hasSubTasks = null,
     Object? employee = freezed,
     Object? createdBy = null,
+    Object? images = null,
   }) {
     return _then(
       _value.copyWith(
@@ -127,6 +137,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 freezed == endTime
                     ? _value.endTime
                     : endTime // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            endedAt:
+                freezed == endedAt
+                    ? _value.endedAt
+                    : endedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             id:
                 null == id
@@ -168,6 +183,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.createdBy
                     : createdBy // ignore: cast_nullable_to_non_nullable
                         as LightUserModel,
+            images:
+                null == images
+                    ? _value.images
+                    : images // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
           )
           as $Val,
     );
@@ -211,6 +231,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
@@ -219,6 +240,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     bool hasSubTasks,
     LightUserModel? employee,
     LightUserModel createdBy,
+    List<String> images,
   });
 
   @override
@@ -244,6 +266,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? endedAt = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
@@ -252,6 +275,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? hasSubTasks = null,
     Object? employee = freezed,
     Object? createdBy = null,
+    Object? images = null,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -269,6 +293,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             freezed == endTime
                 ? _value.endTime
                 : endTime // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        endedAt:
+            freezed == endedAt
+                ? _value.endedAt
+                : endedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         id:
             null == id
@@ -310,6 +339,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.createdBy
                 : createdBy // ignore: cast_nullable_to_non_nullable
                     as LightUserModel,
+        images:
+            null == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
       ),
     );
   }
@@ -323,6 +357,7 @@ class _$TaskModelImpl implements _TaskModel {
     @TimestampSerializer() this.createdAt,
     @TimestampSerializer() this.startTime,
     @TimestampSerializer() this.endTime,
+    @TimestampSerializer() this.endedAt,
     this.id = "",
     this.title = "",
     this.description = "",
@@ -331,6 +366,7 @@ class _$TaskModelImpl implements _TaskModel {
     this.hasSubTasks = false,
     this.employee,
     required this.createdBy,
+    this.images = const [],
   });
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -345,6 +381,9 @@ class _$TaskModelImpl implements _TaskModel {
   @override
   @TimestampSerializer()
   DateTime? endTime;
+  @override
+  @TimestampSerializer()
+  DateTime? endedAt;
   @override
   @JsonKey()
   String id;
@@ -368,10 +407,13 @@ class _$TaskModelImpl implements _TaskModel {
   LightUserModel? employee;
   @override
   LightUserModel createdBy;
+  @override
+  @JsonKey()
+  List<String> images;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, hasSubTasks: $hasSubTasks, employee: $employee, createdBy: $createdBy)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, completedDuration: $completedDuration, hasSubTasks: $hasSubTasks, employee: $employee, createdBy: $createdBy, images: $images)';
   }
 
   /// Create a copy of TaskModel
@@ -393,6 +435,7 @@ abstract class _TaskModel implements TaskModel {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? endedAt,
     String id,
     String title,
     String description,
@@ -401,6 +444,7 @@ abstract class _TaskModel implements TaskModel {
     bool hasSubTasks,
     LightUserModel? employee,
     required LightUserModel createdBy,
+    List<String> images,
   }) = _$TaskModelImpl;
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
@@ -421,6 +465,11 @@ abstract class _TaskModel implements TaskModel {
   DateTime? get endTime;
   @TimestampSerializer()
   set endTime(DateTime? value);
+  @override
+  @TimestampSerializer()
+  DateTime? get endedAt;
+  @TimestampSerializer()
+  set endedAt(DateTime? value);
   @override
   String get id;
   set id(String value);
@@ -445,6 +494,9 @@ abstract class _TaskModel implements TaskModel {
   @override
   LightUserModel get createdBy;
   set createdBy(LightUserModel value);
+  @override
+  List<String> get images;
+  set images(List<String> value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

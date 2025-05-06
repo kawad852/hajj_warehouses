@@ -11,6 +11,7 @@ class TaskModel with _$TaskModel {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
     @TimestampSerializer() DateTime? endTime,
+    @TimestampSerializer() DateTime? endedAt,
     @Default("") String id,
     @Default("") String title,
     @Default("") String description,
@@ -19,6 +20,7 @@ class TaskModel with _$TaskModel {
     @Default(false) bool hasSubTasks,
     LightUserModel? employee,
     required LightUserModel createdBy,
+    @Default([]) List<String> images,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 }

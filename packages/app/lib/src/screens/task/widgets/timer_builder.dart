@@ -4,9 +4,15 @@ import 'package:shared/shared.dart';
 
 class TimerBuilder extends StatefulWidget {
   final Widget Function(String time) child;
+  final DateTime? startDateTime;
   final DateTime endDateTime;
 
-  const TimerBuilder({super.key, required this.child, required this.endDateTime});
+  const TimerBuilder({
+    super.key,
+    required this.child,
+    required this.endDateTime,
+    this.startDateTime,
+  });
 
   @override
   State<TimerBuilder> createState() => _TimerBuilderState();
@@ -22,9 +28,9 @@ class _TimerBuilderState extends State<TimerBuilder> {
   }
 
   void _updateRemaining() {
-    final now = DateTime.now();
+    final date = widget.startDateTime ?? DateTime.now();
     setState(() {
-      _remaining = widget.endDateTime.difference(now);
+      _remaining = widget.endDateTime.difference(date);
       if (_remaining.isNegative) {
         _remaining = Duration.zero;
         _timer?.cancel();

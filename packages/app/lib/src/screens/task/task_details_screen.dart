@@ -12,10 +12,12 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
-  late Stream<TaskModel> _stream;
+  late Stream<TaskModel> _taskStream;
+  late Query<TaskModel> _subTasksQuery;
 
   void _initialize() {
-    _stream = kFirebaseInstant.tasks.doc(widget.task.id).snapshots().map((e) => e.data()!);
+    _taskStream = kFirebaseInstant.tasks.doc(widget.task.id).snapshots().map((e) => e.data()!);
+    _subTasksQuery = kFirebaseInstant.subTasks(widget.task.id);
   }
 
   @override
@@ -27,7 +29,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BigStreamBuilder(
-      stream: _stream,
+      stream: _taskStream,
       initialData: widget.task,
       onComplete: (context, snapshot) {
         final task = snapshot.data!;
@@ -38,6 +40,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           ),
           appBar: AppBar(
             backgroundColor: context.colorPalette.greyE2E,
+            surfaceTintColor: context.colorPalette.greyE2E,
             title: const AppBarText("متابعة المهمة"),
             actions: [
               TextButton(
@@ -81,25 +84,35 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     ],
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 10),
-                  child: Text(
-                    "المهام الفرعية",
-                    style: TextStyle(
-                      color: context.colorPalette.black001,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
+                if (task.hasSubTasks)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 10),
+                    child: Text(
+                      "المهام الفرعية",
+                      style: TextStyle(
+                        color: context.colorPalette.black001,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
-                ),
                 Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(height: 30),
-                    itemCount: 5,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(bottom: 20),
-                    itemBuilder: (context, index) {
-                      return const SubTaskWidget();
+                  child: CustomFirestoreQueryBuilder(
+                    query: _subTasksQuery,
+                    onComplete: (context, snapshot) {
+                      return ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(height: 30),
+                        itemCount: snapshot.docs.length,
+                        padding: const EdgeInsets.only(bottom: 20),
+                        itemBuilder: (context, index) {
+                          if (snapshot.isLoadingMore(index)) {
+                            return const FPLoading();
+                          }
+                          final taskDocSnapshot = snapshot.docs[index];
+                          final task = taskDocSnapshot.data();
+                          return SubTaskWidget(task: task);
+                        },
+                      );
                     },
                   ),
                 ),

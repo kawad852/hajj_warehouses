@@ -1,8 +1,11 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
 
 class SubTaskWidget extends StatefulWidget {
-  const SubTaskWidget({super.key});
+  final TaskModel task;
+
+  const SubTaskWidget({super.key, required this.task});
 
   @override
   State<SubTaskWidget> createState() => _SubTaskWidgetState();
@@ -10,6 +13,9 @@ class SubTaskWidget extends StatefulWidget {
 
 class _SubTaskWidgetState extends State<SubTaskWidget> {
   bool isExpanded = false;
+
+  TaskModel get task => widget.task;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -33,16 +39,10 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
               tilePadding: EdgeInsets.zero,
               showTrailingIcon: false,
               collapsedShape: BorderDirectional(
-                start: BorderSide(
-                  color: context.colorPalette.greyC4C,
-                  width: 5,
-                ),
+                start: BorderSide(color: context.colorPalette.greyC4C, width: 5),
               ),
               shape: BorderDirectional(
-                start: BorderSide(
-                  color: context.colorPalette.greyC4C,
-                  width: 5,
-                ),
+                start: BorderSide(color: context.colorPalette.greyC4C, width: 5),
               ),
               title: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -55,7 +55,7 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            "التحضير لوجبة الغداء",
+                            task.title,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: context.colorPalette.black001,
@@ -68,7 +68,7 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      "البدأ بإعداد وتجهيز الخضار واللحم والأصناف الضرورية واللازمة للوجبة واخراج المواد اللازمة من المخزون",
+                      task.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -87,39 +87,30 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                     separatorBuilder: (context, index) => const SizedBox(width: 10),
                     itemCount: 6,
                     shrinkWrap: true,
-                    padding: const EdgeInsetsDirectional.only(
-                      top: 8,
-                      bottom: 8,
-                      start: 10,
-                    ),
+                    padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return const BaseNetworkImage(
-                        kBurgerImage,
-                        width: 95,
-                        height: 95,
-                      );
+                      return const BaseNetworkImage(kBurgerImage, width: 95, height: 95);
                     },
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
-                      SubTaskInfo(
-                        title: "بدأت المهمة",
-                        value: "10:12:59 صباحاً",
-                      ),
-                      SizedBox(width: 8),
-                      SubTaskInfo(
-                        title: "انتهت المهمة",
-                        value: "11:48:59 صباحاً",
-                      ),
-                      SizedBox(width: 8),
-                      SubTaskInfo(
-                        title: "الوقت المستغرق",
-                        value: "01 : 33 : 22",
-                      ),
+                      SubTaskInfo(title: "بدأت المهمة", value: task.startTime!.getTime(context)),
+                      if (task.endedAt != null) ...[
+                        const SizedBox(width: 8),
+                        SubTaskInfo(title: "انتهت المهمة", value: task.endedAt!.getTime(context)),
+                        const SizedBox(width: 8),
+                        TimerBuilder(
+                          startDateTime: task.startTime,
+                          endDateTime: task.endedAt!,
+                          child: (value) {
+                            return SubTaskInfo(title: "الوقت المستغرق", value: value);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),

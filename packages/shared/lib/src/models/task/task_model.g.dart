@@ -12,6 +12,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   createdAt: const TimestampSerializer().fromJson(json['createdAt']),
   startTime: const TimestampSerializer().fromJson(json['startTime']),
   endTime: const TimestampSerializer().fromJson(json['endTime']),
+  endedAt: const TimestampSerializer().fromJson(json['endedAt']),
   id: json['id'] as String? ?? "",
   title: json['title'] as String? ?? "",
   description: json['description'] as String? ?? "",
@@ -23,6 +24,9 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
           ? null
           : LightUserModel.fromJson(json['employee'] as Map<String, dynamic>),
   createdBy: LightUserModel.fromJson(json['createdBy'] as Map<String, dynamic>),
+  images:
+      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
@@ -30,6 +34,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'startTime': const TimestampSerializer().toJson(instance.startTime),
       'endTime': const TimestampSerializer().toJson(instance.endTime),
+      'endedAt': const TimestampSerializer().toJson(instance.endedAt),
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
@@ -38,4 +43,5 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'hasSubTasks': instance.hasSubTasks,
       'employee': instance.employee?.toJson(),
       'createdBy': instance.createdBy.toJson(),
+      'images': instance.images,
     };
