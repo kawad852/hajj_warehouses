@@ -19,7 +19,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
     if (_policyId == PolicyDocument.termsOfUse.value) {
       return context.appLocalization.termsOfUse;
     } else if (_policyId == PolicyDocument.termsOfUse.value) {
-      return "عن مخازن الحج";
+      return context.appLocalization.aboutHajjWarehouses;
     } else {
       return context.appLocalization.privacyPolicy;
     }

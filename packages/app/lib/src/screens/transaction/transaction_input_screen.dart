@@ -50,7 +50,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
           await batch.commit();
           if (context.mounted) {
             Navigator.pop(context);
-            Fluttertoast.showToast(msg: "تمت العملية بنجاح");
+            Fluttertoast.showToast(msg: context.appLocalization.theOperationWasSuccessful);
           }
         },
       );
@@ -80,7 +80,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
         return Scaffold(
           backgroundColor: Colors.transparent,
           bottomNavigationBar: BottomButton(
-            text: "اضافة",
+            text: context.appLocalization.add,
             onPressed: () {
               _submit(context);
             },
@@ -94,7 +94,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                 children: [
                   Center(
                     child: Text(
-                      _isDeposit ? "اضافة عهدة" : "تسجيل مصروف",
+                      _isDeposit ? context.appLocalization.addImprest : context.appLocalization.recordExpense,
                       style: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 16,
@@ -108,7 +108,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                   ),
 
                   if (_isDeposit) ...[
-                    const EditorLabel("سبب الإضافة"),
+                    EditorLabel(context.appLocalization.reasonForAddition),
                     const SizedBox(height: 8),
                     Row(
                       children:
@@ -116,7 +116,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                             final isOne = e == DepositReasonEnum.one;
                             return CustomRadio(
                               value: e.value,
-                              title: isOne ? "لأول مره" : "تزويد أضافي",
+                              title: isOne ? context.appLocalization.forTheFirstTime : context.appLocalization.additionalSupply,
                               groupValue: _transaction.depositReason,
                               onChanged: (value) {
                                 setState(() {
@@ -136,7 +136,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TitledTextField(
-                      title: "مشروحات وملاحظات",
+                      title: context.appLocalization.explanationsAndNotes,
                       textStyle: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 14,
@@ -161,7 +161,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
 
                   if (_isDeposit)
                     TitledTextField(
-                      title: "الموظف المسؤول",
+                      title: context.appLocalization.responsibleEmployee,
                       textStyle: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 14,
@@ -185,14 +185,14 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                               displayName: user.displayName,
                             );
                           },
-                          title: "اختر الموظف",
+                          title: context.appLocalization.chooseEmployee,
                         ),
                       ),
                     ),
                   ImagesAttacher(
                     onChanged: (path) {},
                     title:
-                        _isDeposit ? "ارفاق صورة لسند التسليم او الحوالة" : "ارفاق صورة للفاتورة",
+                        _isDeposit ? context.appLocalization.attachPhotoOfDelivery : context.appLocalization.attachPhotoInvoice,
                   ),
                 ],
               ),

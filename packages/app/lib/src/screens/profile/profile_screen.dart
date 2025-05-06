@@ -17,14 +17,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       children: [
         // ProfileCard(
-        //   title: "الإدارة",
+        //   title: context.appLocalization.management,
         //   icon: MyIcons.setting,
         //   onTap: () {
         //     context.push((context) => const SettingsScreen());
         //   },
         // ),
         ProfileCard(
-          title: "المساعد الذكي",
+          title: context.appLocalization.smartAssistant,
           icon: MyIcons.helper,
           onTap: () {
             context.push((context) {
@@ -32,9 +32,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             });
           },
         ),
-        // ProfileCard(title: "تغيير اللغة", icon: MyIcons.language, onTap: () {}),
+        // ProfileCard(title: context.appLocalization.changeLanguage, icon: MyIcons.language, onTap: () {}),
         ProfileCard(
-          title: "تسجيل الخروج",
+          title: context.appLocalization.logOut,
           icon: MyIcons.logout,
           onTap: () {
             context.userProvider.logout(context);
@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 10),
           child: Text(
-            "عن التطبيق",
+            context.appLocalization.aboutTheApp,
             style: TextStyle(
               color: context.colorPalette.black,
               fontSize: 18,
@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         // ProfileCard(
-        //   title: "الشروط والأحكام",
+        //   title: context.appLocalization.termsOfUse,
         //   icon: MyIcons.terms,
         //   onTap: () {
         //     context.push((context) {
@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //   },
         // ),
         ProfileCard(
-          title: "سياسة الخصوصية",
+          title: context.appLocalization.privacyPolicy,
           icon: MyIcons.policy,
           onTap: () {
             context.push((context) {
@@ -70,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
         // ProfileCard(
-        //   title: "عن مخازن الحج",
+        //   title: context.appLocalization.aboutHajjWarehouses,
         //   icon: MyIcons.information,
         //   onTap: () {
         //     context.push((context) {

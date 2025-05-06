@@ -17,7 +17,7 @@ class _DragMoneyState extends State<DragMoney> {
       child: Column(
         children: [
           Text(
-            "تسجيل مصروف",
+            context.appLocalization.recordExpense,
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -26,7 +26,7 @@ class _DragMoneyState extends State<DragMoney> {
           ),
           CounterWidget(maxQuantity: 1, onChanged: (value) {}),
           TitledTextField(
-            title: "نوع المصروف",
+            title: context.appLocalization.expenseType,
             textStyle: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 14,
@@ -43,7 +43,7 @@ class _DragMoneyState extends State<DragMoney> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: TitledTextField(
-              title: "مشروحات وملاحظات المصروف",
+              title: context.appLocalization.notesExpense,
               textStyle: TextStyle(
                 color: context.colorPalette.black001,
                 fontSize: 14,
@@ -65,13 +65,13 @@ class _DragMoneyState extends State<DragMoney> {
               ),
             ),
           ),
-          ImagesAttacher(onChanged: (path) {}, title: "ارفاق صورة للفاتورة"),
+          ImagesAttacher(onChanged: (path) {}, title: context.appLocalization.attachPhotoInvoice),
           const Spacer(),
           StretchedButton(
             onPressed: () {},
             margin: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "اضافة",
+              context.appLocalization.add,
               style: TextStyle(
                 color: context.colorPalette.white,
                 fontSize: 16,

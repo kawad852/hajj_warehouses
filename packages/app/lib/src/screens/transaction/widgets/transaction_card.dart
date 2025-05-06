@@ -7,6 +7,7 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool  isRTL = Localizations.localeOf(context).languageCode == LanguageEnum.arabic;
     final isDeposit = transaction.transactionType == TransactionType.deposit.value;
     final style = TextStyle(
       fontFamily: GoogleFonts.cairo().fontFamily!,
@@ -35,10 +36,10 @@ class TransactionCard extends StatelessWidget {
                   text: TextSpan(
                     style: style,
                     children: [
-                      TextSpan(text: "قام", style: style),
+                     if(isRTL) TextSpan(text: "قام", style: style),
                       TextSpan(text: " ${transaction.user.displayName} ", style: greenStyle),
-                      TextSpan(text: "بـ ${isDeposit ? "إضافة" : "سحب"} ", style: style),
-                      TextSpan(text: "${transaction.amount} ريال", style: style),
+                      TextSpan(text: "${isRTL ? "بـ" : ""} ${isDeposit ? context.appLocalization.add : context.appLocalization.withdraw} ", style: style),
+                      TextSpan(text: "${transaction.amount} ${context.appLocalization.riyal}", style: style),
                       if (transaction.expenseType != null)
                         TextSpan(
                           text:
@@ -47,7 +48,7 @@ class TransactionCard extends StatelessWidget {
                         ),
                       if (transaction.operationId != null)
                         TextSpan(
-                          text: " مقابل طلب شراء مواد للمحزون رقم: ${transaction.operationId}",
+                          text: " ${context.appLocalization.againstPurchaseOrder}: ${transaction.operationId}",
                           style: style,
                         ),
                     ],
@@ -64,7 +65,7 @@ class TransactionCard extends StatelessWidget {
                           const CustomSvg(MyIcons.eye),
                           const SizedBox(width: 5),
                           Text(
-                            "عرض العملية",
+                            context.appLocalization.viewOperation,
                             style: TextStyle(
                               color: context.colorPalette.black001,
                               fontSize: 12,

@@ -18,12 +18,12 @@ class _TaskFollowScreenState extends State<TaskFollowScreen> {
       ),
       appBar: AppBar(
         backgroundColor: context.colorPalette.greyE2E,
-        title: const AppBarText("متابعة المهمة"),
+        title: AppBarText(context.appLocalization.taskTracking),
         actions: [
           TextButton(
             onPressed: () {},
             child: Text(
-              "السجل",
+              context.appLocalization.history,
               style: TextStyle(
                 color: context.colorPalette.black,
                 fontSize: 14,
@@ -42,19 +42,19 @@ class _TaskFollowScreenState extends State<TaskFollowScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+             Row(
               children: [
-                TaskInfo(title: "بدأت المهمة في", value: "02 : 48 : 59 "),
-                SizedBox(width: 10),
-                TaskInfo(title: "وقت الإنتهاء عند", value: "06:30 صباحاً"),
-                SizedBox(width: 10),
-                TaskInfo(title: "يجب الإنهاء خلال", value: "00 : 33 : 22"),
+                TaskInfo(title: context.appLocalization.taskStartedOn, value: "02 : 48 : 59 "),
+                const SizedBox(width: 10),
+                TaskInfo(title: context.appLocalization.dueAt, value: "06:30 صباحاً"),
+                const SizedBox(width: 10),
+                TaskInfo(title: context.appLocalization.mustBeCompletedWithin, value: "00 : 33 : 22"),
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 10),
               child: Text(
-                "المهام الفرعية",
+                context.appLocalization.subtasks,
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,

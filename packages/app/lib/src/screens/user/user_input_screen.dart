@@ -50,9 +50,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
     try {
       String? errorMsg;
       if (_file == null) {
-        errorMsg = "الصورة الشخصية مطلوبة";
+        errorMsg = context.appLocalization.personalPhotoRequired;
       } else if (_files.isEmpty) {
-        errorMsg = "أرفق صور لشهادة الصحة ، او عقد التوظيف او البطاقة";
+        errorMsg = context.appLocalization.attachIdCard;
       }
       if (errorMsg != null) {
         Fluttertoast.showToast(msg: errorMsg);
@@ -87,7 +87,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
           }
           if (context.mounted) {
             Navigator.pop(context);
-            Fluttertoast.showToast(msg: "تمت العملية بنجاح");
+            Fluttertoast.showToast(msg: context.appLocalization.theOperationWasSuccessful);
           }
         }
       }
@@ -138,9 +138,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
       onComplete: (context, snapshot) {
         final branches = snapshot.data!;
         return Scaffold(
-          appBar: AppBar(title: const AppBarText("اضافة موظف")),
+          appBar: AppBar(title: AppBarText(context.appLocalization.addEmployee)),
           bottomNavigationBar: BottomButton(
-            text: "إضافة",
+            text: context.appLocalization.add,
             onPressed: () {
               _submit(context);
             },
@@ -196,7 +196,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
-                      title: "الاسم الكامل",
+                      title: context.appLocalization.fullName,
                       child: TextEditor(
                         initialValue: _user.displayName,
                         onChanged: (value) => _user.displayName = value!,
@@ -208,7 +208,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     children: [
                       Expanded(
                         child: TitledTextField(
-                          title: "المسمى الوظيفي",
+                          title: context.appLocalization.jobTitle,
                           child: TextEditor(
                             initialValue: _user.jobTitle,
                             onChanged: (value) => _user.jobTitle = value!,
@@ -219,7 +219,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       Expanded(
                         child: BranchesDropdown(
                           branches: branches,
-                          title: "الفرع",
+                          title: context.appLocalization.branch,
                           onChanged: (value) {
                             final branch = branches.firstWhere((e) => e.id == value);
                             _user.branch = LightBranchModel(id: branch.id, name: branch.name);
@@ -237,7 +237,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       children: [
                         Expanded(
                           child: TitledTextField(
-                            title: "الرقم الوطني",
+                            title: context.appLocalization.nationalIDNumber,
                             child: TextEditor(
                               initialValue: _user.nationalNumber,
                               onChanged: (value) => _user.nationalNumber = value!,
@@ -247,7 +247,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: TitledTextField(
-                            title: "رقم الهاتف",
+                            title: context.appLocalization.phoneNumber,
                             child: PhoneEditor(controller: _phoneController, required: true),
                           ),
                         ),
@@ -259,7 +259,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     children: [
                       Expanded(
                         child: TitledTextField(
-                          title: "الأجر",
+                          title: context.appLocalization.salary,
                           child: DecimalsEditor(
                             initialValue: _user.salary,
                             onChanged: (value) => _user.salary = value!,
@@ -274,7 +274,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: TitledTextField(
-                          title: "تاريخ بدأ العمل",
+                          title: context.appLocalization.startDate,
                           child: DatePickerEditor(
                             value: _user.workStartDate ?? kNowDate,
                             onChanged: (value) {
@@ -288,7 +288,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
-                      title: "العنوان",
+                      title: context.appLocalization.address,
                       child: TextEditor(
                         initialValue: _user.address,
                         onChanged: (value) => _user.address = value!,
@@ -309,7 +309,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        "تفعيل صلاحية الوصول للتطبيق",
+                        context.appLocalization.activateApplicationAccessPermission,
                         style: TextStyle(
                           color: context.colorPalette.black001,
                           fontSize: 14,
@@ -325,12 +325,12 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       children: [
                         Expanded(
                           child: TitledTextField(
-                            title: "اسم المستخدم",
+                            title: context.appLocalization.userName,
                             child: TextEditor(
                               initialValue: _user.username,
                               readOnly: widget.user != null,
                               onChanged: (value) => _user.username = value!,
-                              hintText: "بالأحرف الإنجليزية",
+                              hintText: context.appLocalization.inEnglishLetters,
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
                               ],
@@ -340,7 +340,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: TitledTextField(
-                            title: "كلمة المرور",
+                            title: context.appLocalization.password,
                             child: PasswordEditor(
                               initialValue: _user.password,
                               onChanged: (value) => _user.password = value!,
@@ -382,7 +382,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                           ),
                           Expanded(
                             child: Text(
-                              "ارفاق صور لشهادة الصحة ، او عقد التوظيف او البطاقة",
+                              context.appLocalization.attachIdCard,
                               style: TextStyle(
                                 color: context.colorPalette.black001,
                                 fontSize: 14,

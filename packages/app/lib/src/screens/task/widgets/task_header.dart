@@ -111,7 +111,7 @@ class TaskHeader extends StatelessWidget {
                   const CustomSvg(MyIcons.checkWhite),
                   const SizedBox(width: 4),
                   Text(
-                    "إنهاء المهمة",
+                    context.appLocalization.endTask,
                     style: TextStyle(
                       color: context.colorPalette.white,
                       fontSize: 14,

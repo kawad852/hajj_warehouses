@@ -37,7 +37,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
           await docRef.set(_task);
           if (context.mounted) {
             Navigator.pop(context);
-            Fluttertoast.showToast(msg: "تم أضافة المهمة بنجاح");
+            Fluttertoast.showToast(msg: context.appLocalization.taskAddedSuccessfully);
           }
         },
       );
@@ -58,9 +58,9 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
       onComplete: (context, snapshot) {
         final employees = snapshot.data!;
         return Scaffold(
-          appBar: AppBar(title: AppBarText(_isSubTask ? "إضافة مهمة فرعية" : "إضافة مهمة رئيسية")),
+          appBar: AppBar(title: AppBarText(_isSubTask ? context.appLocalization.addSubtask : context.appLocalization.addMainTask)),
           bottomNavigationBar: BottomButton(
-            text: "اضافة",
+            text: context.appLocalization.add,
             onPressed: () {
               _submit(context);
             },
@@ -77,7 +77,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "اضافة مهمة فرعية من مهمة :",
+                          "${context.appLocalization.addSubtaskFromTask} :",
                           style: TextStyle(
                             color: context.colorPalette.black,
                             fontSize: 14,
@@ -96,13 +96,13 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                       ],
                     ),
                   TitledTextField(
-                    title: "عنوان المهمة",
+                    title: context.appLocalization.taskTitle,
                     child: TextEditor(onChanged: (value) => _task.title = value!),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TitledTextField(
-                      title: "وصف توضيحي",
+                      title: context.appLocalization.explanatoryDescription,
                       child: TextEditor(
                         onChanged: (value) => _task.description = value!,
                         maxLines: 4,
@@ -113,14 +113,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     children: [
                       // Expanded(
                       //   child: TitledTextField(
-                      //     title: "التاريخ",
+                      //     title: context.appLocalization.date,
                       //     child: TextEditor(onChanged: (value) {}, textAlign: TextAlign.center),
                       //   ),
                       // ),
                       // const SizedBox(width: 10),
                       Expanded(
                         child: TitledTextField(
-                          title: "الموظف المسؤول",
+                          title: context.appLocalization.responsibleEmployee,
                           child: DropDownEditor(
                             value: _task.employee?.id,
                             items:
@@ -134,7 +134,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                                 displayName: user.displayName,
                               );
                             },
-                            title: "اختر الموظف",
+                            title: context.appLocalization.chooseEmployee,
                           ),
                         ),
                       ),
@@ -146,7 +146,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     children: [
                       Expanded(
                         child: TitledTextField(
-                          title: "وقت بداية التنفيذ",
+                          title: context.appLocalization.executionStartTime,
                           child: DatePickerEditor(
                             includeTime: true,
                             style: context.textTheme.labelMedium,
@@ -160,7 +160,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: TitledTextField(
-                          title: "وقت نهاية المهمة",
+                          title: context.appLocalization.taskEndTime,
                           child: DatePickerEditor(
                             includeTime: true,
                             style: context.textTheme.labelMedium,

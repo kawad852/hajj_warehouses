@@ -34,9 +34,9 @@ class _TasksScreenState extends State<TasksScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _dates = [
-      (_selectedDate.subtract(const Duration(days: 1)), "الأمس"),
-      (_selectedDate, "اليوم"),
-      (_selectedDate.add(const Duration(days: 1)), "غداً"),
+      (_selectedDate.subtract(const Duration(days: 1)), context.appLocalization.yesterday),
+      (_selectedDate, context.appLocalization.today),
+      (_selectedDate.add(const Duration(days: 1)), context.appLocalization.tomorrow),
     ];
   }
 
@@ -83,7 +83,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Text(
-                          "عرض الكل",
+                          context.appLocalization.viewAll,
                           style: TextStyle(
                             color: context.colorPalette.black,
                             fontSize: 14,

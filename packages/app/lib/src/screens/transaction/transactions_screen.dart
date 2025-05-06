@@ -38,7 +38,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
           appBar: AppBar(
             backgroundColor: context.colorPalette.primary,
             leading: CustomBack(color: context.colorPalette.white),
-            title: AppBarText("العهدة", color: context.colorPalette.white),
+            title: AppBarText(context.appLocalization.imprest, color: context.colorPalette.white),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(40),
               child: Padding(
@@ -72,7 +72,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     _openSheet(context, type: TransactionType.withdrawal);
                   },
                   child: Text(
-                    "تسجيل مصروف",
+                    context.appLocalization.recordExpense,
                     style: TextStyle(
                       color: context.colorPalette.white,
                       fontSize: 16,
@@ -86,7 +86,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     _openSheet(context, type: TransactionType.deposit);
                   },
                   child: Text(
-                    "اضافة عهدة ( خاصة بالإدارة )",
+                    context.appLocalization.addImprestAdmin,
                     style: TextStyle(
                       color: context.colorPalette.white,
                       fontSize: 16,
@@ -107,7 +107,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                     child: Text(
-                      "عمليات تمت على العهدة",
+                      context.appLocalization.transactionsOnImprest,
                       style: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 14,

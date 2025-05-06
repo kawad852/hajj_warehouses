@@ -30,9 +30,9 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const AppBarText("الكادر البشري")),
+      appBar: AppBar(title: AppBarText(context.appLocalization.humanResources)),
       bottomNavigationBar: BottomButton(
-        text: "اضافة",
+        text: context.appLocalization.add,
         onPressed: () {
           context.push((context) => const UserInputScreen());
         },

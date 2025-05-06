@@ -13,7 +13,7 @@ class _FullCalenderSreenState extends State<FullCalenderSreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const AppBarText("جميع المهام")),
+      appBar: AppBar(title: AppBarText(context.appLocalization.allTasks)),
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

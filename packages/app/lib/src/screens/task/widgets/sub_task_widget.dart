@@ -102,22 +102,22 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                     },
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
                       SubTaskInfo(
-                        title: "بدأت المهمة",
+                        title: context.appLocalization.taskStarted,
                         value: "10:12:59 صباحاً",
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       SubTaskInfo(
-                        title: "انتهت المهمة",
+                        title: context.appLocalization.taskEnded,
                         value: "11:48:59 صباحاً",
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       SubTaskInfo(
-                        title: "الوقت المستغرق",
+                        title: context.appLocalization.timeTaken,
                         value: "01 : 33 : 22",
                       ),
                     ],
@@ -149,7 +149,7 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         child: Text(
-                          "ارفاق صور",
+                          context.appLocalization.attachImages,
                           style: TextStyle(
                             color: context.colorPalette.white,
                             fontSize: 14,
@@ -174,7 +174,7 @@ class _SubTaskWidgetState extends State<SubTaskWidget> {
                       Padding(
                         padding: const EdgeInsetsDirectional.only(start: 6),
                         child: Text(
-                          "إنهاء المهمة",
+                          context.appLocalization.endTask,
                           style: TextStyle(
                             color: context.colorPalette.white,
                             fontSize: 14,
