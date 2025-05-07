@@ -3,12 +3,13 @@
 /* eslint-disable indent, object-curly-spacing */
 
 const admin = require("firebase-admin");
-const {onDocumentUpdated} = require("firebase-functions/v2/firestore");
-const {onCall} = require("firebase-functions/v2/https");
-const {onSchedule} = require("firebase-functions/v2/scheduler");
-const {Timestamp} = require("firebase-admin/firestore");
+const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
+const { onDocumentUpdated } = require("firebase-functions/v2/firestore");
+const { onCall } = require("firebase-functions/v2/https");
+const { onSchedule } = require("firebase-functions/v2/scheduler");
 
 admin.initializeApp();
+const db = getFirestore();
 
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",
@@ -35,63 +36,77 @@ exports.onItemUpdate = onDocumentUpdated({
 
   if (newStatus !== oldStatus) {
     const itemRef = event.data.after.ref;
-    await itemRef.update({status: newStatus});
+    await itemRef.update({ status: newStatus });
   }
 
   return null;
 });
 
 /**
-* Generates a custom token for a given user ID.
-* @param {string} uid - The unique user ID for which to generate the token.
-* @return {Promise<string>} - A promise that resolves to the custom token.
-*/
-exports.generateCustomToken = onCall({region: "europe-west3"},
-    async (request) => {
-      const payload = request.data;
-      const uid = payload.uid;
-      try {
-        const token = await admin.auth().createCustomToken(uid);
-        console.log("Custom Token:", token);
-        return token;
-      } catch (error) {
-        console.error("Error creating custom token:", error);
-        throw error;
-      }
-    });
+ * Generates a custom token for a given user ID.
+ */
+exports.generateCustomToken = onCall({ region: "europe-west3" },
+  async (request) => {
+    const payload = request.data;
+    const uid = payload.uid;
+    try {
+      const token = await admin.auth().createCustomToken(uid);
+      console.log("Custom Token:", token);
+      return token;
+    } catch (error) {
+      console.error("Error creating custom token:", error);
+      throw error;
+    }
+  });
 
+/**
+ * Scheduled function to mark late tasks.
+ */
 exports.markLateTasks = onSchedule(
   {
     schedule: "every 1 minutes",
-    timeoutSeconds: 300, // Default timeout, adjust as needed
-    memory: "256MiB", // Default memory, adjust as needed
+    timeoutSeconds: 300,
+    memory: "256MiB",
   },
-  async (event) => {
+  async () => {
     try {
       const now = Timestamp.now();
       const fiveMinutesAgo = Timestamp.fromMillis(now.toMillis() - 5 * 60 * 1000);
 
-      const snapshot = await admin.firestore()
+      const filter1 = Filter.and(
+        Filter.where("status", "==", "NOT-STARTED"),
+        Filter.where("startTime", "<=", fiveMinutesAgo),
+        Filter.where("markedAsLate", "==", false),
+      );
+
+      const filter2 = Filter.and(
+        Filter.where("status", "==", "IN-PROGRESS"),
+        Filter.where("endTime", "<=", fiveMinutesAgo),
+        Filter.where("markedAsLate", "==", false),
+      );
+
+      const combinedFilter = Filter.or(filter1, filter2);
+
+      const snapshot = await db
         .collectionGroup("tasks")
-        .where("status", "==", "NOT-STARTED")
-        .where("startTime", "<=", fiveMinutesAgo)
-        .where("markedAsLate", "==", false)
+        .where(combinedFilter)
         .get();
 
-      const batch = admin.firestore().batch();
+      if (snapshot.empty) {
+        console.log("No tasks to mark as late at:", fiveMinutesAgo.toDate());
+        return;
+      }
+
+      const batch = db.batch();
       snapshot.forEach((doc) => {
         batch.update(doc.ref, { markedAsLate: true });
       });
 
-      if (!snapshot.empty) {
-        await batch.commit();
-        console.log(`Marked ${snapshot.size} tasks as late.`);
-      } else {
-        console.log("No tasks to mark as late at time:", fiveMinutesAgo.toDate());
-      }
+      await batch.commit();
+      console.log(`Marked ${snapshot.size} tasks as late.`);
     } catch (error) {
       console.error("Error marking tasks as late:", error);
-      throw error; // Rethrow to ensure function failure is logged
+      throw error;
     }
   },
 );

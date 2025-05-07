@@ -8,6 +8,17 @@ class TaskHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filter1 = Filter.and(
+      Filter("status", isEqualTo: "NOT-STARTED"),
+      Filter("startTime", isLessThanOrEqualTo: "fiveMinutesAgo"),
+      Filter("markedAsLate", isEqualTo: false),
+    );
+    final filter2 = Filter.and(
+      Filter("status", isEqualTo: "IN-PROGRESS"),
+      Filter("endTime", isLessThanOrEqualTo: "fiveMinutesAgo"),
+      Filter("markedAsLate", isEqualTo: false),
+    );
+    final filter = Filter.or(filter1, filter2);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 15),
