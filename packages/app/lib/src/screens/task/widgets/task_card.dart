@@ -6,6 +6,19 @@ class TaskCard extends StatelessWidget {
   final TaskModel task;
   const TaskCard({super.key, required this.task});
 
+  String get _getTimeDifference {
+    Duration diff = task.endedAt!.difference(task.startedAt!);
+
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+
+    String formattedDuration =
+        "${twoDigits(diff.inHours)}:"
+        "${twoDigits(diff.inMinutes.remainder(60))}:"
+        "${twoDigits(diff.inSeconds.remainder(60))}";
+
+    return formattedDuration;
+  }
+
   @override
   Widget build(BuildContext context) {
     final time = TimeOfDay(hour: task.startTime!.hour, minute: task.startTime!.minute);
@@ -71,7 +84,7 @@ class TaskCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "02:31:56",
+                              _getTimeDifference,
                               style: TextStyle(
                                 color: context.colorPalette.primary,
                                 fontSize: 14,
