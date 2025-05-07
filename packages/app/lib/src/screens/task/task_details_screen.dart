@@ -20,32 +20,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _subTasksQuery = kFirebaseInstant.subTasks(widget.task.id);
   }
 
-  void _onEndingTask(BuildContext context, {String? subTaskId}) {
-    final json = {
-      MyFields.status: TaskStatusEnum.completed.value,
-      MyFields.endedAt: FieldValue.serverTimestamp(),
-    };
-    if (subTaskId != null) {
-      kFirebaseInstant.subTasks(widget.task.id).doc(subTaskId).update(json);
-    } else {
-      ApiService.fetch(
-        context,
-        callBack: () async {
-          final docRef = kFirebaseInstant.tasks.doc(widget.task.id);
-          final subTasksQuerySnapshot = await docRef.collection(MyFields.subTasks).get();
-          final isEverySubTaskCompleted = subTasksQuerySnapshot.docs.every(
-            (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
-          );
-          if (isEverySubTaskCompleted) {
-            await docRef.update(json);
-          } else if (context.mounted) {
-            context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
-          }
-        },
-      );
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -86,12 +60,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             ],
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(150),
-              child: TaskHeader(
-                task: task,
-                onEndingTask: () {
-                  _onEndingTask(context);
-                },
-              ),
+              child: TaskHeader(task: task),
             ),
           ),
           body: Padding(
@@ -148,13 +117,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           }
                           final taskDocSnapshot = snapshot.docs[index];
                           final subTask = taskDocSnapshot.data();
-                          return SubTaskCard(
-                            mainTaskId: task.id,
-                            task: subTask,
-                            onEndingTask: () {
-                              _onEndingTask(context, subTaskId: subTask.id);
-                            },
-                          );
+                          return SubTaskCard(mainTaskId: task.id, task: subTask);
                         },
                       );
                     },

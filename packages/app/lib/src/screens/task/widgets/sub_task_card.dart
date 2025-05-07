@@ -1,19 +1,13 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/task/widgets/task_toggle_buttons.dart';
 import 'package:app/src/screens/task/widgets/timer_builder.dart';
-import 'package:app/src/screens/task/widgets/toggle_button_child.dart';
 import 'package:shared/shared.dart';
 
 class SubTaskCard extends StatefulWidget {
   final String mainTaskId;
   final TaskModel task;
-  final VoidCallback onEndingTask;
 
-  const SubTaskCard({
-    super.key,
-    required this.task,
-    required this.mainTaskId,
-    required this.onEndingTask,
-  });
+  const SubTaskCard({super.key, required this.task, required this.mainTaskId});
 
   @override
   State<SubTaskCard> createState() => _SubTaskCardState();
@@ -21,26 +15,8 @@ class SubTaskCard extends StatefulWidget {
 
 class _SubTaskCardState extends State<SubTaskCard> {
   bool isExpanded = false;
-  final _storageService = StorageService();
 
   TaskModel get task => widget.task;
-
-  Future<void> _pickImage(BuildContext context, String field) async {
-    AppOverlayLoader.fakeLoading();
-    final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (file != null && context.mounted) {
-      ApiService.fetch(
-        context,
-        callBack: () async {
-          final image = await _storageService.uploadFile(collection: "subTasks", file: file);
-          final docRef = kFirebaseInstant.subTasks(widget.mainTaskId).doc(task.id);
-          docRef.update({
-            field: FieldValue.arrayUnion([image]),
-          });
-        },
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +25,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
     final isCompleted = status == TaskStatusEnum.completed.value;
     final isNotStarted = status == TaskStatusEnum.notStarted.value;
     final isInProgress = status == TaskStatusEnum.inProgress.value;
-    var images = <String>[];
-    var imagesField = '';
-    if (isCompleted) {
-      images = [...task.startingImages, ...task.endingImages];
-    } else if (isNotStarted) {
-      images = task.startingImages;
-      imagesField = MyFields.startingImages;
-    } else if (isInProgress) {
-      images = task.endingImages;
-      imagesField = MyFields.endingImages;
-    }
+    final values = task.values;
+    final images = values.$2;
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -174,48 +141,12 @@ class _SubTaskCardState extends State<SubTaskCard> {
         ),
         Visibility(
           visible: isExpanded && !isCompleted,
-          child: SizedBox(
-            height: 40,
-            child: Center(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: context.colorPalette.white,
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                  border: Border.all(color: Colors.white),
-                ),
-                child: ToggleButtons(
-                  constraints: const BoxConstraints(minWidth: 120, minHeight: 40),
-                  isSelected: const [true, true, true],
-                  fillColor: context.colorPalette.primary,
-                  selectedColor: context.colorPalette.white,
-                  color: Colors.white,
-                  borderColor: Colors.white,
-                  textStyle: TextStyle(
-                    color: context.colorPalette.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: GoogleFonts.cairo().fontFamily!,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  onPressed: (value) {
-                    if (value == 0) {
-                      _pickImage(context, imagesField);
-                    } else if (value == 2) {
-                      if (images.isNotEmpty) {
-                        widget.onEndingTask();
-                      } else {
-                        Fluttertoast.showToast(msg: "يجب ارفاق صور");
-                      }
-                    }
-                  },
-                  children: const [
-                    ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
-                    ToggleButtonChild(title: "01 : 33 : 22"),
-                    ToggleButtonChild(icon: MyIcons.checkWhite, title: "إنهاء المهمة"),
-                  ],
-                ),
-              ),
-            ),
+          child: TaskToggleButtons(
+            images: images,
+            mainTaskId: widget.mainTaskId,
+            subTaskId: task.id,
+            imagesField: values.$1,
+            status: status,
           ),
         ),
       ],

@@ -44,4 +44,22 @@ class TaskModel with _$TaskModel {
       return (greyLightColor, greyDarkColor);
     }
   }
+
+  (String, List<String>) get values {
+    var images = <String>[];
+    var imagesField = '';
+    final isCompleted = status == TaskStatusEnum.completed.value;
+    final isNotStarted = status == TaskStatusEnum.notStarted.value;
+    final isInProgress = status == TaskStatusEnum.inProgress.value;
+    if (isCompleted) {
+      images = [...startingImages, ...endingImages];
+    } else if (isNotStarted) {
+      images = startingImages;
+      imagesField = MyFields.startingImages;
+    } else if (isInProgress) {
+      images = endingImages;
+      imagesField = MyFields.endingImages;
+    }
+    return (imagesField, images);
+  }
 }

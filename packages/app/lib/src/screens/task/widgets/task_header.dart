@@ -1,11 +1,11 @@
+import 'package:app/src/screens/task/widgets/task_toggle_buttons.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
 class TaskHeader extends StatelessWidget {
   final TaskModel task;
-  final VoidCallback onEndingTask;
 
-  const TaskHeader({super.key, required this.task, required this.onEndingTask});
+  const TaskHeader({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -103,48 +103,12 @@ class TaskHeader extends StatelessWidget {
                 ),
                 if (task.status == TaskStatusEnum.inProgress.value) ...[
                   const SizedBox(height: 10),
-                  Center(
-                    child: Container(
-                      width: 210,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: context.colorPalette.primary,
-                        borderRadius: BorderRadius.circular(kRadiusSecondary),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "01 : 33 : 22",
-                            style: TextStyle(
-                              color: context.colorPalette.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          VerticalDivider(color: context.colorPalette.white),
-                          InkWell(
-                            onTap: onEndingTask,
-                            child: Ink(
-                              child: Row(
-                                children: [
-                                  const CustomSvg(MyIcons.checkWhite),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    "إنهاء المهمة",
-                                    style: TextStyle(
-                                      color: context.colorPalette.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  TaskToggleButtons(
+                    images: task.values.$2,
+                    mainTaskId: task.id,
+                    subTaskId: null,
+                    imagesField: MyFields.images,
+                    status: task.status,
                   ),
                 ],
               ],
