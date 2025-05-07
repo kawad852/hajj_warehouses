@@ -33,7 +33,10 @@ class TaskModel with _$TaskModel {
     final greyLightColor = context.colorPalette.greyF2F;
     final greyDarkColor = context.colorPalette.greyC4C;
     if (markedAsLate) {
-      return (greyLightColor, context.colorPalette.yellowC02);
+      return (
+        status == TaskStatusEnum.completed.value ? context.colorPalette.greyE2E : greyLightColor,
+        context.colorPalette.yellowC02,
+      );
     } else if (status == TaskStatusEnum.completed.value) {
       return (context.colorPalette.greyE2E, primaryColor);
     } else {
