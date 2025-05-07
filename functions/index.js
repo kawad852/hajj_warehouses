@@ -125,8 +125,7 @@ exports.onInventoryOperationCreated = onDocumentCreated({
     const branch = doc.branch;
     const items = doc.items;
 
-    const itemNames = items.map((item) => item.name).join(", ");
-    const totalAmount = doc.amount;
+    const itemLabels = items.map((item) => `${item.quantity} ${item.name}`).join(", ");
 
     const usersSnapshot = await admin
       .firestore()
@@ -145,11 +144,11 @@ exports.onInventoryOperationCreated = onDocumentCreated({
       if (!token) continue;
 
       let title = "New Supply Received";
-      let body = `A new shipment of ${itemNames} with total quantity ${totalAmount} was received in ${branch.name}.`;
+      let body = `A new shipment of ${itemLabels} was received in ${branch.name}.`;
 
       if (lang === "ar") {
         title = "📦 شحنة جديدة";
-        body = `📦 تم استلام شحنة جديدة من ${itemNames} بعدد إجمالي ${totalAmount} في ${branch.name}.`;
+        body = `📦 تم استلام ${itemLabels} في ${branch.name}.`;
       }
 
     const payload = {
