@@ -78,7 +78,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     ],
                     if (inCompleted) ...[
                       const SizedBox(width: 10),
-                      TaskInfo(title: "وقت الإنتهاء عند", value: task.endTime!.getTime(context)),
+                      TaskInfo(title: "وقت الإنتهاء عند", value: task.endedAt!.getTime(context)),
                     ],
                     if (inProgress && task.endTime!.isAfter(kNowDate)) ...[
                       const SizedBox(width: 10),
