@@ -145,11 +145,11 @@ exports.onInventoryOperationCreated = onDocumentCreated({
       if (!token) continue;
 
       let title = "New Supply Received";
-      let body = `A new shipment of [${itemNames}] with total quantity [${totalAmount}] was received in warehouse [${branch.name}].`;
+      let body = `A new shipment of ${itemNames} with total quantity ${totalAmount} was received in ${branch.name}.`;
 
       if (lang === "ar") {
         title = "📦 شحنة جديدة";
-        body = `📦 تم استلام شحنة جديدة من [${itemNames}] بعدد إجمالي [${totalAmount}] في المستودع [${branch.name}].`;
+        body = `📦 تم استلام شحنة جديدة من ${itemNames} بعدد إجمالي ${totalAmount} في ${branch.name}.`;
       }
 
     const payload = {
