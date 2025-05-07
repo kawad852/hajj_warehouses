@@ -5,7 +5,7 @@ import 'package:shared/shared.dart';
 class TimerBuilder extends StatefulWidget {
   final Widget Function(String time) child;
   final DateTime? startDateTime;
-  final DateTime endDateTime;
+  final DateTime? endDateTime;
 
   const TimerBuilder({
     super.key,
@@ -30,7 +30,7 @@ class _TimerBuilderState extends State<TimerBuilder> {
   void _updateRemaining() {
     final date = widget.startDateTime ?? DateTime.now();
     setState(() {
-      _remaining = widget.endDateTime.difference(date);
+      _remaining = widget.endDateTime?.difference(date) ?? Duration.zero;
       if (_remaining.isNegative) {
         _remaining = Duration.zero;
         _timer?.cancel();

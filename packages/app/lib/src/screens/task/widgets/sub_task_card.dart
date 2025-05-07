@@ -145,14 +145,20 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
-                        SubTaskInfo(title: "بدأت المهمة", value: task.startTime!.getTime(context)),
+                        SubTaskInfo(
+                          title: "بدأت المهمة",
+                          value: task.startedAt?.getTime(context) ?? '-',
+                        ),
                         if (task.endedAt != null) ...[
                           const SizedBox(width: 8),
-                          SubTaskInfo(title: "انتهت المهمة", value: task.endedAt!.getTime(context)),
+                          SubTaskInfo(
+                            title: "انتهت المهمة",
+                            value: task.endedAt?.getTime(context) ?? '-',
+                          ),
                           const SizedBox(width: 8),
                           TimerBuilder(
                             startDateTime: task.startTime,
-                            endDateTime: task.endedAt!,
+                            endDateTime: task.endedAt,
                             child: (value) {
                               return SubTaskInfo(title: "الوقت المستغرق", value: value);
                             },
@@ -167,7 +173,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
           ),
         ),
         Visibility(
-          visible: isExpanded,
+          visible: isExpanded && !isCompleted,
           child: SizedBox(
             height: 40,
             child: Center(
@@ -195,7 +201,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     if (value == 0) {
                       _pickImage(context, imagesField);
                     } else if (value == 2) {
-                      if (task.endingImages.isNotEmpty) {
+                      if (images.isNotEmpty) {
                         widget.onEndingTask();
                       } else {
                         Fluttertoast.showToast(msg: "يجب ارفاق صور");
