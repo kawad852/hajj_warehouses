@@ -95,6 +95,9 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                             name: branch.name,
                           );
                         });
+                        context.userProvider.userDocRef.update({
+                          MyFields.branch: MySharedPreferences.branch!.toJson(),
+                        });
                       },
                       child: Container(
                         width: double.infinity,

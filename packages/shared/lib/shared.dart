@@ -9,6 +9,7 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter_html/flutter_html.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:google_fonts/google_fonts.dart';
@@ -78,6 +79,10 @@ export 'src/network/fire_query_extension.dart';
 export 'src/network/my_collections.dart';
 export 'src/network/my_fields.dart';
 export 'src/network/my_queries.dart';
+
+///
+///Notifications
+export 'src/notifications/cloud_messaging_service.dart';
 //providers
 export 'src/providers/app_provider.dart';
 export 'src/providers/inventory_provider.dart';

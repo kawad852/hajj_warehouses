@@ -30,4 +30,5 @@ class MyFields {
   static const String startingImages = 'startingImages';
   static const String endingImages = 'endingImages';
   static const String subTasks = 'subTasks';
+  static const String branch = 'branch';
 }
