@@ -53,8 +53,8 @@ mixin _$TaskModel {
   set totalSubTasks(int value) => throw _privateConstructorUsedError;
   int get completedSubTasksCount => throw _privateConstructorUsedError;
   set completedSubTasksCount(int value) => throw _privateConstructorUsedError;
-  bool get markAsLate => throw _privateConstructorUsedError;
-  set markAsLate(bool value) => throw _privateConstructorUsedError;
+  bool get markedAsLate => throw _privateConstructorUsedError;
+  set markedAsLate(bool value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
@@ -89,7 +89,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markAsLate,
+    bool markedAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -125,7 +125,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? status = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
-    Object? markAsLate = null,
+    Object? markedAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -187,10 +187,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.completedSubTasksCount
                     : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
-            markAsLate:
-                null == markAsLate
-                    ? _value.markAsLate
-                    : markAsLate // ignore: cast_nullable_to_non_nullable
+            markedAsLate:
+                null == markedAsLate
+                    ? _value.markedAsLate
+                    : markedAsLate // ignore: cast_nullable_to_non_nullable
                         as bool,
             employee:
                 freezed == employee
@@ -258,7 +258,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markAsLate,
+    bool markedAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
     List<String> images,
@@ -295,7 +295,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
-    Object? markAsLate = null,
+    Object? markedAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
     Object? images = null,
@@ -357,10 +357,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.completedSubTasksCount
                 : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
-        markAsLate:
-            null == markAsLate
-                ? _value.markAsLate
-                : markAsLate // ignore: cast_nullable_to_non_nullable
+        markedAsLate:
+            null == markedAsLate
+                ? _value.markedAsLate
+                : markedAsLate // ignore: cast_nullable_to_non_nullable
                     as bool,
         employee:
             freezed == employee
@@ -398,7 +398,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.status = "",
     this.totalSubTasks = 0,
     this.completedSubTasksCount = 0,
-    this.markAsLate = false,
+    this.markedAsLate = false,
     this.employee,
     required this.createdBy,
     this.images = const [],
@@ -442,7 +442,7 @@ class _$TaskModelImpl extends _TaskModel {
   int completedSubTasksCount;
   @override
   @JsonKey()
-  bool markAsLate;
+  bool markedAsLate;
   @override
   LightUserModel? employee;
   @override
@@ -453,7 +453,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markAsLate: $markAsLate, employee: $employee, createdBy: $createdBy, images: $images)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, createdBy: $createdBy, images: $images)';
   }
 
   /// Create a copy of TaskModel
@@ -483,7 +483,7 @@ abstract class _TaskModel extends TaskModel {
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markAsLate,
+    bool markedAsLate,
     LightUserModel? employee,
     required LightUserModel createdBy,
     List<String> images,
@@ -537,8 +537,8 @@ abstract class _TaskModel extends TaskModel {
   int get completedSubTasksCount;
   set completedSubTasksCount(int value);
   @override
-  bool get markAsLate;
-  set markAsLate(bool value);
+  bool get markedAsLate;
+  set markedAsLate(bool value);
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);

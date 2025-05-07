@@ -21,7 +21,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   totalSubTasks: (json['totalSubTasks'] as num?)?.toInt() ?? 0,
   completedSubTasksCount:
       (json['completedSubTasksCount'] as num?)?.toInt() ?? 0,
-  markAsLate: json['markAsLate'] as bool? ?? false,
+  markedAsLate: json['markedAsLate'] as bool? ?? false,
   employee:
       json['employee'] == null
           ? null
@@ -45,7 +45,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'status': instance.status,
       'totalSubTasks': instance.totalSubTasks,
       'completedSubTasksCount': instance.completedSubTasksCount,
-      'markAsLate': instance.markAsLate,
+      'markedAsLate': instance.markedAsLate,
       'employee': instance.employee?.toJson(),
       'createdBy': instance.createdBy.toJson(),
       'images': instance.images,

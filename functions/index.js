@@ -5,13 +5,10 @@
 const admin = require("firebase-admin");
 const {onDocumentUpdated} = require("firebase-functions/v2/firestore");
 const {onCall} = require("firebase-functions/v2/https");
-const serviceAccount = require("./serviceAccountKey.json");
 const {onSchedule} = require("firebase-functions/v2/scheduler");
 const {Timestamp} = require("firebase-admin/firestore");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+admin.initializeApp();
 
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",
@@ -90,7 +87,7 @@ exports.markLateTasks = onSchedule(
         await batch.commit();
         console.log(`Marked ${snapshot.size} tasks as late.`);
       } else {
-        console.log("No tasks to mark as late.");
+        console.log("No tasks to mark as late at time:", fiveMinutesAgo.toDate());
       }
     } catch (error) {
       console.error("Error marking tasks as late:", error);
