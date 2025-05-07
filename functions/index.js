@@ -113,7 +113,6 @@ exports.markLateTasks = onSchedule(
 );
 
 exports.onInventoryOperationCreated = onDocumentCreated({
-  region: "europe-west3",
   document: "inventoryOperations/{docId}",
 }, async (event) => {
   try {
