@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable indent */
 /* eslint-disable indent, object-curly-spacing */
+/* eslint-disable require-jsdoc */
 
 const admin = require("firebase-admin");
 const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
@@ -11,6 +12,11 @@ const { onSchedule } = require("firebase-functions/v2/scheduler");
 
 admin.initializeApp();
 const db = getFirestore();
+
+const NotificationType = {
+  INVENTORY_ADD: "INVENTORY_ADD",
+  // Add more types as needed
+};
 
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",
@@ -125,37 +131,69 @@ exports.onInventoryOperationCreated = onDocumentCreated({
     const branch = doc.branch;
     const items = doc.items;
 
+    const branchName = branch.name;
     const itemLabels = items.map((item) => `${item.quantity} ${item.name}`).join(", ");
 
-    const usersSnapshot = await admin
-      .firestore()
-      .collection("users")
-      .where("role", "==", "ADMIN")
-      .where("branch.id", "==", branch.id)
-      .get();
+    const titleEn = "New Supply Received";
+    const titleAr = "📦 شحنة جديدة";
+    const bodyEn = `A new shipment of ${itemLabels} was received in ${branchName}.`;
+    const bodyAr = `تم استلام ${itemLabels} في ${branchName}.`;
 
-    const notifications = [];
+    await sendNotification({
+      titleEn,
+      bodyEn,
+      titleAr,
+      bodyAr,
+      type: NotificationType.INVENTORY_ADD,
+      branch,
+    });
 
-    for (const userDoc of usersSnapshot.docs) {
-      const user = userDoc.data();
-      const token = user.deviceToken;
-      const lang = user.languageCode || "ar";
+    console.log("✅ Notifications sent successfully for inventory ADD operation.");
+  } catch (error) {
+    console.error("❌ Error in onInventoryOperationCreated:", error);
+  }
+});
 
-      if (!token) continue;
+async function sendNotification({
+  titleEn,
+  bodyEn,
+  titleAr,
+  bodyAr,
+  role = "ADMIN",
+  type,
+  branch,
+}) {
+  const usersSnapshot = await admin
+    .firestore()
+    .collection("users")
+    .where("role", "==", role)
+    .where("branch.id", "==", branch.id)
+    .get();
 
-      let title = "New Supply Received";
-      let body = `A new shipment of ${itemLabels} was received in ${branch.name}.`;
+  const notifications = [];
 
-      if (lang === "ar") {
-        title = "📦 شحنة جديدة";
-        body = `📦 تم استلام ${itemLabels} في ${branch.name}.`;
-      }
+  for (const userDoc of usersSnapshot.docs) {
+    const user = userDoc.data();
+    const token = user.deviceToken;
+    const lang = user.languageCode || "ar";
+    let title = "";
+    let body = "";
+
+    if (!token) continue;
+
+    if (lang == "ar") {
+        title = titleAr;
+        body = bodyAr;
+    } else {
+       title = titleEn;
+       body = bodyEn;
+    }
 
     const payload = {
-      token: token,
+      token,
       notification: {
-        title: title,
-        body: body,
+        title,
+        body,
       },
       apns: {
         payload: {
@@ -166,14 +204,8 @@ exports.onInventoryOperationCreated = onDocumentCreated({
       },
     };
 
-      notifications.push(
-        admin.messaging().send(payload),
-      );
-    }
-
-    await Promise.all(notifications);
-    console.log("✅ Notifications sent successfully for inventory ADD operation.");
-  } catch (error) {
-    console.error("❌ Error in onInventoryOperationCreated:", error);
+    notifications.push(admin.messaging().send(payload));
   }
-});
+
+  await Promise.all(notifications);
+}
