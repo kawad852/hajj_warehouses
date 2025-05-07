@@ -116,52 +116,66 @@ exports.onInventoryOperationCreated = onDocumentCreated({
   region: "europe-west3",
   document: "inventoryOperations/{docId}",
 }, async (event) => {
-  const doc = event.data.data();
-  if (!doc) return;
+  try {
+    const doc = event.data.data();
+    if (!doc) return;
 
-  const operationType = doc.operationType;
-  if (operationType !== "ADD") return;
+    const operationType = doc.operationType;
+    if (operationType !== "ADD") return;
 
-  const branch = doc.branch;
-  const items = doc.items;
+    const branch = doc.branch;
+    const items = doc.items;
 
-  const itemNames = items.map((item) => item.name).join(", ");
-  const totalAmount = doc.amount;
+    const itemNames = items.map((item) => item.name).join(", ");
+    const totalAmount = doc.amount;
 
-  const usersSnapshot = await admin
-    .firestore()
-    .collection("users")
-    .where("role", "==", "ADMIN")
-    .where("branch.id", "==", branch.id)
-    .get();
+    const usersSnapshot = await admin
+      .firestore()
+      .collection("users")
+      .where("role", "==", "ADMIN")
+      .where("branch.id", "==", branch.id)
+      .get();
 
-  const notifications = [];
+    const notifications = [];
 
-  for (const userDoc of usersSnapshot.docs) {
-    const user = userDoc.data();
-    const token = user.deviceToken;
-    const lang = user.languageCode || "ar";
+    for (const userDoc of usersSnapshot.docs) {
+      const user = userDoc.data();
+      const token = user.deviceToken;
+      const lang = user.languageCode || "ar";
 
-    if (!token) continue;
+      if (!token) continue;
 
-    let title = "New Supply Received";
-    let body = `A new shipment of [${itemNames}] with total quantity [${totalAmount}] was received in warehouse [${branch.name}].`;
+      let title = "New Supply Received";
+      let body = `A new shipment of [${itemNames}] with total quantity [${totalAmount}] was received in warehouse [${branch.name}].`;
 
-    if (lang === "ar") {
-      title = "📦 شحنة جديدة";
-      body = `📦 تم استلام شحنة جديدة من [${itemNames}] بعدد إجمالي [${totalAmount}] في المستودع [${branch.name}].`;
+      if (lang === "ar") {
+        title = "📦 شحنة جديدة";
+        body = `📦 تم استلام شحنة جديدة من [${itemNames}] بعدد إجمالي [${totalAmount}] في المستودع [${branch.name}].`;
+      }
+
+    const payload = {
+      token: token,
+      notification: {
+        title: title,
+        body: body,
+      },
+      apns: {
+        payload: {
+          aps: {
+            sound: "default",
+          },
+        },
+      },
+    };
+
+      notifications.push(
+        admin.messaging().send(payload),
+      );
     }
 
-    notifications.push(
-      admin.messaging().send({
-        token,
-        notification: {
-          title,
-          body,
-        },
-      }),
-    );
+    await Promise.all(notifications);
+    console.log("✅ Notifications sent successfully for inventory ADD operation.");
+  } catch (error) {
+    console.error("❌ Error in onInventoryOperationCreated:", error);
   }
-
-  await Promise.all(notifications);
 });
