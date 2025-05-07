@@ -6,8 +6,14 @@ import 'package:shared/shared.dart';
 class SubTaskCard extends StatefulWidget {
   final String mainTaskId;
   final TaskModel task;
+  final VoidCallback onEndingTask;
 
-  const SubTaskCard({super.key, required this.task, required this.mainTaskId});
+  const SubTaskCard({
+    super.key,
+    required this.task,
+    required this.mainTaskId,
+    required this.onEndingTask,
+  });
 
   @override
   State<SubTaskCard> createState() => _SubTaskCardState();
@@ -19,7 +25,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
   TaskModel get task => widget.task;
 
-  Future<void> _pickImage(BuildContext context) async {
+  Future<void> _pickImage(BuildContext context, String field) async {
     AppOverlayLoader.fakeLoading();
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (file != null && context.mounted) {
@@ -29,7 +35,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
           final image = await _storageService.uploadFile(collection: "subTasks", file: file);
           final docRef = kFirebaseInstant.subTasks(widget.mainTaskId).doc(task.id);
           docRef.update({
-            MyFields.images: FieldValue.arrayUnion([image]),
+            field: FieldValue.arrayUnion([image]),
           });
         },
       );
@@ -39,6 +45,21 @@ class _SubTaskCardState extends State<SubTaskCard> {
   @override
   Widget build(BuildContext context) {
     final colors = task.getStatusColors(context);
+    final status = task.status;
+    final isCompleted = status == TaskStatusEnum.completed.value;
+    final isNotStarted = status == TaskStatusEnum.notStarted.value;
+    final isInProgress = status == TaskStatusEnum.inProgress.value;
+    var images = <String>[];
+    var imagesField = '';
+    if (isCompleted) {
+      images = [...task.startingImages, ...task.endingImages];
+    } else if (isNotStarted) {
+      images = task.startingImages;
+      imagesField = MyFields.startingImages;
+    } else if (isInProgress) {
+      images = task.endingImages;
+      imagesField = MyFields.endingImages;
+    }
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -87,7 +108,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        "غير",
+                        task.description,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -102,43 +123,44 @@ class _SubTaskCardState extends State<SubTaskCard> {
                 ),
               ),
               children: [
-                if (task.images.isNotEmpty)
+                if (images.isNotEmpty)
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: SizedBox(
                       height: 105,
                       child: ListView.separated(
                         separatorBuilder: (context, index) => const SizedBox(width: 10),
-                        itemCount: task.images.length,
+                        itemCount: images.length,
                         padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          final image = task.images[index];
+                          final image = images[index];
                           return BaseNetworkImage(image, width: 95, height: 95);
                         },
                       ),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    children: [
-                      SubTaskInfo(title: "بدأت المهمة", value: task.startTime!.getTime(context)),
-                      if (task.endedAt != null) ...[
-                        const SizedBox(width: 8),
-                        SubTaskInfo(title: "انتهت المهمة", value: task.endedAt!.getTime(context)),
-                        const SizedBox(width: 8),
-                        TimerBuilder(
-                          startDateTime: task.startTime,
-                          endDateTime: task.endedAt!,
-                          child: (value) {
-                            return SubTaskInfo(title: "الوقت المستغرق", value: value);
-                          },
-                        ),
+                if (isCompleted)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        SubTaskInfo(title: "بدأت المهمة", value: task.startTime!.getTime(context)),
+                        if (task.endedAt != null) ...[
+                          const SizedBox(width: 8),
+                          SubTaskInfo(title: "انتهت المهمة", value: task.endedAt!.getTime(context)),
+                          const SizedBox(width: 8),
+                          TimerBuilder(
+                            startDateTime: task.startTime,
+                            endDateTime: task.endedAt!,
+                            child: (value) {
+                              return SubTaskInfo(title: "الوقت المستغرق", value: value);
+                            },
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
-                ),
                 const SizedBox(height: 40),
               ],
             ),
@@ -171,7 +193,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                   borderRadius: BorderRadius.circular(10),
                   onPressed: (value) {
                     if (value == 0) {
-                      _pickImage(context);
+                      _pickImage(context, imagesField);
+                    } else if (value == 2) {
+                      if (task.endingImages.isNotEmpty) {
+                        widget.onEndingTask();
+                      } else {
+                        Fluttertoast.showToast(msg: "يجب ارفاق صور");
+                      }
                     }
                   },
                   children: const [

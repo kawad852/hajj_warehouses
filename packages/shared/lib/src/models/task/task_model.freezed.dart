@@ -59,8 +59,10 @@ mixin _$TaskModel {
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
   set createdBy(LightUserModel value) => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
-  set images(List<String> value) => throw _privateConstructorUsedError;
+  List<String> get startingImages => throw _privateConstructorUsedError;
+  set startingImages(List<String> value) => throw _privateConstructorUsedError;
+  List<String> get endingImages => throw _privateConstructorUsedError;
+  set endingImages(List<String> value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -92,7 +94,8 @@ abstract class $TaskModelCopyWith<$Res> {
     bool markedAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
-    List<String> images,
+    List<String> startingImages,
+    List<String> endingImages,
   });
 
   $LightUserModelCopyWith<$Res>? get employee;
@@ -128,7 +131,8 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? markedAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
-    Object? images = null,
+    Object? startingImages = null,
+    Object? endingImages = null,
   }) {
     return _then(
       _value.copyWith(
@@ -202,10 +206,15 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.createdBy
                     : createdBy // ignore: cast_nullable_to_non_nullable
                         as LightUserModel,
-            images:
-                null == images
-                    ? _value.images
-                    : images // ignore: cast_nullable_to_non_nullable
+            startingImages:
+                null == startingImages
+                    ? _value.startingImages
+                    : startingImages // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            endingImages:
+                null == endingImages
+                    ? _value.endingImages
+                    : endingImages // ignore: cast_nullable_to_non_nullable
                         as List<String>,
           )
           as $Val,
@@ -261,7 +270,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     bool markedAsLate,
     LightUserModel? employee,
     LightUserModel createdBy,
-    List<String> images,
+    List<String> startingImages,
+    List<String> endingImages,
   });
 
   @override
@@ -298,7 +308,8 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? markedAsLate = null,
     Object? employee = freezed,
     Object? createdBy = null,
-    Object? images = null,
+    Object? startingImages = null,
+    Object? endingImages = null,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -372,10 +383,15 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.createdBy
                 : createdBy // ignore: cast_nullable_to_non_nullable
                     as LightUserModel,
-        images:
-            null == images
-                ? _value.images
-                : images // ignore: cast_nullable_to_non_nullable
+        startingImages:
+            null == startingImages
+                ? _value.startingImages
+                : startingImages // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        endingImages:
+            null == endingImages
+                ? _value.endingImages
+                : endingImages // ignore: cast_nullable_to_non_nullable
                     as List<String>,
       ),
     );
@@ -401,7 +417,8 @@ class _$TaskModelImpl extends _TaskModel {
     this.markedAsLate = false,
     this.employee,
     required this.createdBy,
-    this.images = const [],
+    this.startingImages = const [],
+    this.endingImages = const [],
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -449,11 +466,14 @@ class _$TaskModelImpl extends _TaskModel {
   LightUserModel createdBy;
   @override
   @JsonKey()
-  List<String> images;
+  List<String> startingImages;
+  @override
+  @JsonKey()
+  List<String> endingImages;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, createdBy: $createdBy, images: $images)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, createdBy: $createdBy, startingImages: $startingImages, endingImages: $endingImages)';
   }
 
   /// Create a copy of TaskModel
@@ -486,7 +506,8 @@ abstract class _TaskModel extends TaskModel {
     bool markedAsLate,
     LightUserModel? employee,
     required LightUserModel createdBy,
-    List<String> images,
+    List<String> startingImages,
+    List<String> endingImages,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
 
@@ -546,8 +567,11 @@ abstract class _TaskModel extends TaskModel {
   LightUserModel get createdBy;
   set createdBy(LightUserModel value);
   @override
-  List<String> get images;
-  set images(List<String> value);
+  List<String> get startingImages;
+  set startingImages(List<String> value);
+  @override
+  List<String> get endingImages;
+  set endingImages(List<String> value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

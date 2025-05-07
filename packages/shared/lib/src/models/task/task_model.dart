@@ -22,7 +22,8 @@ class TaskModel with _$TaskModel {
     @Default(false) bool markedAsLate,
     LightUserModel? employee,
     required LightUserModel createdBy,
-    @Default([]) List<String> images,
+    @Default([]) List<String> startingImages,
+    @Default([]) List<String> endingImages,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 

@@ -27,4 +27,6 @@ class MyFields {
   static const String images = 'images';
   static const String startedAt = 'startedAt';
   static const String endedAt = 'endedAt';
+  static const String startingImages = 'startingImages';
+  static const String endingImages = 'endingImages';
 }

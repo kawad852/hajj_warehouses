@@ -27,8 +27,15 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
           ? null
           : LightUserModel.fromJson(json['employee'] as Map<String, dynamic>),
   createdBy: LightUserModel.fromJson(json['createdBy'] as Map<String, dynamic>),
-  images:
-      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+  startingImages:
+      (json['startingImages'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  endingImages:
+      (json['endingImages'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
       const [],
 );
 
@@ -48,5 +55,6 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'markedAsLate': instance.markedAsLate,
       'employee': instance.employee?.toJson(),
       'createdBy': instance.createdBy.toJson(),
-      'images': instance.images,
+      'startingImages': instance.startingImages,
+      'endingImages': instance.endingImages,
     };

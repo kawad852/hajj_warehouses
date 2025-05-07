@@ -20,6 +20,20 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _subTasksQuery = kFirebaseInstant.subTasks(widget.task.id);
   }
 
+  void _onEndingTask({String? subTaskId}) {
+    if (subTaskId != null) {
+      kFirebaseInstant.subTasks(widget.task.id).doc(subTaskId).update({
+        MyFields.status: TaskStatusEnum.completed.value,
+        MyFields.endedAt: FieldValue.serverTimestamp(),
+      });
+    } else {
+      kFirebaseInstant.tasks.doc(widget.task.id).update({
+        MyFields.status: TaskStatusEnum.completed.value,
+        MyFields.endedAt: FieldValue.serverTimestamp(),
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -60,7 +74,12 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             ],
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(150),
-              child: TaskHeader(task: task),
+              child: TaskHeader(
+                task: task,
+                onEndingTask: () {
+                  _onEndingTask();
+                },
+              ),
             ),
           ),
           body: Padding(
@@ -117,7 +136,13 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           }
                           final taskDocSnapshot = snapshot.docs[index];
                           final subTask = taskDocSnapshot.data();
-                          return SubTaskCard(mainTaskId: task.id, task: subTask);
+                          return SubTaskCard(
+                            mainTaskId: task.id,
+                            task: subTask,
+                            onEndingTask: () {
+                              _onEndingTask(subTaskId: subTask.id);
+                            },
+                          );
                         },
                       );
                     },

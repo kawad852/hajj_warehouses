@@ -3,22 +3,12 @@ import 'package:shared/shared.dart';
 
 class TaskHeader extends StatelessWidget {
   final TaskModel task;
+  final VoidCallback onEndingTask;
 
-  const TaskHeader({super.key, required this.task});
+  const TaskHeader({super.key, required this.task, required this.onEndingTask});
 
   @override
   Widget build(BuildContext context) {
-    final filter1 = Filter.and(
-      Filter("status", isEqualTo: "NOT-STARTED"),
-      Filter("startTime", isLessThanOrEqualTo: "fiveMinutesAgo"),
-      Filter("markedAsLate", isEqualTo: false),
-    );
-    final filter2 = Filter.and(
-      Filter("status", isEqualTo: "IN-PROGRESS"),
-      Filter("endTime", isLessThanOrEqualTo: "fiveMinutesAgo"),
-      Filter("markedAsLate", isEqualTo: false),
-    );
-    final filter = Filter.or(filter1, filter2);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -134,12 +124,7 @@ class TaskHeader extends StatelessWidget {
                           ),
                           VerticalDivider(color: context.colorPalette.white),
                           InkWell(
-                            onTap: () {
-                              kFirebaseInstant.tasks.doc(task.id).update({
-                                MyFields.status: TaskStatusEnum.completed.value,
-                                MyFields.endedAt: FieldValue.serverTimestamp(),
-                              });
-                            },
+                            onTap: onEndingTask,
                             child: Ink(
                               child: Row(
                                 children: [

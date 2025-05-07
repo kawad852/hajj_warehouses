@@ -7,6 +7,9 @@ class TaskCard extends StatelessWidget {
   const TaskCard({super.key, required this.task});
 
   String get _getTimeDifference {
+    if (task.endedAt == null || task.startedAt == null) {
+      return '';
+    }
     Duration diff = task.endedAt!.difference(task.startedAt!);
 
     String twoDigits(int n) => n.toString().padLeft(2, '0');
