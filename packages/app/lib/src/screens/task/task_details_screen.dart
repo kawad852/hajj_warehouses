@@ -107,14 +107,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                         value: "${task.startedAt!.getTime(context)} ",
                       ),
                     ],
-                    if (inCompleted) ...[
+                    if (inCompleted && task.endedAt != null) ...[
                       const SizedBox(width: 10),
                       TaskInfo(title: "وقت الإنتهاء عند", value: task.endedAt!.getTime(context)),
                     ],
-                    if (inProgress && task.endTime!.isAfter(kNowDate)) ...[
+                    if (inProgress && (task.endTime?.isAfter(kNowDate) ?? false)) ...[
                       const SizedBox(width: 10),
                       TimerBuilder(
-                        endDateTime: task.endTime!,
+                        endDateTime: task.endTime,
                         child: (time) {
                           return TaskInfo(title: "يجب الإنهاء خلال", value: time);
                         },
