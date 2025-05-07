@@ -20,17 +20,29 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _subTasksQuery = kFirebaseInstant.subTasks(widget.task.id);
   }
 
-  void _onEndingTask({String? subTaskId}) {
+  void _onEndingTask(BuildContext context, {String? subTaskId}) {
+    final json = {
+      MyFields.status: TaskStatusEnum.completed.value,
+      MyFields.endedAt: FieldValue.serverTimestamp(),
+    };
     if (subTaskId != null) {
-      kFirebaseInstant.subTasks(widget.task.id).doc(subTaskId).update({
-        MyFields.status: TaskStatusEnum.completed.value,
-        MyFields.endedAt: FieldValue.serverTimestamp(),
-      });
+      kFirebaseInstant.subTasks(widget.task.id).doc(subTaskId).update(json);
     } else {
-      kFirebaseInstant.tasks.doc(widget.task.id).update({
-        MyFields.status: TaskStatusEnum.completed.value,
-        MyFields.endedAt: FieldValue.serverTimestamp(),
-      });
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final docRef = kFirebaseInstant.tasks.doc(widget.task.id);
+          final subTasksQuerySnapshot = await docRef.collection(MyFields.subTasks).get();
+          final isEverySubTaskCompleted = subTasksQuerySnapshot.docs.every(
+            (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
+          );
+          if (isEverySubTaskCompleted) {
+            await docRef.update(json);
+          } else if (context.mounted) {
+            context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
+          }
+        },
+      );
     }
   }
 
@@ -77,7 +89,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               child: TaskHeader(
                 task: task,
                 onEndingTask: () {
-                  _onEndingTask();
+                  _onEndingTask(context);
                 },
               ),
             ),
@@ -140,7 +152,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                             mainTaskId: task.id,
                             task: subTask,
                             onEndingTask: () {
-                              _onEndingTask(subTaskId: subTask.id);
+                              _onEndingTask(context, subTaskId: subTask.id);
                             },
                           );
                         },
