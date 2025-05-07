@@ -5,6 +5,7 @@
 const admin = require("firebase-admin");
 const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
 const { onDocumentUpdated } = require("firebase-functions/v2/firestore");
+const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { onCall } = require("firebase-functions/v2/https");
 const { onSchedule } = require("firebase-functions/v2/scheduler");
 
@@ -110,3 +111,57 @@ exports.markLateTasks = onSchedule(
     }
   },
 );
+
+exports.onInventoryOperationCreated = onDocumentCreated({
+  region: "europe-west3",
+  document: "inventoryOperations/{docId}",
+}, async (event) => {
+  const doc = event.data.data();
+  if (!doc) return;
+
+  const operationType = doc.operationType;
+  if (operationType !== "ADD") return;
+
+  const branch = doc.branch;
+  const items = doc.items;
+
+  const itemNames = items.map((item) => item.name).join(", ");
+  const totalAmount = doc.amount;
+
+  const usersSnapshot = await admin
+    .firestore()
+    .collection("users")
+    .where("role", "==", "ADMIN")
+    .where("branch.id", "==", branch.id)
+    .get();
+
+  const notifications = [];
+
+  for (const userDoc of usersSnapshot.docs) {
+    const user = userDoc.data();
+    const token = user.deviceToken;
+    const lang = user.languageCode || "ar";
+
+    if (!token) continue;
+
+    let title = "New Supply Received";
+    let body = `A new shipment of [${itemNames}] with total quantity [${totalAmount}] was received in warehouse [${branch.name}].`;
+
+    if (lang === "ar") {
+      title = "📦 شحنة جديدة";
+      body = `📦 تم استلام شحنة جديدة من [${itemNames}] بعدد إجمالي [${totalAmount}] في المستودع [${branch.name}].`;
+    }
+
+    notifications.push(
+      admin.messaging().send({
+        token,
+        notification: {
+          title,
+          body,
+        },
+      }),
+    );
+  }
+
+  await Promise.all(notifications);
+});
