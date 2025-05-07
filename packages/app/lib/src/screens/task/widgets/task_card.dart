@@ -10,6 +10,7 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final time = TimeOfDay(hour: task.startTime!.hour, minute: task.startTime!.minute);
     final isCompleted = task.status == TaskStatusEnum.completed.value;
+    final colors = task.getStatusColors(context);
     return GestureDetector(
       onTap: () {
         context.push((context) => TaskDetailsScreen(task: task));
@@ -18,7 +19,7 @@ class TaskCard extends StatelessWidget {
         width: double.infinity,
         height: 67,
         decoration: BoxDecoration(
-          color: isCompleted ? context.colorPalette.greyE2E : context.colorPalette.greyF2F,
+          color: colors.$1,
           borderRadius: BorderRadius.circular(kRadiusPrimary),
         ),
         child: Row(
@@ -27,7 +28,7 @@ class TaskCard extends StatelessWidget {
               width: 5,
               height: 67,
               decoration: BoxDecoration(
-                color: isCompleted ? context.colorPalette.primary : context.colorPalette.greyC4C,
+                color: colors.$2,
                 borderRadius: const BorderRadiusDirectional.only(
                   topStart: Radius.circular(kRadiusPrimary),
                   bottomStart: Radius.circular(kRadiusPrimary),

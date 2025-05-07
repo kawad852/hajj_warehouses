@@ -25,4 +25,19 @@ class TaskModel with _$TaskModel {
     @Default([]) List<String> images,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
+
+  TaskModel._();
+
+  (Color cardColor, Color indicatorColor) getStatusColors(BuildContext context) {
+    final primaryColor = context.colorPalette.primary;
+    final greyLightColor = context.colorPalette.greyF2F;
+    final greyDarkColor = context.colorPalette.greyC4C;
+    if (markAsLate) {
+      return (greyLightColor, context.colorPalette.yellowC02);
+    } else if (status == TaskStatusEnum.completed.value) {
+      return (context.colorPalette.greyE2E, primaryColor);
+    } else {
+      return (greyLightColor, greyDarkColor);
+    }
+  }
 }

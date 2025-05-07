@@ -38,13 +38,14 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = task.getStatusColors(context);
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         Container(
           margin: const EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
-            color: context.colorPalette.greyE2E,
+            color: colors.$1,
             borderRadius: BorderRadius.circular(kRadiusPrimary),
           ),
           child: ClipRRect(
@@ -57,12 +58,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
               },
               tilePadding: EdgeInsets.zero,
               showTrailingIcon: false,
-              collapsedShape: BorderDirectional(
-                start: BorderSide(color: context.colorPalette.greyC4C, width: 5),
-              ),
-              shape: BorderDirectional(
-                start: BorderSide(color: context.colorPalette.greyC4C, width: 5),
-              ),
+              collapsedShape: BorderDirectional(start: BorderSide(color: colors.$2, width: 5)),
+              shape: BorderDirectional(start: BorderSide(color: colors.$2, width: 5)),
               title: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
@@ -154,7 +151,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
             child: Center(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: context.colorPalette.primary,
+                  color: context.colorPalette.white,
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
                   border: Border.all(color: Colors.white),
                 ),

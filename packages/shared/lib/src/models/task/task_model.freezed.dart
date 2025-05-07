@@ -385,7 +385,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$TaskModelImpl implements _TaskModel {
+class _$TaskModelImpl extends _TaskModel {
   _$TaskModelImpl({
     @TimestampSerializer() this.createdAt,
     @TimestampSerializer() this.startTime,
@@ -402,7 +402,7 @@ class _$TaskModelImpl implements _TaskModel {
     this.employee,
     required this.createdBy,
     this.images = const [],
-  });
+  }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskModelImplFromJson(json);
@@ -470,7 +470,7 @@ class _$TaskModelImpl implements _TaskModel {
   }
 }
 
-abstract class _TaskModel implements TaskModel {
+abstract class _TaskModel extends TaskModel {
   factory _TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? startTime,
@@ -488,6 +488,7 @@ abstract class _TaskModel implements TaskModel {
     required LightUserModel createdBy,
     List<String> images,
   }) = _$TaskModelImpl;
+  _TaskModel._() : super._();
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$TaskModelImpl.fromJson;
