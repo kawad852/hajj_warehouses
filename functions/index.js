@@ -130,14 +130,24 @@ exports.onInventoryOperationCreated = onDocumentCreated({
 
     const branch = doc.branch;
     const items = doc.items;
-
     const branchName = branch.name;
     const itemLabels = items.map((item) => `${item.quantity} ${item.name}`).join(", ");
+    let titleEn = "";
+    let titleAr = "";
+    let bodyEn = "";
+    let bodyAr = "";
 
-    const titleEn = "New Supply Received";
-    const titleAr = "📦 شحنة جديدة";
-    const bodyEn = `A new shipment of ${itemLabels} was received in ${branchName}.`;
-    const bodyAr = `تم استلام ${itemLabels} في ${branchName}.`;
+    if (operationType == "DESTROY") {
+         titleEn = "🗑️ Damaged Item";
+         titleAr = "🗑️ صنف تالف";
+         bodyEn = `${itemLabels} has been recorded as damaged in ${branchName}.`;
+         bodyAr = `تم تسجيل ${itemLabels} كصنف تالف في ${branchName}.`;
+    } else {
+        titleEn = "New Supply Received";
+        titleAr = "📦 شحنة جديدة";
+        bodyEn = `A new shipment of ${itemLabels} was received in ${branchName}.`;
+        bodyAr = `تم استلام ${itemLabels} في ${branchName}.`;
+      }
 
     await sendNotification({
       titleEn,
