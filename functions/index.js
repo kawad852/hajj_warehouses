@@ -42,33 +42,33 @@ exports.onItemUpdate = onDocumentUpdated({
     const itemRef = event.data.after.ref;
     await itemRef.update({ status: newStatus });
 
-    //SendNotification
-        let titleEn = "";
-        let titleAr = "";
-        let bodyEn = "";
-        let bodyAr = "";
+    // SendNotification
+    let titleEn = "";
+    let titleAr = "";
+    let bodyEn = "";
+    let bodyAr = "";
 
-        if (newStatus == "OUT-OF-STOCK") {
-             titleEn = "❗️Urgent Alert.";
-             titleAr = `❗️تنبيه عاجل.`;
-             bodyEn = `The item ${name} is completely out of stock. It must be restocked as soon as possible to avoid operational disruptions.`;
-             bodyAr = `الصنف ${name} نفد من المخزون بالكامل، يجب توفيره في أسرع وقت لتفادي تعطل العمليات.`;
-        } else if (operationType == "LOW-STOCK") {
-            titleEn = `⚠️ Low Stock Warning.`;
-            titleAr = `⚠️تنبيه انخفاض المخزون.`;
-            bodyEn = `The item ${name} is running low on stock. Please restock it soon to avoid shortages.`;
-            bodyAr = `الصنف ${name} في المخزون منخفض. يرجى توفيره قريبًا لتجنب النفاد.`;
-          } else {
-           return;
-         }
+    if (newStatus == "OUT-OF-STOCK") {
+         titleEn = "❗️Urgent Alert.";
+         titleAr = `❗️تنبيه عاجل.`;
+         bodyEn = `The item ${name} is completely out of stock. It must be restocked as soon as possible to avoid operational disruptions.`;
+         bodyAr = `الصنف ${name} نفد من المخزون بالكامل، يجب توفيره في أسرع وقت لتفادي تعطل العمليات.`;
+    } else if (newStatus == "LOW-STOCK") {
+        titleEn = `⚠️ Low Stock Warning.`;
+        titleAr = `⚠️تنبيه انخفاض المخزون.`;
+        bodyEn = `The item ${name} is running low on stock. Please restock it soon to avoid shortages.`;
+        bodyAr = `الصنف ${name} في المخزون منخفض. يرجى توفيره قريبًا لتجنب النفاد.`;
+      } else {
+       return;
+     }
 
-        await sendNotification({
-          titleEn,
-          bodyEn,
-          titleAr,
-          bodyAr,
-          branch,
-        });
+    await sendNotification({
+      titleEn,
+      bodyEn,
+      titleAr,
+      bodyAr,
+      branch,
+    });
   }
 
   return null;

@@ -27,8 +27,8 @@ mixin _$TransactionModel {
   set createdAt(DateTime value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get branchId => throw _privateConstructorUsedError;
-  set branchId(String value) => throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
   String get transactionType => throw _privateConstructorUsedError;
   set transactionType(String value) => throw _privateConstructorUsedError;
   String? get depositReason => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $TransactionModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime createdAt,
     String id,
-    String branchId,
+    LightBranchModel branch,
     String transactionType,
     String? depositReason,
     String? expenseType,
@@ -77,6 +77,7 @@ abstract class $TransactionModelCopyWith<$Res> {
     LightUserModel? employee,
   });
 
+  $LightBranchModelCopyWith<$Res> get branch;
   $LightUserModelCopyWith<$Res> get user;
   $LightUserModelCopyWith<$Res>? get employee;
 }
@@ -98,7 +99,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   $Res call({
     Object? createdAt = null,
     Object? id = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? transactionType = null,
     Object? depositReason = freezed,
     Object? expenseType = freezed,
@@ -120,11 +121,11 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            branchId:
-                null == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
-                        as String,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
             transactionType:
                 null == transactionType
                     ? _value.transactionType
@@ -174,6 +175,16 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $LightUserModelCopyWith<$Res> get user {
     return $LightUserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
@@ -207,7 +218,7 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime createdAt,
     String id,
-    String branchId,
+    LightBranchModel branch,
     String transactionType,
     String? depositReason,
     String? expenseType,
@@ -218,6 +229,8 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
     LightUserModel? employee,
   });
 
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
   @override
   $LightUserModelCopyWith<$Res> get user;
   @override
@@ -240,7 +253,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = null,
     Object? id = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? transactionType = null,
     Object? depositReason = freezed,
     Object? expenseType = freezed,
@@ -262,11 +275,11 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        branchId:
-            null == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
-                    as String,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
         transactionType:
             null == transactionType
                 ? _value.transactionType
@@ -319,7 +332,7 @@ class _$TransactionModelImpl implements _TransactionModel {
   _$TransactionModelImpl({
     @TimestampSerializer() required this.createdAt,
     required this.id,
-    required this.branchId,
+    required this.branch,
     required this.transactionType,
     this.depositReason,
     this.expenseType,
@@ -339,7 +352,7 @@ class _$TransactionModelImpl implements _TransactionModel {
   @override
   String id;
   @override
-  String branchId;
+  LightBranchModel branch;
   @override
   String transactionType;
   @override
@@ -359,7 +372,7 @@ class _$TransactionModelImpl implements _TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(createdAt: $createdAt, id: $id, branchId: $branchId, transactionType: $transactionType, depositReason: $depositReason, expenseType: $expenseType, notes: $notes, amount: $amount, operationId: $operationId, user: $user, employee: $employee)';
+    return 'TransactionModel(createdAt: $createdAt, id: $id, branch: $branch, transactionType: $transactionType, depositReason: $depositReason, expenseType: $expenseType, notes: $notes, amount: $amount, operationId: $operationId, user: $user, employee: $employee)';
   }
 
   /// Create a copy of TransactionModel
@@ -383,7 +396,7 @@ abstract class _TransactionModel implements TransactionModel {
   factory _TransactionModel({
     @TimestampSerializer() required DateTime createdAt,
     required String id,
-    required String branchId,
+    required LightBranchModel branch,
     required String transactionType,
     String? depositReason,
     String? expenseType,
@@ -406,8 +419,8 @@ abstract class _TransactionModel implements TransactionModel {
   String get id;
   set id(String value);
   @override
-  String get branchId;
-  set branchId(String value);
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
   @override
   String get transactionType;
   set transactionType(String value);

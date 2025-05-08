@@ -41,7 +41,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
           final docRef = kFirebaseInstant.transactions.doc();
           _transaction.id = docRef.id;
           batch.set(docRef, _transaction);
-          final branchDocRef = kFirebaseInstant.branches.doc(_transaction.branchId);
+          final branchDocRef = kFirebaseInstant.branches.doc(_transaction.branch.id);
           batch.update(branchDocRef, {
             MyFields.balance: FieldValue.increment(
               _isDeposit ? _transaction.amount : -_transaction.amount,
@@ -63,7 +63,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
     _transaction = TransactionModel(
       createdAt: kNowDate,
       id: kUUID,
-      branchId: kSelectedBranchId,
+      branch: kBranch!,
       transactionType: widget.transactionType.value,
       amount: 0.0,
       user: kCurrentLightUser,

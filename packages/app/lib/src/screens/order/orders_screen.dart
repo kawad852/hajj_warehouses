@@ -12,7 +12,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   late Query<OrderModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.orders.whereMyBranch.orderByDesc;
+    _query = kFirebaseInstant.orders.whereIdBranch.orderByDesc;
   }
 
   @override

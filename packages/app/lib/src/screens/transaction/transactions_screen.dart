@@ -12,7 +12,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   late Query<TransactionModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.transactions.whereMyBranch.orderByDesc;
+    _query = kFirebaseInstant.transactions.whereIdBranch.orderByDesc;
   }
 
   void _openSheet(BuildContext context, {required TransactionType type}) {

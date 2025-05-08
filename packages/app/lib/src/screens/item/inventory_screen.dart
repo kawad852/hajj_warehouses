@@ -13,7 +13,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
   late Query<ItemModel> _query;
 
   void _initialize() {
-    _query = kFirebaseInstant.items.whereMyBranch.orderByDesc;
+    _query = kFirebaseInstant.items.whereIdBranch.orderByDesc;
   }
 
   @override

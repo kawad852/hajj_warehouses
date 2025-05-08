@@ -11,7 +11,7 @@ _$TransactionModelImpl _$$TransactionModelImplFromJson(
 ) => _$TransactionModelImpl(
   createdAt: DateTime.parse(json['createdAt'] as String),
   id: json['id'] as String,
-  branchId: json['branchId'] as String,
+  branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
   transactionType: json['transactionType'] as String,
   depositReason: json['depositReason'] as String?,
   expenseType: json['expenseType'] as String?,
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$TransactionModelImplToJson(
 ) => <String, dynamic>{
   'createdAt': instance.createdAt.toIso8601String(),
   'id': instance.id,
-  'branchId': instance.branchId,
+  'branch': instance.branch.toJson(),
   'transactionType': instance.transactionType,
   'depositReason': instance.depositReason,
   'expenseType': instance.expenseType,

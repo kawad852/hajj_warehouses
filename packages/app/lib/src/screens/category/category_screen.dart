@@ -20,7 +20,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     _query =
         kFirebaseInstant.items
             .where(MyFields.categoryId, isEqualTo: _category.id)
-            .whereMyBranch
+            .whereIdBranch
             .orderByDesc;
   }
 

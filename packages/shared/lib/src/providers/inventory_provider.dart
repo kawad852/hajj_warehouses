@@ -47,7 +47,7 @@ class InventoryProvider extends ChangeNotifier {
               final newId = await RowIdHelper.get(RowIdHelper.itemId);
               var newDocRef = kFirebaseInstant.items.doc(newId);
               final docSnapshot =
-                  await kFirebaseInstant.items.whereMyBranch
+                  await kFirebaseInstant.items.whereIdBranch
                       .where(MyFields.name, isEqualTo: e.name)
                       .limit(1)
                       .get();
@@ -147,7 +147,7 @@ class InventoryProvider extends ChangeNotifier {
     final transaction = TransactionModel(
       createdAt: kNowDate,
       id: walletDocRef.id,
-      branchId: kSelectedBranchId,
+      branch: kBranch!,
       transactionType: TransactionType.withdrawal.value,
       operationId: operationId,
       amount: amount,

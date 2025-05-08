@@ -10,7 +10,7 @@ class TransactionModel with _$TransactionModel {
   factory TransactionModel({
     @TimestampSerializer() required DateTime createdAt,
     required String id,
-    required String branchId,
+    required LightBranchModel branch,
     required String transactionType,
     String? depositReason,
     String? expenseType,
