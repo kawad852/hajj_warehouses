@@ -189,6 +189,69 @@ exports.onInventoryOperationCreated = onDocumentCreated({
   }
 });
 
+exports.onOrderHistoryCreate = onDocumentCreated({
+  document: "orders/{orderId}/orderHistory/{historyId}",
+}, async (event) => {
+  try {
+    const data = event.data.data();
+    const status = data.status;
+    const branch = data.branch;
+    const user = data.user;
+    const operationType = data.operationType;
+    const isSupply = operationType == "SUPPLY";
+    const orderLabelEn = isSupply ? "supply order" : "transfer order";
+    const orderLabelAr = isSupply ? "طلب تزويد" : "طلب نقل";
+
+    // SendNotification
+    let titleEn = "";
+    let titleAr = "";
+    let bodyEn = "";
+    let bodyAr = "";
+
+    if (status == "PLACED") {
+      titleEn = `New ${orderLabelEn}`;
+      titleAr = `${orderLabelAr} جديد`;
+      bodyEn = `${orderLabelEn} has been placed by ${user.displayName}, please review and take the necessary action.`;
+      bodyAr = `تم إرسال ${orderLabelAr} من قبل ${user.displayName}، يرجى المراجعة واتخاذ الإجراء المناسب.`;
+    } else if (status == "APPROVED") {
+      titleEn = `${orderLabelEn} Approved`;
+      titleAr = `تمت الموافقة على ${orderLabelAr}`;
+      bodyEn = `${orderLabelEn} has been approved by ${user.displayName}.`;
+      bodyAr = `تمت الموافقة على ${orderLabelAr} من قبل ${user.displayName}.`;
+    } else if (status == "IN-DELIVERY") {
+      titleEn = `${orderLabelEn} In Delivery`;
+      titleAr = `${orderLabelAr} قيد التوصيل`;
+      bodyEn = `${orderLabelEn} is currently being delivered.`;
+      bodyAr = `${orderLabelAr} قيد التوصيل حالياً.`;
+    } else if (status == "REJECTED") {
+      titleEn = `${orderLabelEn} Rejected`;
+      titleAr = `تم رفض ${orderLabelAr}`;
+      bodyEn = `${orderLabelEn} has been rejected by ${user.displayName}.`;
+      bodyAr = `تم رفض ${orderLabelAr} من قبل ${user.displayName}.`;
+    } else if (status == "COMPLETED") {
+      titleEn = `${orderLabelEn} Completed`;
+      titleAr = `اكتمل ${orderLabelAr}`;
+      bodyEn = `${orderLabelEn} has been completed successfully.`;
+      bodyAr = `تم الانتهاء من ${orderLabelAr} بنجاح.`;
+    } else if (status == "CANCELED") {
+      titleEn = `${orderLabelEn} Canceled`;
+      titleAr = `تم إلغاء ${orderLabelAr}`;
+      bodyEn = `${orderLabelEn} has been canceled by ${user.displayName}.`;
+      bodyAr = `تم إلغاء ${orderLabelAr} من قبل ${user.displayName}.`;
+    }
+
+    await sendNotification({
+      titleEn,
+      bodyEn,
+      titleAr,
+      bodyAr,
+      branch,
+    });
+  } catch (error) {
+    console.error("❌ Error in onInventoryOperationCreated:", error);
+  }
+});
+
 async function sendNotification({
   titleEn,
   bodyEn,

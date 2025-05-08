@@ -31,7 +31,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             .snapshots();
   }
 
-  void _updateOrderStatus(String status) {
+  void _updateOrderStatus(String status, String type) {
     ApiService.fetch(
       context,
       callBack: () async {
@@ -43,6 +43,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           user: kCurrentLightUser,
           branch: kBranch!,
           time: kNowDate,
+          operationType: type,
         );
         batch.set(orderHistoryDocRef, history.toJson());
         await batch.commit();
@@ -90,7 +91,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         Expanded(
                           child: StretchedButton(
                             onPressed: () {
-                              _updateOrderStatus(OrderStatusEnum.approved.value);
+                              _updateOrderStatus(
+                                OrderStatusEnum.approved.value,
+                                operation.operationType,
+                              );
                             },
                             child: Text(
                               "قبول الطلب",
@@ -115,7 +119,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   orderValues: (order.id, OrderStatusEnum.rejected.value),
                                 );
                               } else {
-                                _updateOrderStatus(OrderStatusEnum.rejected.value);
+                                _updateOrderStatus(
+                                  OrderStatusEnum.rejected.value,
+                                  operation.operationType,
+                                );
                               }
                             },
                             backgroundColor: context.colorPalette.redC10,

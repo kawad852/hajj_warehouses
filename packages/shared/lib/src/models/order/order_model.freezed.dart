@@ -438,6 +438,8 @@ mixin _$OrderHistoryModel {
   set user(LightUserModel value) => throw _privateConstructorUsedError;
   LightBranchModel get branch => throw _privateConstructorUsedError;
   set branch(LightBranchModel value) => throw _privateConstructorUsedError;
+  String get operationType => throw _privateConstructorUsedError;
+  set operationType(String value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
 
@@ -463,6 +465,7 @@ abstract class $OrderHistoryModelCopyWith<$Res> {
     String status,
     LightUserModel user,
     LightBranchModel branch,
+    String operationType,
     List<String> images,
   });
 
@@ -489,6 +492,7 @@ class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
     Object? status = null,
     Object? user = null,
     Object? branch = null,
+    Object? operationType = null,
     Object? images = null,
   }) {
     return _then(
@@ -513,6 +517,11 @@ class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
                     ? _value.branch
                     : branch // ignore: cast_nullable_to_non_nullable
                         as LightBranchModel,
+            operationType:
+                null == operationType
+                    ? _value.operationType
+                    : operationType // ignore: cast_nullable_to_non_nullable
+                        as String,
             images:
                 null == images
                     ? _value.images
@@ -558,6 +567,7 @@ abstract class _$$OrderHistoryModelImplCopyWith<$Res>
     String status,
     LightUserModel user,
     LightBranchModel branch,
+    String operationType,
     List<String> images,
   });
 
@@ -585,6 +595,7 @@ class __$$OrderHistoryModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? user = null,
     Object? branch = null,
+    Object? operationType = null,
     Object? images = null,
   }) {
     return _then(
@@ -609,6 +620,11 @@ class __$$OrderHistoryModelImplCopyWithImpl<$Res>
                 ? _value.branch
                 : branch // ignore: cast_nullable_to_non_nullable
                     as LightBranchModel,
+        operationType:
+            null == operationType
+                ? _value.operationType
+                : operationType // ignore: cast_nullable_to_non_nullable
+                    as String,
         images:
             null == images
                 ? _value.images
@@ -628,6 +644,7 @@ class _$OrderHistoryModelImpl implements _OrderHistoryModel {
     required this.status,
     required this.user,
     required this.branch,
+    required this.operationType,
     this.images = const [],
   });
 
@@ -644,12 +661,14 @@ class _$OrderHistoryModelImpl implements _OrderHistoryModel {
   @override
   LightBranchModel branch;
   @override
+  String operationType;
+  @override
   @JsonKey()
   List<String> images;
 
   @override
   String toString() {
-    return 'OrderHistoryModel(time: $time, status: $status, user: $user, branch: $branch, images: $images)';
+    return 'OrderHistoryModel(time: $time, status: $status, user: $user, branch: $branch, operationType: $operationType, images: $images)';
   }
 
   /// Create a copy of OrderHistoryModel
@@ -675,6 +694,7 @@ abstract class _OrderHistoryModel implements OrderHistoryModel {
     required String status,
     required LightUserModel user,
     required LightBranchModel branch,
+    required String operationType,
     List<String> images,
   }) = _$OrderHistoryModelImpl;
 
@@ -695,6 +715,9 @@ abstract class _OrderHistoryModel implements OrderHistoryModel {
   @override
   LightBranchModel get branch;
   set branch(LightBranchModel value);
+  @override
+  String get operationType;
+  set operationType(String value);
   @override
   List<String> get images;
   set images(List<String> value);

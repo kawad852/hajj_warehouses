@@ -119,6 +119,7 @@ class InventoryProvider extends ChangeNotifier {
             user: user,
             time: kNowDate,
             branch: kBranch!,
+            operationType: operation.operationType,
           );
           batch.set(orderDocREF, order);
           batch.set(orderHistoryDocRef, orderHistory.toJson());

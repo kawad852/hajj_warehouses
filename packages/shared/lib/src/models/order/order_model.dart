@@ -33,6 +33,7 @@ class OrderHistoryModel with _$OrderHistoryModel {
     required String status,
     required LightUserModel user,
     required LightBranchModel branch,
+    required String operationType,
     @Default([]) List<String> images,
   }) = _OrderHistoryModel;
 

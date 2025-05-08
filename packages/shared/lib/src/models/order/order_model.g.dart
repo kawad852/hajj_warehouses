@@ -52,6 +52,7 @@ _$OrderHistoryModelImpl _$$OrderHistoryModelImplFromJson(
   status: json['status'] as String,
   user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
   branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
+  operationType: json['operationType'] as String,
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -64,5 +65,6 @@ Map<String, dynamic> _$$OrderHistoryModelImplToJson(
   'status': instance.status,
   'user': instance.user.toJson(),
   'branch': instance.branch.toJson(),
+  'operationType': instance.operationType,
   'images': instance.images,
 };
