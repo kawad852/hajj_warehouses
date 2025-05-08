@@ -118,7 +118,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                           ),
                           const SizedBox(width: 8),
                           TimerBuilder(
-                            startDateTime: task.startTime,
+                            startDateTime: task.startedAt,
                             endDateTime: task.endedAt,
                             child: (value) {
                               return SubTaskInfo(title: "الوقت المستغرق", value: value);
