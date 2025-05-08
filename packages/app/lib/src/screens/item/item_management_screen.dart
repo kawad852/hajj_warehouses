@@ -180,6 +180,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 sliver: SliverFillRemaining(
                   child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
                     child: CustomFirestoreQueryBuilder(
                       query: _operationsQuery,
                       onComplete: (context, snapshot) {
