@@ -103,7 +103,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                   ),
                 if (isCompleted)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ).copyWith(top: images.isNotEmpty ? 10 : 0),
                     child: Row(
                       children: [
                         SubTaskInfo(
