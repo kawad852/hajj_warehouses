@@ -33,14 +33,14 @@ mixin _$ItemModel {
   set categoryId(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
-  String get branchId => throw _privateConstructorUsedError;
-  set branchId(String value) => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   set quantity(int value) => throw _privateConstructorUsedError;
   int get minimumQuantity => throw _privateConstructorUsedError;
   set minimumQuantity(int value) => throw _privateConstructorUsedError;
   LightUserModel? get user => throw _privateConstructorUsedError;
   set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get suggested => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -67,14 +67,15 @@ abstract class $ItemModelCopyWith<$Res> {
     String name,
     String categoryId,
     String status,
-    String branchId,
     int quantity,
     int minimumQuantity,
     LightUserModel? user,
+    LightBranchModel branch,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -97,10 +98,10 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
     Object? name = null,
     Object? categoryId = null,
     Object? status = null,
-    Object? branchId = null,
     Object? quantity = null,
     Object? minimumQuantity = null,
     Object? user = freezed,
+    Object? branch = null,
     Object? suggested = null,
   }) {
     return _then(
@@ -130,11 +131,6 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as String,
-            branchId:
-                null == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
-                        as String,
             quantity:
                 null == quantity
                     ? _value.quantity
@@ -150,6 +146,11 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
                         as LightUserModel?,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
             suggested:
                 null == suggested
                     ? _value.suggested
@@ -173,6 +174,16 @@ class _$ItemModelCopyWithImpl<$Res, $Val extends ItemModel>
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
+
+  /// Create a copy of ItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -190,15 +201,17 @@ abstract class _$$ItemModelImplCopyWith<$Res>
     String name,
     String categoryId,
     String status,
-    String branchId,
     int quantity,
     int minimumQuantity,
     LightUserModel? user,
+    LightBranchModel branch,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   });
 
   @override
   $LightUserModelCopyWith<$Res>? get user;
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -220,10 +233,10 @@ class __$$ItemModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? categoryId = null,
     Object? status = null,
-    Object? branchId = null,
     Object? quantity = null,
     Object? minimumQuantity = null,
     Object? user = freezed,
+    Object? branch = null,
     Object? suggested = null,
   }) {
     return _then(
@@ -253,11 +266,6 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as String,
-        branchId:
-            null == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
-                    as String,
         quantity:
             null == quantity
                 ? _value.quantity
@@ -273,6 +281,11 @@ class __$$ItemModelImplCopyWithImpl<$Res>
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
                     as LightUserModel?,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
         suggested:
             null == suggested
                 ? _value.suggested
@@ -293,10 +306,10 @@ class _$ItemModelImpl extends _ItemModel {
     this.name = '',
     this.categoryId = '',
     this.status = '',
-    this.branchId = '',
     this.quantity = 0,
     this.minimumQuantity = 0,
     this.user,
+    required this.branch,
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.suggested = false,
   }) : super._();
@@ -321,9 +334,6 @@ class _$ItemModelImpl extends _ItemModel {
   String status;
   @override
   @JsonKey()
-  String branchId;
-  @override
-  @JsonKey()
   int quantity;
   @override
   @JsonKey()
@@ -331,12 +341,14 @@ class _$ItemModelImpl extends _ItemModel {
   @override
   LightUserModel? user;
   @override
+  LightBranchModel branch;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool suggested;
 
   @override
   String toString() {
-    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, categoryId: $categoryId, status: $status, branchId: $branchId, quantity: $quantity, minimumQuantity: $minimumQuantity, user: $user, suggested: $suggested)';
+    return 'ItemModel(createdAt: $createdAt, id: $id, name: $name, categoryId: $categoryId, status: $status, quantity: $quantity, minimumQuantity: $minimumQuantity, user: $user, branch: $branch, suggested: $suggested)';
   }
 
   /// Create a copy of ItemModel
@@ -360,10 +372,10 @@ abstract class _ItemModel extends ItemModel {
     String name,
     String categoryId,
     String status,
-    String branchId,
     int quantity,
     int minimumQuantity,
     LightUserModel? user,
+    required LightBranchModel branch,
     @JsonKey(includeToJson: false, includeFromJson: false) bool suggested,
   }) = _$ItemModelImpl;
   _ItemModel._() : super._();
@@ -389,9 +401,6 @@ abstract class _ItemModel extends ItemModel {
   String get status;
   set status(String value);
   @override
-  String get branchId;
-  set branchId(String value);
-  @override
   int get quantity;
   set quantity(int value);
   @override
@@ -400,6 +409,9 @@ abstract class _ItemModel extends ItemModel {
   @override
   LightUserModel? get user;
   set user(LightUserModel? value);
+  @override
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get suggested;

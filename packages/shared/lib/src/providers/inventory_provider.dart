@@ -1,5 +1,3 @@
-import 'package:shared/src/helper/storage_service.dart';
-
 import '../../shared.dart';
 
 class InventoryProvider extends ChangeNotifier {
@@ -59,9 +57,9 @@ class InventoryProvider extends ChangeNotifier {
               } else {
                 final newData = data.copyWith(
                   id: newId,
-                  branchId: transferToBranchId,
                   quantity: e.quantity,
                   user: user,
+                  branch: kBranch!,
                 );
                 batch.set(newDocRef, newData);
               }
@@ -109,7 +107,7 @@ class InventoryProvider extends ChangeNotifier {
             status: OrderStatusEnum.placed.value,
             operation: operation,
             user: user,
-            branchId: isTransferOperation ? operation.transferToBranch!.id! : kSelectedBranchId,
+            branch: isTransferOperation ? operation.transferToBranch! : kBranch!,
             transferFromBranch: operation.transferFromBranch,
             transferToBranch: operation.transferToBranch,
           );
@@ -120,7 +118,7 @@ class InventoryProvider extends ChangeNotifier {
             status: order.status,
             user: user,
             time: kNowDate,
-            branchId: kSelectedBranchId,
+            branch: kBranch!,
           );
           batch.set(orderDocREF, order);
           batch.set(orderHistoryDocRef, orderHistory.toJson());

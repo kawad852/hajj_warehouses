@@ -19,7 +19,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
     status: ItemStatusEnum.inStock.value,
     categoryId: _category.id,
     user: kCurrentLightUser,
-    branchId: kSelectedBranchId,
+    branch: kBranch!,
   );
 
   CategoryModel get _category => widget.category;

@@ -41,7 +41,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         final history = OrderHistoryModel(
           status: status,
           user: kCurrentLightUser,
-          branchId: kSelectedBranchId,
+          branch: kBranch!,
           time: kNowDate,
         );
         batch.set(orderHistoryDocRef, history.toJson());

@@ -13,13 +13,13 @@ _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String? ?? '',
       categoryId: json['categoryId'] as String? ?? '',
       status: json['status'] as String? ?? '',
-      branchId: json['branchId'] as String? ?? '',
       quantity: (json['quantity'] as num?)?.toInt() ?? 0,
       minimumQuantity: (json['minimumQuantity'] as num?)?.toInt() ?? 0,
       user:
           json['user'] == null
               ? null
               : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+      branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
@@ -29,10 +29,10 @@ Map<String, dynamic> _$$ItemModelImplToJson(_$ItemModelImpl instance) =>
       'name': instance.name,
       'categoryId': instance.categoryId,
       'status': instance.status,
-      'branchId': instance.branchId,
       'quantity': instance.quantity,
       'minimumQuantity': instance.minimumQuantity,
       'user': instance.user?.toJson(),
+      'branch': instance.branch.toJson(),
     };
 
 _$LightItemModelImpl _$$LightItemModelImplFromJson(Map<String, dynamic> json) =>

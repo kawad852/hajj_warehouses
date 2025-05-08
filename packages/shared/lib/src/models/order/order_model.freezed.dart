@@ -27,8 +27,6 @@ mixin _$OrderModel {
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get branchId => throw _privateConstructorUsedError;
-  set branchId(String value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -43,6 +41,8 @@ mixin _$OrderModel {
   LightBranchModel? get transferToBranch => throw _privateConstructorUsedError;
   set transferToBranch(LightBranchModel? value) =>
       throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,18 +64,19 @@ abstract class $OrderModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String branchId,
     LightUserModel user,
     String status,
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
+    LightBranchModel branch,
   });
 
   $LightUserModelCopyWith<$Res> get user;
   $InventoryOperationModelCopyWith<$Res>? get operation;
   $LightBranchModelCopyWith<$Res>? get transferFromBranch;
   $LightBranchModelCopyWith<$Res>? get transferToBranch;
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -95,12 +96,12 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? branchId = null,
     Object? user = null,
     Object? status = null,
     Object? operation = freezed,
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
+    Object? branch = null,
   }) {
     return _then(
       _value.copyWith(
@@ -113,11 +114,6 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                 null == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            branchId:
-                null == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
                         as String,
             user:
                 null == user
@@ -144,6 +140,11 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
                     ? _value.transferToBranch
                     : transferToBranch // ignore: cast_nullable_to_non_nullable
                         as LightBranchModel?,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
           )
           as $Val,
     );
@@ -200,6 +201,16 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       return _then(_value.copyWith(transferToBranch: value) as $Val);
     });
   }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -214,12 +225,12 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    String branchId,
     LightUserModel user,
     String status,
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
+    LightBranchModel branch,
   });
 
   @override
@@ -230,6 +241,8 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   $LightBranchModelCopyWith<$Res>? get transferFromBranch;
   @override
   $LightBranchModelCopyWith<$Res>? get transferToBranch;
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -248,12 +261,12 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? id = null,
-    Object? branchId = null,
     Object? user = null,
     Object? status = null,
     Object? operation = freezed,
     Object? transferFromBranch = freezed,
     Object? transferToBranch = freezed,
+    Object? branch = null,
   }) {
     return _then(
       _$OrderModelImpl(
@@ -266,11 +279,6 @@ class __$$OrderModelImplCopyWithImpl<$Res>
             null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        branchId:
-            null == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
                     as String,
         user:
             null == user
@@ -297,6 +305,11 @@ class __$$OrderModelImplCopyWithImpl<$Res>
                 ? _value.transferToBranch
                 : transferToBranch // ignore: cast_nullable_to_non_nullable
                     as LightBranchModel?,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
       ),
     );
   }
@@ -309,12 +322,12 @@ class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
-    required this.branchId,
     required this.user,
     required this.status,
     this.operation,
     this.transferFromBranch,
     this.transferToBranch,
+    required this.branch,
   }) : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -327,8 +340,6 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey()
   String id;
   @override
-  String branchId;
-  @override
   LightUserModel user;
   @override
   String status;
@@ -338,10 +349,12 @@ class _$OrderModelImpl extends _OrderModel {
   LightBranchModel? transferFromBranch;
   @override
   LightBranchModel? transferToBranch;
+  @override
+  LightBranchModel branch;
 
   @override
   String toString() {
-    return 'OrderModel(createdAt: $createdAt, id: $id, branchId: $branchId, user: $user, status: $status, operation: $operation, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch)';
+    return 'OrderModel(createdAt: $createdAt, id: $id, user: $user, status: $status, operation: $operation, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, branch: $branch)';
   }
 
   /// Create a copy of OrderModel
@@ -362,12 +375,12 @@ abstract class _OrderModel extends OrderModel {
   factory _OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
-    required String branchId,
     required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
+    required LightBranchModel branch,
   }) = _$OrderModelImpl;
   _OrderModel._() : super._();
 
@@ -383,9 +396,6 @@ abstract class _OrderModel extends OrderModel {
   String get id;
   set id(String value);
   @override
-  String get branchId;
-  set branchId(String value);
-  @override
   LightUserModel get user;
   set user(LightUserModel value);
   @override
@@ -400,6 +410,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   LightBranchModel? get transferToBranch;
   set transferToBranch(LightBranchModel? value);
+  @override
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -423,8 +436,8 @@ mixin _$OrderHistoryModel {
   set status(String value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
-  String get branchId => throw _privateConstructorUsedError;
-  set branchId(String value) => throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
 
@@ -449,11 +462,12 @@ abstract class $OrderHistoryModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? time,
     String status,
     LightUserModel user,
-    String branchId,
+    LightBranchModel branch,
     List<String> images,
   });
 
   $LightUserModelCopyWith<$Res> get user;
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -474,7 +488,7 @@ class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
     Object? time = freezed,
     Object? status = null,
     Object? user = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? images = null,
   }) {
     return _then(
@@ -494,11 +508,11 @@ class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
                         as LightUserModel,
-            branchId:
-                null == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
-                        as String,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
             images:
                 null == images
                     ? _value.images
@@ -518,6 +532,16 @@ class _$OrderHistoryModelCopyWithImpl<$Res, $Val extends OrderHistoryModel>
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
+
+  /// Create a copy of OrderHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -533,12 +557,14 @@ abstract class _$$OrderHistoryModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? time,
     String status,
     LightUserModel user,
-    String branchId,
+    LightBranchModel branch,
     List<String> images,
   });
 
   @override
   $LightUserModelCopyWith<$Res> get user;
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
 }
 
 /// @nodoc
@@ -558,7 +584,7 @@ class __$$OrderHistoryModelImplCopyWithImpl<$Res>
     Object? time = freezed,
     Object? status = null,
     Object? user = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? images = null,
   }) {
     return _then(
@@ -578,11 +604,11 @@ class __$$OrderHistoryModelImplCopyWithImpl<$Res>
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
                     as LightUserModel,
-        branchId:
-            null == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
-                    as String,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
         images:
             null == images
                 ? _value.images
@@ -601,7 +627,7 @@ class _$OrderHistoryModelImpl implements _OrderHistoryModel {
     @TimestampSerializer() this.time,
     required this.status,
     required this.user,
-    required this.branchId,
+    required this.branch,
     this.images = const [],
   });
 
@@ -616,14 +642,14 @@ class _$OrderHistoryModelImpl implements _OrderHistoryModel {
   @override
   LightUserModel user;
   @override
-  String branchId;
+  LightBranchModel branch;
   @override
   @JsonKey()
   List<String> images;
 
   @override
   String toString() {
-    return 'OrderHistoryModel(time: $time, status: $status, user: $user, branchId: $branchId, images: $images)';
+    return 'OrderHistoryModel(time: $time, status: $status, user: $user, branch: $branch, images: $images)';
   }
 
   /// Create a copy of OrderHistoryModel
@@ -648,7 +674,7 @@ abstract class _OrderHistoryModel implements OrderHistoryModel {
     @TimestampSerializer() DateTime? time,
     required String status,
     required LightUserModel user,
-    required String branchId,
+    required LightBranchModel branch,
     List<String> images,
   }) = _$OrderHistoryModelImpl;
 
@@ -667,8 +693,8 @@ abstract class _OrderHistoryModel implements OrderHistoryModel {
   LightUserModel get user;
   set user(LightUserModel value);
   @override
-  String get branchId;
-  set branchId(String value);
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
   @override
   List<String> get images;
   set images(List<String> value);

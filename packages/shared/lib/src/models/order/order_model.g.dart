@@ -10,7 +10,6 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
     _$OrderModelImpl(
       createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
-      branchId: json['branchId'] as String,
       user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
       status: json['status'] as String,
       operation:
@@ -31,18 +30,19 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
               : LightBranchModel.fromJson(
                 json['transferToBranch'] as Map<String, dynamic>,
               ),
+      branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
-      'branchId': instance.branchId,
       'user': instance.user.toJson(),
       'status': instance.status,
       'operation': instance.operation?.toJson(),
       'transferFromBranch': instance.transferFromBranch?.toJson(),
       'transferToBranch': instance.transferToBranch?.toJson(),
+      'branch': instance.branch.toJson(),
     };
 
 _$OrderHistoryModelImpl _$$OrderHistoryModelImplFromJson(
@@ -51,7 +51,7 @@ _$OrderHistoryModelImpl _$$OrderHistoryModelImplFromJson(
   time: const TimestampSerializer().fromJson(json['time']),
   status: json['status'] as String,
   user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
-  branchId: json['branchId'] as String,
+  branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
   images:
       (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -63,6 +63,6 @@ Map<String, dynamic> _$$OrderHistoryModelImplToJson(
   'time': const TimestampSerializer().toJson(instance.time),
   'status': instance.status,
   'user': instance.user.toJson(),
-  'branchId': instance.branchId,
+  'branch': instance.branch.toJson(),
   'images': instance.images,
 };

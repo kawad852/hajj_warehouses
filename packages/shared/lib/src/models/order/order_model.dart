@@ -10,12 +10,12 @@ class OrderModel with _$OrderModel {
   factory OrderModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
-    required String branchId,
     required LightUserModel user,
     required String status,
     InventoryOperationModel? operation,
     LightBranchModel? transferFromBranch,
     LightBranchModel? transferToBranch,
+    required LightBranchModel branch,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
@@ -32,7 +32,7 @@ class OrderHistoryModel with _$OrderHistoryModel {
     @TimestampSerializer() DateTime? time,
     required String status,
     required LightUserModel user,
-    required String branchId,
+    required LightBranchModel branch,
     @Default([]) List<String> images,
   }) = _OrderHistoryModel;
 

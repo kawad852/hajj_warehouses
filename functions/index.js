@@ -21,6 +21,8 @@ exports.onItemUpdate = onDocumentUpdated({
   const newData = event.data.after.data();
   const oldStatus = oldData.status;
   const quantity = newData.quantity;
+  const name = newData.name;
+  const branch = newData.branch;
   const minimumQuantity = newData.minimumQuantity;
 
   const getItemStatus = (quantity, minimumQuantity) => {
@@ -39,6 +41,34 @@ exports.onItemUpdate = onDocumentUpdated({
   if (newStatus !== oldStatus) {
     const itemRef = event.data.after.ref;
     await itemRef.update({ status: newStatus });
+
+    //SendNotification
+        let titleEn = "";
+        let titleAr = "";
+        let bodyEn = "";
+        let bodyAr = "";
+
+        if (newStatus == "OUT-OF-STOCK") {
+             titleEn = "❗️Urgent Alert.";
+             titleAr = `❗️تنبيه عاجل.`;
+             bodyEn = `The item ${name} is completely out of stock. It must be restocked as soon as possible to avoid operational disruptions.`;
+             bodyAr = `الصنف ${name} نفد من المخزون بالكامل، يجب توفيره في أسرع وقت لتفادي تعطل العمليات.`;
+        } else if (operationType == "LOW-STOCK") {
+            titleEn = `⚠️ Low Stock Warning.`;
+            titleAr = `⚠️تنبيه انخفاض المخزون.`;
+            bodyEn = `The item ${name} is running low on stock. Please restock it soon to avoid shortages.`;
+            bodyAr = `الصنف ${name} في المخزون منخفض. يرجى توفيره قريبًا لتجنب النفاد.`;
+          } else {
+           return;
+         }
+
+        await sendNotification({
+          titleEn,
+          bodyEn,
+          titleAr,
+          bodyAr,
+          branch,
+        });
   }
 
   return null;
@@ -192,9 +222,6 @@ async function sendNotification({
        title = titleEn;
        body = bodyEn;
     }
-
-    console.log(`Title: ${title}`);
-    console.log(`Body: ${body}`);
 
     const payload = {
       token,

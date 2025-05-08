@@ -33,7 +33,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
     _order = OrderModel(
       status: OrderStatusEnum.placed.value,
       user: kCurrentLightUser,
-      branchId: kSelectedBranchId,
+      branch: kBranch!,
     );
     super.initState();
   }
