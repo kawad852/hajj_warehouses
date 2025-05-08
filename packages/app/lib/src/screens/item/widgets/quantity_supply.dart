@@ -20,7 +20,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
       child: Column(
         children: [
           Text(
-            "طلب تزويد كمية للصنف",
+            context.appLocalization.requestSupplyQuantityItem,
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -40,7 +40,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               ),
               const SizedBox(width: 5),
               Text(
-                "حالة الطلب",
+                context.appLocalization.requestStatus,
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,
@@ -54,7 +54,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
             children: [
               CustomRadio(
                 value: 0,
-                title: "طارئة",
+                title: context.appLocalization.urgent,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -64,7 +64,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
               ),
               CustomRadio(
                 value: 1,
-                title: "عادية",
+                title: context.appLocalization.normal,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -78,7 +78,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              "مشروحات وملاحظات حول الطلب",
+              context.appLocalization.explanationsNotesAboutRequest,
               style: TextStyle(
                 color: context.colorPalette.black001,
                 fontSize: 16,
@@ -107,7 +107,7 @@ class _QuantitySupplyState extends State<QuantitySupply> {
             onPressed: () {},
             margin: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "اضافة",
+              context.appLocalization.add,
               style: TextStyle(
                 color: context.colorPalette.white,
                 fontSize: 16,

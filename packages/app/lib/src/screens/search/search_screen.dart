@@ -74,7 +74,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
   @override
   Widget build(BuildContext context) {
     return FireAnimatedSearchBar(
-      hintText: widget.hintText ?? "ابحث عن صنف",
+      hintText: widget.hintText ?? context.appLocalization.searchForAnItem,
       isFullScreen: widget.isFullScreen,
       onChanged: (value) {
         setState(() {
@@ -86,7 +86,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
             ? widget.builder!(controller)
             : BaseEditor(
               required: false,
-              hintText: widget.hintText ?? "ابحث عن صنف",
+              hintText: widget.hintText ?? context.appLocalization.searchForAnItem,
               hintStyle: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 14,

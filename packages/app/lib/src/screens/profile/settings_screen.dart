@@ -12,9 +12,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const AppBarText("الإدارة")),
+      appBar: AppBar(title:AppBarText(context.appLocalization.management)),
       bottomNavigationBar: BottomButton(
-        text: "اضافة قسم جديد",
+        text: context.appLocalization.addNewSection,
         onPressed: () {},
       ),
       body: Padding(
@@ -22,22 +22,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           children: [
             ProfileCard(
-              title: "ادارة الفروع",
+              title: context.appLocalization.branchManagement,
               icon: MyIcons.setting,
               onTap: () {},
             ),
             ProfileCard(
-              title: "إدارة الموظفين الإداريين",
+              title: context.appLocalization.managementOfAdministrativeStaff,
               icon: MyIcons.helper,
               onTap: () {},
             ),
             ProfileCard(
-              title: "ارسال الإشعارات وتنبيهات",
+              title: context.appLocalization.sendingNotificationsAndAlerts,
               icon: MyIcons.helper,
               onTap: () {},
             ),
             ProfileCard(
-              title: "رسائل إدارية",
+              title: context.appLocalization.administrativeMessages,
               icon: MyIcons.helper,
               onTap: () {},
             ),

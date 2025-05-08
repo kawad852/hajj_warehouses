@@ -17,7 +17,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
         child: StretchedButton(
           onPressed: () {},
           child: Text(
-            "ارسال الطلب",
+            context.appLocalization.sendRequest,
             style: TextStyle(
               color: context.colorPalette.white,
               fontSize: 16,
@@ -26,7 +26,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
           ),
         ),
       ),
-      appBar: AppBar(title: const AppBarText("ارسال طلب نقل جديد")),
+      appBar: AppBar(title: AppBarText(context.appLocalization.sendNewTransferRequest)),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
@@ -42,7 +42,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
               ),
               const SizedBox(width: 5),
               Text(
-                "حالة النقل",
+                context.appLocalization.transferStatus,
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,
@@ -56,7 +56,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             children: [
               CustomRadio(
                 value: 0,
-                title: "طارئة",
+                title: context.appLocalization.urgent,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -66,7 +66,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
               ),
               CustomRadio(
                 value: 1,
-                title: "عادية",
+                title: context.appLocalization.normal,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -82,12 +82,12 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
               children: [
                 Expanded(
                   child: TitledTextField(
-                    title: "الفرع المرسل",
+                    title: context.appLocalization.sendingBranch,
                     textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     child: DropDownEditor(
                       items: const [],
                       onChanged: (value) {},
-                      title: "اختر الفرع",
+                      title: context.appLocalization.selectBranch,
                       value: "s",
                     ),
                   ),
@@ -95,12 +95,12 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: TitledTextField(
-                    title: "الفرع المستقبل",
+                    title: context.appLocalization.receivingBranch,
                     textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     child: DropDownEditor(
                       items: const [],
                       onChanged: (value) {},
-                      title: "اختر الفرع",
+                      title: context.appLocalization.selectBranch,
                       value: "s",
                     ),
                   ),
@@ -109,7 +109,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             ),
           ),
           Text(
-            "مشروحات وملاحظات حول النقل",
+            context.appLocalization.explanationsNotesRegardingTheTransfer,
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -133,7 +133,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
             ),
           ),
           Text(
-            "يرجى ادخال الأصناف والمواد المراد نقلها مع الكميات ",
+            context.appLocalization.enterItemAndMaterials,
             style: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,
@@ -158,7 +158,7 @@ class _SendTransferOrderScreenState extends State<SendTransferOrderScreen> {
           ),
           TextEditor(
             onChanged: (value) {},
-            hintText: "ادخل رقم الصنف او الإسم",
+            hintText: context.appLocalization.enterItemNumberOrName,
             hintStyle: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,

@@ -31,7 +31,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
         return Scaffold(
           appBar: widget.showAppBar ? AppBar() : null,
           bottomNavigationBar: BottomButton(
-            text: widget.showAppBar ? "إختيار" : "التالي",
+            text: widget.showAppBar ? context.appLocalization.select : context.appLocalization.next,
             onPressed:
                 MySharedPreferences.branch != null
                     ? () {
@@ -49,7 +49,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "اهلاً ومرحباً بك في ",
+                    context.appLocalization.welcomeTo,
                     style: TextStyle(
                       color: context.colorPalette.black,
                       fontSize: 20,
@@ -57,7 +57,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                     ),
                   ),
                   Text(
-                    "“مطابخ الفارس”",
+                    context.appLocalization.alFarisKitchens,
                     style: TextStyle(
                       color: context.colorPalette.primary,
                       fontSize: 20,
@@ -69,7 +69,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  "اختر الفرع",
+                  context.appLocalization.selectBranch,
                   style: TextStyle(
                     color: context.colorPalette.black,
                     fontSize: 16,

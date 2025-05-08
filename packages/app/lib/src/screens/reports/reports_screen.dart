@@ -12,13 +12,16 @@ class _ReportsScreenState extends State<ReportsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const AppBarText("التقارير")),
-      bottomNavigationBar: BottomButton(text: "اضافة قسم جديد", onPressed: () {}),
+      appBar: AppBar(title: AppBarText(context.appLocalization.reports)),
+      bottomNavigationBar: BottomButton(
+        text: context.appLocalization.addNewSection,
+        onPressed: () {},
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         children: [
           Text(
-            "يمكنك تغيير فترة التقارير من خلال تحديد الفترة الزمنية",
+            context.appLocalization.changeReportingPeriod,
             style: TextStyle(
               color: context.colorPalette.grey666,
               fontSize: 14,
@@ -30,14 +33,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
             child: ReportsCard(
               icon: MyIcons.shop,
               title: "فرع منى",
-              suffixText: "تغيير الفرع",
+              suffixText: context.appLocalization.changeBranch,
               onTapSuffix: () {},
             ),
           ),
           ReportsCard(
             icon: MyIcons.calendar,
             title: "هذا الشهر",
-            suffixText: "تخصيص",
+            suffixText: context.appLocalization.customize,
             onTapSuffix: () {},
           ),
           Padding(
@@ -45,7 +48,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
             child: Row(
               children: [
                 ReportsBubble(
-                  title: "اجمالي المهام",
+                  title: context.appLocalization.totalTasks,
                   value: "119",
                   flex: 2,
                   backgroungColor: context.colorPalette.primary,
@@ -53,7 +56,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ),
                 const SizedBox(width: 10),
                 ReportsBubble(
-                  title: "مهام مكتملة",
+                  title: context.appLocalization.completedTasks,
                   value: "99",
                   flex: 2,
                   backgroungColor: context.colorPalette.primary,
@@ -61,7 +64,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ),
                 const SizedBox(width: 10),
                 ReportsBubble(
-                  title: "مهام متأخرة ولم تسلم",
+                  title: context.appLocalization.overdueAndNotSubmittedTasks,
                   value: "12",
                   flex: 3,
                   backgroungColor: context.colorPalette.redC10,
@@ -73,55 +76,84 @@ class _ReportsScreenState extends State<ReportsScreen> {
           Row(
             children: [
               ReportsBubble(
-                title: "مهام سلمت بوقت متأخر",
+                title: context.appLocalization.tasksSubmittedLate,
                 value: "15",
                 flex: 4,
                 backgroungColor: context.colorPalette.redFFC,
               ),
               const SizedBox(width: 10),
               ReportsBubble(
-                title: "اجمالي وقت التأخير",
+                title: context.appLocalization.totalDelayTime,
                 value: "11:49:23",
                 flex: 3,
                 backgroungColor: context.colorPalette.redFFC,
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(
               children: [
-                ReportsBubble(title: "اجمالي العهدة", value: "50,000", isWallet: true),
-                SizedBox(width: 10),
-                ReportsBubble(title: "المصروفات", value: "50,000", isWallet: true),
-                SizedBox(width: 10),
-                ReportsBubble(title: "صافي العهدة", value: "50,000", isWallet: true),
+                ReportsBubble(
+                  title: context.appLocalization.totalImprest,
+                  value: "50,000",
+                  isWallet: true,
+                ),
+                const SizedBox(width: 10),
+                ReportsBubble(
+                  title: context.appLocalization.expenses,
+                  value: "50,000",
+                  isWallet: true,
+                ),
+                const SizedBox(width: 10),
+                ReportsBubble(
+                  title: context.appLocalization.netImprest,
+                  value: "50,000",
+                  isWallet: true,
+                ),
               ],
             ),
           ),
           Row(
             children: [
-              const ReportsBubble(title: "الطلبات", value: "56", flex: 2),
+              ReportsBubble(
+                title: context.appLocalization.orders,
+                value: "56",
+                flex: 2,
+              ),
               const SizedBox(width: 10),
               ReportsBubble(
-                title: "عمليات الإتلاف",
+                title: context.appLocalization.disposalOperations,
                 value: "13",
                 flex: 4,
                 backgroungColor: context.colorPalette.yellowFFE,
               ),
               const SizedBox(width: 10),
-              const ReportsBubble(title: "الكادر البشري", value: "8", flex: 3),
+              ReportsBubble(
+                title: context.appLocalization.humanResources,
+                value: "8",
+                flex: 3,
+              ),
               const Expanded(flex: 3, child: SizedBox.shrink()),
             ],
           ),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             children: [
-              ReportsBubble(title: "اصناف نفذت", value: "120"),
-              SizedBox(width: 10),
-              ReportsBubble(title: "اصناف تحتاج تزويد", value: "37"),
-              SizedBox(width: 10),
-              ReportsBubble(title: "اجمالي الأصناف", value: "340"),
+              ReportsBubble(
+                title: context.appLocalization.outOfStockItems,
+                value: "120",
+              ),
+              const SizedBox(width: 10),
+              ReportsBubble(
+                title: context.appLocalization.itemsNeedingRestock,
+                value: "37",
+              ),
+              const SizedBox(width: 10),
+              ReportsBubble(
+                title: context.appLocalization.totalItems,
+                value: "340",
+              ),
             ],
           ),
         ],

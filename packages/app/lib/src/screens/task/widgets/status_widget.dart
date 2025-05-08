@@ -25,7 +25,7 @@ class StatusWidget extends StatelessWidget {
                 child: CustomSvg(MyIcons.greyRect),
               ),
             ),
-            TextSpan(text: "لم تبدأ بعد/جارية الآن", style: style),
+            TextSpan(text: context.appLocalization.currentlyInProgress, style: style),
             const WidgetSpan(
               alignment: PlaceholderAlignment.middle,
               child: Padding(
@@ -33,7 +33,7 @@ class StatusWidget extends StatelessWidget {
                 child: CustomSvg(MyIcons.redRect),
               ),
             ),
-            TextSpan(text: "متأخرة", style: style),
+            TextSpan(text: context.appLocalization.overdue, style: style),
             const WidgetSpan(
               alignment: PlaceholderAlignment.middle,
               child: Padding(
@@ -41,7 +41,7 @@ class StatusWidget extends StatelessWidget {
                 child: CustomSvg(MyIcons.yellowRect),
               ),
             ),
-            TextSpan(text: "لم تكتمل", style: style),
+            TextSpan(text: context.appLocalization.notCompleted, style: style),
             const WidgetSpan(
               alignment: PlaceholderAlignment.middle,
               child: Padding(
@@ -49,7 +49,7 @@ class StatusWidget extends StatelessWidget {
                 child: CustomSvg(MyIcons.rect),
               ),
             ),
-            TextSpan(text: "مكتمل", style: style),
+            TextSpan(text: context.appLocalization.completed, style: style),
           ],
         ),
       ),

@@ -47,7 +47,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       //   },
       // ),
       bottomNavigationBar: BottomButton(
-        text: "اضافة اصناف جديدة",
+        text: context.appLocalization.addNewItems,
         onPressed: () {
           context.push((context) => ItemInputScreen(category: _category));
         },
@@ -60,7 +60,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             sliver: SliverList.list(
               children: [
                 Text(
-                  "لإدارة الصنف او تزويده يمكنك ذلك من خلال الدخول لصفحة الصنف",
+                  context.appLocalization.toManageOrRestock,
                   style: TextStyle(
                     color: context.colorPalette.grey666,
                     fontSize: 15,

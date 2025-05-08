@@ -18,7 +18,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
       child: Column(
         children: [
           Text(
-            "اتلاف كمية للصنف",
+            context.appLocalization.disposeQuantityItem,
             style: TextStyle(
               color: context.colorPalette.black001,
               fontSize: 16,
@@ -38,7 +38,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               ),
               const SizedBox(width: 5),
               Text(
-                "سبب الإتلاف",
+                context.appLocalization.reasonForDisposal,
                 style: TextStyle(
                   color: context.colorPalette.black001,
                   fontSize: 16,
@@ -52,7 +52,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
             children: [
               CustomRadio(
                 value: 0,
-                title: "فاسدة",
+                title: context.appLocalization.damaged,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -62,7 +62,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               ),
               CustomRadio(
                 value: 1,
-                title: "سوء نقل او تخزين",
+                title: context.appLocalization.poorTransportationOrStorage,
                 groupValue: _groupValue,
                 onChanged: (value) {
                   setState(() {
@@ -76,7 +76,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              "مشروحات وملاحظات حول الإتلاف",
+              context.appLocalization.explanationsNotesAboutDisposal,
               style: TextStyle(
                 color: context.colorPalette.black001,
                 fontSize: 16,
@@ -104,7 +104,7 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              "يجب ان توضح الصور سبب اتلاف الأصناف",
+              context.appLocalization.mustImageClarifyReasonDisposing,
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 14,
@@ -112,13 +112,13 @@ class _QuantityDestroyState extends State<QuantityDestroy> {
               ),
             ),
           ),
-          ImagesAttacher(onChanged: (path) {}, title: " ارفاق صور للمواد التي سيتم اتلافها"),
+          ImagesAttacher(onChanged: (path) {}, title: context.appLocalization.attachImageOfMaterialsDisposed),
           const Spacer(),
           StretchedButton(
             onPressed: () {},
             margin: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "اضافة",
+              context.appLocalization.add,
               style: TextStyle(
                 color: context.colorPalette.white,
                 fontSize: 16,

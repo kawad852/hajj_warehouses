@@ -37,9 +37,9 @@ class _TasksScreenState extends State<TasksScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _dates = [
-      (_selectedDate.subtract(const Duration(days: 1)), "الأمس"),
-      (_selectedDate, "اليوم"),
-      (_selectedDate.add(const Duration(days: 1)), "غداً"),
+      (_selectedDate.subtract(const Duration(days: 1)), context.appLocalization.yesterday),
+      (_selectedDate, context.appLocalization.today),
+      (_selectedDate.add(const Duration(days: 1)), context.appLocalization.tomorrow),
     ];
   }
 
@@ -48,7 +48,7 @@ class _TasksScreenState extends State<TasksScreen> {
     return Scaffold(
       appBar:
           widget.fullCalendar
-              ? AppBar(title: const AppBarText("جميع المهام"), forceMaterialTransparency: true)
+              ? AppBar(title:  AppBarText(context.appLocalization.allTasks), forceMaterialTransparency: true)
               : null,
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
@@ -99,7 +99,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: Text(
-                            "عرض الكل",
+                            context.appLocalization.viewAll,
                             style: TextStyle(
                               color: context.colorPalette.black,
                               fontSize: 14,
@@ -121,9 +121,9 @@ class _TasksScreenState extends State<TasksScreen> {
               onComplete: (context, snapshot) {
                 final tasks = snapshot.docs;
                 if (tasks.isEmpty) {
-                  return const EmptyWidget(
+                  return EmptyWidget(
                     icon: FontAwesomeIcons.listCheck,
-                    title: "لا يوجد مهمات مضافة",
+                    title: context.appLocalization.noAddedTasks
                   );
                 }
                 return ListView.separated(

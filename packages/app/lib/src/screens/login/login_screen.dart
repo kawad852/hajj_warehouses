@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomButton(
-        text: "تسجيل الدخول",
+        text: context.appLocalization.login,
         onPressed: () {
           _login(context);
         },
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const CustomSvg(MyIcons.logo),
             const SizedBox(height: 30),
             Text(
-              "إدارة العمليات في مخازن الحج",
+              context.appLocalization.managingHajjOperations,
               style: TextStyle(
                 color: context.colorPalette.black,
                 fontSize: 20,
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Text(
-              "ببساطة",
+              context.appLocalization.simply,
               style: TextStyle(
                 color: context.colorPalette.primary,
                 fontSize: 20,
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   TitledTextField(
-                    title: "اسم المستخدم",
+                    title: context.appLocalization.userName,
                     child: TextEditor(
                       onChanged: (value) => _email = value,
                       prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.user)),
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 10),
                   TitledTextField(
-                    title: "كلمة المرور",
+                    title: context.appLocalization.password,
                     child: PasswordEditor(
                       onChanged: (value) => _password = value!,
                       initialValue: null,
@@ -104,13 +104,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "هل نسيت كلمة المرور ؟ ",
+                        context.appLocalization.forgotPassword,
                         style: TextStyle(color: context.colorPalette.black, fontSize: 14),
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "استعادة كلمة المرور",
+                          context.appLocalization.resetPassword,
                           style: TextStyle(color: context.colorPalette.primary, fontSize: 14),
                         ),
                       ),

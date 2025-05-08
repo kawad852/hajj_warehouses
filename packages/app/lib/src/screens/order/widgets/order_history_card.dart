@@ -8,20 +8,20 @@ class OrderHistoryCard extends StatelessWidget {
 
   (String, String) _getLabels(BuildContext context) {
     final status = OrderStatusEnum.values.firstWhere((e) => e.value == history.status);
-    const orderLabel = "الطلب";
+     String orderLabel = context.appLocalization.theOrder;
     switch (status) {
       case OrderStatusEnum.placed:
-        return ("إرسال", orderLabel);
+        return (context.appLocalization.send, orderLabel);
       case OrderStatusEnum.approved:
-        return ("الموافقة على", orderLabel);
+        return (context.appLocalization.approve, orderLabel);
       case OrderStatusEnum.inDelivery:
-        return ("إرسال", '$orderLabel الى التوصيل');
+        return (context.appLocalization.send, '$orderLabel ${context.appLocalization.toDelivery}');
       case OrderStatusEnum.rejected:
-        return ("رفض", orderLabel);
+        return (context.appLocalization.reject, orderLabel);
       case OrderStatusEnum.canceled:
-        return ("إلغاء", orderLabel);
+        return (context.appLocalization.cancel, orderLabel);
       case OrderStatusEnum.completed:
-        return ("إستلام", orderLabel);
+        return (context.appLocalization.receive, orderLabel);
     }
   }
 

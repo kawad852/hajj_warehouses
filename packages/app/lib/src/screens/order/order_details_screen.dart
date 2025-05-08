@@ -56,7 +56,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title: const Text('الأصناف'),
+          title:Text(context.appLocalization.items),
           children:
               items.map((e) {
                 return SimpleDialogOption(child: Text("(${e.quantity}) ${e.name}"));
@@ -81,7 +81,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         final order = snapshot.data!;
         final operation = order.operation!;
         return Scaffold(
-          appBar: AppBar(title: AppBarText("طلب رقم ${order.id}#")),
+          appBar: AppBar(title: AppBarText("${context.appLocalization.orderNumber} ${order.id}#")),
           bottomNavigationBar:
               order.status == OrderStatusEnum.placed.value && kIsAdmin
                   ? BottomAppBar(
@@ -97,7 +97,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               );
                             },
                             child: Text(
-                              "قبول الطلب",
+                              context.appLocalization.acceptOrder,
                               style: TextStyle(
                                 color: context.colorPalette.white,
                                 fontSize: 16,
@@ -127,7 +127,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             },
                             backgroundColor: context.colorPalette.redC10,
                             child: Text(
-                              "رفض الطلب",
+                              context.appLocalization.rejectOrder,
                               style: TextStyle(
                                 color: context.colorPalette.white,
                                 fontSize: 16,
@@ -148,7 +148,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        "حالة الطلب : ${operation.requestType == RequestTypeEnum.normal.value ? "عادية" : "طارئة"}",
+                        "${context.appLocalization.requestStatus} : ${operation.requestType == RequestTypeEnum.normal.value ? context.appLocalization.normal : context.appLocalization.urgent}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.black001,
@@ -164,7 +164,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               const SizedBox(height: 10),
               OrderCard(
                 child: Text(
-                  "وقت الطلب : ${DateFormat.yMd(context.languageCode).add_jm().format(order.createdAt!)}",
+                  "${context.appLocalization.orderTime} : ${DateFormat.yMd(context.languageCode).add_jm().format(order.createdAt!)}",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.black001,
@@ -188,7 +188,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
-                                "${operation.items.length} اصناف في الطلب",
+                                "${operation.items.length} ${context.appLocalization.itemsInOrder}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: context.colorPalette.white,
@@ -216,7 +216,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           },
                           backgroundColor: context.colorPalette.greyC4C,
                           child: Text(
-                            "إستلام الطلب",
+                            context.appLocalization.receiveOrder,
                             style: TextStyle(
                               color: context.colorPalette.black001,
                               fontSize: 14,
@@ -235,7 +235,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   child: ListBody(
                     children: [
                       Text(
-                        "ملاحظات حول الطلب",
+                        context.appLocalization.notesAboutOrder,
                         style: TextStyle(
                           color: context.colorPalette.black001,
                           fontSize: 14,
@@ -273,7 +273,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  "عمليات تمت على الطلب",
+                  context.appLocalization.actionsTakenOnOrder,
                   style: TextStyle(
                     color: context.colorPalette.black001,
                     fontSize: 14,

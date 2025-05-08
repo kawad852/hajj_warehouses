@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Expanded(
                     child: HomeBubble(
                       onTap: () {},
-                      title: index == 0 ? "المهمة الحالية" : "المهمة التالية",
+                      title: index == 0 ? context.appLocalization.currentTask : context.appLocalization.nextTask,
                       task: task.data().title,
                       value: "02 : 31 : 56",
                       valueIcon: MyIcons.timer,
@@ -59,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             context.push((context) => const TransactionsScreen());
                           },
-                          title: "رصيد العهدة",
-                          task: "${branch.balance.toStringAsFixed(2)} ريال",
+                          title: context.appLocalization.imprestBalance,
+                          task: "${branch.balance.toStringAsFixed(2)} ${context.appLocalization.riyal}",
                           prefixIcon: MyIcons.wallet,
                         );
                       },
@@ -76,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               return const InventoryScreen();
                             });
                           },
-                          title: "المخزون",
-                          task: items.isNotEmpty ? "لديك اصناف بحاجة لتزويد" : "-",
+                          title: context.appLocalization.stock,
+                          task: items.isNotEmpty ? context.appLocalization.youHaveItemsNeedRestocking : "-",
                           prefixIcon: MyIcons.box,
                           taskColor: context.colorPalette.redC10,
                         );
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       context.push((context) => const UsersScreen());
                     },
-                    title: "الكادر البشري",
+                    title: context.appLocalization.humanResources,
                     prefixIcon: MyIcons.people,
                   ),
                 ),
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: HomeBubble(
                 onTap: () {},
-                title: "رسائل إدارية",
+                title: context.appLocalization.administrativeMessages,
                 expandedTask: true,
                 task:
                     "يرجى الإلتزام بمواعيد تقديم الوجبات وحسن التعامل مع حجاج بيت الله ، شاكرين لكم تعاونكم وجزاكم الله خير الجزاء.",
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              "مهامي",
+                              context.appLocalization.myTasks,
                               style: TextStyle(
                                 color: context.colorPalette.white,
                                 fontSize: 14,

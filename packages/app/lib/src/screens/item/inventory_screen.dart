@@ -25,13 +25,13 @@ class _InventoryScreenState extends State<InventoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("المخزون"), forceMaterialTransparency: true),
+      appBar: AppBar(title: Text(context.appLocalization.stock), forceMaterialTransparency: true),
       body: CustomFirestoreQueryBuilder(
         query: _query,
         onComplete: (context, snapshot) {
           final items = snapshot.docs;
           if (items.isEmpty) {
-            return EmptyWidget(title: "لا يوجد اصناف بالمخزون");
+            return EmptyWidget(title: context.appLocalization.stockIsEmpty);
           }
           return Padding(
             padding: const EdgeInsets.all(20),

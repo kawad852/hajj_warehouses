@@ -13,7 +13,7 @@ class _OutOfStockItemsScreenState extends State<OutOfStockItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("اصناف بحاجة إلى تزويد"), forceMaterialTransparency: true),
+      appBar: AppBar(title: Text(context.appLocalization.itemsNeedingRestock), forceMaterialTransparency: true),
       body: OutOfStockSelector(
         builder: (context, items) {
           if (items.isEmpty) {

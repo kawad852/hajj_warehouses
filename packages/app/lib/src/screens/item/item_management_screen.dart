@@ -63,10 +63,10 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
           final item = snapshot.data!;
           return CustomScrollView(
             slivers: [
-              const SliverAppBar(
+               SliverAppBar(
                 pinned: true,
-                title: AppBarText("إدارة صنف"),
-                actions: [
+                title: AppBarText(context.appLocalization.manageItem),
+                actions: const [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: CustomSvg(MyIcons.edit, width: 30),
@@ -78,14 +78,14 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 sliver: SliverList.list(
                   children: [
-                    ManageButton(title: "اسم الصنف: ${item.name}"),
+                    ManageButton(title: "${context.appLocalization.itemName}: ${item.name}"),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         children: [
                           Expanded(
                             child: ManageButton(
-                              title: "الكمية المتوفرة : ${item.quantity}",
+                              title: "${context.appLocalization.availableQuantity} : ${item.quantity}",
                               backgroundColor: context.colorPalette.primary,
                               textColor: context.colorPalette.white,
                               textAlign: TextAlign.center,
@@ -94,7 +94,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: ManageButton(
-                              title: "الحد الأدنى : ${item.minimumQuantity}",
+                              title: "${context.appLocalization.minimumLimit} : ${item.minimumQuantity}",
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -109,7 +109,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                             onTap: () {
                               _openSheet(context, item: item, operationType: OperationType.add);
                             },
-                            title: "اضافة كمية",
+                            title: context.appLocalization.addQuantity,
                             iconWidth: 20,
                             icon: MyIcons.addTask,
                           ),
@@ -121,7 +121,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                             onTap: () {
                               _openSheet(context, item: item, operationType: OperationType.supply);
                             },
-                            title: "طلب تزويد",
+                            title: context.appLocalization.supplyRequest,
                             icon: MyIcons.truckTime,
                           ),
                         ),
@@ -138,7 +138,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                                   maxQuantity: item.quantity,
                                 );
                               },
-                              title: "إتلاف اصناف",
+                              title: context.appLocalization.discardItems,
                               backgroundColor: context.colorPalette.redC33,
                               icon: MyIcons.trash,
                               iconColor: null,
@@ -158,14 +158,14 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                         );
                       },
                       width: 115,
-                      title: "سحب كمية",
+                      title: context.appLocalization.withdrawQuantity,
                       iconWidth: 20,
                       icon: MyIcons.addTask,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 60, bottom: 10),
                       child: Text(
-                        "عمليات تمت على الصنف",
+                        context.appLocalization.actionsTakenOnItem,
                         style: TextStyle(
                           color: context.colorPalette.black001,
                           fontSize: 14,

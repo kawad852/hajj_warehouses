@@ -1,69 +1,71 @@
+import 'package:app/main.dart';
+import 'package:path/path.dart';
 import 'package:shared/shared.dart';
 
 extension OperationExteension on OperationType {
   RadioInfoModel get _requestTypeRadioInfoModel => RadioInfoModel(
-    label: "حالة الطلب",
+    label: rootNavigatorKey.currentContext!.appLocalization.requestStatus,
     items: [
-      RadioModel(label: "طارئة", value: RequestTypeEnum.urgent.value),
-      RadioModel(label: "عادية", value: RequestTypeEnum.normal.value),
+      RadioModel(label: rootNavigatorKey.currentContext!.appLocalization.urgent, value: RequestTypeEnum.urgent.value),
+      RadioModel(label: rootNavigatorKey.currentContext!.appLocalization.normal, value: RequestTypeEnum.normal.value),
     ],
   );
 
   OperationInfoModel getInfo(BuildContext context, bool singleItem) {
-    final addButtonLabel = "إضافة";
-    final sendOrderButtonLabel = "إرسال الطلب";
+    final addButtonLabel = rootNavigatorKey.currentContext!.appLocalization.add;
+    final sendOrderButtonLabel = rootNavigatorKey.currentContext!.appLocalization.sendRequest;
     switch (this) {
       case OperationType.add:
         return OperationInfoModel(
-          title: singleItem ? "إضافة كمية جديدة للصنف" : "إضافة كمية للمخزون",
+          title: singleItem ? rootNavigatorKey.currentContext!.appLocalization.addNewQuantityForItem : rootNavigatorKey.currentContext!.appLocalization.addQuantityToStock,
           buttonLabel: addButtonLabel,
           radio: RadioInfoModel(
-            label: "نوع التوريد",
+            label: rootNavigatorKey.currentContext!.appLocalization.supplyType,
             items: [
-              RadioModel(label: "مشتريات ذاتية", value: SupplyTypeEnum.selfPurchase.value),
-              RadioModel(label: "استلام طلبية", value: SupplyTypeEnum.orderReceiving.value),
+              RadioModel(label: rootNavigatorKey.currentContext!.appLocalization.selfPurchase, value: SupplyTypeEnum.selfPurchase.value),
+              RadioModel(label: rootNavigatorKey.currentContext!.appLocalization.receiveOrder, value: SupplyTypeEnum.orderReceiving.value),
             ],
           ),
         );
 
       case OperationType.supply:
         return OperationInfoModel(
-          title: "طلب تزويد كمية للصنف",
+          title: rootNavigatorKey.currentContext!.appLocalization.requestSupplyQuantityItem,
           radio: _requestTypeRadioInfoModel,
           buttonLabel: sendOrderButtonLabel,
-          noteLabel: "مشروحات وملاحظات حول الطلب",
+          noteLabel: rootNavigatorKey.currentContext!.appLocalization.explanationsNotesAboutRequest,
         );
       case OperationType.transfer:
         return OperationInfoModel(
-          title: "نقل مواد",
+          title: rootNavigatorKey.currentContext!.appLocalization.transferMaterials,
           buttonLabel: sendOrderButtonLabel,
           radio: _requestTypeRadioInfoModel,
-          noteLabel: "مشروحات وملاحظات حول الطلب",
+          noteLabel: rootNavigatorKey.currentContext!.appLocalization.explanationsNotesAboutRequest,
         );
 
       case OperationType.destroy:
         return OperationInfoModel(
-          title: singleItem ? "أتلاف كمية للصنف" : "إتلاف أصناف",
-          buttonLabel: "تسجيل الإتلاف",
+          title: singleItem ? rootNavigatorKey.currentContext!.appLocalization.disposeQuantityItem : rootNavigatorKey.currentContext!.appLocalization.discardItems,
+          buttonLabel: rootNavigatorKey.currentContext!.appLocalization.recordDisposal,
           radio: RadioInfoModel(
-            label: "سبب الإتلاف",
+            label: rootNavigatorKey.currentContext!.appLocalization.reasonForDisposal,
             items: [
-              RadioModel(label: "فاسدة", value: DestroyReasonEnum.spoiled.value),
+              RadioModel(label: rootNavigatorKey.currentContext!.appLocalization.damaged, value: DestroyReasonEnum.spoiled.value),
               RadioModel(
-                label: "سوء نقل أو تخزين",
+                label: rootNavigatorKey.currentContext!.appLocalization.poorTransportationOrStorage,
                 value: DestroyReasonEnum.badTransportOrStorage.value,
               ),
             ],
           ),
-          noteLabel: "مشروحات وملاحظات حول الإتلاف",
+          noteLabel: rootNavigatorKey.currentContext!.appLocalization.explanationsNotesAboutDisposal,
         );
 
       case OperationType.withdraw:
         return OperationInfoModel(
-          title: singleItem ? "سحب كمية للصنف" : "سحب أصناف",
-          buttonLabel: "سحب",
+          title: singleItem ? rootNavigatorKey.currentContext!.appLocalization.withdrawQuantityItem : rootNavigatorKey.currentContext!.appLocalization.withdrawItems,
+          buttonLabel: rootNavigatorKey.currentContext!.appLocalization.withdraw,
           radio: null,
-          noteLabel: "مشروحات وملاحظات حول السحب",
+          noteLabel: rootNavigatorKey.currentContext!.appLocalization.explanationsNotesWithdrawal,
         );
 
       default:

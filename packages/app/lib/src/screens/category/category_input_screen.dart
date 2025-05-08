@@ -40,20 +40,20 @@ class _CategoryInputScreenState extends State<CategoryInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("إضافة قسم")),
+      appBar: AppBar(title:Text(context.appLocalization.addSection)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              TextEditor(onChanged: (value) => _category.name = value!, hintText: "إسم الصنف"),
+              TextEditor(onChanged: (value) => _category.name = value!, hintText: context.appLocalization.itemName),
               StretchedButton(
                 margin: const EdgeInsets.only(top: 30),
                 onPressed: () {
                   _onAdd(context);
                 },
-                child: const Text("إضافة"),
+                child: Text(context.appLocalization.add),
               ),
             ],
           ),

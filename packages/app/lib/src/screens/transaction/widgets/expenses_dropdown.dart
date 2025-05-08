@@ -22,7 +22,7 @@ class _ExpensesDropdownState extends State<ExpensesDropdown> {
   @override
   Widget build(BuildContext context) {
     return TitledTextField(
-      title: "نوع المصروف",
+      title: context.appLocalization.expenseType,
       textStyle: TextStyle(
         color: context.colorPalette.black001,
         fontSize: 14,

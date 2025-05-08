@@ -28,7 +28,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomButton(
-        text: "اضافة قسم جديد",
+        text: context.appLocalization.addNewSection,
         onPressed: () {
           context.push((context) {
             return const CategoryInputScreen();
@@ -37,14 +37,14 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
       ),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(pinned: true, title: AppBarText("ادارة الأقسام والأصناف")),
+          SliverAppBar(pinned: true, title: AppBarText(context.appLocalization.departmentAndItemManagement)),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             sliver: SliverList.list(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "لإدارة الأصناف والكميات المتوفرة يممكنك ادارتها من داخل القسم الذي يتبع له الصنف",
+                  context.appLocalization.manageItemsAndQuantities,
                   style: TextStyle(
                     color: context.colorPalette.grey666,
                     fontSize: 15,
@@ -55,7 +55,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: SearchScreen(
                     indexName: AlgoliaIndices.categories.value,
-                    hintText: 'إبحث عن قسم',
+                    hintText: context.appLocalization.searchForSection,
                   ),
                 ),
               ],

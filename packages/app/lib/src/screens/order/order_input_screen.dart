@@ -42,12 +42,12 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomButton(
-        text: "ارسال الطلب",
+        text: context.appLocalization.sendRequest,
         onPressed: () {
           _onAdd(context);
         },
       ),
-      appBar: AppBar(title: const AppBarText("ارسال طلب جديد")),
+      appBar: AppBar(title:AppBarText(context.appLocalization.sendNewRequest)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
@@ -65,7 +65,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  "حالة الطلب",
+                  context.appLocalization.requestStatus,
                   style: TextStyle(
                     color: context.colorPalette.black001,
                     fontSize: 16,
@@ -79,7 +79,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               children: [
                 CustomRadio(
                   value: false,
-                  title: "عادية",
+                  title: context.appLocalization.normal,
                   groupValue: '0',
                   onChanged: (value) {
                     setState(() {});
@@ -87,7 +87,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                 ),
                 CustomRadio(
                   value: true,
-                  title: "طارئة",
+                  title: context.appLocalization.urgent,
                   groupValue: '0',
                   onChanged: (value) {
                     setState(() {});
@@ -97,7 +97,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
             ),
             const SizedBox(height: 50),
             Text(
-              "مشروحات وملاحظات حول الطلب",
+              context.appLocalization.explanationsNotesAboutRequest,
               style: TextStyle(
                 color: context.colorPalette.black001,
                 fontSize: 16,
@@ -122,7 +122,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               ),
             ),
             Text(
-              "يمكنك اضافة اكثر من صنف إلى الطلب مع تحديد الكمية المطلوبة لكل صنف  ",
+              context.appLocalization.youCanAddMoreItemToOrder,
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 14,
@@ -157,7 +157,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               onTap: (e) {
                 final ids = [];
                 if (ids.contains(e.id)) {
-                  Fluttertoast.showToast(msg: "الصنف مضاف مسبقا");
+                  Fluttertoast.showToast(msg: context.appLocalization.itemAlreadyAdded);
                   return;
                 }
                 context.pop();
@@ -166,7 +166,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
               },
               builder: (controller) {
                 return BaseEditor(
-                  hintText: "ادخل رقم الصنف او الإسم",
+                  hintText: context.appLocalization.enterItemNumberOrName,
                   hintStyle: TextStyle(
                     color: context.colorPalette.grey666,
                     fontSize: 14,

@@ -20,11 +20,11 @@ class TableContainer extends StatelessWidget {
 
   (String, Color) _getStatusLabel(BuildContext context) {
     if (status == ItemStatusEnum.outOfStock.value) {
-      return ("غير متوفر", context.colorPalette.redC10);
+      return (context.appLocalization.notAvailable, context.colorPalette.redC10);
     } else if (status == ItemStatusEnum.lowStock.value) {
-      return ("بحاحة", context.colorPalette.yellowC02);
+      return (context.appLocalization.needed, context.colorPalette.yellowC02);
     } else {
-      return ("متوفر", context.colorPalette.primary);
+      return (context.appLocalization.available, context.colorPalette.primary);
     }
   }
 

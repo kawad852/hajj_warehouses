@@ -74,7 +74,7 @@ class UserCard extends StatelessWidget {
                     return UserInputScreen(user: user);
                   });
                 },
-                text: "تحرير",
+                text: context.appLocalization.edit,
                 icon: MyIcons.edit,
               ),
             ],

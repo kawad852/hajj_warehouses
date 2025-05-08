@@ -26,7 +26,7 @@ class AddTaskWidget extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Text(
-          "إضافة مهمة جديدة",
+          context.appLocalization.addNewTask,
           style: TextStyle(
             color: context.colorPalette.black,
             fontSize: 16,

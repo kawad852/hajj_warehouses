@@ -14,7 +14,7 @@ class UserInfoWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "السلام عليكم ، ",
+                  context.appLocalization.hello,
                   style: TextStyle(
                     color: context.colorPalette.primary,
                     fontSize: 14,
@@ -49,7 +49,7 @@ class UserInfoWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "مدير فرع - ",
+                      context.appLocalization.branchManager,
                       style: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 14,
@@ -58,7 +58,7 @@ class UserInfoWidget extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        "${kBranch?.name} - شركة الفارس",
+                        "${kBranch?.name} ${context.appLocalization.alFarisCompany}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.primary,
