@@ -1,3 +1,4 @@
+import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:app/src/screens/task/widgets/toggle_button_child.dart';
 import 'package:shared/shared.dart';
 
@@ -7,6 +8,7 @@ class TaskToggleButtons extends StatelessWidget {
   final String? subTaskId;
   final String imagesField;
   final String status;
+  final DateTime? startedAt;
 
   const TaskToggleButtons({
     super.key,
@@ -15,6 +17,7 @@ class TaskToggleButtons extends StatelessWidget {
     required this.subTaskId,
     required this.imagesField,
     required this.status,
+    this.startedAt,
   });
 
   DocumentReference<TaskModel> get _mainTaskDocRef => kFirebaseInstant.tasks.doc(mainTaskId);
@@ -89,7 +92,13 @@ class TaskToggleButtons extends StatelessWidget {
     } else if (_isInProgress) {
       return [
         const ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
-        const ToggleButtonChild(title: "01 : 33 : 22"),
+        TimerBuilder(
+          startDateTime: startedAt,
+          countUp: true,
+          child: (time) {
+            return ToggleButtonChild(title: time);
+          },
+        ),
         const ToggleButtonChild(icon: MyIcons.checkWhite, title: "إنهاء المهمة"),
       ];
     }

@@ -134,6 +134,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
             subTaskId: task.id,
             imagesField: values.$1,
             status: status,
+            startedAt: task.startedAt,
           ),
         ),
       ],

@@ -6,12 +6,14 @@ class TimerBuilder extends StatefulWidget {
   final Widget Function(String time) child;
   final DateTime? startDateTime;
   final DateTime? endDateTime;
+  final bool countUp;
 
   const TimerBuilder({
     super.key,
     required this.child,
-    required this.endDateTime,
+    this.endDateTime,
     this.startDateTime,
+    this.countUp = false,
   });
 
   @override
@@ -30,7 +32,11 @@ class _TimerBuilderState extends State<TimerBuilder> {
   void _updateRemaining() {
     final date = widget.startDateTime ?? DateTime.now();
     setState(() {
-      _remaining = widget.endDateTime?.difference(date) ?? Duration.zero;
+      if (widget.countUp) {
+        _remaining = kNowDate.difference(widget.startDateTime ?? kNowDate);
+      } else {
+        _remaining = widget.endDateTime?.difference(date) ?? Duration.zero;
+      }
       if (_remaining.isNegative) {
         _remaining = Duration.zero;
         _timer?.cancel();
