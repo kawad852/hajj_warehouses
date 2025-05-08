@@ -1,9 +1,7 @@
 enum TaskStatusEnum {
   notStarted('NOT-STARTED'),
   inProgress('IN-PROGRESS'),
-  completed('COMPLETED'),
-  late('LATE'),
-  notCompleted('NOT-COMPLETED');
+  completed('COMPLETED');
 
   final String value;
 

@@ -282,5 +282,8 @@
   "activateApplicationAccessPermission":"Activate application access permission",
   "inEnglishLetters":"In English letters",
   "view":"View",
-  "edit":"Edit"
+  "edit":"Edit",
+  "nextTask":"Next task",
+  "taskEndTimeMustAfterStartTime":"The task end time must be after the start time.",
+  "noAddedTasks":"No added tasks"
 }

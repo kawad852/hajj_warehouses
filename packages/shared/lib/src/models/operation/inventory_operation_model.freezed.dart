@@ -31,8 +31,8 @@ mixin _$InventoryOperationModel {
   set id(String value) => throw _privateConstructorUsedError;
   LightUserModel get user => throw _privateConstructorUsedError;
   set user(LightUserModel value) => throw _privateConstructorUsedError;
-  String get branchId => throw _privateConstructorUsedError;
-  set branchId(String value) => throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   set notes(String? value) => throw _privateConstructorUsedError;
   String? get supplyType => throw _privateConstructorUsedError;
@@ -84,7 +84,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     LightUserModel user,
-    String branchId,
+    LightBranchModel branch,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -100,6 +100,7 @@ abstract class $InventoryOperationModelCopyWith<$Res> {
   });
 
   $LightUserModelCopyWith<$Res> get user;
+  $LightBranchModelCopyWith<$Res> get branch;
   $LightBranchModelCopyWith<$Res>? get transferFromBranch;
   $LightBranchModelCopyWith<$Res>? get transferToBranch;
 }
@@ -125,7 +126,7 @@ class _$InventoryOperationModelCopyWithImpl<
     Object? createdAt = freezed,
     Object? id = null,
     Object? user = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? notes = freezed,
     Object? supplyType = freezed,
     Object? requestType = freezed,
@@ -156,11 +157,11 @@ class _$InventoryOperationModelCopyWithImpl<
                     ? _value.user
                     : user // ignore: cast_nullable_to_non_nullable
                         as LightUserModel,
-            branchId:
-                null == branchId
-                    ? _value.branchId
-                    : branchId // ignore: cast_nullable_to_non_nullable
-                        as String,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
             notes:
                 freezed == notes
                     ? _value.notes
@@ -240,6 +241,16 @@ class _$InventoryOperationModelCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of InventoryOperationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $LightBranchModelCopyWith<$Res>? get transferFromBranch {
     if (_value.transferFromBranch == null) {
       return null;
@@ -278,7 +289,7 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     LightUserModel user,
-    String branchId,
+    LightBranchModel branch,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -295,6 +306,8 @@ abstract class _$$InventoryOperationModelImplCopyWith<$Res>
 
   @override
   $LightUserModelCopyWith<$Res> get user;
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
   @override
   $LightBranchModelCopyWith<$Res>? get transferFromBranch;
   @override
@@ -322,7 +335,7 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? user = null,
-    Object? branchId = null,
+    Object? branch = null,
     Object? notes = freezed,
     Object? supplyType = freezed,
     Object? requestType = freezed,
@@ -353,11 +366,11 @@ class __$$InventoryOperationModelImplCopyWithImpl<$Res>
                 ? _value.user
                 : user // ignore: cast_nullable_to_non_nullable
                     as LightUserModel,
-        branchId:
-            null == branchId
-                ? _value.branchId
-                : branchId // ignore: cast_nullable_to_non_nullable
-                    as String,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
         notes:
             freezed == notes
                 ? _value.notes
@@ -431,7 +444,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
     @TimestampSerializer() this.createdAt,
     this.id = '',
     required this.user,
-    required this.branchId,
+    required this.branch,
     this.notes,
     this.supplyType,
     this.requestType,
@@ -458,7 +471,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
   @override
   LightUserModel user;
   @override
-  String branchId;
+  LightBranchModel branch;
   @override
   String? notes;
   @override
@@ -489,7 +502,7 @@ class _$InventoryOperationModelImpl extends _InventoryOperationModel {
 
   @override
   String toString() {
-    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branchId: $branchId, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, operationType: $operationType, amount: $amount, items: $items, itemIds: $itemIds, images: $images, files: $files)';
+    return 'InventoryOperationModel(createdAt: $createdAt, id: $id, user: $user, branch: $branch, notes: $notes, supplyType: $supplyType, requestType: $requestType, destroyReason: $destroyReason, transferFromBranch: $transferFromBranch, transferToBranch: $transferToBranch, operationType: $operationType, amount: $amount, items: $items, itemIds: $itemIds, images: $images, files: $files)';
   }
 
   /// Create a copy of InventoryOperationModel
@@ -513,7 +526,7 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     required LightUserModel user,
-    required String branchId,
+    required LightBranchModel branch,
     String? notes,
     String? supplyType,
     String? requestType,
@@ -544,8 +557,8 @@ abstract class _InventoryOperationModel extends InventoryOperationModel {
   LightUserModel get user;
   set user(LightUserModel value);
   @override
-  String get branchId;
-  set branchId(String value);
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
   @override
   String? get notes;
   set notes(String? value);

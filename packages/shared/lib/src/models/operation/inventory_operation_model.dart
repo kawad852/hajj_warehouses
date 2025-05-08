@@ -12,7 +12,7 @@ class InventoryOperationModel with _$InventoryOperationModel {
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     required LightUserModel user,
-    required String branchId,
+    required LightBranchModel branch,
     String? notes,
     String? supplyType,
     String? requestType,

@@ -1,0 +1,4 @@
+<resources>
+    <!-- Example color name and value -->
+    <color name="notification_color">#FFFFFFFF</color>
+</resources>

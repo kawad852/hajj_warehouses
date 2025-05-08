@@ -12,9 +12,12 @@ class TaskInfo extends StatelessWidget {
         width: double.infinity,
         height: 54,
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        color: context.colorPalette.greyF2F,
+        decoration: BoxDecoration(
+          color: context.colorPalette.greyF2F,
+          borderRadius: BorderRadius.circular(6),
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(

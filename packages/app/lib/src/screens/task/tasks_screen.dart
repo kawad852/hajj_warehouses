@@ -1,9 +1,12 @@
 import 'package:app/shared.dart';
 import 'package:app/src/screens/task/widgets/date_widget.dart';
+import 'package:app/src/screens/task/widgets/full_calendar_builder.dart';
 import 'package:shared/shared.dart';
 
 class TasksScreen extends StatefulWidget {
-  const TasksScreen({super.key});
+  final bool fullCalendar;
+
+  const TasksScreen({super.key, this.fullCalendar = false});
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -21,7 +24,7 @@ class _TasksScreenState extends State<TasksScreen> {
       Filter(MyFields.createdAt, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
       Filter(MyFields.createdAt, isLessThan: Timestamp.fromDate(endDate)),
     );
-    return kFirebaseInstant.tasks.where(filter);
+    return kFirebaseInstant.tasks.where(filter).orderByDesc;
   }
 
   @override
@@ -43,60 +46,73 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          widget.fullCalendar
+              ? AppBar(title:  AppBarText(context.appLocalization.allTasks), forceMaterialTransparency: true)
+              : null,
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Positioned(
-                  bottom: 0,
-                  top: 26,
-                  left: 0,
-                  right: 0,
-                  child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children:
-                          _dates.map((e) {
-                            return DateWidget(
-                              onTap: () {
-                                setState(() {
-                                  _selectedDate = e.$1;
-                                });
-                              },
-                              title: e.$2,
-                              isSelected: _selectedDate == e.$1,
-                            );
-                          }).toList(),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        context.push((context) => const FullCalenderSreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          context.appLocalization.viewAll,
-                          style: TextStyle(
-                            color: context.colorPalette.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+          if (widget.fullCalendar)
+            FullCalendarBuilder(
+              onChanged: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Positioned(
+                    bottom: 0,
+                    top: 26,
+                    left: 0,
+                    right: 0,
+                    child: Divider(color: context.colorPalette.greyC4C, thickness: 2),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children:
+                            _dates.map((e) {
+                              return DateWidget(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedDate = e.$1;
+                                  });
+                                },
+                                title: e.$2,
+                                isSelected: _selectedDate == e.$1,
+                              );
+                            }).toList(),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push((context) => const TasksScreen(fullCalendar: true));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            context.appLocalization.viewAll,
+                            style: TextStyle(
+                              color: context.colorPalette.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
           const StatusWidget(),
           Expanded(
             child: CustomFirestoreQueryBuilder(
@@ -104,6 +120,12 @@ class _TasksScreenState extends State<TasksScreen> {
               query: _tasksQuery,
               onComplete: (context, snapshot) {
                 final tasks = snapshot.docs;
+                if (tasks.isEmpty) {
+                  return EmptyWidget(
+                    icon: FontAwesomeIcons.listCheck,
+                    title: context.appLocalization.noAddedTasks
+                  );
+                }
                 return ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 15),
                   itemCount: tasks.length,
@@ -120,90 +142,6 @@ class _TasksScreenState extends State<TasksScreen> {
               },
             ),
           ),
-          // Container(
-          //   width: double.infinity,
-          //   height: 91,
-          //   decoration: BoxDecoration(
-          //     color: context.colorPalette.greyE2E,
-          //     borderRadius: BorderRadius.circular(kRadiusPrimary),
-          //   ),
-          //   child: Row(
-          //     children: [
-          //       Container(
-          //         width: 5,
-          //         height: 91,
-          //         decoration: BoxDecoration(
-          //           color: context.colorPalette.greyC4C,
-          //           borderRadius: const BorderRadiusDirectional.only(
-          //             topStart: Radius.circular(kRadiusPrimary),
-          //             bottomStart: Radius.circular(kRadiusPrimary),
-          //           ),
-          //         ),
-          //       ),
-          //       Expanded(
-          //         child: Padding(
-          //           padding: const EdgeInsets.symmetric(horizontal: 10),
-          //           child: Column(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Row(
-          //                 children: [
-          //                   const CustomSvg(MyIcons.checkSolid),
-          //                   const SizedBox(width: 10),
-          //                   Expanded(
-          //                     child: Text(
-          //                       "التحضير لوجبة الغداء",
-          //                       overflow: TextOverflow.ellipsis,
-          //                       style: TextStyle(
-          //                         color: context.colorPalette.black001,
-          //                         fontSize: 14,
-          //                         fontWeight: FontWeight.w800,
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ],
-          //               ),
-          //               const SizedBox(height: 6),
-          //               Text(
-          //                 "البدأ بإعداد وتجهيز الخضار واللحم والأصناف الضرورية واللازمة للوجبة واخراج المواد اللازمة من المخزون",
-          //                 maxLines: 2,
-          //                 overflow: TextOverflow.ellipsis,
-          //                 style: TextStyle(
-          //                   color: context.colorPalette.black001,
-          //                   fontSize: 14,
-          //                   fontWeight: FontWeight.w500,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Container(
-          //         width: 32,
-          //         height: 91,
-          //         alignment: Alignment.center,
-          //         decoration: BoxDecoration(
-          //           color: context.colorPalette.grey708,
-          //           borderRadius: const BorderRadiusDirectional.only(
-          //             topEnd: Radius.circular(kRadiusPrimary),
-          //             bottomEnd: Radius.circular(kRadiusPrimary),
-          //           ),
-          //         ),
-          //         child: RotatedBox(
-          //           quarterTurns: 3,
-          //           child: Text(
-          //             "مكتملة",
-          //             style: TextStyle(
-          //               color: context.colorPalette.white,
-          //               fontSize: 14,
-          //               fontWeight: FontWeight.w800,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );

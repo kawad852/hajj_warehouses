@@ -66,8 +66,8 @@ class UserCard extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ToolButton(onTap: () {}, text: context.appLocalization.view, icon: MyIcons.eye),
-              const SizedBox(height: 5),
+              // ToolButton(onTap: () {}, text: "عرض", icon: MyIcons.eye),
+              // const SizedBox(height: 5),
               ToolButton(
                 onTap: () {
                   context.push((context) {

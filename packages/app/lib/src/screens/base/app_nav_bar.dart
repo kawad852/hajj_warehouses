@@ -12,6 +12,7 @@ class AppNavBar extends StatefulWidget {
 class _AppNavBarState extends State<AppNavBar> {
   int _currentIndex = 0;
   late PageController _pageController;
+  final cloudMessagingService = CloudMessagingService();
 
   final items = [
     MyIcons.home,
@@ -57,6 +58,8 @@ class _AppNavBarState extends State<AppNavBar> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    cloudMessagingService.requestPermission(context);
+    context.userProvider.updateDeviceToken(context);
   }
 
   @override
@@ -74,23 +77,23 @@ class _AppNavBarState extends State<AppNavBar> {
       appBar: AppBar(
         toolbarHeight: 80,
         title: const UserInfoWidget(),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: context.colorPalette.greyD9D),
-                borderRadius: BorderRadius.circular(kRadiusTertiary),
-              ),
-              child: const CustomSvg(MyIcons.notification),
-            ),
-          ),
-        ],
+        // actions: [
+        //   GestureDetector(
+        //     onTap: () {},
+        //     child: Container(
+        //       width: 40,
+        //       height: 40,
+        //       alignment: Alignment.center,
+        //       margin: const EdgeInsets.symmetric(horizontal: 15),
+        //       decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         border: Border.all(color: context.colorPalette.greyD9D),
+        //         borderRadius: BorderRadius.circular(kRadiusTertiary),
+        //       ),
+        //       child: const CustomSvg(MyIcons.notification),
+        //     ),
+        //   ),
+        // ],
       ),
       bottomNavigationBar: Container(
         height: withNotch ? 85 : 75,

@@ -234,5 +234,8 @@
   "activateApplicationAccessPermission":"تفعيل صلاحية الوصول للتطبيق",
   "inEnglishLetters":"بالأحرف الإنجليزية",
   "view":"عرض",
-  "edit":"تحرير"
+  "edit":"تحرير",
+  "nextTask":"المهمة التالية",
+  "taskEndTimeMustAfterStartTime":"وقت إنتهاء المهمة يجب ان يكون بعد وقت البداية",
+  "noAddedTasks":"لا يوجد مهمات مضافة"
 }

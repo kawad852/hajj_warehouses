@@ -67,7 +67,7 @@ class _ItemInputScreenState extends State<ItemInputScreen> {
                       operation: InventoryOperationModel(
                         operationType: OperationType.create.value,
                         items: [],
-                        branchId: kSelectedBranchId,
+                        branch: kBranch!,
                         user: kCurrentLightUser,
                       ),
                       onCreate: (batch) async {

@@ -22,4 +22,13 @@ class MyFields {
   static const String balance = 'balance';
   static const String idBranch = 'branch.id';
   static const String createTime = 'createTime';
+  static const String totalSubTasks = 'totalSubTasks';
+  static const String completedSubTasksCount = 'completedSubTasksCount';
+  static const String images = 'images';
+  static const String startedAt = 'startedAt';
+  static const String endedAt = 'endedAt';
+  static const String startingImages = 'startingImages';
+  static const String endingImages = 'endingImages';
+  static const String subTasks = 'subTasks';
+  static const String branch = 'branch';
 }
