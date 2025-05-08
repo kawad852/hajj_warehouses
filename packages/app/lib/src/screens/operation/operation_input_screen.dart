@@ -317,7 +317,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                     hintText: "ادخل رقم الصنف او الإسم",
                     filters:
                         _isTransferOperation
-                            ? '${MyFields.branchId}:${_operation.transferFromBranch?.id}'
+                            ? '${MyFields.idBranch}:${_operation.transferFromBranch?.id}'
                             : null,
                     onTap: (e) {
                       final ids = _operation.items.map((e) => e.id).toList();

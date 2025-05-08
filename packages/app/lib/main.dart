@@ -46,7 +46,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   get _outOfStockStream {
     final filter = Filter.and(
-      Filter(MyFields.branchId, isEqualTo: kSelectedBranchId),
+      Filter(MyFields.idBranch, isEqualTo: kSelectedBranchId),
       Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
     );
     return kFirebaseInstant.items
