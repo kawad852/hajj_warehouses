@@ -58,73 +58,78 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ),
               ),
             ],
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(150),
-              child: TaskHeader(task: task),
-            ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TaskHeader(task: task),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: ListBody(
                   children: [
-                    if ((inProgress || inCompleted) && task.startedAt != null) ...[
-                      TaskInfo(
-                        title: "بدأت المهمة في",
-                        value: "${task.startedAt!.getTime(context)} ",
+                    Row(
+                      children: [
+                        if ((inProgress || inCompleted) && task.startedAt != null) ...[
+                          TaskInfo(
+                            title: "بدأت المهمة في",
+                            value: "${task.startedAt!.getTime(context)} ",
+                          ),
+                        ],
+                        if (inCompleted && task.endedAt != null) ...[
+                          const SizedBox(width: 10),
+                          TaskInfo(
+                            title: "وقت الإنتهاء عند",
+                            value: task.endedAt!.getTime(context),
+                          ),
+                        ],
+                        if (inProgress && (task.endTime?.isAfter(kNowDate) ?? false)) ...[
+                          const SizedBox(width: 10),
+                          TimerBuilder(
+                            endDateTime: task.endTime,
+                            child: (time) {
+                              return TaskInfo(title: "يجب الإنهاء خلال", value: time);
+                            },
+                          ),
+                        ],
+                      ],
+                    ),
+                    if (task.totalSubTasks > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 10),
+                        child: Text(
+                          "المهام الفرعية",
+                          style: TextStyle(
+                            color: context.colorPalette.black001,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
                       ),
-                    ],
-                    if (inCompleted && task.endedAt != null) ...[
-                      const SizedBox(width: 10),
-                      TaskInfo(title: "وقت الإنتهاء عند", value: task.endedAt!.getTime(context)),
-                    ],
-                    if (inProgress && (task.endTime?.isAfter(kNowDate) ?? false)) ...[
-                      const SizedBox(width: 10),
-                      TimerBuilder(
-                        endDateTime: task.endTime,
-                        child: (time) {
-                          return TaskInfo(title: "يجب الإنهاء خلال", value: time);
-                        },
-                      ),
-                    ],
                   ],
                 ),
-                if (task.totalSubTasks > 0)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15, bottom: 10),
-                    child: Text(
-                      "المهام الفرعية",
-                      style: TextStyle(
-                        color: context.colorPalette.black001,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                Expanded(
-                  child: CustomFirestoreQueryBuilder(
-                    query: _subTasksQuery,
-                    onComplete: (context, snapshot) {
-                      return ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(height: 30),
-                        itemCount: snapshot.docs.length,
-                        padding: const EdgeInsets.only(bottom: 20),
-                        itemBuilder: (context, index) {
-                          if (snapshot.isLoadingMore(index)) {
-                            return const FPLoading();
-                          }
-                          final taskDocSnapshot = snapshot.docs[index];
-                          final subTask = taskDocSnapshot.data();
-                          return SubTaskCard(mainTaskId: task.id, task: subTask);
-                        },
-                      );
-                    },
-                  ),
+              ),
+
+              Expanded(
+                child: CustomFirestoreQueryBuilder(
+                  query: _subTasksQuery,
+                  onComplete: (context, snapshot) {
+                    return ListView.separated(
+                      separatorBuilder: (context, index) => const SizedBox(height: 30),
+                      itemCount: snapshot.docs.length,
+                      padding: const EdgeInsets.only(bottom: 20),
+                      itemBuilder: (context, index) {
+                        if (snapshot.isLoadingMore(index)) {
+                          return const FPLoading();
+                        }
+                        final taskDocSnapshot = snapshot.docs[index];
+                        final subTask = taskDocSnapshot.data();
+                        return SubTaskCard(mainTaskId: task.id, task: subTask);
+                      },
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

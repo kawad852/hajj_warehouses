@@ -89,7 +89,11 @@ class _SubTaskCardState extends State<SubTaskCard> {
                 ),
               ),
               children: [
-                if (images.isNotEmpty) TaskImagesListview(images: images),
+                if (images.isNotEmpty)
+                  TaskImagesListview(
+                    images: images,
+                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 10),
+                  ),
                 if (isCompleted)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),

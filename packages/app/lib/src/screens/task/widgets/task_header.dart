@@ -13,7 +13,6 @@ class TaskHeader extends StatelessWidget {
     final values = task.values;
     final images = values.$2;
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: AlignmentDirectional.topStart,
       decoration: const BoxDecoration(
@@ -90,8 +89,11 @@ class TaskHeader extends StatelessWidget {
               ),
             ],
           ),
-          if (images.isNotEmpty) TaskImagesListview(images: images),
-          const SizedBox(height: 10),
+          if (images.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 6),
+              child: TaskImagesListview(images: images),
+            ),
           TaskToggleButtons(
             images: images,
             mainTaskId: task.id,
