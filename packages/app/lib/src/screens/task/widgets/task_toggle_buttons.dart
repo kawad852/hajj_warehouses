@@ -17,6 +17,51 @@ class TaskToggleButtons extends StatelessWidget {
     required this.status,
   });
 
+  DocumentReference<TaskModel> get _mainTaskDocRef => kFirebaseInstant.tasks.doc(mainTaskId);
+  DocumentReference<TaskModel> get _subTaskDocRef =>
+      kFirebaseInstant.subTasks(mainTaskId).doc(subTaskId);
+
+  bool get _isNotStarted => status == TaskStatusEnum.notStarted.value;
+  bool get _isCompleted => status == TaskStatusEnum.completed.value;
+  bool get _isInProgress => status == TaskStatusEnum.inProgress.value;
+
+  void _onStartingTask() {
+    final json = {
+      MyFields.status: TaskStatusEnum.inProgress.value,
+      MyFields.startedAt: FieldValue.serverTimestamp(),
+    };
+    if (subTaskId != null) {
+      _subTaskDocRef.update(json);
+    } else {
+      _mainTaskDocRef.update(json);
+    }
+  }
+
+  void _onEndingTask(BuildContext context) {
+    final json = {
+      MyFields.status: TaskStatusEnum.completed.value,
+      MyFields.endedAt: FieldValue.serverTimestamp(),
+    };
+    if (subTaskId != null) {
+      _subTaskDocRef.update(json);
+    } else {
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final subTasksQuerySnapshot = await _mainTaskDocRef.collection(MyFields.subTasks).get();
+          final isEverySubTaskCompleted = subTasksQuerySnapshot.docs.every(
+            (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
+          );
+          if (isEverySubTaskCompleted) {
+            await _mainTaskDocRef.update(json);
+          } else if (context.mounted) {
+            context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
+          }
+        },
+      );
+    }
+  }
+
   Future<void> _pickImage(BuildContext context, String field) async {
     final storageService = StorageService();
     AppOverlayLoader.fakeLoading();
@@ -26,45 +71,10 @@ class TaskToggleButtons extends StatelessWidget {
         context,
         callBack: () async {
           final image = await storageService.uploadFile(collection: "tasksImages", file: file);
-          late DocumentReference<TaskModel> docRef;
-          if (subTaskId != null) {
-            docRef = kFirebaseInstant.subTasks(mainTaskId).doc(subTaskId);
-          } else {
-            docRef = kFirebaseInstant.tasks.doc(mainTaskId);
-          }
+          final docRef = subTaskId != null ? _subTaskDocRef : _mainTaskDocRef;
           docRef.update({
             field: FieldValue.arrayUnion([image]),
           });
-        },
-      );
-    }
-  }
-
-  bool get _isNotStarted => status == TaskStatusEnum.notStarted.value;
-  bool get _isCompleted => status == TaskStatusEnum.completed.value;
-  bool get _isInProgress => status == TaskStatusEnum.inProgress.value;
-
-  void _onEndingTask(BuildContext context) {
-    final json = {
-      MyFields.status: TaskStatusEnum.completed.value,
-      MyFields.endedAt: FieldValue.serverTimestamp(),
-    };
-    if (subTaskId != null) {
-      kFirebaseInstant.subTasks(mainTaskId).doc(subTaskId).update(json);
-    } else {
-      ApiService.fetch(
-        context,
-        callBack: () async {
-          final docRef = kFirebaseInstant.tasks.doc(mainTaskId);
-          final subTasksQuerySnapshot = await docRef.collection(MyFields.subTasks).get();
-          final isEverySubTaskCompleted = subTasksQuerySnapshot.docs.every(
-            (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
-          );
-          if (isEverySubTaskCompleted) {
-            await docRef.update(json);
-          } else if (context.mounted) {
-            context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
-          }
         },
       );
     }
@@ -118,13 +128,14 @@ class TaskToggleButtons extends StatelessWidget {
                   _pickImage(context, imagesField);
                 }
                 if (value == _children(context).length - 1) {
+                  if (images.isEmpty) {
+                    Fluttertoast.showToast(msg: "يجب ارفاق صور");
+                    return;
+                  }
                   if (_isNotStarted) {
+                    _onStartingTask();
                   } else if (_isInProgress) {
-                    if (images.isNotEmpty) {
-                      _onEndingTask(context);
-                    } else {
-                      Fluttertoast.showToast(msg: "يجب ارفاق صور");
-                    }
+                    _onEndingTask(context);
                   }
                 }
               },

@@ -1,4 +1,5 @@
 import 'package:app/shared.dart';
+import 'package:app/src/screens/task/widgets/task_images_listview.dart';
 import 'package:app/src/screens/task/widgets/task_toggle_buttons.dart';
 import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
@@ -23,8 +24,6 @@ class _SubTaskCardState extends State<SubTaskCard> {
     final colors = task.getStatusColors(context);
     final status = task.status;
     final isCompleted = status == TaskStatusEnum.completed.value;
-    final isNotStarted = status == TaskStatusEnum.notStarted.value;
-    final isInProgress = status == TaskStatusEnum.inProgress.value;
     final values = task.values;
     final images = values.$2;
     return Stack(
@@ -90,23 +89,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                 ),
               ),
               children: [
-                if (images.isNotEmpty)
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: SizedBox(
-                      height: 105,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(width: 10),
-                        itemCount: images.length,
-                        padding: const EdgeInsetsDirectional.only(top: 8, bottom: 8, start: 10),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          final image = images[index];
-                          return BaseNetworkImage(image, width: 95, height: 95);
-                        },
-                      ),
-                    ),
-                  ),
+                if (images.isNotEmpty) TaskImagesListview(images: images),
                 if (isCompleted)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
