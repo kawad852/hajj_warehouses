@@ -111,7 +111,7 @@ packages:
       path: "../app"
       relative: true
     source: path
-    version: "1.0.2+3"
+    version: "1.0.3+4"
   archive:
     dependency: transitive
     description:
