@@ -13,7 +13,9 @@ class TaskHeader extends StatelessWidget {
     final values = task.values;
     final images = values.$2;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ).copyWith(bottom: task.status == TaskStatusEnum.completed.value ? 25 : 0),
       alignment: AlignmentDirectional.topStart,
       decoration: const BoxDecoration(
         color: Colors.transparent,

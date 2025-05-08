@@ -64,7 +64,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             children: [
               TaskHeader(task: task),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ListBody(
                   children: [
                     Row(
@@ -108,7 +108,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ],
                 ),
               ),
-
               Expanded(
                 child: CustomFirestoreQueryBuilder(
                   query: _subTasksQuery,
