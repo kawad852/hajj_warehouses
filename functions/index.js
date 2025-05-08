@@ -13,11 +13,6 @@ const { onSchedule } = require("firebase-functions/v2/scheduler");
 admin.initializeApp();
 const db = getFirestore();
 
-const NotificationType = {
-  INVENTORY_ADD: "INVENTORY_ADD",
-  // Add more types as needed
-};
-
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",
   document: "items/{id}",
@@ -126,7 +121,6 @@ exports.onInventoryOperationCreated = onDocumentCreated({
     if (!doc) return;
 
     const operationType = doc.operationType;
-    if (operationType !== "ADD") return;
 
     const branch = doc.branch;
     const items = doc.items;
@@ -142,19 +136,20 @@ exports.onInventoryOperationCreated = onDocumentCreated({
          titleAr = "🗑️ صنف تالف";
          bodyEn = `${itemLabels} has been recorded as damaged in ${branchName}.`;
          bodyAr = `تم تسجيل ${itemLabels} كصنف تالف في ${branchName}.`;
-    } else {
+    } else if (operationType == "ADD") {
         titleEn = "New Supply Received";
         titleAr = "📦 شحنة جديدة";
         bodyEn = `A new shipment of ${itemLabels} was received in ${branchName}.`;
         bodyAr = `تم استلام ${itemLabels} في ${branchName}.`;
-      }
+      } else {
+       return;
+     }
 
     await sendNotification({
       titleEn,
       bodyEn,
       titleAr,
       bodyAr,
-      type: NotificationType.INVENTORY_ADD,
       branch,
     });
 
@@ -170,7 +165,6 @@ async function sendNotification({
   titleAr,
   bodyAr,
   role = "ADMIN",
-  type,
   branch,
 }) {
   const usersSnapshot = await admin
@@ -198,6 +192,9 @@ async function sendNotification({
        title = titleEn;
        body = bodyEn;
     }
+
+    console.log(`Title: ${title}`);
+    console.log(`Body: ${body}`);
 
     const payload = {
       token,
