@@ -7,8 +7,14 @@ import 'package:shared/shared.dart';
 class SubTaskCard extends StatefulWidget {
   final String mainTaskId;
   final TaskModel task;
+  final bool mainTaskStarted;
 
-  const SubTaskCard({super.key, required this.task, required this.mainTaskId});
+  const SubTaskCard({
+    super.key,
+    required this.task,
+    required this.mainTaskId,
+    required this.mainTaskStarted,
+  });
 
   @override
   State<SubTaskCard> createState() => _SubTaskCardState();
@@ -26,6 +32,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
     final isCompleted = status == TaskStatusEnum.completed.value;
     final values = task.values;
     final images = values.$2;
+    final visible = isExpanded && !isCompleted && widget.mainTaskStarted;
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -121,13 +128,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       ],
                     ),
                   ),
-                const SizedBox(height: 40),
+                SizedBox(height: visible ? 40 : 10),
               ],
             ),
           ),
         ),
         Visibility(
-          visible: isExpanded && !isCompleted,
+          visible: visible,
           child: TaskToggleButtons(
             images: images,
             mainTaskId: widget.mainTaskId,

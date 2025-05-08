@@ -64,7 +64,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             children: [
               TaskHeader(task: task),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 10),
                 child: ListBody(
                   children: [
                     Row(
@@ -115,14 +115,18 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     return ListView.separated(
                       separatorBuilder: (context, index) => const SizedBox(height: 30),
                       itemCount: snapshot.docs.length,
-                      padding: const EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(bottom: 20),
                       itemBuilder: (context, index) {
                         if (snapshot.isLoadingMore(index)) {
                           return const FPLoading();
                         }
                         final taskDocSnapshot = snapshot.docs[index];
                         final subTask = taskDocSnapshot.data();
-                        return SubTaskCard(mainTaskId: task.id, task: subTask);
+                        return SubTaskCard(
+                          mainTaskId: task.id,
+                          task: subTask,
+                          mainTaskStarted: task.status != TaskStatusEnum.notStarted.value,
+                        );
                       },
                     );
                   },
