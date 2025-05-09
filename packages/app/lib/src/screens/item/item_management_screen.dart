@@ -63,7 +63,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
           final item = snapshot.data!;
           return CustomScrollView(
             slivers: [
-               SliverAppBar(
+              SliverAppBar(
                 pinned: true,
                 title: AppBarText(context.appLocalization.manageItem),
                 actions: const [
@@ -85,7 +85,8 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                         children: [
                           Expanded(
                             child: ManageButton(
-                              title: "${context.appLocalization.availableQuantity} : ${item.quantity}",
+                              title:
+                                  "${context.appLocalization.availableQuantity} : ${item.quantity}",
                               backgroundColor: context.colorPalette.primary,
                               textColor: context.colorPalette.white,
                               textAlign: TextAlign.center,
@@ -94,7 +95,8 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: ManageButton(
-                              title: "${context.appLocalization.minimumLimit} : ${item.minimumQuantity}",
+                              title:
+                                  "${context.appLocalization.minimumLimit} : ${item.minimumQuantity}",
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -147,21 +149,23 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
                         ],
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    ManageButton(
-                      onTap: () {
-                        _openSheet(
-                          context,
-                          item: item,
-                          operationType: OperationType.withdraw,
-                          maxQuantity: item.quantity,
-                        );
-                      },
-                      width: 115,
-                      title: context.appLocalization.withdrawQuantity,
-                      iconWidth: 20,
-                      icon: MyIcons.addTask,
-                    ),
+                    if (item.quantity > 0) ...[
+                      const SizedBox(height: 10),
+                      ManageButton(
+                        onTap: () {
+                          _openSheet(
+                            context,
+                            item: item,
+                            operationType: OperationType.withdraw,
+                            maxQuantity: item.quantity,
+                          );
+                        },
+                        width: 115,
+                        title: context.appLocalization.withdrawQuantity,
+                        iconWidth: 20,
+                        icon: MyIcons.addTask,
+                      ),
+                    ],
                     Padding(
                       padding: const EdgeInsets.only(top: 60, bottom: 10),
                       child: Text(
