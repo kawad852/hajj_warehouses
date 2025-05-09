@@ -25,9 +25,16 @@ class _BranchesScreenState extends State<BranchesScreen> {
     return PortalTable(
       tableTitle: 'Branches',
       query: _query,
+      header: IconButton(
+        onPressed: () {
+          setState(() {});
+        },
+        icon: Icon(Icons.reset_tv),
+      ),
       tableBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
+        print("kkkkkk::: ${data.name}");
         return [
           PortalContent(column: DataColumn(label: Text("الإسم")), cell: DataCell(Text(data.name))),
         ];
