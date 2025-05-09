@@ -5,8 +5,9 @@ import 'package:shared/shared.dart';
 
 class TasksScreen extends StatefulWidget {
   final bool fullCalendar;
+  final bool withAppBar;
 
-  const TasksScreen({super.key, this.fullCalendar = false});
+  const TasksScreen({super.key, this.fullCalendar = false, this.withAppBar = false});
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -47,8 +48,11 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          widget.fullCalendar
-              ? AppBar(title:  AppBarText(context.appLocalization.allTasks), forceMaterialTransparency: true)
+          widget.fullCalendar || widget.withAppBar
+              ? AppBar(
+                title: AppBarText(context.appLocalization.allTasks),
+                forceMaterialTransparency: true,
+              )
               : null,
       bottomNavigationBar: const BottomAppBar(color: Colors.transparent, child: AddTaskWidget()),
       body: Column(
@@ -123,7 +127,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 if (tasks.isEmpty) {
                   return EmptyWidget(
                     icon: FontAwesomeIcons.listCheck,
-                    title: context.appLocalization.noAddedTasks
+                    title: context.appLocalization.noAddedTasks,
                   );
                 }
                 return ListView.separated(

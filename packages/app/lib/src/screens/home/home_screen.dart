@@ -1,5 +1,6 @@
 import 'package:app/shared.dart';
 import 'package:app/src/screens/item/inventory_screen.dart';
+import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,15 @@ class _HomeScreenState extends State<HomeScreen> {
   late Stream<QuerySnapshot<TaskModel>> _tasksStream;
 
   void _initialize() {
-    _tasksStream = kFirebaseInstant.tasks.orderByDesc.limit(5).snapshots();
+    _tasksStream =
+        kFirebaseInstant.tasks
+            .where(
+              MyFields.status,
+              whereIn: [TaskStatusEnum.notStarted.value, TaskStatusEnum.inProgress.value],
+            )
+            .orderBy(MyFields.startTime, descending: true)
+            .limit(5)
+            .snapshots();
   }
 
   @override
@@ -36,14 +45,32 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 spacing: 10,
                 children: List.generate(currentTasks.length, (index) {
-                  final task = currentTasks[index];
+                  final taskDocSnapshot = currentTasks[index];
+                  final task = taskDocSnapshot.data();
+                  final isInProgress = task.status == TaskStatusEnum.inProgress.value;
                   return Expanded(
-                    child: HomeBubble(
-                      onTap: () {},
-                      title: index == 0 ? context.appLocalization.currentTask : context.appLocalization.nextTask,
-                      task: task.data().title,
-                      value: "02 : 31 : 56",
-                      valueIcon: MyIcons.timer,
+                    child: TimerBuilder(
+                      endDateTime: isInProgress ? task.endTime : null,
+                      child: (time) {
+                        return HomeBubble(
+                          onTap: () {
+                            context.push((context) {
+                              return TaskDetailsScreen(task: task);
+                            });
+                          },
+                          title:
+                              currentTasks.length == 1 && index == 0 || index == 0
+                                  ? context.appLocalization.currentTask
+                                  : context.appLocalization.nextTask,
+                          task: taskDocSnapshot.data().title,
+                          value: isInProgress ? time : task.startTime!.getTime(context),
+                          valueIcon: isInProgress ? MyIcons.timer : MyIcons.clock,
+                          valueColor:
+                              isInProgress
+                                  ? context.colorPalette.primary
+                                  : context.colorPalette.black001,
+                        );
+                      },
                     ),
                   );
                 }),
@@ -60,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             context.push((context) => const TransactionsScreen());
                           },
                           title: context.appLocalization.imprestBalance,
-                          task: "${branch.balance.toStringAsFixed(2)} ${context.appLocalization.riyal}",
+                          task:
+                              "${branch.balance.toStringAsFixed(2)} ${context.appLocalization.riyal}",
                           prefixIcon: MyIcons.wallet,
                         );
                       },
@@ -77,7 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             });
                           },
                           title: context.appLocalization.stock,
-                          task: items.isNotEmpty ? context.appLocalization.youHaveItemsNeedRestocking : "-",
+                          task:
+                              items.isNotEmpty
+                                  ? context.appLocalization.youHaveItemsNeedRestocking
+                                  : "-",
                           prefixIcon: MyIcons.box,
                           taskColor: context.colorPalette.redC10,
                         );
@@ -111,8 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             if (tasks.isNotEmpty)
-              Container(
-                width: double.infinity,
+              DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorPalette.greyF2F,
                   borderRadius: BorderRadius.circular(kRadiusSecondary),
@@ -121,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: double.infinity,
                       height: 45,
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
@@ -144,7 +173,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              context.push((context) {
+                                return const TasksScreen(withAppBar: true);
+                              });
+                            },
                             child: Icon(
                               Icons.arrow_forward_ios_rounded,
                               color: context.colorPalette.white,
