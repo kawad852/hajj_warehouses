@@ -11,6 +11,7 @@ class ChooseBranchScreen extends StatefulWidget {
 
 class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
   late Future<List<BranchModel>> _future;
+  late LightBranchModel? _selectedBranch;
 
   void _initialize() {
     _future = context.appProvider.getBranches();
@@ -20,6 +21,7 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
   void initState() {
     super.initState();
     _initialize();
+    _selectedBranch = MySharedPreferences.branch;
   }
 
   @override
@@ -33,8 +35,9 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
           bottomNavigationBar: BottomButton(
             text: widget.showAppBar ? context.appLocalization.select : context.appLocalization.next,
             onPressed:
-                MySharedPreferences.branch != null
+                _selectedBranch != null
                     ? () {
+                      context.userProvider.selectBranch(_selectedBranch!);
                       context.goToNavBar();
                     }
                     : null,
@@ -86,17 +89,11 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     final branch = branches[index];
-                    final isSelected = MySharedPreferences.branch?.id == branch.id;
+                    final isSelected = _selectedBranch?.id == branch.id;
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          MySharedPreferences.branch = LightBranchModel(
-                            id: branch.id,
-                            name: branch.name,
-                          );
-                        });
-                        context.userProvider.userDocRef.update({
-                          MyFields.branch: MySharedPreferences.branch!.toJson(),
+                          _selectedBranch = LightBranchModel(name: branch.name, id: branch.id);
                         });
                       },
                       child: Container(

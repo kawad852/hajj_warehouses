@@ -169,4 +169,10 @@ class UserProvider extends ChangeNotifier {
       // });
     }
   }
+
+  void selectBranch(LightBranchModel branch) {
+    MySharedPreferences.branch = branch;
+    userDocRef.update({MyFields.branch: MySharedPreferences.branch!.toJson()});
+    notifyListeners();
+  }
 }
