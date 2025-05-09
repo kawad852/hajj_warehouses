@@ -1,9 +1,11 @@
-# melos_managed_dependency_overrides: app,font_awesome_flutter,translations,admin_portal
+# melos_managed_dependency_overrides: app,font_awesome_flutter,translations,admin_portal,fire_portal
 dependency_overrides:
   admin_portal:
     path: ../admin_portal
   app:
     path: ../app
+  fire_portal:
+    path: ../fire_portal
   font_awesome_flutter:
     git: https://github.com/kawad852/font_awesome_flutter.git
   translations:

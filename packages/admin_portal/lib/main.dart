@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:admin_portal/screens/base/branches/branches_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared/app_routes.dart';
 import 'package:shared/shared.dart';
@@ -102,7 +103,7 @@ class _MyAppState extends State<MyApp> {
           ],
           child: Consumer<AppProvider>(
             builder: (context, appProvider, child) {
-              return MaterialApp.router(
+              return MaterialApp(
                 builder: EasyLoading.init(),
                 debugShowCheckedModeBanner: false,
                 scrollBehavior: WebScrollBehavior(),
@@ -113,9 +114,9 @@ class _MyAppState extends State<MyApp> {
                   context,
                   MyColorScheme(appProvider.appTheme == ThemeEnum.light).value,
                 ),
-                routerConfig: _router,
+                // routerConfig: _router,
                 // navigatorKey: rootNavigatorKey,
-                // home: _userProvider.isAuthenticated ? AppNavRailCopy() : LoginScreen(),
+                home: BranchesScreen(),
               );
             },
           ),

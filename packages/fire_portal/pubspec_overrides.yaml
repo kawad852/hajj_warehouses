@@ -1,9 +1,9 @@
-# melos_managed_dependency_overrides: shared,translations,admin_portal,fire_portal
+# melos_managed_dependency_overrides: admin_portal,app,shared,translations
 dependency_overrides:
   admin_portal:
     path: ../admin_portal
-  fire_portal:
-    path: ../fire_portal
+  app:
+    path: ../app
   shared:
     path: ../shared
   translations:
