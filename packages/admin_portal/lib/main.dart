@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:shared/app_routes.dart';
 import 'package:shared/shared.dart';
-
-import 'routes/app_routes.dart';
 
 // -d chrome --web-renderer html
 
@@ -59,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: rootNavigatorKey,
       redirect: (context, state) {
         if (_userProvider.isAuthenticated) {
-          final hasPermission = context.appProvider.hasLocationPermission(state.matchedLocation);
+          final hasPermission = context.portalProvider.hasLocationPermission(state.matchedLocation);
           if (!hasPermission) {
             return NoAccessRoute().location;
           }
@@ -103,11 +102,6 @@ class _MyAppState extends State<MyApp> {
           ],
           child: Consumer<AppProvider>(
             builder: (context, appProvider, child) {
-              final seedColorScheme = ColorScheme.fromSeed(
-                seedColor: const Color(0xFFBC923F),
-                brightness:
-                    appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
-              );
               return MaterialApp.router(
                 builder: EasyLoading.init(),
                 debugShowCheckedModeBanner: false,
@@ -115,7 +109,10 @@ class _MyAppState extends State<MyApp> {
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 locale: appProvider.appLocale,
-                theme: MyTheme().materialTheme(context, seedColorScheme),
+                theme: MyTheme().materialTheme(
+                  context,
+                  MyColorScheme(appProvider.appTheme == ThemeEnum.light).value,
+                ),
                 routerConfig: _router,
                 // navigatorKey: rootNavigatorKey,
                 // home: _userProvider.isAuthenticated ? AppNavRailCopy() : LoginScreen(),

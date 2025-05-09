@@ -16,6 +16,7 @@ class UserModel with _$UserModel {
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,

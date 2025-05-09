@@ -73,11 +73,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Consumer2<AppProvider, UserProvider>(
       builder: (BuildContext context, appProvider, userProvider, Widget? child) {
-        final colorScheme = ColorScheme.fromSeed(
-          seedColor: const Color(0xFF708D81),
-          surface: Colors.white,
-          brightness: appProvider.appTheme == ThemeEnum.light ? Brightness.light : Brightness.dark,
-        );
         return MultiProvider(
           // key: ValueKey(userProvider.isAuthenticated),
           providers: [
@@ -135,7 +130,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
-            theme: MyTheme().materialTheme(context, colorScheme),
+            theme: MyTheme().materialTheme(context, MyColorScheme(true).value),
             home: _toggleScreen(context),
             // home: const AppNavBar(),
           ),

@@ -1,8 +1,10 @@
 import 'package:admin_portal/screens/base/app_nav_rail.dart';
-import 'package:admin_portal/screens/base/login/login_screen.dart';
+import 'package:admin_portal/screens/base/login/portal_login_screen.dart';
 import 'package:admin_portal/screens/base/no_access_screen.dart';
 import 'package:admin_portal/screens/base/users/users_table.dart';
 import 'package:shared/shared.dart';
+
+part 'app_routes.g.dart';
 
 // this is the commit where to get back to in case you want shellRoutes again
 
@@ -13,7 +15,7 @@ final usersRouteKey = GlobalKey<NavigatorState>();
 class LoginRoute extends GoRouteData {
   @override
   build(BuildContext context, GoRouterState state) {
-    return const LoginScreen();
+    return const PortalLoginScreen();
   }
 }
 

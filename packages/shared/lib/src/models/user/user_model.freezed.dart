@@ -41,6 +41,8 @@ mixin _$UserModel {
   set branch(LightBranchModel? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
+  String? get roleId => throw _privateConstructorUsedError;
+  set roleId(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
   set languageCode(String? value) => throw _privateConstructorUsedError;
   String? get profilePhoto => throw _privateConstructorUsedError;
@@ -92,6 +94,7 @@ abstract class $UserModelCopyWith<$Res> {
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -133,6 +136,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? deviceToken = freezed,
     Object? branch = freezed,
     Object? role = freezed,
+    Object? roleId = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
@@ -188,6 +192,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == role
                     ? _value.role
                     : role // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            roleId:
+                freezed == roleId
+                    ? _value.roleId
+                    : roleId // ignore: cast_nullable_to_non_nullable
                         as String?,
             languageCode:
                 freezed == languageCode
@@ -292,6 +301,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -333,6 +343,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? deviceToken = freezed,
     Object? branch = freezed,
     Object? role = freezed,
+    Object? roleId = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
@@ -388,6 +399,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == role
                 ? _value.role
                 : role // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        roleId:
+            freezed == roleId
+                ? _value.roleId
+                : roleId // ignore: cast_nullable_to_non_nullable
                     as String?,
         languageCode:
             freezed == languageCode
@@ -472,6 +488,7 @@ class _$UserModelImpl implements _UserModel {
     this.deviceToken,
     this.branch,
     this.role,
+    this.roleId,
     this.languageCode,
     this.profilePhoto,
     this.blocked = false,
@@ -510,6 +527,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? role;
   @override
+  String? roleId;
+  @override
   String? languageCode;
   @override
   String? profilePhoto;
@@ -546,7 +565,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
   }
 
   /// Create a copy of UserModel
@@ -573,6 +592,7 @@ abstract class _UserModel implements UserModel {
     String? deviceToken,
     LightBranchModel? branch,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -619,6 +639,9 @@ abstract class _UserModel implements UserModel {
   @override
   String? get role;
   set role(String? value);
+  @override
+  String? get roleId;
+  set roleId(String? value);
   @override
   String? get languageCode;
   set languageCode(String? value);

@@ -1,7 +1,6 @@
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
-import '../models/policy/policy_model.dart';
 import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
 
@@ -92,6 +91,12 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<TransactionModel> get transactions =>
       collection(MyCollections.transactions).withConverter<TransactionModel>(
         fromFirestore: (snapshot, _) => TransactionModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
+  CollectionReference<RoleModel> get roles =>
+      collection(MyCollections.roles).withConverter<RoleModel>(
+        fromFirestore: (snapshot, _) => RoleModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 }

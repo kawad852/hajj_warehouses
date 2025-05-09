@@ -1,13 +1,13 @@
 import 'package:shared/shared.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class PortalLoginScreen extends StatefulWidget {
+  const PortalLoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<PortalLoginScreen> createState() => _PortalLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _PortalLoginScreenState extends State<PortalLoginScreen> {
   late UserProvider _userProvider;
   late String? _email, _password;
   final _formKey = GlobalKey<FormState>();

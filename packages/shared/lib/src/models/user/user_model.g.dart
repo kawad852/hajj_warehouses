@@ -20,6 +20,7 @@ _$UserModelImpl _$$UserModelImplFromJson(
           ? null
           : LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
   role: json['role'] as String?,
+  roleId: json['roleId'] as String?,
   languageCode: json['languageCode'] as String?,
   profilePhoto: json['profilePhoto'] as String?,
   blocked: json['blocked'] as bool? ?? false,
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'deviceToken': instance.deviceToken,
   'branch': instance.branch?.toJson(),
   'role': instance.role,
+  'roleId': instance.roleId,
   'languageCode': instance.languageCode,
   'profilePhoto': instance.profilePhoto,
   'blocked': instance.blocked,

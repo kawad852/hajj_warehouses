@@ -1,7 +1,10 @@
 import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
+
+import '../../shared.dart';
 
 extension NavigationExtension on BuildContext {
+  String get currentRoutePath => GoRouter.of(this).routeInformationProvider.value.uri.path;
+
   Future<T?> navigate<T>(WidgetBuilder builder, {bool fullscreenDialog = false, String? name}) {
     return Navigator.push<T?>(
       this,

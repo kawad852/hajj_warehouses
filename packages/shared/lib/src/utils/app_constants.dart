@@ -7,3 +7,4 @@ const String kRowIdDocument = 'bpDRfCR3EP8ZjFWnToZX';
 const kOrder = 99999;
 const kAlgoliaApplicationId = "2IQYOVMM5J";
 const kAlgoliaApiKey = "2abe0677ceb2dd972ea777119e42f885";
+const kSuperAdminRoleId = '34fbd0909d4011eeb24e170bd46df764';
