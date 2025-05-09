@@ -1,3 +1,5 @@
+import 'package:app/screens_exports.dart';
+
 import '../../shared.dart';
 
 class InventoryProvider extends ChangeNotifier {
@@ -123,6 +125,11 @@ class InventoryProvider extends ChangeNotifier {
           );
           batch.set(orderDocREF, order);
           batch.set(orderHistoryDocRef, orderHistory.toJson());
+          if (isSupplyOperation) {
+            context.push((context) {
+              return OrderDetailsScreen(order: order);
+            });
+          }
         } else {
           final operationDocREF = kFirebaseInstant.inventoryOperations.doc(operation.id);
           batch.set(operationDocREF, operation);
