@@ -1,11 +1,20 @@
 import 'package:shared/shared.dart';
 
 class PortalInput<T> extends StatefulWidget {
-  final T q;
+  // final T q;
+  // final DocumentReference<T> ref;
+  final QueryDocumentSnapshot<T> queryDocSnapshot;
   final List<Widget> Function(T snapshot) inputBuilder;
-  final Function(T snapshot) onSave;
+  final Function(DocumentReference<T> ref, T snapshot) onSave;
 
-  const PortalInput({super.key, required this.inputBuilder, required this.onSave, required this.q});
+  const PortalInput({
+    super.key,
+    required this.inputBuilder,
+    required this.onSave,
+    // required this.q,
+    // required this.ref,
+    required this.queryDocSnapshot,
+  });
 
   @override
   State<PortalInput<T>> createState() => _PortalInputState<T>();
@@ -14,10 +23,12 @@ class PortalInput<T> extends StatefulWidget {
 class _PortalInputState<T> extends State<PortalInput<T>> {
   late T _editedData;
 
+  QueryDocumentSnapshot<T> get _queryDocumentSnapshot => widget.queryDocSnapshot;
+
   @override
   void initState() {
     super.initState();
-    _editedData = widget.q;
+    _editedData = _queryDocumentSnapshot.data();
   }
 
   @override
@@ -27,8 +38,8 @@ class _PortalInputState<T> extends State<PortalInput<T>> {
         actions: [
           FilledButton(
             onPressed: () {
-              widget.onSave(_editedData);
-              Navigator.pop(context);
+              widget.onSave(_queryDocumentSnapshot.reference, _editedData);
+              Navigator.pop(context, _editedData);
             },
             child: Text("Save"),
           ),

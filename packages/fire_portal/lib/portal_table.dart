@@ -12,7 +12,7 @@ class PortalTable<T> extends StatelessWidget {
   final List<PortalContent> Function(int index, FirestoreQueryBuilderSnapshot<T> snapshot)
   tableBuilder;
   final List<Widget> Function(T snapshot) inputBuilder;
-  final Function(T snapshot) onSave;
+  final Function(DocumentReference<T> ref, T snapshot) onSave;
 
   const PortalTable({
     super.key,
@@ -98,6 +98,8 @@ class PortalTable<T> extends StatelessWidget {
                               snapshot.fetchMore();
                             }
                             final cells = tableBuilder(index, snapshot).map((e) => e.cell).toList();
+                            final queryDocSnapshot = snapshot.docs[index];
+
                             return DataRow.byIndex(
                               index: index,
                               cells: List.generate(cells.length + 1, (index) {
@@ -107,7 +109,7 @@ class PortalTable<T> extends StatelessWidget {
                                       onEdit: () {
                                         context.navigate((context) {
                                           return PortalInput(
-                                            q: snapshot.docs[index].data(),
+                                            queryDocSnapshot: queryDocSnapshot,
                                             onSave: onSave,
                                             inputBuilder: inputBuilder,
                                           );

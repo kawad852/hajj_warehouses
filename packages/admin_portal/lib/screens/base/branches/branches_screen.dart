@@ -34,16 +34,13 @@ class _BranchesScreenState extends State<BranchesScreen> {
       tableBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
-        print("kkkkkk::: ${data.name}");
         return [
           PortalContent(column: DataColumn(label: Text("الإسم")), cell: DataCell(Text(data.name))),
         ];
       },
-      onSave: (snapshot) {
-        // snapshot.reference.update({
-        //   "name":
-        // });
-        print("name::: ${snapshot.name}");
+      onSave: (reference, snapshot) {
+        reference.update({"name": snapshot.name});
+        // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {
         final data = snapshot;
