@@ -49,7 +49,7 @@ class _CounterWidgetState extends State<CounterWidget> {
           icon: const Icon(Icons.remove, size: 30),
         ),
         SizedBox(
-          width: 120,
+          width: 150,
           child: NumbersEditor(
             controller: _quantityCtrl,
             textAlign: TextAlign.center,
