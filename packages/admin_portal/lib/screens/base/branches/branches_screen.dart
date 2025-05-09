@@ -32,6 +32,26 @@ class _BranchesScreenState extends State<BranchesScreen> {
           PortalContent(column: DataColumn(label: Text("الإسم")), cell: DataCell(Text(data.name))),
         ];
       },
+      onSave: (snapshot) {
+        // snapshot.reference.update({
+        //   "name":
+        // });
+        print("name::: ${snapshot.name}");
+      },
+      inputBuilder: (snapshot) {
+        final data = snapshot;
+        return [
+          TextEditor(
+            labelText: "الإسم",
+            initialValue: data.name,
+            onChanged: (value) {
+              setState(() {
+                data.name = value!;
+              });
+            },
+          ),
+        ];
+      },
     );
   }
 }

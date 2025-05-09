@@ -28,6 +28,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => AppProvider()),
         // ChangeNotifierProvider(create: (context) => DrawerProvider()),
         ChangeNotifierProvider(create: (context) => LocationProvider()),
+        ChangeNotifierProvider(create: (context) => PortalProvider()),
       ],
       child: const MyApp(),
     ),

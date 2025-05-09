@@ -11,6 +11,8 @@ class PortalTable<T> extends StatelessWidget {
   final PreferredSizeWidget? bottom;
   final List<PortalContent> Function(int index, FirestoreQueryBuilderSnapshot<T> snapshot)
   tableBuilder;
+  final List<Widget> Function(T snapshot) inputBuilder;
+  final Function(T snapshot) onSave;
 
   const PortalTable({
     super.key,
@@ -22,6 +24,8 @@ class PortalTable<T> extends StatelessWidget {
     required this.query,
     this.bottom,
     required this.tableBuilder,
+    required this.inputBuilder,
+    required this.onSave,
   });
 
   @override
@@ -60,6 +64,7 @@ class PortalTable<T> extends StatelessWidget {
         onLoading:
             () => SizedBox(height: context.mediaQuery.height / 1.5, child: const BaseLoader()),
         onComplete: (context, snapshot) {
+          final columns = tableBuilder(0, snapshot).map((e) => e.column).toList();
           return SingleChildScrollView(
             child: Theme(
               data: Theme.of(
@@ -75,23 +80,46 @@ class PortalTable<T> extends StatelessWidget {
                         dataRowMaxHeight: dataRowMaxHeight,
                         header: header,
                         actions: header != null ? tableActions : null,
-                        // columns: [DataColumn(label: Text(""))],
-                        columns:
-                            tableBuilder(0, snapshot).map((e) => e.column).map((e) {
-                              return e;
-                            }).toList(),
+                        columns: List.generate(columns.length + 1, (index) {
+                          if (index == columns.length) {
+                            return DataColumn(label: SizedBox.shrink());
+                          }
+                          final dataColumn = columns[index];
+                          return dataColumn;
+                        }),
+                        // columns:
+                        //     tableBuilder(0, snapshot).map((e) => e.column).map((e) {
+                        //       return e;
+                        //     }).toList(),
                         source: TableSource(
                           length: snapshot.docs.length,
                           rows: (index) {
                             if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
                               snapshot.fetchMore();
                             }
+                            final cells = tableBuilder(index, snapshot).map((e) => e.cell).toList();
                             return DataRow.byIndex(
                               index: index,
-                              cells:
-                                  tableBuilder(index, snapshot).map((e) => e.cell).map((e) {
-                                    return e;
-                                  }).toList(),
+                              cells: List.generate(cells.length + 1, (index) {
+                                if (index == cells.length) {
+                                  return DataCell(
+                                    TableMenu(
+                                      onEdit: () {
+                                        context.navigate((context) {
+                                          return PortalInput(
+                                            q: snapshot.docs[index].data(),
+                                            onSave: onSave,
+                                            inputBuilder: inputBuilder,
+                                          );
+                                        });
+                                      },
+                                      onDelete: null,
+                                    ),
+                                  );
+                                }
+                                final cell = cells[index];
+                                return cell;
+                              }),
                             );
                           },
                         ),
