@@ -69,7 +69,6 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
   void initState() {
     super.initState();
     _value = widget.value;
-    print("widget.maxDateTime::: ${widget.maxDateTime}");
   }
 
   @override

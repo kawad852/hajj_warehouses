@@ -48,9 +48,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
   Future<void> _submit(BuildContext context) async {
     try {
       String? errorMsg;
-      if (_file == null) {
+      if (_user.profilePhoto == null && _file == null) {
         errorMsg = context.appLocalization.personalPhotoRequired;
-      } else if (_files.isEmpty) {
+      } else if ((_user.images?.isEmpty ?? false) && _files.isEmpty) {
         errorMsg = context.appLocalization.attachIdCard;
       }
       if (errorMsg != null) {

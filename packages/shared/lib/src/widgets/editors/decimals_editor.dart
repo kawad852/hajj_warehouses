@@ -35,7 +35,7 @@ class DecimalsEditor extends StatelessWidget {
       readOnly: readOnly,
       suffixText: suffixText,
       suffixIcon: suffixIcon,
-      initialValue: initialValue == null ? null : '$initialValue}',
+      initialValue: initialValue?.toString(),
       onChanged: (value) {
         if (nullable && value.isEmpty) {
           onChanged(null);
