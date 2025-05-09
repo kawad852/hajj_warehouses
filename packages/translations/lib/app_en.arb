@@ -482,5 +482,10 @@
   "hajAndOmra": "Haj And Omra",
   "tourism": "Tourism",
   "noChatsMsg": "Chat will appear here",
-  "changeConsultant": "Change Consultant"
+  "changeConsultant": "Change Consultant",
+  "lostYourPassword":"Lost your password? Easy!",
+  "youCanRecoverIt":"You can recover it with simple steps.",
+  "enterEmailToRecoverPass":"Please enter your email address to recover your password.",
+  "processDetails":"Process Details",
+  "picturesAttached":"Pictures Attached"
 }

@@ -27,3 +27,6 @@ export 'src/screens/send_transfer_order/send_transfer_order_screen.dart';
 export 'src/screens/task/tasks_screen.dart';
 export 'src/screens/warehouse/warehouse_screen.dart';
 export 'src/screens/warehouse/widgets/warehouse_button.dart';
+export 'src/screens/login/reset_password_screen.dart';
+export 'src/screens/operation/operation_detalis_screen.dart';
+export 'src/screens/operation/widgets/operation_bubble.dart';

@@ -238,5 +238,10 @@
   "nextTask":"المهمة التالية",
   "taskEndTimeMustAfterStartTime":"وقت إنتهاء المهمة يجب ان يكون بعد وقت البداية",
   "noAddedTasks":"لا يوجد مهمات مضافة",
-  "goodInventoryStatusLabel": "حالة المخزون جيدة"
+  "goodInventoryStatusLabel": "حالة المخزون جيدة",
+  "lostYourPassword":"هل فقدت كلمة المرور ؟ سهلة",
+  "youCanRecoverIt":"يمكنك استعادتها بخطوات بسيطة",
+  "enterEmailToRecoverPass":"يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.",
+  "processDetails":"تفاصيل العملية",
+  "picturesAttached":"الصور المرفقة"
 }
