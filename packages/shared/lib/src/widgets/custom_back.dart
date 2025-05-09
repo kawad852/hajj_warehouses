@@ -10,7 +10,7 @@ class CustomBack extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       child: IconButton(
         onPressed: () {
-          context.pop();
+          Navigator.pop(context);
         },
         icon: Icon(Icons.arrow_back_ios_new_outlined, color: color),
       ),

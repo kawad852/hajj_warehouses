@@ -30,14 +30,17 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.addNewSection,
         onPressed: () {
-          context.push((context) {
+          context.navigate((context) {
             return const CategoryInputScreen();
           });
         },
       ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(pinned: true, title: AppBarText(context.appLocalization.departmentAndItemManagement)),
+          SliverAppBar(
+            pinned: true,
+            title: AppBarText(context.appLocalization.departmentAndItemManagement),
+          ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             sliver: SliverList.list(
@@ -77,7 +80,7 @@ class _DepartmentItemManagementScreenState extends State<DepartmentItemManagemen
                     final category = snapshot.docs[index].data();
                     return GestureDetector(
                       onTap: () {
-                        context.push((context) => CategoryScreen(category: category));
+                        context.navigate((context) => CategoryScreen(category: category));
                       },
                       child: Container(
                         width: double.infinity,

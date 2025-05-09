@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   app:
     path: ../app
+  admin_portal:
+    path: ../admin_portal
   translations:
     path: ../translations
 
@@ -37,8 +39,6 @@ dependencies:
   geolocator: ^13.0.4
   uuid: ^4.5.1
   google_maps_flutter: ^2.12.1
-  objectbox: ^4.0.2
-  objectbox_flutter_libs: ^4.1.0
   path: ^1.9.0
   path_provider: ^2.1.5
   googleapis: ^14.0.0
@@ -59,6 +59,8 @@ dependencies:
   flutter_svg_provider: ^1.0.7
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.1
+  url_strategy: ^0.2.0
+  go_router: ^13.0.1
 
   #firebase
   firebase_core: ^3.13.0
@@ -81,7 +83,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.11
   json_serializable: ^6.8.0
-  #  objectbox_generator: ^4.1.0
+  go_router_builder: ^2.4.1
   flutter_test:
     sdk: flutter
 

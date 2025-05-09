@@ -13,7 +13,10 @@ class _OutOfStockItemsScreenState extends State<OutOfStockItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.appLocalization.itemsNeedingRestock), forceMaterialTransparency: true),
+      appBar: AppBar(
+        title: Text(context.appLocalization.itemsNeedingRestock),
+        forceMaterialTransparency: true,
+      ),
       body: OutOfStockSelector(
         builder: (context, items) {
           if (items.isEmpty) {
@@ -32,7 +35,7 @@ class _OutOfStockItemsScreenState extends State<OutOfStockItemsScreen> {
                       final item = items[index];
                       return TableContainer(
                         onTap: () {
-                          context.push((context) => ItemManagementScreen(item: item));
+                          context.navigate((context) => ItemManagementScreen(item: item));
                         },
                         id: item.id,
                         name: item.name,

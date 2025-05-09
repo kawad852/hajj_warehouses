@@ -2,7 +2,7 @@ import 'package:app/screens_exports.dart';
 import 'package:flutter/material.dart';
 
 extension NavigationExtension on BuildContext {
-  Future<T?> push<T>(WidgetBuilder builder, {bool fullscreenDialog = false, String? name}) {
+  Future<T?> navigate<T>(WidgetBuilder builder, {bool fullscreenDialog = false, String? name}) {
     return Navigator.push<T?>(
       this,
       MaterialPageRoute(
@@ -33,5 +33,5 @@ extension NavigationExtension on BuildContext {
     );
   }
 
-  void pop([value]) => Navigator.pop(this, value);
+  // void pop([value]) => Navigator.pop(this, value);
 }

@@ -13,14 +13,15 @@ class ValidationHelper {
   }
 
   //
-  // static String? email(BuildContext context, String? value) {
-  //   if (value!.isEmpty) {
-  //     return context.appLocalization.requiredField;
-  //   } else if (!emailRegex.hasMatch(value)) {
-  //     return context.appLocalization.invalidEmail;
-  //   }
-  //   return null;
-  // }
+  static String? email(BuildContext context, String? value) {
+    if (value!.isEmpty) {
+      return context.appLocalization.requiredField;
+    } else if (!emailRegex.hasMatch(value)) {
+      return context.appLocalization.invalidEmail;
+    }
+    return null;
+  }
+
   //
   static String? numbers(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {

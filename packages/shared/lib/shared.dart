@@ -12,16 +12,20 @@ export 'package:flutter_html/flutter_html.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:go_router/go_router.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
+export 'package:shared/firebase_options.dart';
+export 'package:shared/shared.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:timelines_plus/timelines_plus.dart';
 
 ///l10n
 // export 'package:flutter_gen/gen_l10n/app_localizations.dart';
 export 'package:translations/app_localizations.dart';
+export 'package:url_strategy/url_strategy.dart';
 
 //controllers
 export 'src/controllers/map_controller.dart';
@@ -55,6 +59,7 @@ export 'src/helper/time_stamp_serializer.dart';
 export 'src/helper/translation_extension.dart';
 export 'src/helper/ui_helper.dart';
 export 'src/helper/validation_helper.dart';
+export 'src/helper/web_scroll_behavior.dart';
 //models
 export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
@@ -116,6 +121,7 @@ export 'src/widgets/editors/base_editor.dart';
 export 'src/widgets/editors/date_picker_editor.dart';
 export 'src/widgets/editors/decimals_editor.dart';
 export 'src/widgets/editors/drop_down_editor.dart';
+export 'src/widgets/editors/email_editor.dart';
 export 'src/widgets/editors/nav_editor.dart';
 export 'src/widgets/editors/numbers_editor.dart';
 export 'src/widgets/editors/password_editor.dart';

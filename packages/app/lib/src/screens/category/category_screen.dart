@@ -49,7 +49,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.addNewItems,
         onPressed: () {
-          context.push((context) => ItemInputScreen(category: _category));
+          context.navigate((context) => ItemInputScreen(category: _category));
         },
       ),
       appBar: AppBar(title: AppBarText(_category.name)),
@@ -109,7 +109,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     final item = snapshot.docs[index].data();
                     return TableContainer(
                       onTap: () {
-                        context.push((context) => ItemManagementScreen(item: item));
+                        context.navigate((context) => ItemManagementScreen(item: item));
                       },
                       id: item.id,
                       name: item.name,

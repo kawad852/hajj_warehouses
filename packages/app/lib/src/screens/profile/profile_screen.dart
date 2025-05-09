@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: context.appLocalization.smartAssistant,
           icon: MyIcons.helper,
           onTap: () {
-            context.push((context) {
+            context.navigate((context) {
               return const ChatbotScreen();
             });
           },
@@ -64,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: context.appLocalization.privacyPolicy,
           icon: MyIcons.policy,
           onTap: () {
-            context.push((context) {
+            context.navigate((context) {
               return PolicyScreen(id: PolicyDocument.privacyPolicy.value);
             });
           },

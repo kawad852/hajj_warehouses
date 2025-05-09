@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:shared/shared.dart';
 
+import '../models/role/role_model.dart';
+
 class MySharedPreferences {
   static late SharedPreferences _sharedPreferences;
 
@@ -52,5 +54,19 @@ class MySharedPreferences {
 
   static set branch(LightBranchModel? value) {
     _sharedPreferences.setString('branch', jsonEncode(value?.toJson()));
+  }
+
+  static RoleModel? get role {
+    String? value = _sharedPreferences.getString('role');
+    RoleModel? role;
+    if (value != null && value.isNotEmpty && value != 'null') {
+      role = RoleModel.fromJson(jsonDecode(value));
+    }
+    return role;
+  }
+
+  static set role(RoleModel? value) {
+    value?.createdAt = null;
+    _sharedPreferences.setString('role', jsonEncode(value?.toJson()));
   }
 }

@@ -47,7 +47,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
           _onAdd(context);
         },
       ),
-      appBar: AppBar(title:AppBarText(context.appLocalization.sendNewRequest)),
+      appBar: AppBar(title: AppBarText(context.appLocalization.sendNewRequest)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
@@ -160,7 +160,7 @@ class _OrderInputScreenState extends State<OrderInputScreen> {
                   Fluttertoast.showToast(msg: context.appLocalization.itemAlreadyAdded);
                   return;
                 }
-                context.pop();
+                Navigator.pop(context);
                 final item = LightItemModel(id: e.id, name: e.name);
                 setState(() {});
               },

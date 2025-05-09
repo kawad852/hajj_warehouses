@@ -34,7 +34,7 @@ class _UsersScreenState extends State<UsersScreen> {
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.add,
         onPressed: () {
-          context.push((context) => const UserInputScreen());
+          context.navigate((context) => const UserInputScreen());
         },
       ),
       body: CustomFirestoreQueryBuilder(

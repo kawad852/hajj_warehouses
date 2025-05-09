@@ -25,7 +25,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     builder: (context, items) {
                       return WarehouseButton(
                         onTap: () {
-                          context.push((context) {
+                          context.navigate((context) {
                             return const OutOfStockItemsScreen();
                           });
                         },
@@ -38,7 +38,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   const SizedBox(width: 10),
                   WarehouseButton(
                     onTap: () {
-                      context.push(
+                      context.navigate(
                         (context) => const OperationInputScreen(operationType: OperationType.add),
                       );
                     },
@@ -53,7 +53,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   children: [
                     WarehouseButton(
                       onTap: () {
-                        context.push((context) => const DepartmentItemManagementScreen());
+                        context.navigate((context) => const DepartmentItemManagementScreen());
                       },
                       title: context.appLocalization.departmentAndItemManagement,
                       icon: MyIcons.department,
@@ -61,7 +61,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                     const SizedBox(width: 10),
                     WarehouseButton(
                       onTap: () {
-                        context.push((context) => const OrdersScreen());
+                        context.navigate((context) => const OrdersScreen());
                       },
                       title: context.appLocalization.manageOrders,
                       icon: MyIcons.truckTime,
@@ -73,7 +73,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                 children: [
                   WarehouseButton(
                     onTap: () {
-                      context.push((context) => const OperationsScreen());
+                      context.navigate((context) => const OperationsScreen());
                     },
                     flex: 4,
                     title: context.appLocalization.operationsLog,
@@ -82,7 +82,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   const SizedBox(width: 10),
                   WarehouseButton(
                     onTap: () {
-                      context.push(
+                      context.navigate(
                         (context) =>
                             const OperationInputScreen(operationType: OperationType.destroy),
                       );
@@ -95,7 +95,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                   const SizedBox(width: 10),
                   WarehouseButton(
                     onTap: () {
-                      context.push(
+                      context.navigate(
                         (context) =>
                             const OperationInputScreen(operationType: OperationType.transfer),
                       );
@@ -139,7 +139,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              context.push((context) {
+                              context.navigate((context) {
                                 return const OutOfStockItemsScreen();
                               });
                             },
@@ -172,7 +172,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                       final item = items[index];
                       return TableContainer(
                         onTap: () {
-                          context.push((context) => ItemManagementScreen(item: item));
+                          context.navigate((context) => ItemManagementScreen(item: item));
                         },
                         id: item.id,
                         name: item.name,

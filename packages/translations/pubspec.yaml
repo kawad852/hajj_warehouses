@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   app:
     path: ../shared
+  admin_portal:
+    path: ../admin_portal
 
 dev_dependencies:
   flutter_test:

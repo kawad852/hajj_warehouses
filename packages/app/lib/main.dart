@@ -1,11 +1,9 @@
 import 'package:app/screens_exports.dart';
-import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
-
-import 'firebase_options.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main Navigator");
 
+// flutter pub run build_runner build --delete-conflicting-outputs
 // dart pub global activate melos
 // melos bootstrap
 
@@ -20,7 +18,6 @@ Future<void> _logout() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySharedPreferences.init();
-  MyObjectBoxes.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await _logout();
   runApp(
@@ -72,7 +69,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Consumer2<AppProvider, UserProvider>(
@@ -139,42 +135,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
-            theme: ThemeData(
-              colorScheme: colorScheme,
-              useMaterial3: true,
-              fontFamily: GoogleFonts.cairo().fontFamily!,
-              actionIconTheme: ActionIconThemeData(
-                backButtonIconBuilder: (BuildContext context) {
-                  return const CustomBack();
-                },
-              ),
-              appBarTheme: const AppBarTheme(centerTitle: true),
-              inputDecorationTheme: InputDecorationTheme(
-                filled: true,
-                fillColor: const Color(0xFFF2F2F2),
-                contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.error),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.error),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-              ),
-              cardTheme: CardThemeData(
-                color: colorScheme.onInverseSurface,
-                margin: EdgeInsets.zero,
-              ),
-            ),
+            theme: MyTheme().materialTheme(context, colorScheme),
             home: _toggleScreen(context),
             // home: const AppNavBar(),
           ),

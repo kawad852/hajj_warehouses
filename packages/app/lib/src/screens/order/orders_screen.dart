@@ -37,7 +37,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.sendNewRequest,
         onPressed: () {
-          context.push(
+          context.navigate(
             (context) => const OperationInputScreen(operationType: OperationType.supply),
           );
         },
@@ -60,7 +60,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   order.operation!.operationType == OperationType.supply.value;
               return GestureDetector(
                 onTap: () {
-                  context.push((context) => OrderDetailsScreen(order: order));
+                  context.navigate((context) => OrderDetailsScreen(order: order));
                 },
                 child: Container(
                   width: double.infinity,

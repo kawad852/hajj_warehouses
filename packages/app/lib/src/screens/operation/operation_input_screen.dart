@@ -174,7 +174,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 ],
 
                 if (_operationType == OperationType.add) ...[
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
                     child: EditorLabel(context.appLocalization.whatTotalPurchaseValue),
                   ),
@@ -325,7 +325,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                         Fluttertoast.showToast(msg: context.appLocalization.itemAlreadyAdded);
                         return;
                       }
-                      context.pop();
+                      Navigator.pop(context);
                       final item = LightItemModel(
                         id: e.id,
                         name: e.name,
@@ -347,7 +347,9 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                         readOnly: true,
                         onTap: () {
                           if (_isTransferOperation && _operation.transferFromBranch == null) {
-                            Fluttertoast.showToast(msg: context.appLocalization.mustSelectBranchFirst);
+                            Fluttertoast.showToast(
+                              msg: context.appLocalization.mustSelectBranchFirst,
+                            );
                             return;
                           }
                           controller.openView();

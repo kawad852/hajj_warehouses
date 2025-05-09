@@ -39,7 +39,7 @@ class UserInfoWidget extends StatelessWidget {
               onTap:
                   kIsAdmin
                       ? () {
-                        context.push((context) {
+                        context.navigate((context) {
                           return const ChooseBranchScreen(showAppBar: true);
                         });
                       }

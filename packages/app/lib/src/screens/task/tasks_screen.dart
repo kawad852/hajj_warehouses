@@ -98,7 +98,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          context.push((context) => const TasksScreen(fullCalendar: true));
+                          context.navigate((context) => const TasksScreen(fullCalendar: true));
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10),

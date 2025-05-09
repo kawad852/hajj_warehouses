@@ -10,7 +10,7 @@ class MyTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push((context) {
+        context.navigate((context) {
           return TaskDetailsScreen(task: task);
         });
       },

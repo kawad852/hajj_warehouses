@@ -29,7 +29,7 @@ class TaskCard extends StatelessWidget {
     final colors = task.getStatusColors(context);
     return GestureDetector(
       onTap: () {
-        context.push((context) => TaskDetailsScreen(task: task));
+        context.navigate((context) => TaskDetailsScreen(task: task));
       },
       child: Container(
         width: double.infinity,

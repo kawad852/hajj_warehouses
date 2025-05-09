@@ -11,7 +11,7 @@ class AddTaskWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.push((context) => TaskInputScreen(task: task));
+            context.navigate((context) => TaskInputScreen(task: task));
           },
           child: Container(
             width: 40,

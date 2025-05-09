@@ -70,7 +70,7 @@ class UserCard extends StatelessWidget {
               // const SizedBox(height: 5),
               ToolButton(
                 onTap: () {
-                  context.push((context) {
+                  context.navigate((context) {
                     return UserInputScreen(user: user);
                   });
                 },

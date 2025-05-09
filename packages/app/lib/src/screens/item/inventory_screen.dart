@@ -49,7 +49,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
                       final item = items[index].data();
                       return TableContainer(
                         onTap: () {
-                          context.push((context) => ItemManagementScreen(item: item));
+                          context.navigate((context) => ItemManagementScreen(item: item));
                         },
                         id: item.id,
                         name: item.name,

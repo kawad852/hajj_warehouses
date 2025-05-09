@@ -124,7 +124,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                             widget.onTap!(element);
                             return;
                           } else {
-                            context.push((context) {
+                            context.navigate((context) {
                               return ItemManagementScreen(item: element);
                             });
                           }

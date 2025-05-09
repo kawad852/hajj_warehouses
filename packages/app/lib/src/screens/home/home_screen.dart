@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: (time) {
                         return HomeBubble(
                           onTap: () {
-                            context.push((context) {
+                            context.navigate((context) {
                               return TaskDetailsScreen(task: task);
                             });
                           },
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context, branch) {
                         return HomeBubble(
                           onTap: () {
-                            context.push((context) => const TransactionsScreen());
+                            context.navigate((context) => const TransactionsScreen());
                           },
                           title: context.appLocalization.imprestBalance,
                           task:
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context, items) {
                         return HomeBubble(
                           onTap: () {
-                            context.push((context) {
+                            context.navigate((context) {
                               return const InventoryScreen();
                             });
                           },
@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: HomeBubble(
                     onTap: () {
-                      context.push((context) => const UsersScreen());
+                      context.navigate((context) => const UsersScreen());
                     },
                     title: context.appLocalization.humanResources,
                     prefixIcon: MyIcons.people,
@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              context.push((context) {
+                              context.navigate((context) {
                                 return const TasksScreen(withAppBar: true);
                               });
                             },
