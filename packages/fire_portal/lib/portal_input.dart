@@ -1,18 +1,14 @@
 import 'package:shared/shared.dart';
 
 class PortalInput<T> extends StatefulWidget {
-  // final T q;
-  // final DocumentReference<T> ref;
   final QueryDocumentSnapshot<T> queryDocSnapshot;
   final List<Widget> Function(T snapshot) inputBuilder;
-  final Function(DocumentReference<T> ref, T snapshot) onSave;
+  final Future<void> Function(DocumentReference<T> ref, T snapshot) onSave;
 
   const PortalInput({
     super.key,
     required this.inputBuilder,
     required this.onSave,
-    // required this.q,
-    // required this.ref,
     required this.queryDocSnapshot,
   });
 
@@ -38,8 +34,16 @@ class _PortalInputState<T> extends State<PortalInput<T>> {
         actions: [
           FilledButton(
             onPressed: () {
-              widget.onSave(_queryDocumentSnapshot.reference, _editedData);
-              Navigator.pop(context, _editedData);
+              ApiService.fetch(
+                context,
+                callBack: () async {
+                  await widget.onSave(_queryDocumentSnapshot.reference, _editedData);
+                  if (context.mounted) {
+                    context.showSnackBar(context.appLocalization.successfullyUpdated);
+                    Navigator.pop(context, _editedData);
+                  }
+                },
+              );
             },
             child: Text("Save"),
           ),

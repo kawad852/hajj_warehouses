@@ -38,8 +38,8 @@ class _BranchesScreenState extends State<BranchesScreen> {
           PortalContent(column: DataColumn(label: Text("الإسم")), cell: DataCell(Text(data.name))),
         ];
       },
-      onSave: (reference, data) {
-        reference.update(data.toJson());
+      onSave: (reference, data) async {
+        await reference.update(data.toJson());
         // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {

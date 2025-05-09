@@ -12,7 +12,7 @@ class PortalTable<T> extends StatelessWidget {
   final List<PortalContent> Function(int index, FirestoreQueryBuilderSnapshot<T> snapshot)
   tableBuilder;
   final List<Widget> Function(T snapshot) inputBuilder;
-  final Function(DocumentReference<T> ref, T snapshot) onSave;
+  final Future<void> Function(DocumentReference<T> ref, T snapshot) onSave;
 
   const PortalTable({
     super.key,
