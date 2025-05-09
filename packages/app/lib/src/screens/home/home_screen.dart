@@ -108,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           task:
                               items.isNotEmpty
                                   ? context.appLocalization.youHaveItemsNeedRestocking
-                                  : "-",
+                                  : context.appLocalization.goodInventoryStatusLabel,
                           prefixIcon: MyIcons.box,
-                          taskColor: context.colorPalette.redC10,
+                          taskColor: items.isNotEmpty ? context.colorPalette.redC10 : null,
                         );
                       },
                     ),

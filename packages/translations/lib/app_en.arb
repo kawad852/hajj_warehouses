@@ -285,5 +285,6 @@
   "edit":"Edit",
   "nextTask":"Next task",
   "taskEndTimeMustAfterStartTime":"The task end time must be after the start time.",
-  "noAddedTasks":"No added tasks"
+  "noAddedTasks":"No added tasks",
+  "goodInventoryStatusLabel": "Inventory Status is good"
 }

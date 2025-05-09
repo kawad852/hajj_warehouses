@@ -237,5 +237,6 @@
   "edit":"تحرير",
   "nextTask":"المهمة التالية",
   "taskEndTimeMustAfterStartTime":"وقت إنتهاء المهمة يجب ان يكون بعد وقت البداية",
-  "noAddedTasks":"لا يوجد مهمات مضافة"
+  "noAddedTasks":"لا يوجد مهمات مضافة",
+  "goodInventoryStatusLabel": "حالة المخزون جيدة"
 }
