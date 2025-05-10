@@ -21,7 +21,6 @@ export 'src/screens/operation/operation_input_screen.dart';
 export 'src/screens/operation/operations_screen.dart';
 export 'src/screens/operation/widgets/operation_bubble.dart';
 export 'src/screens/order/order_details_screen.dart';
-export 'src/screens/order/order_input_screen.dart';
 export 'src/screens/order/orders_screen.dart';
 export 'src/screens/order/widgets/order_card.dart';
 export 'src/screens/profile/profile_screen.dart';

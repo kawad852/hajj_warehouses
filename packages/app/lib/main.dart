@@ -116,7 +116,6 @@ class _MyAppState extends State<MyApp> {
                       : Stream.value(BranchModel()),
               initialData: BranchModel(),
               updateShouldNotify: (initialValue, value) {
-                print("balance:: ${value.balance}");
                 return true;
               },
             ),

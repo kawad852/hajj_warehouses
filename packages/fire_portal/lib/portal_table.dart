@@ -132,7 +132,7 @@ class PortalTable<T> extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: context.colorScheme.inverseSurface.withOpacity(0.10),
+                            color: context.colorScheme.inverseSurface.withValues(alpha: 0.10),
                             borderRadius: BorderRadius.circular(MyTheme.radiusTertiary),
                           ),
                           child: BaseLoader(),
