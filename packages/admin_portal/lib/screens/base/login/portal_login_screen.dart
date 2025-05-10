@@ -50,16 +50,25 @@ class _PortalLoginScreenState extends State<PortalLoginScreen> {
                           ),
                         ),
                       ),
-                      EmailEditor(
-                        initialValue: null,
-                        withErrorIndicator: false,
-                        onChanged: (value) => _email = value,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: ListBody(
+                          children:
+                              [
+                                EmailEditor(
+                                  initialValue: null,
+                                  withErrorIndicator: false,
+                                  onChanged: (value) => _email = value,
+                                ),
+                                PasswordEditor(
+                                  initialValue: null,
+                                  withErrorIndicator: false,
+                                  onChanged: (value) => _password = value,
+                                ),
+                              ].separator(SizedBox(height: 10)).toList(),
+                        ),
                       ),
-                      PasswordEditor(
-                        initialValue: null,
-                        withErrorIndicator: false,
-                        onChanged: (value) => _password = value,
-                      ),
+
                       FilledButton(
                         child: Text(context.appLocalization.login),
                         onPressed: () {

@@ -18,22 +18,25 @@ class EmailEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseEditor(
-      initialValue: initialValue,
-      title: context.appLocalization.email,
-      keyboardType: TextInputType.emailAddress,
-      suffixIconConstraints: const BoxConstraints(maxWidth: 40),
-      suffixIcon: const Center(child: CustomSvg(MyIcons.sms)),
-      required: true,
-      readOnly: readonly,
-      onChanged: (value) {
-        if (value.isEmpty) {
-          onChanged(null);
-        } else {
-          onChanged(value);
-        }
-      },
-      validator: (value) => ValidationHelper.email(context, value),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: BaseEditor(
+        initialValue: initialValue,
+        title: context.appLocalization.email,
+        keyboardType: TextInputType.emailAddress,
+        suffixIconConstraints: const BoxConstraints(maxWidth: 40),
+        suffixIcon: const Center(child: CustomSvg(MyIcons.sms)),
+        required: true,
+        readOnly: readonly,
+        onChanged: (value) {
+          if (value.isEmpty) {
+            onChanged(null);
+          } else {
+            onChanged(value);
+          }
+        },
+        validator: (value) => ValidationHelper.email(context, value),
+      ),
     );
   }
 }
