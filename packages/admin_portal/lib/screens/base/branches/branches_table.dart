@@ -10,8 +10,10 @@ class BranchesTable extends StatefulWidget {
 class _BranchesTableState extends State<BranchesTable> {
   late Query<BranchModel> _query;
 
+  CollectionReference<BranchModel> get _collectionRef => kFirebaseInstant.branches;
+
   void _initializeQuery() {
-    _query = kFirebaseInstant.branches;
+    _query = _collectionRef;
   }
 
   @override
@@ -25,6 +27,8 @@ class _BranchesTableState extends State<BranchesTable> {
     return PortalTable(
       tableTitle: 'Branches',
       query: _query,
+      data: BranchModel(),
+      reference: _collectionRef.doc(),
       header: IconButton(
         onPressed: () {
           setState(() {});

@@ -42,6 +42,7 @@ class MyTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFFF2F2F2),
+        constraints: const BoxConstraints(maxWidth: 500),
         contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.transparent),

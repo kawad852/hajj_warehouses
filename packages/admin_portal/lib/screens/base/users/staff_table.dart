@@ -10,8 +10,10 @@ class StaffTable extends StatefulWidget {
 class _StaffTableState extends State<StaffTable> {
   late Query<UserModel> _query;
 
+  CollectionReference<UserModel> get _collectionRef => kFirebaseInstant.users;
+
   void _initializeQuery() {
-    _query = kFirebaseInstant.users;
+    _query = _collectionRef;
   }
 
   @override
@@ -25,6 +27,8 @@ class _StaffTableState extends State<StaffTable> {
     return PortalTable(
       tableTitle: 'Staff',
       query: _query,
+      data: UserModel(),
+      reference: _collectionRef.doc(),
       header: IconButton(
         onPressed: () {
           setState(() {});

@@ -13,6 +13,9 @@ class PortalTable<T> extends StatelessWidget {
   final List<DataColumn> columns;
   final List<Widget> Function(T snapshot) inputBuilder;
   final Future<void> Function(DocumentReference<T> ref, T snapshot) onSave;
+  final T data;
+  final DocumentReference<T> reference;
+  final Function(Map<String, dynamic> value)? convertor;
 
   const PortalTable({
     super.key,
@@ -27,6 +30,9 @@ class PortalTable<T> extends StatelessWidget {
     required this.inputBuilder,
     required this.onSave,
     required this.columns,
+    required this.data,
+    this.convertor,
+    required this.reference,
   });
 
   @override
@@ -78,7 +84,24 @@ class PortalTable<T> extends StatelessWidget {
                       width: context.mediaQuery.width,
                       child: PaginatedDataTable(
                         dataRowMaxHeight: dataRowMaxHeight,
-                        header: header,
+                        header: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child:
+                              header ??
+                              IconButton.filled(
+                                onPressed: () {
+                                  context.navigate((context) {
+                                    return PortalInput<T>(
+                                      onSave: onSave,
+                                      inputBuilder: inputBuilder,
+                                      data: data,
+                                      reference: reference,
+                                    );
+                                  });
+                                },
+                                icon: Icon(Icons.add),
+                              ),
+                        ),
                         actions: header != null ? tableActions : null,
                         columns: List.generate(columns.length + 1, (index) {
                           if (index == columns.length) {
@@ -106,9 +129,10 @@ class PortalTable<T> extends StatelessWidget {
                                       onEdit: () {
                                         context.navigate((context) {
                                           return PortalInput(
-                                            queryDocSnapshot: queryDocSnapshot,
                                             onSave: onSave,
                                             inputBuilder: inputBuilder,
+                                            data: queryDocSnapshot.data(),
+                                            reference: queryDocSnapshot.reference,
                                           );
                                         });
                                       },

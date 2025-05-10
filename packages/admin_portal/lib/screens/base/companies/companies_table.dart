@@ -10,8 +10,10 @@ class CompaniesTable extends StatefulWidget {
 class _CompaniesTableState extends State<CompaniesTable> {
   late Query<CompanyModel> _query;
 
+  CollectionReference<CompanyModel> get _collectionRef => kFirebaseInstant.companies;
+
   void _initializeQuery() {
-    _query = kFirebaseInstant.companies;
+    _query = _collectionRef;
   }
 
   @override
@@ -25,12 +27,9 @@ class _CompaniesTableState extends State<CompaniesTable> {
     return PortalTable(
       tableTitle: 'Companies',
       query: _query,
-      header: IconButton(
-        onPressed: () {
-          setState(() {});
-        },
-        icon: Icon(Icons.reset_tv),
-      ),
+      data: CompanyModel(createdAt: kNowDate),
+      reference: _collectionRef.doc(),
+      convertor: CompanyModel.fromJson,
       columns: [DataColumn(label: Text("تاريخ الإنشاء")), DataColumn(label: Text("الإسم"))],
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
@@ -41,7 +40,7 @@ class _CompaniesTableState extends State<CompaniesTable> {
         ];
       },
       onSave: (reference, data) async {
-        await reference.update(data.toJson());
+        await reference.set(data);
         // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {
