@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -7,7 +8,7 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool  isRTL = Localizations.localeOf(context).languageCode == LanguageEnum.arabic;
+    final bool isRTL = Localizations.localeOf(context).languageCode == LanguageEnum.arabic;
     final isDeposit = transaction.transactionType == TransactionType.deposit.value;
     final style = TextStyle(
       fontFamily: GoogleFonts.cairo().fontFamily!,
@@ -36,10 +37,17 @@ class TransactionCard extends StatelessWidget {
                   text: TextSpan(
                     style: style,
                     children: [
-                     if(isRTL) TextSpan(text: "قام", style: style),
+                      if (isRTL) TextSpan(text: "قام", style: style),
                       TextSpan(text: " ${transaction.user.displayName} ", style: greenStyle),
-                      TextSpan(text: "${isRTL ? "بـ" : ""} ${isDeposit ? context.appLocalization.add : context.appLocalization.withdraw} ", style: style),
-                      TextSpan(text: "${transaction.amount} ${context.appLocalization.riyal}", style: style),
+                      TextSpan(
+                        text:
+                            "${isRTL ? "بـ" : ""} ${isDeposit ? context.appLocalization.add : context.appLocalization.withdraw} ",
+                        style: style,
+                      ),
+                      TextSpan(
+                        text: "${transaction.amount} ${context.appLocalization.riyal}",
+                        style: style,
+                      ),
                       if (transaction.expenseType != null)
                         TextSpan(
                           text:
@@ -48,7 +56,8 @@ class TransactionCard extends StatelessWidget {
                         ),
                       if (transaction.operationId != null)
                         TextSpan(
-                          text: " ${context.appLocalization.againstPurchaseOrder}: ${transaction.operationId}",
+                          text:
+                              " ${context.appLocalization.againstPurchaseOrder}: ${transaction.operationId}",
                           style: style,
                         ),
                     ],
@@ -59,7 +68,14 @@ class TransactionCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        context.navigate((context) {
+                          return OperationDetailsScreen(
+                            operation: null,
+                            operationId: transaction.operationId!,
+                          );
+                        });
+                      },
                       child: Row(
                         children: [
                           const CustomSvg(MyIcons.eye),
