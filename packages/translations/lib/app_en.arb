@@ -1,4 +1,6 @@
 {
+  "name": "Name",
+  "branches": "Branches",
   "companies": "Companies",
   "invalidCredential": "Invalid Credential",
   "totalAmount": "Total Amount",

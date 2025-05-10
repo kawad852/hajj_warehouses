@@ -217,7 +217,7 @@ class __$$RoleModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RoleModelImpl implements _RoleModel {
+class _$RoleModelImpl extends _RoleModel {
   _$RoleModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id,
@@ -226,7 +226,7 @@ class _$RoleModelImpl implements _RoleModel {
     this.initialLocation,
     this.analytics = false,
     this.permissions,
-  });
+  }) : super._();
 
   factory _$RoleModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoleModelImplFromJson(json);
@@ -267,7 +267,7 @@ class _$RoleModelImpl implements _RoleModel {
   }
 }
 
-abstract class _RoleModel implements RoleModel {
+abstract class _RoleModel extends RoleModel {
   factory _RoleModel({
     @TimestampSerializer() DateTime? createdAt,
     String? id,
@@ -277,6 +277,7 @@ abstract class _RoleModel implements RoleModel {
     bool analytics,
     List<PermissionModel>? permissions,
   }) = _$RoleModelImpl;
+  _RoleModel._() : super._();
 
   factory _RoleModel.fromJson(Map<String, dynamic> json) =
       _$RoleModelImpl.fromJson;

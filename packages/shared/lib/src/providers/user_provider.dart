@@ -4,6 +4,8 @@ import 'package:app/screens_exports.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared/shared.dart';
 
+import '../../app_routes.dart';
+
 class UserProvider extends ChangeNotifier {
   Function()? onGuestRegistration;
 
@@ -140,7 +142,7 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> logout(BuildContext context) async {
+  Future<void> logout(BuildContext context, {bool adminPanel = false}) async {
     ApiService.fetch(
       context,
       callBack: () async {
@@ -148,9 +150,13 @@ class UserProvider extends ChangeNotifier {
         MySharedPreferences.clearStorage();
         notifyListeners();
         if (context.mounted) {
-          context.pushAndRemoveUntil((context) {
-            return const LoginScreen();
-          });
+          if (adminPanel) {
+            LoginRoute().go(context);
+          } else {
+            context.pushAndRemoveUntil((context) {
+              return const LoginScreen();
+            });
+          }
         }
       },
     );

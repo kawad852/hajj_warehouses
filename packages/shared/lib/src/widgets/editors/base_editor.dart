@@ -103,7 +103,6 @@ class BaseEditor extends StatelessWidget {
         filled: filled,
         fillColor: fillColor,
         suffixText: suffixText,
-
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
@@ -118,7 +117,6 @@ class BaseEditor extends StatelessWidget {
         focusedBorder: focusedBorder,
       ),
       validator: validator,
-
       canRequestFocus: canRequestFocus,
       mouseCursor: mouseCursor,
       onTapOutside: (value) => onTapOutside ?? context.unFocusKeyboard(),

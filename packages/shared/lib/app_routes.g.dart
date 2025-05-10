@@ -58,6 +58,17 @@ RouteBase get $appNavBarRoute => StatefulShellRouteData.$route(
   factory: $AppNavBarRouteExtension._fromState,
   branches: [
     StatefulShellBranchData.$branch(
+      navigatorKey: CompaniesTableBranch.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/companies',
+
+          factory: $CompaniesTableRouteExtension._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
       navigatorKey: StaffTableBranch.$navigatorKey,
 
       routes: [
@@ -69,13 +80,24 @@ RouteBase get $appNavBarRoute => StatefulShellRouteData.$route(
       ],
     ),
     StatefulShellBranchData.$branch(
-      navigatorKey: CompaniesTableBranch.$navigatorKey,
+      navigatorKey: RolesTableBranch.$navigatorKey,
 
       routes: [
         GoRouteData.$route(
-          path: '/companies',
+          path: '/roles',
 
-          factory: $CompaniesTableRouteExtension._fromState,
+          factory: $RolesTableRouteExtension._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      navigatorKey: PoliciesTableBranch.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/policies',
+
+          factory: $PoliciesTableRouteExtension._fromState,
         ),
       ],
     ),
@@ -85,6 +107,22 @@ RouteBase get $appNavBarRoute => StatefulShellRouteData.$route(
 extension $AppNavBarRouteExtension on AppNavBarRoute {
   static AppNavBarRoute _fromState(GoRouterState state) =>
       const AppNavBarRoute();
+}
+
+extension $CompaniesTableRouteExtension on CompaniesTableRoute {
+  static CompaniesTableRoute _fromState(GoRouterState state) =>
+      CompaniesTableRoute();
+
+  String get location => GoRouteData.$location('/companies');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $StaffTableRouteExtension on StaffTableRoute {
@@ -102,11 +140,26 @@ extension $StaffTableRouteExtension on StaffTableRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $CompaniesTableRouteExtension on CompaniesTableRoute {
-  static CompaniesTableRoute _fromState(GoRouterState state) =>
-      CompaniesTableRoute();
+extension $RolesTableRouteExtension on RolesTableRoute {
+  static RolesTableRoute _fromState(GoRouterState state) => RolesTableRoute();
 
-  String get location => GoRouteData.$location('/companies');
+  String get location => GoRouteData.$location('/roles');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $PoliciesTableRouteExtension on PoliciesTableRoute {
+  static PoliciesTableRoute _fromState(GoRouterState state) =>
+      PoliciesTableRoute();
+
+  String get location => GoRouteData.$location('/policies');
 
   void go(BuildContext context) => context.go(location);
 

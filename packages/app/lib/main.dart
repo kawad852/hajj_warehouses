@@ -71,6 +71,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = MyColorScheme(true).value;
     return Consumer2<AppProvider, UserProvider>(
       builder: (BuildContext context, appProvider, userProvider, Widget? child) {
         return MultiProvider(
@@ -122,14 +123,21 @@ class _MyAppState extends State<MyApp> {
             StreamProvider<bool>.value(value: null, initialData: true),
           ],
           child: MaterialApp(
-            title: 'Flutter Demo',
             navigatorKey: rootNavigatorKey,
             builder: EasyLoading.init(),
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
-            theme: MyTheme().materialTheme(context, MyColorScheme(true).value),
+            theme: MyTheme().materialTheme(
+              context,
+              colorScheme,
+              fillColor: const Color(0xFFF2F2F2),
+              cardThemeData: CardThemeData(
+                color: colorScheme.onInverseSurface,
+                margin: EdgeInsets.zero,
+              ),
+            ),
             home: _toggleScreen(context),
             // home: const AppNavBar(),
           ),

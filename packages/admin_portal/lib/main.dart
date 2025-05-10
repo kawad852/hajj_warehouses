@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:shared/app_routes.dart';
+import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
 // -d chrome --web-renderer html
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                   if (userProvider.isAuthenticated && (value.id == null || value.blocked)) {
                     Fluttertoast.showToast(msg: "Authorization Failed");
                     // ignore: use_build_context_synchronously
-                    userProvider.logout(rootNavigatorKey.currentContext!);
+                    userProvider.logout(rootNavigatorKey.currentContext!, adminPanel: true);
                   }
                 });
                 return true;
@@ -108,7 +109,10 @@ class _MyAppState extends State<MyApp> {
                 builder: EasyLoading.init(),
                 debugShowCheckedModeBanner: false,
                 scrollBehavior: WebScrollBehavior(),
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: [
+                  ...AppLocalizations.localizationsDelegates,
+                  FlutterQuillLocalizations.delegate,
+                ],
                 supportedLocales: AppLocalizations.supportedLocales,
                 locale: appProvider.appLocale,
                 theme: MyTheme().materialTheme(

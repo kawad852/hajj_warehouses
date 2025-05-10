@@ -48,7 +48,7 @@ class UserMenuAnchor extends StatelessWidget {
                   const SizedBox(height: 20),
                   TextButton.icon(
                     onPressed: () {
-                      context.userProvider.logout(context);
+                      context.userProvider.logout(context, adminPanel: true);
                     },
                     style: TextButton.styleFrom(foregroundColor: context.colorScheme.error),
                     label: Text(context.appLocalization.logout),

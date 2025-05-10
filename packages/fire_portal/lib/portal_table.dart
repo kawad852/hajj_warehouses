@@ -43,23 +43,16 @@ class PortalTable<T> extends StatelessWidget {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // if (context.mediaQuery.width < kMaxSmallDeviceWidth)
-            Padding(
-              padding: const EdgeInsetsDirectional.only(end: 10),
-              child: IconButton(
-                onPressed: () async {
-                  // try {
-                  //   final a = await kFirebaseInstant.branches.get().then((value) {
-                  //     print("length:: ${value.docs.length}");
-                  //   });
-                  // } catch (e) {
-                  //   print("e:: $e");
-                  // }
-                  // scaffoldKey.currentState!.openDrawer();
-                },
-                icon: const Icon(FontAwesomeIcons.bars),
+            if (context.mediaQuery.width < kMaxSmallDeviceWidth)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 10),
+                child: IconButton(
+                  onPressed: () async {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(FontAwesomeIcons.bars),
+                ),
               ),
-            ),
             Text(tableTitle),
           ],
         ),
@@ -84,24 +77,27 @@ class PortalTable<T> extends StatelessWidget {
                       width: context.mediaQuery.width,
                       child: PaginatedDataTable(
                         dataRowMaxHeight: dataRowMaxHeight,
-                        header: Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child:
-                              header ??
-                              IconButton.filled(
-                                onPressed: () {
-                                  context.navigate((context) {
-                                    return PortalInput<T>(
-                                      onSave: onSave,
-                                      inputBuilder: inputBuilder,
-                                      data: data,
-                                      reference: reference,
-                                    );
-                                  });
-                                },
-                                icon: Icon(Icons.add),
-                              ),
-                        ),
+                        header:
+                            header.toString() != SizedBox.shrink().toString()
+                                ? Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child:
+                                      header ??
+                                      IconButton.filled(
+                                        onPressed: () {
+                                          context.navigate((context) {
+                                            return PortalInput<T>(
+                                              onSave: onSave,
+                                              inputBuilder: inputBuilder,
+                                              data: data,
+                                              reference: reference,
+                                            );
+                                          });
+                                        },
+                                        icon: Icon(Icons.add),
+                                      ),
+                                )
+                                : null,
                         actions: header != null ? tableActions : null,
                         columns: List.generate(columns.length + 1, (index) {
                           if (index == columns.length) {

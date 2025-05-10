@@ -1,4 +1,6 @@
 {
+  "name": "الإسم",
+  "branches": "الفروع",
   "companies": "الشركات",
   "invalidCredential": "بيانات غير صحيحة",
   "update": "تحديث",

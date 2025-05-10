@@ -25,31 +25,28 @@ class _BranchesTableState extends State<BranchesTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Branches',
+      tableTitle: context.appLocalization.branches,
       query: _query,
       data: BranchModel(),
       reference: _collectionRef.doc(),
-      header: IconButton(
-        onPressed: () {
-          setState(() {});
-        },
-        icon: Icon(Icons.reset_tv),
-      ),
-      columns: [DataColumn(label: Text("الإسم"))],
+      columns: [DataColumn(label: Text(context.appLocalization.name))],
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
         return [DataCell(Text(data.name))];
       },
-      onSave: (reference, data) async {
-        await reference?.update(data.toJson());
-        // print("name::: ${snapshot.name}");
+      onSave: (ref, data) async {
+        final reference = ref ?? _collectionRef.doc();
+        if (ref == null) {
+          data = data.copyWith(id: reference.id, createdAt: kNowDate);
+        }
+        await reference.set(data);
       },
       inputBuilder: (snapshot) {
         final data = snapshot;
         return [
           TextEditor(
-            labelText: "الإسم",
+            labelText: context.appLocalization.name,
             initialValue: data.name,
             onChanged: (value) {
               setState(() {

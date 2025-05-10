@@ -1,5 +1,4 @@
 import 'package:admin_portal/screens/base/drawer/widgets/drawer_tile.dart';
-import 'package:admin_portal/screens/base/drawer/widgets/rail_expansion_tile.dart';
 import 'package:admin_portal/screens/base/drawer/widgets/user_menu_anchor.dart';
 import 'package:shared/shared.dart';
 
@@ -91,95 +90,102 @@ class _AppDrawerState extends State<AppDrawer> with AutomaticKeepAliveClientMixi
               ListTile(leading: const UserMenuAnchor()),
               Divider(indent: 10, endIndent: 10, color: context.colorScheme.outlineVariant),
 
-              /// Manage
-              if (manageRoutes.isNotEmpty)
-                RailExpansionTile(
-                  iconData: FontAwesomeIcons.lightClipboardList,
-                  title: context.appLocalization.manage,
-                  index: 0,
-                  initiallyExpanded: _drawerProvider.manageInitiallyExpanded,
-                  child: ListBody(
-                    children:
-                        manageRoutes.map((element) {
-                          return _buildTile(
-                            PortalHelper.railPaths.indexOf(element),
-                            PortalHelper.getPathLabel(context, element),
-                          );
-                        }).toList(),
-                  ),
-                ),
+              ...manageRoutes.map((element) {
+                return _buildTile(
+                  PortalHelper.railPaths.indexOf(element),
+                  PortalHelper.getPathLabel(context, element),
+                );
+              }),
 
-              ///build
-              if (buildRoutes.isNotEmpty)
-                RailExpansionTile(
-                  iconData: FontAwesomeIcons.lightScrewdriverWrench,
-                  title: context.appLocalization.build,
-                  index: 1,
-                  initiallyExpanded: _drawerProvider.buildInitiallyExpanded,
-                  child: ListBody(
-                    children:
-                        buildRoutes.map((element) {
-                          return _buildTile(
-                            PortalHelper.railPaths.indexOf(element),
-                            PortalHelper.getPathLabel(context, element),
-                          );
-                        }).toList(),
-                  ),
-                ),
+              // /// Manage
+              // if (manageRoutes.isNotEmpty)
+              //   RailExpansionTile(
+              //     iconData: FontAwesomeIcons.lightClipboardList,
+              //     title: context.appLocalization.manage,
+              //     index: 0,
+              //     initiallyExpanded: _drawerProvider.manageInitiallyExpanded,
+              //     child: ListBody(
+              //       children:
+              //           manageRoutes.map((element) {
+              //             return _buildTile(
+              //               PortalHelper.railPaths.indexOf(element),
+              //               PortalHelper.getPathLabel(context, element),
+              //             );
+              //           }).toList(),
+              //     ),
+              //   ),
 
-              ///Services
-              if (servicesRoutes.isNotEmpty)
-                RailExpansionTile(
-                  iconData: FontAwesomeIcons.toolbox,
-                  title: context.appLocalization.services,
-                  index: 1,
-                  initiallyExpanded: _drawerProvider.buildInitiallyExpanded,
-                  child: ListBody(
-                    children:
-                        servicesRoutes.map((element) {
-                          return _buildTile(
-                            PortalHelper.railPaths.indexOf(element),
-                            PortalHelper.getPathLabel(context, element),
-                          );
-                        }).toList(),
-                  ),
-                ),
-
-              /// Engage
-              if (engageRoutes.isNotEmpty)
-                RailExpansionTile(
-                  iconData: FontAwesomeIcons.lightHandshake,
-                  title: context.appLocalization.engage,
-                  index: 2,
-                  initiallyExpanded: _drawerProvider.engageInitiallyExpanded,
-                  child: ListBody(
-                    children:
-                        engageRoutes.map((element) {
-                          return _buildTile(
-                            PortalHelper.railPaths.indexOf(element),
-                            PortalHelper.getPathLabel(context, element),
-                          );
-                        }).toList(),
-                  ),
-                ),
-
-              /// Configure
-              if (configureRoutes.isNotEmpty)
-                RailExpansionTile(
-                  iconData: FontAwesomeIcons.lightGear,
-                  title: context.appLocalization.configure,
-                  index: 3,
-                  initiallyExpanded: _drawerProvider.configureInitiallyExpanded,
-                  child: ListBody(
-                    children:
-                        configureRoutes.map((element) {
-                          return _buildTile(
-                            PortalHelper.railPaths.indexOf(element),
-                            PortalHelper.getPathLabel(context, element),
-                          );
-                        }).toList(),
-                  ),
-                ),
+              // ///build
+              // if (buildRoutes.isNotEmpty)
+              //   RailExpansionTile(
+              //     iconData: FontAwesomeIcons.lightScrewdriverWrench,
+              //     title: context.appLocalization.build,
+              //     index: 1,
+              //     initiallyExpanded: _drawerProvider.buildInitiallyExpanded,
+              //     child: ListBody(
+              //       children:
+              //           buildRoutes.map((element) {
+              //             return _buildTile(
+              //               PortalHelper.railPaths.indexOf(element),
+              //               PortalHelper.getPathLabel(context, element),
+              //             );
+              //           }).toList(),
+              //     ),
+              //   ),
+              //
+              // ///Services
+              // if (servicesRoutes.isNotEmpty)
+              //   RailExpansionTile(
+              //     iconData: FontAwesomeIcons.toolbox,
+              //     title: context.appLocalization.services,
+              //     index: 1,
+              //     initiallyExpanded: _drawerProvider.buildInitiallyExpanded,
+              //     child: ListBody(
+              //       children:
+              //           servicesRoutes.map((element) {
+              //             return _buildTile(
+              //               PortalHelper.railPaths.indexOf(element),
+              //               PortalHelper.getPathLabel(context, element),
+              //             );
+              //           }).toList(),
+              //     ),
+              //   ),
+              //
+              // /// Engage
+              // if (engageRoutes.isNotEmpty)
+              //   RailExpansionTile(
+              //     iconData: FontAwesomeIcons.lightHandshake,
+              //     title: context.appLocalization.engage,
+              //     index: 2,
+              //     initiallyExpanded: _drawerProvider.engageInitiallyExpanded,
+              //     child: ListBody(
+              //       children:
+              //           engageRoutes.map((element) {
+              //             return _buildTile(
+              //               PortalHelper.railPaths.indexOf(element),
+              //               PortalHelper.getPathLabel(context, element),
+              //             );
+              //           }).toList(),
+              //     ),
+              //   ),
+              //
+              // /// Configure
+              // if (configureRoutes.isNotEmpty)
+              //   RailExpansionTile(
+              //     iconData: FontAwesomeIcons.lightGear,
+              //     title: context.appLocalization.configure,
+              //     index: 3,
+              //     initiallyExpanded: _drawerProvider.configureInitiallyExpanded,
+              //     child: ListBody(
+              //       children:
+              //           configureRoutes.map((element) {
+              //             return _buildTile(
+              //               PortalHelper.railPaths.indexOf(element),
+              //               PortalHelper.getPathLabel(context, element),
+              //             );
+              //           }).toList(),
+              //     ),
+              //   ),
             ],
           ),
         ),

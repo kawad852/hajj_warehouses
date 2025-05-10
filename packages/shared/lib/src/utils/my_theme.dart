@@ -28,7 +28,12 @@ class MyTheme {
     1,
   );
 
-  ThemeData materialTheme(BuildContext context, ColorScheme colorScheme) {
+  ThemeData materialTheme(
+    BuildContext context,
+    ColorScheme colorScheme, {
+    Color? fillColor,
+    CardThemeData? cardThemeData,
+  }) {
     return ThemeData(
       colorScheme: colorScheme,
       useMaterial3: true,
@@ -41,9 +46,9 @@ class MyTheme {
       appBarTheme: const AppBarTheme(centerTitle: true),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: const Color(0xFFF2F2F2),
+        fillColor: fillColor,
         constraints: const BoxConstraints(maxWidth: 500),
-        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(kRadiusSecondary),
@@ -61,7 +66,7 @@ class MyTheme {
           borderRadius: BorderRadius.circular(kRadiusSecondary),
         ),
       ),
-      cardTheme: CardThemeData(color: colorScheme.onInverseSurface, margin: EdgeInsets.zero),
+      cardTheme: cardThemeData,
     );
   }
 }

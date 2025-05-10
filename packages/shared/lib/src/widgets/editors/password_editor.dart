@@ -27,41 +27,44 @@ class _PasswordEditorState extends State<PasswordEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseEditor(
-      initialValue: widget.initialValue,
-      obscureText: _obscureText,
-      obscuringCharacter: "●",
-      required: true,
-      autoValidateMode: widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
-      prefixIcon: IconButton(
-        onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: BaseEditor(
+        initialValue: widget.initialValue,
+        obscureText: _obscureText,
+        // obscuringCharacter: "●",
+        required: true,
+        autoValidateMode: widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
+        suffixIcon: IconButton(
+          onPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
+          icon: const CustomSvg(MyIcons.lock),
+        ),
+        // hintText: context.appLocalization.enterYourPasswordHere,
+        // suffixIcon: IconButton(
+        //   onPressed: () {
+        //     setState(() {
+        //       _obscureText = !_obscureText;
+        //     });
+        //   },
+        //   icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+        // ),
+        onChanged: (value) {
+          widget.onChanged(value);
+          if (widget.isConfirm) {
+            setState(() {});
+          }
         },
-        icon: const CustomSvg(MyIcons.lock),
+        validator: (value) {
+          if (widget.isConfirm) {
+            return widget.password == value ? null : context.appLocalization.passwordNotMatch;
+          } //context.appLocalization.passwordNotMatch
+          return ValidationHelper.password(context, value);
+        },
       ),
-      // hintText: context.appLocalization.enterYourPasswordHere,
-      // suffixIcon: IconButton(
-      //   onPressed: () {
-      //     setState(() {
-      //       _obscureText = !_obscureText;
-      //     });
-      //   },
-      //   icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-      // ),
-      onChanged: (value) {
-        widget.onChanged(value);
-        if (widget.isConfirm) {
-          setState(() {});
-        }
-      },
-      validator: (value) {
-        if (widget.isConfirm) {
-          return widget.password == value ? null : context.appLocalization.passwordNotMatch;
-        } //context.appLocalization.passwordNotMatch
-        return ValidationHelper.password(context, value);
-      },
     );
   }
 }

@@ -19,10 +19,11 @@ class PolicyModel with _$PolicyModel {
 
   PolicyModel._();
 
+  String get title {
+    return UiHelper.translate(textEN: titleEn, textAR: titleAr);
+  }
+
   String get content {
-    return UiHelper.translate(
-      textEN: contentEn,
-      textAR: contentAr,
-    );
+    return UiHelper.translate(textEN: contentEn, textAR: contentAr);
   }
 }

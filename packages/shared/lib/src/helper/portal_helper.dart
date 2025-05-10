@@ -12,6 +12,10 @@ class PortalHelper {
       return context.appLocalization.users;
     } else if (path == CompaniesTableRoute().location) {
       return context.appLocalization.companies;
+    } else if (path == RolesTableRoute().location) {
+      return context.appLocalization.roles;
+    } else if (path == PoliciesTableRoute().location) {
+      return context.appLocalization.policies;
     } else {
       throw 'PATH NEEDS TO BE ADDED';
     }

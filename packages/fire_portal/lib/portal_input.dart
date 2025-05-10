@@ -69,6 +69,7 @@ class _PortalInputState<T> extends State<PortalInput<T>> {
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
               children:
                   widget.inputBuilder(_editedData).map((e) {
                     return e;

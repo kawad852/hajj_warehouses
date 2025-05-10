@@ -7,7 +7,7 @@ class MyColorScheme {
 
   ColorScheme get value => ColorScheme.fromSeed(
     seedColor: const Color(0xFF708D81),
-    surface: Colors.white,
+    surface: isLight ? Colors.white : null,
     brightness: isLight ? Brightness.light : Brightness.dark,
   );
 }
