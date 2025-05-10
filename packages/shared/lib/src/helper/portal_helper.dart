@@ -8,8 +8,10 @@ class PortalHelper {
       $appNavBarRoute.routes.map((e) => e as GoRoute).map((e) => e.path).toList();
 
   static String getPathLabel(BuildContext context, String path) {
-    if (path == UsersTableRoute().location) {
+    if (path == StaffTableRoute().location) {
       return context.appLocalization.users;
+    } else if (path == CompaniesTableRoute().location) {
+      return context.appLocalization.companies;
     } else {
       throw 'PATH NEEDS TO BE ADDED';
     }

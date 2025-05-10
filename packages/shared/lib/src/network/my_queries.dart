@@ -5,6 +5,12 @@ import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
 
 extension CollectionReferenceExtension on FirebaseFirestore {
+  CollectionReference<CompanyModel> get companies =>
+      collection(MyCollections.companies).withConverter<CompanyModel>(
+        fromFirestore: (snapshot, _) => CompanyModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   CollectionReference<UserModel> get users =>
       collection(MyCollections.users).withConverter<UserModel>(
         fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),

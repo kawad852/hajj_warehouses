@@ -1,17 +1,17 @@
 import 'package:shared/shared.dart';
 
-class UsersTable extends StatefulWidget {
-  const UsersTable({super.key});
+class CompaniesTable extends StatefulWidget {
+  const CompaniesTable({super.key});
 
   @override
-  State<UsersTable> createState() => _UsersTableState();
+  State<CompaniesTable> createState() => _CompaniesTableState();
 }
 
-class _UsersTableState extends State<UsersTable> {
-  late Query<UserModel> _query;
+class _CompaniesTableState extends State<CompaniesTable> {
+  late Query<CompanyModel> _query;
 
   void _initializeQuery() {
-    _query = kFirebaseInstant.users;
+    _query = kFirebaseInstant.companies;
   }
 
   @override
@@ -23,7 +23,7 @@ class _UsersTableState extends State<UsersTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Users',
+      tableTitle: 'Companies',
       query: _query,
       header: IconButton(
         onPressed: () {
@@ -31,14 +31,13 @@ class _UsersTableState extends State<UsersTable> {
         },
         icon: Icon(Icons.reset_tv),
       ),
-      tableBuilder: (index, snapshot) {
+      columns: [DataColumn(label: Text("تاريخ الإنشاء")), DataColumn(label: Text("الإسم"))],
+      cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
         return [
-          PortalContent(
-            column: DataColumn(label: Text("الإسم")),
-            cell: DataCell(Text(data.displayName)),
-          ),
+          DataCell(Text(data.createdAt.getDefaultFormattedDate(context))),
+          DataCell(Text(data.name)),
         ];
       },
       onSave: (reference, data) async {
@@ -50,10 +49,10 @@ class _UsersTableState extends State<UsersTable> {
         return [
           TextEditor(
             labelText: "الإسم",
-            initialValue: data.displayName,
+            initialValue: data.name,
             onChanged: (value) {
               setState(() {
-                data.displayName = value!;
+                data.name = value!;
               });
             },
           ),

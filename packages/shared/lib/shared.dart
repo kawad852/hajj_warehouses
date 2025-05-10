@@ -72,6 +72,7 @@ export 'src/models/address/address_model.dart';
 export 'src/models/basket/basket_model.dart';
 export 'src/models/branch/branch_model.dart';
 export 'src/models/category/category_model.dart';
+export 'src/models/company/company_model.dart';
 export 'src/models/country_code_model.dart';
 export 'src/models/expense_model.dart';
 export 'src/models/item/item_model.dart';

@@ -9,8 +9,8 @@ class PortalTable<T> extends StatelessWidget {
   final List<Widget>? tableActions;
   final Query<T> query;
   final PreferredSizeWidget? bottom;
-  final List<PortalContent> Function(int index, FirestoreQueryBuilderSnapshot<T> snapshot)
-  tableBuilder;
+  final List<DataCell> Function(int index, FirestoreQueryBuilderSnapshot<T> snapshot) cellsBuilder;
+  final List<DataColumn> columns;
   final List<Widget> Function(T snapshot) inputBuilder;
   final Future<void> Function(DocumentReference<T> ref, T snapshot) onSave;
 
@@ -23,9 +23,10 @@ class PortalTable<T> extends StatelessWidget {
     this.tableActions,
     required this.query,
     this.bottom,
-    required this.tableBuilder,
+    required this.cellsBuilder,
     required this.inputBuilder,
     required this.onSave,
+    required this.columns,
   });
 
   @override
@@ -64,7 +65,6 @@ class PortalTable<T> extends StatelessWidget {
         onLoading:
             () => SizedBox(height: context.mediaQuery.height / 1.5, child: const BaseLoader()),
         onComplete: (context, snapshot) {
-          final columns = tableBuilder(0, snapshot).map((e) => e.column).toList();
           return SingleChildScrollView(
             child: Theme(
               data: Theme.of(
@@ -87,17 +87,14 @@ class PortalTable<T> extends StatelessWidget {
                           final dataColumn = columns[index];
                           return dataColumn;
                         }),
-                        // columns:
-                        //     tableBuilder(0, snapshot).map((e) => e.column).map((e) {
-                        //       return e;
-                        //     }).toList(),
                         source: TableSource(
                           length: snapshot.docs.length,
                           rows: (index) {
                             if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
                               snapshot.fetchMore();
                             }
-                            final cells = tableBuilder(index, snapshot).map((e) => e.cell).toList();
+
+                            final cells = cellsBuilder(index, snapshot).toList();
                             final queryDocSnapshot = snapshot.docs[index];
 
                             return DataRow.byIndex(

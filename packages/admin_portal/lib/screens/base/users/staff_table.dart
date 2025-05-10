@@ -1,17 +1,17 @@
 import 'package:shared/shared.dart';
 
-class BranchesTable extends StatefulWidget {
-  const BranchesTable({super.key});
+class StaffTable extends StatefulWidget {
+  const StaffTable({super.key});
 
   @override
-  State<BranchesTable> createState() => _BranchesTableState();
+  State<StaffTable> createState() => _StaffTableState();
 }
 
-class _BranchesTableState extends State<BranchesTable> {
-  late Query<BranchModel> _query;
+class _StaffTableState extends State<StaffTable> {
+  late Query<UserModel> _query;
 
   void _initializeQuery() {
-    _query = kFirebaseInstant.branches;
+    _query = kFirebaseInstant.users;
   }
 
   @override
@@ -23,7 +23,7 @@ class _BranchesTableState extends State<BranchesTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Branches',
+      tableTitle: 'Staff',
       query: _query,
       header: IconButton(
         onPressed: () {
@@ -35,7 +35,7 @@ class _BranchesTableState extends State<BranchesTable> {
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
-        return [DataCell(Text(data.name))];
+        return [DataCell(Text(data.displayName))];
       },
       onSave: (reference, data) async {
         await reference.update(data.toJson());
@@ -46,10 +46,10 @@ class _BranchesTableState extends State<BranchesTable> {
         return [
           TextEditor(
             labelText: "الإسم",
-            initialValue: data.name,
+            initialValue: data.displayName,
             onChanged: (value) {
               setState(() {
-                data.name = value!;
+                data.displayName = value!;
               });
             },
           ),

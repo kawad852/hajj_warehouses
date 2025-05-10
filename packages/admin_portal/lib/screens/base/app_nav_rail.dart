@@ -49,7 +49,7 @@ class _AppNavRailState extends State<AppNavRail> {
                           .toList() ??
                       [];
 
-          var manageRoutes = _getRouteSections(0, 1);
+          var manageRoutes = _getRouteSections(0, 2);
           // var buildRoutes = _getRouteSections(4, 6);
           // var servicesRoutes = _getRouteSections(6, 9);
           // var engageRoutes = _getRouteSections(9, 12);
