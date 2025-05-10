@@ -40,6 +40,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_cupertino_datetime_picker: ^3.0.0
 
+  flutter_svg_provider: any
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:

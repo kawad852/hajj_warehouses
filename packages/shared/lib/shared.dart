@@ -57,6 +57,7 @@ export 'src/helper/basket_helper.dart';
 export 'src/helper/my_header_delegate.dart';
 export 'src/helper/objects_comparer.dart';
 export 'src/helper/pagination_handler.dart';
+export 'src/helper/portal_helper.dart';
 export 'src/helper/row_id_helper.dart';
 export 'src/helper/scroll_extension.dart';
 export 'src/helper/separator.dart';
@@ -98,6 +99,7 @@ export 'src/network/my_queries.dart';
 export 'src/notifications/cloud_messaging_service.dart';
 //providers
 export 'src/providers/app_provider.dart';
+export 'src/providers/drawer_provider.dart';
 export 'src/providers/inventory_provider.dart';
 export 'src/providers/location_provider.dart';
 export 'src/providers/portal_provider.dart';
@@ -115,6 +117,7 @@ export 'src/utils/providers_extension.dart';
 //utils
 export 'src/utils/shared_pref.dart';
 export 'src/widgets/app_bar_text.dart';
+export 'src/widgets/base_card.dart';
 export 'src/widgets/base_loader.dart';
 export 'src/widgets/base_network_image.dart';
 export 'src/widgets/border_decorator_theme.dart';

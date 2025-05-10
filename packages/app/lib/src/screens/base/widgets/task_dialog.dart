@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class TaskDialog extends StatelessWidget {

@@ -13,7 +13,7 @@ class ImagesAttacher extends StatefulWidget {
 }
 
 class _ImagesAttacherState extends State<ImagesAttacher> {
-  List<XFile> _files = [];
+  final List<XFile> _files = [];
 
   Future<void> _pickImages(BuildContext context) async {
     AppOverlayLoader.fakeLoading();

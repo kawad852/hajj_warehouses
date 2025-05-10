@@ -16,13 +16,13 @@ class MaterialsTable extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(flex: 2, child: TableText("#")),
+          const Expanded(flex: 2, child: TableText("#")),
           Expanded(flex: 14, child: TableText(context.appLocalization.itemName)),
-          CustomLine(),
+          const CustomLine(),
           Expanded(flex: 4, child: TableText(context.appLocalization.available, textAlign: TextAlign.center)),
-          CustomLine(),
+          const CustomLine(),
           Expanded(flex: 4, child: TableText(context.appLocalization.limit, textAlign: TextAlign.center)),
-          CustomLine(),
+          const CustomLine(),
           Expanded(flex: 4, child: TableText(context.appLocalization.status, textAlign: TextAlign.center)),
         ],
       ),

@@ -129,7 +129,7 @@ class UserProvider extends ChangeNotifier {
         notifyListeners();
         if (context.mounted) {
           context.pushAndRemoveUntil((context) {
-            return LoginScreen();
+            return const LoginScreen();
           });
         }
       },

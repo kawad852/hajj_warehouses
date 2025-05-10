@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:shared/shared.dart';
 
-import '../models/role/role_model.dart';
-
 class MySharedPreferences {
   static late SharedPreferences _sharedPreferences;
 

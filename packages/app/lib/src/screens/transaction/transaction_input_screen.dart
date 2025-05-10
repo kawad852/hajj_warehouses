@@ -176,7 +176,7 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                           value: _transaction.employee?.id,
                           items:
                               employees.map((e) {
-                                return DropdownMenuItem(value: e.id, child: Text(e.displayName!));
+                                return DropdownMenuItem(value: e.id, child: Text(e.displayName));
                               }).toList(),
                           onChanged: (value) {
                             final user = employees.firstWhere((e) => e.id == value);

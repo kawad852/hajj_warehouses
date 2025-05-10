@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class CustomLine extends StatelessWidget {
@@ -6,6 +5,6 @@ class CustomLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  VerticalDivider(color: context.colorPalette.black, thickness: 0.5);
+    return VerticalDivider(color: context.colorPalette.black, thickness: 0.5);
   }
 }

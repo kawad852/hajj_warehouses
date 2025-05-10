@@ -1,6 +1,5 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
-import 'package:shared/src/widgets/base_card.dart';
 
 class OperationCard extends StatelessWidget {
   final InventoryOperationModel operation;

@@ -24,6 +24,7 @@ class CustomSvg extends StatelessWidget {
       icon,
       height: height,
       width: width,
+      // ignore: deprecated_member_use
       color: fixedColor ? null : color,
       // colorFilter: ColorFilter.mode(
       //   context.colorScheme.inverseSurface,

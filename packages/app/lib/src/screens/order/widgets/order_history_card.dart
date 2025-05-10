@@ -1,5 +1,4 @@
 import 'package:shared/shared.dart';
-import 'package:shared/src/widgets/base_card.dart';
 
 class OrderHistoryCard extends StatelessWidget {
   final OrderHistoryModel history;
@@ -8,7 +7,7 @@ class OrderHistoryCard extends StatelessWidget {
 
   (String, String) _getLabels(BuildContext context) {
     final status = OrderStatusEnum.values.firstWhere((e) => e.value == history.status);
-     String orderLabel = context.appLocalization.theOrder;
+    String orderLabel = context.appLocalization.theOrder;
     switch (status) {
       case OrderStatusEnum.placed:
         return (context.appLocalization.send, orderLabel);

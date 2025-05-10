@@ -19,7 +19,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
   late Future<List<BranchModel>> _branchesFuture;
   final _storageService = StorageService();
   XFile? _file;
-  List<Object> _files = [];
+  final List<Object> _files = [];
 
   void _initialize() {
     _branchesFuture = context.appProvider.getBranches();

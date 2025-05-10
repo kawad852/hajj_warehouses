@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class ItemTableHeader extends StatelessWidget {
@@ -15,11 +14,11 @@ class ItemTableHeader extends StatelessWidget {
         color: context.colorPalette.grey74D,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
       ),
-      child:  Row(
+      child: Row(
         children: [
-          Expanded(flex: 2, child: TableText("#")),
+          const Expanded(flex: 2, child: TableText("#")),
           Expanded(flex: 10, child: TableText(context.appLocalization.itemName)),
-          CustomLine(),
+          const CustomLine(),
           Expanded(
             flex: 6,
             child: TableText(context.appLocalization.quantityRequired, textAlign: TextAlign.center),

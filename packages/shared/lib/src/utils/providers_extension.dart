@@ -1,5 +1,4 @@
 import 'package:shared/shared.dart';
-import 'package:shared/src/providers/portal_provider.dart';
 
 extension ProvidersExtension on BuildContext {
   UserProvider get userProvider => read<UserProvider>();
@@ -7,4 +6,5 @@ extension ProvidersExtension on BuildContext {
   LocationProvider get locationProvider => read<LocationProvider>();
   InventoryProvider get inventoryProvider => read<InventoryProvider>();
   PortalProvider get portalProvider => read<PortalProvider>();
+  DrawerProvider get drawerProvider => read<DrawerProvider>();
 }
