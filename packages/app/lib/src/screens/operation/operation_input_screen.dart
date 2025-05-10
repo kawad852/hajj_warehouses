@@ -64,7 +64,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 LightItemModel(
                   id: _item!.id,
                   name: _item!.name,
-                  quantity: _item!.quantity,
+                  quantity: 1,
                   minimumQuantity: _item!.minimumQuantity,
                 ),
               ]
