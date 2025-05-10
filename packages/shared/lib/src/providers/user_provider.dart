@@ -55,11 +55,21 @@ class UserProvider extends ChangeNotifier {
     onGuestRegistration = callBack;
   }
 
-  Future<void> login(BuildContext context, UserCredential auth) async {
+  Future<void> login(
+    BuildContext context, {
+    required AuthEnum authEnum,
+    required String email,
+    required String password,
+  }) async {
     await ApiService.fetch(
       context,
       callBack: () async {
         // final user = UserModel();
+
+        final auth = await _firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
 
         final userDocument = await _firebaseFirestore.users.doc(auth.user!.uid).get();
         late UserModel user;

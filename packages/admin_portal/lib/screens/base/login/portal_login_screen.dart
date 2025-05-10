@@ -74,11 +74,12 @@ class _PortalLoginScreenState extends State<PortalLoginScreen> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             FocusManager.instance.primaryFocus?.unfocus();
-                            // _userProvider.login(
-                            //   context,
-                            //   email: _email!,
-                            //   password: _password!,
-                            // );
+                            _userProvider.login(
+                              context,
+                              email: _email!,
+                              password: _password!,
+                              authEnum: AuthEnum.admin,
+                            );
                           }
                         },
                       ),

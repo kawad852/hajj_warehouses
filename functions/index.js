@@ -13,6 +13,26 @@ const { onSchedule } = require("firebase-functions/v2/scheduler");
 admin.initializeApp();
 const db = getFirestore();
 
+exports.createUser = onCall({region: "europe-west3"},
+    async (request) => {
+      try {
+        const payload = request.data;
+        const email = payload.email;
+        const password = payload.password;
+        console.log("Payload:", payload);
+        console.log("Received email:", email);
+        console.log("Received password:", password);
+        const user = await admin.auth().createUser({
+          email: email,
+          password: password,
+        });
+        await admin.auth().setCustomUserClaims(user.uid, {admin: true});
+        return {uid: user.uid};
+      } catch (error) {
+        console.log("error deleting user", error);
+      }
+    });
+
 exports.onItemUpdate = onDocumentUpdated({
   region: "europe-west3",
   document: "items/{id}",

@@ -109,6 +109,18 @@ class ApiService {
     } on TimeoutException catch (e) {
       debugPrint("Exception::\nType:: TimeoutException\nmsg:: $e");
       failure = Failure(type: timeoutException, code: e.message ?? '');
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) {
+        if (e.code == 'user-not-found') {
+          context.showSnackBar(context.appLocalization.emailNotFount);
+        } else if (e.code == 'wrong-password') {
+          context.showSnackBar(context.appLocalization.wrongPassword);
+        } else if (e.code == 'invalid-credential') {
+          context.showSnackBar(context.appLocalization.invalidCredential);
+        } else {
+          context.showSnackBar(context.appLocalization.generalError);
+        }
+      }
     } catch (e) {
       debugPrint("Exception::\nType:: GeneralException\nmsg:: $e");
       failure = Failure(type: generalException, code: e.toString());

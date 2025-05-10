@@ -17,34 +17,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
-      try {
-        AppOverlayLoader.show();
-        final auth = await _firebaseAuth.signInWithEmailAndPassword(
-          email: _email!,
-          password: _password,
-        );
-        if (context.mounted) {
-          await context.userProvider.login(context, auth);
-        }
-      } on FirebaseAuthException catch (e) {
-        if (context.mounted) {
-          if (e.code == 'user-not-found') {
-            context.showSnackBar("context.appLocalization.emailNotFount");
-          } else if (e.code == 'wrong-password') {
-            context.showSnackBar("context.appLocalization.wrongPassword");
-          } else if (e.code == 'invalid-credential') {
-            context.showSnackBar("context.appLocalization.invalidCredintial");
-          } else {
-            context.showSnackBar(context.appLocalization.generalError);
-          }
-        }
-      } catch (e) {
-        if (context.mounted) {
-          context.showSnackBar(context.appLocalization.generalError);
-        }
-      } finally {
-        AppOverlayLoader.hide();
-      }
+      await context.userProvider.login(
+        context,
+        email: _email!,
+        password: _password,
+        authEnum: AuthEnum.app,
+      );
     }
   }
 
@@ -110,9 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context.navigate(
-                            (context) => const ResetPasswordScreen(),
-                          );
+                          context.navigate((context) => const ResetPasswordScreen());
                         },
                         child: Text(
                           context.appLocalization.resetPassword,

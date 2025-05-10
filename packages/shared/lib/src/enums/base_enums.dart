@@ -35,3 +35,5 @@ enum PolicyDocument {
 
   const PolicyDocument(this.value);
 }
+
+enum AuthEnum { app, companyAdmin, admin }
