@@ -62,4 +62,5 @@ class MyIcons {
   static const String taskBackground = '${_path}task_background.svg';
   static const String checkWhite = '${_path}check_white.svg';
   static const String camera = '${_path}camera.svg';
+  static const String sms = '${_path}sms.svg';
 }

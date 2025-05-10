@@ -22,6 +22,8 @@ class EmailEditor extends StatelessWidget {
       initialValue: initialValue,
       title: context.appLocalization.email,
       keyboardType: TextInputType.emailAddress,
+      suffixIconConstraints: const BoxConstraints(maxWidth: 40),
+      suffixIcon: const Center(child: CustomSvg(MyIcons.sms)),
       required: true,
       readOnly: readonly,
       onChanged: (value) {
