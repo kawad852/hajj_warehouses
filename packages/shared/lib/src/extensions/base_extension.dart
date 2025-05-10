@@ -9,7 +9,7 @@ extension BaseExtensions on BuildContext {
   Size get mediaQuery => MediaQuery.sizeOf(this);
 
   void unFocusKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
-  String get currency => isRTL ? 'د.أ' : 'JD';
+  String get currency => isRTL ? 'ريال' : 'SAR';
   String? get countryCode => AppProvider.countryCode;
 
   String defaultDateFormat(DateTime date) => DateFormat.yMd(languageCode).add_jm().format(date);

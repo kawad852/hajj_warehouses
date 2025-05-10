@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 import 'package:shared/src/widgets/base_card.dart';
 
@@ -43,11 +44,18 @@ class OperationCard extends StatelessWidget {
       operation.items.removeWhere((e) => e.id != itemId);
     }
     final labels = _getLabels(context);
-    return BaseCard(
-      displayName: operation.user.displayName!,
-      action1: labels.$1,
-      action2: labels.$2,
-      date: operation.createdAt!,
+    return GestureDetector(
+      onTap: () {
+        context.navigate((context) {
+          return OperationDetailsScreen(operation: operation);
+        });
+      },
+      child: BaseCard(
+        displayName: operation.user.displayName!,
+        action1: labels.$1,
+        action2: labels.$2,
+        date: operation.createdAt!,
+      ),
     );
   }
 }
