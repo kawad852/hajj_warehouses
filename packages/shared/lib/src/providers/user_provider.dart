@@ -93,7 +93,6 @@ class UserProvider extends ChangeNotifier {
           await context.portalProvider.initRole(context);
           if (context.mounted) {
             notifyListeners();
-            print("asklfjakljsfjaklsf");
             GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
           }
           return;
