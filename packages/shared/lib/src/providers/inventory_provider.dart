@@ -125,7 +125,8 @@ class InventoryProvider extends ChangeNotifier {
           );
           batch.set(orderDocREF, order);
           batch.set(orderHistoryDocRef, orderHistory.toJson());
-          if (isSupplyOperation) {
+          if (isSupplyOperation && context.mounted) {
+            Navigator.pop(context);
             context.navigate((context) {
               return OrderDetailsScreen(order: order);
             });
@@ -138,7 +139,9 @@ class InventoryProvider extends ChangeNotifier {
         await batch.commit();
         if (context.mounted) {
           Fluttertoast.showToast(msg: context.appLocalization.addedSuccessfully);
-          Navigator.pop(context);
+          if (!createOrder) {
+            Navigator.pop(context);
+          }
         }
       },
     );
