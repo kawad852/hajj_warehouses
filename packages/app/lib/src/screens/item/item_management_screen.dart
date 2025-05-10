@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/src/screens/item/item_edit_screen.dart';
 import 'package:shared/shared.dart';
 
 class ItemManagementScreen extends StatefulWidget {
@@ -66,10 +67,17 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
               SliverAppBar(
                 pinned: true,
                 title: AppBarText(context.appLocalization.manageItem),
-                actions: const [
+                actions: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomSvg(MyIcons.edit, width: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: IconButton(
+                      onPressed: () {
+                        context.navigate((context) {
+                          return ItemEditScreen(item: item);
+                        });
+                      },
+                      icon: const CustomSvg(MyIcons.edit, width: 30),
+                    ),
                   ),
                 ],
               ),
