@@ -25,7 +25,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => AppProvider()),
-        // ChangeNotifierProvider(create: (context) => DrawerProvider()),
+        ChangeNotifierProvider(create: (context) => DrawerProvider()),
         ChangeNotifierProvider(create: (context) => LocationProvider()),
         ChangeNotifierProvider(create: (context) => PortalProvider()),
       ],
@@ -79,21 +79,22 @@ class _MyAppState extends State<MyApp> {
       builder: (context, userProvider, child) {
         return MultiProvider(
           providers: [
-            StreamProvider<UserModel?>.value(
+            StreamProvider<UserModel>.value(
               key: ValueKey(userProvider.isAuthenticated),
               value:
                   userProvider.isAuthenticated
-                      ? _userProvider.userStream.map((event) => event.data())
-                      : null,
-              initialData: MySharedPreferences.user,
+                      ? userProvider.userDocRef.snapshots().map(
+                        (event) => event.data() ?? UserModel(),
+                      )
+                      : Stream.value(UserModel()),
+              initialData: MySharedPreferences.user ?? UserModel(),
               updateShouldNotify: (initialValue, value) {
                 MySharedPreferences.user = value;
                 Future.microtask(() {
-                  if (value?.blocked ?? false) {
+                  if (userProvider.isAuthenticated && (value.id == null || value.blocked)) {
+                    Fluttertoast.showToast(msg: "Authorization Failed");
                     // ignore: use_build_context_synchronously
-                    context.showSnackBar(context.appLocalization.authFailed);
-                    // ignore: use_build_context_synchronously
-                    _userProvider.logout(context);
+                    userProvider.logout(rootNavigatorKey.currentContext!);
                   }
                 });
                 return true;

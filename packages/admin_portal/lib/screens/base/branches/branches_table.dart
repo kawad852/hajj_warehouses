@@ -1,13 +1,13 @@
 import 'package:shared/shared.dart';
 
-class BranchesScreen extends StatefulWidget {
-  const BranchesScreen({super.key});
+class BranchesTable extends StatefulWidget {
+  const BranchesTable({super.key});
 
   @override
-  State<BranchesScreen> createState() => _BranchesScreenState();
+  State<BranchesTable> createState() => _BranchesTableState();
 }
 
-class _BranchesScreenState extends State<BranchesScreen> {
+class _BranchesTableState extends State<BranchesTable> {
   late Query<BranchModel> _query;
 
   void _initializeQuery() {

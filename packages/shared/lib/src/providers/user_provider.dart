@@ -72,19 +72,29 @@ class UserProvider extends ChangeNotifier {
         );
 
         final userDocument = await _firebaseFirestore.users.doc(auth.user!.uid).get();
-        late UserModel user;
+        final user = userDocument.data()!;
 
         if (userDocument.exists) {
-          if (context.mounted && userDocument.data()!.blocked) {
+          if (context.mounted && user.blocked) {
             context.showSnackBar(context.appLocalization.authFailed);
             return;
           }
 
-          MySharedPreferences.user = userDocument.data()!;
+          MySharedPreferences.user = user;
         } else {
           if (context.mounted) {
             context.showSnackBar(context.appLocalization.authFailed);
           }
+        }
+
+        if (user.roleId != null && context.mounted) {
+          await context.portalProvider.initRole(context);
+          if (context.mounted) {
+            notifyListeners();
+            print("asklfjakljsfjaklsf");
+            GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
+          }
+          return;
         }
 
         notifyListeners();
