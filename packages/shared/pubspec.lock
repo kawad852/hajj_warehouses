@@ -684,7 +684,7 @@ packages:
     source: hosted
     version: "3.4.1"
   flutter_cupertino_datetime_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_cupertino_datetime_picker
       sha256: "631fbd3abed4d1151888e053d2153d905663a3b33ff24bdfa64afbcf750682cb"

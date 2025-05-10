@@ -738,7 +738,7 @@ packages:
     source: hosted
     version: "2.1.0"
   flutter_svg_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_svg_provider
       sha256: cda47ab350671ba51ae4605d48f4c82fa5a2c399d22ebda367c1b407234c5048
