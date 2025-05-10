@@ -2,9 +2,9 @@ import 'package:shared/shared.dart';
 
 class PortalInput<T> extends StatefulWidget {
   final List<Widget> Function(T snapshot) inputBuilder;
-  final Future<void> Function(DocumentReference<T> ref, T snapshot) onSave;
+  final Future<void> Function(DocumentReference<T>? ref, T snapshot) onSave;
   final T data;
-  final DocumentReference<T> reference;
+  final DocumentReference<T>? reference;
   // final Map<String, dynamic>? jsonData;
 
   const PortalInput({
@@ -23,6 +23,23 @@ class PortalInput<T> extends StatefulWidget {
 
 class _PortalInputState<T> extends State<PortalInput<T>> {
   late T _editedData;
+  final _formKey = GlobalKey<FormState>();
+
+  void _onSubmit(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      context.unFocusKeyboard();
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          await widget.onSave(widget.reference, _editedData);
+          if (context.mounted) {
+            context.showSnackBar(context.appLocalization.successfullyUpdated);
+            Navigator.pop(context, _editedData);
+          }
+        },
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -37,16 +54,7 @@ class _PortalInputState<T> extends State<PortalInput<T>> {
         actions: [
           FilledButton(
             onPressed: () {
-              ApiService.fetch(
-                context,
-                callBack: () async {
-                  await widget.onSave(widget.reference, _editedData);
-                  if (context.mounted) {
-                    context.showSnackBar(context.appLocalization.successfullyUpdated);
-                    Navigator.pop(context, _editedData);
-                  }
-                },
-              );
+              _onSubmit(context);
             },
             child: Text(context.appLocalization.save),
           ),
@@ -57,12 +65,15 @@ class _PortalInputState<T> extends State<PortalInput<T>> {
         padding: EdgeInsets.all(kScreenMargin),
         child: Align(
           alignment: AlignmentDirectional.centerStart,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:
-                widget.inputBuilder(_editedData).map((e) {
-                  return e;
-                }).toList(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:
+                  widget.inputBuilder(_editedData).map((e) {
+                    return e;
+                  }).toList(),
+            ),
           ),
         ),
       ),

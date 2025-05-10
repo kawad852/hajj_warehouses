@@ -42,7 +42,7 @@ class _StaffTableState extends State<StaffTable> {
         return [DataCell(Text(data.displayName))];
       },
       onSave: (reference, data) async {
-        await reference.update(data.toJson());
+        await reference?.update(data.toJson());
         // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {

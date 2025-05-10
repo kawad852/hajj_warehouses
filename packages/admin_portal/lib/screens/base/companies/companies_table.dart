@@ -39,9 +39,12 @@ class _CompaniesTableState extends State<CompaniesTable> {
           DataCell(Text(data.name)),
         ];
       },
-      onSave: (reference, data) async {
+      onSave: (ref, data) async {
+        final reference = ref ?? _collectionRef.doc();
+        if (ref == null) {
+          data = data.copyWith(id: reference.id, createdAt: kNowDate);
+        }
         await reference.set(data);
-        // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {
         final data = snapshot;

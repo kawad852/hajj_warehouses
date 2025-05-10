@@ -42,7 +42,7 @@ class _BranchesTableState extends State<BranchesTable> {
         return [DataCell(Text(data.name))];
       },
       onSave: (reference, data) async {
-        await reference.update(data.toJson());
+        await reference?.update(data.toJson());
         // print("name::: ${snapshot.name}");
       },
       inputBuilder: (snapshot) {
