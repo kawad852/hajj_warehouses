@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -108,7 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: context.colorPalette.black, fontSize: 14),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.navigate(
+                            (context) => const ResetPasswordScreen(),
+                          );
+                        },
                         child: Text(
                           context.appLocalization.resetPassword,
                           style: TextStyle(color: context.colorPalette.primary, fontSize: 14),
