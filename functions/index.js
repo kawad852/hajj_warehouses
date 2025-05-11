@@ -41,6 +41,7 @@ exports.onItemUpdate = onDocumentUpdated({
   const newData = event.data.after.data();
   const oldStatus = oldData.status;
   const quantity = newData.quantity;
+  const id = newData.id;
   const name = newData.name;
   const branch = newData.branch;
   const minimumQuantity = newData.minimumQuantity;
@@ -62,7 +63,6 @@ exports.onItemUpdate = onDocumentUpdated({
     const itemRef = event.data.after.ref;
     await itemRef.update({ status: newStatus });
 
-    // SendNotification
     let titleEn = "";
     let titleAr = "";
     let bodyEn = "";
@@ -82,11 +82,16 @@ exports.onItemUpdate = onDocumentUpdated({
        return;
      }
 
+    const notificationData = {
+      type: "STOCK",
+      id: id,
+     };
     await sendNotification({
       titleEn,
       bodyEn,
       titleAr,
       bodyAr,
+      notificationData,
       branch,
     });
   }
@@ -170,6 +175,7 @@ exports.onInventoryOperationCreated = onDocumentCreated({
     const doc = event.data.data();
     if (!doc) return;
 
+    const id = doc.id;
     const operationType = doc.operationType;
 
     const branch = doc.branch;
@@ -195,11 +201,16 @@ exports.onInventoryOperationCreated = onDocumentCreated({
        return;
      }
 
+    const notificationData = {
+      type: "INVENTORY",
+      id: id,
+     };
     await sendNotification({
       titleEn,
       bodyEn,
       titleAr,
       bodyAr,
+      notificationData,
       branch,
     });
 
@@ -216,13 +227,13 @@ exports.onOrderHistoryCreate = onDocumentCreated({
     const data = event.data.data();
     const status = data.status;
     const branch = data.branch;
+    const id = data.id;
     const user = data.user;
     const operationType = data.operationType;
     const isSupply = operationType == "SUPPLY";
     const orderLabelEn = isSupply ? "supply order" : "transfer order";
     const orderLabelAr = isSupply ? "طلب تزويد" : "طلب نقل";
 
-    // SendNotification
     let titleEn = "";
     let titleAr = "";
     let bodyEn = "";
@@ -260,11 +271,16 @@ exports.onOrderHistoryCreate = onDocumentCreated({
       bodyAr = `تم إلغاء ${orderLabelAr} من قبل ${user.displayName}.`;
     }
 
+    const notificationData = {
+      type: "ORDER",
+      id: id,
+     };
     await sendNotification({
       titleEn,
       bodyEn,
       titleAr,
       bodyAr,
+      notificationData,
       branch,
     });
   } catch (error) {
@@ -278,6 +294,7 @@ async function sendNotification({
   titleAr,
   bodyAr,
   role = "ADMIN",
+  notificationData,
   branch,
 }) {
   const usersSnapshot = await admin
@@ -290,6 +307,7 @@ async function sendNotification({
   const notifications = [];
 
   for (const userDoc of usersSnapshot.docs) {
+    const userRef = userDoc.ref;
     const user = userDoc.data();
     const token = user.deviceToken;
     const lang = user.languageCode || "ar";
@@ -312,6 +330,7 @@ async function sendNotification({
         title,
         body,
       },
+      data: notificationData,
       apns: {
         payload: {
           aps: {
@@ -322,6 +341,20 @@ async function sendNotification({
     };
 
     notifications.push(admin.messaging().send(payload));
+
+    // Update unread count
+    userRef.update({
+      unReadNotificationsCount: admin.firestore.FieldValue.increment(1),
+    });
+
+    // Add notification document
+    const notificationRef = userRef.collection("notifications").doc();
+    await notificationRef.set({
+      id: notificationRef.id,
+      notification: { title, body },
+      data: notificationData,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
   }
 
   await Promise.all(notifications);

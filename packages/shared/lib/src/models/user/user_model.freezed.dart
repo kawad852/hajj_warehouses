@@ -67,6 +67,8 @@ mixin _$UserModel {
   set username(String value) => throw _privateConstructorUsedError;
   double get salary => throw _privateConstructorUsedError;
   set salary(double value) => throw _privateConstructorUsedError;
+  int get unReadNotificationsCount => throw _privateConstructorUsedError;
+  set unReadNotificationsCount(int value) => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
   set images(List<String>? value) => throw _privateConstructorUsedError;
 
@@ -107,6 +109,7 @@ abstract class $UserModelCopyWith<$Res> {
     String address,
     String username,
     double salary,
+    int unReadNotificationsCount,
     List<String>? images,
   });
 
@@ -149,6 +152,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? address = null,
     Object? username = null,
     Object? salary = null,
+    Object? unReadNotificationsCount = null,
     Object? images = freezed,
   }) {
     return _then(
@@ -258,6 +262,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.salary
                     : salary // ignore: cast_nullable_to_non_nullable
                         as double,
+            unReadNotificationsCount:
+                null == unReadNotificationsCount
+                    ? _value.unReadNotificationsCount
+                    : unReadNotificationsCount // ignore: cast_nullable_to_non_nullable
+                        as int,
             images:
                 freezed == images
                     ? _value.images
@@ -314,6 +323,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String address,
     String username,
     double salary,
+    int unReadNotificationsCount,
     List<String>? images,
   });
 
@@ -356,6 +366,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? address = null,
     Object? username = null,
     Object? salary = null,
+    Object? unReadNotificationsCount = null,
     Object? images = freezed,
   }) {
     return _then(
@@ -465,6 +476,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.salary
                 : salary // ignore: cast_nullable_to_non_nullable
                     as double,
+        unReadNotificationsCount:
+            null == unReadNotificationsCount
+                ? _value.unReadNotificationsCount
+                : unReadNotificationsCount // ignore: cast_nullable_to_non_nullable
+                    as int,
         images:
             freezed == images
                 ? _value.images
@@ -501,6 +517,7 @@ class _$UserModelImpl implements _UserModel {
     this.address = '',
     this.username = '',
     this.salary = 0.0,
+    this.unReadNotificationsCount = 0,
     this.images,
   });
 
@@ -561,11 +578,14 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   double salary;
   @override
+  @JsonKey()
+  int unReadNotificationsCount;
+  @override
   List<String>? images;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, unReadNotificationsCount: $unReadNotificationsCount, images: $images)';
   }
 
   /// Create a copy of UserModel
@@ -605,6 +625,7 @@ abstract class _UserModel implements UserModel {
     String address,
     String username,
     double salary,
+    int unReadNotificationsCount,
     List<String>? images,
   }) = _$UserModelImpl;
 
@@ -678,6 +699,9 @@ abstract class _UserModel implements UserModel {
   @override
   double get salary;
   set salary(double value);
+  @override
+  int get unReadNotificationsCount;
+  set unReadNotificationsCount(int value);
   @override
   List<String>? get images;
   set images(List<String>? value);

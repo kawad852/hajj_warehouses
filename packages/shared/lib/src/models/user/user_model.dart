@@ -29,6 +29,7 @@ class UserModel with _$UserModel {
     @Default('') String address,
     @Default('') String username,
     @Default(0.0) double salary,
+    @Default(0) int unReadNotificationsCount,
     List<String>? images,
   }) = _UserModel;
 

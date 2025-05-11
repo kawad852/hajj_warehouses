@@ -33,6 +33,8 @@ _$UserModelImpl _$$UserModelImplFromJson(
   address: json['address'] as String? ?? '',
   username: json['username'] as String? ?? '',
   salary: (json['salary'] as num?)?.toDouble() ?? 0.0,
+  unReadNotificationsCount:
+      (json['unReadNotificationsCount'] as num?)?.toInt() ?? 0,
   images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
@@ -60,6 +62,7 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'address': instance.address,
   'username': instance.username,
   'salary': instance.salary,
+  'unReadNotificationsCount': instance.unReadNotificationsCount,
   'images': instance.images,
 };
 
