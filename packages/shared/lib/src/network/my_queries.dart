@@ -17,6 +17,14 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
+  CollectionReference<NotificationModel> notifications(String parentId) => users
+      .doc(parentId)
+      .collection(MyCollections.notifications)
+      .withConverter<NotificationModel>(
+        fromFirestore: (snapshot, _) => NotificationModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   CollectionReference<StoreModel> get foodStores =>
       collection(MyCollections.foodStores).withConverter<StoreModel>(
         fromFirestore: (snapshot, _) => StoreModel.fromJson(snapshot.data()!),

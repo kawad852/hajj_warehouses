@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io' show Platform;
 
+import 'package:app/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../shared.dart';
@@ -57,9 +58,9 @@ class CloudMessagingService {
     // final notificationModel = NotificationModel.fromJson(message.data);
     // final id = notificationModel.data?.id;
     // final type = notificationModel.data?.type;
-    // final dataJson = message.data;
-    // final id = dataJson["id"];
-    // final type = dataJson["type"];
-    // DeepRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
+    final dataJson = message.data;
+    final id = dataJson["id"];
+    final type = dataJson["type"];
+    NotificationRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
   }
 }

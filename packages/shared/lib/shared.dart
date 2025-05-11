@@ -77,6 +77,7 @@ export 'src/models/country_code_model.dart';
 export 'src/models/expense_model.dart';
 export 'src/models/item/item_model.dart';
 export 'src/models/message/message_model.dart';
+export 'src/models/notification/notification_model.dart';
 export 'src/models/operation/inventory_operation_model.dart';
 export 'src/models/operation_info_model.dart';
 export 'src/models/order/order_model.dart';
@@ -98,6 +99,7 @@ export 'src/network/my_queries.dart';
 ///
 ///Notifications
 export 'src/notifications/cloud_messaging_service.dart';
+export 'src/notifications/notification_route_handler.dart';
 //providers
 export 'src/providers/app_provider.dart';
 export 'src/providers/drawer_provider.dart';

@@ -1,5 +1,6 @@
 import 'package:app/screens_exports.dart';
 import 'package:app/src/screens/base/widgets/user_info_widget.dart';
+import 'package:app/src/screens/notifications/notifications_screen.dart';
 import 'package:shared/shared.dart';
 
 class AppNavBar extends StatefulWidget {
@@ -77,23 +78,36 @@ class _AppNavBarState extends State<AppNavBar> {
       appBar: AppBar(
         toolbarHeight: 80,
         title: const UserInfoWidget(),
-        // actions: [
-        //   GestureDetector(
-        //     onTap: () {},
-        //     child: Container(
-        //       width: 40,
-        //       height: 40,
-        //       alignment: Alignment.center,
-        //       margin: const EdgeInsets.symmetric(horizontal: 15),
-        //       decoration: BoxDecoration(
-        //         color: Colors.transparent,
-        //         border: Border.all(color: context.colorPalette.greyD9D),
-        //         borderRadius: BorderRadius.circular(kRadiusTertiary),
-        //       ),
-        //       child: const CustomSvg(MyIcons.notification),
-        //     ),
-        //   ),
-        // ],
+        actions: [
+          GestureDetector(
+            onTap: () {
+              context.navigate((context) {
+                return const NotificationsScreen();
+              });
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(color: context.colorPalette.greyD9D),
+                borderRadius: BorderRadius.circular(kRadiusTertiary),
+              ),
+              child: UserSelector(
+                builder: (context, user) {
+                  final count = user.unReadNotificationsCount;
+                  return Badge(
+                    isLabelVisible: count > 0,
+                    label: Text("$count"),
+                    child: const CustomSvg(MyIcons.notification),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: Container(
         height: withNotch ? 85 : 75,

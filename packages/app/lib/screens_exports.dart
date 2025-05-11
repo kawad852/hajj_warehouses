@@ -9,6 +9,7 @@ export 'src/screens/choose_branch/choose_branch_screen.dart';
 export 'src/screens/home/home_screen.dart';
 export 'src/screens/home/widgets/home_bubble.dart';
 export 'src/screens/home/widgets/my_task.dart';
+export 'src/screens/item/inventory_screen.dart';
 export 'src/screens/item/item_input_screen.dart';
 export 'src/screens/item/item_management_screen.dart';
 export 'src/screens/item/widgets/manage_button.dart';

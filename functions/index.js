@@ -83,7 +83,7 @@ exports.onItemUpdate = onDocumentUpdated({
      }
 
     const notificationData = {
-      type: "STOCK",
+      type: "ITEM",
       id: id,
      };
     await sendNotification({
@@ -202,7 +202,7 @@ exports.onInventoryOperationCreated = onDocumentCreated({
      }
 
     const notificationData = {
-      type: "INVENTORY",
+      type: "OPERATION",
       id: id,
      };
     await sendNotification({

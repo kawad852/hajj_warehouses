@@ -3,9 +3,10 @@ import 'package:app/src/screens/item/item_edit_screen.dart';
 import 'package:shared/shared.dart';
 
 class ItemManagementScreen extends StatefulWidget {
-  final ItemModel item;
+  final ItemModel? item;
+  final String? id;
 
-  const ItemManagementScreen({super.key, required this.item});
+  const ItemManagementScreen({super.key, this.item, this.id});
 
   @override
   State<ItemManagementScreen> createState() => _ItemManagementScreenState();
@@ -15,16 +16,17 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   late Stream<ItemModel> _itemStream;
   late Query<InventoryOperationModel> _operationsQuery;
 
-  ItemModel get _item => widget.item;
+  ItemModel? get _item => widget.item;
+  String get _id => _item?.id ?? widget.id!;
 
   void _initializeItem() {
-    _itemStream = kFirebaseInstant.items.doc(_item.id).snapshots().map((e) => e.data()!);
+    _itemStream = kFirebaseInstant.items.doc(_id).snapshots().map((e) => e.data()!);
   }
 
   void _initializeOperations() {
     final filter = Filter.and(
       Filter(MyFields.idBranch, isEqualTo: kSelectedBranchId),
-      Filter(MyFields.itemIds, arrayContains: _item.id),
+      Filter(MyFields.itemIds, arrayContains: _id),
     );
     _operationsQuery = kFirebaseInstant.inventoryOperations.orderByDesc.where(filter);
   }
@@ -57,7 +59,7 @@ class _ItemManagementScreenState extends State<ItemManagementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ImpededStreamBuilder(
+      body: BigStreamBuilder(
         stream: _itemStream,
         initialData: _item,
         onComplete: (context, snapshot) {

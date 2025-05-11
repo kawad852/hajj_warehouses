@@ -4,9 +4,10 @@ import 'package:shared/object_box_exports.dart';
 import 'package:shared/shared.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
-  final OrderModel order;
+  final OrderModel? order;
+  final String? id;
 
-  const OrderDetailsScreen({super.key, required this.order});
+  const OrderDetailsScreen({super.key, this.order, this.id});
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
@@ -16,8 +17,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   late Stream<OrderModel> _orderStream;
   late Stream<QuerySnapshot<OrderHistoryModel>> _orderHistoryStream;
 
-  OrderModel get _order => widget.order;
-  DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(_order.id);
+  OrderModel? get _order => widget.order;
+  DocumentReference<OrderModel> get _docREF => kFirebaseInstant.orders.doc(widget.id ?? _order?.id);
 
   void _initialize() {
     _orderStream = _docREF.snapshots().map((e) => e.data()!);
@@ -56,7 +57,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title:Text(context.appLocalization.items),
+          title: Text(context.appLocalization.items),
           children:
               items.map((e) {
                 return SimpleDialogOption(child: Text("(${e.quantity}) ${e.name}"));
@@ -229,7 +230,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ],
                 ),
               ),
-              if (_order.operation?.notes != null)
+              if (order.operation?.notes != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: ListBody(
@@ -245,7 +246,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       const SizedBox(height: 10),
                       TextEditor(
                         readOnly: true,
-                        initialValue: _order.operation!.notes,
+                        initialValue: order.operation!.notes,
                         onChanged: (value) {},
                       ),
                     ],

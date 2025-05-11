@@ -22,4 +22,5 @@ class MyCollections {
   static const String messages = 'messages';
   static const String roles = 'roles';
   static const String companies = 'companies';
+  static const String notifications = 'notifications';
 }

@@ -5,7 +5,7 @@ class OperationDetailsScreen extends StatefulWidget {
   final InventoryOperationModel? operation;
   final String? operationId;
 
-  const OperationDetailsScreen({super.key, required this.operation, this.operationId});
+  const OperationDetailsScreen({super.key, this.operation, this.operationId});
 
   @override
   State<OperationDetailsScreen> createState() => _OperationDetailsScreenState();

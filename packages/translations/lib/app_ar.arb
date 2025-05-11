@@ -1,4 +1,6 @@
 {
+  "emptyNotificationsTitle": "لا يوجد إشعارات جديدة",
+  "emptyNotificationsBody": "لم نرسل أي إشعارات حتى الآن، ولكن ترقب التحديثات!",
   "name": "الإسم",
   "branches": "الفروع",
   "companies": "الشركات",

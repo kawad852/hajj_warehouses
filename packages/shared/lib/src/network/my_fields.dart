@@ -32,4 +32,5 @@ class MyFields {
   static const String subTasks = 'subTasks';
   static const String branch = 'branch';
   static const String startTime = 'startTime';
+  static const String unReadNotificationsCount = 'unReadNotificationsCount';
 }

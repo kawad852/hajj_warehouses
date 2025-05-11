@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:app/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../shared.dart';
@@ -26,9 +27,9 @@ class LocalNotificationsService {
           // final notificationModel = NotificationModel.fromJson(data);
           // final id = notificationModel.data?.id;
           // final type = notificationModel.data?.type;
-          // final id = data["id"];
-          // final type = data["type"];
-          // DeepRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
+          final id = data["id"];
+          final type = data["type"];
+          NotificationRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
         }
       },
     );
