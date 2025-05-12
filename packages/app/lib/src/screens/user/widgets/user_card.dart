@@ -20,7 +20,8 @@ class UserCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          BaseNetworkImage(user.profilePhoto!, width: 64, height: 64),
+          if (user.profilePhoto != null)
+            BaseNetworkImage(user.profilePhoto!, width: 64, height: 64),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

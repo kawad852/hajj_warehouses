@@ -133,13 +133,13 @@ exports.markLateTasks = onSchedule(
       const filter1 = Filter.and(
         Filter.where("status", "==", "NOT-STARTED"),
         Filter.where("startTime", "<=", fiveMinutesAgo),
-        Filter.where("markedAsLate", "==", false),
+        Filter.where("startedLate", "==", false),
       );
 
       const filter2 = Filter.and(
         Filter.where("status", "==", "IN-PROGRESS"),
         Filter.where("endTime", "<=", fiveMinutesAgo),
-        Filter.where("markedAsLate", "==", false),
+        Filter.where("endedLate", "==", false),
       );
 
       const combinedFilter = Filter.or(filter1, filter2);
@@ -159,12 +159,18 @@ exports.markLateTasks = onSchedule(
 
       for (const doc of snapshot.docs) {
         const data = doc.data();
-        batch.update(doc.ref, { markedAsLate: true });
+        const status = data.status;
+        const isStartLate = status === "NOT-STARTED";
+
+        // Update correct field
+        batch.update(doc.ref, {
+          [isStartLate ? "startedLate" : "endedLate"]: true,
+        });
 
         const id = doc.id;
         const branch = data.branch;
         const taskName = data.title;
-        const deadlineTime = data.endTime;
+        const deadlineTime = isStartLate ? data.startTime : data.endTime;
 
         const deadlineTimeFormattedEn = new Intl.DateTimeFormat("en-US", {
           dateStyle: "medium",
@@ -176,10 +182,22 @@ exports.markLateTasks = onSchedule(
           timeStyle: "short",
         }).format(deadlineTime.toDate());
 
-        const titleEn = "⏰ Task Deadline Missed";
-        const titleAr = "⏰ تأخير في تسليم المهمة";
-        const bodyEn = `The task ${taskName} was not completed before the deadline at ${deadlineTimeFormattedEn}.`;
-        const bodyAr = `المهمة ${taskName} لم تُنجز قبل الموعد النهائي في ${deadlineTimeFormattedAr}.`;
+        let titleEn = "";
+        let titleAr = "";
+        let bodyEn = "";
+        let bodyAr = "";
+
+        if (isStartLate) {
+          titleEn = "🚨 Task Not Started On Time";
+          titleAr = "🚨 تأخير في بدء المهمة";
+          bodyEn = `The task ${taskName} was not started before the scheduled time at ${deadlineTimeFormattedEn}.`;
+          bodyAr = `المهمة ${taskName} لم تبدأ قبل الموعد المحدد في ${deadlineTimeFormattedAr}.`;
+        } else {
+          titleEn = "⏰ Task Deadline Missed";
+          titleAr = "⏰ تأخير في تسليم المهمة";
+          bodyEn = `The task ${taskName} was not completed before the deadline at ${deadlineTimeFormattedEn}.`;
+          bodyAr = `المهمة ${taskName} لم تُنجز قبل الموعد النهائي في ${deadlineTimeFormattedAr}.`;
+        }
 
         const notificationData = {
           type: "TASK",

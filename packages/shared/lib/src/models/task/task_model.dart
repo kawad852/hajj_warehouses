@@ -19,7 +19,8 @@ class TaskModel with _$TaskModel {
     @Default("") String status,
     @Default(0) int totalSubTasks,
     @Default(0) int completedSubTasksCount,
-    @Default(false) bool markedAsLate,
+    @Default(false) bool startedLate,
+    @Default(false) bool endedLate,
     LightUserModel? employee,
     required LightBranchModel branch,
     required LightUserModel createdBy,
@@ -34,7 +35,7 @@ class TaskModel with _$TaskModel {
     final primaryColor = context.colorPalette.primary;
     final greyLightColor = context.colorPalette.greyF2F;
     final greyDarkColor = context.colorPalette.greyC4C;
-    if (markedAsLate) {
+    if (startedLate || endedLate) {
       return (
         status == TaskStatusEnum.completed.value ? context.colorPalette.greyE2E : greyLightColor,
         context.colorPalette.yellowC02,

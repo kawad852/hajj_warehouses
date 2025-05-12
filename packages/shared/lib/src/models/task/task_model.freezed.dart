@@ -53,8 +53,10 @@ mixin _$TaskModel {
   set totalSubTasks(int value) => throw _privateConstructorUsedError;
   int get completedSubTasksCount => throw _privateConstructorUsedError;
   set completedSubTasksCount(int value) => throw _privateConstructorUsedError;
-  bool get markedAsLate => throw _privateConstructorUsedError;
-  set markedAsLate(bool value) => throw _privateConstructorUsedError;
+  bool get startedLate => throw _privateConstructorUsedError;
+  set startedLate(bool value) => throw _privateConstructorUsedError;
+  bool get endedLate => throw _privateConstructorUsedError;
+  set endedLate(bool value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
   LightBranchModel get branch => throw _privateConstructorUsedError;
@@ -93,7 +95,8 @@ abstract class $TaskModelCopyWith<$Res> {
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markedAsLate,
+    bool startedLate,
+    bool endedLate,
     LightUserModel? employee,
     LightBranchModel branch,
     LightUserModel createdBy,
@@ -132,7 +135,8 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? status = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
-    Object? markedAsLate = null,
+    Object? startedLate = null,
+    Object? endedLate = null,
     Object? employee = freezed,
     Object? branch = null,
     Object? createdBy = null,
@@ -196,10 +200,15 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.completedSubTasksCount
                     : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
-            markedAsLate:
-                null == markedAsLate
-                    ? _value.markedAsLate
-                    : markedAsLate // ignore: cast_nullable_to_non_nullable
+            startedLate:
+                null == startedLate
+                    ? _value.startedLate
+                    : startedLate // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            endedLate:
+                null == endedLate
+                    ? _value.endedLate
+                    : endedLate // ignore: cast_nullable_to_non_nullable
                         as bool,
             employee:
                 freezed == employee
@@ -287,7 +296,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markedAsLate,
+    bool startedLate,
+    bool endedLate,
     LightUserModel? employee,
     LightBranchModel branch,
     LightUserModel createdBy,
@@ -328,7 +338,8 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? totalSubTasks = null,
     Object? completedSubTasksCount = null,
-    Object? markedAsLate = null,
+    Object? startedLate = null,
+    Object? endedLate = null,
     Object? employee = freezed,
     Object? branch = null,
     Object? createdBy = null,
@@ -392,10 +403,15 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.completedSubTasksCount
                 : completedSubTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
-        markedAsLate:
-            null == markedAsLate
-                ? _value.markedAsLate
-                : markedAsLate // ignore: cast_nullable_to_non_nullable
+        startedLate:
+            null == startedLate
+                ? _value.startedLate
+                : startedLate // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        endedLate:
+            null == endedLate
+                ? _value.endedLate
+                : endedLate // ignore: cast_nullable_to_non_nullable
                     as bool,
         employee:
             freezed == employee
@@ -443,7 +459,8 @@ class _$TaskModelImpl extends _TaskModel {
     this.status = "",
     this.totalSubTasks = 0,
     this.completedSubTasksCount = 0,
-    this.markedAsLate = false,
+    this.startedLate = false,
+    this.endedLate = false,
     this.employee,
     required this.branch,
     required this.createdBy,
@@ -489,7 +506,10 @@ class _$TaskModelImpl extends _TaskModel {
   int completedSubTasksCount;
   @override
   @JsonKey()
-  bool markedAsLate;
+  bool startedLate;
+  @override
+  @JsonKey()
+  bool endedLate;
   @override
   LightUserModel? employee;
   @override
@@ -505,7 +525,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, branch: $branch, createdBy: $createdBy, startingImages: $startingImages, endingImages: $endingImages)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, startedLate: $startedLate, endedLate: $endedLate, employee: $employee, branch: $branch, createdBy: $createdBy, startingImages: $startingImages, endingImages: $endingImages)';
   }
 
   /// Create a copy of TaskModel
@@ -535,7 +555,8 @@ abstract class _TaskModel extends TaskModel {
     String status,
     int totalSubTasks,
     int completedSubTasksCount,
-    bool markedAsLate,
+    bool startedLate,
+    bool endedLate,
     LightUserModel? employee,
     required LightBranchModel branch,
     required LightUserModel createdBy,
@@ -591,8 +612,11 @@ abstract class _TaskModel extends TaskModel {
   int get completedSubTasksCount;
   set completedSubTasksCount(int value);
   @override
-  bool get markedAsLate;
-  set markedAsLate(bool value);
+  bool get startedLate;
+  set startedLate(bool value);
+  @override
+  bool get endedLate;
+  set endedLate(bool value);
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);

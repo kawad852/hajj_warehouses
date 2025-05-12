@@ -13,7 +13,7 @@ class _UsersScreenState extends State<UsersScreen> {
   late Query<UserModel> _usersQuery;
 
   void _initialize() {
-    final query = kFirebaseInstant.users.orderByDesc;
+    final query = kFirebaseInstant.users.whereMyBranch.orderByDesc;
     if (kIsAdmin) {
       _usersQuery = query;
     } else {
