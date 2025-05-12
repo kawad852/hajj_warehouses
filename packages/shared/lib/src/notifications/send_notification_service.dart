@@ -39,6 +39,16 @@ class SendNotificationService {
 
       docRef.update({MyFields.unReadNotificationsCount: FieldValue.increment(1)});
 
+      final notificationDocId = kUUID;
+      final json = {
+        "id": notificationDocId,
+        "notification": notificationModel.notification!.toJson(),
+        "data": notificationModel.data!.toJson(),
+        "createdAt": FieldValue.serverTimestamp(),
+      };
+      docRef.collection(MyCollections.notifications).doc(notificationDocId).set(json);
+
+      // ignore: use_build_context_synchronously
       _send(context, notificationModel: notificationModel);
     }
   }
