@@ -18,8 +18,9 @@ class SendNotificationService {
     required String bodyEn,
     required String bodyAr,
   }) async {
-    final filter = Filter(Filter(MyFields.idBranch, isEqualTo: kBranch?.id));
-    final usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get();
+    // final filter = Filter(Filter(MyFields.idBranch, isEqualTo: kBranch?.id));
+    final usersQuerySnapshot =
+        await kFirebaseInstant.users.where(MyFields.idBranch, isEqualTo: kBranch?.id).get();
 
     for (var doc in usersQuerySnapshot.docs) {
       final docRef = doc.reference;
@@ -33,10 +34,7 @@ class SendNotificationService {
       final notificationModel = NotificationModel(
         notification: NotificationHeaderModel(title: title, body: body),
         token: token,
-        data: NotificationDataModel(
-          id: id,
-          type: type,
-        ),
+        data: NotificationDataModel(id: id, type: type),
       );
 
       docRef.update({MyFields.unReadNotificationsCount: FieldValue.increment(1)});
@@ -90,6 +88,8 @@ class SendNotificationService {
     final String serviceAccountString = await rootBundle.loadString(
       'assets/serviceAccountKey.json',
     );
+
+    print("serviceAccountString:: $serviceAccountString");
 
     // Parse the JSON string into a Map
     final serviceAccountJson = jsonDecode(serviceAccountString);
