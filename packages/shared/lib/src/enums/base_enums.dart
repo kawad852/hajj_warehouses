@@ -19,7 +19,8 @@ enum ActionType { add, edit, delete }
 
 enum RoleEnum {
   admin('ADMIN'),
-  manager('MANAGER');
+  manager('MANAGER'),
+  employee('EMPLOYEE');
 
   final String value;
 

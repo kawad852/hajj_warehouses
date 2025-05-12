@@ -216,19 +216,40 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: BranchesDropdown(
-                          branches: branches,
-                          title: context.appLocalization.branch,
-                          onChanged: (value) {
-                            final branch = branches.firstWhere((e) => e.id == value);
-                            _user.branch = LightBranchModel(id: branch.id, name: branch.name);
-                          },
-                          labelText: '',
-                          value: _user.branch?.id ?? kSelectedBranchId,
+                        child: TitledTextField(
+                          title: context.appLocalization.role,
+                          child: DropDownEditor(
+                            value: _user.role,
+                            onChanged: (value) {
+                              setState(() {
+                                _user.role = value;
+                                if (value == RoleEnum.admin.value) {
+                                  _user.branch = null;
+                                }
+                              });
+                            },
+                            title: "",
+                            items:
+                                RoleEnum.values.map((e) {
+                                  return DropdownMenuItem(value: e.value, child: Text(e.value));
+                                }).toList(),
+                          ),
                         ),
                       ),
                     ],
                   ),
+                  if (_user.role != RoleEnum.admin.value)
+                    BranchesDropdown(
+                      key: ValueKey(_user.role),
+                      branches: branches,
+                      title: context.appLocalization.branch,
+                      onChanged: (value) {
+                        final branch = branches.firstWhere((e) => e.id == value);
+                        _user.branch = LightBranchModel(id: branch.id, name: branch.name);
+                      },
+                      labelText: '',
+                      value: _user.branch?.id,
+                    ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
@@ -294,73 +315,63 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Switch(
-                        activeColor: context.colorPalette.primary,
-                        activeTrackColor: context.colorPalette.greyD9D,
-                        value: _user.canAccessApp,
-                        onChanged: (value) {
-                          setState(() {
-                            _user.canAccessApp = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        context.appLocalization.activateApplicationAccessPermission,
-                        style: TextStyle(
-                          color: context.colorPalette.black001,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: TitledTextField(
-                            title: context.appLocalization.userName,
-                            child: TextEditor(
-                              initialValue: _user.username,
-                              readOnly: widget.user != null,
-                              onChanged: (value) => _user.username = value!,
-                              hintText: context.appLocalization.inEnglishLetters,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: TitledTextField(
-                            title: context.appLocalization.password,
-                            child: PasswordEditor(
-                              initialValue: _user.password,
-                              onChanged: (value) => _user.password = value!,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // TitledTextField(
-                  //   title: "صلاحية الوصول",
-                  //   child: SizedBox(
-                  //     width: context.mediaQuery.width * 0.45,
-                  //     child: DropDownEditor(
-                  //       items: const [],
-                  //       onChanged: (value) {},
-                  //       title: "اختر الفرع",
-                  //       value: "s",
+                  // Row(
+                  //   children: [
+                  //     Switch(
+                  //       activeColor: context.colorPalette.primary,
+                  //       activeTrackColor: context.colorPalette.greyD9D,
+                  //       value: _user.canAccessApp,
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           _user.canAccessApp = value;
+                  //         });
+                  //       },
                   //     ),
-                  //   ),
+                  //     const SizedBox(width: 5),
+                  //     Text(
+                  //       context.appLocalization.activateApplicationAccessPermission,
+                  //       style: TextStyle(
+                  //         color: context.colorPalette.black001,
+                  //         fontSize: 14,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //   ],
                   // ),
+                  if (_user.role != RoleEnum.employee.value)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: TitledTextField(
+                              title: context.appLocalization.userName,
+                              child: TextEditor(
+                                initialValue: _user.username,
+                                readOnly: widget.user != null,
+                                onChanged: (value) => _user.username = value!,
+                                hintText: context.appLocalization.inEnglishLetters,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: TitledTextField(
+                              title: context.appLocalization.password,
+                              child: PasswordEditor(
+                                initialValue: _user.password,
+                                onChanged: (value) => _user.password = value!,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
                   InkWell(
                     onTap: () {
                       _pickImages(context);
