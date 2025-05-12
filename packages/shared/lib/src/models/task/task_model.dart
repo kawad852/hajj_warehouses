@@ -21,6 +21,7 @@ class TaskModel with _$TaskModel {
     @Default(0) int completedSubTasksCount,
     @Default(false) bool markedAsLate,
     LightUserModel? employee,
+    required LightBranchModel branch,
     required LightUserModel createdBy,
     @Default([]) List<String> startingImages,
     @Default([]) List<String> endingImages,

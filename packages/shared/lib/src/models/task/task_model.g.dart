@@ -26,6 +26,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
       json['employee'] == null
           ? null
           : LightUserModel.fromJson(json['employee'] as Map<String, dynamic>),
+  branch: LightBranchModel.fromJson(json['branch'] as Map<String, dynamic>),
   createdBy: LightUserModel.fromJson(json['createdBy'] as Map<String, dynamic>),
   startingImages:
       (json['startingImages'] as List<dynamic>?)
@@ -54,6 +55,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'completedSubTasksCount': instance.completedSubTasksCount,
       'markedAsLate': instance.markedAsLate,
       'employee': instance.employee?.toJson(),
+      'branch': instance.branch.toJson(),
       'createdBy': instance.createdBy.toJson(),
       'startingImages': instance.startingImages,
       'endingImages': instance.endingImages,

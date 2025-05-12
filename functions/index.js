@@ -116,6 +116,56 @@ exports.generateCustomToken = onCall({ region: "europe-west3" },
     }
   });
 
+exports.onTaskCreated = onDocumentCreated(
+  {
+    document: "branches/{branchId}/tasks/{taskId}",
+  },
+  async (event) => {
+    try {
+      const task = event.data.data();
+      if (!task) return;
+
+      const branch = task.branch;
+      const taskName = task.title;
+      const startTime = task.startTime;
+
+      const formattedStartTimeEn = new Intl.DateTimeFormat("en-US", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(startTime.toDate());
+
+      const formattedStartTimeAr = new Intl.DateTimeFormat("ar-EG", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(startTime.toDate());
+
+      const titleEn = "📝 New Task Assigned";
+      const titleAr = "📝 مهمة جديدة";
+      const bodyEn = `A new task ${taskName} has been assigned to start at ${formattedStartTimeEn}.`;
+      const bodyAr = `تم تعيين المهمة ${taskName} لتبدأ في ${formattedStartTimeAr}.`;
+
+      const notificationData = {
+        type: "TASK",
+        id: event.params.taskId,
+      };
+
+      await sendNotification({
+        titleEn,
+        bodyEn,
+        titleAr,
+        bodyAr,
+        notificationData,
+        branch,
+      });
+
+      console.log(`✅ Notification sent for new task "${taskName}"`);
+    } catch (error) {
+      console.error("❌ Error sending task created notification:", error);
+    }
+  },
+);
+
+
 /**
  * Scheduled function to mark late tasks.
  */
@@ -155,14 +205,54 @@ exports.markLateTasks = onSchedule(
       }
 
       const batch = db.batch();
-      snapshot.forEach((doc) => {
+      const notifications = [];
+
+      for (const doc of snapshot.docs) {
+        const data = doc.data();
         batch.update(doc.ref, { markedAsLate: true });
-      });
+
+        const id = doc.id;
+        const branch = data.branch;
+        const taskName = data.title;
+        const deadlineTime = data.endTime;
+
+        const deadlineTimeFormattedEn = new Intl.DateTimeFormat("en-US", {
+          dateStyle: "medium",
+          timeStyle: "short",
+        }).format(deadlineTime.toDate());
+
+        const deadlineTimeFormattedAr = new Intl.DateTimeFormat("ar-EG", {
+          dateStyle: "medium",
+          timeStyle: "short",
+        }).format(deadlineTime.toDate());
+
+        const titleEn = "⏰ Task Deadline Missed";
+        const titleAr = "⏰ تأخير في تسليم المهمة";
+        const bodyEn = `The task ${taskName} was not completed before the deadline at ${deadlineTimeFormattedEn}.`;
+        const bodyAr = `المهمة ${taskName} لم تُنجز قبل الموعد النهائي في ${deadlineTimeFormattedAr}.`;
+
+        const notificationData = {
+          type: "TASK",
+          id: id,
+        };
+
+        notifications.push(
+          sendNotification({
+            titleEn,
+            bodyEn,
+            titleAr,
+            bodyAr,
+            notificationData,
+            branch,
+          }),
+        );
+      }
 
       await batch.commit();
-      console.log(`Marked ${snapshot.size} tasks as late.`);
+      await Promise.all(notifications);
+      console.log(`✅ Marked ${snapshot.size} tasks as late and notifications sent.`);
     } catch (error) {
-      console.error("Error marking tasks as late:", error);
+      console.error("❌ Error marking tasks as late:", error);
       throw error;
     }
   },

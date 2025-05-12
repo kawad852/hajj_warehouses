@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:shared/shared.dart';
 
 class TaskInputScreen extends StatefulWidget {
@@ -54,6 +56,17 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             await docRef.set(_task);
           }
 
+          final formattedDate = _task.startTime!.getDefaultFormattedDate(context);
+          SendNotificationService.sendToUsers(
+            context,
+            id: _task.id,
+            type: "TASK",
+            titleEn: "📝 New Task Assigned",
+            titleAr: "📝 مهمة جديدة",
+            bodyEn: "A new task ${_task.title} has been assigned to start at $formattedDate.",
+            bodyAr: "تم تعيين المهمة ${_task.title} لتبدأ في $formattedDate.",
+          );
+
           if (context.mounted) {
             Navigator.pop(context);
             Fluttertoast.showToast(msg: context.appLocalization.taskAddedSuccessfully);
@@ -66,7 +79,11 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   @override
   void initState() {
     super.initState();
-    _task = TaskModel(createdBy: kCurrentLightUser, status: TaskStatusEnum.notStarted.value);
+    _task = TaskModel(
+      createdBy: kCurrentLightUser,
+      status: TaskStatusEnum.notStarted.value,
+      branch: kBranch!,
+    );
     _initialize();
   }
 
@@ -77,7 +94,11 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
       onComplete: (context, snapshot) {
         final employees = snapshot.data!;
         return Scaffold(
-          appBar: AppBar(title: AppBarText(_isSubTask ? context.appLocalization.addSubtask : context.appLocalization.addMainTask)),
+          appBar: AppBar(
+            title: AppBarText(
+              _isSubTask ? context.appLocalization.addSubtask : context.appLocalization.addMainTask,
+            ),
+          ),
           bottomNavigationBar: BottomButton(
             text: context.appLocalization.add,
             onPressed: () {

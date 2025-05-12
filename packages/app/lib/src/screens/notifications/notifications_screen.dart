@@ -53,7 +53,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 onTap:
                     id != null
                         ? () {
-                          print("type:: $type");
                           NotificationRouteHandler.toggle(context, id: id, type: type);
                         }
                         : null,

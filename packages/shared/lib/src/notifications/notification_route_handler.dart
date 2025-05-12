@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class NotificationRouteHandler {
@@ -22,9 +23,9 @@ class NotificationRouteHandler {
           return OrderDetailsScreen(id: id);
         });
       } else if (type == "TASK") {
-        // context.navigate((context) {
-        //   return OrderDetailsScreen(order: ,);
-        // });
+        context.navigate((context) {
+          return TaskDetailsScreen(id: id);
+        });
       } else if (type == "TRANSACTION") {
         // context.navigate((context) {
         //   return OrderDetailsScreen(order: ,);

@@ -57,6 +57,8 @@ mixin _$TaskModel {
   set markedAsLate(bool value) => throw _privateConstructorUsedError;
   LightUserModel? get employee => throw _privateConstructorUsedError;
   set employee(LightUserModel? value) => throw _privateConstructorUsedError;
+  LightBranchModel get branch => throw _privateConstructorUsedError;
+  set branch(LightBranchModel value) => throw _privateConstructorUsedError;
   LightUserModel get createdBy => throw _privateConstructorUsedError;
   set createdBy(LightUserModel value) => throw _privateConstructorUsedError;
   List<String> get startingImages => throw _privateConstructorUsedError;
@@ -93,12 +95,14 @@ abstract class $TaskModelCopyWith<$Res> {
     int completedSubTasksCount,
     bool markedAsLate,
     LightUserModel? employee,
+    LightBranchModel branch,
     LightUserModel createdBy,
     List<String> startingImages,
     List<String> endingImages,
   });
 
   $LightUserModelCopyWith<$Res>? get employee;
+  $LightBranchModelCopyWith<$Res> get branch;
   $LightUserModelCopyWith<$Res> get createdBy;
 }
 
@@ -130,6 +134,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? completedSubTasksCount = null,
     Object? markedAsLate = null,
     Object? employee = freezed,
+    Object? branch = null,
     Object? createdBy = null,
     Object? startingImages = null,
     Object? endingImages = null,
@@ -201,6 +206,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.employee
                     : employee // ignore: cast_nullable_to_non_nullable
                         as LightUserModel?,
+            branch:
+                null == branch
+                    ? _value.branch
+                    : branch // ignore: cast_nullable_to_non_nullable
+                        as LightBranchModel,
             createdBy:
                 null == createdBy
                     ? _value.createdBy
@@ -239,6 +249,16 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $LightBranchModelCopyWith<$Res> get branch {
+    return $LightBranchModelCopyWith<$Res>(_value.branch, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TaskModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $LightUserModelCopyWith<$Res> get createdBy {
     return $LightUserModelCopyWith<$Res>(_value.createdBy, (value) {
       return _then(_value.copyWith(createdBy: value) as $Val);
@@ -269,6 +289,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int completedSubTasksCount,
     bool markedAsLate,
     LightUserModel? employee,
+    LightBranchModel branch,
     LightUserModel createdBy,
     List<String> startingImages,
     List<String> endingImages,
@@ -276,6 +297,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
 
   @override
   $LightUserModelCopyWith<$Res>? get employee;
+  @override
+  $LightBranchModelCopyWith<$Res> get branch;
   @override
   $LightUserModelCopyWith<$Res> get createdBy;
 }
@@ -307,6 +330,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? completedSubTasksCount = null,
     Object? markedAsLate = null,
     Object? employee = freezed,
+    Object? branch = null,
     Object? createdBy = null,
     Object? startingImages = null,
     Object? endingImages = null,
@@ -378,6 +402,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.employee
                 : employee // ignore: cast_nullable_to_non_nullable
                     as LightUserModel?,
+        branch:
+            null == branch
+                ? _value.branch
+                : branch // ignore: cast_nullable_to_non_nullable
+                    as LightBranchModel,
         createdBy:
             null == createdBy
                 ? _value.createdBy
@@ -416,6 +445,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.completedSubTasksCount = 0,
     this.markedAsLate = false,
     this.employee,
+    required this.branch,
     required this.createdBy,
     this.startingImages = const [],
     this.endingImages = const [],
@@ -463,6 +493,8 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   LightUserModel? employee;
   @override
+  LightBranchModel branch;
+  @override
   LightUserModel createdBy;
   @override
   @JsonKey()
@@ -473,7 +505,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, createdBy: $createdBy, startingImages: $startingImages, endingImages: $endingImages)';
+    return 'TaskModel(createdAt: $createdAt, startTime: $startTime, endTime: $endTime, startedAt: $startedAt, endedAt: $endedAt, id: $id, title: $title, description: $description, status: $status, totalSubTasks: $totalSubTasks, completedSubTasksCount: $completedSubTasksCount, markedAsLate: $markedAsLate, employee: $employee, branch: $branch, createdBy: $createdBy, startingImages: $startingImages, endingImages: $endingImages)';
   }
 
   /// Create a copy of TaskModel
@@ -505,6 +537,7 @@ abstract class _TaskModel extends TaskModel {
     int completedSubTasksCount,
     bool markedAsLate,
     LightUserModel? employee,
+    required LightBranchModel branch,
     required LightUserModel createdBy,
     List<String> startingImages,
     List<String> endingImages,
@@ -563,6 +596,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   LightUserModel? get employee;
   set employee(LightUserModel? value);
+  @override
+  LightBranchModel get branch;
+  set branch(LightBranchModel value);
   @override
   LightUserModel get createdBy;
   set createdBy(LightUserModel value);

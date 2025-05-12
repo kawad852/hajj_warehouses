@@ -3,9 +3,10 @@ import 'package:app/src/screens/task/widgets/timer_builder.dart';
 import 'package:shared/shared.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
-  final TaskModel task;
+  final TaskModel? task;
+  final String? id;
 
-  const TaskDetailsScreen({super.key, required this.task});
+  const TaskDetailsScreen({super.key, this.task, this.id});
 
   @override
   State<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
@@ -16,8 +17,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late Query<TaskModel> _subTasksQuery;
 
   void _initialize() {
-    _taskStream = kFirebaseInstant.tasks.doc(widget.task.id).snapshots().map((e) => e.data()!);
-    _subTasksQuery = kFirebaseInstant.subTasks(widget.task.id);
+    _taskStream = kFirebaseInstant.tasks
+        .doc(widget.task?.id ?? widget.id)
+        .snapshots()
+        .map((e) => e.data()!);
+    _subTasksQuery = kFirebaseInstant.subTasks(widget.task?.id ?? widget.id!);
   }
 
   @override

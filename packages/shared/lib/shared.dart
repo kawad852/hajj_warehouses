@@ -100,6 +100,7 @@ export 'src/network/my_queries.dart';
 ///Notifications
 export 'src/notifications/cloud_messaging_service.dart';
 export 'src/notifications/notification_route_handler.dart';
+export 'src/notifications/send_notification_service.dart';
 //providers
 export 'src/providers/app_provider.dart';
 export 'src/providers/drawer_provider.dart';
