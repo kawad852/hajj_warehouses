@@ -99,8 +99,6 @@ class SendNotificationService {
       'assets/serviceAccountKey.json',
     );
 
-    print("serviceAccountString:: $serviceAccountString");
-
     // Parse the JSON string into a Map
     final serviceAccountJson = jsonDecode(serviceAccountString);
 

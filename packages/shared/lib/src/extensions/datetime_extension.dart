@@ -6,4 +6,6 @@ extension DatetimeExtension on DateTime {
   String getTime(BuildContext context) => DateFormat.jm(context.languageCode).format(this);
   String getDefaultFormattedDate(BuildContext context) =>
       DateFormat.yMd(context.languageCode).format(this);
+
+  String getDateTimeFormatEN(BuildContext context) => DateFormat.yMd().add_jm().format(this);
 }

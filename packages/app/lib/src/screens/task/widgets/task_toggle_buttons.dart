@@ -6,45 +6,51 @@ class TaskToggleButtons extends StatelessWidget {
   final List<String> images;
   final String mainTaskId;
   final String? subTaskId;
+  final TaskModel task;
   final String imagesField;
-  final String status;
-  final DateTime? startedAt;
 
   const TaskToggleButtons({
     super.key,
     required this.images,
     required this.mainTaskId,
     required this.subTaskId,
+    required this.task,
     required this.imagesField,
-    required this.status,
-    this.startedAt,
   });
 
   DocumentReference<TaskModel> get _mainTaskDocRef => kFirebaseInstant.tasks.doc(mainTaskId);
   DocumentReference<TaskModel> get _subTaskDocRef =>
       kFirebaseInstant.subTasks(mainTaskId).doc(subTaskId);
 
-  bool get _isNotStarted => status == TaskStatusEnum.notStarted.value;
-  bool get _isCompleted => status == TaskStatusEnum.completed.value;
-  bool get _isInProgress => status == TaskStatusEnum.inProgress.value;
+  bool get _isNotStarted => task.status == TaskStatusEnum.notStarted.value;
+  bool get _isCompleted => task.status == TaskStatusEnum.completed.value;
+  bool get _isInProgress => task.status == TaskStatusEnum.inProgress.value;
 
-  void _onStartingTask() {
-    final json = {
-      MyFields.status: TaskStatusEnum.inProgress.value,
-      MyFields.startedAt: FieldValue.serverTimestamp(),
-    };
+  void _onStartingTask(BuildContext context) async {
+    final date = kNowDate;
+    final json = {MyFields.status: TaskStatusEnum.inProgress.value, MyFields.startedAt: date};
     if (subTaskId != null) {
-      _subTaskDocRef.update(json);
+      await _subTaskDocRef.update(json);
     } else {
-      _mainTaskDocRef.update(json);
+      await _mainTaskDocRef.update(json);
     }
+
+    // ignore: use_build_context_synchronously
+    SendNotificationService.sendToUsers(
+      // ignore: use_build_context_synchronously
+      context,
+      id: _subTaskDocRef.id,
+      type: "TASK",
+      titleEn: "📝 Task Started",
+      titleAr: "📝 بدأت المهمة",
+      bodyEn: "Task: ${task.title} was started by ${task.createdBy.displayName} on $date.",
+      bodyAr: "تم بدء المهمة: ${task.title} بواسطة ${task.createdBy.displayName} في تاريخ $date.",
+    );
   }
 
   void _onEndingTask(BuildContext context) {
-    final json = {
-      MyFields.status: TaskStatusEnum.completed.value,
-      MyFields.endedAt: FieldValue.serverTimestamp(),
-    };
+    final date = kNowDate;
+    final json = {MyFields.status: TaskStatusEnum.completed.value, MyFields.endedAt: date};
     if (subTaskId != null) {
       _subTaskDocRef.update(json);
     } else {
@@ -57,6 +63,20 @@ class TaskToggleButtons extends StatelessWidget {
           );
           if (isEverySubTaskCompleted) {
             await _mainTaskDocRef.update(json);
+
+            // ignore: use_build_context_synchronously
+            SendNotificationService.sendToUsers(
+              // ignore: use_build_context_synchronously
+              context,
+              id: _subTaskDocRef.id,
+              type: "TASK",
+              titleEn: "📝 Task Ended",
+              titleAr: "📝 إنتهت المهمة",
+              bodyEn:
+                  "Task: ${task.title} was completed by ${task.createdBy.displayName} on $date.",
+              bodyAr:
+                  "تم إكمال المهمة: ${task.title} بواسطة ${task.createdBy.displayName} في تاريخ $date.",
+            );
           } else if (context.mounted) {
             context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
           }
@@ -93,7 +113,7 @@ class TaskToggleButtons extends StatelessWidget {
       return [
         const ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
         TimerBuilder(
-          startDateTime: startedAt,
+          startDateTime: task.startedAt,
           countUp: true,
           child: (time) {
             return ToggleButtonChild(title: time);
@@ -142,7 +162,7 @@ class TaskToggleButtons extends StatelessWidget {
                     return;
                   }
                   if (_isNotStarted) {
-                    _onStartingTask();
+                    _onStartingTask(context);
                   } else if (_isInProgress) {
                     _onEndingTask(context);
                   }
