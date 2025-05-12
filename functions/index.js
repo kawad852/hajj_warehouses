@@ -116,56 +116,6 @@ exports.generateCustomToken = onCall({ region: "europe-west3" },
     }
   });
 
-exports.onTaskCreated = onDocumentCreated(
-  {
-    document: "branches/{branchId}/tasks/{taskId}",
-  },
-  async (event) => {
-    try {
-      const task = event.data.data();
-      if (!task) return;
-
-      const branch = task.branch;
-      const taskName = task.title;
-      const startTime = task.startTime;
-
-      const formattedStartTimeEn = new Intl.DateTimeFormat("en-US", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }).format(startTime.toDate());
-
-      const formattedStartTimeAr = new Intl.DateTimeFormat("ar-EG", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }).format(startTime.toDate());
-
-      const titleEn = "📝 New Task Assigned";
-      const titleAr = "📝 مهمة جديدة";
-      const bodyEn = `A new task ${taskName} has been assigned to start at ${formattedStartTimeEn}.`;
-      const bodyAr = `تم تعيين المهمة ${taskName} لتبدأ في ${formattedStartTimeAr}.`;
-
-      const notificationData = {
-        type: "TASK",
-        id: event.params.taskId,
-      };
-
-      await sendNotification({
-        titleEn,
-        bodyEn,
-        titleAr,
-        bodyAr,
-        notificationData,
-        branch,
-      });
-
-      console.log(`✅ Notification sent for new task "${taskName}"`);
-    } catch (error) {
-      console.error("❌ Error sending task created notification:", error);
-    }
-  },
-);
-
-
 /**
  * Scheduled function to mark late tasks.
  */
