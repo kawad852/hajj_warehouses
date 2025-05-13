@@ -7,6 +7,7 @@ part 'role_model.g.dart';
 
 @unfreezed
 class RoleModel with _$RoleModel {
+  @JsonSerializable(explicitToJson: true)
   factory RoleModel({
     @TimestampSerializer() DateTime? createdAt,
     String? id,

@@ -45,6 +45,7 @@ class _RolesTableState extends State<RolesTable> {
       },
       inputBuilder: (snapshot) {
         final data = snapshot;
+        data.permissions ??= [];
         return [
           TextEditor(
             labelText: context.appLocalization.nameEn,
@@ -73,11 +74,10 @@ class _RolesTableState extends State<RolesTable> {
                   style: context.textTheme.titleLarge,
                 ),
               ),
-
               PermissionsBuilder(
                 initialLocation: data.initialLocation,
                 onChanged: (value) => data.initialLocation = value,
-                permissions: data.permissions ?? [],
+                permissions: data.permissions!,
               ),
             ],
           ),

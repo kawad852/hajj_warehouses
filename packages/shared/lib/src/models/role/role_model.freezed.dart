@@ -216,7 +216,8 @@ class __$$RoleModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$RoleModelImpl extends _RoleModel {
   _$RoleModelImpl({
     @TimestampSerializer() this.createdAt,

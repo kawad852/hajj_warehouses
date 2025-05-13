@@ -28,5 +28,5 @@ Map<String, dynamic> _$$RoleModelImplToJson(_$RoleModelImpl instance) =>
       'nameAr': instance.nameAr,
       'initialLocation': instance.initialLocation,
       'analytics': instance.analytics,
-      'permissions': instance.permissions,
+      'permissions': instance.permissions?.map((e) => e.toJson()).toList(),
     };
