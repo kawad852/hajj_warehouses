@@ -1,20 +1,23 @@
+import 'package:app/src/screens/branch/branch_input_screen.dart';
 import 'package:shared/shared.dart';
 
-class ChooseBranchScreen extends StatefulWidget {
+class BranchesScreen extends StatefulWidget {
   final bool showAppBar;
 
-  const ChooseBranchScreen({super.key, this.showAppBar = false});
+  const BranchesScreen({super.key, this.showAppBar = true});
 
   @override
-  State<ChooseBranchScreen> createState() => _ChooseBranchScreenState();
+  State<BranchesScreen> createState() => _BranchesScreenState();
 }
 
-class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
-  late Future<List<BranchModel>> _future;
+class _BranchesScreenState extends State<BranchesScreen> {
+  late Stream<List<BranchModel>> _stream;
   late LightBranchModel? _selectedBranch;
 
   void _initialize() {
-    _future = context.appProvider.getBranches();
+    _stream = kFirebaseInstant.branches.whereMyCompany.orderByDesc.snapshots().map((e) {
+      return e.docs.map((e) => e.data()).toList();
+    });
   }
 
   @override
@@ -26,22 +29,42 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BigFutureBuilder(
-      future: _future,
+    return BigStreamBuilder(
+      stream: _stream,
       onComplete: (context, snapshot) {
         final branches = snapshot.data!;
         return Scaffold(
-          appBar: widget.showAppBar ? AppBar() : null,
-          bottomNavigationBar: BottomButton(
-            text: widget.showAppBar ? context.appLocalization.select : context.appLocalization.next,
-            onPressed:
-                _selectedBranch != null
-                    ? () {
-                      context.userProvider.selectBranch(_selectedBranch!);
-                      context.goToNavBar();
-                    }
-                    : null,
-          ),
+          appBar:
+              widget.showAppBar
+                  ? AppBar(
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          context.navigate((context) {
+                            return const BranchInputScreen();
+                          });
+                        },
+                        child: Text("إضافة فرع"),
+                      ),
+                    ],
+                  )
+                  : null,
+          bottomNavigationBar:
+              branches.isNotEmpty
+                  ? BottomButton(
+                    text:
+                        widget.showAppBar
+                            ? context.appLocalization.select
+                            : context.appLocalization.next,
+                    onPressed:
+                        _selectedBranch != null
+                            ? () {
+                              context.userProvider.selectBranch(_selectedBranch!);
+                              context.goToNavBar();
+                            }
+                            : null,
+                  )
+                  : null,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -69,17 +92,28 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  context.appLocalization.selectBranch,
-                  style: TextStyle(
-                    color: context.colorPalette.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+              if (branches.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    context.appLocalization.selectBranch,
+                    style: TextStyle(
+                      color: context.colorPalette.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                )
+              else
+                StretchedButton(
+                  onPressed: () {
+                    context.navigate((context) {
+                      return const BranchInputScreen();
+                    });
+                  },
+                  margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: const Text("إضافة فرع"),
                 ),
-              ),
               Expanded(
                 child: ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 10),
@@ -93,7 +127,11 @@ class _ChooseBranchScreenState extends State<ChooseBranchScreen> {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          _selectedBranch = LightBranchModel(name: branch.name, id: branch.id);
+                          _selectedBranch = LightBranchModel(
+                            name: branch.name,
+                            id: branch.id,
+                            companyId: branch.companyId,
+                          );
                         });
                       },
                       child: Container(

@@ -13,6 +13,7 @@ SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
 LightBranchModel? get kBranch => MySharedPreferences.branch;
 String get kSelectedBranchId => kBranch!.id!;
+String get kCompanyId => MySharedPreferences.user!.companyId!;
 LightUserModel get kCurrentLightUser => LightUserModel(
   id: MySharedPreferences.user?.id,
   displayName: MySharedPreferences.user?.displayName,

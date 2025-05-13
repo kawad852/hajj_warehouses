@@ -40,7 +40,7 @@ class AppProvider extends ChangeNotifier {
   }
 
   Future<List<BranchModel>> getBranches() {
-    return kFirebaseInstant.branches.orderByDesc.get().then(
+    return kFirebaseInstant.branches.whereMyCompany.orderByDesc.get().then(
       (value) => value.docs.map((e) => e.data()).toList(),
     );
   }

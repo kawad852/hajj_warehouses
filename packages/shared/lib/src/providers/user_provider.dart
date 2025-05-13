@@ -107,7 +107,7 @@ class UserProvider extends ChangeNotifier {
 
         if (context.mounted) {
           if (MySharedPreferences.user?.role == RoleEnum.admin.value) {
-            context.pushAndRemoveUntil((context) => const ChooseBranchScreen());
+            context.pushAndRemoveUntil((context) => const BranchesScreen());
           } else {
             MySharedPreferences.branch = MySharedPreferences.user!.branch!;
             context.goToNavBar();

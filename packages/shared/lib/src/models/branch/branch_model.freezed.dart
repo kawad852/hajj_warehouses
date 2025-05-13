@@ -29,6 +29,8 @@ mixin _$BranchModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
+  String get companyId => throw _privateConstructorUsedError;
+  set companyId(String value) => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   set balance(double value) => throw _privateConstructorUsedError;
 
@@ -53,6 +55,7 @@ abstract class $BranchModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
+    String companyId,
     double balance,
   });
 }
@@ -75,6 +78,7 @@ class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
+    Object? companyId = null,
     Object? balance = null,
   }) {
     return _then(
@@ -93,6 +97,11 @@ class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
                 null == name
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+            companyId:
+                null == companyId
+                    ? _value.companyId
+                    : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
             balance:
                 null == balance
@@ -118,6 +127,7 @@ abstract class _$$BranchModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
+    String companyId,
     double balance,
   });
 }
@@ -139,6 +149,7 @@ class __$$BranchModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
+    Object? companyId = null,
     Object? balance = null,
   }) {
     return _then(
@@ -158,6 +169,11 @@ class __$$BranchModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
+        companyId:
+            null == companyId
+                ? _value.companyId
+                : companyId // ignore: cast_nullable_to_non_nullable
+                    as String,
         balance:
             null == balance
                 ? _value.balance
@@ -176,6 +192,7 @@ class _$BranchModelImpl implements _BranchModel {
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.name = '',
+    this.companyId = '',
     this.balance = 0.0,
   });
 
@@ -193,11 +210,14 @@ class _$BranchModelImpl implements _BranchModel {
   String name;
   @override
   @JsonKey()
+  String companyId;
+  @override
+  @JsonKey()
   double balance;
 
   @override
   String toString() {
-    return 'BranchModel(createdAt: $createdAt, id: $id, name: $name, balance: $balance)';
+    return 'BranchModel(createdAt: $createdAt, id: $id, name: $name, companyId: $companyId, balance: $balance)';
   }
 
   /// Create a copy of BranchModel
@@ -219,6 +239,7 @@ abstract class _BranchModel implements BranchModel {
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
+    String companyId,
     double balance,
   }) = _$BranchModelImpl;
 
@@ -236,6 +257,9 @@ abstract class _BranchModel implements BranchModel {
   @override
   String get name;
   set name(String value);
+  @override
+  String get companyId;
+  set companyId(String value);
   @override
   double get balance;
   set balance(double value);
@@ -258,6 +282,8 @@ mixin _$LightBranchModel {
   set id(String? value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
+  String get companyId => throw _privateConstructorUsedError;
+  set companyId(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this LightBranchModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -276,7 +302,7 @@ abstract class $LightBranchModelCopyWith<$Res> {
     $Res Function(LightBranchModel) then,
   ) = _$LightBranchModelCopyWithImpl<$Res, LightBranchModel>;
   @useResult
-  $Res call({String? id, String name});
+  $Res call({String? id, String name, String companyId});
 }
 
 /// @nodoc
@@ -293,7 +319,11 @@ class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? name = null}) {
+  $Res call({
+    Object? id = freezed,
+    Object? name = null,
+    Object? companyId = null,
+  }) {
     return _then(
       _value.copyWith(
             id:
@@ -305,6 +335,11 @@ class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
                 null == name
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+            companyId:
+                null == companyId
+                    ? _value.companyId
+                    : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -321,7 +356,7 @@ abstract class _$$LightBranchModelImplCopyWith<$Res>
   ) = __$$LightBranchModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String name});
+  $Res call({String? id, String name, String companyId});
 }
 
 /// @nodoc
@@ -337,7 +372,11 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? name = null}) {
+  $Res call({
+    Object? id = freezed,
+    Object? name = null,
+    Object? companyId = null,
+  }) {
     return _then(
       _$LightBranchModelImpl(
         id:
@@ -350,6 +389,11 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
+        companyId:
+            null == companyId
+                ? _value.companyId
+                : companyId // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -359,7 +403,7 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$LightBranchModelImpl implements _LightBranchModel {
-  _$LightBranchModelImpl({this.id, this.name = ''});
+  _$LightBranchModelImpl({this.id, this.name = '', this.companyId = ''});
 
   factory _$LightBranchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightBranchModelImplFromJson(json);
@@ -369,10 +413,13 @@ class _$LightBranchModelImpl implements _LightBranchModel {
   @override
   @JsonKey()
   String name;
+  @override
+  @JsonKey()
+  String companyId;
 
   @override
   String toString() {
-    return 'LightBranchModel(id: $id, name: $name)';
+    return 'LightBranchModel(id: $id, name: $name, companyId: $companyId)';
   }
 
   /// Create a copy of LightBranchModel
@@ -393,7 +440,8 @@ class _$LightBranchModelImpl implements _LightBranchModel {
 }
 
 abstract class _LightBranchModel implements LightBranchModel {
-  factory _LightBranchModel({String? id, String name}) = _$LightBranchModelImpl;
+  factory _LightBranchModel({String? id, String name, String companyId}) =
+      _$LightBranchModelImpl;
 
   factory _LightBranchModel.fromJson(Map<String, dynamic> json) =
       _$LightBranchModelImpl.fromJson;
@@ -404,6 +452,9 @@ abstract class _LightBranchModel implements LightBranchModel {
   @override
   String get name;
   set name(String value);
+  @override
+  String get companyId;
+  set companyId(String value);
 
   /// Create a copy of LightBranchModel
   /// with the given fields replaced by the non-null parameter values.
