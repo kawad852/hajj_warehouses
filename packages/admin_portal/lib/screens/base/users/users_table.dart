@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 
 class UsersTable extends StatefulWidget {
@@ -30,7 +29,7 @@ class _UsersTableState extends State<UsersTable> {
     return PortalTable(
       tableTitle: 'Users',
       query: _query,
-      data: UserModel(),
+      data: UserModel(role: RoleEnum.admin.value),
       reference: _collectionRef.doc(),
       columns: [DataColumn(label: Text("الإسم"))],
       cellsBuilder: (index, snapshot) {
@@ -64,25 +63,19 @@ class _UsersTableState extends State<UsersTable> {
               });
             },
           ),
-          TextEditor(
-            initialValue: data.username,
-            // readOnly: ref,
-            onChanged: (value) => data.username = value!,
-            hintText: context.appLocalization.inEnglishLetters,
-            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
-          ),
+          UsernameEditor(initialValue: data.username, onChanged: (value) => data.username = value!),
           PasswordEditor(initialValue: data.password, onChanged: (value) => data.password = value!),
           ImpededFutureBuilder(
             future: _companiesFuture,
             onComplete: (context, snapshot) {
               return DropDownEditor(
-                value: data.roleId,
+                value: data.companyId,
                 onChanged: (value) {
                   setState(() {
-                    data.roleId = value;
+                    data.companyId = value;
                   });
                 },
-                title: context.appLocalization.roles,
+                title: context.appLocalization.companies,
                 items:
                     snapshot.data!.docs.map((element) {
                       return DropdownMenuItem(value: element.id, child: Text(element.data().name));

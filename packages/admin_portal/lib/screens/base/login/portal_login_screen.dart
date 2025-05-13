@@ -76,7 +76,7 @@ class _PortalLoginScreenState extends State<PortalLoginScreen> {
                             FocusManager.instance.primaryFocus?.unfocus();
                             _userProvider.login(
                               context,
-                              email: _email!,
+                              username: _email!,
                               password: _password!,
                               authEnum: AuthEnum.admin,
                               portalLogin: true,

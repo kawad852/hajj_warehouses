@@ -60,7 +60,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> login(
     BuildContext context, {
     required AuthEnum authEnum,
-    required String email,
+    required String username,
     required String password,
     bool portalLogin = false,
   }) async {
@@ -70,7 +70,7 @@ class UserProvider extends ChangeNotifier {
         // final user = UserModel();
 
         final auth = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email,
+          email: "$username$kHajjDomain",
           password: password,
         );
 
@@ -208,7 +208,7 @@ class UserProvider extends ChangeNotifier {
 
   Future<UserCredential> createCompanyUser(String username, String password) async {
     final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: "$username@hajjwarehouses.com",
+      email: "$username$kHajjDomain",
       password: password,
     );
     return auth;

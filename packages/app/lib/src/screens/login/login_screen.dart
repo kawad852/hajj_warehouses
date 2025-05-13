@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String? _email;
+  String? _username;
   var _password = '';
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       context.unFocusKeyboard();
       await context.userProvider.login(
         context,
-        email: _email!,
+        username: _username!,
         password: _password,
         authEnum: AuthEnum.app,
       );
@@ -66,10 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   TitledTextField(
                     title: context.appLocalization.userName,
-                    child: TextEditor(
-                      onChanged: (value) => _email = value,
-                      prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.user)),
-                    ),
+                    child: UsernameEditor(onChanged: (value) => _username = value),
                   ),
                   const SizedBox(height: 10),
                   TitledTextField(

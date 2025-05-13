@@ -9,3 +9,4 @@ const kAlgoliaApplicationId = "2IQYOVMM5J";
 const kAlgoliaApiKey = "2abe0677ceb2dd972ea777119e42f885";
 const kSuperAdminRoleId = '34fbd0909d4011eeb24e170bd46df764';
 const kMaxSmallDeviceWidth = 1000.0;
+const kHajjDomain = "@hajjwarehouses.com";
