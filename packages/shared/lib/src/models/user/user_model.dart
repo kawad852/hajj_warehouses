@@ -17,6 +17,7 @@ class UserModel with _$UserModel {
     LightBranchModel? branch,
     String? role,
     String? roleId,
+    String? companyId,
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,

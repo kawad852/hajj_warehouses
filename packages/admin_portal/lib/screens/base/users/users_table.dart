@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 
 class UsersTable extends StatefulWidget {
@@ -9,14 +10,13 @@ class UsersTable extends StatefulWidget {
 
 class _UsersTableState extends State<UsersTable> {
   late Query<UserModel> _query;
-  late Future<QuerySnapshot<RoleModel>> _rolesFuture;
+  late Future<QuerySnapshot<CompanyModel>> _companiesFuture;
 
   CollectionReference<UserModel> get _collectionRef => kFirebaseInstant.users;
 
   void _initializeQuery() {
-    _query = _collectionRef;
-    _rolesFuture =
-        kFirebaseInstant.roles.orderByDesc.where(MyFields.companyId, isNull: false).get();
+    _query = _collectionRef.orderByDesc.where(MyFields.companyId, isNull: false);
+    _companiesFuture = kFirebaseInstant.companies.orderByDesc.get();
   }
 
   @override
@@ -39,15 +39,18 @@ class _UsersTableState extends State<UsersTable> {
         return [DataCell(Text(data.displayName))];
       },
       onSave: (ref, data) async {
-        final reference = ref ?? _collectionRef.doc();
-        if (data.roleId == null) {
+        if (data.companyId == null) {
           context.showSnackBar(context.appLocalization.generalError);
           return;
         }
+        var reference = ref;
         if (ref == null) {
-          data = data.copyWith(id: reference.id, createdAt: kNowDate);
+          final auth = await context.userProvider.createCompanyUser(data.username, data.password);
+          final id = auth.user!.uid;
+          reference = ref ?? _collectionRef.doc(id);
+          data = data.copyWith(id: id, createdAt: kNowDate);
         }
-        await reference.set(data);
+        await reference!.set(data);
       },
       inputBuilder: (snapshot) {
         final data = snapshot;
@@ -61,10 +64,16 @@ class _UsersTableState extends State<UsersTable> {
               });
             },
           ),
-          EmailEditor(initialValue: data.email, onChanged: (value) => data.email = value),
+          TextEditor(
+            initialValue: data.username,
+            // readOnly: ref,
+            onChanged: (value) => data.username = value!,
+            hintText: context.appLocalization.inEnglishLetters,
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
+          ),
           PasswordEditor(initialValue: data.password, onChanged: (value) => data.password = value!),
           ImpededFutureBuilder(
-            future: _rolesFuture,
+            future: _companiesFuture,
             onComplete: (context, snapshot) {
               return DropDownEditor(
                 value: data.roleId,

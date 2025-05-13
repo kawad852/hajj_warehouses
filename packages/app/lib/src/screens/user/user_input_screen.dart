@@ -60,9 +60,9 @@ class _UserInputScreenState extends State<UserInputScreen> {
           AppOverlayLoader.show();
           context.unFocusKeyboard();
           if (widget.user == null) {
-            final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-              email: "${_user.username}@hajjwarehouses.com",
-              password: _user.password,
+            final auth = await context.userProvider.createCompanyUser(
+              _user.username,
+              _user.password,
             );
             final id = auth.user!.uid;
             _user.id = id;

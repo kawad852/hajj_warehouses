@@ -90,7 +90,7 @@ class PortalTable<T> extends StatelessWidget {
                                               onSave: onSave,
                                               inputBuilder: inputBuilder,
                                               data: data,
-                                              reference: reference,
+                                              reference: null,
                                             );
                                           });
                                         },

@@ -14,8 +14,8 @@ class _AdminsTableState extends State<AdminsTable> {
   CollectionReference<UserModel> get _collectionRef => kFirebaseInstant.users;
 
   void _initializeQuery() {
-    _query = _collectionRef;
-    _rolesFuture = kFirebaseInstant.roles.orderByDesc.where(MyFields.roleId, isNull: false).get();
+    _query = _collectionRef.orderByDesc.where(MyFields.roleId, isNull: false);
+    _rolesFuture = kFirebaseInstant.roles.orderByDesc.get();
   }
 
   Future<String> _createUser(String email, String password) async {
@@ -25,7 +25,8 @@ class _AdminsTableState extends State<AdminsTable> {
       ).httpsCallable('createUser');
       final results = await callable.call(<String, dynamic>{'email': email, 'password': password});
       final data = results.data as Map<String, dynamic>;
-      return data['uid'];
+      final uid = data['uid'];
+      return uid;
     } catch (e) {
       rethrow;
     }
@@ -40,7 +41,7 @@ class _AdminsTableState extends State<AdminsTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Staff',
+      tableTitle: context.appLocalization.admins,
       query: _query,
       data: UserModel(),
       reference: _collectionRef.doc(),
@@ -51,16 +52,17 @@ class _AdminsTableState extends State<AdminsTable> {
         return [DataCell(Text(data.displayName))];
       },
       onSave: (ref, data) async {
-        final reference = ref ?? _collectionRef.doc();
         if (data.roleId == null) {
           context.showSnackBar(context.appLocalization.generalError);
           return;
         }
+        var reference = ref;
         if (ref == null) {
           final id = await _createUser(data.email!, data.password);
+          reference = ref ?? _collectionRef.doc(id);
           data = data.copyWith(id: id, createdAt: kNowDate);
         }
-        await reference.set(data);
+        await reference!.set(data);
       },
       inputBuilder: (snapshot) {
         final data = snapshot;

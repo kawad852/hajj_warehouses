@@ -205,4 +205,12 @@ class UserProvider extends ChangeNotifier {
     userDocRef.update({MyFields.branch: MySharedPreferences.branch!.toJson()});
     notifyListeners();
   }
+
+  Future<UserCredential> createCompanyUser(String username, String password) async {
+    final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: "$username@hajjwarehouses.com",
+      password: password,
+    );
+    return auth;
+  }
 }
