@@ -69,13 +69,24 @@ RouteBase get $appNavBarRoute => StatefulShellRouteData.$route(
       ],
     ),
     StatefulShellBranchData.$branch(
-      navigatorKey: StaffTableBranch.$navigatorKey,
+      navigatorKey: UsersTableBranch.$navigatorKey,
 
       routes: [
         GoRouteData.$route(
-          path: '/staff',
+          path: '/users',
 
-          factory: $StaffTableRouteExtension._fromState,
+          factory: $UsersTableRouteExtension._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      navigatorKey: AdminsTableBranch.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/admins',
+
+          factory: $AdminsTableRouteExtension._fromState,
         ),
       ],
     ),
@@ -125,10 +136,25 @@ extension $CompaniesTableRouteExtension on CompaniesTableRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $StaffTableRouteExtension on StaffTableRoute {
-  static StaffTableRoute _fromState(GoRouterState state) => StaffTableRoute();
+extension $UsersTableRouteExtension on UsersTableRoute {
+  static UsersTableRoute _fromState(GoRouterState state) => UsersTableRoute();
 
-  String get location => GoRouteData.$location('/staff');
+  String get location => GoRouteData.$location('/users');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AdminsTableRouteExtension on AdminsTableRoute {
+  static AdminsTableRoute _fromState(GoRouterState state) => AdminsTableRoute();
+
+  String get location => GoRouteData.$location('/admins');
 
   void go(BuildContext context) => context.go(location);
 

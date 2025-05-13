@@ -1,4 +1,5 @@
 import 'package:admin_portal/screens/base/drawer/widgets/drawer_tile.dart';
+import 'package:admin_portal/screens/base/drawer/widgets/rail_expansion_tile.dart';
 import 'package:admin_portal/screens/base/drawer/widgets/user_menu_anchor.dart';
 import 'package:shared/shared.dart';
 
@@ -90,30 +91,23 @@ class _AppDrawerState extends State<AppDrawer> with AutomaticKeepAliveClientMixi
               ListTile(leading: const UserMenuAnchor()),
               Divider(indent: 10, endIndent: 10, color: context.colorScheme.outlineVariant),
 
-              ...manageRoutes.map((element) {
-                return _buildTile(
-                  PortalHelper.railPaths.indexOf(element),
-                  PortalHelper.getPathLabel(context, element),
-                );
-              }),
-
-              // /// Manage
-              // if (manageRoutes.isNotEmpty)
-              //   RailExpansionTile(
-              //     iconData: FontAwesomeIcons.lightClipboardList,
-              //     title: context.appLocalization.manage,
-              //     index: 0,
-              //     initiallyExpanded: _drawerProvider.manageInitiallyExpanded,
-              //     child: ListBody(
-              //       children:
-              //           manageRoutes.map((element) {
-              //             return _buildTile(
-              //               PortalHelper.railPaths.indexOf(element),
-              //               PortalHelper.getPathLabel(context, element),
-              //             );
-              //           }).toList(),
-              //     ),
-              //   ),
+              /// Manage
+              if (manageRoutes.isNotEmpty)
+                RailExpansionTile(
+                  iconData: FontAwesomeIcons.lightClipboardList,
+                  title: context.appLocalization.manage,
+                  index: 0,
+                  initiallyExpanded: _drawerProvider.manageInitiallyExpanded,
+                  child: ListBody(
+                    children:
+                        manageRoutes.map((element) {
+                          return _buildTile(
+                            PortalHelper.railPaths.indexOf(element),
+                            PortalHelper.getPathLabel(context, element),
+                          );
+                        }).toList(),
+                  ),
+                ),
 
               // ///build
               // if (buildRoutes.isNotEmpty)
@@ -169,23 +163,23 @@ class _AppDrawerState extends State<AppDrawer> with AutomaticKeepAliveClientMixi
               //     ),
               //   ),
               //
-              // /// Configure
-              // if (configureRoutes.isNotEmpty)
-              //   RailExpansionTile(
-              //     iconData: FontAwesomeIcons.lightGear,
-              //     title: context.appLocalization.configure,
-              //     index: 3,
-              //     initiallyExpanded: _drawerProvider.configureInitiallyExpanded,
-              //     child: ListBody(
-              //       children:
-              //           configureRoutes.map((element) {
-              //             return _buildTile(
-              //               PortalHelper.railPaths.indexOf(element),
-              //               PortalHelper.getPathLabel(context, element),
-              //             );
-              //           }).toList(),
-              //     ),
-              //   ),
+              /// Configure
+              if (configureRoutes.isNotEmpty)
+                RailExpansionTile(
+                  iconData: FontAwesomeIcons.lightGear,
+                  title: context.appLocalization.configure,
+                  index: 3,
+                  initiallyExpanded: _drawerProvider.configureInitiallyExpanded,
+                  child: ListBody(
+                    children:
+                        configureRoutes.map((element) {
+                          return _buildTile(
+                            PortalHelper.railPaths.indexOf(element),
+                            PortalHelper.getPathLabel(context, element),
+                          );
+                        }).toList(),
+                  ),
+                ),
             ],
           ),
         ),

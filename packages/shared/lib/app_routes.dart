@@ -1,10 +1,11 @@
+import 'package:admin_portal/screens/base/admins/admins_table.dart';
 import 'package:admin_portal/screens/base/app_nav_rail.dart';
 import 'package:admin_portal/screens/base/companies/companies_table.dart';
 import 'package:admin_portal/screens/base/login/portal_login_screen.dart';
 import 'package:admin_portal/screens/base/no_access_screen.dart';
 import 'package:admin_portal/screens/base/policies/policies_table.dart';
 import 'package:admin_portal/screens/base/roles/roles_table.dart';
-import 'package:admin_portal/screens/base/staff/staff_table.dart';
+import 'package:admin_portal/screens/base/users/users_table.dart';
 import 'package:shared/shared.dart';
 
 part 'app_routes.g.dart';
@@ -14,6 +15,7 @@ part 'app_routes.g.dart';
 final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
 final companiesRouteKey = GlobalKey<NavigatorState>();
 final usersRouteKey = GlobalKey<NavigatorState>();
+final adminsRouteKey = GlobalKey<NavigatorState>();
 final rolesRouteKey = GlobalKey<NavigatorState>();
 final policiesRouteKey = GlobalKey<NavigatorState>();
 
@@ -36,11 +38,17 @@ class NoAccessRoute extends GoRouteData {
 /// AppNavBar
 @TypedStatefulShellRoute<AppNavBarRoute>(
   branches: [
+    ///Manage
     TypedStatefulShellBranch<CompaniesTableBranch>(
       routes: [TypedGoRoute<CompaniesTableRoute>(path: '/companies')],
     ),
-    TypedStatefulShellBranch<StaffTableBranch>(
-      routes: [TypedGoRoute<StaffTableRoute>(path: '/staff')],
+    TypedStatefulShellBranch<UsersTableBranch>(
+      routes: [TypedGoRoute<UsersTableRoute>(path: '/users')],
+    ),
+
+    ///Config
+    TypedStatefulShellBranch<AdminsTableBranch>(
+      routes: [TypedGoRoute<AdminsTableRoute>(path: '/admins')],
     ),
     TypedStatefulShellBranch<RolesTableBranch>(
       routes: [TypedGoRoute<RolesTableRoute>(path: '/roles')],
@@ -61,6 +69,8 @@ class AppNavBarRoute extends StatefulShellRouteData {
   }
 }
 
+///Manage ...
+
 //companies
 class CompaniesTableBranch extends StatefulShellBranchData {
   const CompaniesTableBranch();
@@ -75,15 +85,32 @@ class CompaniesTableRoute extends GoRouteData {
 }
 
 //users
-class StaffTableBranch extends StatefulShellBranchData {
-  const StaffTableBranch();
+class UsersTableBranch extends StatefulShellBranchData {
+  const UsersTableBranch();
   static final GlobalKey<NavigatorState> $navigatorKey = usersRouteKey;
 }
 
-class StaffTableRoute extends GoRouteData {
+class UsersTableRoute extends GoRouteData {
   @override
   build(BuildContext context, GoRouterState state) {
-    return const StaffTable();
+    return const UsersTable();
+  }
+}
+
+///....
+
+///Config
+
+//Admins
+class AdminsTableBranch extends StatefulShellBranchData {
+  const AdminsTableBranch();
+  static final GlobalKey<NavigatorState> $navigatorKey = adminsRouteKey;
+}
+
+class AdminsTableRoute extends GoRouteData {
+  @override
+  build(BuildContext context, GoRouterState state) {
+    return const AdminsTable();
   }
 }
 

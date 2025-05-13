@@ -8,8 +8,10 @@ class PortalHelper {
       $appNavBarRoute.routes.map((e) => e as GoRoute).map((e) => e.path).toList();
 
   static String getPathLabel(BuildContext context, String path) {
-    if (path == StaffTableRoute().location) {
+    if (path == UsersTableRoute().location) {
       return context.appLocalization.users;
+    } else if (path == AdminsTableRoute().location) {
+      return context.appLocalization.admins;
     } else if (path == CompaniesTableRoute().location) {
       return context.appLocalization.companies;
     } else if (path == RolesTableRoute().location) {

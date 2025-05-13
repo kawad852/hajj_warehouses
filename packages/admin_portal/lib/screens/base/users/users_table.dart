@@ -1,13 +1,13 @@
 import 'package:shared/shared.dart';
 
-class StaffTable extends StatefulWidget {
-  const StaffTable({super.key});
+class UsersTable extends StatefulWidget {
+  const UsersTable({super.key});
 
   @override
-  State<StaffTable> createState() => _StaffTableState();
+  State<UsersTable> createState() => _UsersTableState();
 }
 
-class _StaffTableState extends State<StaffTable> {
+class _UsersTableState extends State<UsersTable> {
   late Query<UserModel> _query;
   late Future<QuerySnapshot<RoleModel>> _rolesFuture;
 
@@ -15,7 +15,8 @@ class _StaffTableState extends State<StaffTable> {
 
   void _initializeQuery() {
     _query = _collectionRef;
-    _rolesFuture = kFirebaseInstant.roles.orderByDesc.get();
+    _rolesFuture =
+        kFirebaseInstant.roles.orderByDesc.where(MyFields.companyId, isNull: false).get();
   }
 
   @override
@@ -27,7 +28,7 @@ class _StaffTableState extends State<StaffTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Staff',
+      tableTitle: 'Users',
       query: _query,
       data: UserModel(),
       reference: _collectionRef.doc(),

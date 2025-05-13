@@ -49,16 +49,16 @@ class _AppNavRailState extends State<AppNavRail> {
                           .toList() ??
                       [];
 
-          var manageRoutes = PortalHelper.railPaths;
-          // var buildRoutes = _getRouteSections(4, 6);
-          // var servicesRoutes = _getRouteSections(6, 9);
-          // var engageRoutes = _getRouteSections(9, 12);
-          // var configureRoutes = _getRouteSections(12, 15);
-
           var buildRoutes = <String>[];
+          var manageRoutes = _getRouteSections(0, 2);
           var servicesRoutes = <String>[];
           var engageRoutes = <String>[];
-          var configureRoutes = <String>[];
+          var configureRoutes = _getRouteSections(2, 5);
+
+          // var buildRoutes = <String>[];
+          // var servicesRoutes = <String>[];
+          // var engageRoutes = <String>[];
+          // var configureRoutes = <String>[];
 
           if (!isSuperAdmin) {
             buildRoutes =

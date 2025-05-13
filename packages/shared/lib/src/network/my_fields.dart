@@ -33,4 +33,6 @@ class MyFields {
   static const String branch = 'branch';
   static const String startTime = 'startTime';
   static const String unReadNotificationsCount = 'unReadNotificationsCount';
+  static const String companyId = 'companyId';
+  static const String roleId = 'roleId';
 }

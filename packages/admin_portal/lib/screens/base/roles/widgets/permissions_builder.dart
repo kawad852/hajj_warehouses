@@ -56,7 +56,7 @@ class _PermissionsBuilderState extends State<PermissionsBuilder> {
               _routes.map((e) {
                 final route = e as GoRoute;
                 final path = route.path;
-                final bool isUsersPath = path == StaffTableRoute().location;
+                final bool isUsersPath = path == UsersTableRoute().location;
                 final permission = _permissions.singleWhere(
                   (element) => element.path == path,
                   orElse: () {
