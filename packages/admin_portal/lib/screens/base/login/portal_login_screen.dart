@@ -79,6 +79,7 @@ class _PortalLoginScreenState extends State<PortalLoginScreen> {
                               email: _email!,
                               password: _password!,
                               authEnum: AuthEnum.admin,
+                              portalLogin: true,
                             );
                           }
                         },

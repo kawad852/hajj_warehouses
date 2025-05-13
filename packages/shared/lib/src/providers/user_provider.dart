@@ -62,6 +62,7 @@ class UserProvider extends ChangeNotifier {
     required AuthEnum authEnum,
     required String email,
     required String password,
+    bool portalLogin = false,
   }) async {
     await ApiService.fetch(
       context,
@@ -89,11 +90,15 @@ class UserProvider extends ChangeNotifier {
           }
         }
 
-        if (user.roleId != null && context.mounted) {
-          await context.portalProvider.initRole(context);
-          if (context.mounted) {
-            notifyListeners();
-            GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
+        if (portalLogin && context.mounted) {
+          if (user.roleId == null) {
+            Fluttertoast.showToast(msg: context.appLocalization.authFailed);
+          } else {
+            await context.portalProvider.initRole(context);
+            if (context.mounted) {
+              notifyListeners();
+              GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
+            }
           }
           return;
         }
