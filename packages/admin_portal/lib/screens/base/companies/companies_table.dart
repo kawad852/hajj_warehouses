@@ -25,12 +25,15 @@ class _CompaniesTableState extends State<CompaniesTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Companies',
+      tableTitle: context.appLocalization.companies,
       query: _query,
       data: CompanyModel(createdAt: kNowDate),
       reference: _collectionRef.doc(),
       convertor: CompanyModel.fromJson,
-      columns: [DataColumn(label: Text("تاريخ الإنشاء")), DataColumn(label: Text("الإسم"))],
+      columns: [
+        DataColumn(label: Text(context.appLocalization.createdAt)),
+        DataColumn(label: Text(context.appLocalization.name)),
+      ],
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
@@ -50,7 +53,7 @@ class _CompaniesTableState extends State<CompaniesTable> {
         final data = snapshot;
         return [
           TextEditor(
-            labelText: "الإسم",
+            labelText: context.appLocalization.name,
             initialValue: data.name,
             onChanged: (value) {
               setState(() {

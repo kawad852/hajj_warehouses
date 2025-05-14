@@ -27,11 +27,11 @@ class _UsersTableState extends State<UsersTable> {
   @override
   Widget build(BuildContext context) {
     return PortalTable(
-      tableTitle: 'Users',
+      tableTitle: context.appLocalization.users,
       query: _query,
       data: UserModel(role: RoleEnum.admin.value),
       reference: _collectionRef.doc(),
-      columns: [DataColumn(label: Text("الإسم"))],
+      columns: [DataColumn(label: Text(context.appLocalization.displayName))],
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();

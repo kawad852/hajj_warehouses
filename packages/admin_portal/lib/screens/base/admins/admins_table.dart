@@ -45,7 +45,7 @@ class _AdminsTableState extends State<AdminsTable> {
       query: _query,
       data: UserModel(),
       reference: _collectionRef.doc(),
-      columns: [DataColumn(label: Text("الإسم"))],
+      columns: [DataColumn(label: Text(context.appLocalization.displayName))],
       cellsBuilder: (index, snapshot) {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
