@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         // ProfileCard(title: context.appLocalization.changeLanguage, icon: MyIcons.language, onTap: () {}),
         ProfileCard(
-          title: context.appLocalization.logOut,
+          title: context.appLocalization.logout,
           icon: MyIcons.logout,
           onTap: () {
             context.userProvider.logout(context);

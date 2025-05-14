@@ -113,7 +113,7 @@ class ApiService {
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
         if (e.code == 'user-not-found') {
-          context.showSnackBar(context.appLocalization.emailNotFount);
+          context.showSnackBar(context.appLocalization.emailNotFound);
         } else if (e.code == 'wrong-password') {
           context.showSnackBar(context.appLocalization.wrongPassword);
         } else if (e.code == 'invalid-credential') {

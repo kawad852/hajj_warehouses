@@ -33,7 +33,6 @@ export 'package:translations/app_localizations.dart';
 export 'package:url_strategy/url_strategy.dart';
 
 //controllers
-export 'src/controllers/map_controller.dart';
 export 'src/controllers/phone_controller.dart';
 //Enums
 export 'src/enums/algolia_enums.dart';
@@ -105,7 +104,6 @@ export 'src/notifications/send_notification_service.dart';
 export 'src/providers/app_provider.dart';
 export 'src/providers/drawer_provider.dart';
 export 'src/providers/inventory_provider.dart';
-export 'src/providers/location_provider.dart';
 export 'src/providers/portal_provider.dart';
 export 'src/providers/user_provider.dart';
 export 'src/utils/app_constants.dart';
