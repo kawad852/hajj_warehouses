@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   shared:
     path: ../shared
+  remove_unused_localizations: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -19,14 +19,13 @@ class UiHelper {
   }
 
   static String getRoleLabel(BuildContext context, RoleEnum value) {
-    // final role = RoleEnum.values.firstWhere((e) => e.value == value);
     switch (value) {
       case RoleEnum.admin:
-        return "Admin";
+        return context.appLocalization.admin;
       case RoleEnum.manager:
-        return "Manager";
+        return context.appLocalization.manager;
       case RoleEnum.employee:
-        return "Employee";
+        return context.appLocalization.employee;
     }
   }
 }

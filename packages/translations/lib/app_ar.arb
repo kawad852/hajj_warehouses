@@ -431,5 +431,7 @@
   "displayName": "الإسم",
   "configure": "إعداد",
   "emailNotFound": "الإميميل غير صحيح",
-  "wrongPassword": "كلمة المرور غير صحيحة"
+  "wrongPassword": "كلمة المرور غير صحيحة",
+  "admin": "آدمن",
+  "manager": "مدير"
 }
