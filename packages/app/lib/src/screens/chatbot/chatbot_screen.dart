@@ -57,12 +57,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> with AutomaticKeepAliveCl
   Widget build(BuildContext context) {
     final emptyMessages = [
       MessageModel(
-        prompt: "context.appLocalization.emptyMsgPrompt1",
-        response: "context.appLocalization.emptyMsgResponse1",
+        prompt: context.appLocalization.emptyMsgPrompt1,
+        response: context.appLocalization.emptyMsgResponse1,
       ),
       MessageModel(
-        prompt: "context.appLocalization.emptyMsgPrompt2",
-        response: "context.appLocalization.emptyMsgResponse2",
+        prompt: context.appLocalization.emptyMsgPrompt2,
+        response: context.appLocalization.emptyMsgResponse2,
       ),
     ];
     super.build(context);

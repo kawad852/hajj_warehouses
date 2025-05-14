@@ -433,5 +433,10 @@
   "emailNotFound": "Email not found",
   "wrongPassword": "Wrong password",
   "admin": "Admin",
-  "manager": "Manager"
+  "manager": "Manager",
+  "aiHint": "Message you legal helper..",
+  "emptyMsgPrompt1": "Hello",
+  "emptyMsgResponse1": "I am your smart legal assistant. I am here to help you with any legal questions.",
+  "emptyMsgPrompt2": "I lost my passport, what should I do?",
+  "emptyMsgResponse2": "You should go to the nearest security unit located in all areas and facilities of the premises, and report it immediately."
 }

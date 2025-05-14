@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../../shared.dart';
 
 class AppProvider extends ChangeNotifier {
-  Locale appLocale = Locale(MySharedPreferences.language);
+  Locale appLocale = Locale("en");
   String appTheme = MySharedPreferences.theme;
   static String countryCode = MySharedPreferences.countryCode;
 

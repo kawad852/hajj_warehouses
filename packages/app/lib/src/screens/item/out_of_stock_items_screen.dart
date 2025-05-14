@@ -20,7 +20,7 @@ class _OutOfStockItemsScreenState extends State<OutOfStockItemsScreen> {
       body: OutOfStockSelector(
         builder: (context, items) {
           if (items.isEmpty) {
-            return const SliverToBoxAdapter(child: SizedBox.shrink());
+            return const SizedBox.shrink();
           }
           return Padding(
             padding: const EdgeInsets.all(20),
