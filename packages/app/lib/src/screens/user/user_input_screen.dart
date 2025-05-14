@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:shared/shared.dart';
 
 class UserInputScreen extends StatefulWidget {
@@ -231,7 +230,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                             title: "",
                             items:
                                 RoleEnum.values.map((e) {
-                                  return DropdownMenuItem(value: e.value, child: Text(e.value));
+                                  return DropdownMenuItem(
+                                    value: e.value,
+                                    child: Text(UiHelper.getRoleLabel(context, e)),
+                                  );
                                 }).toList(),
                           ),
                         ),
@@ -347,14 +349,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                           Expanded(
                             child: TitledTextField(
                               title: context.appLocalization.userName,
-                              child: TextEditor(
+                              child: UsernameEditor(
                                 initialValue: _user.username,
                                 readOnly: widget.user != null,
                                 onChanged: (value) => _user.username = value!,
-                                hintText: context.appLocalization.inEnglishLetters,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
-                                ],
                               ),
                             ),
                           ),

@@ -18,17 +18,15 @@ class UiHelper {
     }
   }
 
-  static IconData getBuildingIcon(String value) {
-    final type = BuildingType.values.firstWhere((e) => e.value == value);
-    switch (type) {
-      case BuildingType.apartment:
-        // return FontAwesomeIcons.apartment;
-        return Icons.add;
-      case BuildingType.office:
-        return Icons.add;
-      // return FontAwesomeIcons.chairOffice;
-      default:
-        return FontAwesomeIcons.house;
+  static String getRoleLabel(BuildContext context, RoleEnum value) {
+    // final role = RoleEnum.values.firstWhere((e) => e.value == value);
+    switch (value) {
+      case RoleEnum.admin:
+        return "Admin";
+      case RoleEnum.manager:
+        return "Manager";
+      case RoleEnum.employee:
+        return "Employee";
     }
   }
 }
