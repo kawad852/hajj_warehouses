@@ -70,7 +70,7 @@ class UserProvider extends ChangeNotifier {
         // final user = UserModel();
 
         final auth = await _firebaseAuth.signInWithEmailAndPassword(
-          email: "$username$kHajjDomain",
+          email: portalLogin ? username : "$username$kHajjDomain",
           password: password,
         );
 
