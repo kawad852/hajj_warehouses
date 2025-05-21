@@ -8,7 +8,7 @@ part 'company_model.g.dart';
 @unfreezed
 class CompanyModel with _$CompanyModel {
   factory CompanyModel({
-    @TimestampSerializer() required DateTime createdAt,
+    @TimestampSerializer() required DateTime? createdAt,
     @Default('') String id,
     @Default('') String name,
   }) = _CompanyModel;

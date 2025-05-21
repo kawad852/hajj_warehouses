@@ -22,9 +22,9 @@ CompanyModel _$CompanyModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CompanyModel {
   @TimestampSerializer()
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
-  set createdAt(DateTime value) => throw _privateConstructorUsedError;
+  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $CompanyModelCopyWith<$Res> {
   ) = _$CompanyModelCopyWithImpl<$Res, CompanyModel>;
   @useResult
   $Res call({
-    @TimestampSerializer() DateTime createdAt,
+    @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
   });
@@ -69,17 +69,17 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
   }) {
     return _then(
       _value.copyWith(
             createdAt:
-                null == createdAt
+                freezed == createdAt
                     ? _value.createdAt
                     : createdAt // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
+                        as DateTime?,
             id:
                 null == id
                     ? _value.id
@@ -106,7 +106,7 @@ abstract class _$$CompanyModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @TimestampSerializer() DateTime createdAt,
+    @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
   });
@@ -126,17 +126,17 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
   }) {
     return _then(
       _$CompanyModelImpl(
         createdAt:
-            null == createdAt
+            freezed == createdAt
                 ? _value.createdAt
                 : createdAt // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
+                    as DateTime?,
         id:
             null == id
                 ? _value.id
@@ -166,7 +166,7 @@ class _$CompanyModelImpl implements _CompanyModel {
 
   @override
   @TimestampSerializer()
-  DateTime createdAt;
+  DateTime? createdAt;
   @override
   @JsonKey()
   String id;
@@ -195,7 +195,7 @@ class _$CompanyModelImpl implements _CompanyModel {
 
 abstract class _CompanyModel implements CompanyModel {
   factory _CompanyModel({
-    @TimestampSerializer() required DateTime createdAt,
+    @TimestampSerializer() required DateTime? createdAt,
     String id,
     String name,
   }) = _$CompanyModelImpl;
@@ -205,9 +205,9 @@ abstract class _CompanyModel implements CompanyModel {
 
   @override
   @TimestampSerializer()
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @TimestampSerializer()
-  set createdAt(DateTime value);
+  set createdAt(DateTime? value);
   @override
   String get id;
   set id(String value);

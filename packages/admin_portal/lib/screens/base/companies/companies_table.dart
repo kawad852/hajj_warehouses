@@ -38,7 +38,7 @@ class _CompaniesTableState extends State<CompaniesTable> {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
         return [
-          DataCell(Text(data.createdAt.getDefaultFormattedDate(context))),
+          DataCell(Text(data.createdAt!.getDefaultFormattedDate(context))),
           DataCell(Text(data.name)),
         ];
       },

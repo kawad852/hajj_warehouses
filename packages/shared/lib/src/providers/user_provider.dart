@@ -103,6 +103,11 @@ class UserProvider extends ChangeNotifier {
           return;
         }
 
+        await kFirebaseInstant.companies.doc(user.companyId).get().then((value) {
+          MySharedPreferences.company = value.data();
+          return value;
+        });
+
         notifyListeners();
 
         if (context.mounted) {

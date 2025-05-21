@@ -58,7 +58,7 @@ class UserInfoWidget extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        "${kBranch?.name} ${context.appLocalization.alFarisCompany}",
+                        "${kBranch?.name} ${MySharedPreferences.company?.name}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.primary,

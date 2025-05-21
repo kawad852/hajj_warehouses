@@ -8,14 +8,14 @@ part of 'company_model.dart';
 
 _$CompanyModelImpl _$$CompanyModelImplFromJson(Map<String, dynamic> json) =>
     _$CompanyModelImpl(
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$CompanyModelImplToJson(_$CompanyModelImpl instance) =>
     <String, dynamic>{
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
       'name': instance.name,
     };
