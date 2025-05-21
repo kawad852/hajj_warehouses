@@ -1,4 +1,4 @@
-const kFallBackCountryCode = 'JO';
+const kFallBackCountryCode = 'SA';
 const kLoginRouteName = 'login';
 const kOfferPrice = 999999999.99999;
 const kMapZoom = 14.0;

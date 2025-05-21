@@ -80,20 +80,22 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                StretchedButton(
-                  onPressed: () {
-                    _openSheet(context, type: TransactionType.deposit);
-                  },
-                  child: Text(
-                    context.appLocalization.addImprestAdmin,
-                    style: TextStyle(
-                      color: context.colorPalette.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                if (kIsAdmin) ...[
+                  const SizedBox(height: 10),
+                  StretchedButton(
+                    onPressed: () {
+                      _openSheet(context, type: TransactionType.deposit);
+                    },
+                    child: Text(
+                      context.appLocalization.add,
+                      style: TextStyle(
+                        color: context.colorPalette.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

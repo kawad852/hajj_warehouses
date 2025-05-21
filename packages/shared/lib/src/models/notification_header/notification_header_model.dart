@@ -9,7 +9,9 @@ class NotificationHeaderModel with _$NotificationHeaderModel {
     String? title,
     String? body,
     String? image,
+    // @Default("default") String sound,
   }) = _NotificationHeaderModel;
 
-  factory NotificationHeaderModel.fromJson(Map<String, dynamic> json) => _$NotificationHeaderModelFromJson(json);
+  factory NotificationHeaderModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationHeaderModelFromJson(json);
 }
