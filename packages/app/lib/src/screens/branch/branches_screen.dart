@@ -83,7 +83,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                     ),
                   ),
                   Text(
-                    context.appLocalization.alFarisKitchens,
+                    MySharedPreferences.company?.name ?? '',
                     style: TextStyle(
                       color: context.colorPalette.primary,
                       fontSize: 20,
