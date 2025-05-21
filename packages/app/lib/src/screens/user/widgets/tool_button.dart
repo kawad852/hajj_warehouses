@@ -12,7 +12,6 @@ class ToolButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 30,
-        width: 70,
         padding: const EdgeInsets.symmetric(horizontal: 6),
         decoration: BoxDecoration(
           color: context.colorPalette.greyF2F,

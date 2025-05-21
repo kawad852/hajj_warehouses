@@ -44,10 +44,12 @@ class _UsersTableState extends State<UsersTable> {
         }
         var reference = ref;
         if (ref == null) {
-          final auth = await context.userProvider.createCompanyUser(data.username, data.password);
-          final id = auth.user!.uid;
+          final id = await context.userProvider.createAuthUser(
+            "${data.username}$kHajjDomain",
+            data.password,
+          );
           reference = ref ?? _collectionRef.doc(id);
-          data = data.copyWith(id: id, createdAt: kNowDate);
+          data = data.copyWith(id: id, createdAt: kNowDate, username: data.username.toLowerCase());
         }
         await reference!.set(data);
       },

@@ -59,11 +59,11 @@ class _UserInputScreenState extends State<UserInputScreen> {
           AppOverlayLoader.show();
           context.unFocusKeyboard();
           if (widget.user == null) {
-            final auth = await context.userProvider.createCompanyUser(
-              _user.username,
+            final id = await context.userProvider.createAuthUser(
+              "${_user.username}$kHajjDomain",
               _user.password,
             );
-            final id = auth.user!.uid;
+            _user.username = _user.username.toLowerCase();
             _user.id = id;
             _user.createdAt = kNowDate;
           }
@@ -111,7 +111,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
   @override
   void initState() {
     super.initState();
-    _user = UserModel.fromJson(widget.user?.toJson() ?? UserModel(branch: kBranch).toJson());
+    _user = UserModel.fromJson(
+      widget.user?.copyWith(branch: kBranch, companyId: kCompanyId).toJson() ??
+          UserModel(branch: kBranch, companyId: kCompanyId).toJson(),
+    );
     _phoneController = PhoneController(
       context,
       countryCode: _user.phoneCountryCode,
@@ -131,6 +134,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("branch:: ${_user.branch}");
     return BigFutureBuilder(
       future: _branchesFuture,
       onComplete: (context, snapshot) {
@@ -222,9 +226,6 @@ class _UserInputScreenState extends State<UserInputScreen> {
                             onChanged: (value) {
                               setState(() {
                                 _user.role = value;
-                                if (value == RoleEnum.admin.value) {
-                                  _user.branch = null;
-                                }
                               });
                             },
                             title: "",
@@ -283,7 +284,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
                         child: TitledTextField(
                           title: context.appLocalization.salary,
                           child: DecimalsEditor(
-                            initialValue: _user.salary,
+                            initialValue: _user.salary == 0 ? null : _user.salary,
                             onChanged: (value) => _user.salary = value!,
                             textAlign: TextAlign.center,
                             suffixIcon: const IconButton(

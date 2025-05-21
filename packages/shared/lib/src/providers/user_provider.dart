@@ -206,11 +206,21 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<UserCredential> createCompanyUser(String username, String password) async {
-    final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: "$username$kHajjDomain",
-      password: password,
-    );
-    return auth;
+  Future<String> createAuthUser(String email, String password, {bool admin = false}) async {
+    try {
+      HttpsCallable callable = FirebaseFunctions.instanceFor(
+        region: "europe-west3",
+      ).httpsCallable('createUser');
+      final results = await callable.call(<String, dynamic>{
+        'email': email,
+        'password': password,
+        "admin": admin,
+      });
+      final data = results.data as Map<String, dynamic>;
+      final uid = data['uid'];
+      return uid;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

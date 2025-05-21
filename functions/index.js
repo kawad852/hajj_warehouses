@@ -19,6 +19,8 @@ exports.createUser = onCall({region: "europe-west3"},
         const payload = request.data;
         const email = payload.email;
         const password = payload.password;
+        const isAdmin = payload.admin || true;
+
         console.log("Payload:", payload);
         console.log("Received email:", email);
         console.log("Received password:", password);
@@ -26,7 +28,7 @@ exports.createUser = onCall({region: "europe-west3"},
           email: email,
           password: password,
         });
-        await admin.auth().setCustomUserClaims(user.uid, {admin: true});
+        await admin.auth().setCustomUserClaims(user.uid, {admin: isAdmin});
         return {uid: user.uid};
       } catch (error) {
         console.log("error deleting user", error);

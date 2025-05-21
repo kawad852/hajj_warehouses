@@ -18,20 +18,6 @@ class _AdminsTableState extends State<AdminsTable> {
     _rolesFuture = kFirebaseInstant.roles.orderByDesc.get();
   }
 
-  Future<String> _createUser(String email, String password) async {
-    try {
-      HttpsCallable callable = FirebaseFunctions.instanceFor(
-        region: "europe-west3",
-      ).httpsCallable('createUser');
-      final results = await callable.call(<String, dynamic>{'email': email, 'password': password});
-      final data = results.data as Map<String, dynamic>;
-      final uid = data['uid'];
-      return uid;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -58,7 +44,11 @@ class _AdminsTableState extends State<AdminsTable> {
         }
         var reference = ref;
         if (ref == null) {
-          final id = await _createUser(data.email!, data.password);
+          final id = await context.userProvider.createAuthUser(
+            data.email!,
+            data.password,
+            admin: true,
+          );
           reference = ref ?? _collectionRef.doc(id);
           data = data.copyWith(id: id, createdAt: kNowDate);
         }
