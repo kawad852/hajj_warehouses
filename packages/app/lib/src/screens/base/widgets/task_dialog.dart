@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:app/shared.dart';
 import 'package:shared/shared.dart';
 
 class TaskDialog extends StatelessWidget {
@@ -17,10 +18,42 @@ class TaskDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TaskBubble(onTap: () {}, title: context.appLocalization.addNewTask),
-            TaskBubble(onTap: () {}, title: context.appLocalization.addNewRequest),
-            TaskBubble(onTap: () {}, title: context.appLocalization.withdrawMaterialsFromStock),
-            TaskBubble(onTap: () {}, title: context.appLocalization.addMaterialsToStock),
+            TaskBubble(
+              onTap: () {
+                Navigator.pop(context);
+                context.navigate((context) {
+                  return const TaskInputScreen();
+                });
+              },
+              title: context.appLocalization.addNewTask,
+            ),
+            TaskBubble(
+              onTap: () {
+                Navigator.pop(context);
+                context.navigate((context) {
+                  return const OperationInputScreen(operationType: OperationType.supply);
+                });
+              },
+              title: context.appLocalization.addNewRequest,
+            ),
+            TaskBubble(
+              onTap: () {
+                Navigator.pop(context);
+                context.navigate((context) {
+                  return const OperationInputScreen(operationType: OperationType.withdraw);
+                });
+              },
+              title: context.appLocalization.withdrawMaterialsFromStock,
+            ),
+            TaskBubble(
+              onTap: () {
+                Navigator.pop(context);
+                context.navigate((context) {
+                  return const OperationInputScreen(operationType: OperationType.add);
+                });
+              },
+              title: context.appLocalization.addMaterialsToStock,
+            ),
           ],
         ),
       ),
