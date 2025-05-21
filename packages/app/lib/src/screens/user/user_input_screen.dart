@@ -134,7 +134,6 @@ class _UserInputScreenState extends State<UserInputScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("branch:: ${_user.branch}");
     return BigFutureBuilder(
       future: _branchesFuture,
       onComplete: (context, snapshot) {
