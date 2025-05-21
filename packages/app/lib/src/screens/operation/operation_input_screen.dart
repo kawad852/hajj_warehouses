@@ -25,6 +25,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
   bool get _isWithdrawOperation => _operationType == OperationType.withdraw;
   ItemModel? get _item => widget.item;
   bool get _singleItem => _item != null;
+  bool get _isSelfPurchase => _operation.supplyType == SupplyTypeEnum.selfPurchase.value;
 
   String? get _radioGroupValue {
     if (_isAddOperation) {
@@ -95,7 +96,8 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 } else if (_isDestroyOperation) {
                   errorMsg = context.appLocalization.mustSpecifyReasonDisposal;
                 }
-              } else if (_isAddOperation && (_operation.amount == null || _operation.amount == 0)) {
+              } else if (_isAddOperation &&
+                  (_isSelfPurchase && (_operation.amount == null || _operation.amount == 0))) {
                 errorMsg = context.appLocalization.mustSpecifyPurchaseValue;
               } else if (_isTransferOperation &&
                   (_operation.transferFromBranch?.id == null ||
@@ -104,6 +106,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
               } else if (!_isWithdrawOperation &&
                   !_isSupplyOperation &&
                   !_isTransferOperation &&
+                  _isSelfPurchase &&
                   _operation.files!.isEmpty) {
                 errorMsg = context.appLocalization.mustAttachImage;
               } else if (!_singleItem && _operation.items.isEmpty) {
@@ -176,7 +179,10 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                 if (_operationType == OperationType.add) ...[
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: EditorLabel(context.appLocalization.whatTotalPurchaseValue),
+                    child: EditorLabel(
+                      context.appLocalization.whatTotalPurchaseValue,
+                      withIndicator: _isSelfPurchase,
+                    ),
                   ),
                   BorderDecoratorTheme(
                     child: DecimalsEditor(
@@ -189,6 +195,7 @@ class _OperationInputScreenState extends State<OperationInputScreen> {
                   ImagesAttacher(
                     onChanged: _onFileAdd,
                     title: context.appLocalization.attachImageOfInvoice,
+                    showIndicator: _isSelfPurchase,
                   ),
                 ],
 

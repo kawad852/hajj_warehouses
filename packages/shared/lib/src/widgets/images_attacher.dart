@@ -5,8 +5,14 @@ import 'package:shared/shared.dart';
 class ImagesAttacher extends StatefulWidget {
   final void Function(List<XFile> files) onChanged;
   final String title;
+  final bool showIndicator;
 
-  const ImagesAttacher({super.key, required this.onChanged, required this.title});
+  const ImagesAttacher({
+    super.key,
+    required this.onChanged,
+    required this.title,
+    this.showIndicator = true,
+  });
 
   @override
   State<ImagesAttacher> createState() => _ImagesAttacherState();
@@ -51,14 +57,15 @@ class _ImagesAttacherState extends State<ImagesAttacher> {
               children: [
                 const CustomSvg(MyIcons.attachCircle),
                 const SizedBox(width: 10),
-                Text(
-                  "*",
-                  style: TextStyle(
-                    color: context.colorPalette.redC10,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+                if (widget.showIndicator)
+                  Text(
+                    "*",
+                    style: TextStyle(
+                      color: context.colorPalette.redC10,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                ),
                 Text(
                   widget.title,
                   style: TextStyle(
