@@ -37,7 +37,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          margin: const EdgeInsets.only(bottom: 10),
+          margin: EdgeInsets.only(bottom: isExpanded ? 10 : 0),
           decoration: BoxDecoration(
             color: colors.$1,
             borderRadius: BorderRadius.circular(kRadiusPrimary),
@@ -62,8 +62,10 @@ class _SubTaskCardState extends State<SubTaskCard> {
                   children: [
                     Row(
                       children: [
-                        const CustomSvg(MyIcons.checkSolid),
-                        const SizedBox(width: 10),
+                        if (task.status == TaskStatusEnum.completed.value) ...[
+                          const CustomSvg(MyIcons.checkSolid),
+                          const SizedBox(width: 10),
+                        ],
                         Expanded(
                           child: Text(
                             task.title,
@@ -109,13 +111,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     child: Row(
                       children: [
                         SubTaskInfo(
-                          title: "بدأت المهمة",
+                          title: context.appLocalization.taskStarted,
                           value: task.startedAt?.getTime(context) ?? '-',
                         ),
                         if (task.endedAt != null) ...[
                           const SizedBox(width: 8),
                           SubTaskInfo(
-                            title: "انتهت المهمة",
+                            title: context.appLocalization.taskEnded,
                             value: task.endedAt?.getTime(context) ?? '-',
                           ),
                           const SizedBox(width: 8),
@@ -123,7 +125,10 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             startDateTime: task.startedAt,
                             endDateTime: task.endedAt,
                             child: (value) {
-                              return SubTaskInfo(title: "الوقت المستغرق", value: value);
+                              return SubTaskInfo(
+                                title: context.appLocalization.timeTaken,
+                                value: value,
+                              );
                             },
                           ),
                         ],

@@ -445,5 +445,10 @@
   "endTimeAt": "وقت الإنتهاء عند",
   "mustEndWithin": "يجب الإنهاء خلال",
   "subTasks": "المهام الفرعية",
-  "messages": "الرسائل"
+  "messages": "الرسائل",
+  "attachPhotos": "إرفاق صور",
+  "startExecution": "بدء التنفيذ",
+  "mustAttachPhotos": "يجب إرفاق صور",
+  "completeMainTaskCondition": "لإنهاء المهمة الرئيسية، يجب إنهاء جميع المهام الفرعية"
+
 }

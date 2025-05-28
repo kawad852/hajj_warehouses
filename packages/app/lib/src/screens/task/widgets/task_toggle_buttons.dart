@@ -54,6 +54,7 @@ class TaskToggleButtons extends StatelessWidget {
     final json = {MyFields.status: TaskStatusEnum.completed.value, MyFields.endedAt: date};
     if (subTaskId != null) {
       _subTaskDocRef.update(json);
+      _mainTaskDocRef.update({...json, MyFields.completedSubTasksCount: FieldValue.increment(1)});
     } else {
       ApiService.fetch(
         context,
@@ -63,8 +64,6 @@ class TaskToggleButtons extends StatelessWidget {
             (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
           );
           if (isEverySubTaskCompleted) {
-            await _mainTaskDocRef.update(json);
-
             // ignore: use_build_context_synchronously
             SendNotificationService.sendToUsers(
               // ignore: use_build_context_synchronously
@@ -80,7 +79,7 @@ class TaskToggleButtons extends StatelessWidget {
               toRoles: [RoleEnum.admin.value],
             );
           } else if (context.mounted) {
-            context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");
+            context.showSnackBar(context.appLocalization.completeMainTaskCondition);
           }
         },
       );
@@ -108,12 +107,12 @@ class TaskToggleButtons extends StatelessWidget {
   List<Widget> _children(BuildContext context) {
     if (_isNotStarted) {
       return [
-        const ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
-        const ToggleButtonChild(icon: MyIcons.checkWhite, title: "بدء التنفذ"),
+        ToggleButtonChild(icon: MyIcons.camera, title: context.appLocalization.attachPhotos),
+        ToggleButtonChild(icon: MyIcons.checkWhite, title: context.appLocalization.startExecution),
       ];
     } else if (_isInProgress) {
       return [
-        const ToggleButtonChild(icon: MyIcons.camera, title: "ارفاق صور"),
+        ToggleButtonChild(icon: MyIcons.camera, title: context.appLocalization.attachPhotos),
         TimerBuilder(
           startDateTime: task.startedAt,
           countUp: true,
@@ -121,7 +120,7 @@ class TaskToggleButtons extends StatelessWidget {
             return ToggleButtonChild(title: time);
           },
         ),
-        const ToggleButtonChild(icon: MyIcons.checkWhite, title: "إنهاء المهمة"),
+        ToggleButtonChild(icon: MyIcons.checkWhite, title: context.appLocalization.endTask),
       ];
     }
     return [];
@@ -160,7 +159,7 @@ class TaskToggleButtons extends StatelessWidget {
                 }
                 if (value == _children(context).length - 1) {
                   if (images.isEmpty) {
-                    Fluttertoast.showToast(msg: "يجب ارفاق صور");
+                    Fluttertoast.showToast(msg: context.appLocalization.mustAttachPhotos);
                     return;
                   }
                   if (_isNotStarted) {

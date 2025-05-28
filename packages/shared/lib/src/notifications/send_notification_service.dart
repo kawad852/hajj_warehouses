@@ -29,18 +29,16 @@ class SendNotificationService {
       usersQuerySnapshot =
           await kFirebaseInstant.users.where(MyFields.id, isEqualTo: toUserId).get();
     } else if (toRoles != null) {
-      usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get().then((value) {
-        for (var d in value.docs) {
-          print("id::: ${d.id}");
-        }
-        return value;
-      });
+      usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get();
     }
 
     for (var doc in usersQuerySnapshot.docs) {
       final docRef = doc.reference;
       final user = doc.data();
       final token = user.deviceToken;
+
+      if (token == null) return;
+
       final languageCode = user.languageCode;
 
       final title = languageCode == LanguageEnum.english ? titleEn : titleAr;
@@ -73,6 +71,8 @@ class SendNotificationService {
     required NotificationModel notificationModel,
   }) async {
     final accessToken = await _getAccessToken();
+
+    if (accessToken == null) return;
 
     final notification = notificationModel.notification!;
     final data = notificationModel.data!;
@@ -108,37 +108,37 @@ class SendNotificationService {
     }
   }
 
-  static Future<String> _getAccessToken() async {
-    // Load the service account JSON from the assets folder
-    final String serviceAccountString = await rootBundle.loadString(
-      'assets/serviceAccountKey.json',
-    );
+  static Future<String?> _getAccessToken() async {
+    try {
+      // Load the service account JSON from the assets folder
+      final String serviceAccountString = await rootBundle.loadString(
+        'assets/serviceAccountKey.json',
+      );
 
-    // Parse the JSON string into a Map
-    final serviceAccountJson = jsonDecode(serviceAccountString);
+      // Parse the JSON string into a Map
+      final serviceAccountJson = jsonDecode(serviceAccountString);
 
-    List<String> scopes = [
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/firebase.database",
-      "https://www.googleapis.com/auth/firebase.messaging",
-    ];
+      List<String> scopes = [
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/firebase.database",
+        "https://www.googleapis.com/auth/firebase.messaging",
+      ];
 
-    http.Client client = await auth.clientViaServiceAccount(
-      auth.ServiceAccountCredentials.fromJson(serviceAccountJson),
-      scopes,
-    );
+      final credentials = await auth.clientViaServiceAccount(
+        auth.ServiceAccountCredentials.fromJson(serviceAccountJson),
+        scopes,
+      );
 
-    // Obtain the access token
-    auth.AccessCredentials credentials = await auth.obtainAccessCredentialsViaServiceAccount(
-      auth.ServiceAccountCredentials.fromJson(serviceAccountJson),
-      scopes,
-      client,
-    );
+      final accessToken = (credentials).credentials.accessToken.data;
 
-    // Close the HTTP client
-    client.close();
+      // Close the HTTP client
+      credentials.close();
 
-    // Return the access token
-    return credentials.accessToken.data;
+      // Return the access token
+      return accessToken;
+    } catch (e) {
+      debugPrint("accessTokenError:: $e");
+      return null;
+    }
   }
 }

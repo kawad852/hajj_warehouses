@@ -165,7 +165,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   query: _subTasksQuery,
                   onComplete: (context, snapshot) {
                     return ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(height: 30),
+                      separatorBuilder: (context, index) => const SizedBox(height: 10),
                       itemCount: snapshot.docs.length,
                       padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(bottom: 20),
                       itemBuilder: (context, index) {

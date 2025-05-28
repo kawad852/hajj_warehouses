@@ -445,5 +445,9 @@
   "endTimeAt": "End Time At",
   "mustEndWithin": "Must End Within",
   "subTasks": "Subtasks",
-  "messages": "Messages"
+  "messages": "Messages",
+  "attachPhotos": "Attach Photos",
+  "startExecution": "Start Execution",
+  "mustAttachPhotos": "Photos must be attached",
+  "completeMainTaskCondition": "To complete the main task, all subtasks must be completed"
 }
