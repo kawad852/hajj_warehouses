@@ -57,12 +57,12 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
               titleAr: _isDeposit ? "💰 إضافة عهدة" : "سحب من العهدة",
               bodyEn:
                   _isDeposit
-                      ? "💰 A new cash deposit of ${_transaction.amount} riyals has been added to your account by the administration."
+                      ? "A new cash deposit of ${_transaction.amount} riyals has been added to your account by the administration."
                       : "${_transaction.amount} riyals was withdrawn by the management.",
               bodyAr:
                   _isDeposit
-                      ? "💰 تم إضافة عهدة نقدية جديدة بقيمة ${_transaction.amount}ريال لحسابك من قبل الإدارة."
-                      : " تم سحب عهدة نقدية جديدة بقيمة${_transaction.amount}ريال من قبل الإدارة.",
+                      ? "💰 تم إضافة عهدة نقدية جديدة بقيمة ${_transaction.amount}ريال لحسابك من قبل الإدارة. "
+                      : " تم سحب عهدة نقدية جديدة بقيمة${_transaction.amount}ريال من قبل الإدارة. ",
               toRoles: [RoleEnum.manager.value],
             );
             Navigator.pop(context);

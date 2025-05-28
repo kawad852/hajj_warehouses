@@ -65,7 +65,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             titleAr: "📝 مهمة جديدة",
             bodyEn: "A new task ${_task.title} has been assigned to start at $formattedDate.",
             bodyAr: "تم تعيين المهمة ${_task.title} لتبدأ في $formattedDate.",
-            toRoles: [RoleEnum.admin.value],
+            toRoles: [RoleEnum.admin.value, RoleEnum.manager.value],
           );
 
           if (context.mounted) {

@@ -22,14 +22,20 @@ class SendNotificationService {
   }) async {
     final filter = Filter.and(
       Filter(MyFields.idBranch, isEqualTo: kBranch?.id),
-      Filter(MyFields.roleId, whereIn: toRoles),
+      // Filter(MyFields.id, isNotEqualTo: kCurrentLightUser.id),
+      Filter(MyFields.role, whereIn: toRoles),
     );
     late QuerySnapshot<UserModel> usersQuerySnapshot;
     if (toUserId != null) {
       usersQuerySnapshot =
           await kFirebaseInstant.users.where(MyFields.id, isEqualTo: toUserId).get();
     } else if (toRoles != null) {
-      usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get();
+      usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get().then((value) {
+        for (var d in value.docs) {
+          print("id::: ${d.id}");
+        }
+        return value;
+      });
     }
 
     for (var doc in usersQuerySnapshot.docs) {

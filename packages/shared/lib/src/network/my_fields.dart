@@ -35,4 +35,5 @@ class MyFields {
   static const String unReadNotificationsCount = 'unReadNotificationsCount';
   static const String companyId = 'companyId';
   static const String roleId = 'roleId';
+  static const String role = 'role';
 }

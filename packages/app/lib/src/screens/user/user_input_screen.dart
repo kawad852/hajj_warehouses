@@ -247,7 +247,11 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       title: context.appLocalization.branch,
                       onChanged: (value) {
                         final branch = branches.firstWhere((e) => e.id == value);
-                        _user.branch = LightBranchModel(id: branch.id, name: branch.name);
+                        _user.branch = LightBranchModel(
+                          id: branch.id,
+                          name: branch.name,
+                          companyId: kCompanyId,
+                        );
                       },
                       labelText: '',
                       value: _user.branch?.id,
