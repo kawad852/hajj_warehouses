@@ -64,6 +64,7 @@ class TaskToggleButtons extends StatelessWidget {
             (e) => e.data()[MyFields.status] == TaskStatusEnum.completed.value,
           );
           if (isEverySubTaskCompleted) {
+            _mainTaskDocRef.update(json);
             // ignore: use_build_context_synchronously
             SendNotificationService.sendToUsers(
               // ignore: use_build_context_synchronously
