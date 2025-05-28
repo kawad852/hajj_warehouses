@@ -11,10 +11,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Stream<QuerySnapshot<TaskModel>> _tasksStream;
+  late Stream<List<dynamic>> _streams;
+
+  // late Stream<QuerySnapshot<TaskModel>> _tasksStream;
 
   void _initialize() {
-    _tasksStream =
+    final tasksStream =
         kFirebaseInstant.tasks
             .where(
               MyFields.status,
@@ -23,6 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
             .orderBy(MyFields.startTime, descending: true)
             .limit(5)
             .snapshots();
+
+    final adminMessages = kFirebaseInstant.adminMessages.orderByDesc.limit(1).snapshots();
+
+    _streams = Rx.combineLatest2<
+      QuerySnapshot<TaskModel>,
+      QuerySnapshot<AdminMessageModel>,
+      List<dynamic>
+    >(tasksStream, adminMessages, (s1, s2) {
+      return [s1, s2];
+    });
   }
 
   @override
@@ -34,9 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ImpededStreamBuilder(
-      stream: _tasksStream,
+      stream: _streams,
       onComplete: (context, snapshot) {
-        final tasks = snapshot.data!.docs;
+        final tasksStream = snapshot.data![0] as QuerySnapshot<TaskModel>;
+        final adminMessageStream = snapshot.data![1] as QuerySnapshot<AdminMessageModel>;
+        final tasks = tasksStream.docs;
         final currentTasks = tasks.take(2).toList();
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -131,16 +145,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: HomeBubble(
-                onTap: () {},
-                title: context.appLocalization.administrativeMessages,
-                expandedTask: true,
-                task:
-                    "يرجى الإلتزام بمواعيد تقديم الوجبات وحسن التعامل مع حجاج بيت الله ، شاكرين لكم تعاونكم وجزاكم الله خير الجزاء.",
-              ),
-            ),
+            if (adminMessageStream.docs.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: HomeBubble(
+                  onTap: null,
+                  title: context.appLocalization.administrativeMessages,
+                  expandedTask: true,
+                  task: adminMessageStream.docs.first.data().msg,
+                ),
+              )
+            else
+              const SizedBox(height: 10),
             if (tasks.isNotEmpty)
               DecoratedBox(
                 decoration: BoxDecoration(

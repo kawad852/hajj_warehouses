@@ -27,7 +27,7 @@ class _MessagesTableState extends State<MessagesTable> {
     return PortalTable(
       tableTitle: context.appLocalization.messages,
       query: _query,
-      data: AdminMessageModel(createTime: kNowDate),
+      data: AdminMessageModel(createdAt: kNowDate),
       reference: _collectionRef.doc(),
       convertor: CompanyModel.fromJson,
       columns: [
@@ -38,14 +38,14 @@ class _MessagesTableState extends State<MessagesTable> {
         final queryDocSnapshot = snapshot.docs[index];
         final data = queryDocSnapshot.data();
         return [
-          DataCell(Text(data.createTime!.getDefaultFormattedDate(context))),
+          DataCell(Text(data.createdAt!.getDefaultFormattedDate(context))),
           DataCell(Text(data.msg!)),
         ];
       },
       onSave: (ref, data) async {
         final reference = ref ?? _collectionRef.doc();
         if (ref == null) {
-          data = data.copyWith(id: reference.id, createTime: kNowDate);
+          data = data.copyWith(id: reference.id, createdAt: kNowDate);
         }
         await reference.set(data);
       },

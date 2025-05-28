@@ -2,7 +2,7 @@ import 'package:shared/shared.dart';
 
 class HomeBubble extends StatelessWidget {
   final String title;
-  final void Function() onTap;
+  final void Function()? onTap;
   final bool expandedTask;
   final String? task;
   final String? value;
@@ -58,7 +58,7 @@ class HomeBubble extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Icon(Icons.arrow_forward_ios_rounded),
+                  if (onTap != null) const Icon(Icons.arrow_forward_ios_rounded),
                 ],
               ),
             ),

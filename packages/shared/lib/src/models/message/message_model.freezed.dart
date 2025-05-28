@@ -453,9 +453,9 @@ AdminMessageModel _$AdminMessageModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AdminMessageModel {
   @TimestampSerializer()
-  DateTime? get createTime => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
-  set createTime(DateTime? value) => throw _privateConstructorUsedError;
+  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
   String? get msg => throw _privateConstructorUsedError;
@@ -479,7 +479,7 @@ abstract class $AdminMessageModelCopyWith<$Res> {
   ) = _$AdminMessageModelCopyWithImpl<$Res, AdminMessageModel>;
   @useResult
   $Res call({
-    @TimestampSerializer() DateTime? createTime,
+    @TimestampSerializer() DateTime? createdAt,
     String? id,
     String? msg,
   });
@@ -500,16 +500,16 @@ class _$AdminMessageModelCopyWithImpl<$Res, $Val extends AdminMessageModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createTime = freezed,
+    Object? createdAt = freezed,
     Object? id = freezed,
     Object? msg = freezed,
   }) {
     return _then(
       _value.copyWith(
-            createTime:
-                freezed == createTime
-                    ? _value.createTime
-                    : createTime // ignore: cast_nullable_to_non_nullable
+            createdAt:
+                freezed == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             id:
                 freezed == id
@@ -537,7 +537,7 @@ abstract class _$$AdminMessageModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @TimestampSerializer() DateTime? createTime,
+    @TimestampSerializer() DateTime? createdAt,
     String? id,
     String? msg,
   });
@@ -557,16 +557,16 @@ class __$$AdminMessageModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createTime = freezed,
+    Object? createdAt = freezed,
     Object? id = freezed,
     Object? msg = freezed,
   }) {
     return _then(
       _$AdminMessageModelImpl(
-        createTime:
-            freezed == createTime
-                ? _value.createTime
-                : createTime // ignore: cast_nullable_to_non_nullable
+        createdAt:
+            freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         id:
             freezed == id
@@ -587,7 +587,7 @@ class __$$AdminMessageModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdminMessageModelImpl implements _AdminMessageModel {
   _$AdminMessageModelImpl({
-    @TimestampSerializer() this.createTime,
+    @TimestampSerializer() this.createdAt,
     this.id,
     this.msg,
   });
@@ -597,7 +597,7 @@ class _$AdminMessageModelImpl implements _AdminMessageModel {
 
   @override
   @TimestampSerializer()
-  DateTime? createTime;
+  DateTime? createdAt;
   @override
   String? id;
   @override
@@ -605,7 +605,7 @@ class _$AdminMessageModelImpl implements _AdminMessageModel {
 
   @override
   String toString() {
-    return 'AdminMessageModel(createTime: $createTime, id: $id, msg: $msg)';
+    return 'AdminMessageModel(createdAt: $createdAt, id: $id, msg: $msg)';
   }
 
   /// Create a copy of AdminMessageModel
@@ -627,7 +627,7 @@ class _$AdminMessageModelImpl implements _AdminMessageModel {
 
 abstract class _AdminMessageModel implements AdminMessageModel {
   factory _AdminMessageModel({
-    @TimestampSerializer() DateTime? createTime,
+    @TimestampSerializer() DateTime? createdAt,
     String? id,
     String? msg,
   }) = _$AdminMessageModelImpl;
@@ -637,9 +637,9 @@ abstract class _AdminMessageModel implements AdminMessageModel {
 
   @override
   @TimestampSerializer()
-  DateTime? get createTime;
+  DateTime? get createdAt;
   @TimestampSerializer()
-  set createTime(DateTime? value);
+  set createdAt(DateTime? value);
   @override
   String? get id;
   set id(String? value);

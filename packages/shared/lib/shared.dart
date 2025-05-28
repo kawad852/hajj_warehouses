@@ -22,6 +22,7 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
+export 'package:rxdart/rxdart.dart';
 export 'package:shared/firebase_options.dart';
 export 'package:shared/shared.dart';
 export 'package:shared_preferences/shared_preferences.dart';

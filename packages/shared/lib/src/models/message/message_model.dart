@@ -27,11 +27,8 @@ class StatusModel with _$StatusModel {
 
 @unfreezed
 class AdminMessageModel with _$AdminMessageModel {
-  factory AdminMessageModel({
-    @TimestampSerializer() DateTime? createTime,
-    String? id,
-    String? msg,
-  }) = _AdminMessageModel;
+  factory AdminMessageModel({@TimestampSerializer() DateTime? createdAt, String? id, String? msg}) =
+      _AdminMessageModel;
 
   factory AdminMessageModel.fromJson(Map<String, dynamic> json) =>
       _$AdminMessageModelFromJson(json);
