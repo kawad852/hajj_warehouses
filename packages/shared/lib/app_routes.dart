@@ -2,6 +2,7 @@ import 'package:admin_portal/screens/base/admins/admins_table.dart';
 import 'package:admin_portal/screens/base/app_nav_rail.dart';
 import 'package:admin_portal/screens/base/companies/companies_table.dart';
 import 'package:admin_portal/screens/base/login/portal_login_screen.dart';
+import 'package:admin_portal/screens/base/messages/messages_table.dart';
 import 'package:admin_portal/screens/base/no_access_screen.dart';
 import 'package:admin_portal/screens/base/policies/policies_table.dart';
 import 'package:admin_portal/screens/base/roles/roles_table.dart';
@@ -18,6 +19,7 @@ final usersRouteKey = GlobalKey<NavigatorState>();
 final adminsRouteKey = GlobalKey<NavigatorState>();
 final rolesRouteKey = GlobalKey<NavigatorState>();
 final policiesRouteKey = GlobalKey<NavigatorState>();
+final messagesRouteKey = GlobalKey<NavigatorState>();
 
 @TypedGoRoute<LoginRoute>(path: '/login')
 class LoginRoute extends GoRouteData {
@@ -44,6 +46,9 @@ class NoAccessRoute extends GoRouteData {
     ),
     TypedStatefulShellBranch<UsersTableBranch>(
       routes: [TypedGoRoute<UsersTableRoute>(path: '/users')],
+    ),
+    TypedStatefulShellBranch<MessagesTableBranch>(
+      routes: [TypedGoRoute<MessagesTableRoute>(path: '/admin-messages')],
     ),
 
     ///Config
@@ -94,6 +99,19 @@ class UsersTableRoute extends GoRouteData {
   @override
   build(BuildContext context, GoRouterState state) {
     return const UsersTable();
+  }
+}
+
+//messages
+class MessagesTableBranch extends StatefulShellBranchData {
+  const MessagesTableBranch();
+  static final GlobalKey<NavigatorState> $navigatorKey = messagesRouteKey;
+}
+
+class MessagesTableRoute extends GoRouteData {
+  @override
+  build(BuildContext context, GoRouterState state) {
+    return const MessagesTable();
   }
 }
 

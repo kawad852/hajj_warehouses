@@ -11,6 +11,12 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
+  CollectionReference<AdminMessageModel> get adminMessages =>
+      collection(MyCollections.adminMessages).withConverter<AdminMessageModel>(
+        fromFirestore: (snapshot, _) => AdminMessageModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   CollectionReference<UserModel> get users =>
       collection(MyCollections.users).withConverter<UserModel>(
         fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),

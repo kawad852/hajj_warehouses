@@ -18,6 +18,8 @@ class PortalHelper {
       return context.appLocalization.roles;
     } else if (path == PoliciesTableRoute().location) {
       return context.appLocalization.policies;
+    } else if (path == MessagesTableRoute().location) {
+      return context.appLocalization.messages;
     } else {
       throw 'PATH NEEDS TO BE ADDED';
     }

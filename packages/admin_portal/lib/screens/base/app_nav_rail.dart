@@ -50,10 +50,10 @@ class _AppNavRailState extends State<AppNavRail> {
                       [];
 
           var buildRoutes = <String>[];
-          var manageRoutes = _getRouteSections(0, 2);
+          var manageRoutes = _getRouteSections(0, 3);
           var servicesRoutes = <String>[];
           var engageRoutes = <String>[];
-          var configureRoutes = _getRouteSections(2, 5);
+          var configureRoutes = _getRouteSections(3, 6);
 
           // var buildRoutes = <String>[];
           // var servicesRoutes = <String>[];

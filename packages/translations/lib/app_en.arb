@@ -444,5 +444,6 @@
   "taskStartedAt": "Task Started At",
   "endTimeAt": "End Time At",
   "mustEndWithin": "Must End Within",
-  "subTasks": "Subtasks"
+  "subTasks": "Subtasks",
+  "messages": "Messages"
 }

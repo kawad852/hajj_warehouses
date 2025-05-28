@@ -35,3 +35,19 @@ _$StatusModelImpl _$$StatusModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$StatusModelImplToJson(_$StatusModelImpl instance) =>
     <String, dynamic>{'state': instance.state, 'error': instance.error};
+
+_$AdminMessageModelImpl _$$AdminMessageModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$AdminMessageModelImpl(
+  createTime: const TimestampSerializer().fromJson(json['createTime']),
+  id: json['id'] as String?,
+  msg: json['msg'] as String?,
+);
+
+Map<String, dynamic> _$$AdminMessageModelImplToJson(
+  _$AdminMessageModelImpl instance,
+) => <String, dynamic>{
+  'createTime': const TimestampSerializer().toJson(instance.createTime),
+  'id': instance.id,
+  'msg': instance.msg,
+};

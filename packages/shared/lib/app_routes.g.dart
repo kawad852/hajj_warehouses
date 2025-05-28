@@ -80,6 +80,17 @@ RouteBase get $appNavBarRoute => StatefulShellRouteData.$route(
       ],
     ),
     StatefulShellBranchData.$branch(
+      navigatorKey: MessagesTableBranch.$navigatorKey,
+
+      routes: [
+        GoRouteData.$route(
+          path: '/admin-messages',
+
+          factory: $MessagesTableRouteExtension._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
       navigatorKey: AdminsTableBranch.$navigatorKey,
 
       routes: [
@@ -140,6 +151,22 @@ extension $UsersTableRouteExtension on UsersTableRoute {
   static UsersTableRoute _fromState(GoRouterState state) => UsersTableRoute();
 
   String get location => GoRouteData.$location('/users');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MessagesTableRouteExtension on MessagesTableRoute {
+  static MessagesTableRoute _fromState(GoRouterState state) =>
+      MessagesTableRoute();
+
+  String get location => GoRouteData.$location('/admin-messages');
 
   void go(BuildContext context) => context.go(location);
 

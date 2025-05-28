@@ -445,3 +445,212 @@ abstract class _StatusModel implements StatusModel {
   _$$StatusModelImplCopyWith<_$StatusModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AdminMessageModel _$AdminMessageModelFromJson(Map<String, dynamic> json) {
+  return _AdminMessageModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AdminMessageModel {
+  @TimestampSerializer()
+  DateTime? get createTime => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set createTime(DateTime? value) => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
+  String? get msg => throw _privateConstructorUsedError;
+  set msg(String? value) => throw _privateConstructorUsedError;
+
+  /// Serializes this AdminMessageModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of AdminMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AdminMessageModelCopyWith<AdminMessageModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AdminMessageModelCopyWith<$Res> {
+  factory $AdminMessageModelCopyWith(
+    AdminMessageModel value,
+    $Res Function(AdminMessageModel) then,
+  ) = _$AdminMessageModelCopyWithImpl<$Res, AdminMessageModel>;
+  @useResult
+  $Res call({
+    @TimestampSerializer() DateTime? createTime,
+    String? id,
+    String? msg,
+  });
+}
+
+/// @nodoc
+class _$AdminMessageModelCopyWithImpl<$Res, $Val extends AdminMessageModel>
+    implements $AdminMessageModelCopyWith<$Res> {
+  _$AdminMessageModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of AdminMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createTime = freezed,
+    Object? id = freezed,
+    Object? msg = freezed,
+  }) {
+    return _then(
+      _value.copyWith(
+            createTime:
+                freezed == createTime
+                    ? _value.createTime
+                    : createTime // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            msg:
+                freezed == msg
+                    ? _value.msg
+                    : msg // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$AdminMessageModelImplCopyWith<$Res>
+    implements $AdminMessageModelCopyWith<$Res> {
+  factory _$$AdminMessageModelImplCopyWith(
+    _$AdminMessageModelImpl value,
+    $Res Function(_$AdminMessageModelImpl) then,
+  ) = __$$AdminMessageModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @TimestampSerializer() DateTime? createTime,
+    String? id,
+    String? msg,
+  });
+}
+
+/// @nodoc
+class __$$AdminMessageModelImplCopyWithImpl<$Res>
+    extends _$AdminMessageModelCopyWithImpl<$Res, _$AdminMessageModelImpl>
+    implements _$$AdminMessageModelImplCopyWith<$Res> {
+  __$$AdminMessageModelImplCopyWithImpl(
+    _$AdminMessageModelImpl _value,
+    $Res Function(_$AdminMessageModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AdminMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createTime = freezed,
+    Object? id = freezed,
+    Object? msg = freezed,
+  }) {
+    return _then(
+      _$AdminMessageModelImpl(
+        createTime:
+            freezed == createTime
+                ? _value.createTime
+                : createTime // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        msg:
+            freezed == msg
+                ? _value.msg
+                : msg // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AdminMessageModelImpl implements _AdminMessageModel {
+  _$AdminMessageModelImpl({
+    @TimestampSerializer() this.createTime,
+    this.id,
+    this.msg,
+  });
+
+  factory _$AdminMessageModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AdminMessageModelImplFromJson(json);
+
+  @override
+  @TimestampSerializer()
+  DateTime? createTime;
+  @override
+  String? id;
+  @override
+  String? msg;
+
+  @override
+  String toString() {
+    return 'AdminMessageModel(createTime: $createTime, id: $id, msg: $msg)';
+  }
+
+  /// Create a copy of AdminMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AdminMessageModelImplCopyWith<_$AdminMessageModelImpl> get copyWith =>
+      __$$AdminMessageModelImplCopyWithImpl<_$AdminMessageModelImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AdminMessageModelImplToJson(this);
+  }
+}
+
+abstract class _AdminMessageModel implements AdminMessageModel {
+  factory _AdminMessageModel({
+    @TimestampSerializer() DateTime? createTime,
+    String? id,
+    String? msg,
+  }) = _$AdminMessageModelImpl;
+
+  factory _AdminMessageModel.fromJson(Map<String, dynamic> json) =
+      _$AdminMessageModelImpl.fromJson;
+
+  @override
+  @TimestampSerializer()
+  DateTime? get createTime;
+  @TimestampSerializer()
+  set createTime(DateTime? value);
+  @override
+  String? get id;
+  set id(String? value);
+  @override
+  String? get msg;
+  set msg(String? value);
+
+  /// Create a copy of AdminMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AdminMessageModelImplCopyWith<_$AdminMessageModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

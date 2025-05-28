@@ -444,5 +444,6 @@
   "taskStartedAt": "بدأت المهمة في",
   "endTimeAt": "وقت الإنتهاء عند",
   "mustEndWithin": "يجب الإنهاء خلال",
-  "subTasks": "المهام الفرعية"
+  "subTasks": "المهام الفرعية",
+  "messages": "الرسائل"
 }

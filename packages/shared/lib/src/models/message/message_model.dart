@@ -20,10 +20,19 @@ class MessageModel with _$MessageModel {
 
 @unfreezed
 class StatusModel with _$StatusModel {
-  factory StatusModel({
-    String? state,
-    String? error,
-  }) = _StatusModel;
+  factory StatusModel({String? state, String? error}) = _StatusModel;
 
   factory StatusModel.fromJson(Map<String, dynamic> json) => _$StatusModelFromJson(json);
+}
+
+@unfreezed
+class AdminMessageModel with _$AdminMessageModel {
+  factory AdminMessageModel({
+    @TimestampSerializer() DateTime? createTime,
+    String? id,
+    String? msg,
+  }) = _AdminMessageModel;
+
+  factory AdminMessageModel.fromJson(Map<String, dynamic> json) =>
+      _$AdminMessageModelFromJson(json);
 }
