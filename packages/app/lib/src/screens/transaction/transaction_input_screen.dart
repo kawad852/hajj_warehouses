@@ -49,6 +49,22 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
           });
           await batch.commit();
           if (context.mounted) {
+            SendNotificationService.sendToUsers(
+              context,
+              id: _transaction.id,
+              type: "TRANSACTION",
+              titleEn: _isDeposit ? "💰Cash deposit" : "Cash Withdrawal",
+              titleAr: _isDeposit ? "💰 إضافة عهدة" : "سحب من العهدة",
+              bodyEn:
+                  _isDeposit
+                      ? "💰 A new cash deposit of ${_transaction.amount} riyals has been added to your account by the administration."
+                      : "${_transaction.amount} riyals was withdrawn by the management.",
+              bodyAr:
+                  _isDeposit
+                      ? "💰 تم إضافة عهدة نقدية جديدة بقيمة ${_transaction.amount}ريال لحسابك من قبل الإدارة."
+                      : " تم سحب عهدة نقدية جديدة بقيمة${_transaction.amount}ريال من قبل الإدارة.",
+              toRoles: [RoleEnum.manager.value],
+            );
             Navigator.pop(context);
             Fluttertoast.showToast(msg: context.appLocalization.theOperationWasSuccessful);
           }
@@ -94,7 +110,9 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                 children: [
                   Center(
                     child: Text(
-                      _isDeposit ? context.appLocalization.addImprest : context.appLocalization.recordExpense,
+                      _isDeposit
+                          ? context.appLocalization.addImprest
+                          : context.appLocalization.recordExpense,
                       style: TextStyle(
                         color: context.colorPalette.black001,
                         fontSize: 16,
@@ -116,7 +134,10 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                             final isOne = e == DepositReasonEnum.one;
                             return CustomRadio(
                               value: e.value,
-                              title: isOne ? context.appLocalization.forTheFirstTime : context.appLocalization.additionalSupply,
+                              title:
+                                  isOne
+                                      ? context.appLocalization.forTheFirstTime
+                                      : context.appLocalization.additionalSupply,
                               groupValue: _transaction.depositReason,
                               onChanged: (value) {
                                 setState(() {
@@ -192,7 +213,9 @@ class _TransactionInputScreenState extends State<TransactionInputScreen> {
                   ImagesAttacher(
                     onChanged: (path) {},
                     title:
-                        _isDeposit ? context.appLocalization.attachPhotoOfDelivery : context.appLocalization.attachPhotoInvoice,
+                        _isDeposit
+                            ? context.appLocalization.attachPhotoOfDelivery
+                            : context.appLocalization.attachPhotoInvoice,
                   ),
                 ],
               ),

@@ -20,15 +20,16 @@ class SendNotificationService {
     String? toUserId,
     List<String>? toRoles,
   }) async {
-    // final filter = Filter(Filter(MyFields.idBranch, isEqualTo: kBranch?.id));
+    final filter = Filter.and(
+      Filter(MyFields.idBranch, isEqualTo: kBranch?.id),
+      Filter(MyFields.roleId, whereIn: toRoles),
+    );
     late QuerySnapshot<UserModel> usersQuerySnapshot;
-
     if (toUserId != null) {
       usersQuerySnapshot =
           await kFirebaseInstant.users.where(MyFields.id, isEqualTo: toUserId).get();
     } else if (toRoles != null) {
-      usersQuerySnapshot =
-          await kFirebaseInstant.users.where(MyFields.roleId, whereIn: toRoles).get();
+      usersQuerySnapshot = await kFirebaseInstant.users.where(filter).get();
     }
 
     for (var doc in usersQuerySnapshot.docs) {
