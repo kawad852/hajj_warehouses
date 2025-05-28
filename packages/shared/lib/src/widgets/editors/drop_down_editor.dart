@@ -27,6 +27,7 @@ class DropDownEditor<T> extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: kMaxWidth),
         child: DropdownButtonFormField(
+          isExpanded: true,
           onChanged: onChanged,
           value: value,
           autovalidateMode: AutovalidateMode.onUserInteraction,

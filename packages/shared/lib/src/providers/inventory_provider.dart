@@ -125,7 +125,7 @@ class InventoryProvider extends ChangeNotifier {
           );
           batch.set(orderDocREF, order);
           batch.set(orderHistoryDocRef, orderHistory.toJson());
-          if (isSupplyOperation && context.mounted) {
+          if ((isTransferOperation || isSupplyOperation) && context.mounted) {
             Navigator.pop(context);
             context.navigate((context) {
               return OrderDetailsScreen(order: order);
