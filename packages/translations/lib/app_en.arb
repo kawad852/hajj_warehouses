@@ -438,5 +438,11 @@
   "emptyMsgPrompt1": "Hello",
   "emptyMsgResponse1": "I am your smart legal assistant. I am here to help you with any legal questions.",
   "emptyMsgPrompt2": "I lost my passport, what should I do?",
-  "emptyMsgResponse2": "You should go to the nearest security unit located in all areas and facilities of the premises, and report it immediately."
+  "emptyMsgResponse2": "You should go to the nearest security unit located in all areas and facilities of the premises, and report it immediately.",
+  "followTask": "Follow Task",
+  "log": "Log",
+  "taskStartedAt": "Task Started At",
+  "endTimeAt": "End Time At",
+  "mustEndWithin": "Must End Within",
+  "subTasks": "Subtasks"
 }

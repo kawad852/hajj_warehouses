@@ -24,6 +24,48 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _subTasksQuery = kFirebaseInstant.subTasks(widget.task?.id ?? widget.id!);
   }
 
+  Future<void> _showDialog(BuildContext context, TaskModel task) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            listTileTheme: const ListTileThemeData(
+              minTileHeight: 0,
+              dense: true,
+              minVerticalPadding: 0,
+            ),
+          ),
+          child: SimpleDialog(
+            title: Text(context.appLocalization.log),
+            children: <Widget>[
+              if (task.startedAt != null)
+                SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: ListTile(
+                    title: Text(context.appLocalization.taskStartedAt),
+                    subtitle: Text(task.startedAt!.getDateTimeFormatEN(context)),
+                  ),
+                ),
+              if (task.endedAt != null)
+                SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: ListTile(
+                    title: Text(context.appLocalization.taskEnded),
+                    subtitle: Text(task.endedAt!.getDateTimeFormatEN(context)),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -48,19 +90,22 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           appBar: AppBar(
             backgroundColor: context.colorPalette.greyE2E,
             surfaceTintColor: context.colorPalette.greyE2E,
-            title: const AppBarText("متابعة المهمة"),
+            title: AppBarText(context.appLocalization.followTask),
             actions: [
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "السجل",
-                  style: TextStyle(
-                    color: context.colorPalette.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
+              if (task.startedAt != null)
+                TextButton(
+                  onPressed: () {
+                    _showDialog(context, task);
+                  },
+                  child: Text(
+                    context.appLocalization.log,
+                    style: TextStyle(
+                      color: context.colorPalette.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
           body: Column(
@@ -75,14 +120,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       children: [
                         if ((inProgress || inCompleted) && task.startedAt != null) ...[
                           TaskInfo(
-                            title: "بدأت المهمة في",
+                            title: context.appLocalization.taskStartedAt,
                             value: "${task.startedAt!.getTime(context)} ",
                           ),
                         ],
                         if (inCompleted && task.endedAt != null) ...[
                           const SizedBox(width: 10),
                           TaskInfo(
-                            title: "وقت الإنتهاء عند",
+                            title: context.appLocalization.endTimeAt,
                             value: task.endedAt!.getTime(context),
                           ),
                         ],
@@ -91,7 +136,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           TimerBuilder(
                             endDateTime: task.endTime,
                             child: (time) {
-                              return TaskInfo(title: "يجب الإنهاء خلال", value: time);
+                              return TaskInfo(
+                                title: context.appLocalization.mustEndWithin,
+                                value: time,
+                              );
                             },
                           ),
                         ],
@@ -101,7 +149,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
                         child: Text(
-                          "المهام الفرعية",
+                          context.appLocalization.subTasks,
                           style: TextStyle(
                             color: context.colorPalette.black001,
                             fontSize: 16,
