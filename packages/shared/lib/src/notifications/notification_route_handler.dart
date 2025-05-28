@@ -27,9 +27,9 @@ class NotificationRouteHandler {
           return TaskDetailsScreen(id: id);
         });
       } else if (type == "TRANSACTION") {
-        // context.navigate((context) {
-        //   return OrderDetailsScreen(order: ,);
-        // });
+        context.navigate((context) {
+          return const TransactionsScreen();
+        });
       }
     } catch (e) {
       debugPrint("RouteError:: $e");

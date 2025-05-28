@@ -290,7 +290,7 @@ exports.onOrderHistoryCreate = onDocumentCreated({
     const data = event.data.data();
     const status = data.status;
     const branch = data.branch;
-    const id = data.id;
+    const orderId = event.params.orderId;
     const user = data.user;
     const operationType = data.operationType;
     const isSupply = operationType == "SUPPLY";
@@ -336,7 +336,7 @@ exports.onOrderHistoryCreate = onDocumentCreated({
 
     const notificationData = {
       type: "ORDER",
-      id: `${id}`,
+      id: orderId,
      };
     await sendNotification({
       titleEn,
