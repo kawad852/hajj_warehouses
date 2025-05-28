@@ -95,6 +95,7 @@ exports.onItemUpdate = onDocumentUpdated({
       bodyAr,
       notificationData,
       branch,
+      roles: ["ADMIN", "MANAGER"],
     });
   }
 
@@ -214,6 +215,7 @@ exports.markLateTasks = onSchedule(
             bodyAr,
             notificationData,
             branch,
+            roles: ["ADMIN", "MANAGER"],
           }),
         );
       }
@@ -272,6 +274,7 @@ exports.onInventoryOperationCreated = onDocumentCreated({
       bodyAr,
       notificationData,
       branch,
+      roles: ["ADMIN", "MANAGER"],
     });
 
     console.log("✅ Notifications sent successfully for inventory ADD operation.");
@@ -333,7 +336,7 @@ exports.onOrderHistoryCreate = onDocumentCreated({
 
     const notificationData = {
       type: "ORDER",
-      id: id,
+      id: `${id}`,
      };
     await sendNotification({
       titleEn,
@@ -342,6 +345,7 @@ exports.onOrderHistoryCreate = onDocumentCreated({
       bodyAr,
       notificationData,
       branch,
+      roles: ["ADMIN", "MANAGER"],
     });
   } catch (error) {
     console.error("❌ Error in onInventoryOperationCreated:", error);
@@ -353,15 +357,19 @@ async function sendNotification({
   bodyEn,
   titleAr,
   bodyAr,
-  role = "ADMIN",
   notificationData,
   branch,
+  roles = ["ADMIN"],
 }) {
+  const filter = Filter.and(
+    Filter.where("branch.id", "==", branch.id),
+    Filter.where("role", "in", roles),
+  );
+
   const usersSnapshot = await admin
     .firestore()
     .collection("users")
-    .where("role", "==", role)
-    .where("branch.id", "==", branch.id)
+    .where(filter)
     .get();
 
   const notifications = [];

@@ -24,7 +24,11 @@ class _BranchesScreenState extends State<BranchesScreen> {
   void initState() {
     super.initState();
     _initialize();
-    _selectedBranch = MySharedPreferences.branch;
+    if (MySharedPreferences.branch != null) {
+      _selectedBranch = LightBranchModel.fromJson(MySharedPreferences.branch!.toJson());
+    } else {
+      _selectedBranch = null;
+    }
   }
 
   @override

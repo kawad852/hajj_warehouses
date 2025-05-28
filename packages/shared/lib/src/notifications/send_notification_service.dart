@@ -22,7 +22,6 @@ class SendNotificationService {
   }) async {
     final filter = Filter.and(
       Filter(MyFields.idBranch, isEqualTo: kBranch?.id),
-      // Filter(MyFields.id, isNotEqualTo: kCurrentLightUser.id),
       Filter(MyFields.role, whereIn: toRoles),
     );
     late QuerySnapshot<UserModel> usersQuerySnapshot;
