@@ -52,7 +52,7 @@ class MyTask extends StatelessWidget {
                         const CustomSvg(MyIcons.clockOutlined),
                         const SizedBox(width: 5),
                         Text(
-                          "06:30 صباحاً",
+                          task.startTime!.getTime(context),
                           style: TextStyle(
                             color: context.colorPalette.grey666,
                             fontSize: 12,
@@ -63,7 +63,7 @@ class MyTask extends StatelessWidget {
                         const CustomSvg(MyIcons.calenderOutlined),
                         const SizedBox(width: 5),
                         Text(
-                          "01.03.2025",
+                          task.startTime!.defaultDateFormat,
                           style: TextStyle(
                             color: context.colorPalette.grey666,
                             fontSize: 12,

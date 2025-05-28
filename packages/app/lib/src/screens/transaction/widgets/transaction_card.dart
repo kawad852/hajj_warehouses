@@ -92,7 +92,7 @@ class TransactionCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      context.defaultDateFormat(transaction.createdAt),
+                      transaction.createdAt.defaultDateFormat,
                       style: TextStyle(
                         color: context.colorPalette.grey666,
                         fontSize: 12,

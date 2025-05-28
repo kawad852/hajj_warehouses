@@ -15,7 +15,7 @@ class BaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool  isRTL = Localizations.localeOf(context).languageCode == LanguageEnum.arabic;
+    final bool isRTL = Localizations.localeOf(context).languageCode == LanguageEnum.arabic;
     final style = TextStyle(
       color: context.colorPalette.black001,
       fontSize: 14,
@@ -37,12 +37,12 @@ class BaseCard extends StatelessWidget {
             text: TextSpan(
               style: style,
               children: [
-                if(isRTL) const TextSpan(text: "قام"),
+                if (isRTL) const TextSpan(text: "قام"),
                 TextSpan(
                   text: " $displayName ",
                   style: style.copyWith(color: context.colorPalette.primary),
                 ),
-                TextSpan(text: "${isRTL ? "بـ" : "" } $action1 "),
+                TextSpan(text: "${isRTL ? "بـ" : ""} $action1 "),
                 TextSpan(text: action2),
               ],
             ),
@@ -51,7 +51,7 @@ class BaseCard extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
-              context.defaultDateFormat(date),
+              date.defaultDateFormat,
               style: TextStyle(
                 color: context.colorPalette.grey666,
                 fontSize: 12,

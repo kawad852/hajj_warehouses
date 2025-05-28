@@ -1,7 +1,5 @@
 import 'package:shared/shared.dart';
 
-import '../../object_box_exports.dart';
-
 extension BaseExtensions on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
@@ -12,5 +10,5 @@ extension BaseExtensions on BuildContext {
   String get currency => isRTL ? 'ريال' : 'SAR';
   String? get countryCode => AppProvider.countryCode;
 
-  String defaultDateFormat(DateTime date) => DateFormat.yMd(languageCode).add_jm().format(date);
+  // String defaultDateFormat(DateTime date) => DateFormat.yMd(languageCode).add_jm().format(date);
 }

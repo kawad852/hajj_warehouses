@@ -66,6 +66,7 @@ dependencies:
   flutter_quill: ^11.2.0
   flutter_quill_delta_from_html: ^1.4.1
   vsc_quill_delta_to_html: ^1.0.5
+  jhijri: ^1.0.0
   font_awesome_flutter:
     git:
       url: https://github.com/kawad852/font_awesome_flutter.git
