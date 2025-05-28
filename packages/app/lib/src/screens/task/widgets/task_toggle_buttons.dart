@@ -45,6 +45,7 @@ class TaskToggleButtons extends StatelessWidget {
       titleAr: "📝 بدأت المهمة",
       bodyEn: "Task: ${task.title} was started by ${task.createdBy.displayName} on $date.",
       bodyAr: "تم بدء المهمة: ${task.title} بواسطة ${task.createdBy.displayName} في تاريخ $date.",
+      toRoles: [RoleEnum.admin.value],
     );
   }
 
@@ -76,6 +77,7 @@ class TaskToggleButtons extends StatelessWidget {
                   "Task: ${task.title} was completed by ${task.createdBy.displayName} on $date.",
               bodyAr:
                   "تم إكمال المهمة: ${task.title} بواسطة ${task.createdBy.displayName} في تاريخ $date.",
+              toRoles: [RoleEnum.admin.value],
             );
           } else if (context.mounted) {
             context.showSnackBar("لانهاء المهمة الرئيسية، يجب انهاء جميع المهمات الفرعية");

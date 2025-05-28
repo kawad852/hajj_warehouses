@@ -40,6 +40,7 @@ export 'src/enums/base_enums.dart';
 export 'src/enums/filter_enums.dart';
 export 'src/enums/inventory_operation_enum.dart';
 export 'src/enums/item_enums.dart';
+export 'src/enums/notifications_enum.dart';
 export 'src/enums/order_enums.dart';
 export 'src/enums/portal_enums.dart';
 export 'src/enums/stores_enums.dart';
